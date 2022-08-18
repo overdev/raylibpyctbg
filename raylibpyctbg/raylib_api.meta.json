@@ -1,0 +1,33 @@
+{
+  "structs": [
+    {
+      "name": "vector2",
+      "addBehavior": {
+        "vec2Swizzling": true,
+        "vec2Arithmetic": true,
+        "vec3Swizzling": false,
+        "vec3Arithmetic": false,
+        "vec4Swizzling": false,
+        "vec4Arithmetic": false
+      },
+      "bindApiAsMethod": [],
+      "bindApiAsStaticmethod": [],
+      "bindApiAsClassmethod": []
+    }
+  ],
+  "functions": [
+    {
+      "name": "",
+      "callInstead": "",
+      "params": [
+        {
+          "name": "",
+          "defaultsTo": "None",
+          "outParam": false,
+          "varArgs": false,
+          "ommit": false
+        }
+      ]
+    }
+  ]
+}
