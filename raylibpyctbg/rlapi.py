@@ -444,6 +444,26 @@ C_TO_PRIMITIVE = {
     'double': "Double",
 }
 
+C_TO_ZERO = {
+    '...': None,
+    'va_list': None,
+    'void': 0,
+    'void*': None,
+    'bool': 0,
+    'char': 0,
+    'byte': 0,
+    'short': 0,
+    'int': 0,
+    'long': 0,
+    'unsigned char': 0,
+    'unsigned byte': 0,
+    'unsigned short': 0,
+    'unsigned int': 0,
+    'unsigned long': 0,
+    'float': 0.0,
+    'double': 0.0,
+}
+
 C_TO_PY = {
     '...': "bytes",
     'va_list': "bytes",
@@ -711,6 +731,15 @@ class TypeInfo:
                          if i is not None])
 
     @property
+    def zero(self):
+        if self.name in C_TO_ZERO:
+            if self.pointer or self.length:
+                return "None"
+            return f'{C_TO_ZERO.get(self.name)}'
+        else:
+            return f"{self.name}.zero()"
+
+    @property
     def rl_type(self):
         return "{}{}{}".format(
             'const ' if self.const else '',
@@ -941,7 +970,7 @@ class StructInfo:
             'init_docstring': docstring,
             'init_params': ', '.join(f_info.py_name for f_info in self.f_info),
             'init_fields': ', '.join(f_info.py_name for f_info in self.f_info),
-            'none_args': ', '.join('None' for _ in self.f_info),
+            'none_args': ', '.join(f.t_info.zero for f in self.f_info),
             'field_map': field_map,
             'py_name': self.py_name,
             'name': self.name,
