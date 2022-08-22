@@ -56,7 +56,7 @@ from enum import IntEnum
 from ctypes import (
     CDLL, wintypes,
     c_bool, c_char, c_byte, c_short, c_long, c_ubyte, c_ushort, c_ulong, c_ulong, c_float, c_double, c_char_p, c_void_p,
-    Structure, POINTER, CFUNCTYPE, byref
+    Structure, POINTER, CFUNCTYPE, byref, cast
 ) 
 
 
@@ -728,8 +728,8 @@ class TypeInfo:
                 if self.name in 'unsigned char':
                     return f"_str_in({value})"
                 else:
-                    before.append(f"{value}_ref = {self.as_c_type()}({value})")
-                    after.append(f"{value}_ref.contents.value")
+                    before.append(f"{value}_ref = cast({value}, {self.as_c_type()})")
+                    # after.append(f"{value}_ref.contents.value")
                 return f"{value}_ref"
             elif self.length:
                 return f"_array({self.as_c_type()}, {value})"
