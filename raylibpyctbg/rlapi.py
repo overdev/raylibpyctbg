@@ -631,7 +631,8 @@ RGBA_SWIZZLE_METHODS = """
 """
 
 WRAPPER = """
-def _wrap(api, argtypes, restype):
+def _wrap(api, name, argtypes, restype):
+    globals()[name] = api
     api.argtypes = argtypes
     api.restype = restype
 """
@@ -673,7 +674,7 @@ class {name}(Structure):
 
 METHOD_BIND = """
     {decorator}def {py_name}({param_list}){r_type}:
-        {result}{lib_name}.{c_name}({arg_list}){after}
+        {result}_{c_name}({arg_list}){after}
 """
 
 CONTEXT_MGR = """
@@ -688,7 +689,7 @@ TEMPLATE_FUNCTION = """
 
 def {py_name}({param_list}){r_type}:
 {description}{before}
-    {result}{lib_name}.{c_name}({arg_list}){after}
+    {result}_{c_name}({arg_list}){after}
 """
 
 # endregion (constants)
@@ -880,7 +881,7 @@ class FuncInfo:
     def prototype(self, lib_name, prototyper):
         argtypes = ', '.join([p.t_info.as_c_type() for p in self.p_info])
         restype = self.r_info.as_c_type() if self.r_info else "None"
-        return f"{prototyper}({lib_name}.{self.name}, [{argtypes}], {restype})\n"
+        return f"{prototyper}({lib_name}.{self.name}, '_{self.name}', [{argtypes}], {restype})\n"
 
     def ret(self, result, after):
         rtype = self.r_info.as_py_type()
@@ -926,7 +927,7 @@ class FuncInfo:
         return TEMPLATE_FUNCTION.format(**data)
 
 
-    def wrap_bound(self, meta, bound_as):
+    def wrap_bound(self, meta, bound_as=''):
         # ALL_NAMES.append(self.py_name)
         ret = 'None (`void` in C raylib)'
         if self.r_info:
@@ -934,8 +935,12 @@ class FuncInfo:
         before = []
         after = []
         resval, retval = self.ret('result', after)
-        deco = "@{bound_as}\n" if bound_as else ''
-        first, *params = self.p_info
+        deco = f"@{bound_as}{NL}{ND}" if bound_as else ''
+        if len(self.p_info):
+            first, *params = self.p_info
+        else:
+            print(self.p_info)
+            return ''
 
         if bound_as == 'classmethod':
             param_list = ', '.join(p.py_param for p in self.p_info)
@@ -953,10 +958,10 @@ class FuncInfo:
             arg_list = ', '.join(p_info.t_info.arg(p_info.py_name, before, after) for p_info in params)
             if param_list:
                 param_list = 'self, ' + param_list
-                arg_list = 'self, ' + arg_list
+                arg_list = ('self.byref, ' if meta.get('byref', False) else 'self, ') + arg_list
             else:
                 param_list = 'self'
-                arg_list = 'self'
+                arg_list = 'self.byref' if meta.get('byref', False) else 'self'
 
         data = {
             'param_list': param_list,
@@ -1062,6 +1067,15 @@ class StructInfo:
                 api = binding.get('api')
                 f_info = ALL_FUNCS.get(api)
                 impl += f_info.wrap_bound(binding, '')
+
+        if 'bindApiAsClassmethod' in meta:
+            for binding in meta.get('bindApiAsClassmethod'):
+                api = binding.get('api')
+                f_info = ALL_FUNCS.get(api)
+                if f_info:
+                    impl += f_info.wrap_bound(binding, 'classmethod')
+                else:
+                    print('f_info ->', f_info, binding)
 
         return impl
 

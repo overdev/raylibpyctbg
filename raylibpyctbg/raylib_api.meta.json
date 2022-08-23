@@ -33,6 +33,81 @@
       ],
       "dunderStrExpression": "return \"[{} at {}]\".format(self.__class__.__name__, id(self))",
       "dunderReprExpression": "return self.__str__()"
+    },
+    "Camera3D": {
+      "bindApiAsMethod": [
+        {"api": "SetCameraMode", "renameAs": "SetMode"}
+      ]
+    },
+    "Image": {
+      "bindApiAsMethod": [
+        {"api": "UnloadImage", "renameAs": "Unload"},
+        {"api": "ExportImage", "renameAs": "Export"},
+        {"api": "ExportImageAsCode", "renameAs": "ExportAsCode"},
+        {"api": "ImageCopy", "renameAs": "Copy"},
+        {"api": "ImageFormat", "renameAs": "Format", "byref": true},
+        {"api": "ImageToPOT", "renameAs": "ToPOT", "byref": true},
+        {"api": "ImageCrop", "renameAs": "Crop", "byref": true},
+        {"api": "ImageAlphaCrop", "renameAs": "AlphaCrop", "byref": true},
+        {"api": "ImageAlphaClear", "renameAs": "AlphaClear", "byref": true},
+        {"api": "ImageAlphaMask", "renameAs": "AlphaMask", "byref": true},
+        {"api": "ImageAlphaPremultiply", "renameAs": "AlphaPremultiply", "byref": true},
+        {"api": "ImageResize", "renameAs": "Resize", "byref": true},
+        {"api": "ImageResizeNN", "renameAs": "ResizeNN", "byref": true},
+        {"api": "ImageResizeCanvas", "renameAs": "ResizeCanvas", "byref": true},
+        {"api": "ImageMipmaps", "renameAs": "Mipmaps", "byref": true},
+        {"api": "ImageDither", "renameAs": "Dither", "byref": true},
+        {"api": "ImageFlipVertical", "renameAs": "FlipVertical", "byref": true},
+        {"api": "ImageFlipHorizontal", "renameAs": "FlipHorizontal", "byref": true},
+        {"api": "ImageRotateCW", "renameAs": "RotateCW", "byref": true},
+        {"api": "ImageRotateCCW", "renameAs": "RotateCCW", "byref": true},
+        {"api": "ImageColorTint", "renameAs": "ColorTint", "byref": true},
+        {"api": "ImageColorInvert", "renameAs": "ColorInvert", "byref": true},
+        {"api": "ImageColorGrayscale", "renameAs": "ColorGrayscale", "byref": true},
+        {"api": "ImageColorContrast", "renameAs": "ColorContrast", "byref": true},
+        {"api": "ImageColorBrightness", "renameAs": "ColorBrightness", "byref": true},
+        {"api": "ImageColorReplace", "renameAs": "ColorReplace", "byref": true},
+        {"api": "ImageClearBackground", "renameAs": "ClearBackground", "byref": true},
+        {"api": "ImageDrawPixel", "renameAs": "DrawPixel", "byref": true},
+        {"api": "ImageDrawPixelV", "renameAs": "DrawPixelV", "byref": true},
+        {"api": "ImageDrawLine", "renameAs": "DrawLine", "byref": true},
+        {"api": "ImageDrawLineV", "renameAs": "DrawLineV", "byref": true},
+        {"api": "ImageDrawCircle", "renameAs": "DrawCircle", "byref": true},
+        {"api": "ImageDrawCircleV", "renameAs": "DrawCircleV", "byref": true},
+        {"api": "ImageDrawRectangle", "renameAs": "DrawRectangle", "byref": true},
+        {"api": "ImageDrawRectangleV", "renameAs": "DrawRectangleV", "byref": true},
+        {"api": "ImageDrawRectangleRec", "renameAs": "DrawRectangleRec", "byref": true},
+        {"api": "ImageDrawRectangleLines", "renameAs": "DrawRectangleLines", "byref": true},
+        {"api": "ImageDraw", "renameAs": "Draw", "byref": true},
+        {"api": "ImageDrawText", "renameAs": "DrawText", "byref": true},
+        {"api": "ImageDrawTextEx", "renameAs": "DrawTextEx", "byref": true},
+        {"api": "LoadImageColors", "renameAs": "LoadColors"},
+        {"api": "LoadImagePalette", "renameAs": "LoadPalette"},
+        {"api": "GetImageAlphaBorder", "renameAs": "GetAlphaBorder"},
+        {"api": "GetImageColor", "renameAs": "GetColor"}
+      ],
+      "bindApiAsClassmethod": [
+        {"api": "LoadImage", "renameAs": "Load"},
+        {"api": "LoadImageRaw", "renameAs": "LoadRaw"},
+        {"api": "LoadImageAnim", "renameAs": "LoadAnim"},
+        {"api": "LoadImageFromMemory", "renameAs": "LoadFromMemory"},
+        {"api": "LoadImageFromTexture", "renameAs": "LoadFromTexture"},
+        {"api": "LoadImageFromScreen", "renameAs": "LoadFromScreen"},
+        {"api": "GenImageColor", "renameAs": "GenColor"},
+        {"api": "GenImageGradientH", "renameAs": "GenGradientH"},
+        {"api": "GenImageGradientV", "renameAs": "GenGradientV"},
+        {"api": "GenImageGradientRadial", "renameAs": "GenGradientRadial"},
+        {"api": "GenImageChecked", "renameAs": "GenChecked"},
+        {"api": "GenImageWhiteNoise", "renameAs": "GenWhiteNoise"},
+        {"api": "GenImageCellular", "renameAs": "GenCellular"},
+        {"api": "ImageFromImage", "renameAs": "FromImage"},
+        {"api": "ImageText", "renameAs": "Text"},
+        {"api": "ImageTextEx", "renameAs": "TextEx"}
+      ],
+      "bindApiAsStaticmethod": [
+        {"api": "UnloadImageColors", "renameAs": "UnloadColors"},
+        {"api": "UnloadImagePalette", "renameAs": "UnloadPalette"}
+      ]
     }
   },
   "functions": [
