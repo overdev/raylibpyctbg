@@ -1,20 +1,40 @@
 {
-  "structs": [
-    {
-      "name": "vector2",
-      "addBehavior": {
-        "vec2Swizzling": true,
-        "vec2Arithmetic": true,
-        "vec3Swizzling": false,
-        "vec3Arithmetic": false,
-        "vec4Swizzling": false,
-        "vec4Arithmetic": false
-      },
+  "structs": {
+    "*": {
+      "name": "",
       "bindApiAsMethod": [],
       "bindApiAsStaticmethod": [],
-      "bindApiAsClassmethod": []
+      "bindApiAsClassmethod": [],
+      "bindApiAsProperty": [],
+      "dunderStrExpression": "return \"[{} at {}]\".format(self.__class__.__name__, id(self))",
+      "dunderReprExpression": "return self.__str__()"
+    },
+    "Shader": {
+      "bindApiAsMethod": [
+        {"api": "GetShaderLocation",       "renameAs": "GetLocation"},
+        {"api": "GetShaderLocationAttrib", "renameAs": "GetLocationAttrib"},
+        {"api": "SetShaderValue",          "renameAs": "SetValue"},
+        {"api": "SetShaderValueV",         "renameAs": "SetValueV"},
+        {"api": "SetShaderValueMatrix",    "renameAs": "SetValueMatrix"},
+        {"api": "SetShaderValueTexture",   "renameAs": "SetValueTexture"},
+        {"api": "UnloadShader",            "renameAs": "Unload"}
+      ],
+      "bindApiAsStaticmethod": [],
+      "bindApiAsClassmethod": [
+        {"api": "LoadShader",           "renameAs": "Load"},
+        {"api": "LoadShaderFromMemory", "renameAs": "LoadFromMemory"}
+      ],
+      "bindApiAsProperty": [],
+      "bindApiAsContextManager": [
+        {
+          "enter": "BeginShaderMode",
+          "leave": "EndShaderMode"
+        }
+      ],
+      "dunderStrExpression": "return \"[{} at {}]\".format(self.__class__.__name__, id(self))",
+      "dunderReprExpression": "return self.__str__()"
     }
-  ],
+  },
   "functions": [
     {
       "name": "",

@@ -31,6 +31,7 @@
 import ctypes
 import json
 import re
+import os
 
 # endregion (imports)
 # ---------------------------------------------------------
@@ -404,6 +405,7 @@ ALL_TYPES = {
 }
 
 ALL_NAMES = []
+ALL_FUNCS = {}
 
 PRIMITIVE_TYPES = {
     'Bool': ctypes.c_bool,
@@ -669,6 +671,19 @@ class {name}(Structure):
 
 """
 
+METHOD_BIND = """
+    {decorator}def {py_name}({param_list}){r_type}:
+        {result}{lib_name}.{c_name}({arg_list}){after}
+"""
+
+CONTEXT_MGR = """
+    @contextmanager
+    def {py_name}({param_list}){r_type}:
+        {lib_name}.{enter}({enter_arg_list})
+        yield
+        {lib_name}.{leave}({leave_arg_list})
+"""
+
 TEMPLATE_FUNCTION = """
 
 def {py_name}({param_list}){r_type}:
@@ -911,6 +926,53 @@ class FuncInfo:
         return TEMPLATE_FUNCTION.format(**data)
 
 
+    def wrap_bound(self, meta, bound_as):
+        # ALL_NAMES.append(self.py_name)
+        ret = 'None (`void` in C raylib)'
+        if self.r_info:
+            ret = f"{self.r_info.as_py_type()} (`{self.r_info.rl_type}` in C raylib)"
+        before = []
+        after = []
+        resval, retval = self.ret('result', after)
+        deco = "@{bound_as}\n" if bound_as else ''
+        first, *params = self.p_info
+
+        if bound_as == 'classmethod':
+            param_list = ', '.join(p.py_param for p in self.p_info)
+            arg_list = ', '.join(p_info.t_info.arg(p_info.py_name, before, after) for p_info in self.p_info)
+            if param_list:
+                param_list = 'cls, ' + param_list
+            else:
+                param_list = 'cls'
+
+        elif bound_as == 'staticmethod':
+            param_list = ', '.join(p.py_param for p in self.p_info)
+            arg_list = ', '.join(p_info.t_info.arg(p_info.py_name, before, after) for p_info in self.p_info)
+        else:
+            param_list = ', '.join(p.py_param for p in params)
+            arg_list = ', '.join(p_info.t_info.arg(p_info.py_name, before, after) for p_info in params)
+            if param_list:
+                param_list = 'self, ' + param_list
+                arg_list = 'self, ' + arg_list
+            else:
+                param_list = 'self'
+                arg_list = 'self'
+
+        data = {
+            'param_list': param_list,
+            'arg_list': arg_list,
+            'r_type': '',
+            'py_name': snakefy(meta.get('renameAs')),
+            'c_name': meta.get('api'),
+            'lib_name': 'rlapi',
+            'decorator': deco,
+            'result': resval,
+            'before': (NL + ND + ND) + (NL + ND + ND).join(before) if before else '',
+            'after': (NL + ND + ND) + retval if retval else ''
+        }
+        return METHOD_BIND.format(**data)
+
+
 class FieldInfo:
 
     def __init__(self, name, t_info, doc=""):
@@ -945,7 +1007,7 @@ class StructInfo:
     def ptr_name(self):
         return f"{self.name}Ptr"
 
-    def wrap(self):
+    def wrap(self, meta=None):
         docstring = ''.join([
             f"{ND * 2}'''{self.doc}{NL+NL if self.f_info else ''}",
             *[p_info.docstring(2) for p_info in self.f_info],
@@ -965,6 +1027,13 @@ class StructInfo:
             extra_impl = VEC4_SWIZZLE_METHODS
         elif self.name == 'Color':
             extra_impl = RGBA_SWIZZLE_METHODS
+
+        if meta and meta['structs'].get(self.name):
+            str_meta = meta['structs'].get(self.name)
+            extra_impl = self.implement(extra_impl, str_meta)
+        else:
+            print('no meta for', self.name)
+
         data = {
             'description': self.doc,
             'init_docstring': docstring,
@@ -978,6 +1047,23 @@ class StructInfo:
             'alias': NL.join(self.alias)
         }
         return TEMPLATE_BASE_STRUCT.format(**data)
+
+    def implement(self, impl, meta):
+        if 'dunderStrExpression' in meta:
+            expr = meta.get('dunderStrExpression')
+            impl += f"\n{ND}def __str__(self):\n{ND + ND}{expr}\n"
+
+        if 'dunderReprExpression' in meta:
+            expr = meta.get('dunderReprExpression')
+            impl += f"\n{ND}def __repr__(self):\n{ND + ND}{expr}\n"
+
+        if 'bindApiAsMethod' in meta:
+            for binding in meta.get('bindApiAsMethod'):
+                api = binding.get('api')
+                f_info = ALL_FUNCS.get(api)
+                impl += f_info.wrap_bound(binding, '')
+
+        return impl
 
 
 class EnumerandInfo:
@@ -1034,7 +1120,7 @@ class WrapInfo:
         self.prototypes = []
         self.functions = []
 
-    def wrap(self, out_fname):
+    def wrap(self, out_fname, meta=None):
         exports = NL.join(f"{ND}'{name}'," for name in ALL_NAMES)
         full_code = LIB_LOADER.format(exports=exports, lib_name=API_NAME)
 
@@ -1042,7 +1128,7 @@ class WrapInfo:
         for primitive in self.primitives:
             full_code += primitive
         for s_info in self.structs:
-            full_code += s_info.wrap()
+            full_code += s_info.wrap(meta)
         for alias in self.aliases:
             full_code += alias
         full_code += "\n# endregion (types)\n"
@@ -1126,6 +1212,9 @@ def generate_wrapper(api_json, out_fname=None):
     with open(api_json, 'r', encoding='utf8') as rljson:
         api = json.load(rljson)
 
+    with open(os.path.join(os.path.dirname(__file__), 'raylib_api.meta.json'), 'r', encoding='utf8') as metajson:
+        meta_api = json.load(metajson)
+
     wrapper = WrapInfo()
 
     for dname, dtype in PRIMITIVE_TYPES.items():
@@ -1206,6 +1295,7 @@ def generate_wrapper(api_json, out_fname=None):
     for func in api.get('functions', []):
         f_info = FuncInfo(func.get('name'), [], None, func.get('description', ''))
         ALL_NAMES.append(f_info.py_name)
+        ALL_FUNCS[func.get('name')] = f_info
 
         for i, param in enumerate(func.get('params', [])):
             t_info = get_typ_info(param.get('type', ''))
@@ -1216,7 +1306,7 @@ def generate_wrapper(api_json, out_fname=None):
         wrapper.prototypes.append(f_info.prototype(API_NAME, '_wrap'))
 
     if out_fname:
-        wrapper.wrap(out_fname)
+        wrapper.wrap(out_fname, meta_api)
     # for t in ALL_TYPES:
     #     print(f"{ALL_TYPES[t]}: {t}")
 
