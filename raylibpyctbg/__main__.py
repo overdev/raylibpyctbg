@@ -51,6 +51,11 @@ USAGE = '''raylibpy wrapper tools
 
 Usage:
     $ python raylib_wrapper "path/to/raylib_api.json" "path/to/output/python/file"
+
+    OPTIONS:
+        --type-hint         adds Python2 type hinting
+        --type-annotation   adds Python3.3+ type annotation
+        --document          generates a cheat sheet markdown document (WIP)
 '''
 
 # endregion (constants)

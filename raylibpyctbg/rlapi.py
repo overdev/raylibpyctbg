@@ -673,7 +673,7 @@ class {name}(Structure):
 """
 
 METHOD_BIND = """
-    {decorator}def {py_name}({param_list}){r_type}:
+    {decorator}def {py_name}({param_list}){r_type}:{type_hint}
         {result}_{c_name}({arg_list}){after}
 """
 
@@ -687,11 +687,97 @@ CONTEXT_MGR = """
 
 TEMPLATE_FUNCTION = """
 
-def {py_name}({param_list}){r_type}:
+def {py_name}({param_list}){r_type}:{type_hint}
 {description}{before}
     {result}_{c_name}({arg_list}){after}
 """
 
+# regon (CHEAT SHEET)
+
+DOC_MAIN = '''# raylib-py <sub>{version}</sub> cheat sheet
+
+CONSTANTS | ENUMERATIONS | STRUCTURES | FUNCTIONS
+
+---
+{constants}
+
+---
+{enumerations}
+
+---
+{structures}
+
+---
+{functions}
+
+'''
+
+DOC_SECTION_CONSTANTS = '''## Constants
+
+Name | Value
+-----|------
+{items}
+
+Colors:
+Name | RGBA | Value
+-----|------|------
+{colors}
+'''
+DOC_CONSTANT_INTEM = '''{name} | {value}'''
+DOC_COLOR_CONSTANT_ITEM = '''{name} | {rgba} | <div style="color:{csscolor}">█▓▒░</div>'''
+
+DOC_SECTION_ENUMERATIONS = '''## Enumerations
+
+{items}
+'''
+
+DOC_ENUMERATION_ITEM = '''### {name}
+{description}
+
+Members
+Name | Value | Description
+-----|-------|------------
+{members}
+'''
+DOC_ENUMERAND_ITEM = '''{name} | {value} | {description}'''
+
+DOC_SECTION_STRUCTURES = '''## Structures
+
+{items}
+'''
+
+DOC_STRUCTURE_ITEM = '''### {name}
+{description}
+
+Fields:
+{fields}
+
+Classmethods:
+{classmethods}
+
+Methods:
+{methods}
+
+Staticmethods:
+{staticmethods}
+'''
+
+DOC_SECTION_FUNCTIONS = '''## Functions
+
+{items}
+'''
+
+DOC_FUNCTION_ITEM = '''### {py_name}
+{description}
+
+Python signature:
+{py_signature}
+
+C API:
+{c_signarure}
+'''
+
+# endregion (cheat sheet)
 # endregion (constants)
 # ---------------------------------------------------------
 # region CLASSES
@@ -847,10 +933,12 @@ class TypeInfo:
 
 class ParamInfo:
 
-    def __init__(self, name, t_info, doc=""):
+    def __init__(self, name, t_info, doc="", annotate=False, default=""):
         self.name = name
         self.t_info = t_info
         self.doc = doc
+        self.annotate = annotate
+        self.default = default
 
     @property
     def py_name(self):
@@ -859,8 +947,9 @@ class ParamInfo:
     @property
     def py_param(self):
         star = '*' if self.t_info.name == '...' else ''
-        default = ''
-        return f"{star}{self.py_name}{default}"
+        default = f'={self.default}' if self.default else ''
+        annotation = f': {self.t_info.as_py_type()}' if self.annotate else ''
+        return f"{star}{self.py_name}{annotation}{default}"
 
     def docstring(self, lv):
         return f"{ND * lv}:param {self.t_info.as_py_type()} {self.py_name}: `{self.t_info.rl_type}` in C raylib\n"
@@ -868,15 +957,23 @@ class ParamInfo:
 
 class FuncInfo:
 
-    def __init__(self, name, p_info, r_info, doc=""):
+    def __init__(self, name, p_info, r_info, doc="", annotate=False, hint=False):
         self.name = name
         self.p_info = p_info
         self.r_info = r_info
         self.doc = doc
+        self.annotate = annotate
+        self.hint = hint
 
     @property
     def py_name(self):
         return snakefy(self.name)
+
+    def make_hint(self):
+        p_hints = ', '.join([p_info.t_info.as_py_type() for p_info in self.p_info])
+        r_hint = self.r_info.as_py_type()
+        hint = f"# type: ({p_hints}) -> {r_hint}"
+        return hint
 
     def prototype(self, lib_name, prototyper):
         argtypes = ', '.join([p.t_info.as_c_type() for p in self.p_info])
@@ -913,10 +1010,11 @@ class FuncInfo:
         arg_list = ', '.join(p_info.t_info.arg(p_info.py_name, before, after) for p_info in self.p_info)
         resval, retval = self.ret('result', after)
         data = {
+            'type_hint': f"{NL}{ND}{self.make_hint()}" if self.hint else '',
             'description': docstring,
             'param_list': ', '.join(p_info.py_param for p_info in self.p_info),
             'arg_list': arg_list,
-            'r_type': '',
+            'r_type': f' -> {self.r_info.as_py_type()}' if self.annotate else '',
             'py_name': self.py_name,
             'c_name': self.name,
             'lib_name': 'rlapi',
@@ -964,6 +1062,7 @@ class FuncInfo:
                 arg_list = 'self.byref' if meta.get('byref', False) else 'self'
 
         data = {
+            'type_hint': f"{NL}{ND+ND}{self.make_hint()}" if self.hint else '',
             'param_list': param_list,
             'arg_list': arg_list,
             'r_type': '',
@@ -1224,6 +1323,10 @@ def get_typ_info(type_str):
 
 def generate_wrapper(api_json, out_fname=None, *flags):
 
+    annotate = '--type-annotate' in flags
+    hint = '--type-hint' in flags
+    document = '--document' in flags
+
     apis = []
 
     with open(api_json, 'r', encoding='utf8') as rljson:
@@ -1318,14 +1421,15 @@ def generate_wrapper(api_json, out_fname=None, *flags):
         for func in api.get('functions', []):
             if func.get('name') == '':
                 continue
-            f_info = FuncInfo(func.get('name'), [], None, func.get('description', ''))
+            f_info = FuncInfo(func.get('name'), [], None, func.get('description', ''), annotate, hint)
             ALL_NAMES.append(f_info.py_name)
             ALL_FUNCS[func.get('name')] = f_info
 
             for i, param in enumerate(func.get('params', [])):
                 try:
                     t_info = get_typ_info(param.get('type', ''))
-                    f_info.p_info.append(ParamInfo(param.get('name', f'param{i}'), t_info, param.get('type')))
+                    p_info = ParamInfo(param.get('name', f'param{i}'), t_info, param.get('type'), annotate)
+                    f_info.p_info.append(p_info)
                 except TypeError:
                     print('Error:', f_info.name, param.get('name'))
                     raise
