@@ -41,14 +41,15 @@ col.rg = 255, 0
 Thanks to the _binding metadata_ file, some wrapped structs have functions bound as methods:
 
 ```python
-# Load the sound
+# Load the sound; same as `sound = load_sound('my/sound/file')`
 sound = Sound.load("my/sound/file")
 
+# same as `if not is_sound_playing(sound)`
 if not sound.is_playing():
-	# Play it
+	# Play it; same as `load_play(sound)`
 	sound.play()
 
-# Unload from memory
+# Unload from memory; same as `unload_sound(sound)`
 sound.unload()
 ```
 
