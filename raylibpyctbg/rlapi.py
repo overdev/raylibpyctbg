@@ -1124,6 +1124,7 @@ class CallbackInfo:
 class WrapInfo:
 
     def __init__(self):
+        self.use_raymath = False
         self._table = TypeTable()
         self.primitives = []
         self.defines = []
@@ -1221,13 +1222,20 @@ def get_typ_info(type_str):
         return TypeInfo('void', pointer="*")
 
 
-def generate_wrapper(api_json, out_fname=None):
+def generate_wrapper(api_json, out_fname=None, *flags):
+
+    apis = []
 
     with open(api_json, 'r', encoding='utf8') as rljson:
         api = json.load(rljson)
+        apis.append(api)
 
     with open(os.path.join(os.path.dirname(__file__), 'raylib_api.meta.json'), 'r', encoding='utf8') as metajson:
         meta_api = json.load(metajson)
+
+    with open(os.path.join(os.path.dirname(__file__), 'rmath_api.json'), 'r', encoding='utf8') as mathjson:
+        math_api = json.load(mathjson)
+        apis.append(math_api)
 
     wrapper = WrapInfo()
 
@@ -1235,89 +1243,96 @@ def generate_wrapper(api_json, out_fname=None):
         wrapper.primitives.append(f"{dname} = {dtype.__name__}\n")
         wrapper.primitives.append(f"{dname}Ptr = POINTER({dtype.__name__})\n")
 
-    for struct in api.get('structs', []):
-        s_alias = []
-        for alias in api.get('aliases', []):
-            info = alias.get('description')
-            base = alias.get('type')
-            derived = alias.get('name')
-            if base == struct.get('name'):
-                STRUCT_TYPES.extend((derived, f'{derived}Ptr'))
-                ALL_NAMES.extend((derived, f'{derived}Ptr'))
-                s_alias.append(f"\n# {info}\n{derived} = {base}\n{derived}Ptr = {base}Ptr\n")
+    for api in apis:
+        for struct in api.get('structs', []):
+            s_alias = []
+            for alias in api.get('aliases', []):
+                info = alias.get('description')
+                base = alias.get('type')
+                derived = alias.get('name')
+                if base == struct.get('name'):
+                    STRUCT_TYPES.extend((derived, f'{derived}Ptr'))
+                    ALL_NAMES.extend((derived, f'{derived}Ptr'))
+                    s_alias.append(f"\n# {info}\n{derived} = {base}\n{derived}Ptr = {base}Ptr\n")
 
-        s_info = StructInfo(struct.get('name'), [], s_alias, struct.get('description', ''))
-        STRUCT_TYPES.extend((s_info.name, s_info.ptr_name))
-        ALL_NAMES.extend((s_info.name, s_info.ptr_name))
+            s_info = StructInfo(struct.get('name'), [], s_alias, struct.get('description', ''))
+            STRUCT_TYPES.extend((s_info.name, s_info.ptr_name))
+            ALL_NAMES.extend((s_info.name, s_info.ptr_name))
 
-        for i, field in enumerate(struct.get('fields', [])):
-            t_info = get_typ_info(field.get('type', ''))
-            f_info = FieldInfo(field.get('name', f'field{i}'), t_info, field.get('description', ''))
-            s_info.f_info.append(f_info)
+            for i, field in enumerate(struct.get('fields', [])):
+                t_info = get_typ_info(field.get('type', ''))
+                f_info = FieldInfo(field.get('name', f'field{i}'), t_info, field.get('description', ''))
+                s_info.f_info.append(f_info)
 
-        wrapper.structs.append(s_info)
+            wrapper.structs.append(s_info)
 
-    for define in api.get('defines', []):
-        defname = define.get('name')
-        deftype = define.get('type')
-        defvalue = define.get('value')
-        definfo = define.get('description')
-        definfo = f"\n# {definfo}" if definfo else ''
+        for define in api.get('defines', []):
+            defname = define.get('name')
+            deftype = define.get('type')
+            defvalue = define.get('value')
+            definfo = define.get('description')
+            definfo = f"\n# {definfo}" if definfo else ''
 
-        if deftype == 'COLOR':
-            match = REGEX_COLOR_RULE.match(defvalue)
-            if match:
-                valtype, r, g, b, a = match.groups()
-                wrapper.defines.append(f"{definfo}\n{defname} = {valtype}({r}, {g}, {b}, {a})")
+            if deftype == 'COLOR':
+                match = REGEX_COLOR_RULE.match(defvalue)
+                if match:
+                    valtype, r, g, b, a = match.groups()
+                    wrapper.defines.append(f"{definfo}\n{defname} = {valtype}({r}, {g}, {b}, {a})")
+                    ALL_NAMES.append(defname)
+
+            elif deftype == 'FLOAT':
+                wrapper.defines.append(f"{definfo}\n{defname} = {defvalue}")
                 ALL_NAMES.append(defname)
 
-        elif deftype == 'FLOAT':
-            wrapper.defines.append(f"{definfo}\n{defname} = {defvalue}")
-            ALL_NAMES.append(defname)
+            elif deftype == 'FLOAT_MATH':
+                defvalue = defvalue.replace('.0f', '.0').replace('/', ' / ')
+                wrapper.defines.append(f"{definfo}\n{defname} = {defvalue}")
+                ALL_NAMES.append(defname)
 
-        elif deftype == 'FLOAT_MATH':
-            defvalue = defvalue.replace('.0f', '.0').replace('/', ' / ')
-            wrapper.defines.append(f"{definfo}\n{defname} = {defvalue}")
-            ALL_NAMES.append(defname)
+            elif deftype == 'STRING':
+                wrapper.defines.append(f"""{definfo}\n{defname} = \"{defvalue}\"""")
+                ALL_NAMES.append(defname)
 
-        elif deftype == 'STRING':
-            wrapper.defines.append(f"""{definfo}\n{defname} = \"{defvalue}\"""")
-            ALL_NAMES.append(defname)
+        for enumeration in api.get('enums', []):
+            e_info = EnumInfo(enumeration.get('name'), [], enumeration.get('description'))
+            ALL_NAMES.append(e_info.name)
 
-    for enumeration in api.get('enums', []):
-        e_info = EnumInfo(enumeration.get('name'), [], enumeration.get('description'))
-        ALL_NAMES.append(e_info.name)
+            for value in enumeration.get('values', []):
+                m_info = EnumerandInfo(value.get('name'), value.get('value'), value.get('description'))
+                e_info.e_info.append(m_info)
+                ALL_NAMES.append(m_info.name)
 
-        for value in enumeration.get('values', []):
-            m_info = EnumerandInfo(value.get('name'), value.get('value'), value.get('description'))
-            e_info.e_info.append(m_info)
-            ALL_NAMES.append(m_info.name)
+            wrapper.enums.append(e_info)
 
-        wrapper.enums.append(e_info)
+        for callback in api.get('callbacks'):
+            c_info = CallbackInfo(callback.get('name'), [], get_typ_info(callback.get('returnType')),
+                                  callback.get('description'))
 
-    for callback in api.get('callbacks'):
-        c_info = CallbackInfo(callback.get('name'), [], get_typ_info(callback.get('returnType')),
-                              callback.get('description'))
+            for param in callback.get('params'):
+                c_info.p_info.append(ParamInfo(param.get('name'), get_typ_info(param.get('type'))))
 
-        for param in callback.get('params'):
-            c_info.p_info.append(ParamInfo(param.get('name'), get_typ_info(param.get('type'))))
+            wrapper.callbacks.append(c_info)
+            STRUCT_TYPES.append(c_info.name)
+            ALL_NAMES.append(c_info.name)
 
-        wrapper.callbacks.append(c_info)
-        STRUCT_TYPES.append(c_info.name)
-        ALL_NAMES.append(c_info.name)
+        for func in api.get('functions', []):
+            if func.get('name') == '':
+                continue
+            f_info = FuncInfo(func.get('name'), [], None, func.get('description', ''))
+            ALL_NAMES.append(f_info.py_name)
+            ALL_FUNCS[func.get('name')] = f_info
 
-    for func in api.get('functions', []):
-        f_info = FuncInfo(func.get('name'), [], None, func.get('description', ''))
-        ALL_NAMES.append(f_info.py_name)
-        ALL_FUNCS[func.get('name')] = f_info
+            for i, param in enumerate(func.get('params', [])):
+                try:
+                    t_info = get_typ_info(param.get('type', ''))
+                    f_info.p_info.append(ParamInfo(param.get('name', f'param{i}'), t_info, param.get('type')))
+                except TypeError:
+                    print('Error:', f_info.name, param.get('name'))
+                    raise
 
-        for i, param in enumerate(func.get('params', [])):
-            t_info = get_typ_info(param.get('type', ''))
-            f_info.p_info.append(ParamInfo(param.get('name', f'param{i}'), t_info, param.get('type')))
-
-        f_info.r_info = get_typ_info(func.get('returnType'))
-        wrapper.functions.append(f_info)
-        wrapper.prototypes.append(f_info.prototype(API_NAME, '_wrap'))
+            f_info.r_info = get_typ_info(func.get('returnType'))
+            wrapper.functions.append(f_info)
+            wrapper.prototypes.append(f_info.prototype(API_NAME, '_wrap'))
 
     if out_fname:
         wrapper.wrap(out_fname, meta_api)
