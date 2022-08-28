@@ -66,12 +66,12 @@ def main(*args) -> int:
     # generate_wrapper('./raylib_api.json', './raylib_api.txt')
     print(os.getcwd())
     try:
-        _, rlapi_jsonfile, out_fname, *a = args
+        _, rlapi_jsonfile, out_fname, *flags = args
     except (TypeError, ValueError):
         print(USAGE)
         return 1
 
-    generate_wrapper(rlapi_jsonfile, out_fname)
+    generate_wrapper(rlapi_jsonfile, out_fname, *flags)
     return 0
 
 
