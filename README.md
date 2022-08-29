@@ -35,7 +35,7 @@ $ python path\to\raylibpyctbg path\to\raylib_api.json path\to\output\python\file
 
 - `--document`: Generates an API reference of this Python binding in markdown
 
-  The file will be created in the same directory of the binding `.py` file. You can se an [example](output/RLAPI_REFERENCE.md) in the _./output_ directory.
+  The file will be created in the same directory of the binding `.py` file. You can see an [example](output/RLAPI_REFERENCE.md) in the _./output_ directory.
 
 ## Customization
 
