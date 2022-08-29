@@ -433,6 +433,7 @@ Vector2, 2 components
 
 Fields:
 Name | Type (Python) | Type (CTypes) | Type (C)
+-----|---------------|---------------|---------
 x | float | todo | todo
 y | float | todo | todo
 
@@ -450,6 +451,7 @@ Vector3, 3 components
 
 Fields:
 Name | Type (Python) | Type (CTypes) | Type (C)
+-----|---------------|---------------|---------
 x | float | todo | todo
 y | float | todo | todo
 z | float | todo | todo
@@ -468,6 +470,7 @@ Vector4, 4 components
 
 Fields:
 Name | Type (Python) | Type (CTypes) | Type (C)
+-----|---------------|---------------|---------
 x | float | todo | todo
 y | float | todo | todo
 z | float | todo | todo
@@ -487,6 +490,7 @@ Matrix, 4x4 components, column major, OpenGL style, right handed
 
 Fields:
 Name | Type (Python) | Type (CTypes) | Type (C)
+-----|---------------|---------------|---------
 m0 | float | todo | todo
 m4 | float | todo | todo
 m8 | float | todo | todo
@@ -518,6 +522,7 @@ Color, 4 components, R8G8B8A8 (32bit)
 
 Fields:
 Name | Type (Python) | Type (CTypes) | Type (C)
+-----|---------------|---------------|---------
 r | int | todo | todo
 g | int | todo | todo
 b | int | todo | todo
@@ -537,6 +542,7 @@ Rectangle, 4 components
 
 Fields:
 Name | Type (Python) | Type (CTypes) | Type (C)
+-----|---------------|---------------|---------
 x | float | todo | todo
 y | float | todo | todo
 width | float | todo | todo
@@ -556,6 +562,7 @@ Image, pixel data stored in CPU memory (RAM)
 
 Fields:
 Name | Type (Python) | Type (CTypes) | Type (C)
+-----|---------------|---------------|---------
 data | bytes | todo | todo
 width | int | todo | todo
 height | int | todo | todo
@@ -576,6 +583,7 @@ Texture, tex data stored in GPU memory (VRAM)
 
 Fields:
 Name | Type (Python) | Type (CTypes) | Type (C)
+-----|---------------|---------------|---------
 id | int | todo | todo
 width | int | todo | todo
 height | int | todo | todo
@@ -596,6 +604,7 @@ RenderTexture, fbo for texture rendering
 
 Fields:
 Name | Type (Python) | Type (CTypes) | Type (C)
+-----|---------------|---------------|---------
 id | int | todo | todo
 texture | Texture | todo | todo
 depth | Texture | todo | todo
@@ -614,6 +623,7 @@ NPatchInfo, n-patch layout info
 
 Fields:
 Name | Type (Python) | Type (CTypes) | Type (C)
+-----|---------------|---------------|---------
 source | Rectangle | todo | todo
 left | int | todo | todo
 top | int | todo | todo
@@ -635,6 +645,7 @@ GlyphInfo, font characters glyphs info
 
 Fields:
 Name | Type (Python) | Type (CTypes) | Type (C)
+-----|---------------|---------------|---------
 value | int | todo | todo
 offsetX | int | todo | todo
 offsetY | int | todo | todo
@@ -655,6 +666,7 @@ Font, font texture and GlyphInfo array data
 
 Fields:
 Name | Type (Python) | Type (CTypes) | Type (C)
+-----|---------------|---------------|---------
 baseSize | int | todo | todo
 glyphCount | int | todo | todo
 glyphPadding | int | todo | todo
@@ -676,6 +688,7 @@ Camera, defines position/orientation in 3d space
 
 Fields:
 Name | Type (Python) | Type (CTypes) | Type (C)
+-----|---------------|---------------|---------
 position | Vector3 | todo | todo
 target | Vector3 | todo | todo
 up | Vector3 | todo | todo
@@ -696,6 +709,7 @@ Camera2D, defines position/orientation in 2d space
 
 Fields:
 Name | Type (Python) | Type (CTypes) | Type (C)
+-----|---------------|---------------|---------
 offset | Vector2 | todo | todo
 target | Vector2 | todo | todo
 rotation | float | todo | todo
@@ -715,6 +729,7 @@ Mesh, vertex data and vao/vbo
 
 Fields:
 Name | Type (Python) | Type (CTypes) | Type (C)
+-----|---------------|---------------|---------
 vertexCount | int | todo | todo
 triangleCount | int | todo | todo
 vertices | Sequence[float] | todo | todo
@@ -745,6 +760,7 @@ Shader
 
 Fields:
 Name | Type (Python) | Type (CTypes) | Type (C)
+-----|---------------|---------------|---------
 id | int | todo | todo
 locs | Sequence[int] | todo | todo
 
@@ -762,6 +778,7 @@ MaterialMap
 
 Fields:
 Name | Type (Python) | Type (CTypes) | Type (C)
+-----|---------------|---------------|---------
 texture | Texture2D | todo | todo
 color | Color | todo | todo
 value | float | todo | todo
@@ -780,6 +797,7 @@ Material, includes shader and maps
 
 Fields:
 Name | Type (Python) | Type (CTypes) | Type (C)
+-----|---------------|---------------|---------
 shader | Shader | todo | todo
 maps | MaterialMapPtr | todo | todo
 params | Sequence[float] | todo | todo
@@ -798,6 +816,7 @@ Transform, vectex transformation data
 
 Fields:
 Name | Type (Python) | Type (CTypes) | Type (C)
+-----|---------------|---------------|---------
 translation | Vector3 | todo | todo
 rotation | Quaternion | todo | todo
 scale | Vector3 | todo | todo
@@ -816,6 +835,7 @@ Bone, skeletal animation bone
 
 Fields:
 Name | Type (Python) | Type (CTypes) | Type (C)
+-----|---------------|---------------|---------
 name | Sequence[bytes] | todo | todo
 parent | int | todo | todo
 
@@ -833,6 +853,7 @@ Model, meshes, materials and animation data
 
 Fields:
 Name | Type (Python) | Type (CTypes) | Type (C)
+-----|---------------|---------------|---------
 transform | Matrix | todo | todo
 meshCount | int | todo | todo
 materialCount | int | todo | todo
@@ -857,6 +878,7 @@ ModelAnimation
 
 Fields:
 Name | Type (Python) | Type (CTypes) | Type (C)
+-----|---------------|---------------|---------
 boneCount | int | todo | todo
 frameCount | int | todo | todo
 bones | BoneInfoPtr | todo | todo
@@ -876,6 +898,7 @@ Ray, ray for raycasting
 
 Fields:
 Name | Type (Python) | Type (CTypes) | Type (C)
+-----|---------------|---------------|---------
 position | Vector3 | todo | todo
 direction | Vector3 | todo | todo
 
@@ -893,6 +916,7 @@ RayCollision, ray hit information
 
 Fields:
 Name | Type (Python) | Type (CTypes) | Type (C)
+-----|---------------|---------------|---------
 hit | bool | todo | todo
 distance | float | todo | todo
 point | Vector3 | todo | todo
@@ -912,6 +936,7 @@ BoundingBox
 
 Fields:
 Name | Type (Python) | Type (CTypes) | Type (C)
+-----|---------------|---------------|---------
 min | Vector3 | todo | todo
 max | Vector3 | todo | todo
 
@@ -929,6 +954,7 @@ Wave, audio wave data
 
 Fields:
 Name | Type (Python) | Type (CTypes) | Type (C)
+-----|---------------|---------------|---------
 frameCount | int | todo | todo
 sampleRate | int | todo | todo
 sampleSize | int | todo | todo
@@ -949,6 +975,7 @@ AudioStream, custom audio stream
 
 Fields:
 Name | Type (Python) | Type (CTypes) | Type (C)
+-----|---------------|---------------|---------
 buffer | bytes | todo | todo
 processor | bytes | todo | todo
 sampleRate | int | todo | todo
@@ -969,6 +996,7 @@ Sound
 
 Fields:
 Name | Type (Python) | Type (CTypes) | Type (C)
+-----|---------------|---------------|---------
 stream | AudioStream | todo | todo
 frameCount | int | todo | todo
 
@@ -986,6 +1014,7 @@ Music, audio stream, anything longer than ~10 seconds should be streamed
 
 Fields:
 Name | Type (Python) | Type (CTypes) | Type (C)
+-----|---------------|---------------|---------
 stream | AudioStream | todo | todo
 frameCount | int | todo | todo
 looping | bool | todo | todo
@@ -1006,6 +1035,7 @@ VrDeviceInfo, Head-Mounted-Display device parameters
 
 Fields:
 Name | Type (Python) | Type (CTypes) | Type (C)
+-----|---------------|---------------|---------
 hResolution | int | todo | todo
 vResolution | int | todo | todo
 hScreenSize | float | todo | todo
@@ -1031,6 +1061,7 @@ VrStereoConfig, VR stereo rendering configuration for simulator
 
 Fields:
 Name | Type (Python) | Type (CTypes) | Type (C)
+-----|---------------|---------------|---------
 projection | Sequence[Matrix] | todo | todo
 viewOffset | Sequence[Matrix] | todo | todo
 leftLensCenter | Sequence[float] | todo | todo
@@ -1054,6 +1085,7 @@ File path list
 
 Fields:
 Name | Type (Python) | Type (CTypes) | Type (C)
+-----|---------------|---------------|---------
 capacity | int | todo | todo
 count | int | todo | todo
 paths | Sequence[bytes] | todo | todo
