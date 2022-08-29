@@ -433,481 +433,640 @@ Vector2, 2 components
 
 Fields:
 Name | Type (Python) | Type (CTypes) | Type (C)
+x | float | todo | todo
+y | float | todo | todo
 
 
 Classmethods:
-
+_None._
 
 Methods:
-
+_None._
 
 Staticmethods:
-
+_None._
 ### Vector3 structure
 Vector3, 3 components
 
 Fields:
 Name | Type (Python) | Type (CTypes) | Type (C)
+x | float | todo | todo
+y | float | todo | todo
+z | float | todo | todo
 
 
 Classmethods:
-
+_None._
 
 Methods:
-
+_None._
 
 Staticmethods:
-
+_None._
 ### Vector4 structure
 Vector4, 4 components
 
 Fields:
 Name | Type (Python) | Type (CTypes) | Type (C)
+x | float | todo | todo
+y | float | todo | todo
+z | float | todo | todo
+w | float | todo | todo
 
 
 Classmethods:
-
+_None._
 
 Methods:
-
+_None._
 
 Staticmethods:
-
+_None._
 ### Matrix structure
 Matrix, 4x4 components, column major, OpenGL style, right handed
 
 Fields:
 Name | Type (Python) | Type (CTypes) | Type (C)
+m0 | float | todo | todo
+m4 | float | todo | todo
+m8 | float | todo | todo
+m12 | float | todo | todo
+m1 | float | todo | todo
+m5 | float | todo | todo
+m9 | float | todo | todo
+m13 | float | todo | todo
+m2 | float | todo | todo
+m6 | float | todo | todo
+m10 | float | todo | todo
+m14 | float | todo | todo
+m3 | float | todo | todo
+m7 | float | todo | todo
+m11 | float | todo | todo
+m15 | float | todo | todo
 
 
 Classmethods:
-
+_None._
 
 Methods:
-
+_None._
 
 Staticmethods:
-
+_None._
 ### Color structure
 Color, 4 components, R8G8B8A8 (32bit)
 
 Fields:
 Name | Type (Python) | Type (CTypes) | Type (C)
+r | int | todo | todo
+g | int | todo | todo
+b | int | todo | todo
+a | int | todo | todo
 
 
 Classmethods:
-
+_None._
 
 Methods:
-
+_None._
 
 Staticmethods:
-
+_None._
 ### Rectangle structure
 Rectangle, 4 components
 
 Fields:
 Name | Type (Python) | Type (CTypes) | Type (C)
+x | float | todo | todo
+y | float | todo | todo
+width | float | todo | todo
+height | float | todo | todo
 
 
 Classmethods:
-
+_None._
 
 Methods:
-
+_None._
 
 Staticmethods:
-
+_None._
 ### Image structure
 Image, pixel data stored in CPU memory (RAM)
 
 Fields:
 Name | Type (Python) | Type (CTypes) | Type (C)
+data | bytes | todo | todo
+width | int | todo | todo
+height | int | todo | todo
+mipmaps | int | todo | todo
+format | int | todo | todo
 
 
 Classmethods:
-
+_None._
 
 Methods:
-
+_None._
 
 Staticmethods:
-
+_None._
 ### Texture structure
 Texture, tex data stored in GPU memory (VRAM)
 
 Fields:
 Name | Type (Python) | Type (CTypes) | Type (C)
+id | int | todo | todo
+width | int | todo | todo
+height | int | todo | todo
+mipmaps | int | todo | todo
+format | int | todo | todo
 
 
 Classmethods:
-
+_None._
 
 Methods:
-
+_None._
 
 Staticmethods:
-
+_None._
 ### RenderTexture structure
 RenderTexture, fbo for texture rendering
 
 Fields:
 Name | Type (Python) | Type (CTypes) | Type (C)
+id | int | todo | todo
+texture | Texture | todo | todo
+depth | Texture | todo | todo
 
 
 Classmethods:
-
+_None._
 
 Methods:
-
+_None._
 
 Staticmethods:
-
+_None._
 ### NPatchInfo structure
 NPatchInfo, n-patch layout info
 
 Fields:
 Name | Type (Python) | Type (CTypes) | Type (C)
+source | Rectangle | todo | todo
+left | int | todo | todo
+top | int | todo | todo
+right | int | todo | todo
+bottom | int | todo | todo
+layout | int | todo | todo
 
 
 Classmethods:
-
+_None._
 
 Methods:
-
+_None._
 
 Staticmethods:
-
+_None._
 ### GlyphInfo structure
 GlyphInfo, font characters glyphs info
 
 Fields:
 Name | Type (Python) | Type (CTypes) | Type (C)
+value | int | todo | todo
+offsetX | int | todo | todo
+offsetY | int | todo | todo
+advanceX | int | todo | todo
+image | Image | todo | todo
 
 
 Classmethods:
-
+_None._
 
 Methods:
-
+_None._
 
 Staticmethods:
-
+_None._
 ### Font structure
 Font, font texture and GlyphInfo array data
 
 Fields:
 Name | Type (Python) | Type (CTypes) | Type (C)
+baseSize | int | todo | todo
+glyphCount | int | todo | todo
+glyphPadding | int | todo | todo
+texture | Texture2D | todo | todo
+recs | RectanglePtr | todo | todo
+glyphs | GlyphInfoPtr | todo | todo
 
 
 Classmethods:
-
+_None._
 
 Methods:
-
+_None._
 
 Staticmethods:
-
+_None._
 ### Camera3D structure
 Camera, defines position/orientation in 3d space
 
 Fields:
 Name | Type (Python) | Type (CTypes) | Type (C)
+position | Vector3 | todo | todo
+target | Vector3 | todo | todo
+up | Vector3 | todo | todo
+fovy | float | todo | todo
+projection | int | todo | todo
 
 
 Classmethods:
-
+_None._
 
 Methods:
-
+_None._
 
 Staticmethods:
-
+_None._
 ### Camera2D structure
 Camera2D, defines position/orientation in 2d space
 
 Fields:
 Name | Type (Python) | Type (CTypes) | Type (C)
+offset | Vector2 | todo | todo
+target | Vector2 | todo | todo
+rotation | float | todo | todo
+zoom | float | todo | todo
 
 
 Classmethods:
-
+_None._
 
 Methods:
-
+_None._
 
 Staticmethods:
-
+_None._
 ### Mesh structure
 Mesh, vertex data and vao/vbo
 
 Fields:
 Name | Type (Python) | Type (CTypes) | Type (C)
+vertexCount | int | todo | todo
+triangleCount | int | todo | todo
+vertices | Sequence[float] | todo | todo
+texcoords | Sequence[float] | todo | todo
+texcoords2 | Sequence[float] | todo | todo
+normals | Sequence[float] | todo | todo
+tangents | Sequence[float] | todo | todo
+colors | bytes | todo | todo
+indices | Sequence[int] | todo | todo
+animVertices | Sequence[float] | todo | todo
+animNormals | Sequence[float] | todo | todo
+boneIds | bytes | todo | todo
+boneWeights | Sequence[float] | todo | todo
+vaoId | int | todo | todo
+vboId | Sequence[int] | todo | todo
 
 
 Classmethods:
-
+_None._
 
 Methods:
-
+_None._
 
 Staticmethods:
-
+_None._
 ### Shader structure
 Shader
 
 Fields:
 Name | Type (Python) | Type (CTypes) | Type (C)
+id | int | todo | todo
+locs | Sequence[int] | todo | todo
 
 
 Classmethods:
-
+_None._
 
 Methods:
-
+_None._
 
 Staticmethods:
-
+_None._
 ### MaterialMap structure
 MaterialMap
 
 Fields:
 Name | Type (Python) | Type (CTypes) | Type (C)
+texture | Texture2D | todo | todo
+color | Color | todo | todo
+value | float | todo | todo
 
 
 Classmethods:
-
+_None._
 
 Methods:
-
+_None._
 
 Staticmethods:
-
+_None._
 ### Material structure
 Material, includes shader and maps
 
 Fields:
 Name | Type (Python) | Type (CTypes) | Type (C)
+shader | Shader | todo | todo
+maps | MaterialMapPtr | todo | todo
+params | Sequence[float] | todo | todo
 
 
 Classmethods:
-
+_None._
 
 Methods:
-
+_None._
 
 Staticmethods:
-
+_None._
 ### Transform structure
 Transform, vectex transformation data
 
 Fields:
 Name | Type (Python) | Type (CTypes) | Type (C)
+translation | Vector3 | todo | todo
+rotation | Quaternion | todo | todo
+scale | Vector3 | todo | todo
 
 
 Classmethods:
-
+_None._
 
 Methods:
-
+_None._
 
 Staticmethods:
-
+_None._
 ### BoneInfo structure
 Bone, skeletal animation bone
 
 Fields:
 Name | Type (Python) | Type (CTypes) | Type (C)
+name | Sequence[bytes] | todo | todo
+parent | int | todo | todo
 
 
 Classmethods:
-
+_None._
 
 Methods:
-
+_None._
 
 Staticmethods:
-
+_None._
 ### Model structure
 Model, meshes, materials and animation data
 
 Fields:
 Name | Type (Python) | Type (CTypes) | Type (C)
+transform | Matrix | todo | todo
+meshCount | int | todo | todo
+materialCount | int | todo | todo
+meshes | MeshPtr | todo | todo
+materials | MaterialPtr | todo | todo
+meshMaterial | Sequence[int] | todo | todo
+boneCount | int | todo | todo
+bones | BoneInfoPtr | todo | todo
+bindPose | TransformPtr | todo | todo
 
 
 Classmethods:
-
+_None._
 
 Methods:
-
+_None._
 
 Staticmethods:
-
+_None._
 ### ModelAnimation structure
 ModelAnimation
 
 Fields:
 Name | Type (Python) | Type (CTypes) | Type (C)
+boneCount | int | todo | todo
+frameCount | int | todo | todo
+bones | BoneInfoPtr | todo | todo
+framePoses | Sequence[TransformPtr] | todo | todo
 
 
 Classmethods:
-
+_None._
 
 Methods:
-
+_None._
 
 Staticmethods:
-
+_None._
 ### Ray structure
 Ray, ray for raycasting
 
 Fields:
 Name | Type (Python) | Type (CTypes) | Type (C)
+position | Vector3 | todo | todo
+direction | Vector3 | todo | todo
 
 
 Classmethods:
-
+_None._
 
 Methods:
-
+_None._
 
 Staticmethods:
-
+_None._
 ### RayCollision structure
 RayCollision, ray hit information
 
 Fields:
 Name | Type (Python) | Type (CTypes) | Type (C)
+hit | bool | todo | todo
+distance | float | todo | todo
+point | Vector3 | todo | todo
+normal | Vector3 | todo | todo
 
 
 Classmethods:
-
+_None._
 
 Methods:
-
+_None._
 
 Staticmethods:
-
+_None._
 ### BoundingBox structure
 BoundingBox
 
 Fields:
 Name | Type (Python) | Type (CTypes) | Type (C)
+min | Vector3 | todo | todo
+max | Vector3 | todo | todo
 
 
 Classmethods:
-
+_None._
 
 Methods:
-
+_None._
 
 Staticmethods:
-
+_None._
 ### Wave structure
 Wave, audio wave data
 
 Fields:
 Name | Type (Python) | Type (CTypes) | Type (C)
+frameCount | int | todo | todo
+sampleRate | int | todo | todo
+sampleSize | int | todo | todo
+channels | int | todo | todo
+data | bytes | todo | todo
 
 
 Classmethods:
-
+_None._
 
 Methods:
-
+_None._
 
 Staticmethods:
-
+_None._
 ### AudioStream structure
 AudioStream, custom audio stream
 
 Fields:
 Name | Type (Python) | Type (CTypes) | Type (C)
+buffer | bytes | todo | todo
+processor | bytes | todo | todo
+sampleRate | int | todo | todo
+sampleSize | int | todo | todo
+channels | int | todo | todo
 
 
 Classmethods:
-
+_None._
 
 Methods:
-
+_None._
 
 Staticmethods:
-
+_None._
 ### Sound structure
 Sound
 
 Fields:
 Name | Type (Python) | Type (CTypes) | Type (C)
+stream | AudioStream | todo | todo
+frameCount | int | todo | todo
 
 
 Classmethods:
-
+_None._
 
 Methods:
-
+_None._
 
 Staticmethods:
-
+_None._
 ### Music structure
 Music, audio stream, anything longer than ~10 seconds should be streamed
 
 Fields:
 Name | Type (Python) | Type (CTypes) | Type (C)
+stream | AudioStream | todo | todo
+frameCount | int | todo | todo
+looping | bool | todo | todo
+ctxType | int | todo | todo
+ctxData | bytes | todo | todo
 
 
 Classmethods:
-
+_None._
 
 Methods:
-
+_None._
 
 Staticmethods:
-
+_None._
 ### VrDeviceInfo structure
 VrDeviceInfo, Head-Mounted-Display device parameters
 
 Fields:
 Name | Type (Python) | Type (CTypes) | Type (C)
+hResolution | int | todo | todo
+vResolution | int | todo | todo
+hScreenSize | float | todo | todo
+vScreenSize | float | todo | todo
+vScreenCenter | float | todo | todo
+eyeToScreenDistance | float | todo | todo
+lensSeparationDistance | float | todo | todo
+interpupillaryDistance | float | todo | todo
+lensDistortionValues | Sequence[float] | todo | todo
+chromaAbCorrection | Sequence[float] | todo | todo
 
 
 Classmethods:
-
+_None._
 
 Methods:
-
+_None._
 
 Staticmethods:
-
+_None._
 ### VrStereoConfig structure
 VrStereoConfig, VR stereo rendering configuration for simulator
 
 Fields:
 Name | Type (Python) | Type (CTypes) | Type (C)
+projection | Sequence[Matrix] | todo | todo
+viewOffset | Sequence[Matrix] | todo | todo
+leftLensCenter | Sequence[float] | todo | todo
+rightLensCenter | Sequence[float] | todo | todo
+leftScreenCenter | Sequence[float] | todo | todo
+rightScreenCenter | Sequence[float] | todo | todo
+scale | Sequence[float] | todo | todo
+scaleIn | Sequence[float] | todo | todo
 
 
 Classmethods:
-
+_None._
 
 Methods:
-
+_None._
 
 Staticmethods:
-
+_None._
 ### FilePathList structure
 File path list
 
 Fields:
 Name | Type (Python) | Type (CTypes) | Type (C)
+capacity | int | todo | todo
+count | int | todo | todo
+paths | Sequence[bytes] | todo | todo
 
 
 Classmethods:
-
+_None._
 
 Methods:
-
+_None._
 
 Staticmethods:
-
+_None._
 
 ---
 ## Functions
