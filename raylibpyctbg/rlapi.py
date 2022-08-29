@@ -698,21 +698,13 @@ DOC_MAIN = '''# raylib-py <sub>{version}</sub> cheat sheet
 
 CONSTANTS | ENUMERATIONS | STRUCTURES | FUNCTIONS
 
----
-{constants}
-
----
-{enumerations}
-
----
-{structures}
-
----
-{functions}
+{constants}{enumerations}{structures}{functions}
 
 '''
 
-DOC_SECTION_CONSTANTS = '''## Constants
+DOC_SECTION_CONSTANTS = '''
+---
+## Constants
 
 Name | Value
 -----|------
@@ -726,30 +718,34 @@ Name | RGBA | Value
 DOC_CONSTANT_INTEM = '''{name} | {value}'''
 DOC_COLOR_CONSTANT_ITEM = '''{name} | {rgba} | <div style="color:{csscolor}">█▓▒░</div>'''
 
-DOC_SECTION_ENUMERATIONS = '''## Enumerations
+DOC_SECTION_ENUMERATIONS = '''---
+## Enumerations
 
 {items}
 '''
 
-DOC_ENUMERATION_ITEM = '''### {name}
-{description}
+DOC_ENUMERATION_ITEM = '''### {name} enumeration
 
 Members
 Name | Value | Description
 -----|-------|------------
 {members}
 '''
-DOC_ENUMERAND_ITEM = '''{name} | {value} | {description}'''
+DOC_ENUMERAND_ITEM = '''{name} | {value} | {description}
+'''
 
-DOC_SECTION_STRUCTURES = '''## Structures
+DOC_SECTION_STRUCTURES = '''---
+## Structures
 
 {items}
 '''
 
-DOC_STRUCTURE_ITEM = '''### {name}
+DOC_STRUCTURE_ITEM = '''### {name} structure
 {description}
 
 Fields:
+Name | Type (Python) | Type (CTypes) | Type (C)
+-----|---------------|---------------|---------
 {fields}
 
 Classmethods:
@@ -762,7 +758,24 @@ Staticmethods:
 {staticmethods}
 '''
 
-DOC_SECTION_FUNCTIONS = '''## Functions
+DOC_FIELD_ITEM = '''{name} | {python_type} | {ctypes_type} | {c_type}
+'''
+DOC_METHOD_ITEM = '''### {bound_as}{py_name}
+{description}
+
+Python signature:
+```python
+{py_signature}
+```
+
+C API:
+```c
+{c_signarure}
+```
+'''
+
+DOC_SECTION_FUNCTIONS = '''---
+## Functions
 
 {items}
 '''
@@ -771,10 +784,15 @@ DOC_FUNCTION_ITEM = '''### {py_name}
 {description}
 
 Python signature:
+```python
 {py_signature}
+```
 
 C API:
-{c_signarure}
+```c
+{c_signature}
+```
+
 '''
 
 # endregion (cheat sheet)
@@ -951,6 +969,13 @@ class ParamInfo:
         annotation = f': {self.t_info.as_py_type()}' if self.annotate else ''
         return f"{star}{self.py_name}{annotation}{default}"
 
+    @property
+    def c_param(self):
+        cns = 'const ' if self.t_info.const else ''
+        ptr = '*' * self.t_info.pointer if isinstance(self.t_info.pointer, int) else ''
+        arr = f'[{self.t_info.length}]' if isinstance(self.t_info.length, int) else ''
+        return f"{cns}{self.t_info.name} {ptr}{self.name}{arr}"
+
     def docstring(self, lv):
         return f"{ND * lv}:param {self.t_info.as_py_type()} {self.py_name}: `{self.t_info.rl_type}` in C raylib\n"
 
@@ -969,8 +994,34 @@ class FuncInfo:
     def py_name(self):
         return snakefy(self.name)
 
-    def make_hint(self):
-        p_hints = ', '.join([p_info.t_info.as_py_type() for p_info in self.p_info])
+    def markdown(self, bound_as=''):
+        if bound_as:
+            return DOC_METHOD_ITEM.format(
+                bound_as=f"{bound_as}." if bound_as else '',
+                description=self.doc,
+                py_name=self.py_name,
+                py_signature=self.make_py_signature(),
+                c_signature=self.make_c_signature()
+            )
+        else:
+            return DOC_FUNCTION_ITEM.format(
+                description=self.doc,
+                py_name=self.py_name,
+                py_signature=self.make_py_signature(),
+                c_signature=self.make_c_signature()
+            )
+
+    def make_py_signature(self):
+        ret = f" -> {self.r_info.as_py_type()}" if self.annotate else ''
+        return f"def {self.py_name}({self.make_paramlist()}){ret}"
+
+    def make_c_signature(self):
+        ret = f"{self.r_info.as_c_type()}"
+        return f"{ret} {self.name}({self.make_c_paramlist()})"
+
+    def make_hint(self, bound=False):
+        i = 1 if bound else 0
+        p_hints = ', '.join([p_info.t_info.as_py_type() for p_info in self.p_info[i:]])
         r_hint = self.r_info.as_py_type()
         hint = f"# type: ({p_hints}) -> {r_hint}"
         return hint
@@ -993,6 +1044,15 @@ class FuncInfo:
             retval = 'return ' + ', '.join(after)
         return resval, retval
 
+    def make_paramlist(self):
+        return ', '.join(p_info.py_param for p_info in self.p_info)
+
+    def make_c_paramlist(self):
+        return ', '.join(p_info.c_param for p_info in self.p_info)
+
+    def make_arglist(self, before, after):
+        return ', '.join(p_info.t_info.arg(p_info.py_name, before, after) for p_info in self.p_info)
+
     def wrap(self):
         # ALL_NAMES.append(self.py_name)
         ret = 'None (`void` in C raylib)'
@@ -1007,13 +1067,12 @@ class FuncInfo:
         ])
         before = []
         after = []
-        arg_list = ', '.join(p_info.t_info.arg(p_info.py_name, before, after) for p_info in self.p_info)
         resval, retval = self.ret('result', after)
         data = {
             'type_hint': f"{NL}{ND}{self.make_hint()}" if self.hint else '',
             'description': docstring,
-            'param_list': ', '.join(p_info.py_param for p_info in self.p_info),
-            'arg_list': arg_list,
+            'param_list': self.make_paramlist(),
+            'arg_list': self.make_arglist(before, after),
             'r_type': f' -> {self.r_info.as_py_type()}' if self.annotate else '',
             'py_name': self.py_name,
             'c_name': self.name,
@@ -1062,7 +1121,7 @@ class FuncInfo:
                 arg_list = 'self.byref' if meta.get('byref', False) else 'self'
 
         data = {
-            'type_hint': f"{NL}{ND+ND}{self.make_hint()}" if self.hint else '',
+            'type_hint': f"{NL}{ND+ND}{self.make_hint(True)}" if self.hint else '',
             'param_list': param_list,
             'arg_list': arg_list,
             'r_type': '',
@@ -1110,6 +1169,54 @@ class StructInfo:
     @property
     def ptr_name(self):
         return f"{self.name}Ptr"
+
+    def markdown(self, meta=None):
+        print(self.name, '-->', meta)
+        f_data = ''
+        for f_info in self.f_info:
+            f_data += DOC_FIELD_ITEM.format(
+                name=f_info.name,
+                python_type=f_info.t_info.as_py_type(),
+                ctypes_type='todo',
+                c_type='todo'
+            )
+
+        c_data = '_None._'
+        m_data = '_None._'
+        s_data = '_None._'
+        if meta:
+            clsmethods = meta.get('bindApiAsClassmethod', [])
+            if clsmethods:
+                c_data = 'Classmethod name | Bound API\n-----------|---------\n'
+                for binding in clsmethods:
+                    bound_name = snakefy(binding.get('renameAs'))
+                    api_name = snakefy(binding.get('api'))
+                    c_data += f"`{self.name}.{bound_name}()` | `{api_name}()`\n"
+
+            methods = meta.get('bindApiAsMethod', [])
+            if methods:
+                m_data = 'Method name | Bound API\n-----------|---------\n'
+                for binding in methods:
+                    bound_name = snakefy(binding.get('renameAs'))
+                    api_name = snakefy(binding.get('api'))
+                    m_data += f"`self.{bound_name}()` | `{api_name}()`\n"
+
+            stamethods = meta.get('bindApiAsStaticmethod', [])
+            if stamethods:
+                s_data = 'Staticethod name | Bound API\n-----------|---------\n'
+                for binding in stamethods:
+                    bound_name = snakefy(binding.get('renameAs'))
+                    api_name = snakefy(binding.get('api'))
+                    s_data += f"`{self.name}.{bound_name}()` | `{api_name}()`\n"
+
+        return DOC_STRUCTURE_ITEM.format(
+            name=self.name,
+            description=self.doc,
+            fields=f_data,
+            classmethods=c_data,
+            methods=m_data,
+            staticmethods=s_data
+        )
 
     def wrap(self, meta=None):
         docstring = ''.join([
@@ -1194,6 +1301,20 @@ class EnumInfo:
         self.e_info = e_info
         self.doc = doc
 
+    def markdown(self):
+        e_data = ''
+        for e_info in self.e_info:
+            e_data += DOC_ENUMERAND_ITEM.format(
+                name=e_info.name,
+                value=e_info.value,
+                description=e_info.doc
+            )
+
+        return DOC_ENUMERATION_ITEM.format(
+            name=self.name,
+            members=e_data
+        )
+
     def wrap(self):
         code = f"\nclass {self.name}(IntEnum):"
         for e_info in self.e_info:
@@ -1233,6 +1354,35 @@ class WrapInfo:
         self.callbacks = []
         self.prototypes = []
         self.functions = []
+
+    def markdown(self, out_fname, meta=None):
+        enum_items = ''
+        func_items = ''
+        struct_items = ''
+
+        for e_info in self.enums:
+            enum_items += e_info.markdown()
+
+        for s_info in self.structs:
+            s_meta = meta.get('structs', {}).get(s_info.name) if meta else None
+            struct_items += s_info.markdown(s_meta)
+
+        for f_info in self.functions:
+            func_items += f_info.markdown()
+
+        sec_structs = DOC_SECTION_STRUCTURES.format(items=struct_items)
+        sec_enums = DOC_SECTION_ENUMERATIONS.format(items=enum_items)
+        sec_funcs = DOC_SECTION_FUNCTIONS.format(items=func_items)
+        doc = DOC_MAIN.format(
+            version="4.2",
+            constants="",
+            enumerations=sec_enums,
+            structures=sec_structs,
+            functions=sec_funcs
+        )
+
+        with open(out_fname, 'w', encoding='utf8') as md:
+            md.write(doc)
 
     def wrap(self, out_fname, meta=None):
         exports = NL.join(f"{ND}'{name}'," for name in ALL_NAMES)
@@ -1438,8 +1588,11 @@ def generate_wrapper(api_json, out_fname=None, *flags):
             wrapper.functions.append(f_info)
             wrapper.prototypes.append(f_info.prototype(API_NAME, '_wrap'))
 
-    if out_fname:
-        wrapper.wrap(out_fname, meta_api)
+    #if out_fname:
+    #    wrapper.wrap(out_fname, meta_api)
+
+    if document:
+        wrapper.markdown(os.path.join(os.path.dirname(out_fname), 'RLAPI_REFERENCE.md'), meta_api)
     # for t in ALL_TYPES:
     #     print(f"{ALL_TYPES[t]}: {t}")
 

@@ -1396,72 +1396,72 @@ class Vector2(Structure):
         return "Vector2".format(self.__str__())
 
     def length(self):
-        # type: (Vector2) -> float
+        # type: () -> float
         result = _Vector2Length(self)
         return result
 
     def length_sqr(self):
-        # type: (Vector2) -> float
+        # type: () -> float
         result = _Vector2LengthSqr(self)
         return result
 
     def dot_product(self, v2: Vector2):
-        # type: (Vector2, Vector2) -> float
+        # type: (Vector2) -> float
         result = _Vector2DotProduct(self, v2)
         return result
 
     def distance(self, v2: Vector2):
-        # type: (Vector2, Vector2) -> float
+        # type: (Vector2) -> float
         result = _Vector2Distance(self, v2)
         return result
 
     def distance_sqr(self, v2: Vector2):
-        # type: (Vector2, Vector2) -> float
+        # type: (Vector2) -> float
         result = _Vector2DistanceSqr(self, v2)
         return result
 
     def angle(self, v2: Vector2):
-        # type: (Vector2, Vector2) -> float
+        # type: (Vector2) -> float
         result = _Vector2Angle(self, v2)
         return result
 
     def normalize(self):
-        # type: (Vector2) -> Vector2
+        # type: () -> Vector2
         result = _Vector2Normalize(self)
         return result
 
     def transform(self, mat: Matrix):
-        # type: (Vector2, Matrix) -> Vector2
+        # type: (Matrix) -> Vector2
         result = _Vector2Transform(self, mat)
         return result
 
     def lerp(self, v2: Vector2, amount: float):
-        # type: (Vector2, Vector2, float) -> Vector2
+        # type: (Vector2, float) -> Vector2
         result = _Vector2Lerp(self, v2, float(amount))
         return result
 
     def reflect(self, normal: Vector2):
-        # type: (Vector2, Vector2) -> Vector2
+        # type: (Vector2) -> Vector2
         result = _Vector2Reflect(self, normal)
         return result
 
     def rotate(self, angle: float):
-        # type: (Vector2, float) -> Vector2
+        # type: (float) -> Vector2
         result = _Vector2Rotate(self, float(angle))
         return result
 
     def move_towards(self, target: Vector2, max_distance: float):
-        # type: (Vector2, Vector2, float) -> Vector2
+        # type: (Vector2, float) -> Vector2
         result = _Vector2MoveTowards(self, target, float(max_distance))
         return result
 
     def clamp(self, min_: Vector2, max_: Vector2):
-        # type: (Vector2, Vector2, Vector2) -> Vector2
+        # type: (Vector2, Vector2) -> Vector2
         result = _Vector2Clamp(self, min_, max_)
         return result
 
     def clamp_value(self, min_: float, max_: float):
-        # type: (Vector2, float, float) -> Vector2
+        # type: (float, float) -> Vector2
         result = _Vector2ClampValue(self, float(min_), float(max_))
         return result
 
@@ -1548,117 +1548,117 @@ class Vector3(Structure):
         return "Vector3".format(self.__str__())
 
     def cross_product(self, v2: Vector3):
-        # type: (Vector3, Vector3) -> float
+        # type: (Vector3) -> float
         result = _Vector3CrossProduct(self, v2)
         return result
 
     def perpendicular(self):
-        # type: (Vector3) -> Vector3
+        # type: () -> Vector3
         result = _Vector3Perpendicular(self)
         return result
 
     def length(self):
-        # type: (Vector3) -> Vector3
+        # type: () -> Vector3
         result = _Vector3Length(self)
         return result
 
     def length_sqr(self):
-        # type: (Vector3) -> Vector3
+        # type: () -> Vector3
         result = _Vector3LengthSqr(self)
         return result
 
     def dot_product(self, v2: Vector3):
-        # type: (Vector3, Vector3) -> float
+        # type: (Vector3) -> float
         result = _Vector3DotProduct(self, v2)
         return result
 
     def distance(self, v2: Vector3):
-        # type: (Vector3, Vector3) -> float
+        # type: (Vector3) -> float
         result = _Vector3Distance(self, v2)
         return result
 
     def distance_sqr(self, v2: Vector3):
-        # type: (Vector3, Vector3) -> float
+        # type: (Vector3) -> float
         result = _Vector3DistanceSqr(self, v2)
         return result
 
     def angle(self, v2: Vector3):
-        # type: (Vector3, Vector3) -> float
+        # type: (Vector3) -> float
         result = _Vector3Angle(self, v2)
         return result
 
     def normalize(self):
-        # type: (Vector3) -> Vector3
+        # type: () -> Vector3
         result = _Vector3Normalize(self)
         return result
 
     def ortho_normalize(self, v2: Vector3Ptr):
-        # type: (Vector3Ptr, Vector3Ptr) -> Vector3
+        # type: (Vector3Ptr) -> Vector3
         result = _Vector3OrthoNormalize(self, v2)
         return result
 
     def transform(self, mat: Matrix):
-        # type: (Vector3, Matrix) -> Vector3
+        # type: (Matrix) -> Vector3
         result = _Vector3Transform(self, mat)
         return result
 
     def rotate_by_quaternion(self, q: Quaternion):
-        # type: (Vector3, Quaternion) -> Vector3
+        # type: (Quaternion) -> Vector3
         result = _Vector3RotateByQuaternion(self, q)
         return result
 
     def rotate_by_axis_angle(self, axis: Vector3, angle: float):
-        # type: (Vector3, Vector3, float) -> Vector3
+        # type: (Vector3, float) -> Vector3
         result = _Vector3RotateByAxisAngle(self, axis, float(angle))
         return result
 
     def lerp(self, v2: Vector3, amount: float):
-        # type: (Vector3, Vector3, float) -> Vector3
+        # type: (Vector3, float) -> Vector3
         result = _Vector3Lerp(self, v2, float(amount))
         return result
 
     def reflect(self, normal: Vector3):
-        # type: (Vector3, Vector3) -> Vector3
+        # type: (Vector3) -> Vector3
         result = _Vector3Reflect(self, normal)
         return result
 
     def min(self, v2: Vector3):
-        # type: (Vector3, Vector3) -> Vector3
+        # type: (Vector3) -> Vector3
         result = _Vector3Min(self, v2)
         return result
 
     def max(self, v2: Vector3):
-        # type: (Vector3, Vector3) -> Vector3
+        # type: (Vector3) -> Vector3
         result = _Vector3Max(self, v2)
         return result
 
     def barycenter(self, a: Vector3, b: Vector3, c: Vector3):
-        # type: (Vector3, Vector3, Vector3, Vector3) -> Vector3
+        # type: (Vector3, Vector3, Vector3) -> Vector3
         result = _Vector3Barycenter(self, a, b, c)
         return result
 
     def unproject(self, projection: Matrix, view: Matrix):
-        # type: (Vector3, Matrix, Matrix) -> Vector3
+        # type: (Matrix, Matrix) -> Vector3
         result = _Vector3Unproject(self, projection, view)
         return result
 
     def to_float_v(self):
-        # type: (Vector3) -> Sequence[float]
+        # type: () -> Sequence[float]
         result = _Vector3ToFloatV(self)
         return result
 
     def clamp(self, min_: Vector3, max_: Vector3):
-        # type: (Vector3, Vector3, Vector3) -> Vector3
+        # type: (Vector3, Vector3) -> Vector3
         result = _Vector3Clamp(self, min_, max_)
         return result
 
     def clamp_value(self, min_: float, max_: float):
-        # type: (Vector3, float, float) -> Vector3
+        # type: (float, float) -> Vector3
         result = _Vector3ClampValue(self, float(min_), float(max_))
         return result
 
     def refract(self, n: Vector3, r: float):
-        # type: (Vector3, Vector3, float) -> int
+        # type: (Vector3, float) -> int
         result = _Vector3Refract(self, n, float(r))
         return result
 
@@ -1826,94 +1826,94 @@ class Matrix(Structure):
         return self.__str__()
 
     def determinant(self):
-        # type: (Matrix) -> float
+        # type: () -> float
         result = _MatrixDeterminant(self)
         return result
 
     def trace(self):
-        # type: (Matrix) -> float
+        # type: () -> float
         result = _MatrixTrace(self)
         return result
 
     def transpose(self):
-        # type: (Matrix) -> Matrix
+        # type: () -> Matrix
         result = _MatrixTranspose(self)
         return result
 
     def invert(self):
-        # type: (Matrix) -> Matrix
+        # type: () -> Matrix
         result = _MatrixInvert(self)
         return result
 
     @classmethod
     def translate(cls, x: float, y: float, z: float):
-        # type: (float, float, float) -> Matrix
+        # type: (float, float) -> Matrix
         result = _MatrixTranslate(float(x), float(y), float(z))
         return result
 
     @classmethod
     def rotate(cls, axis: Vector3, angle: float):
-        # type: (Vector3, float) -> Matrix
+        # type: (float) -> Matrix
         result = _MatrixRotate(axis, float(angle))
         return result
 
     @classmethod
     def rotate_x(cls, angle: float):
-        # type: (float) -> Matrix
+        # type: () -> Matrix
         result = _MatrixRotateX(float(angle))
         return result
 
     @classmethod
     def rotate_y(cls, angle: float):
-        # type: (float) -> Matrix
+        # type: () -> Matrix
         result = _MatrixRotateY(float(angle))
         return result
 
     @classmethod
     def rotate_z(cls, angle: float):
-        # type: (float) -> Matrix
+        # type: () -> Matrix
         result = _MatrixRotateZ(float(angle))
         return result
 
     @classmethod
     def rotate_xyz(cls, angle: Vector3):
-        # type: (Vector3) -> Matrix
+        # type: () -> Matrix
         result = _MatrixRotateXYZ(angle)
         return result
 
     @classmethod
     def rotate_zyx(cls, angle: Vector3):
-        # type: (Vector3) -> Matrix
+        # type: () -> Matrix
         result = _MatrixRotateZYX(angle)
         return result
 
     @classmethod
     def scale(cls, x: float, y: float, z: float):
-        # type: (float, float, float) -> Matrix
+        # type: (float, float) -> Matrix
         result = _MatrixScale(float(x), float(y), float(z))
         return result
 
     @classmethod
     def frustum(cls, left: float, right: float, bottom: float, top: float, near: float, far: float):
-        # type: (float, float, float, float, float, float) -> Matrix
+        # type: (float, float, float, float, float) -> Matrix
         result = _MatrixFrustum(float(left), float(right), float(bottom), float(top), float(near), float(far))
         return result
 
     @classmethod
     def perspective(cls, fovy: float, aspect: float, near: float, far: float):
-        # type: (float, float, float, float) -> Matrix
+        # type: (float, float, float) -> Matrix
         result = _MatrixPerspective(float(fovy), float(aspect), float(near), float(far))
         return result
 
     @classmethod
     def ortho(cls, left: float, right: float, bottom: float, top: float, near: float, far: float):
-        # type: (float, float, float, float, float, float) -> Matrix
+        # type: (float, float, float, float, float) -> Matrix
         result = _MatrixOrtho(float(left), float(right), float(bottom), float(top), float(near), float(far))
         return result
 
     @classmethod
     def look_at(cls, eye: Vector3, target: Vector3, up: Vector3):
-        # type: (Vector3, Vector3, Vector3) -> Matrix
+        # type: (Vector3, Vector3) -> Matrix
         result = _MatrixLookAt(eye, target, up)
         return result
 
@@ -2003,32 +2003,32 @@ class Color(Structure):
         return "Color{}".format(self.__str__())
 
     def fade(self, alpha: float):
-        # type: (Color, float) -> Color
+        # type: (float) -> Color
         result = _Fade(self, float(alpha))
         return result
 
     def to_int(self):
-        # type: (Color) -> int
+        # type: () -> int
         result = _ColorToInt(self)
         return result
 
     def to_hsv(self):
-        # type: (Color) -> Vector3
+        # type: () -> Vector3
         result = _ColorToHSV(self)
         return result
 
     def from_hsv(self, saturation: float, value: float):
-        # type: (float, float, float) -> Color
+        # type: (float, float) -> Color
         result = _ColorFromHSV(self, float(saturation), float(value))
         return result
 
     def alpha(self, alpha: float):
-        # type: (Color, float) -> Color
+        # type: (float) -> Color
         result = _ColorAlpha(self, float(alpha))
         return result
 
     def alpha_blend(self, src: Color, tint: Color):
-        # type: (Color, Color, Color) -> Color
+        # type: (Color, Color) -> Color
         result = _ColorAlphaBlend(self, src, tint)
         return result
 
@@ -2123,275 +2123,275 @@ class Image(Structure):
         return byref(self)
 
     def unload(self):
-        # type: (Image) -> None
+        # type: () -> None
         _UnloadImage(self)
 
     def export(self, file_name: bytes):
-        # type: (Image, bytes) -> bool
+        # type: (bytes) -> bool
         result = _ExportImage(self, _str_in(file_name))
         return result
 
     def export_as_code(self, file_name: bytes):
-        # type: (Image, bytes) -> bool
+        # type: (bytes) -> bool
         result = _ExportImageAsCode(self, _str_in(file_name))
         return result
 
     def copy(self):
-        # type: (Image) -> Image
+        # type: () -> Image
         result = _ImageCopy(self)
         return result
 
     def format(self, new_format: int):
-        # type: (ImagePtr, int) -> None
+        # type: (int) -> None
         _ImageFormat(self.byref, int(new_format))
 
     def to_pot(self, fill: Color):
-        # type: (ImagePtr, Color) -> None
+        # type: (Color) -> None
         _ImageToPOT(self.byref, fill)
 
     def crop(self, crop: Rectangle):
-        # type: (ImagePtr, Rectangle) -> None
+        # type: (Rectangle) -> None
         _ImageCrop(self.byref, crop)
 
     def alpha_crop(self, threshold: float):
-        # type: (ImagePtr, float) -> None
+        # type: (float) -> None
         _ImageAlphaCrop(self.byref, float(threshold))
 
     def alpha_clear(self, color: Color, threshold: float):
-        # type: (ImagePtr, Color, float) -> None
+        # type: (Color, float) -> None
         _ImageAlphaClear(self.byref, color, float(threshold))
 
     def alpha_mask(self, alpha_mask: Image):
-        # type: (ImagePtr, Image) -> None
+        # type: (Image) -> None
         _ImageAlphaMask(self.byref, alpha_mask)
 
     def alpha_premultiply(self):
-        # type: (ImagePtr) -> None
+        # type: () -> None
         _ImageAlphaPremultiply(self.byref)
 
     def resize(self, new_width: int, new_height: int):
-        # type: (ImagePtr, int, int) -> None
+        # type: (int, int) -> None
         _ImageResize(self.byref, int(new_width), int(new_height))
 
     def resize_nn(self, new_width: int, new_height: int):
-        # type: (ImagePtr, int, int) -> None
+        # type: (int, int) -> None
         _ImageResizeNN(self.byref, int(new_width), int(new_height))
 
     def resize_canvas(self, new_width: int, new_height: int, offset_x: int, offset_y: int, fill: Color):
-        # type: (ImagePtr, int, int, int, int, Color) -> None
+        # type: (int, int, int, int, Color) -> None
         _ImageResizeCanvas(self.byref, int(new_width), int(new_height), int(offset_x), int(offset_y), fill)
 
     def mipmaps(self):
-        # type: (ImagePtr) -> None
+        # type: () -> None
         _ImageMipmaps(self.byref)
 
     def dither(self, r_bpp: int, g_bpp: int, b_bpp: int, a_bpp: int):
-        # type: (ImagePtr, int, int, int, int) -> None
+        # type: (int, int, int, int) -> None
         _ImageDither(self.byref, int(r_bpp), int(g_bpp), int(b_bpp), int(a_bpp))
 
     def flip_vertical(self):
-        # type: (ImagePtr) -> None
+        # type: () -> None
         _ImageFlipVertical(self.byref)
 
     def flip_horizontal(self):
-        # type: (ImagePtr) -> None
+        # type: () -> None
         _ImageFlipHorizontal(self.byref)
 
     def rotate_cw(self):
-        # type: (ImagePtr) -> None
+        # type: () -> None
         _ImageRotateCW(self.byref)
 
     def rotate_ccw(self):
-        # type: (ImagePtr) -> None
+        # type: () -> None
         _ImageRotateCCW(self.byref)
 
     def color_tint(self, color: Color):
-        # type: (ImagePtr, Color) -> None
+        # type: (Color) -> None
         _ImageColorTint(self.byref, color)
 
     def color_invert(self):
-        # type: (ImagePtr) -> None
+        # type: () -> None
         _ImageColorInvert(self.byref)
 
     def color_grayscale(self):
-        # type: (ImagePtr) -> None
+        # type: () -> None
         _ImageColorGrayscale(self.byref)
 
     def color_contrast(self, contrast: float):
-        # type: (ImagePtr, float) -> None
+        # type: (float) -> None
         _ImageColorContrast(self.byref, float(contrast))
 
     def color_brightness(self, brightness: int):
-        # type: (ImagePtr, int) -> None
+        # type: (int) -> None
         _ImageColorBrightness(self.byref, int(brightness))
 
     def color_replace(self, color: Color, replace: Color):
-        # type: (ImagePtr, Color, Color) -> None
+        # type: (Color, Color) -> None
         _ImageColorReplace(self.byref, color, replace)
 
     def clear_background(self, color: Color):
-        # type: (ImagePtr, Color) -> None
+        # type: (Color) -> None
         _ImageClearBackground(self.byref, color)
 
     def draw_pixel(self, pos_x: int, pos_y: int, color: Color):
-        # type: (ImagePtr, int, int, Color) -> None
+        # type: (int, int, Color) -> None
         _ImageDrawPixel(self.byref, int(pos_x), int(pos_y), color)
 
     def draw_pixel_v(self, position: Vector2, color: Color):
-        # type: (ImagePtr, Vector2, Color) -> None
+        # type: (Vector2, Color) -> None
         _ImageDrawPixelV(self.byref, position, color)
 
     def draw_line(self, start_pos_x: int, start_pos_y: int, end_pos_x: int, end_pos_y: int, color: Color):
-        # type: (ImagePtr, int, int, int, int, Color) -> None
+        # type: (int, int, int, int, Color) -> None
         _ImageDrawLine(self.byref, int(start_pos_x), int(start_pos_y), int(end_pos_x), int(end_pos_y), color)
 
     def draw_line_v(self, start: Vector2, end: Vector2, color: Color):
-        # type: (ImagePtr, Vector2, Vector2, Color) -> None
+        # type: (Vector2, Vector2, Color) -> None
         _ImageDrawLineV(self.byref, start, end, color)
 
     def draw_circle(self, center_x: int, center_y: int, radius: int, color: Color):
-        # type: (ImagePtr, int, int, int, Color) -> None
+        # type: (int, int, int, Color) -> None
         _ImageDrawCircle(self.byref, int(center_x), int(center_y), int(radius), color)
 
     def draw_circle_v(self, center: Vector2, radius: int, color: Color):
-        # type: (ImagePtr, Vector2, int, Color) -> None
+        # type: (Vector2, int, Color) -> None
         _ImageDrawCircleV(self.byref, center, int(radius), color)
 
     def draw_rectangle(self, pos_x: int, pos_y: int, width: int, height: int, color: Color):
-        # type: (ImagePtr, int, int, int, int, Color) -> None
+        # type: (int, int, int, int, Color) -> None
         _ImageDrawRectangle(self.byref, int(pos_x), int(pos_y), int(width), int(height), color)
 
     def draw_rectangle_v(self, position: Vector2, size: Vector2, color: Color):
-        # type: (ImagePtr, Vector2, Vector2, Color) -> None
+        # type: (Vector2, Vector2, Color) -> None
         _ImageDrawRectangleV(self.byref, position, size, color)
 
     def draw_rectangle_rec(self, rec: Rectangle, color: Color):
-        # type: (ImagePtr, Rectangle, Color) -> None
+        # type: (Rectangle, Color) -> None
         _ImageDrawRectangleRec(self.byref, rec, color)
 
     def draw_rectangle_lines(self, rec: Rectangle, thick: int, color: Color):
-        # type: (ImagePtr, Rectangle, int, Color) -> None
+        # type: (Rectangle, int, Color) -> None
         _ImageDrawRectangleLines(self.byref, rec, int(thick), color)
 
     def draw(self, src: Image, src_rec: Rectangle, dst_rec: Rectangle, tint: Color):
-        # type: (ImagePtr, Image, Rectangle, Rectangle, Color) -> None
+        # type: (Image, Rectangle, Rectangle, Color) -> None
         _ImageDraw(self.byref, src, src_rec, dst_rec, tint)
 
     def draw_text(self, text: bytes, pos_x: int, pos_y: int, font_size: int, color: Color):
-        # type: (ImagePtr, bytes, int, int, int, Color) -> None
+        # type: (bytes, int, int, int, Color) -> None
         _ImageDrawText(self.byref, _str_in(text), int(pos_x), int(pos_y), int(font_size), color)
 
     def draw_text_ex(self, font: Font, text: bytes, position: Vector2, font_size: float, spacing: float, tint: Color):
-        # type: (ImagePtr, Font, bytes, Vector2, float, float, Color) -> None
+        # type: (Font, bytes, Vector2, float, float, Color) -> None
         _ImageDrawTextEx(self.byref, font, _str_in(text), position, float(font_size), float(spacing), tint)
 
     def load_colors(self):
-        # type: (Image) -> ColorPtr
+        # type: () -> ColorPtr
         result = _LoadImageColors(self)
         return result
 
     def load_palette(self, max_palette_size: int, color_count: Sequence[int]):
-        # type: (Image, int, Sequence[int]) -> ColorPtr
+        # type: (int, Sequence[int]) -> ColorPtr
         result = _LoadImagePalette(self, int(max_palette_size), color_count_ref)
         return result
 
     def get_alpha_border(self, threshold: float):
-        # type: (Image, float) -> Rectangle
+        # type: (float) -> Rectangle
         result = _GetImageAlphaBorder(self, float(threshold))
         return result
 
     def get_color(self, x: int, y: int):
-        # type: (Image, int, int) -> Color
+        # type: (int, int) -> Color
         result = _GetImageColor(self, int(x), int(y))
         return result
 
     @classmethod
     def load(cls, file_name: bytes):
-        # type: (bytes) -> Image
+        # type: () -> Image
         result = _LoadImage(_str_in(file_name))
         return result
 
     @classmethod
     def load_raw(cls, file_name: bytes, width: int, height: int, format: int, header_size: int):
-        # type: (bytes, int, int, int, int) -> Image
+        # type: (int, int, int, int) -> Image
         result = _LoadImageRaw(_str_in(file_name), int(width), int(height), int(format), int(header_size))
         return result
 
     @classmethod
     def load_anim(cls, file_name: bytes, frames: Sequence[int]):
-        # type: (bytes, Sequence[int]) -> Image
+        # type: (Sequence[int]) -> Image
         result = _LoadImageAnim(_str_in(file_name), frames_ref)
         return result
 
     @classmethod
     def load_from_memory(cls, file_type: bytes, file_data: bytes, data_size: int):
-        # type: (bytes, bytes, int) -> Image
+        # type: (bytes, int) -> Image
         result = _LoadImageFromMemory(_str_in(file_type), _str_in(file_data), int(data_size))
         return result
 
     @classmethod
     def load_from_texture(cls, texture: Texture2D):
-        # type: (Texture2D) -> Image
+        # type: () -> Image
         result = _LoadImageFromTexture(texture)
         return result
 
     @classmethod
     def gen_color(cls, width: int, height: int, color: Color):
-        # type: (int, int, Color) -> Image
+        # type: (int, Color) -> Image
         result = _GenImageColor(int(width), int(height), color)
         return result
 
     @classmethod
     def gen_gradient_h(cls, width: int, height: int, left: Color, right: Color):
-        # type: (int, int, Color, Color) -> Image
+        # type: (int, Color, Color) -> Image
         result = _GenImageGradientH(int(width), int(height), left, right)
         return result
 
     @classmethod
     def gen_gradient_v(cls, width: int, height: int, top: Color, bottom: Color):
-        # type: (int, int, Color, Color) -> Image
+        # type: (int, Color, Color) -> Image
         result = _GenImageGradientV(int(width), int(height), top, bottom)
         return result
 
     @classmethod
     def gen_gradient_radial(cls, width: int, height: int, density: float, inner: Color, outer: Color):
-        # type: (int, int, float, Color, Color) -> Image
+        # type: (int, float, Color, Color) -> Image
         result = _GenImageGradientRadial(int(width), int(height), float(density), inner, outer)
         return result
 
     @classmethod
     def gen_checked(cls, width: int, height: int, checks_x: int, checks_y: int, col1: Color, col2: Color):
-        # type: (int, int, int, int, Color, Color) -> Image
+        # type: (int, int, int, Color, Color) -> Image
         result = _GenImageChecked(int(width), int(height), int(checks_x), int(checks_y), col1, col2)
         return result
 
     @classmethod
     def gen_white_noise(cls, width: int, height: int, factor: float):
-        # type: (int, int, float) -> Image
+        # type: (int, float) -> Image
         result = _GenImageWhiteNoise(int(width), int(height), float(factor))
         return result
 
     @classmethod
     def gen_cellular(cls, width: int, height: int, tile_size: int):
-        # type: (int, int, int) -> Image
+        # type: (int, int) -> Image
         result = _GenImageCellular(int(width), int(height), int(tile_size))
         return result
 
     @classmethod
     def from_image(cls, image: Image, rec: Rectangle):
-        # type: (Image, Rectangle) -> Image
+        # type: (Rectangle) -> Image
         result = _ImageFromImage(image, rec)
         return result
 
     @classmethod
     def text(cls, text: bytes, font_size: int, color: Color):
-        # type: (bytes, int, Color) -> Image
+        # type: (int, Color) -> Image
         result = _ImageText(_str_in(text), int(font_size), color)
         return result
 
     @classmethod
     def text_ex(cls, font: Font, text: bytes, font_size: float, spacing: float, tint: Color):
-        # type: (Font, bytes, float, float, Color) -> Image
+        # type: (bytes, float, float, Color) -> Image
         result = _ImageTextEx(font, _str_in(text), float(font_size), float(spacing), tint)
         return result
 
@@ -2645,66 +2645,66 @@ class Font(Structure):
         return self.__str__()
 
     def unload(self):
-        # type: (Font) -> None
+        # type: () -> None
         _UnloadFont(self)
 
     def draw_text_ex(self, text: bytes, position: Vector2, font_size: float, spacing: float, tint: Color):
-        # type: (Font, bytes, Vector2, float, float, Color) -> None
+        # type: (bytes, Vector2, float, float, Color) -> None
         _DrawTextEx(self, _str_in(text), position, float(font_size), float(spacing), tint)
 
     def draw_text_pro(self, text: bytes, position: Vector2, origin: Vector2, rotation: float, font_size: float, spacing: float, tint: Color):
-        # type: (Font, bytes, Vector2, Vector2, float, float, float, Color) -> None
+        # type: (bytes, Vector2, Vector2, float, float, float, Color) -> None
         _DrawTextPro(self, _str_in(text), position, origin, float(rotation), float(font_size), float(spacing), tint)
 
     def draw_text_codepoint(self, codepoint: int, position: Vector2, font_size: float, tint: Color):
-        # type: (Font, int, Vector2, float, Color) -> None
+        # type: (int, Vector2, float, Color) -> None
         _DrawTextCodepoint(self, int(codepoint), position, float(font_size), tint)
 
     def draw_text_codepoints(self, codepoints: Sequence[int], count: int, position: Vector2, font_size: float, spacing: float, tint: Color):
-        # type: (Font, Sequence[int], int, Vector2, float, float, Color) -> None
+        # type: (Sequence[int], int, Vector2, float, float, Color) -> None
         _DrawTextCodepoints(self, codepoints_ref, int(count), position, float(font_size), float(spacing), tint)
 
     def measure_text_ex(self, text: bytes, font_size: float, spacing: float):
-        # type: (Font, bytes, float, float) -> Vector2
+        # type: (bytes, float, float) -> Vector2
         result = _MeasureTextEx(self, _str_in(text), float(font_size), float(spacing))
         return result
 
     def get_glyph_index(self, codepoint: int):
-        # type: (Font, int) -> int
+        # type: (int) -> int
         result = _GetGlyphIndex(self, int(codepoint))
         return result
 
     def get_glyph_info(self, codepoint: int):
-        # type: (Font, int) -> GlyphInfo
+        # type: (int) -> GlyphInfo
         result = _GetGlyphInfo(self, int(codepoint))
         return result
 
     def get_glyph_atlas_rec(self, codepoint: int):
-        # type: (Font, int) -> Rectangle
+        # type: (int) -> Rectangle
         result = _GetGlyphAtlasRec(self, int(codepoint))
         return result
 
     @classmethod
     def load(cls, file_name: bytes):
-        # type: (bytes) -> Font
+        # type: () -> Font
         result = _LoadFont(_str_in(file_name))
         return result
 
     @classmethod
     def load_ex(cls, file_name: bytes, font_size: int, font_chars: Sequence[int], glyph_count: int):
-        # type: (bytes, int, Sequence[int], int) -> Font
+        # type: (int, Sequence[int], int) -> Font
         result = _LoadFontEx(_str_in(file_name), int(font_size), font_chars_ref, int(glyph_count))
         return result
 
     @classmethod
     def load_from_image(cls, image: Image, key: Color, first_char: int):
-        # type: (Image, Color, int) -> Font
+        # type: (Color, int) -> Font
         result = _LoadFontFromImage(image, key, int(first_char))
         return result
 
     @classmethod
     def load_from_memory(cls, file_type: bytes, file_data: bytes, data_size: int, font_size: int, font_chars: Sequence[int], glyph_count: int):
-        # type: (bytes, bytes, int, int, Sequence[int], int) -> Font
+        # type: (bytes, int, int, Sequence[int], int) -> Font
         result = _LoadFontFromMemory(_str_in(file_type), _str_in(file_data), int(data_size), int(font_size), font_chars_ref, int(glyph_count))
         return result
 
@@ -2755,7 +2755,7 @@ class Camera3D(Structure):
         return byref(self)
 
     def set_mode(self, mode: int):
-        # type: (Camera, int) -> None
+        # type: (int) -> None
         _SetCameraMode(self, int(mode))
 
 
@@ -2879,102 +2879,102 @@ class Mesh(Structure):
         return self.__str__()
 
     def upload(self, dynamic: bool):
-        # type: (MeshPtr, bool) -> None
+        # type: (bool) -> None
         _UploadMesh(self.byref, bool(dynamic))
 
     def update_buffer(self, index: int, data: bytes, data_size: int, offset: int):
-        # type: (Mesh, int, bytes, int, int) -> None
+        # type: (int, bytes, int, int) -> None
         _UpdateMeshBuffer(self, int(index), data_ref, int(data_size), int(offset))
 
     def unload(self):
-        # type: (Mesh) -> None
+        # type: () -> None
         _UnloadMesh(self)
 
     def draw(self, material: Material, transform: Matrix):
-        # type: (Mesh, Material, Matrix) -> None
+        # type: (Material, Matrix) -> None
         _DrawMesh(self, material, transform)
 
     def draw_instanced(self, material: Material, transforms: MatrixPtr, instances: int):
-        # type: (Mesh, Material, MatrixPtr, int) -> None
+        # type: (Material, MatrixPtr, int) -> None
         _DrawMeshInstanced(self, material, transforms, int(instances))
 
     def export(self, file_name: bytes):
-        # type: (Mesh, bytes) -> bool
+        # type: (bytes) -> bool
         result = _ExportMesh(self, _str_in(file_name))
         return result
 
     def get_bounding_box(self):
-        # type: (Mesh) -> BoundingBox
+        # type: () -> BoundingBox
         result = _GetMeshBoundingBox(self)
         return result
 
     def gen_tangents(self):
-        # type: (MeshPtr) -> None
+        # type: () -> None
         _GenMeshTangents(self.byref)
 
     @classmethod
     def gen_poly(cls, sides: int, radius: float):
-        # type: (int, float) -> Mesh
+        # type: (float) -> Mesh
         result = _GenMeshPoly(int(sides), float(radius))
         return result
 
     @classmethod
     def gen_plane(cls, width: float, length: float, res_x: int, res_z: int):
-        # type: (float, float, int, int) -> Mesh
+        # type: (float, int, int) -> Mesh
         result = _GenMeshPlane(float(width), float(length), int(res_x), int(res_z))
         return result
 
     @classmethod
     def gen_cube(cls, width: float, height: float, length: float):
-        # type: (float, float, float) -> Mesh
+        # type: (float, float) -> Mesh
         result = _GenMeshCube(float(width), float(height), float(length))
         return result
 
     @classmethod
     def gen_sphere(cls, radius: float, rings: int, slices: int):
-        # type: (float, int, int) -> Mesh
+        # type: (int, int) -> Mesh
         result = _GenMeshSphere(float(radius), int(rings), int(slices))
         return result
 
     @classmethod
     def gen_hemi_sphere(cls, radius: float, rings: int, slices: int):
-        # type: (float, int, int) -> Mesh
+        # type: (int, int) -> Mesh
         result = _GenMeshHemiSphere(float(radius), int(rings), int(slices))
         return result
 
     @classmethod
     def gen_cylinder(cls, radius: float, height: float, slices: int):
-        # type: (float, float, int) -> Mesh
+        # type: (float, int) -> Mesh
         result = _GenMeshCylinder(float(radius), float(height), int(slices))
         return result
 
     @classmethod
     def gen_cone(cls, radius: float, height: float, slices: int):
-        # type: (float, float, int) -> Mesh
+        # type: (float, int) -> Mesh
         result = _GenMeshCone(float(radius), float(height), int(slices))
         return result
 
     @classmethod
     def gen_torus(cls, radius: float, size: float, rad_seg: int, sides: int):
-        # type: (float, float, int, int) -> Mesh
+        # type: (float, int, int) -> Mesh
         result = _GenMeshTorus(float(radius), float(size), int(rad_seg), int(sides))
         return result
 
     @classmethod
     def gen_knot(cls, radius: float, size: float, rad_seg: int, sides: int):
-        # type: (float, float, int, int) -> Mesh
+        # type: (float, int, int) -> Mesh
         result = _GenMeshKnot(float(radius), float(size), int(rad_seg), int(sides))
         return result
 
     @classmethod
     def gen_heightmap(cls, heightmap: Image, size: Vector3):
-        # type: (Image, Vector3) -> Mesh
+        # type: (Vector3) -> Mesh
         result = _GenMeshHeightmap(heightmap, size)
         return result
 
     @classmethod
     def gen_cubicmap(cls, cubicmap: Image, cube_size: Vector3):
-        # type: (Image, Vector3) -> Mesh
+        # type: (Vector3) -> Mesh
         result = _GenMeshCubicmap(cubicmap, cube_size)
         return result
 
@@ -3025,44 +3025,44 @@ class Shader(Structure):
         return self.__str__()
 
     def get_location(self, uniform_name: bytes):
-        # type: (Shader, bytes) -> int
+        # type: (bytes) -> int
         result = _GetShaderLocation(self, _str_in(uniform_name))
         return result
 
     def get_location_attrib(self, attrib_name: bytes):
-        # type: (Shader, bytes) -> int
+        # type: (bytes) -> int
         result = _GetShaderLocationAttrib(self, _str_in(attrib_name))
         return result
 
     def set_value(self, loc_index: int, value: bytes, uniform_type: int):
-        # type: (Shader, int, bytes, int) -> None
+        # type: (int, bytes, int) -> None
         _SetShaderValue(self, int(loc_index), value_ref, int(uniform_type))
 
     def set_value_v(self, loc_index: int, value: bytes, uniform_type: int, count: int):
-        # type: (Shader, int, bytes, int, int) -> None
+        # type: (int, bytes, int, int) -> None
         _SetShaderValueV(self, int(loc_index), value_ref, int(uniform_type), int(count))
 
     def set_value_matrix(self, loc_index: int, mat: Matrix):
-        # type: (Shader, int, Matrix) -> None
+        # type: (int, Matrix) -> None
         _SetShaderValueMatrix(self, int(loc_index), mat)
 
     def set_value_texture(self, loc_index: int, texture: Texture2D):
-        # type: (Shader, int, Texture2D) -> None
+        # type: (int, Texture2D) -> None
         _SetShaderValueTexture(self, int(loc_index), texture)
 
     def unload(self):
-        # type: (Shader) -> None
+        # type: () -> None
         _UnloadShader(self)
 
     @classmethod
     def load(cls, vs_file_name: bytes, fs_file_name: bytes):
-        # type: (bytes, bytes) -> Shader
+        # type: (bytes) -> Shader
         result = _LoadShader(_str_in(vs_file_name), _str_in(fs_file_name))
         return result
 
     @classmethod
     def load_from_memory(cls, vs_code: bytes, fs_code: bytes):
-        # type: (bytes, bytes) -> Shader
+        # type: (bytes) -> Shader
         result = _LoadShaderFromMemory(_str_in(vs_code), _str_in(fs_code))
         return result
 
@@ -3157,16 +3157,16 @@ class Material(Structure):
         return self.__str__()
 
     def unload(self):
-        # type: (Material) -> None
+        # type: () -> None
         _UnloadMaterial(self)
 
     def set_texture(self, map_type: int, texture: Texture2D):
-        # type: (MaterialPtr, int, Texture2D) -> None
+        # type: (int, Texture2D) -> None
         _SetMaterialTexture(self, int(map_type), texture)
 
     @classmethod
     def load_materials(cls, file_name: bytes, material_count: Sequence[int]):
-        # type: (bytes, Sequence[int]) -> MaterialPtr
+        # type: (Sequence[int]) -> MaterialPtr
         result = _LoadMaterials(_str_in(file_name), material_count_ref)
         return result
 
@@ -3313,56 +3313,56 @@ class Model(Structure):
         return self.__str__()
 
     def is_animation_valid(self, anim: ModelAnimation):
-        # type: (Model, ModelAnimation) -> bool
+        # type: (ModelAnimation) -> bool
         result = _IsModelAnimationValid(self, anim)
         return result
 
     def update_animation(self, anim: ModelAnimation, frame: int):
-        # type: (Model, ModelAnimation, int) -> None
+        # type: (ModelAnimation, int) -> None
         _UpdateModelAnimation(self, anim, int(frame))
 
     def set_mesh_material(self, mesh_id: int, material_id: int):
-        # type: (ModelPtr, int, int) -> None
+        # type: (int, int) -> None
         _SetModelMeshMaterial(self.byref, int(mesh_id), int(material_id))
 
     def unload(self):
-        # type: (Model) -> None
+        # type: () -> None
         _UnloadModel(self)
 
     def unload_keep_meshes(self):
-        # type: (Model) -> None
+        # type: () -> None
         _UnloadModelKeepMeshes(self)
 
     def get_bounding_box(self):
-        # type: (Model) -> BoundingBox
+        # type: () -> BoundingBox
         result = _GetModelBoundingBox(self)
         return result
 
     def draw(self, position: Vector3, scale: float, tint: Color):
-        # type: (Model, Vector3, float, Color) -> None
+        # type: (Vector3, float, Color) -> None
         _DrawModel(self, position, float(scale), tint)
 
     def draw_ex(self, position: Vector3, rotation_axis: Vector3, rotation_angle: float, scale: Vector3, tint: Color):
-        # type: (Model, Vector3, Vector3, float, Vector3, Color) -> None
+        # type: (Vector3, Vector3, float, Vector3, Color) -> None
         _DrawModelEx(self, position, rotation_axis, float(rotation_angle), scale, tint)
 
     def draw_wires(self, position: Vector3, scale: float, tint: Color):
-        # type: (Model, Vector3, float, Color) -> None
+        # type: (Vector3, float, Color) -> None
         _DrawModelWires(self, position, float(scale), tint)
 
     def draw_wires_ex(self, position: Vector3, rotation_axis: Vector3, rotation_angle: float, scale: Vector3, tint: Color):
-        # type: (Model, Vector3, Vector3, float, Vector3, Color) -> None
+        # type: (Vector3, Vector3, float, Vector3, Color) -> None
         _DrawModelWiresEx(self, position, rotation_axis, float(rotation_angle), scale, tint)
 
     @classmethod
     def load(cls, file_name: bytes):
-        # type: (bytes) -> Model
+        # type: () -> Model
         result = _LoadModel(_str_in(file_name))
         return result
 
     @classmethod
     def load_from_mesh(cls, mesh: Mesh):
-        # type: (Mesh) -> Model
+        # type: () -> Model
         result = _LoadModelFromMesh(mesh)
         return result
 
@@ -3587,50 +3587,50 @@ class Wave(Structure):
         return self.__str__()
 
     def copy(self):
-        # type: (Wave) -> Wave
+        # type: () -> Wave
         result = _WaveCopy(self)
         return result
 
     def crop(self, init_sample: int, final_sample: int):
-        # type: (WavePtr, int, int) -> None
+        # type: (int, int) -> None
         _WaveCrop(self.byref, int(init_sample), int(final_sample))
 
     def format(self, sample_rate: int, sample_size: int, channels: int):
-        # type: (WavePtr, int, int, int) -> None
+        # type: (int, int, int) -> None
         _WaveFormat(self.byref, int(sample_rate), int(sample_size), int(channels))
 
     def format(self):
-        # type: (Wave) -> Sequence[float]
+        # type: () -> Sequence[float]
         result = _LoadWaveSamples(self.byref)
         return result
 
     def export(self, file_name: bytes):
-        # type: (Wave, bytes) -> bool
+        # type: (bytes) -> bool
         result = _ExportWave(self, _str_in(file_name))
         return result
 
     def export_as_code(self, file_name: bytes):
-        # type: (Wave, bytes) -> bool
+        # type: (bytes) -> bool
         result = _ExportWaveAsCode(self, _str_in(file_name))
         return result
 
     def unload(self):
-        # type: (Wave) -> None
+        # type: () -> None
         _UnloadWave(self)
 
     def unload_samples(self):
-        # type: (Sequence[float]) -> None
+        # type: () -> None
         _UnloadWaveSamples(self)
 
     @classmethod
     def load(cls, file_name: bytes):
-        # type: (bytes) -> Wave
+        # type: () -> Wave
         result = _LoadWave(_str_in(file_name))
         return result
 
     @classmethod
     def load_from_memory(cls, file_type: bytes, file_data: bytes, data_size: int):
-        # type: (bytes, bytes, int) -> Wave
+        # type: (bytes, int) -> Wave
         result = _LoadWaveFromMemory(_str_in(file_type), _str_in(file_data), int(data_size))
         return result
 
@@ -3687,70 +3687,70 @@ class AudioStream(Structure):
         return self.__str__()
 
     def unload(self):
-        # type: (AudioStream) -> None
+        # type: () -> None
         _UnloadAudioStream(self)
 
     def update(self, data: bytes, frame_count: int):
-        # type: (AudioStream, bytes, int) -> None
+        # type: (bytes, int) -> None
         _UpdateAudioStream(self, data_ref, int(frame_count))
 
     def is_processed(self):
-        # type: (AudioStream) -> bool
+        # type: () -> bool
         result = _IsAudioStreamProcessed(self)
         return result
 
     def play(self):
-        # type: (AudioStream) -> None
+        # type: () -> None
         _PlayAudioStream(self)
 
     def pause(self):
-        # type: (AudioStream) -> None
+        # type: () -> None
         _PauseAudioStream(self)
 
     def resume(self):
-        # type: (AudioStream) -> None
+        # type: () -> None
         _ResumeAudioStream(self)
 
     def is_playing(self):
-        # type: (AudioStream) -> bool
+        # type: () -> bool
         result = _IsAudioStreamPlaying(self)
         return result
 
     def stop(self):
-        # type: (AudioStream) -> None
+        # type: () -> None
         _StopAudioStream(self)
 
     def set_volume(self, volume: float):
-        # type: (AudioStream, float) -> None
+        # type: (float) -> None
         _SetAudioStreamVolume(self, float(volume))
 
     def set_pitch(self, pitch: float):
-        # type: (AudioStream, float) -> None
+        # type: (float) -> None
         _SetAudioStreamPitch(self, float(pitch))
 
     def set_pan(self, pan: float):
-        # type: (AudioStream, float) -> None
+        # type: (float) -> None
         _SetAudioStreamPan(self, float(pan))
 
     def set_buffer_size_default(self):
-        # type: (int) -> None
+        # type: () -> None
         _SetAudioStreamBufferSizeDefault(self)
 
     def set_callback(self, callback: AudioCallback):
-        # type: (AudioStream, AudioCallback) -> None
+        # type: (AudioCallback) -> None
         _SetAudioStreamCallback(self, callback)
 
     def attach_processor(self, processor: AudioCallback):
-        # type: (AudioStream, AudioCallback) -> None
+        # type: (AudioCallback) -> None
         _AttachAudioStreamProcessor(self, processor)
 
     def detach_processor(self, processor: AudioCallback):
-        # type: (AudioStream, AudioCallback) -> None
+        # type: (AudioCallback) -> None
         _DetachAudioStreamProcessor(self, processor)
 
     @classmethod
     def load(cls, sample_rate: int, sample_size: int, channels: int):
-        # type: (int, int, int) -> AudioStream
+        # type: (int, int) -> AudioStream
         result = _LoadAudioStream(int(sample_rate), int(sample_size), int(channels))
         return result
 
@@ -3801,59 +3801,59 @@ class Sound(Structure):
         return self.__str__()
 
     def play(self):
-        # type: (Sound) -> None
+        # type: () -> None
         _PlaySound(self)
 
     def stop(self):
-        # type: (Sound) -> None
+        # type: () -> None
         _StopSound(self)
 
     def pause(self):
-        # type: (Sound) -> None
+        # type: () -> None
         _PauseSound(self)
 
     def resume(self):
-        # type: (Sound) -> None
+        # type: () -> None
         _ResumeSound(self)
 
     def play_multi(self):
-        # type: (Sound) -> None
+        # type: () -> None
         _PlaySoundMulti(self)
 
     def is_playing(self):
-        # type: (Sound) -> bool
+        # type: () -> bool
         result = _IsSoundPlaying(self)
         return result
 
     def set_volume(self, volume: float):
-        # type: (Sound, float) -> None
+        # type: (float) -> None
         _SetSoundVolume(self, float(volume))
 
     def set_pitch(self, pitch: float):
-        # type: (Sound, float) -> None
+        # type: (float) -> None
         _SetSoundPitch(self, float(pitch))
 
     def set_pan(self, pan: float):
-        # type: (Sound, float) -> None
+        # type: (float) -> None
         _SetSoundPan(self, float(pan))
 
     def unload(self):
-        # type: (Sound) -> None
+        # type: () -> None
         _UnloadSound(self)
 
     def update(self, data: bytes, sample_count: int):
-        # type: (Sound, bytes, int) -> None
+        # type: (bytes, int) -> None
         _UpdateSound(self, data_ref, int(sample_count))
 
     @classmethod
     def load(cls, file_name: bytes):
-        # type: (bytes) -> Sound
+        # type: () -> Sound
         result = _LoadSound(_str_in(file_name))
         return result
 
     @classmethod
     def load_from_wave(cls, wave: Wave):
-        # type: (Wave) -> Sound
+        # type: () -> Sound
         result = _LoadSoundFromWave(wave)
         return result
 
@@ -3910,53 +3910,53 @@ class Music(Structure):
         return self.__str__()
 
     def play(self):
-        # type: (Music) -> None
+        # type: () -> None
         _PlayMusicStream(self)
 
     def is_playing(self):
-        # type: (Music) -> bool
+        # type: () -> bool
         result = _IsMusicStreamPlaying(self)
         return result
 
     def update(self):
-        # type: (Music) -> None
+        # type: () -> None
         _UpdateMusicStream(self)
 
     def stop(self):
-        # type: (Music) -> None
+        # type: () -> None
         _StopMusicStream(self)
 
     def pause(self):
-        # type: (Music) -> None
+        # type: () -> None
         _PauseMusicStream(self)
 
     def resume(self):
-        # type: (Music) -> None
+        # type: () -> None
         _ResumeMusicStream(self)
 
     def seek(self, position: float):
-        # type: (Music, float) -> None
+        # type: (float) -> None
         _SeekMusicStream(self, float(position))
 
     def set_volume(self, volume: float):
-        # type: (Music, float) -> None
+        # type: (float) -> None
         _SetMusicVolume(self, float(volume))
 
     def set_pitch(self, pitch: float):
-        # type: (Music, float) -> None
+        # type: (float) -> None
         _SetMusicPitch(self, float(pitch))
 
     def set_pan(self, pan: float):
-        # type: (Music, float) -> None
+        # type: (float) -> None
         _SetMusicPan(self, float(pan))
 
     def get_time_length(self):
-        # type: (Music) -> float
+        # type: () -> float
         result = _GetMusicTimeLength(self)
         return result
 
     def get_time_played(self):
-        # type: (Music) -> float
+        # type: () -> float
         result = _GetMusicTimePlayed(self)
         return result
 
