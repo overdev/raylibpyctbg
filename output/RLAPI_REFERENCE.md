@@ -439,10 +439,29 @@ y | float | todo | todo
 
 
 Classmethods:
-_None._
+Classmethod name | Bound API
+-----------|---------
+`Vector2.one()` | `vector2one()`
+
 
 Methods:
-_None._
+Method name | Bound API
+-----------|---------
+`self.length()` | `vector2length()`
+`self.length_sqr()` | `vector2length_sqr()`
+`self.dot_product()` | `vector2dot_product()`
+`self.distance()` | `vector2distance()`
+`self.distance_sqr()` | `vector2distance_sqr()`
+`self.angle()` | `vector2angle()`
+`self.normalize()` | `vector2normalize()`
+`self.transform()` | `vector2transform()`
+`self.lerp()` | `vector2lerp()`
+`self.reflect()` | `vector2reflect()`
+`self.rotate()` | `vector2rotate()`
+`self.move_towards()` | `vector2move_towards()`
+`self.clamp()` | `vector2clamp()`
+`self.clamp_value()` | `vector2clamp_value()`
+
 
 Staticmethods:
 _None._
@@ -458,10 +477,38 @@ z | float | todo | todo
 
 
 Classmethods:
-_None._
+Classmethod name | Bound API
+-----------|---------
+`Vector3.one()` | `vector3one()`
+
 
 Methods:
-_None._
+Method name | Bound API
+-----------|---------
+`self.cross_product()` | `vector3cross_product()`
+`self.perpendicular()` | `vector3perpendicular()`
+`self.length()` | `vector3length()`
+`self.length_sqr()` | `vector3length_sqr()`
+`self.dot_product()` | `vector3dot_product()`
+`self.distance()` | `vector3distance()`
+`self.distance_sqr()` | `vector3distance_sqr()`
+`self.angle()` | `vector3angle()`
+`self.normalize()` | `vector3normalize()`
+`self.ortho_normalize()` | `vector3ortho_normalize()`
+`self.transform()` | `vector3transform()`
+`self.rotate_by_quaternion()` | `vector3rotate_by_quaternion()`
+`self.rotate_by_axis_angle()` | `vector3rotate_by_axis_angle()`
+`self.lerp()` | `vector3lerp()`
+`self.reflect()` | `vector3reflect()`
+`self.min()` | `vector3min()`
+`self.max()` | `vector3max()`
+`self.barycenter()` | `vector3barycenter()`
+`self.unproject()` | `vector3unproject()`
+`self.to_float_v()` | `vector3to_float_v()`
+`self.clamp()` | `vector3clamp()`
+`self.clamp_value()` | `vector3clamp_value()`
+`self.refract()` | `vector3refract()`
+
 
 Staticmethods:
 _None._
@@ -510,10 +557,31 @@ m15 | float | todo | todo
 
 
 Classmethods:
-_None._
+Classmethod name | Bound API
+-----------|---------
+`Matrix.identity()` | `matrix_identity()`
+`Matrix.translate()` | `matrix_translate()`
+`Matrix.rotate()` | `matrix_rotate()`
+`Matrix.rotate_x()` | `matrix_rotate_x()`
+`Matrix.rotate_y()` | `matrix_rotate_y()`
+`Matrix.rotate_z()` | `matrix_rotate_z()`
+`Matrix.rotate_xyz()` | `matrix_rotate_xyz()`
+`Matrix.rotate_zyx()` | `matrix_rotate_zyx()`
+`Matrix.scale()` | `matrix_scale()`
+`Matrix.frustum()` | `matrix_frustum()`
+`Matrix.perspective()` | `matrix_perspective()`
+`Matrix.ortho()` | `matrix_ortho()`
+`Matrix.look_at()` | `matrix_look_at()`
+
 
 Methods:
-_None._
+Method name | Bound API
+-----------|---------
+`self.determinant()` | `matrix_determinant()`
+`self.trace()` | `matrix_trace()`
+`self.transpose()` | `matrix_transpose()`
+`self.invert()` | `matrix_invert()`
+
 
 Staticmethods:
 _None._
@@ -533,7 +601,15 @@ Classmethods:
 _None._
 
 Methods:
-_None._
+Method name | Bound API
+-----------|---------
+`self.fade()` | `fade()`
+`self.to_int()` | `color_to_int()`
+`self.to_hsv()` | `color_to_hsv()`
+`self.from_hsv()` | `color_from_hsv()`
+`self.alpha()` | `color_alpha()`
+`self.alpha_blend()` | `color_alpha_blend()`
+
 
 Staticmethods:
 _None._
@@ -571,13 +647,81 @@ format | int | todo | todo
 
 
 Classmethods:
-_None._
+Classmethod name | Bound API
+-----------|---------
+`Image.load()` | `load_image()`
+`Image.load_raw()` | `load_image_raw()`
+`Image.load_anim()` | `load_image_anim()`
+`Image.load_from_memory()` | `load_image_from_memory()`
+`Image.load_from_texture()` | `load_image_from_texture()`
+`Image.load_from_screen()` | `load_image_from_screen()`
+`Image.gen_color()` | `gen_image_color()`
+`Image.gen_gradient_h()` | `gen_image_gradient_h()`
+`Image.gen_gradient_v()` | `gen_image_gradient_v()`
+`Image.gen_gradient_radial()` | `gen_image_gradient_radial()`
+`Image.gen_checked()` | `gen_image_checked()`
+`Image.gen_white_noise()` | `gen_image_white_noise()`
+`Image.gen_cellular()` | `gen_image_cellular()`
+`Image.from_image()` | `image_from_image()`
+`Image.text()` | `image_text()`
+`Image.text_ex()` | `image_text_ex()`
+
 
 Methods:
-_None._
+Method name | Bound API
+-----------|---------
+`self.unload()` | `unload_image()`
+`self.export()` | `export_image()`
+`self.export_as_code()` | `export_image_as_code()`
+`self.copy()` | `image_copy()`
+`self.format()` | `image_format()`
+`self.to_pot()` | `image_to_pot()`
+`self.crop()` | `image_crop()`
+`self.alpha_crop()` | `image_alpha_crop()`
+`self.alpha_clear()` | `image_alpha_clear()`
+`self.alpha_mask()` | `image_alpha_mask()`
+`self.alpha_premultiply()` | `image_alpha_premultiply()`
+`self.resize()` | `image_resize()`
+`self.resize_nn()` | `image_resize_nn()`
+`self.resize_canvas()` | `image_resize_canvas()`
+`self.mipmaps()` | `image_mipmaps()`
+`self.dither()` | `image_dither()`
+`self.flip_vertical()` | `image_flip_vertical()`
+`self.flip_horizontal()` | `image_flip_horizontal()`
+`self.rotate_cw()` | `image_rotate_cw()`
+`self.rotate_ccw()` | `image_rotate_ccw()`
+`self.color_tint()` | `image_color_tint()`
+`self.color_invert()` | `image_color_invert()`
+`self.color_grayscale()` | `image_color_grayscale()`
+`self.color_contrast()` | `image_color_contrast()`
+`self.color_brightness()` | `image_color_brightness()`
+`self.color_replace()` | `image_color_replace()`
+`self.clear_background()` | `image_clear_background()`
+`self.draw_pixel()` | `image_draw_pixel()`
+`self.draw_pixel_v()` | `image_draw_pixel_v()`
+`self.draw_line()` | `image_draw_line()`
+`self.draw_line_v()` | `image_draw_line_v()`
+`self.draw_circle()` | `image_draw_circle()`
+`self.draw_circle_v()` | `image_draw_circle_v()`
+`self.draw_rectangle()` | `image_draw_rectangle()`
+`self.draw_rectangle_v()` | `image_draw_rectangle_v()`
+`self.draw_rectangle_rec()` | `image_draw_rectangle_rec()`
+`self.draw_rectangle_lines()` | `image_draw_rectangle_lines()`
+`self.draw()` | `image_draw()`
+`self.draw_text()` | `image_draw_text()`
+`self.draw_text_ex()` | `image_draw_text_ex()`
+`self.load_colors()` | `load_image_colors()`
+`self.load_palette()` | `load_image_palette()`
+`self.get_alpha_border()` | `get_image_alpha_border()`
+`self.get_color()` | `get_image_color()`
+`Image.unload_colors()` | `unload_image_colors()`
+`Image.unload_palette()` | `unload_image_palette()`
+
 
 Staticmethods:
-_None._
+Method name | Bound API
+-----------|---------
+
 ### Texture structure
 Texture, tex data stored in GPU memory (VRAM)
 
@@ -676,13 +820,34 @@ glyphs | GlyphInfoPtr | todo | todo
 
 
 Classmethods:
-_None._
+Classmethod name | Bound API
+-----------|---------
+`Font.load()` | `load_font()`
+`Font.load_ex()` | `load_font_ex()`
+`Font.load_from_image()` | `load_font_from_image()`
+`Font.load_from_memory()` | `load_font_from_memory()`
+
 
 Methods:
-_None._
+Method name | Bound API
+-----------|---------
+`self.unload()` | `unload_font()`
+`self.draw_text_ex()` | `draw_text_ex()`
+`self.draw_text_pro()` | `draw_text_pro()`
+`self.draw_text_codepoint()` | `draw_text_codepoint()`
+`self.draw_text_codepoints()` | `draw_text_codepoints()`
+`self.measure_text_ex()` | `measure_text_ex()`
+`self.get_glyph_index()` | `get_glyph_index()`
+`self.get_glyph_info()` | `get_glyph_info()`
+`self.get_glyph_atlas_rec()` | `get_glyph_atlas_rec()`
+`Font.load_data()` | `load_font_data()`
+`Font.unload_data()` | `unload_font_data()`
+
 
 Staticmethods:
-_None._
+Method name | Bound API
+-----------|---------
+
 ### Camera3D structure
 Camera, defines position/orientation in 3d space
 
@@ -700,7 +865,10 @@ Classmethods:
 _None._
 
 Methods:
-_None._
+Method name | Bound API
+-----------|---------
+`self.set_mode()` | `set_camera_mode()`
+
 
 Staticmethods:
 _None._
@@ -748,10 +916,33 @@ vboId | Sequence[int] | todo | todo
 
 
 Classmethods:
-_None._
+Classmethod name | Bound API
+-----------|---------
+`Mesh.gen_poly()` | `gen_mesh_poly()`
+`Mesh.gen_plane()` | `gen_mesh_plane()`
+`Mesh.gen_cube()` | `gen_mesh_cube()`
+`Mesh.gen_sphere()` | `gen_mesh_sphere()`
+`Mesh.gen_hemi_sphere()` | `gen_mesh_hemi_sphere()`
+`Mesh.gen_cylinder()` | `gen_mesh_cylinder()`
+`Mesh.gen_cone()` | `gen_mesh_cone()`
+`Mesh.gen_torus()` | `gen_mesh_torus()`
+`Mesh.gen_knot()` | `gen_mesh_knot()`
+`Mesh.gen_heightmap()` | `gen_mesh_heightmap()`
+`Mesh.gen_cubicmap()` | `gen_mesh_cubicmap()`
+
 
 Methods:
-_None._
+Method name | Bound API
+-----------|---------
+`self.upload()` | `upload_mesh()`
+`self.update_buffer()` | `update_mesh_buffer()`
+`self.unload()` | `unload_mesh()`
+`self.draw()` | `draw_mesh()`
+`self.draw_instanced()` | `draw_mesh_instanced()`
+`self.export()` | `export_mesh()`
+`self.get_bounding_box()` | `get_mesh_bounding_box()`
+`self.gen_tangents()` | `gen_mesh_tangents()`
+
 
 Staticmethods:
 _None._
@@ -766,10 +957,23 @@ locs | Sequence[int] | todo | todo
 
 
 Classmethods:
-_None._
+Classmethod name | Bound API
+-----------|---------
+`Shader.load()` | `load_shader()`
+`Shader.load_from_memory()` | `load_shader_from_memory()`
+
 
 Methods:
-_None._
+Method name | Bound API
+-----------|---------
+`self.get_location()` | `get_shader_location()`
+`self.get_location_attrib()` | `get_shader_location_attrib()`
+`self.set_value()` | `set_shader_value()`
+`self.set_value_v()` | `set_shader_value_v()`
+`self.set_value_matrix()` | `set_shader_value_matrix()`
+`self.set_value_texture()` | `set_shader_value_texture()`
+`self.unload()` | `unload_shader()`
+
 
 Staticmethods:
 _None._
@@ -804,10 +1008,18 @@ params | Sequence[float] | todo | todo
 
 
 Classmethods:
-_None._
+Classmethod name | Bound API
+-----------|---------
+`Material.load_materials()` | `load_materials()`
+`Material.load_default()` | `load_material_default()`
+
 
 Methods:
-_None._
+Method name | Bound API
+-----------|---------
+`self.unload()` | `unload_material()`
+`self.set_texture()` | `set_material_texture()`
+
 
 Staticmethods:
 _None._
@@ -866,10 +1078,26 @@ bindPose | TransformPtr | todo | todo
 
 
 Classmethods:
-_None._
+Classmethod name | Bound API
+-----------|---------
+`Model.load()` | `load_model()`
+`Model.load_from_mesh()` | `load_model_from_mesh()`
+
 
 Methods:
-_None._
+Method name | Bound API
+-----------|---------
+`self.is_animation_valid()` | `is_model_animation_valid()`
+`self.update_animation()` | `update_model_animation()`
+`self.set_mesh_material()` | `set_model_mesh_material()`
+`self.unload()` | `unload_model()`
+`self.unload_keep_meshes()` | `unload_model_keep_meshes()`
+`self.get_bounding_box()` | `get_model_bounding_box()`
+`self.draw()` | `draw_model()`
+`self.draw_ex()` | `draw_model_ex()`
+`self.draw_wires()` | `draw_model_wires()`
+`self.draw_wires_ex()` | `draw_model_wires_ex()`
+
 
 Staticmethods:
 _None._
@@ -963,10 +1191,24 @@ data | bytes | todo | todo
 
 
 Classmethods:
-_None._
+Classmethod name | Bound API
+-----------|---------
+`Wave.load()` | `load_wave()`
+`Wave.load_from_memory()` | `load_wave_from_memory()`
+
 
 Methods:
-_None._
+Method name | Bound API
+-----------|---------
+`self.copy()` | `wave_copy()`
+`self.crop()` | `wave_crop()`
+`self.format()` | `wave_format()`
+`self.format()` | `load_wave_samples()`
+`self.export()` | `export_wave()`
+`self.export_as_code()` | `export_wave_as_code()`
+`self.unload()` | `unload_wave()`
+`self.unload_samples()` | `unload_wave_samples()`
+
 
 Staticmethods:
 _None._
@@ -984,10 +1226,30 @@ channels | int | todo | todo
 
 
 Classmethods:
-_None._
+Classmethod name | Bound API
+-----------|---------
+`AudioStream.load()` | `load_audio_stream()`
+
 
 Methods:
-_None._
+Method name | Bound API
+-----------|---------
+`self.unload()` | `unload_audio_stream()`
+`self.update()` | `update_audio_stream()`
+`self.is_processed()` | `is_audio_stream_processed()`
+`self.play()` | `play_audio_stream()`
+`self.pause()` | `pause_audio_stream()`
+`self.resume()` | `resume_audio_stream()`
+`self.is_playing()` | `is_audio_stream_playing()`
+`self.stop()` | `stop_audio_stream()`
+`self.set_volume()` | `set_audio_stream_volume()`
+`self.set_pitch()` | `set_audio_stream_pitch()`
+`self.set_pan()` | `set_audio_stream_pan()`
+`self.set_buffer_size_default()` | `set_audio_stream_buffer_size_default()`
+`self.set_callback()` | `set_audio_stream_callback()`
+`self.attach_processor()` | `attach_audio_stream_processor()`
+`self.detach_processor()` | `detach_audio_stream_processor()`
+
 
 Staticmethods:
 _None._
@@ -1002,13 +1264,34 @@ frameCount | int | todo | todo
 
 
 Classmethods:
-_None._
+Classmethod name | Bound API
+-----------|---------
+`Sound.load()` | `load_sound()`
+`Sound.load_from_wave()` | `load_sound_from_wave()`
+
 
 Methods:
-_None._
+Method name | Bound API
+-----------|---------
+`self.play()` | `play_sound()`
+`self.stop()` | `stop_sound()`
+`self.pause()` | `pause_sound()`
+`self.resume()` | `resume_sound()`
+`self.play_multi()` | `play_sound_multi()`
+`self.is_playing()` | `is_sound_playing()`
+`self.set_volume()` | `set_sound_volume()`
+`self.set_pitch()` | `set_sound_pitch()`
+`self.set_pan()` | `set_sound_pan()`
+`self.unload()` | `unload_sound()`
+`self.update()` | `update_sound()`
+`Sound.get_sounds_playing()` | `get_sounds_playing()`
+`Sound.stop_multi()` | `stop_sound_multi()`
+
 
 Staticmethods:
-_None._
+Method name | Bound API
+-----------|---------
+
 ### Music structure
 Music, audio stream, anything longer than ~10 seconds should be streamed
 
@@ -1026,10 +1309,28 @@ Classmethods:
 _None._
 
 Methods:
-_None._
+Method name | Bound API
+-----------|---------
+`self.play()` | `play_music_stream()`
+`self.is_playing()` | `is_music_stream_playing()`
+`self.update()` | `update_music_stream()`
+`self.stop()` | `stop_music_stream()`
+`self.pause()` | `pause_music_stream()`
+`self.resume()` | `resume_music_stream()`
+`self.seek()` | `seek_music_stream()`
+`self.set_volume()` | `set_music_volume()`
+`self.set_pitch()` | `set_music_pitch()`
+`self.set_pan()` | `set_music_pan()`
+`self.get_time_length()` | `get_music_time_length()`
+`self.get_time_played()` | `get_music_time_played()`
+`Music.load()` | `load_music_stream()`
+`Music.load_from_memory()` | `load_music_stream_from_memory()`
+
 
 Staticmethods:
-_None._
+Method name | Bound API
+-----------|---------
+
 ### VrDeviceInfo structure
 VrDeviceInfo, Head-Mounted-Display device parameters
 
