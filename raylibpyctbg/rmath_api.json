@@ -622,7 +622,7 @@
         {
             "name": "Vector3Length",
             "description": "Calculate vector length",
-            "returnType": "Vector3",
+            "returnType": "float",
             "params": [
                 {
                     "type": "Vector3",
@@ -633,7 +633,7 @@
         {
             "name": "Vector3LengthSqr",
             "description": "Calculate vector square length",
-            "returnType": "Vector3",
+            "returnType": "float",
             "params": [
                 {
                     "type": "Vector3",

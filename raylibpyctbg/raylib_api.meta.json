@@ -1,4 +1,23 @@
 {
+  "CONFIG": {
+    "libBasedir": "'../lib', 'bin'",
+    "libName": "rlapi",
+    "snakecaseFunctions": false,
+    "snakecaseParameters": false,
+    "snakecaseFields": false,
+    "bindApiAsClassmethod": true,
+    "bindApiAsStaticmethod": true,
+    "bindApiAsMethod": true,
+    "bindApiAsProperty": true,
+    "typeHint": true,
+    "typeAnnotate": false,
+    "addVectorAttribSwizzling": true,
+    "addColorAttribSwizzling": true,
+    "addRectangleAttribSwizzling": true,
+    "win32LibFilename": "raylib.dll",
+    "linuxLibFilename": "libraylib.so.4.2.0",
+    "darwinLibFilename": "libraylib.4.2.0.dylib"
+  },
   "structs": {
     "*": {
       "bindApiAsMethod": [],
@@ -9,6 +28,7 @@
       "dunderReprExpression": "return self.__str__()"
     },
     "Vector2": {
+      "func": "_vec2({})",
       "bindApiAsMethod": [
         {"api": "Vector2Length", "renameAs": "Length"},
         {"api": "Vector2LengthSqr", "renameAs": "LengthSqr"},
@@ -16,14 +36,14 @@
         {"api": "Vector2Distance", "renameAs": "Distance"},
         {"api": "Vector2DistanceSqr", "renameAs": "DistanceSqr"},
         {"api": "Vector2Angle", "renameAs": "Angle"},
-        {"api": "Vector2Normalize", "renameAs": "Normalize"},
-        {"api": "Vector2Transform", "renameAs": "Transform"},
-        {"api": "Vector2Lerp", "renameAs": "Lerp"},
-        {"api": "Vector2Reflect", "renameAs": "Reflect"},
-        {"api": "Vector2Rotate", "renameAs": "Rotate"},
-        {"api": "Vector2MoveTowards", "renameAs": "MoveTowards"},
-        {"api": "Vector2Clamp", "renameAs": "Clamp"},
-        {"api": "Vector2ClampValue", "renameAs": "ClampValue"}
+        {"api": "Vector2Normalize", "renameAs": "Normalize", "inplace": true, "attr": "xy"},
+        {"api": "Vector2Transform", "renameAs": "Transform", "inplace": true, "attr": "xy"},
+        {"api": "Vector2Lerp", "renameAs": "Lerp", "inplace": true, "attr": "xy"},
+        {"api": "Vector2Reflect", "renameAs": "Reflect", "inplace": true, "attr": "xy"},
+        {"api": "Vector2Rotate", "renameAs": "Rotate", "inplace": true, "attr": "xy"},
+        {"api": "Vector2MoveTowards", "renameAs": "MoveTowards", "inplace": true, "attr": "xy"},
+        {"api": "Vector2Clamp", "renameAs": "Clamp", "inplace": true, "attr": "xy"},
+        {"api": "Vector2ClampValue", "renameAs": "ClampValue", "inplace": true, "attr": "xy"}
       ],
       "bindApiAsStaticmethod": [],
       "bindApiAsClassmethod": [
@@ -31,32 +51,33 @@
       ],
       "bindApiAsProperty": [],
       "dunderStrExpression": "return \"({}, {})\".format(self.x, self.y)",
-      "dunderReprExpression": "return \"Vector2\".format(self.__str__())"
+      "dunderReprExpression": "return \"Vector2{}\".format(self.__str__())"
     },
     "Vector3": {
+      "func": "_vec3({})",
       "bindApiAsMethod": [
         {"api": "Vector3CrossProduct", "renameAs": "CrossProduct"},
-        {"api": "Vector3Perpendicular", "renameAs": "Perpendicular"},
+        {"api": "Vector3Perpendicular", "renameAs": "Perpendicular", "inplace": true, "attr": "xyz"},
         {"api": "Vector3Length", "renameAs": "Length"},
         {"api": "Vector3LengthSqr", "renameAs": "LengthSqr"},
         {"api": "Vector3DotProduct", "renameAs": "DotProduct"},
         {"api": "Vector3Distance", "renameAs": "Distance"},
         {"api": "Vector3DistanceSqr", "renameAs": "DistanceSqr"},
         {"api": "Vector3Angle", "renameAs": "Angle"},
-        {"api": "Vector3Normalize", "renameAs": "Normalize"},
-        {"api": "Vector3OrthoNormalize", "renameAs": "OrthoNormalize"},
-        {"api": "Vector3Transform", "renameAs": "Transform"},
-        {"api": "Vector3RotateByQuaternion", "renameAs": "RotateByQuaternion"},
-        {"api": "Vector3RotateByAxisAngle", "renameAs": "RotateByAxisAngle"},
-        {"api": "Vector3Lerp", "renameAs": "Lerp"},
-        {"api": "Vector3Reflect", "renameAs": "Reflect"},
-        {"api": "Vector3Min", "renameAs": "Min"},
-        {"api": "Vector3Max", "renameAs": "Max"},
-        {"api": "Vector3Barycenter", "renameAs": "Barycenter"},
-        {"api": "Vector3Unproject", "renameAs": "Unproject"},
+        {"api": "Vector3Normalize", "renameAs": "Normalize", "inplace": true, "attr": "xyz"},
+        {"api": "Vector3OrthoNormalize", "renameAs": "OrthoNormalize", "inplace": true, "attr": "xyz"},
+        {"api": "Vector3Transform", "renameAs": "Transform", "inplace": true, "attr": "xyz"},
+        {"api": "Vector3RotateByQuaternion", "renameAs": "RotateByQuaternion", "inplace": true, "attr": "xyz"},
+        {"api": "Vector3RotateByAxisAngle", "renameAs": "RotateByAxisAngle", "inplace": true, "attr": "xyz"},
+        {"api": "Vector3Lerp", "renameAs": "Lerp", "inplace": true, "attr": "xyz"},
+        {"api": "Vector3Reflect", "renameAs": "Reflect", "inplace": true, "attr": "xyz"},
+        {"api": "Vector3Min", "renameAs": "Min", "inplace": true, "attr": "xyz"},
+        {"api": "Vector3Max", "renameAs": "Max", "inplace": true, "attr": "xyz"},
+        {"api": "Vector3Barycenter", "renameAs": "Barycenter", "inplace": true, "attr": "xyz"},
+        {"api": "Vector3Unproject", "renameAs": "Unproject", "inplace": true, "attr": "xyz"},
         {"api": "Vector3ToFloatV", "renameAs": "ToFloatV"},
-        {"api": "Vector3Clamp", "renameAs": "Clamp"},
-        {"api": "Vector3ClampValue", "renameAs": "ClampValue"},
+        {"api": "Vector3Clamp", "renameAs": "Clamp", "inplace": true, "attr": "xyz"},
+        {"api": "Vector3ClampValue", "renameAs": "ClampValue", "inplace": true, "attr": "xyz"},
         {"api": "Vector3Refract", "renameAs": "Refract"}
       ],
       "bindApiAsStaticmethod": [],
@@ -65,15 +86,19 @@
       ],
       "bindApiAsProperty": [],
       "dunderStrExpression": "return \"({}, {}, {})\".format(self.x, self.y, self.z)",
-      "dunderReprExpression": "return \"Vector3\".format(self.__str__())"
+      "dunderReprExpression": "return \"Vector3{}\".format(self.__str__())"
     },
     "Vector4": {
+      "func": "_vec4({})",
       "bindApiAsMethod": [],
       "bindApiAsStaticmethod": [],
       "bindApiAsClassmethod": [],
       "bindApiAsProperty": [],
       "dunderStrExpression": "return \"({}, {}, {}, {})\".format(self.x, self.y, self.z, self.w)",
-      "dunderReprExpression": "return \"Vector4\".format(self.__str__())"
+      "dunderReprExpression": "return \"Vector4{}\".format(self.__str__())"
+    },
+    "Rectangle": {
+      "func": "_rect({})"
     },
     "Matrix": {
       "bindApiAsMethod": [
@@ -226,6 +251,7 @@
       "dunderReprExpression": "return self.__str__()"
     },
     "Color": {
+      "func": "_color({})",
       "bindApiAsMethod": [
         {"api": "Fade", "renameAs": "Fade"},
         {"api": "ColorToInt", "renameAs": "ToInt"},
@@ -414,19 +440,123 @@
       "dunderReprExpression": "return self.__str__()"
     }
   },
-  "functions": [
-    {
-      "name": "",
+  "functions": {
+    "*": {
+      "ignore": [
+        "rlEnableStatePointer",
+        "rlDisableStatePointer"
+      ]
+    },
+    "LoadMaterials": {
       "callInstead": "",
-      "params": [
-        {
-          "name": "",
+      "params": {
+        "materialCount": {
+          "defaultsTo": "None",
+          "outParam": true,
+          "varArgs": false,
+          "ommit": true,
+          "useAsLength": true
+        }
+      }
+    },
+    "LoadModelAnimations": {
+      "callInstead": "",
+      "params": {
+        "animCount": {
+          "defaultsTo": "None",
+          "outParam": true,
+          "varArgs": false,
+          "ommit": true,
+          "useAsLength": true
+        }
+      }
+    },
+    "LoadImagePalette": {
+      "callInstead": "",
+      "params": {
+        "colorCount": {
+          "defaultsTo": "None",
+          "outParam": true,
+          "ommit": true,
+          "useAsLength": true
+        }
+      }
+    },
+    "DrawLineStrip": {
+      "callInstead": "",
+      "params": {
+        "points": {
+          "func": "_arr_in(Vector2, {})"
+        },
+        "pointCount": {
           "defaultsTo": "None",
           "outParam": false,
           "varArgs": false,
-          "ommit": false
+          "ommit": true,
+          "useAsLength": false,
+          "lenOfParam": "points"
         }
-      ]
+      }
+    },
+    "DrawTriangleFan": {
+      "callInstead": "",
+      "params": {
+        "points": {
+          "func": "_arr_in(Vector2, {})"
+        },
+        "pointCount": {
+          "ommit": true,
+          "lenOfParam": "points"
+        }
+      }
+    },
+    "DrawTriangleStrip": {
+      "callInstead": "",
+      "params": {
+        "points": {
+          "func": "_arr_in(Vector2, {})"
+        },
+        "pointCount": {
+          "ommit": true,
+          "lenOfParam": "points"
+        }
+      }
+    },
+    "DrawTriangleStrip3D": {
+      "callInstead": "",
+      "params": {
+        "points": {
+          "func": "_arr_in(Vector3, {})"
+        },
+        "pointCount": {
+          "ommit": true,
+          "lenOfParam": "points"
+        }
+      }
+    },
+    "DrawTexturePoly": {
+      "callInstead": "",
+      "params": {
+        "points": {
+          "func": "_arr_in(Vector2, {})"
+        },
+        "pointCount": {
+          "ommit": true,
+          "lenOfParam": "points"
+        }
+      }
+    },
+    "DrawTextCodepoints": {
+      "callInstead": "",
+      "params": {
+        "codepoints": {
+          "func": "_str_in({})"
+        },
+        "count": {
+          "ommit": true,
+          "lenOfParam": "codepoints"
+        }
+      }
     }
-  ]
+  }
 }
