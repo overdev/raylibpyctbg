@@ -128,3 +128,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+raylibpyctbg/rmath.h
+raylibpyctbg/test_out.txt
+raylibpyctbg/raylib_docs.py
+examples
+output/

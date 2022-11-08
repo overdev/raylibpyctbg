@@ -11,38 +11,20 @@ You can use this tool to generate a Raylib Python binding for you to tweak and u
 
 ## Usage
 
-Dowload and unzip it in a directory of you choosing, then, in the command line:
+Dowload and unzip it in a directory of you choosing, open the terminal, navigate
+to the selected directory, and then:
 ```
-$ python path\to\raylibpyctbg path\to\raylib_api.json path\to\output\python\file [options]
+$ python raylibpyctbg -help
 ```
 
-**Options:**
+to get a list of options you can pass to customize the bind generation
 
-- `--type-hint`: Adds type hinting to functions
-
-  ```python
-  def get_mouse_y():
-      # type: () -> int
-      ...
-  ```
-
-- `--type-annotate`: Adds type annotation to functions
-
-  ```python
-  def set_mouse_position(x: int, y: int) -> None:
-      ...
-  ```
-
-- `--document`: Generates an API reference of this Python binding in markdown
-
-  The file will be created in the same directory of the binding `.py` file. You can see an [example](output/RLAPI_REFERENCE.md) in the _./output_ directory.
 
 ## Customization
 
-You can then customize the output to fit any need you may have. One default
-customization that this wrapper includes:
+### `Vector{2|3|4}` swizzling:
 
-### `Vector[2|3|4]` swizzling:
+When added to the binding, it allows attributes to be joined and mixed in any order:
 
 ```python
 
@@ -59,9 +41,10 @@ col2 = col.grab
 col.rg = 255, 0
 ```
 
-### A little of OOP:
+### A little bit of OOP:
 
-Thanks to the _binding metadata_ file, some wrapped structs have functions bound as methods:
+When added to the binding, it binds some functions to be called as methods:
+
 
 ```python
 # Load the sound; same as `sound = load_sound('my/sound/file')`
@@ -69,7 +52,7 @@ sound = Sound.load("my/sound/file")
 
 # same as `if not is_sound_playing(sound)`
 if not sound.is_playing():
-	# Play it; same as `load_play(sound)`
+	# Play it; same as `sound_play(sound)`
 	sound.play()
 
 # Unload from memory; same as `unload_sound(sound)`
@@ -78,15 +61,17 @@ sound.unload()
 
 ### RayMath
 
-Functions in the raymath.h are also available
+When added to the binding, it includes all functions in the raymath header.
 
-## Using the python binging
+### RLGL
+
+When added to the binding, it includes all functions in the rlgl header.
+
+## Using the python binding
 
 Please, note that this binding does not include any raylib binary file. You can grab the binary 
 from the C Raylib repo in the releases page. By default is expected the binary files to be
-located inside '/bin/32bit' or '/bin/64bit' relative to where the python binding is located.
+located the binding libpath.
 
-Then, you can just:
-```python
-import raylib as rl
-```
+Try to run the binding python file directly to know the exact path where the binary is expected
+to be located or change the path with the generation options.
