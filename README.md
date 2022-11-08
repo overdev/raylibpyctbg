@@ -22,6 +22,30 @@ to get a list of options you can pass to customize the bind generation
 
 ## Customization
 
+With *raylibctbg* you can customize many aspects of the binding.
+
+Options related to code style and naming conventions are:
+
+- **Naming convention**: choose whether you want names the same as in C Raylib (C99)
+  or following Python's PEP8 convention. You can choose which names you want to keep or change the casing: fields, parameters or functions.
+
+- **Typing**: choose what type information to be added to names: as type hints or annotations.
+
+- **Member functions**: choose whether you want some functions to be bound to structure types as
+  methods, classmethods, staticmethods, properties or context managers.
+
+- **Pretty-printing**: you can specify what gets returned by `__str__` and `__repr__`.
+
+- **Attribute swizzling**: choose whether to add attribute swizzling to Vectors, Color and Rectangle types.
+
+- **Context manager**: choose whether you want function pairs named `Begin*` and `End*` to form context 
+  managers.
+
+You can also customize library loading file paths/names, inclusion of extension headers and output filepath.
+
+Many of these options can be tweaked via CLI but for deeper customizations you can check out the file
+`raylib_api.bind.json` in the _input_ folder.
+
 ### `Vector{2|3|4}` swizzling:
 
 When added to the binding, it allows attributes to be joined and mixed in any order:
