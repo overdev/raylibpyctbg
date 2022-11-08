@@ -50,11 +50,11 @@ __all__ = [
 USAGE = '''raylibpy wrapper tools
 
 Usage:
-    $ python raylib_wrapper "path/to/raylib_api.json" "path/to/output/python/file"
+    $ python raylibpyctbg [options...]
 
     OPTIONS:
         -typeHint                       adds Python2 type hinting
-        -typeAnnotation                 adds Python3.3+ type annotation
+        -typeAnnotate                   adds Python3.3+ type annotation
         -snakecase                      apply Python's naming convention to all names
         -attribSwizzling                adds attribute swizzling to Vector{2,3,4}, Color and Rectangle
         -bindApi                        binds functions as classmethod, staticmethod or instancemethod
@@ -68,6 +68,8 @@ Usage:
         -addVectorAttribSwizzling       adds attribute swizzling to Vector{2,3,4}
         -addColorAttribSwizzling        adds attribute swizzling to Color
         -addRectangleAttribSwizzling    adds attribute swizzling to Rectangle
+        -pythonic                       combines -bindApi -typeAnnotate -snakecase -attribSwizzling
+        -spartan                        combines -no-bindApi -typeHint -no-snakecase -no-attribSwizzling
 
         -no-type                        no type hinting nor annotations
         -no-snakecase                   keeps lib naming convention (C99 camelCase/PascalCase) on all names
@@ -155,19 +157,20 @@ def main(*args) -> int:
 
         elif arg.startswith('-no-'):
             key = arg[4:]
-            if key ==  'type':
+            if key == 'type':
                 config['typeHint'] = False
                 config['typeAnnotate'] = False
-            elif key ==  'attribSwizzling':
+            elif key == 'attribSwizzling':
                 config['addVectorAttribSwizzling'] = False
                 config['addColorAttribSwizzling'] = False
                 config['addRectangleAttribSwizzling'] = False
-            elif key ==  'bindApi':
+            elif key == 'bindApi':
                 config['bindApiAsClassmethod'] = False
                 config['bindApiAsStaticmethod'] = False
                 config['bindApiAsMethod'] = False
                 config['bindApiAsProperty'] = False
-            elif key ==  'snakecase':
+                config['bindApiAsContextManager'] = False
+            elif key == 'snakecase':
                 config['snakecaseFunctions'] = False
                 config['snakecaseParameters'] = False
                 config['snakecaseFields'] = False
@@ -179,26 +182,62 @@ def main(*args) -> int:
             if key ==  'help':
                 print(USAGE)
                 exit()
-            elif key ==  'attribSwizzling':
+            elif key == 'typeHint':
+                config[key] = True
+                config['typeAnnotate'] = False
+            elif key == 'typeAnnotate':
+                config[key] = True
+                config['typeHint'] = False
+            elif key == 'attribSwizzling':
                 config['addVectorAttribSwizzling'] = False
                 config['addColorAttribSwizzling'] = False
                 config['addRectangleAttribSwizzling'] = False
-            elif key ==  'bindApi':
+            elif key == 'bindApi':
                 config['bindApiAsClassmethod'] = True
                 config['bindApiAsStaticmethod'] = True
                 config['bindApiAsMethod'] = True
                 config['bindApiAsProperty'] = True
-            elif key ==  'snakecase':
+                config['bindApiAsContextManager'] = True
+            elif key == 'snakecase':
                 config['snakecaseFunctions'] = True
                 config['snakecaseParameters'] = True
                 config['snakecaseFields'] = True
+            elif key == 'pythonic':
+                config["snakecaseFunctions"] = True
+                config["snakecaseParameters"] = True
+                config["snakecaseFields"] = True
+                config["bindApiAsClassmethod"] = True
+                config["bindApiAsStaticmethod"] = True
+                config["bindApiAsMethod"] = True
+                config["bindApiAsProperty"] = True
+                config["bindApiAsContextManager"] = True
+                config["typeHint"] = False
+                config["typeAnnotate"] = True
+                config["addVectorAttribSwizzling"] = True
+                config["addColorAttribSwizzling"] = True
+                config["addRectangleAttribSwizzling"] = True
+            elif key == 'spartan':
+                config["snakecaseFunctions"] = False
+                config["snakecaseParameters"] = False
+                config["snakecaseFields"] = False
+                config["bindApiAsClassmethod"] = False
+                config["bindApiAsStaticmethod"] = False
+                config["bindApiAsMethod"] = False
+                config["bindApiAsProperty"] = False
+                config["bindApiAsContextManager"] = False
+                config["typeHint"] = True
+                config["typeAnnotate"] = False
+                config["addVectorAttribSwizzling"] = False
+                config["addColorAttribSwizzling"] = False
+                config["addRectangleAttribSwizzling"] = False
             else:
                 config[key] = False
 
     try:
         gen_wrapper(include, out_file, in_bind_info, **config)
     except Exception as e:
-        print("Unable to generate the python binding due to an error:\n {}".format(e.args))
+        print("Unable to generate the python binding due to an error:\n {}{}".format(e.__class__.__name__, e.args))
+        return 1
 
     return 0
 

@@ -385,7 +385,7 @@ class ParameterInfo(InfoBase):
     @property
     def type_annotation(self):
         if self.config.type_annotate:
-            return ": {}".format(self.type.py_type)
+            return ": '{}'".format(self.type.py_type)
         return ''
 
     @property
@@ -400,8 +400,11 @@ class ParameterInfo(InfoBase):
             annotation=self.type_annotation
         )
 
-    def gen_wrapper_as_arg(self):
-        name = 'byref({})'.format(self.py_name) if self.out_param else self.py_name
+    def gen_wrapper_as_arg(self, is_self=False):
+        if is_self:
+            name = 'self'
+        else:
+            name = 'byref({})'.format(self.py_name) if self.out_param else self.py_name
         if self.len_of_param:
             return "len({})".format(snakefy(self.len_of_param))
         elif self.func:
@@ -442,7 +445,7 @@ class FunctionInfo(InfoBase):
     @property
     def type_annotation(self):
         if self.config.type_annotate:
-            return " -> {}".format(self.type.py_type)
+            return " -> '{}'".format(self.type.py_type)
         return ''
 
     @property
@@ -482,7 +485,7 @@ class FunctionInfo(InfoBase):
             pass
         elif bound_as == 'staticmethod':
             pass
-        elif bound_as == 'method':
+        elif bound_as in ('method', 'property'):
             if alist:
                 alist[0] = 'self.byref' if byref else 'self'
 
@@ -535,7 +538,7 @@ class FunctionInfo(InfoBase):
             py_name=name,
             decorator=decorator,
             annotation=self.type_annotation,
-            type_hint='\n{}{}'.format(indent, self.type_hint),
+            type_hint='\n{}{}'.format(indent, self.type_hint) if self.config.type_hint else '',
             description=self.description,
             param_list=self.gen_param_list(bound_as),
             arg_list=self.gen_arg_list(bound_as, byref),
@@ -768,7 +771,7 @@ class StructureInfo(InfoBase):
 
     def gen_extra_classmethods(self):
         extra_methods = ''
-        if self.config.bind_methods:
+        if self.config.bind_classmethods:
             methods = self.meta_info.get('bindApiAsClassmethod', [])
             for bind_data in methods:
                 api = bind_data.get('api')
@@ -807,6 +810,28 @@ class StructureInfo(InfoBase):
         if self.meta_info.get('dunderReprExpression', False):
             extra_methods += "\n    def __repr__(self):\n        {}\n".format(self.meta_info.get('dunderReprExpression'))
 
+        if self.config.bind_context:
+
+            context = self.meta_info.get('bindApiAsContextManager', {})
+            if context:
+                ctx_enter = self.bind_generator.functions_by_name.get(context.get('enter'))
+                ctx_leave = self.bind_generator.functions_by_name.get(context.get('leave'))
+                if ctx_enter and ctx_leave:
+                    extra_methods += TPL_CONTEXT_MANAGER.format(
+                        enter='_' + ctx_enter.name,
+                        leave='_' + ctx_leave.name)
+
+        if self.config.bind_property:
+            methods = self.meta_info.get('bindApiAsProperty', [])
+            for bind_data in methods:
+                api = bind_data.get('api')
+                rename = bind_data.get('renameAs')
+                byref = bind_data.get('byref', False)
+                info = self.bind_generator.functions_by_name.get(api)
+
+                if info is not None:
+                    extra_methods += info.gen_wrapper(True, 'property', rename, byref)
+
         if self.config.bind_methods:
             methods = self.meta_info.get('bindApiAsMethod', [])
             for bind_data in methods:
@@ -820,6 +845,7 @@ class StructureInfo(InfoBase):
                 if info is not None:
                     extra_methods += info.gen_wrapper(True, 'method', rename, byref, inplace, attr)
 
+        if self.config.bind_staticmethods:
             methods = self.meta_info.get('bindApiAsStaticmethod', [])
             for bind_data in methods:
                 api = bind_data.get('api')
@@ -1061,6 +1087,10 @@ class Config:
     @property
     def bind_property(self):
         return self.info.get('bindApiAsProperty', False)
+
+    @property
+    def bind_context(self):
+        return self.info.get('bindApiAsContextManager', False)
 
     @property
     def win32_lib_fname(self):

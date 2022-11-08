@@ -392,6 +392,14 @@ TPL_STRUCTURE_METHOD = '''
         {result}{a}{prefix}{c_name}({arg_list}){b}{after}
 '''
 
+TPL_CONTEXT_MANAGER = '''
+    def __enter__(self):
+        {enter}(self)
+
+    def __leave__(self, exc_type, exc_value, traceback):
+        {leave}()
+'''
+
 TPL_VECTOR2_SWIZZLING = """
     def __len__(self):
         return 2

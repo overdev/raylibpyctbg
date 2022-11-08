@@ -5,11 +5,11 @@
     "snakecaseFunctions": false,
     "snakecaseParameters": false,
     "snakecaseFields": false,
-    "bindApiAsClassmethod": true,
-    "bindApiAsStaticmethod": true,
-    "bindApiAsMethod": true,
-    "bindApiAsProperty": true,
-    "typeHint": true,
+    "bindApiAsClassmethod": false,
+    "bindApiAsStaticmethod": false,
+    "bindApiAsMethod": false,
+    "bindApiAsProperty": false,
+    "typeHint": false,
     "typeAnnotate": false,
     "addVectorAttribSwizzling": true,
     "addColorAttribSwizzling": true,
@@ -30,8 +30,6 @@
     "Vector2": {
       "func": "_vec2({})",
       "bindApiAsMethod": [
-        {"api": "Vector2Length", "renameAs": "Length"},
-        {"api": "Vector2LengthSqr", "renameAs": "LengthSqr"},
         {"api": "Vector2DotProduct", "renameAs": "DotProduct"},
         {"api": "Vector2Distance", "renameAs": "Distance"},
         {"api": "Vector2DistanceSqr", "renameAs": "DistanceSqr"},
@@ -49,7 +47,10 @@
       "bindApiAsClassmethod": [
         {"api": "Vector2One", "renameAs": "One"}
       ],
-      "bindApiAsProperty": [],
+      "bindApiAsProperty": [
+        {"api": "Vector2Length", "renameAs": "Length"},
+        {"api": "Vector2LengthSqr", "renameAs": "LengthSqr"}
+      ],
       "dunderStrExpression": "return \"({}, {})\".format(self.x, self.y)",
       "dunderReprExpression": "return \"Vector2{}\".format(self.__str__())"
     },
@@ -58,8 +59,6 @@
       "bindApiAsMethod": [
         {"api": "Vector3CrossProduct", "renameAs": "CrossProduct"},
         {"api": "Vector3Perpendicular", "renameAs": "Perpendicular", "inplace": true, "attr": "xyz"},
-        {"api": "Vector3Length", "renameAs": "Length"},
-        {"api": "Vector3LengthSqr", "renameAs": "LengthSqr"},
         {"api": "Vector3DotProduct", "renameAs": "DotProduct"},
         {"api": "Vector3Distance", "renameAs": "Distance"},
         {"api": "Vector3DistanceSqr", "renameAs": "DistanceSqr"},
@@ -84,7 +83,10 @@
       "bindApiAsClassmethod": [
         {"api": "Vector3One", "renameAs": "One"}
       ],
-      "bindApiAsProperty": [],
+      "bindApiAsProperty": [
+        {"api": "Vector3Length", "renameAs": "Length"},
+        {"api": "Vector3LengthSqr", "renameAs": "LengthSqr"}
+      ],
       "dunderStrExpression": "return \"({}, {}, {})\".format(self.x, self.y, self.z)",
       "dunderReprExpression": "return \"Vector3{}\".format(self.__str__())"
     },
@@ -143,19 +145,39 @@
         {"api": "LoadShaderFromMemory", "renameAs": "LoadFromMemory"}
       ],
       "bindApiAsProperty": [],
-      "bindApiAsContextManager": [
-        {
+      "bindApiAsContextManager": {
           "enter": "BeginShaderMode",
           "leave": "EndShaderMode"
-        }
-      ],
+      },
       "dunderStrExpression": "return \"[{} at {}]\".format(self.__class__.__name__, id(self))",
       "dunderReprExpression": "return self.__str__()"
+    },
+    "RenderTexture2D": {
+      "bindApiAsContextManager": {
+        "enter": "BeginTextureMode",
+        "leave": "EndTextureMode"
+      }
+    },
+    "VrStereoConfig": {
+      "bindApiAsContextManager": {
+        "enter": "BeginVrStereoMode",
+        "leave": "EndVrStereoMode"
+      }
+    },
+    "Camera2D": {
+      "bindApiAsContextManager": {
+        "enter": "BeginMode2D",
+        "leave": "EndMode2D"
+      }
     },
     "Camera3D": {
       "bindApiAsMethod": [
         {"api": "SetCameraMode", "renameAs": "SetMode"}
-      ]
+      ],
+      "bindApiAsContextManager": {
+        "enter": "BeginMode3D",
+        "leave": "EndMode3D"
+      }
     },
     "Image": {
       "bindApiAsMethod": [
