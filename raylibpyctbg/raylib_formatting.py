@@ -8,6 +8,7 @@ import os
 import platform
 import ctypes
 from enum import IntEnum
+from contextlib import contextmanager
 from typing import Optional as Opt, Any, Sequence as Seq, Union
 from ctypes import (
     CDLL, wintypes,
@@ -398,6 +399,15 @@ TPL_CONTEXT_MANAGER = '''
 
     def __leave__(self, exc_type, exc_value, traceback):
         {leave}()
+'''
+
+TPL_CONTEXT_MANAGER_DECORATED = '''
+@contextmanager
+def {py_name}({param_list}){annotation}:{type_hint}
+    """Context manager for {what}"""
+    {prefix}{c_name_enter}({arg_list})
+    yield
+    {prefix}{c_name_leave}()
 '''
 
 TPL_VECTOR2_SWIZZLING = """

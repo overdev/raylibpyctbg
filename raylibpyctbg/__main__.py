@@ -66,12 +66,13 @@ Usage:
         -bindApiAsStaticmethod          binds functions as staticmethod
         -bindApiAsMethod                binds functions as method
         -bindApiAsProperty              binds functions as property
-        -bindApiAsContextManager        binds functions as context manager (with statements)
+        -bindApiAsContextManager        context management binding for structs (Camera{2,3}D, Shader, VrStereoConfig, RenderTexture)
+        -addContextManager              context management for Mode functions (Drawing, Scissor, Blend, 2D, 3D, Shader, Texture, VrStereoMode)
         -addVectorAttribSwizzling       adds attribute swizzling to Vector{2,3,4}
         -addColorAttribSwizzling        adds attribute swizzling to Color
         -addRectangleAttribSwizzling    adds attribute swizzling to Rectangle
-        -pythonic                       combines -bindApi -typeAnnotate -snakecase -attribSwizzling
-        -spartan                        combines -no-bindApi -typeHint -no-snakecase -no-attribSwizzling
+        -pythonic                       combines -bindApi -typeAnnotate -snakecase -attribSwizzling -addContextManager
+        -spartan                        combines -no-bindApi -typeHint -no-snakecase -no-attribSwizzling -no-addContextManager
 
         -no-type                        no type hinting nor annotations
         -no-snakecase                   keeps lib naming convention (C99 camelCase/PascalCase) on all names
@@ -84,7 +85,8 @@ Usage:
         -no-bindApiAsStaticmethod       no staticmethod binding of functions
         -no-bindApiAsMethod             no method binding of functions
         -no-bindApiAsProperty           no property binding of functions
-        -no-bindApiAsContextManager     no context management binding of functions (with statements)
+        -no-bindApiAsContextManager     no context management binding for structs (Camera{2,3}D, Shader, VrStereoConfig, RenderTexture)
+        -no-addContextManager           no context management for Mode functions (Drawing, Scissor, Blend, 2D, 3D, Shader, Texture, VrStereoMode)
         -no-addVectorAttribSwizzling    no attribute swizzling to Vector{2,3,4}
         -no-addColorAttribSwizzling     no attribute swizzling to Color
         -no-addRectangleAttribSwizzling no attribute swizzling to Rectangle
@@ -219,6 +221,7 @@ def main(*args) -> int:
                 config["addVectorAttribSwizzling"] = True
                 config["addColorAttribSwizzling"] = True
                 config["addRectangleAttribSwizzling"] = True
+                config["addContextManager"] = True
             elif key == 'spartan':
                 config["snakecaseFunctions"] = False
                 config["snakecaseParameters"] = False
@@ -233,6 +236,7 @@ def main(*args) -> int:
                 config["addVectorAttribSwizzling"] = False
                 config["addColorAttribSwizzling"] = False
                 config["addRectangleAttribSwizzling"] = False
+                config["addContextManager"] = False
             else:
                 config[key] = False
 

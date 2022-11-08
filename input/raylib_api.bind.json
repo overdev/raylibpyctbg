@@ -9,6 +9,8 @@
     "bindApiAsStaticmethod": false,
     "bindApiAsMethod": false,
     "bindApiAsProperty": false,
+    "bindApiAsContextManager": false,
+    "addContextManager": false,
     "typeHint": false,
     "typeAnnotate": false,
     "addVectorAttribSwizzling": true,
@@ -467,6 +469,16 @@
       "ignore": [
         "rlEnableStatePointer",
         "rlDisableStatePointer"
+      ],
+      "contextManager": [
+        { "api": "Drawing", "enter": "BeginDrawing", "leave": "EndDrawing"},
+        { "api": "ScissorMode", "enter": "BeginScissorMode", "leave": "EndScissorMode"},
+        { "api": "BlendMode", "enter": "BeginBlendMode", "leave": "EndBlendMode"},
+        { "api": "Mode2D", "enter": "BeginMode2D", "leave": "EndMode2D"},
+        { "api": "Mode3D", "enter": "BeginMode3D", "leave": "EndMode3D"},
+        { "api": "ShaderMode", "enter": "BeginShaderMode", "leave": "EndShaderMode"},
+        { "api": "TextureMode", "enter": "BeginTextureMode", "leave": "EndTextureMode"},
+        { "api": "VrStereoMode", "enter": "BeginVrStereoMode", "leave": "EndVrStereoMode"}
       ]
     },
     "LoadMaterials": {

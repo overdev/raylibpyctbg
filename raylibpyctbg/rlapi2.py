@@ -907,6 +907,7 @@ class BindGenerator:
         self.callbacks = []
         self.functions = []
         self.functions_by_name = {}
+        self.context_managers = []
         self.export_names = []
         self.type_map = {}
         self.type_meta = {}
@@ -990,6 +991,11 @@ class BindGenerator:
             self.functions.append(f_info)
             self.functions_by_name[name] = f_info
 
+        for ctxmgr in meta_info.get('functions', {}).get('*', {}).get('contextManager', []):
+            if not ctxmgr.get('api') in self.export_names:
+                self.export_names.append(ctxmgr.get('api'))
+                self.context_managers.append(ctxmgr)
+
     def gen_wrapper(self, out_fname, config):
         LIBNAME = 'rlapi'
         fullcode = TPL_HEADER_IMPORTS.format(
@@ -1027,8 +1033,33 @@ class BindGenerator:
         for function in self.functions:
             fullcode += function.gen_wrapper()
 
+        if config.add_contextmanagers:
+            for ctxmgr in self.context_managers:
+                fn_enter = self.functions_by_name.get(ctxmgr.get('enter'))
+                fn_leave = self.functions_by_name.get(ctxmgr.get('leave'))
+
+                if fn_enter and fn_leave:
+                    fullcode += self.gen_contextmanager_wrapper(config, ctxmgr, fn_enter, fn_leave)
+
         with open(out_fname, 'w', encoding='utf8') as wrapper:
             wrapper.write(fullcode)
+
+    def gen_contextmanager_wrapper(self, config, ctx_info, fn_enter, fn_leave):
+        name = snakefy(ctx_info.get('api')) if config.snakefy_functions else ctx_info.get('api')
+        params = fn_enter.gen_param_list()
+        args = fn_enter.gen_arg_list()
+
+        return TPL_CONTEXT_MANAGER_DECORATED.format(
+            py_name= name,
+            c_name_enter=fn_enter.name,
+            c_name_leave=fn_leave.name,
+            param_list=params,
+            arg_list=args,
+            prefix='_',
+            annotation=fn_enter.type_annotation,
+            type_hint=fn_enter.type_hint,
+            what=snakefy(ctx_info.get('api')).lower().replace('_', ' ')
+        )
 
 
 class Config:
@@ -1091,6 +1122,10 @@ class Config:
     @property
     def bind_context(self):
         return self.info.get('bindApiAsContextManager', False)
+
+    @property
+    def add_contextmanagers(self):
+        return self.info.get('addContextManager', False)
 
     @property
     def win32_lib_fname(self):
