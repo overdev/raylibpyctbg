@@ -53,11 +53,12 @@ Usage:
     $ python raylibpyctbg [options...]
 
     OPTIONS:
+        -help                           prints this message and exits
         -typeHint                       adds Python2 type hinting
         -typeAnnotate                   adds Python3.3+ type annotation
         -snakecase                      apply Python's naming convention to all names
         -attribSwizzling                adds attribute swizzling to Vector{2,3,4}, Color and Rectangle
-        -bindApi                        binds functions as classmethod, staticmethod or instancemethod
+        -bindApi                        binds functions as property, context manager, classmethod, staticmethod and instancemethod
         -snakecaseFunctions             apply Python's naming convention to functions (and methods)
         -snakecaseParameters            apply Python's naming convention to parameters
         -snakecaseFields                apply Python's naming convention to fields
@@ -65,6 +66,7 @@ Usage:
         -bindApiAsStaticmethod          binds functions as staticmethod
         -bindApiAsMethod                binds functions as method
         -bindApiAsProperty              binds functions as property
+        -bindApiAsContextManager        binds functions as context manager (with statements)
         -addVectorAttribSwizzling       adds attribute swizzling to Vector{2,3,4}
         -addColorAttribSwizzling        adds attribute swizzling to Color
         -addRectangleAttribSwizzling    adds attribute swizzling to Rectangle
@@ -74,7 +76,7 @@ Usage:
         -no-type                        no type hinting nor annotations
         -no-snakecase                   keeps lib naming convention (C99 camelCase/PascalCase) on all names
         -no-attribSwizzling             no attribute zwizzling at all
-        -no-bindApi                     no functions as classmethod, staticmethod nor instancemethod
+        -no-bindApi                     no functions as property, context manager, classmethod, staticmethod nor instancemethod
         -no-snakecaseFunctions          keeps lib naming convention to functions (and methods)
         -no-snakecaseParameters         keeps lib naming convention to parameters
         -no-snakecaseFields             keeps lib naming convention to fields
@@ -82,6 +84,7 @@ Usage:
         -no-bindApiAsStaticmethod       no staticmethod binding of functions
         -no-bindApiAsMethod             no method binding of functions
         -no-bindApiAsProperty           no property binding of functions
+        -no-bindApiAsContextManager     no context management binding of functions (with statements)
         -no-addVectorAttribSwizzling    no attribute swizzling to Vector{2,3,4}
         -no-addColorAttribSwizzling     no attribute swizzling to Color
         -no-addRectangleAttribSwizzling no attribute swizzling to Rectangle
