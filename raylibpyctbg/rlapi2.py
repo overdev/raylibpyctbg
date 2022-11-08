@@ -1104,7 +1104,7 @@ def snakefy(name):
     return result
 
 
-def main(in_fnames, out_fname, in_meta=None):
+def main(in_fnames, out_fname, in_meta=None, **config):
     generator = BindGenerator()
     default_config = {
         "libBasedir": "os.path.dirname(__file__)",
@@ -1128,6 +1128,7 @@ def main(in_fnames, out_fname, in_meta=None):
         with open(in_meta, 'r', encoding='utf8') as meta:
             meta_info = json.load(meta)
             default_config.update(meta_info.get('CONFIG', {}))
+            default_config.update(config)
 
     config = Config(default_config)
 
