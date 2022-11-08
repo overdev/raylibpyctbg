@@ -238,7 +238,7 @@ def main(*args) -> int:
                 config["addRectangleAttribSwizzling"] = False
                 config["addContextManager"] = False
             else:
-                config[key] = False
+                config[key] = True
 
     try:
         gen_wrapper(include, out_file, in_bind_info, **config)
