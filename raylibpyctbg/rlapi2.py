@@ -560,6 +560,23 @@ class FunctionInfo(InfoBase):
     def gen_wrapper_as_arg(self):
         return self.name
 
+    def get_link(self, type_name):
+        is_ptr = False
+        if type_name.endswith('Ptr'):
+            is_ptr = True
+            name = type_name[:-3]
+            # print(name, '->', type_name)
+        else:
+            name = type_name
+        info = self.bind_generator.find(name)
+        if info:
+            if isinstance(info, StructureInfo):
+                return '<a href="#{name}">{name}</a>'.format(name=name)
+            elif is_ptr:
+                print(info.name, '->', type_name)
+
+        return None
+
     def gen_docs(self):
         c_params = ["{} {}".format(p.type.c_type, p.py_name) for p in self.params]
         c_decl = "{} {}({}) ".format(self.type.c_type, self.name, ', '.join(c_params))
@@ -567,17 +584,25 @@ class FunctionInfo(InfoBase):
         py_params = ["{}: {}".format(p.py_name, p.type.py_type) for p in self.params]
         py_decl = "def {}({}) -> {}".format(self.py_name, ', '.join(py_params), self.type.py_type)
 
-
         related = []
+        names = []
         for p in self.params:
-            typ = self.bind_generator.type_map.get(p.type.c_type)
-            if typ:
-                typ = typ.info
-                if typ.is_struct:
-                    link = '<a href="#{name}">{name}</a>'.format(name=typ.name)
-                    related.append(link)
+            tname = p.type.py_type
+            link = self.get_link(tname)
+            if link is not None and tname.rstrip('Ptr') not in names:
+                names.append(tname.rstrip('Ptr'))
+                related.append(link)
 
-        see_also = "\nSee also: {}\n".format(', '.join(related)) if related else ''
+        tname = self.type.py_type
+        link = self.get_link(tname)
+        if link is not None and tname.rstrip('Ptr') not in names:
+            names.append(tname.rstrip('Ptr'))
+            related.append(link)
+
+        if len(related):
+            see_also = "\nSee also:\n{}\n".format(', '.join(related))
+        else:
+            see_also = ''
 
         return TPL_DOC_FUNCTION.format(
             func_id=self.name,
@@ -1049,6 +1074,7 @@ class BindGenerator:
         self.callbacks = []
         self.functions = []
         self.functions_by_name = {}
+        self.name_table = {}
         self.context_managers = []
         self.export_names = []
         self.type_map = {}
@@ -1067,6 +1093,9 @@ class BindGenerator:
     def get_type(self, c_type, default=None):
         return self.type_map.get(c_type, default)
 
+    def find(self, name, default=None):
+        return self.name_table.get(name, default)
+
     def load_info(self, header_name, info, meta_info, config):
         loaded_structs = []
         self.type_meta = meta_info.get('types', {})
@@ -1078,36 +1107,42 @@ class BindGenerator:
                 continue
             loaded_structs.append(name)
             struct_meta = meta_info.get('structs', {}).get(name, {})
-            s_info = TypeInfo(header_name, name, struct_meta, config, self, True)
+            t_info = TypeInfo(header_name, name, struct_meta, config, self, True)
             self.export_names.append(name)
-            self.map_type(s_info.name, TypeMap(
-                s_info.get_ctype_type(),
-                s_info.get_c_type(),
-                s_info.get_py_type(),
+            self.map_type(t_info.name, TypeMap(
+                t_info.get_ctype_type(),
+                t_info.get_c_type(),
+                t_info.get_py_type(),
                 '{}()'.format(name),
-                s_info
+                t_info
             ))
-            s_info_ptr = TypeInfo(header_name, name + ' *', struct_meta, config, self)
-            self.map_type(s_info_ptr.name, TypeMap(
-                s_info_ptr.get_ctype_type(),
-                s_info_ptr.get_c_type(),
-                s_info_ptr.get_py_type(),
+            t_info_ptr = TypeInfo(header_name, name + ' *', struct_meta, config, self)
+            self.map_type(t_info_ptr.name, TypeMap(
+                t_info_ptr.get_ctype_type(),
+                t_info_ptr.get_c_type(),
+                t_info_ptr.get_py_type(),
                 'None',
-                s_info_ptr
+                t_info_ptr
             ))
-            self.structs.append(StructureInfo(header_name, struct_info, struct_meta, config, self))
+            s_info = StructureInfo(header_name, struct_info, struct_meta, config, self)
+            self.structs.append(s_info)
+            self.name_table[name] = s_info
 
         for define_info in info.get('defines', []):
             if define_info.get('type') in ('GUARD', 'UNKNOWN', 'MACRO'):
                 continue
             self.export_names.append(define_info.get('name'))
             define_meta = meta_info.get('defines', {})
-            self.defines.append(DefineInfo(header_name, define_info, define_meta, config, self))
+            d_info = DefineInfo(header_name, define_info, define_meta, config, self)
+            self.defines.append(d_info)
+            self.name_table[d_info.name] = d_info
 
         for alias_info in info.get('aliases', []):
             alias_meta = meta_info.get('aliases', {})
             self.export_names.append(alias_info.get('name'))
-            self.aliases.append(AliasInfo(header_name, alias_info, alias_meta, config, self))
+            a_info = AliasInfo(header_name, alias_info, alias_meta, config, self)
+            self.aliases.append(a_info)
+            self.name_table[a_info.name] = a_info
 
         for enum_info in info.get('enums', []):
             enum_meta = meta_info.get('enums', {})
@@ -1116,11 +1151,14 @@ class BindGenerator:
             for m in e_info.values:
                 self.export_names.append(m.name)
             self.enums.append(e_info)
+            self.name_table[e_info.name] = e_info
 
         for callback_info in info.get('callbacks', []):
             callback_meta = meta_info.get('callbacks', {})
             self.export_names.append(callback_info.get('name'))
-            self.callbacks.append(CallbackInfo(header_name, callback_info, callback_meta, config, self))
+            c_info = CallbackInfo(header_name, callback_info, callback_meta, config, self)
+            self.callbacks.append(c_info)
+            self.name_table[c_info.name] = c_info
 
         for function_info in info.get('functions', []):
             name = function_info.get('name')
@@ -1132,6 +1170,7 @@ class BindGenerator:
             self.export_names.append(f_info.py_name)
             self.functions.append(f_info)
             self.functions_by_name[name] = f_info
+            self.name_table[f_info.name] = f_info
 
         for ctxmgr in meta_info.get('functions', {}).get('*', {}).get('contextManager', []):
             if not ctxmgr.get('api') in self.export_names:
