@@ -100,6 +100,7 @@ Usage:
                                             rlgl: include rlgl.json
                                             filepath to any other parsed header exposed in raylib (JSON)
         --out <value>                   filepath to write the binding into
+        --markdown <value>              filepath to write the api reference (Markdown format) into
         
 '''
 
@@ -128,6 +129,7 @@ def main(*args) -> int:
     rlgl = os.path.join(base, 'input/rlgl.json')
     in_bind_info = os.path.join(base, 'input/raylib_api.bind.json')
     out_file = os.path.join(os.getcwd(), 'rl.py')
+    doc_out_fname = None
 
     include = [raylib]
 
@@ -155,6 +157,9 @@ def main(*args) -> int:
 
             elif key == 'out':
                 out_file = val
+
+            elif key == 'markdown':
+                doc_out_fname = val
 
             else:
                 config[key] = val
@@ -241,7 +246,7 @@ def main(*args) -> int:
                 config[key] = True
 
     try:
-        gen_wrapper(include, out_file, in_bind_info, **config)
+        gen_wrapper(include, out_file, in_bind_info, doc_out_fname, **config)
     except Exception as e:
         print("Unable to generate the python binding due to an error:\n {}{}".format(e.__class__.__name__, e.args))
         return 1

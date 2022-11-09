@@ -34,6 +34,7 @@ import re
 import os
 
 from raylib_formatting import *
+from raylib_docs import *
 
 # endregion (imports)
 # ---------------------------------------------------------
@@ -129,9 +130,10 @@ class InfoBase:
 
 class TypeInfo(InfoBase):
 
-    def __init__(self, header_name, spec, meta_info, config, bind_generator):
+    def __init__(self, header_name, spec, meta_info, config, bind_generator, is_struct=False):
         super().__init__(header_name, {}, meta_info, config, bind_generator)
         self.info['mapped'] = None
+        self.info['is_struct'] = is_struct
         self._parse(spec)
 
     @property
@@ -149,6 +151,10 @@ class TypeInfo(InfoBase):
     @property
     def mapped(self):
         return self.info.get('mapped')
+
+    @property
+    def is_struct(self):
+        return self.info.get('is_struct')
 
     @property
     def ptr_level(self):
@@ -555,7 +561,33 @@ class FunctionInfo(InfoBase):
         return self.name
 
     def gen_docs(self):
-        return "{name}: TODO.\n".format(name=self.name)
+        c_params = ["{} {}".format(p.type.c_type, p.py_name) for p in self.params]
+        c_decl = "{} {}({}) ".format(self.type.c_type, self.name, ', '.join(c_params))
+
+        py_params = ["{}: {}".format(p.py_name, p.type.py_type) for p in self.params]
+        py_decl = "def {}({}) -> {}".format(self.py_name, ', '.join(py_params), self.type.py_type)
+
+
+        related = []
+        for p in self.params:
+            typ = self.bind_generator.type_map.get(p.type.c_type)
+            if typ:
+                typ = typ.info
+                if typ.is_struct:
+                    link = '<a href="#{name}">{name}</a>'.format(name=typ.name)
+                    related.append(link)
+
+        see_also = "\nSee also: {}\n".format(', '.join(related)) if related else ''
+
+        return TPL_DOC_FUNCTION.format(
+            func_id=self.name,
+            name=self.py_name,
+            func_description=self.description,
+            c_decl=c_decl,
+            py_decl=py_decl,
+            defn_header="raylib.h",
+            see_also=see_also
+        )
 
 
 class CallbackInfo(InfoBase):
@@ -643,6 +675,15 @@ class EnumerationInfo(InfoBase):
             unbound_members=self.gen_members_wrapper_unbound(),
         )
 
+    def gen_docs(self):
+        members = [e.gen_docs() for e in self.values]
+
+        return TPL_DOC_ENUMERATION.format(
+            enum_id=self.name,
+            name=self.name,
+            members='\n'.join(members)
+        )
+
 
 class EnumerandInfo(InfoBase):
 
@@ -672,6 +713,8 @@ class EnumerandInfo(InfoBase):
             descr=self.description
         )
 
+    def gen_docs(self):
+        return "`{}` | `{}` | {}".format(self.name, self.value, self.description)
 
 # endregion (enums)
 
@@ -734,6 +777,14 @@ class FieldInfo(InfoBase):
             return name
         return "{} or {}".format(name, self.type.default)
 
+    def gen_docs(self):
+        return "`{}` | `{}` | `{}` | `{}` | {}".format(
+            self.py_name,
+            self.type.py_type,
+            self.type.ctypes_type,
+            self.type.c_type,
+            self.description
+        )
 
 class StructureInfo(InfoBase):
 
@@ -884,6 +935,97 @@ class StructureInfo(InfoBase):
             alias=''
         )
 
+    def gen_method_docs(self):
+        method_list = []
+        if self.config.bind_staticmethods:
+            methods = self.meta_info.get('bindApiAsStaticmethod', [])
+            for bind_data in methods:
+                api = bind_data.get('api')
+                rename = bind_data.get('renameAs', api)
+                # byref = bind_data.get('byref', False)
+                info = self.bind_generator.functions_by_name.get(api)
+                if self.config.snakefy_functions:
+                    rename = snakefy(rename)
+                params = info.gen_param_list('staticmethod')
+                link = '<a href="#{}"><code>{}</code></a>'.format(info.name, info.py_name)
+
+                method_list.append("*staticmethod* | `.{}({})` | {}".format(rename, params, link))
+
+        if self.config.bind_classmethods:
+            method_list.append("*classmethod* | `.array_of(cls, {}_sequence)` | *n/a*".format(self.py_name))
+            methods = self.meta_info.get('bindApiAsClassmethod', [])
+            for bind_data in methods:
+                api = bind_data.get('api')
+                rename = bind_data.get('renameAs', api)
+                # byref = bind_data.get('byref', False)
+                info = self.bind_generator.functions_by_name.get(api)
+                if self.config.snakefy_functions:
+                    rename = snakefy(rename)
+                params = info.gen_param_list('classmethod')
+                link = '<a href="#{}"><code>{}</code></a>'.format(info.name, info.py_name)
+
+                method_list.append("*classmethod* | `.{}({})` | {}".format(rename, params, link))
+
+        if self.config.bind_methods:
+            methods = self.meta_info.get('bindApiAsMethod', [])
+            for bind_data in methods:
+                api = bind_data.get('api')
+                rename = bind_data.get('renameAs', api)
+                # byref = bind_data.get('byref', False)
+                info = self.bind_generator.functions_by_name.get(api)
+                if self.config.snakefy_functions:
+                    rename = snakefy(rename)
+                params = info.gen_param_list('method')
+                link = '<a href="#{}"><code>{}</code></a>'.format(info.name, info.py_name)
+
+                method_list.append("*method* | `.{}({})` | {}".format(rename, params, link))
+
+        return TPL_DOC_METHODS.format(
+            method_list='\n'.join(method_list)
+        ) if method_list else ''
+
+    def gen_property_docs(self):
+        prop_list = ["`.byref` | *n/a*"]
+        if self.config.bind_property:
+            methods = self.meta_info.get('bindApiAsProperty', [])
+            for bind_data in methods:
+                api = bind_data.get('api')
+                rename = bind_data.get('renameAs', api)
+                info = self.bind_generator.functions_by_name.get(api)
+                if self.config.snakefy_functions:
+                    rename = snakefy(rename)
+                link = '<a href="#{}"><code>{}</code></a>'.format(info.name, info.py_name)
+
+                prop_list.append("`.{}` | {}".format(rename, link))
+
+        return TPL_DOC_PROPERTIES.format(
+            property_list='\n'.join(prop_list)
+        ) if prop_list else ''
+
+    def gen_context_docs(self):
+        context = self.meta_info.get('bindApiAsContextManager', {})
+        if context and self.config.bind_context:
+            ctx_enter = self.bind_generator.functions_by_name.get(context.get('enter'))
+            ctx_leave = self.bind_generator.functions_by_name.get(context.get('leave'))
+            if ctx_enter and ctx_leave:
+                return TPL_DOC_CONTEXTMANAGERS.format(
+                    ctx_enter=ctx_enter.py_name,
+                    ctx_leave=ctx_leave.py_name)
+        return ''
+
+    def gen_docs(self):
+        members = [f.gen_docs() for f in self.fields]
+
+        return TPL_DOC_STRUCTURE.format(
+            struct_id=self.name,
+            name=self.name,
+            struct_description=self.description,
+            members='\n'.join(members),
+            doc_properties=self.gen_property_docs(),
+            doc_methods=self.gen_method_docs(),
+            doc_context=self.gen_context_docs()
+        )
+
 # endregion (structures)
 
 
@@ -936,7 +1078,7 @@ class BindGenerator:
                 continue
             loaded_structs.append(name)
             struct_meta = meta_info.get('structs', {}).get(name, {})
-            s_info = TypeInfo(header_name, name, struct_meta, config, self)
+            s_info = TypeInfo(header_name, name, struct_meta, config, self, True)
             self.export_names.append(name)
             self.map_type(s_info.name, TypeMap(
                 s_info.get_ctype_type(),
@@ -996,8 +1138,7 @@ class BindGenerator:
                 self.export_names.append(ctxmgr.get('api'))
                 self.context_managers.append(ctxmgr)
 
-    def gen_wrapper(self, out_fname, config):
-        LIBNAME = 'rlapi'
+    def gen_wrapper(self, out_fname, config, doc_out_fname=None):
         fullcode = TPL_HEADER_IMPORTS.format(
             lib_name=config.lib_name,
             exports="".join("\n    '{}',".format(n) for n in self.export_names),
@@ -1007,8 +1148,16 @@ class BindGenerator:
             darwin_lib_filename=config.darwin_lib_fname,
         )
 
+        gen_docs = isinstance(doc_out_fname, str)
+
+        fulldocs = ''
+        if gen_docs:
+            fulldocs += TPL_DOC_HEADER.format(version='4.2')
+
         fullcode += TPL_HEADER_UTILS
 
+        if gen_docs:
+            fulldocs += TPL_DOC_STRUCTS.format(struct_list=self.gen_docs(self.structs))
         for struct in self.structs:
 
             wrp = struct.gen_wrapper()
@@ -1018,8 +1167,16 @@ class BindGenerator:
                 if alias.type.py_type == struct.name:
                     fullcode += alias.gen_wrapper()
 
+            if gen_docs:
+                fulldocs += struct.gen_docs()
+
+        if gen_docs:
+            fulldocs += TPL_DOC_ENUMS.format(enum_list=self.gen_docs(self.enums))
         for enum in self.enums:
             fullcode += enum.gen_wrapper()
+
+            if gen_docs:
+                fulldocs += enum.gen_docs()
 
         for define in self.defines:
             fullcode += define.gen_wrapper()
@@ -1027,8 +1184,12 @@ class BindGenerator:
         for callback in self.callbacks:
             fullcode += callback.gen_wrapper()
 
+        if gen_docs:
+            fulldocs += TPL_DOC_FUNCS.format(func_list=self.gen_docs(self.functions))
         for function in self.functions:
             fullcode += function.gen_wrapper_proto(config.lib_name)
+            if gen_docs:
+                fulldocs += function.gen_docs()
 
         for function in self.functions:
             fullcode += function.gen_wrapper()
@@ -1041,8 +1202,19 @@ class BindGenerator:
                 if fn_enter and fn_leave:
                     fullcode += self.gen_contextmanager_wrapper(config, ctxmgr, fn_enter, fn_leave)
 
-        with open(out_fname, 'w', encoding='utf8') as wrapper:
-            wrapper.write(fullcode)
+        # with open(out_fname, 'w', encoding='utf8') as wrapper:
+            # wrapper.write(fullcode)
+
+        print('will gen docs:', gen_docs, doc_out_fname)
+        if gen_docs:
+            with open(doc_out_fname, 'w', encoding='utf8') as wrapper:
+                wrapper.write(fulldocs)
+
+    def gen_docs(self, ref_list=None):
+        if ref_list:
+            items = ['<a href="#{name}">{name}</a>'.format(name=info.name) for info in sorted(ref_list, key=lambda k: k.name)]
+            return " | ".join(items)
+        return ""
 
     def gen_contextmanager_wrapper(self, config, ctx_info, fn_enter, fn_leave):
         name = snakefy(ctx_info.get('api')) if config.snakefy_functions else ctx_info.get('api')
@@ -1169,7 +1341,7 @@ def snakefy(name):
     return result
 
 
-def main(in_fnames, out_fname, in_meta=None, **config):
+def main(in_fnames, out_fname, in_meta=None, doc_out_fname=None, **config):
     generator = BindGenerator()
     default_config = {
         "libBasedir": "os.path.dirname(__file__)",
@@ -1193,7 +1365,8 @@ def main(in_fnames, out_fname, in_meta=None, **config):
         with open(in_meta, 'r', encoding='utf8') as meta:
             meta_info = json.load(meta)
             default_config.update(meta_info.get('CONFIG', {}))
-            default_config.update(config)
+    
+    default_config.update(config)
 
     config = Config(default_config)
 
@@ -1201,7 +1374,7 @@ def main(in_fnames, out_fname, in_meta=None, **config):
         with open(fname, 'r', encoding='utf8') as info:
             generator.load_info(os.path.basename, json.load(info), meta_info, config)
 
-    generator.gen_wrapper(out_fname, config)
+    generator.gen_wrapper(out_fname, config, doc_out_fname)
 
 
 if __name__ == '__main__':
