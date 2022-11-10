@@ -4,18 +4,29 @@ This is an API reference documentation generated for Raylib 4.2.
 
 <h2 id="toc">Table of Contents</h2>
 
-- <a href="#enums">Enumerations</a>
 - <a href="#structs">Structures</a>
+- <a href="#aliases">Aliases</a>
+- <a href="#enums">Enumerations</a>
+- <a href="#defines">Constants</a>
 - <a href="#funcs">Functions</a>
-- <a href="#contexts">Callbacks</a>
+- <a href="#callbacks">Callbacks</a>
 - <a href="#contexts">Context Managers</a>
 
 <h2 id="structs">Structures</h2>
 
-<a href="#AudioStream">AudioStream</a> | <a href="#BoneInfo">BoneInfo</a> | <a href="#BoundingBox">BoundingBox</a> | <a href="#Camera2D">Camera2D</a> | <a href="#Camera3D">Camera3D</a> | <a href="#Color">Color</a> | <a href="#FilePathList">FilePathList</a> | <a href="#Font">Font</a> | <a href="#GlyphInfo">GlyphInfo</a> | <a href="#Image">Image</a> | <a href="#Material">Material</a> | <a href="#MaterialMap">MaterialMap</a> | <a href="#Matrix">Matrix</a> | <a href="#Matrix">Matrix</a> | <a href="#Mesh">Mesh</a> | <a href="#Model">Model</a> | <a href="#ModelAnimation">ModelAnimation</a> | <a href="#Music">Music</a> | <a href="#NPatchInfo">NPatchInfo</a> | <a href="#Ray">Ray</a> | <a href="#RayCollision">RayCollision</a> | <a href="#Rectangle">Rectangle</a> | <a href="#RenderTexture">RenderTexture</a> | <a href="#Shader">Shader</a> | <a href="#Sound">Sound</a> | <a href="#Texture">Texture</a> | <a href="#Transform">Transform</a> | <a href="#Vector2">Vector2</a> | <a href="#Vector3">Vector3</a> | <a href="#Vector4">Vector4</a> | <a href="#VrDeviceInfo">VrDeviceInfo</a> | <a href="#VrStereoConfig">VrStereoConfig</a> | <a href="#Wave">Wave</a> | <a href="#rlDrawCall">rlDrawCall</a> | <a href="#rlRenderBatch">rlRenderBatch</a> | <a href="#rlVertexBuffer">rlVertexBuffer</a>
+Item|Item|Item|Item|Item
+--------|--------|--------|--------|--------
+<a href="#AudioStream">AudioStream</a> | <a href="#BoneInfo">BoneInfo</a> | <a href="#BoundingBox">BoundingBox</a> | <a href="#Camera2D">Camera2D</a> | <a href="#Camera3D">Camera3D</a>
+<a href="#Color">Color</a> | <a href="#FilePathList">FilePathList</a> | <a href="#Font">Font</a> | <a href="#GlyphInfo">GlyphInfo</a> | <a href="#Image">Image</a>
+<a href="#Material">Material</a> | <a href="#MaterialMap">MaterialMap</a> | <a href="#Matrix">Matrix</a> | <a href="#Matrix">Matrix</a> | <a href="#Mesh">Mesh</a>
+<a href="#Model">Model</a> | <a href="#ModelAnimation">ModelAnimation</a> | <a href="#Music">Music</a> | <a href="#NPatchInfo">NPatchInfo</a> | <a href="#Ray">Ray</a>
+<a href="#RayCollision">RayCollision</a> | <a href="#Rectangle">Rectangle</a> | <a href="#RenderTexture">RenderTexture</a> | <a href="#Shader">Shader</a> | <a href="#Sound">Sound</a>
+<a href="#Texture">Texture</a> | <a href="#Transform">Transform</a> | <a href="#Vector2">Vector2</a> | <a href="#Vector3">Vector3</a> | <a href="#Vector4">Vector4</a>
+<a href="#VrDeviceInfo">VrDeviceInfo</a> | <a href="#VrStereoConfig">VrStereoConfig</a> | <a href="#Wave">Wave</a> | <a href="#rlDrawCall">rlDrawCall</a> | <a href="#rlRenderBatch">rlRenderBatch</a>
+<a href="#rlVertexBuffer">rlVertexBuffer</a>
 
 [ <a href="#toc">ToC</a> ]
-<h3 id="Vector2">Vector2 structure</h3>
+<h2 id="Vector2"><code>Vector2</code> structure</h2>
 
 Vector2, 2 components
 
@@ -26,11 +37,39 @@ Name | Type (Python) | Type (Ctypes) | Type (C) | Description
 `x` | `float` | `Float` | `float` | Vector x component
 `y` | `float` | `Float` | `float` | Vector y component
 
+### Properties
+
+Name | API
+-----|----
+`.byref` | *n/a*
+`.Length` | <a href="#Vector2Length"><code>Vector2Length</code></a>
+`.LengthSqr` | <a href="#Vector2LengthSqr"><code>Vector2LengthSqr</code></a>
+
+### Methods
+
+Bound as | Name | API
+---------|------|----
+*classmethod* | `.array_of(cls, vector2_sequence)` | *n/a*
+*classmethod* | `.One()` | <a href="#Vector2One"><code>Vector2One</code></a>
+*method* | `.DotProduct(self, v2: 'Vector2')` | <a href="#Vector2DotProduct"><code>Vector2DotProduct</code></a>
+*method* | `.Distance(self, v2: 'Vector2')` | <a href="#Vector2Distance"><code>Vector2Distance</code></a>
+*method* | `.DistanceSqr(self, v2: 'Vector2')` | <a href="#Vector2DistanceSqr"><code>Vector2DistanceSqr</code></a>
+*method* | `.Angle(self, v2: 'Vector2')` | <a href="#Vector2Angle"><code>Vector2Angle</code></a>
+*method* | `.Normalize(self)` | <a href="#Vector2Normalize"><code>Vector2Normalize</code></a>
+*method* | `.Transform(self, mat: 'Matrix')` | <a href="#Vector2Transform"><code>Vector2Transform</code></a>
+*method* | `.Lerp(self, v2: 'Vector2', amount: 'float')` | <a href="#Vector2Lerp"><code>Vector2Lerp</code></a>
+*method* | `.Reflect(self, normal: 'Vector2')` | <a href="#Vector2Reflect"><code>Vector2Reflect</code></a>
+*method* | `.Rotate(self, angle: 'float')` | <a href="#Vector2Rotate"><code>Vector2Rotate</code></a>
+*method* | `.MoveTowards(self, target: 'Vector2', maxDistance: 'float')` | <a href="#Vector2MoveTowards"><code>Vector2MoveTowards</code></a>
+*method* | `.Clamp(self, min_: 'Vector2', max_: 'Vector2')` | <a href="#Vector2Clamp"><code>Vector2Clamp</code></a>
+*method* | `.ClampValue(self, min_: 'float', max_: 'float')` | <a href="#Vector2ClampValue"><code>Vector2ClampValue</code></a>
+
 
 
 [ <a href="#structs">Structs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="Vector3">Vector3 structure</h3>
+---
+<h2 id="Vector3"><code>Vector3</code> structure</h2>
 
 Vector3, 3 components
 
@@ -42,11 +81,48 @@ Name | Type (Python) | Type (Ctypes) | Type (C) | Description
 `y` | `float` | `Float` | `float` | Vector y component
 `z` | `float` | `Float` | `float` | Vector z component
 
+### Properties
+
+Name | API
+-----|----
+`.byref` | *n/a*
+`.Length` | <a href="#Vector3Length"><code>Vector3Length</code></a>
+`.LengthSqr` | <a href="#Vector3LengthSqr"><code>Vector3LengthSqr</code></a>
+
+### Methods
+
+Bound as | Name | API
+---------|------|----
+*classmethod* | `.array_of(cls, vector3_sequence)` | *n/a*
+*classmethod* | `.One()` | <a href="#Vector3One"><code>Vector3One</code></a>
+*method* | `.CrossProduct(self, v2: 'Vector3')` | <a href="#Vector3CrossProduct"><code>Vector3CrossProduct</code></a>
+*method* | `.Perpendicular(self)` | <a href="#Vector3Perpendicular"><code>Vector3Perpendicular</code></a>
+*method* | `.DotProduct(self, v2: 'Vector3')` | <a href="#Vector3DotProduct"><code>Vector3DotProduct</code></a>
+*method* | `.Distance(self, v2: 'Vector3')` | <a href="#Vector3Distance"><code>Vector3Distance</code></a>
+*method* | `.DistanceSqr(self, v2: 'Vector3')` | <a href="#Vector3DistanceSqr"><code>Vector3DistanceSqr</code></a>
+*method* | `.Angle(self, v2: 'Vector3')` | <a href="#Vector3Angle"><code>Vector3Angle</code></a>
+*method* | `.Normalize(self)` | <a href="#Vector3Normalize"><code>Vector3Normalize</code></a>
+*method* | `.OrthoNormalize(self, v2: 'Vector3Ptr')` | <a href="#Vector3OrthoNormalize"><code>Vector3OrthoNormalize</code></a>
+*method* | `.Transform(self, mat: 'Matrix')` | <a href="#Vector3Transform"><code>Vector3Transform</code></a>
+*method* | `.RotateByQuaternion(self, q: 'Quaternion')` | <a href="#Vector3RotateByQuaternion"><code>Vector3RotateByQuaternion</code></a>
+*method* | `.RotateByAxisAngle(self, axis: 'Vector3', angle: 'float')` | <a href="#Vector3RotateByAxisAngle"><code>Vector3RotateByAxisAngle</code></a>
+*method* | `.Lerp(self, v2: 'Vector3', amount: 'float')` | <a href="#Vector3Lerp"><code>Vector3Lerp</code></a>
+*method* | `.Reflect(self, normal: 'Vector3')` | <a href="#Vector3Reflect"><code>Vector3Reflect</code></a>
+*method* | `.Min(self, v2: 'Vector3')` | <a href="#Vector3Min"><code>Vector3Min</code></a>
+*method* | `.Max(self, v2: 'Vector3')` | <a href="#Vector3Max"><code>Vector3Max</code></a>
+*method* | `.Barycenter(self, a: 'Vector3', b: 'Vector3', c: 'Vector3')` | <a href="#Vector3Barycenter"><code>Vector3Barycenter</code></a>
+*method* | `.Unproject(self, projection: 'Matrix', view: 'Matrix')` | <a href="#Vector3Unproject"><code>Vector3Unproject</code></a>
+*method* | `.ToFloatV(self)` | <a href="#Vector3ToFloatV"><code>Vector3ToFloatV</code></a>
+*method* | `.Clamp(self, min_: 'Vector3', max_: 'Vector3')` | <a href="#Vector3Clamp"><code>Vector3Clamp</code></a>
+*method* | `.ClampValue(self, min_: 'float', max_: 'float')` | <a href="#Vector3ClampValue"><code>Vector3ClampValue</code></a>
+*method* | `.Refract(self, n: 'Vector3', r: 'float')` | <a href="#Vector3Refract"><code>Vector3Refract</code></a>
+
 
 
 [ <a href="#structs">Structs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="Vector4">Vector4 structure</h3>
+---
+<h2 id="Vector4"><code>Vector4</code> structure</h2>
 
 Vector4, 4 components
 
@@ -59,11 +135,24 @@ Name | Type (Python) | Type (Ctypes) | Type (C) | Description
 `z` | `float` | `Float` | `float` | Vector z component
 `w` | `float` | `Float` | `float` | Vector w component
 
+### Properties
+
+Name | API
+-----|----
+`.byref` | *n/a*
+
+### Methods
+
+Bound as | Name | API
+---------|------|----
+*classmethod* | `.array_of(cls, vector4_sequence)` | *n/a*
+
 
 
 [ <a href="#structs">Structs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="Matrix">Matrix structure</h3>
+---
+<h2 id="Matrix"><code>Matrix</code> structure</h2>
 
 Matrix, 4x4 components, column major, OpenGL style, right handed
 
@@ -88,11 +177,41 @@ Name | Type (Python) | Type (Ctypes) | Type (C) | Description
 `m11` | `float` | `Float` | `float` | Matrix fourth row (4 components)
 `m15` | `float` | `Float` | `float` | Matrix fourth row (4 components)
 
+### Properties
+
+Name | API
+-----|----
+`.byref` | *n/a*
+
+### Methods
+
+Bound as | Name | API
+---------|------|----
+*classmethod* | `.array_of(cls, matrix_sequence)` | *n/a*
+*classmethod* | `.Identity()` | <a href="#MatrixIdentity"><code>MatrixIdentity</code></a>
+*classmethod* | `.Translate(cls, x: 'float', y: 'float', z: 'float')` | <a href="#MatrixTranslate"><code>MatrixTranslate</code></a>
+*classmethod* | `.Rotate(cls, axis: 'Vector3', angle: 'float')` | <a href="#MatrixRotate"><code>MatrixRotate</code></a>
+*classmethod* | `.RotateX(cls, angle: 'float')` | <a href="#MatrixRotateX"><code>MatrixRotateX</code></a>
+*classmethod* | `.RotateY(cls, angle: 'float')` | <a href="#MatrixRotateY"><code>MatrixRotateY</code></a>
+*classmethod* | `.RotateZ(cls, angle: 'float')` | <a href="#MatrixRotateZ"><code>MatrixRotateZ</code></a>
+*classmethod* | `.RotateXYZ(cls, angle: 'Vector3')` | <a href="#MatrixRotateXYZ"><code>MatrixRotateXYZ</code></a>
+*classmethod* | `.RotateZYX(cls, angle: 'Vector3')` | <a href="#MatrixRotateZYX"><code>MatrixRotateZYX</code></a>
+*classmethod* | `.Scale(cls, x: 'float', y: 'float', z: 'float')` | <a href="#MatrixScale"><code>MatrixScale</code></a>
+*classmethod* | `.Frustum(cls, left: 'float', right: 'float', bottom: 'float', top: 'float', near: 'float', far: 'float')` | <a href="#MatrixFrustum"><code>MatrixFrustum</code></a>
+*classmethod* | `.Perspective(cls, fovy: 'float', aspect: 'float', near: 'float', far: 'float')` | <a href="#MatrixPerspective"><code>MatrixPerspective</code></a>
+*classmethod* | `.Ortho(cls, left: 'float', right: 'float', bottom: 'float', top: 'float', near: 'float', far: 'float')` | <a href="#MatrixOrtho"><code>MatrixOrtho</code></a>
+*classmethod* | `.LookAt(cls, eye: 'Vector3', target: 'Vector3', up: 'Vector3')` | <a href="#MatrixLookAt"><code>MatrixLookAt</code></a>
+*method* | `.Determinant(self)` | <a href="#MatrixDeterminant"><code>MatrixDeterminant</code></a>
+*method* | `.Trace(self)` | <a href="#MatrixTrace"><code>MatrixTrace</code></a>
+*method* | `.Transpose(self)` | <a href="#MatrixTranspose"><code>MatrixTranspose</code></a>
+*method* | `.Invert(self)` | <a href="#MatrixInvert"><code>MatrixInvert</code></a>
+
 
 
 [ <a href="#structs">Structs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="Color">Color structure</h3>
+---
+<h2 id="Color"><code>Color</code> structure</h2>
 
 Color, 4 components, R8G8B8A8 (32bit)
 
@@ -105,11 +224,30 @@ Name | Type (Python) | Type (Ctypes) | Type (C) | Description
 `b` | `int` | `UChar` | `unsigned char` | Color blue value
 `a` | `int` | `UChar` | `unsigned char` | Color alpha value
 
+### Properties
+
+Name | API
+-----|----
+`.byref` | *n/a*
+
+### Methods
+
+Bound as | Name | API
+---------|------|----
+*classmethod* | `.array_of(cls, color_sequence)` | *n/a*
+*method* | `.Fade(self, alpha: 'float')` | <a href="#Fade"><code>Fade</code></a>
+*method* | `.ToInt(self)` | <a href="#ColorToInt"><code>ColorToInt</code></a>
+*method* | `.ToHSV(self)` | <a href="#ColorToHSV"><code>ColorToHSV</code></a>
+*method* | `.FromHSV(self, saturation: 'float', value: 'float')` | <a href="#ColorFromHSV"><code>ColorFromHSV</code></a>
+*method* | `.Alpha(self, alpha: 'float')` | <a href="#ColorAlpha"><code>ColorAlpha</code></a>
+*method* | `.AlphaBlend(self, src: 'Color', tint: 'Color')` | <a href="#ColorAlphaBlend"><code>ColorAlphaBlend</code></a>
+
 
 
 [ <a href="#structs">Structs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="Rectangle">Rectangle structure</h3>
+---
+<h2 id="Rectangle"><code>Rectangle</code> structure</h2>
 
 Rectangle, 4 components
 
@@ -122,11 +260,24 @@ Name | Type (Python) | Type (Ctypes) | Type (C) | Description
 `width` | `float` | `Float` | `float` | Rectangle width
 `height` | `float` | `Float` | `float` | Rectangle height
 
+### Properties
+
+Name | API
+-----|----
+`.byref` | *n/a*
+
+### Methods
+
+Bound as | Name | API
+---------|------|----
+*classmethod* | `.array_of(cls, rectangle_sequence)` | *n/a*
+
 
 
 [ <a href="#structs">Structs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="Image">Image structure</h3>
+---
+<h2 id="Image"><code>Image</code> structure</h2>
 
 Image, pixel data stored in CPU memory (RAM)
 
@@ -140,11 +291,86 @@ Name | Type (Python) | Type (Ctypes) | Type (C) | Description
 `mipmaps` | `int` | `Int` | `int` | Mipmap levels, 1 by default
 `format` | `int` | `Int` | `int` | Data format (PixelFormat type)
 
+### Properties
+
+Name | API
+-----|----
+`.byref` | *n/a*
+
+### Methods
+
+Bound as | Name | API
+---------|------|----
+*staticmethod* | `.UnloadColors(colors: 'ColorPtr')` | <a href="#UnloadImageColors"><code>UnloadImageColors</code></a>
+*staticmethod* | `.UnloadPalette(colors: 'ColorPtr')` | <a href="#UnloadImagePalette"><code>UnloadImagePalette</code></a>
+*classmethod* | `.array_of(cls, image_sequence)` | *n/a*
+*classmethod* | `.Load(cls, fileName: 'Union[str, CharPtr]')` | <a href="#LoadImage"><code>LoadImage</code></a>
+*classmethod* | `.LoadRaw(cls, fileName: 'Union[str, CharPtr]', width: 'int', height: 'int', format: 'int', headerSize: 'int')` | <a href="#LoadImageRaw"><code>LoadImageRaw</code></a>
+*classmethod* | `.LoadAnim(cls, fileName: 'Union[str, CharPtr]', frames: 'Union[Seq[int], IntPtr]')` | <a href="#LoadImageAnim"><code>LoadImageAnim</code></a>
+*classmethod* | `.LoadFromMemory(cls, fileType: 'Union[str, CharPtr]', fileData: 'Union[Seq[int], UCharPtr]', dataSize: 'int')` | <a href="#LoadImageFromMemory"><code>LoadImageFromMemory</code></a>
+*classmethod* | `.LoadFromTexture(cls, texture: 'Texture2D')` | <a href="#LoadImageFromTexture"><code>LoadImageFromTexture</code></a>
+*classmethod* | `.LoadFromScreen()` | <a href="#LoadImageFromScreen"><code>LoadImageFromScreen</code></a>
+*classmethod* | `.GenColor(cls, width: 'int', height: 'int', color: 'Color')` | <a href="#GenImageColor"><code>GenImageColor</code></a>
+*classmethod* | `.GenGradientH(cls, width: 'int', height: 'int', left: 'Color', right: 'Color')` | <a href="#GenImageGradientH"><code>GenImageGradientH</code></a>
+*classmethod* | `.GenGradientV(cls, width: 'int', height: 'int', top: 'Color', bottom: 'Color')` | <a href="#GenImageGradientV"><code>GenImageGradientV</code></a>
+*classmethod* | `.GenGradientRadial(cls, width: 'int', height: 'int', density: 'float', inner: 'Color', outer: 'Color')` | <a href="#GenImageGradientRadial"><code>GenImageGradientRadial</code></a>
+*classmethod* | `.GenChecked(cls, width: 'int', height: 'int', checksX: 'int', checksY: 'int', col1: 'Color', col2: 'Color')` | <a href="#GenImageChecked"><code>GenImageChecked</code></a>
+*classmethod* | `.GenWhiteNoise(cls, width: 'int', height: 'int', factor: 'float')` | <a href="#GenImageWhiteNoise"><code>GenImageWhiteNoise</code></a>
+*classmethod* | `.GenCellular(cls, width: 'int', height: 'int', tileSize: 'int')` | <a href="#GenImageCellular"><code>GenImageCellular</code></a>
+*classmethod* | `.FromImage(cls, image: 'Image', rec: 'Rectangle')` | <a href="#ImageFromImage"><code>ImageFromImage</code></a>
+*classmethod* | `.Text(cls, text: 'Union[str, CharPtr]', fontSize: 'int', color: 'Color')` | <a href="#ImageText"><code>ImageText</code></a>
+*classmethod* | `.TextEx(cls, font: 'Font', text: 'Union[str, CharPtr]', fontSize: 'float', spacing: 'float', tint: 'Color')` | <a href="#ImageTextEx"><code>ImageTextEx</code></a>
+*method* | `.Unload(self)` | <a href="#UnloadImage"><code>UnloadImage</code></a>
+*method* | `.Export(self, fileName: 'Union[str, CharPtr]')` | <a href="#ExportImage"><code>ExportImage</code></a>
+*method* | `.ExportAsCode(self, fileName: 'Union[str, CharPtr]')` | <a href="#ExportImageAsCode"><code>ExportImageAsCode</code></a>
+*method* | `.Copy(self)` | <a href="#ImageCopy"><code>ImageCopy</code></a>
+*method* | `.Format(self, newFormat: 'int')` | <a href="#ImageFormat"><code>ImageFormat</code></a>
+*method* | `.ToPOT(self, fill: 'Color')` | <a href="#ImageToPOT"><code>ImageToPOT</code></a>
+*method* | `.Crop(self, crop: 'Rectangle')` | <a href="#ImageCrop"><code>ImageCrop</code></a>
+*method* | `.AlphaCrop(self, threshold: 'float')` | <a href="#ImageAlphaCrop"><code>ImageAlphaCrop</code></a>
+*method* | `.AlphaClear(self, color: 'Color', threshold: 'float')` | <a href="#ImageAlphaClear"><code>ImageAlphaClear</code></a>
+*method* | `.AlphaMask(self, alphaMask: 'Image')` | <a href="#ImageAlphaMask"><code>ImageAlphaMask</code></a>
+*method* | `.AlphaPremultiply(self)` | <a href="#ImageAlphaPremultiply"><code>ImageAlphaPremultiply</code></a>
+*method* | `.Resize(self, newWidth: 'int', newHeight: 'int')` | <a href="#ImageResize"><code>ImageResize</code></a>
+*method* | `.ResizeNN(self, newWidth: 'int', newHeight: 'int')` | <a href="#ImageResizeNN"><code>ImageResizeNN</code></a>
+*method* | `.ResizeCanvas(self, newWidth: 'int', newHeight: 'int', offsetX: 'int', offsetY: 'int', fill: 'Color')` | <a href="#ImageResizeCanvas"><code>ImageResizeCanvas</code></a>
+*method* | `.Mipmaps(self)` | <a href="#ImageMipmaps"><code>ImageMipmaps</code></a>
+*method* | `.Dither(self, rBpp: 'int', gBpp: 'int', bBpp: 'int', aBpp: 'int')` | <a href="#ImageDither"><code>ImageDither</code></a>
+*method* | `.FlipVertical(self)` | <a href="#ImageFlipVertical"><code>ImageFlipVertical</code></a>
+*method* | `.FlipHorizontal(self)` | <a href="#ImageFlipHorizontal"><code>ImageFlipHorizontal</code></a>
+*method* | `.RotateCW(self)` | <a href="#ImageRotateCW"><code>ImageRotateCW</code></a>
+*method* | `.RotateCCW(self)` | <a href="#ImageRotateCCW"><code>ImageRotateCCW</code></a>
+*method* | `.ColorTint(self, color: 'Color')` | <a href="#ImageColorTint"><code>ImageColorTint</code></a>
+*method* | `.ColorInvert(self)` | <a href="#ImageColorInvert"><code>ImageColorInvert</code></a>
+*method* | `.ColorGrayscale(self)` | <a href="#ImageColorGrayscale"><code>ImageColorGrayscale</code></a>
+*method* | `.ColorContrast(self, contrast: 'float')` | <a href="#ImageColorContrast"><code>ImageColorContrast</code></a>
+*method* | `.ColorBrightness(self, brightness: 'int')` | <a href="#ImageColorBrightness"><code>ImageColorBrightness</code></a>
+*method* | `.ColorReplace(self, color: 'Color', replace: 'Color')` | <a href="#ImageColorReplace"><code>ImageColorReplace</code></a>
+*method* | `.ClearBackground(self, color: 'Color')` | <a href="#ImageClearBackground"><code>ImageClearBackground</code></a>
+*method* | `.DrawPixel(self, posX: 'int', posY: 'int', color: 'Color')` | <a href="#ImageDrawPixel"><code>ImageDrawPixel</code></a>
+*method* | `.DrawPixelV(self, position: 'Vector2', color: 'Color')` | <a href="#ImageDrawPixelV"><code>ImageDrawPixelV</code></a>
+*method* | `.DrawLine(self, startPosX: 'int', startPosY: 'int', endPosX: 'int', endPosY: 'int', color: 'Color')` | <a href="#ImageDrawLine"><code>ImageDrawLine</code></a>
+*method* | `.DrawLineV(self, start: 'Vector2', end: 'Vector2', color: 'Color')` | <a href="#ImageDrawLineV"><code>ImageDrawLineV</code></a>
+*method* | `.DrawCircle(self, centerX: 'int', centerY: 'int', radius: 'int', color: 'Color')` | <a href="#ImageDrawCircle"><code>ImageDrawCircle</code></a>
+*method* | `.DrawCircleV(self, center: 'Vector2', radius: 'int', color: 'Color')` | <a href="#ImageDrawCircleV"><code>ImageDrawCircleV</code></a>
+*method* | `.DrawRectangle(self, posX: 'int', posY: 'int', width: 'int', height: 'int', color: 'Color')` | <a href="#ImageDrawRectangle"><code>ImageDrawRectangle</code></a>
+*method* | `.DrawRectangleV(self, position: 'Vector2', size: 'Vector2', color: 'Color')` | <a href="#ImageDrawRectangleV"><code>ImageDrawRectangleV</code></a>
+*method* | `.DrawRectangleRec(self, rec: 'Rectangle', color: 'Color')` | <a href="#ImageDrawRectangleRec"><code>ImageDrawRectangleRec</code></a>
+*method* | `.DrawRectangleLines(self, rec: 'Rectangle', thick: 'int', color: 'Color')` | <a href="#ImageDrawRectangleLines"><code>ImageDrawRectangleLines</code></a>
+*method* | `.Draw(self, src: 'Image', srcRec: 'Rectangle', dstRec: 'Rectangle', tint: 'Color')` | <a href="#ImageDraw"><code>ImageDraw</code></a>
+*method* | `.DrawText(self, text: 'Union[str, CharPtr]', posX: 'int', posY: 'int', fontSize: 'int', color: 'Color')` | <a href="#ImageDrawText"><code>ImageDrawText</code></a>
+*method* | `.DrawTextEx(self, font: 'Font', text: 'Union[str, CharPtr]', position: 'Vector2', fontSize: 'float', spacing: 'float', tint: 'Color')` | <a href="#ImageDrawTextEx"><code>ImageDrawTextEx</code></a>
+*method* | `.LoadColors(self)` | <a href="#LoadImageColors"><code>LoadImageColors</code></a>
+*method* | `.LoadPalette(self, maxPaletteSize: 'int')` | <a href="#LoadImagePalette"><code>LoadImagePalette</code></a>
+*method* | `.GetAlphaBorder(self, threshold: 'float')` | <a href="#GetImageAlphaBorder"><code>GetImageAlphaBorder</code></a>
+*method* | `.GetColor(self, x: 'int', y: 'int')` | <a href="#GetImageColor"><code>GetImageColor</code></a>
+
 
 
 [ <a href="#structs">Structs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="Texture">Texture structure</h3>
+---
+<h2 id="Texture"><code>Texture</code> structure</h2>
 
 Texture, tex data stored in GPU memory (VRAM)
 
@@ -158,11 +384,24 @@ Name | Type (Python) | Type (Ctypes) | Type (C) | Description
 `mipmaps` | `int` | `Int` | `int` | Mipmap levels, 1 by default
 `format` | `int` | `Int` | `int` | Data format (PixelFormat type)
 
+### Properties
+
+Name | API
+-----|----
+`.byref` | *n/a*
+
+### Methods
+
+Bound as | Name | API
+---------|------|----
+*classmethod* | `.array_of(cls, texture_sequence)` | *n/a*
+
 
 
 [ <a href="#structs">Structs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="RenderTexture">RenderTexture structure</h3>
+---
+<h2 id="RenderTexture"><code>RenderTexture</code> structure</h2>
 
 RenderTexture, fbo for texture rendering
 
@@ -174,11 +413,24 @@ Name | Type (Python) | Type (Ctypes) | Type (C) | Description
 `texture` | `Texture` | `Texture` | `Texture` | Color buffer attachment texture
 `depth` | `Texture` | `Texture` | `Texture` | Depth buffer attachment texture
 
+### Properties
+
+Name | API
+-----|----
+`.byref` | *n/a*
+
+### Methods
+
+Bound as | Name | API
+---------|------|----
+*classmethod* | `.array_of(cls, render_texture_sequence)` | *n/a*
+
 
 
 [ <a href="#structs">Structs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="NPatchInfo">NPatchInfo structure</h3>
+---
+<h2 id="NPatchInfo"><code>NPatchInfo</code> structure</h2>
 
 NPatchInfo, n-patch layout info
 
@@ -193,11 +445,24 @@ Name | Type (Python) | Type (Ctypes) | Type (C) | Description
 `bottom` | `int` | `Int` | `int` | Bottom border offset
 `layout` | `int` | `Int` | `int` | Layout of the n-patch: 3x3, 1x3 or 3x1
 
+### Properties
+
+Name | API
+-----|----
+`.byref` | *n/a*
+
+### Methods
+
+Bound as | Name | API
+---------|------|----
+*classmethod* | `.array_of(cls, npatch_info_sequence)` | *n/a*
+
 
 
 [ <a href="#structs">Structs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GlyphInfo">GlyphInfo structure</h3>
+---
+<h2 id="GlyphInfo"><code>GlyphInfo</code> structure</h2>
 
 GlyphInfo, font characters glyphs info
 
@@ -211,11 +476,24 @@ Name | Type (Python) | Type (Ctypes) | Type (C) | Description
 `advanceX` | `int` | `Int` | `int` | Character advance position X
 `image` | `Image` | `Image` | `Image` | Character image data
 
+### Properties
+
+Name | API
+-----|----
+`.byref` | *n/a*
+
+### Methods
+
+Bound as | Name | API
+---------|------|----
+*classmethod* | `.array_of(cls, glyph_info_sequence)` | *n/a*
+
 
 
 [ <a href="#structs">Structs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="Font">Font structure</h3>
+---
+<h2 id="Font"><code>Font</code> structure</h2>
 
 Font, font texture and GlyphInfo array data
 
@@ -230,11 +508,39 @@ Name | Type (Python) | Type (Ctypes) | Type (C) | Description
 `recs` | `RectanglePtr` | `RectanglePtr` | `Rectangle *` | Rectangles in texture for the glyphs
 `glyphs` | `GlyphInfoPtr` | `GlyphInfoPtr` | `GlyphInfo *` | Glyphs info data
 
+### Properties
+
+Name | API
+-----|----
+`.byref` | *n/a*
+
+### Methods
+
+Bound as | Name | API
+---------|------|----
+*staticmethod* | `.LoadData(fileData: 'Union[Seq[int], UCharPtr]', dataSize: 'int', fontSize: 'int', fontChars: 'Union[Seq[int], IntPtr]', glyphCount: 'int', type: 'int')` | <a href="#LoadFontData"><code>LoadFontData</code></a>
+*staticmethod* | `.UnloadData(chars: 'GlyphInfoPtr', glyphCount: 'int')` | <a href="#UnloadFontData"><code>UnloadFontData</code></a>
+*classmethod* | `.array_of(cls, font_sequence)` | *n/a*
+*classmethod* | `.Load(cls, fileName: 'Union[str, CharPtr]')` | <a href="#LoadFont"><code>LoadFont</code></a>
+*classmethod* | `.LoadEx(cls, fileName: 'Union[str, CharPtr]', fontSize: 'int', fontChars: 'Union[Seq[int], IntPtr]', glyphCount: 'int')` | <a href="#LoadFontEx"><code>LoadFontEx</code></a>
+*classmethod* | `.LoadFromImage(cls, image: 'Image', key: 'Color', firstChar: 'int')` | <a href="#LoadFontFromImage"><code>LoadFontFromImage</code></a>
+*classmethod* | `.LoadFromMemory(cls, fileType: 'Union[str, CharPtr]', fileData: 'Union[Seq[int], UCharPtr]', dataSize: 'int', fontSize: 'int', fontChars: 'Union[Seq[int], IntPtr]', glyphCount: 'int')` | <a href="#LoadFontFromMemory"><code>LoadFontFromMemory</code></a>
+*method* | `.Unload(self)` | <a href="#UnloadFont"><code>UnloadFont</code></a>
+*method* | `.DrawTextEx(self, text: 'Union[str, CharPtr]', position: 'Vector2', fontSize: 'float', spacing: 'float', tint: 'Color')` | <a href="#DrawTextEx"><code>DrawTextEx</code></a>
+*method* | `.DrawTextPro(self, text: 'Union[str, CharPtr]', position: 'Vector2', origin: 'Vector2', rotation: 'float', fontSize: 'float', spacing: 'float', tint: 'Color')` | <a href="#DrawTextPro"><code>DrawTextPro</code></a>
+*method* | `.DrawTextCodepoint(self, codepoint: 'int', position: 'Vector2', fontSize: 'float', tint: 'Color')` | <a href="#DrawTextCodepoint"><code>DrawTextCodepoint</code></a>
+*method* | `.DrawTextCodepoints(self, codepoints: 'Union[Seq[int], IntPtr]', position: 'Vector2', fontSize: 'float', spacing: 'float', tint: 'Color')` | <a href="#DrawTextCodepoints"><code>DrawTextCodepoints</code></a>
+*method* | `.MeasureTextEx(self, text: 'Union[str, CharPtr]', fontSize: 'float', spacing: 'float')` | <a href="#MeasureTextEx"><code>MeasureTextEx</code></a>
+*method* | `.GetGlyphIndex(self, codepoint: 'int')` | <a href="#GetGlyphIndex"><code>GetGlyphIndex</code></a>
+*method* | `.GetGlyphInfo(self, codepoint: 'int')` | <a href="#GetGlyphInfo"><code>GetGlyphInfo</code></a>
+*method* | `.GetGlyphAtlasRec(self, codepoint: 'int')` | <a href="#GetGlyphAtlasRec"><code>GetGlyphAtlasRec</code></a>
+
 
 
 [ <a href="#structs">Structs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="Camera3D">Camera3D structure</h3>
+---
+<h2 id="Camera3D"><code>Camera3D</code> structure</h2>
 
 Camera, defines position/orientation in 3d space
 
@@ -248,11 +554,32 @@ Name | Type (Python) | Type (Ctypes) | Type (C) | Description
 `fovy` | `float` | `Float` | `float` | Camera field-of-view apperture in Y (degrees) in perspective, used as near plane width in orthographic
 `projection` | `int` | `Int` | `int` | Camera projection: CAMERA_PERSPECTIVE or CAMERA_ORTHOGRAPHIC
 
+### Properties
+
+Name | API
+-----|----
+`.byref` | *n/a*
+
+### Methods
+
+Bound as | Name | API
+---------|------|----
+*classmethod* | `.array_of(cls, camera3d_sequence)` | *n/a*
+*method* | `.SetMode(self, mode: 'int')` | <a href="#SetCameraMode"><code>SetCameraMode</code></a>
+
+### Context Manager
+
+Context | API
+--------|----
+Enter | BeginMode3D
+Leave | EndMode3D
+
 
 
 [ <a href="#structs">Structs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="Camera2D">Camera2D structure</h3>
+---
+<h2 id="Camera2D"><code>Camera2D</code> structure</h2>
 
 Camera2D, defines position/orientation in 2d space
 
@@ -265,11 +592,31 @@ Name | Type (Python) | Type (Ctypes) | Type (C) | Description
 `rotation` | `float` | `Float` | `float` | Camera rotation in degrees
 `zoom` | `float` | `Float` | `float` | Camera zoom (scaling), should be 1.0f by default
 
+### Properties
+
+Name | API
+-----|----
+`.byref` | *n/a*
+
+### Methods
+
+Bound as | Name | API
+---------|------|----
+*classmethod* | `.array_of(cls, camera2d_sequence)` | *n/a*
+
+### Context Manager
+
+Context | API
+--------|----
+Enter | BeginMode2D
+Leave | EndMode2D
+
 
 
 [ <a href="#structs">Structs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="Mesh">Mesh structure</h3>
+---
+<h2 id="Mesh"><code>Mesh</code> structure</h2>
 
 Mesh, vertex data and vao/vbo
 
@@ -293,11 +640,43 @@ Name | Type (Python) | Type (Ctypes) | Type (C) | Description
 `vaoId` | `int` | `UInt` | `unsigned int` | OpenGL Vertex Array Object id
 `vboId` | `Union[Seq[int], UIntPtr]` | `UIntPtr` | `unsigned int` | OpenGL Vertex Buffer Objects id (default vertex data)
 
+### Properties
+
+Name | API
+-----|----
+`.byref` | *n/a*
+
+### Methods
+
+Bound as | Name | API
+---------|------|----
+*classmethod* | `.array_of(cls, mesh_sequence)` | *n/a*
+*classmethod* | `.GenPoly(cls, sides: 'int', radius: 'float')` | <a href="#GenMeshPoly"><code>GenMeshPoly</code></a>
+*classmethod* | `.GenPlane(cls, width: 'float', length: 'float', resX: 'int', resZ: 'int')` | <a href="#GenMeshPlane"><code>GenMeshPlane</code></a>
+*classmethod* | `.GenCube(cls, width: 'float', height: 'float', length: 'float')` | <a href="#GenMeshCube"><code>GenMeshCube</code></a>
+*classmethod* | `.GenSphere(cls, radius: 'float', rings: 'int', slices: 'int')` | <a href="#GenMeshSphere"><code>GenMeshSphere</code></a>
+*classmethod* | `.GenHemiSphere(cls, radius: 'float', rings: 'int', slices: 'int')` | <a href="#GenMeshHemiSphere"><code>GenMeshHemiSphere</code></a>
+*classmethod* | `.GenCylinder(cls, radius: 'float', height: 'float', slices: 'int')` | <a href="#GenMeshCylinder"><code>GenMeshCylinder</code></a>
+*classmethod* | `.GenCone(cls, radius: 'float', height: 'float', slices: 'int')` | <a href="#GenMeshCone"><code>GenMeshCone</code></a>
+*classmethod* | `.GenTorus(cls, radius: 'float', size: 'float', radSeg: 'int', sides: 'int')` | <a href="#GenMeshTorus"><code>GenMeshTorus</code></a>
+*classmethod* | `.GenKnot(cls, radius: 'float', size: 'float', radSeg: 'int', sides: 'int')` | <a href="#GenMeshKnot"><code>GenMeshKnot</code></a>
+*classmethod* | `.GenHeightmap(cls, heightmap: 'Image', size: 'Vector3')` | <a href="#GenMeshHeightmap"><code>GenMeshHeightmap</code></a>
+*classmethod* | `.GenCubicmap(cls, cubicmap: 'Image', cubeSize: 'Vector3')` | <a href="#GenMeshCubicmap"><code>GenMeshCubicmap</code></a>
+*method* | `.Upload(self, dynamic: 'bool')` | <a href="#UploadMesh"><code>UploadMesh</code></a>
+*method* | `.UpdateBuffer(self, index: 'int', data: 'bytes', dataSize: 'int', offset: 'int')` | <a href="#UpdateMeshBuffer"><code>UpdateMeshBuffer</code></a>
+*method* | `.Unload(self)` | <a href="#UnloadMesh"><code>UnloadMesh</code></a>
+*method* | `.Draw(self, material: 'Material', transform: 'Matrix')` | <a href="#DrawMesh"><code>DrawMesh</code></a>
+*method* | `.DrawInstanced(self, material: 'Material', transforms: 'MatrixPtr', instances: 'int')` | <a href="#DrawMeshInstanced"><code>DrawMeshInstanced</code></a>
+*method* | `.Export(self, fileName: 'Union[str, CharPtr]')` | <a href="#ExportMesh"><code>ExportMesh</code></a>
+*method* | `.GetBoundingBox(self)` | <a href="#GetMeshBoundingBox"><code>GetMeshBoundingBox</code></a>
+*method* | `.GenTangents(self)` | <a href="#GenMeshTangents"><code>GenMeshTangents</code></a>
+
 
 
 [ <a href="#structs">Structs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="Shader">Shader structure</h3>
+---
+<h2 id="Shader"><code>Shader</code> structure</h2>
 
 Shader
 
@@ -308,11 +687,40 @@ Name | Type (Python) | Type (Ctypes) | Type (C) | Description
 `id` | `int` | `UInt` | `unsigned int` | Shader program id
 `locs` | `Union[Seq[int], IntPtr]` | `IntPtr` | `int` | Shader locations array (RL_MAX_SHADER_LOCATIONS)
 
+### Properties
+
+Name | API
+-----|----
+`.byref` | *n/a*
+
+### Methods
+
+Bound as | Name | API
+---------|------|----
+*classmethod* | `.array_of(cls, shader_sequence)` | *n/a*
+*classmethod* | `.Load(cls, vsFileName: 'Union[str, CharPtr]', fsFileName: 'Union[str, CharPtr]')` | <a href="#LoadShader"><code>LoadShader</code></a>
+*classmethod* | `.LoadFromMemory(cls, vsCode: 'Union[str, CharPtr]', fsCode: 'Union[str, CharPtr]')` | <a href="#LoadShaderFromMemory"><code>LoadShaderFromMemory</code></a>
+*method* | `.GetLocation(self, uniformName: 'Union[str, CharPtr]')` | <a href="#GetShaderLocation"><code>GetShaderLocation</code></a>
+*method* | `.GetLocationAttrib(self, attribName: 'Union[str, CharPtr]')` | <a href="#GetShaderLocationAttrib"><code>GetShaderLocationAttrib</code></a>
+*method* | `.SetValue(self, locIndex: 'int', value: 'bytes', uniformType: 'int')` | <a href="#SetShaderValue"><code>SetShaderValue</code></a>
+*method* | `.SetValueV(self, locIndex: 'int', value: 'bytes', uniformType: 'int', count: 'int')` | <a href="#SetShaderValueV"><code>SetShaderValueV</code></a>
+*method* | `.SetValueMatrix(self, locIndex: 'int', mat: 'Matrix')` | <a href="#SetShaderValueMatrix"><code>SetShaderValueMatrix</code></a>
+*method* | `.SetValueTexture(self, locIndex: 'int', texture: 'Texture2D')` | <a href="#SetShaderValueTexture"><code>SetShaderValueTexture</code></a>
+*method* | `.Unload(self)` | <a href="#UnloadShader"><code>UnloadShader</code></a>
+
+### Context Manager
+
+Context | API
+--------|----
+Enter | BeginShaderMode
+Leave | EndShaderMode
+
 
 
 [ <a href="#structs">Structs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="MaterialMap">MaterialMap structure</h3>
+---
+<h2 id="MaterialMap"><code>MaterialMap</code> structure</h2>
 
 MaterialMap
 
@@ -324,11 +732,24 @@ Name | Type (Python) | Type (Ctypes) | Type (C) | Description
 `color` | `Color` | `Color` | `Color` | Material map color
 `value` | `float` | `Float` | `float` | Material map value
 
+### Properties
+
+Name | API
+-----|----
+`.byref` | *n/a*
+
+### Methods
+
+Bound as | Name | API
+---------|------|----
+*classmethod* | `.array_of(cls, material_map_sequence)` | *n/a*
+
 
 
 [ <a href="#structs">Structs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="Material">Material structure</h3>
+---
+<h2 id="Material"><code>Material</code> structure</h2>
 
 Material, includes shader and maps
 
@@ -340,11 +761,28 @@ Name | Type (Python) | Type (Ctypes) | Type (C) | Description
 `maps` | `MaterialMapPtr` | `MaterialMapPtr` | `MaterialMap *` | Material maps array (MAX_MATERIAL_MAPS)
 `params` | `Seq[float]` | `Float * 4` | `float[4]` | Material generic parameters (if required)
 
+### Properties
+
+Name | API
+-----|----
+`.byref` | *n/a*
+
+### Methods
+
+Bound as | Name | API
+---------|------|----
+*classmethod* | `.array_of(cls, material_sequence)` | *n/a*
+*classmethod* | `.LoadMaterials(cls, fileName: 'Union[str, CharPtr]')` | <a href="#LoadMaterials"><code>LoadMaterials</code></a>
+*classmethod* | `.LoadDefault()` | <a href="#LoadMaterialDefault"><code>LoadMaterialDefault</code></a>
+*method* | `.Unload(self)` | <a href="#UnloadMaterial"><code>UnloadMaterial</code></a>
+*method* | `.SetTexture(self, mapType: 'int', texture: 'Texture2D')` | <a href="#SetMaterialTexture"><code>SetMaterialTexture</code></a>
+
 
 
 [ <a href="#structs">Structs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="Transform">Transform structure</h3>
+---
+<h2 id="Transform"><code>Transform</code> structure</h2>
 
 Transform, vectex transformation data
 
@@ -356,11 +794,24 @@ Name | Type (Python) | Type (Ctypes) | Type (C) | Description
 `rotation` | `Quaternion` | `Quaternion` | `Quaternion` | Rotation
 `scale` | `Vector3` | `Vector3` | `Vector3` | Scale
 
+### Properties
+
+Name | API
+-----|----
+`.byref` | *n/a*
+
+### Methods
+
+Bound as | Name | API
+---------|------|----
+*classmethod* | `.array_of(cls, transform_sequence)` | *n/a*
+
 
 
 [ <a href="#structs">Structs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="BoneInfo">BoneInfo structure</h3>
+---
+<h2 id="BoneInfo"><code>BoneInfo</code> structure</h2>
 
 Bone, skeletal animation bone
 
@@ -371,11 +822,24 @@ Name | Type (Python) | Type (Ctypes) | Type (C) | Description
 `name` | `str` | `CharPtr` | `char[32]` | Bone name
 `parent` | `int` | `Int` | `int` | Bone parent
 
+### Properties
+
+Name | API
+-----|----
+`.byref` | *n/a*
+
+### Methods
+
+Bound as | Name | API
+---------|------|----
+*classmethod* | `.array_of(cls, bone_info_sequence)` | *n/a*
+
 
 
 [ <a href="#structs">Structs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="Model">Model structure</h3>
+---
+<h2 id="Model"><code>Model</code> structure</h2>
 
 Model, meshes, materials and animation data
 
@@ -393,11 +857,36 @@ Name | Type (Python) | Type (Ctypes) | Type (C) | Description
 `bones` | `BoneInfoPtr` | `BoneInfoPtr` | `BoneInfo *` | Bones information (skeleton)
 `bindPose` | `TransformPtr` | `TransformPtr` | `Transform *` | Bones base transformation (pose)
 
+### Properties
+
+Name | API
+-----|----
+`.byref` | *n/a*
+
+### Methods
+
+Bound as | Name | API
+---------|------|----
+*classmethod* | `.array_of(cls, model_sequence)` | *n/a*
+*classmethod* | `.Load(cls, fileName: 'Union[str, CharPtr]')` | <a href="#LoadModel"><code>LoadModel</code></a>
+*classmethod* | `.LoadFromMesh(cls, mesh: 'Mesh')` | <a href="#LoadModelFromMesh"><code>LoadModelFromMesh</code></a>
+*method* | `.IsAnimationValid(self, anim: 'ModelAnimation')` | <a href="#IsModelAnimationValid"><code>IsModelAnimationValid</code></a>
+*method* | `.UpdateAnimation(self, anim: 'ModelAnimation', frame: 'int')` | <a href="#UpdateModelAnimation"><code>UpdateModelAnimation</code></a>
+*method* | `.SetMeshMaterial(self, meshId: 'int', materialId: 'int')` | <a href="#SetModelMeshMaterial"><code>SetModelMeshMaterial</code></a>
+*method* | `.Unload(self)` | <a href="#UnloadModel"><code>UnloadModel</code></a>
+*method* | `.UnloadKeepMeshes(self)` | <a href="#UnloadModelKeepMeshes"><code>UnloadModelKeepMeshes</code></a>
+*method* | `.GetBoundingBox(self)` | <a href="#GetModelBoundingBox"><code>GetModelBoundingBox</code></a>
+*method* | `.Draw(self, position: 'Vector3', scale: 'float', tint: 'Color')` | <a href="#DrawModel"><code>DrawModel</code></a>
+*method* | `.DrawEx(self, position: 'Vector3', rotationAxis: 'Vector3', rotationAngle: 'float', scale: 'Vector3', tint: 'Color')` | <a href="#DrawModelEx"><code>DrawModelEx</code></a>
+*method* | `.DrawWires(self, position: 'Vector3', scale: 'float', tint: 'Color')` | <a href="#DrawModelWires"><code>DrawModelWires</code></a>
+*method* | `.DrawWiresEx(self, position: 'Vector3', rotationAxis: 'Vector3', rotationAngle: 'float', scale: 'Vector3', tint: 'Color')` | <a href="#DrawModelWiresEx"><code>DrawModelWiresEx</code></a>
+
 
 
 [ <a href="#structs">Structs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="ModelAnimation">ModelAnimation structure</h3>
+---
+<h2 id="ModelAnimation"><code>ModelAnimation</code> structure</h2>
 
 ModelAnimation
 
@@ -410,11 +899,24 @@ Name | Type (Python) | Type (Ctypes) | Type (C) | Description
 `bones` | `BoneInfoPtr` | `BoneInfoPtr` | `BoneInfo *` | Bones information (skeleton)
 `framePoses` | `TransformPtr` | `TransformPtr` | `Transform **` | Poses array by frame
 
+### Properties
+
+Name | API
+-----|----
+`.byref` | *n/a*
+
+### Methods
+
+Bound as | Name | API
+---------|------|----
+*classmethod* | `.array_of(cls, model_animation_sequence)` | *n/a*
+
 
 
 [ <a href="#structs">Structs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="Ray">Ray structure</h3>
+---
+<h2 id="Ray"><code>Ray</code> structure</h2>
 
 Ray, ray for raycasting
 
@@ -425,11 +927,24 @@ Name | Type (Python) | Type (Ctypes) | Type (C) | Description
 `position` | `Vector3` | `Vector3` | `Vector3` | Ray position (origin)
 `direction` | `Vector3` | `Vector3` | `Vector3` | Ray direction
 
+### Properties
+
+Name | API
+-----|----
+`.byref` | *n/a*
+
+### Methods
+
+Bound as | Name | API
+---------|------|----
+*classmethod* | `.array_of(cls, ray_sequence)` | *n/a*
+
 
 
 [ <a href="#structs">Structs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="RayCollision">RayCollision structure</h3>
+---
+<h2 id="RayCollision"><code>RayCollision</code> structure</h2>
 
 RayCollision, ray hit information
 
@@ -442,11 +957,24 @@ Name | Type (Python) | Type (Ctypes) | Type (C) | Description
 `point` | `Vector3` | `Vector3` | `Vector3` | Point of nearest hit
 `normal` | `Vector3` | `Vector3` | `Vector3` | Surface normal of hit
 
+### Properties
+
+Name | API
+-----|----
+`.byref` | *n/a*
+
+### Methods
+
+Bound as | Name | API
+---------|------|----
+*classmethod* | `.array_of(cls, ray_collision_sequence)` | *n/a*
+
 
 
 [ <a href="#structs">Structs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="BoundingBox">BoundingBox structure</h3>
+---
+<h2 id="BoundingBox"><code>BoundingBox</code> structure</h2>
 
 BoundingBox
 
@@ -457,11 +985,24 @@ Name | Type (Python) | Type (Ctypes) | Type (C) | Description
 `min` | `Vector3` | `Vector3` | `Vector3` | Minimum vertex box-corner
 `max` | `Vector3` | `Vector3` | `Vector3` | Maximum vertex box-corner
 
+### Properties
+
+Name | API
+-----|----
+`.byref` | *n/a*
+
+### Methods
+
+Bound as | Name | API
+---------|------|----
+*classmethod* | `.array_of(cls, bounding_box_sequence)` | *n/a*
+
 
 
 [ <a href="#structs">Structs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="Wave">Wave structure</h3>
+---
+<h2 id="Wave"><code>Wave</code> structure</h2>
 
 Wave, audio wave data
 
@@ -475,11 +1016,34 @@ Name | Type (Python) | Type (Ctypes) | Type (C) | Description
 `channels` | `int` | `UInt` | `unsigned int` | Number of channels (1-mono, 2-stereo, ...)
 `data` | `bytes` | `VoidPtr` | `void` | Buffer data pointer
 
+### Properties
+
+Name | API
+-----|----
+`.byref` | *n/a*
+
+### Methods
+
+Bound as | Name | API
+---------|------|----
+*classmethod* | `.array_of(cls, wave_sequence)` | *n/a*
+*classmethod* | `.Load(cls, fileName: 'Union[str, CharPtr]')` | <a href="#LoadWave"><code>LoadWave</code></a>
+*classmethod* | `.LoadFromMemory(cls, fileType: 'Union[str, CharPtr]', fileData: 'Union[Seq[int], UCharPtr]', dataSize: 'int')` | <a href="#LoadWaveFromMemory"><code>LoadWaveFromMemory</code></a>
+*method* | `.Copy(self)` | <a href="#WaveCopy"><code>WaveCopy</code></a>
+*method* | `.Crop(self, initSample: 'int', finalSample: 'int')` | <a href="#WaveCrop"><code>WaveCrop</code></a>
+*method* | `.Format(self, sampleRate: 'int', sampleSize: 'int', channels: 'int')` | <a href="#WaveFormat"><code>WaveFormat</code></a>
+*method* | `.Format(self)` | <a href="#LoadWaveSamples"><code>LoadWaveSamples</code></a>
+*method* | `.Export(self, fileName: 'Union[str, CharPtr]')` | <a href="#ExportWave"><code>ExportWave</code></a>
+*method* | `.ExportAsCode(self, fileName: 'Union[str, CharPtr]')` | <a href="#ExportWaveAsCode"><code>ExportWaveAsCode</code></a>
+*method* | `.Unload(self)` | <a href="#UnloadWave"><code>UnloadWave</code></a>
+*method* | `.UnloadSamples(self)` | <a href="#UnloadWaveSamples"><code>UnloadWaveSamples</code></a>
+
 
 
 [ <a href="#structs">Structs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="AudioStream">AudioStream structure</h3>
+---
+<h2 id="AudioStream"><code>AudioStream</code> structure</h2>
 
 AudioStream, custom audio stream
 
@@ -493,11 +1057,40 @@ Name | Type (Python) | Type (Ctypes) | Type (C) | Description
 `sampleSize` | `int` | `UInt` | `unsigned int` | Bit depth (bits per sample): 8, 16, 32 (24 not supported)
 `channels` | `int` | `UInt` | `unsigned int` | Number of channels (1-mono, 2-stereo, ...)
 
+### Properties
+
+Name | API
+-----|----
+`.byref` | *n/a*
+
+### Methods
+
+Bound as | Name | API
+---------|------|----
+*classmethod* | `.array_of(cls, audio_stream_sequence)` | *n/a*
+*classmethod* | `.Load(cls, sampleRate: 'int', sampleSize: 'int', channels: 'int')` | <a href="#LoadAudioStream"><code>LoadAudioStream</code></a>
+*method* | `.Unload(self)` | <a href="#UnloadAudioStream"><code>UnloadAudioStream</code></a>
+*method* | `.Update(self, data: 'bytes', frameCount: 'int')` | <a href="#UpdateAudioStream"><code>UpdateAudioStream</code></a>
+*method* | `.IsProcessed(self)` | <a href="#IsAudioStreamProcessed"><code>IsAudioStreamProcessed</code></a>
+*method* | `.Play(self)` | <a href="#PlayAudioStream"><code>PlayAudioStream</code></a>
+*method* | `.Pause(self)` | <a href="#PauseAudioStream"><code>PauseAudioStream</code></a>
+*method* | `.Resume(self)` | <a href="#ResumeAudioStream"><code>ResumeAudioStream</code></a>
+*method* | `.IsPlaying(self)` | <a href="#IsAudioStreamPlaying"><code>IsAudioStreamPlaying</code></a>
+*method* | `.Stop(self)` | <a href="#StopAudioStream"><code>StopAudioStream</code></a>
+*method* | `.SetVolume(self, volume: 'float')` | <a href="#SetAudioStreamVolume"><code>SetAudioStreamVolume</code></a>
+*method* | `.SetPitch(self, pitch: 'float')` | <a href="#SetAudioStreamPitch"><code>SetAudioStreamPitch</code></a>
+*method* | `.SetPan(self, pan: 'float')` | <a href="#SetAudioStreamPan"><code>SetAudioStreamPan</code></a>
+*method* | `.SetBufferSizeDefault(self)` | <a href="#SetAudioStreamBufferSizeDefault"><code>SetAudioStreamBufferSizeDefault</code></a>
+*method* | `.SetCallback(self, callback: 'AudioCallback')` | <a href="#SetAudioStreamCallback"><code>SetAudioStreamCallback</code></a>
+*method* | `.AttachProcessor(self, processor: 'AudioCallback')` | <a href="#AttachAudioStreamProcessor"><code>AttachAudioStreamProcessor</code></a>
+*method* | `.DetachProcessor(self, processor: 'AudioCallback')` | <a href="#DetachAudioStreamProcessor"><code>DetachAudioStreamProcessor</code></a>
+
 
 
 [ <a href="#structs">Structs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="Sound">Sound structure</h3>
+---
+<h2 id="Sound"><code>Sound</code> structure</h2>
 
 Sound
 
@@ -508,11 +1101,39 @@ Name | Type (Python) | Type (Ctypes) | Type (C) | Description
 `stream` | `AudioStream` | `AudioStream` | `AudioStream` | Audio stream
 `frameCount` | `int` | `UInt` | `unsigned int` | Total number of frames (considering channels)
 
+### Properties
+
+Name | API
+-----|----
+`.byref` | *n/a*
+
+### Methods
+
+Bound as | Name | API
+---------|------|----
+*staticmethod* | `.GetSoundsPlaying()` | <a href="#GetSoundsPlaying"><code>GetSoundsPlaying</code></a>
+*staticmethod* | `.StopMulti()` | <a href="#StopSoundMulti"><code>StopSoundMulti</code></a>
+*classmethod* | `.array_of(cls, sound_sequence)` | *n/a*
+*classmethod* | `.Load(cls, fileName: 'Union[str, CharPtr]')` | <a href="#LoadSound"><code>LoadSound</code></a>
+*classmethod* | `.LoadFromWave(cls, wave: 'Wave')` | <a href="#LoadSoundFromWave"><code>LoadSoundFromWave</code></a>
+*method* | `.Play(self)` | <a href="#PlaySound"><code>PlaySound</code></a>
+*method* | `.Stop(self)` | <a href="#StopSound"><code>StopSound</code></a>
+*method* | `.Pause(self)` | <a href="#PauseSound"><code>PauseSound</code></a>
+*method* | `.Resume(self)` | <a href="#ResumeSound"><code>ResumeSound</code></a>
+*method* | `.PlayMulti(self)` | <a href="#PlaySoundMulti"><code>PlaySoundMulti</code></a>
+*method* | `.IsPlaying(self)` | <a href="#IsSoundPlaying"><code>IsSoundPlaying</code></a>
+*method* | `.SetVolume(self, volume: 'float')` | <a href="#SetSoundVolume"><code>SetSoundVolume</code></a>
+*method* | `.SetPitch(self, pitch: 'float')` | <a href="#SetSoundPitch"><code>SetSoundPitch</code></a>
+*method* | `.SetPan(self, pan: 'float')` | <a href="#SetSoundPan"><code>SetSoundPan</code></a>
+*method* | `.Unload(self)` | <a href="#UnloadSound"><code>UnloadSound</code></a>
+*method* | `.Update(self, data: 'bytes', sampleCount: 'int')` | <a href="#UpdateSound"><code>UpdateSound</code></a>
+
 
 
 [ <a href="#structs">Structs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="Music">Music structure</h3>
+---
+<h2 id="Music"><code>Music</code> structure</h2>
 
 Music, audio stream, anything longer than ~10 seconds should be streamed
 
@@ -526,11 +1147,38 @@ Name | Type (Python) | Type (Ctypes) | Type (C) | Description
 `ctxType` | `int` | `Int` | `int` | Type of music context (audio filetype)
 `ctxData` | `bytes` | `VoidPtr` | `void` | Audio context data, depends on type
 
+### Properties
+
+Name | API
+-----|----
+`.byref` | *n/a*
+
+### Methods
+
+Bound as | Name | API
+---------|------|----
+*staticmethod* | `.Load(fileName: 'Union[str, CharPtr]')` | <a href="#LoadMusicStream"><code>LoadMusicStream</code></a>
+*staticmethod* | `.LoadFromMemory(fileType: 'Union[str, CharPtr]', data: 'Union[Seq[int], UCharPtr]', dataSize: 'int')` | <a href="#LoadMusicStreamFromMemory"><code>LoadMusicStreamFromMemory</code></a>
+*classmethod* | `.array_of(cls, music_sequence)` | *n/a*
+*method* | `.Play(self)` | <a href="#PlayMusicStream"><code>PlayMusicStream</code></a>
+*method* | `.IsPlaying(self)` | <a href="#IsMusicStreamPlaying"><code>IsMusicStreamPlaying</code></a>
+*method* | `.Update(self)` | <a href="#UpdateMusicStream"><code>UpdateMusicStream</code></a>
+*method* | `.Stop(self)` | <a href="#StopMusicStream"><code>StopMusicStream</code></a>
+*method* | `.Pause(self)` | <a href="#PauseMusicStream"><code>PauseMusicStream</code></a>
+*method* | `.Resume(self)` | <a href="#ResumeMusicStream"><code>ResumeMusicStream</code></a>
+*method* | `.Seek(self, position: 'float')` | <a href="#SeekMusicStream"><code>SeekMusicStream</code></a>
+*method* | `.SetVolume(self, volume: 'float')` | <a href="#SetMusicVolume"><code>SetMusicVolume</code></a>
+*method* | `.SetPitch(self, pitch: 'float')` | <a href="#SetMusicPitch"><code>SetMusicPitch</code></a>
+*method* | `.SetPan(self, pan: 'float')` | <a href="#SetMusicPan"><code>SetMusicPan</code></a>
+*method* | `.GetTimeLength(self)` | <a href="#GetMusicTimeLength"><code>GetMusicTimeLength</code></a>
+*method* | `.GetTimePlayed(self)` | <a href="#GetMusicTimePlayed"><code>GetMusicTimePlayed</code></a>
+
 
 
 [ <a href="#structs">Structs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="VrDeviceInfo">VrDeviceInfo structure</h3>
+---
+<h2 id="VrDeviceInfo"><code>VrDeviceInfo</code> structure</h2>
 
 VrDeviceInfo, Head-Mounted-Display device parameters
 
@@ -549,11 +1197,24 @@ Name | Type (Python) | Type (Ctypes) | Type (C) | Description
 `lensDistortionValues` | `Seq[float]` | `Float * 4` | `float[4]` | Lens distortion constant parameters
 `chromaAbCorrection` | `Seq[float]` | `Float * 4` | `float[4]` | Chromatic aberration correction parameters
 
+### Properties
+
+Name | API
+-----|----
+`.byref` | *n/a*
+
+### Methods
+
+Bound as | Name | API
+---------|------|----
+*classmethod* | `.array_of(cls, vr_device_info_sequence)` | *n/a*
+
 
 
 [ <a href="#structs">Structs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="VrStereoConfig">VrStereoConfig structure</h3>
+---
+<h2 id="VrStereoConfig"><code>VrStereoConfig</code> structure</h2>
 
 VrStereoConfig, VR stereo rendering configuration for simulator
 
@@ -570,11 +1231,31 @@ Name | Type (Python) | Type (Ctypes) | Type (C) | Description
 `scale` | `Seq[float]` | `Float * 2` | `float[2]` | VR distortion scale
 `scaleIn` | `Seq[float]` | `Float * 2` | `float[2]` | VR distortion scale in
 
+### Properties
+
+Name | API
+-----|----
+`.byref` | *n/a*
+
+### Methods
+
+Bound as | Name | API
+---------|------|----
+*classmethod* | `.array_of(cls, vr_stereo_config_sequence)` | *n/a*
+
+### Context Manager
+
+Context | API
+--------|----
+Enter | BeginVrStereoMode
+Leave | EndVrStereoMode
+
 
 
 [ <a href="#structs">Structs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="FilePathList">FilePathList structure</h3>
+---
+<h2 id="FilePathList"><code>FilePathList</code> structure</h2>
 
 File path list
 
@@ -586,11 +1267,24 @@ Name | Type (Python) | Type (Ctypes) | Type (C) | Description
 `count` | `int` | `UInt` | `unsigned int` | Filepaths entries count
 `paths` | `Seq[Union[str, CharPtr]]` | `CharPtrPtr` | `char **` | Filepaths entries
 
+### Properties
+
+Name | API
+-----|----
+`.byref` | *n/a*
+
+### Methods
+
+Bound as | Name | API
+---------|------|----
+*classmethod* | `.array_of(cls, file_path_list_sequence)` | *n/a*
+
 
 
 [ <a href="#structs">Structs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlVertexBuffer">rlVertexBuffer structure</h3>
+---
+<h2 id="rlVertexBuffer"><code>rlVertexBuffer</code> structure</h2>
 
 Dynamic vertex buffers (position + texcoords + colors + indices arrays)
 
@@ -606,11 +1300,24 @@ Name | Type (Python) | Type (Ctypes) | Type (C) | Description
 `vaoId` | `int` | `UInt` | `unsigned int` | OpenGL Vertex Array Object id
 `vboId` | `Seq[int]` | `Int * 4` | `unsigned int[4]` | OpenGL Vertex Buffer Objects id (4 types of vertex data)
 
+### Properties
+
+Name | API
+-----|----
+`.byref` | *n/a*
+
+### Methods
+
+Bound as | Name | API
+---------|------|----
+*classmethod* | `.array_of(cls, rl_vertex_buffer_sequence)` | *n/a*
+
 
 
 [ <a href="#structs">Structs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlDrawCall">rlDrawCall structure</h3>
+---
+<h2 id="rlDrawCall"><code>rlDrawCall</code> structure</h2>
 
 of those state-change happens (this is done in core module)
 
@@ -623,11 +1330,24 @@ Name | Type (Python) | Type (Ctypes) | Type (C) | Description
 `vertexAlignment` | `int` | `Int` | `int` | Number of vertex required for index alignment (LINES, TRIANGLES)
 `textureId` | `int` | `UInt` | `unsigned int` | Texture id to be used on the draw -> Use to create new draw call if changes
 
+### Properties
+
+Name | API
+-----|----
+`.byref` | *n/a*
+
+### Methods
+
+Bound as | Name | API
+---------|------|----
+*classmethod* | `.array_of(cls, rl_draw_call_sequence)` | *n/a*
+
 
 
 [ <a href="#structs">Structs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlRenderBatch">rlRenderBatch structure</h3>
+---
+<h2 id="rlRenderBatch"><code>rlRenderBatch</code> structure</h2>
 
 rlRenderBatch type
 
@@ -642,11 +1362,24 @@ Name | Type (Python) | Type (Ctypes) | Type (C) | Description
 `drawCounter` | `int` | `Int` | `int` | Draw calls counter
 `currentDepth` | `float` | `Float` | `float` | Current depth value for next draw
 
+### Properties
+
+Name | API
+-----|----
+`.byref` | *n/a*
+
+### Methods
+
+Bound as | Name | API
+---------|------|----
+*classmethod* | `.array_of(cls, rl_render_batch_sequence)` | *n/a*
+
 
 
 [ <a href="#structs">Structs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="Matrix">Matrix structure</h3>
+---
+<h2 id="Matrix"><code>Matrix</code> structure</h2>
 
 Matrix, 4x4 components, column major, OpenGL style, right handed
 
@@ -671,17 +1404,67 @@ Name | Type (Python) | Type (Ctypes) | Type (C) | Description
 `m11` | `float` | `Float` | `float` | Matrix fourth row (4 components)
 `m15` | `float` | `Float` | `float` | Matrix fourth row (4 components)
 
+### Properties
+
+Name | API
+-----|----
+`.byref` | *n/a*
+
+### Methods
+
+Bound as | Name | API
+---------|------|----
+*classmethod* | `.array_of(cls, matrix_sequence)` | *n/a*
+*classmethod* | `.Identity()` | <a href="#MatrixIdentity"><code>MatrixIdentity</code></a>
+*classmethod* | `.Translate(cls, x: 'float', y: 'float', z: 'float')` | <a href="#MatrixTranslate"><code>MatrixTranslate</code></a>
+*classmethod* | `.Rotate(cls, axis: 'Vector3', angle: 'float')` | <a href="#MatrixRotate"><code>MatrixRotate</code></a>
+*classmethod* | `.RotateX(cls, angle: 'float')` | <a href="#MatrixRotateX"><code>MatrixRotateX</code></a>
+*classmethod* | `.RotateY(cls, angle: 'float')` | <a href="#MatrixRotateY"><code>MatrixRotateY</code></a>
+*classmethod* | `.RotateZ(cls, angle: 'float')` | <a href="#MatrixRotateZ"><code>MatrixRotateZ</code></a>
+*classmethod* | `.RotateXYZ(cls, angle: 'Vector3')` | <a href="#MatrixRotateXYZ"><code>MatrixRotateXYZ</code></a>
+*classmethod* | `.RotateZYX(cls, angle: 'Vector3')` | <a href="#MatrixRotateZYX"><code>MatrixRotateZYX</code></a>
+*classmethod* | `.Scale(cls, x: 'float', y: 'float', z: 'float')` | <a href="#MatrixScale"><code>MatrixScale</code></a>
+*classmethod* | `.Frustum(cls, left: 'float', right: 'float', bottom: 'float', top: 'float', near: 'float', far: 'float')` | <a href="#MatrixFrustum"><code>MatrixFrustum</code></a>
+*classmethod* | `.Perspective(cls, fovy: 'float', aspect: 'float', near: 'float', far: 'float')` | <a href="#MatrixPerspective"><code>MatrixPerspective</code></a>
+*classmethod* | `.Ortho(cls, left: 'float', right: 'float', bottom: 'float', top: 'float', near: 'float', far: 'float')` | <a href="#MatrixOrtho"><code>MatrixOrtho</code></a>
+*classmethod* | `.LookAt(cls, eye: 'Vector3', target: 'Vector3', up: 'Vector3')` | <a href="#MatrixLookAt"><code>MatrixLookAt</code></a>
+*method* | `.Determinant(self)` | <a href="#MatrixDeterminant"><code>MatrixDeterminant</code></a>
+*method* | `.Trace(self)` | <a href="#MatrixTrace"><code>MatrixTrace</code></a>
+*method* | `.Transpose(self)` | <a href="#MatrixTranspose"><code>MatrixTranspose</code></a>
+*method* | `.Invert(self)` | <a href="#MatrixInvert"><code>MatrixInvert</code></a>
+
 
 
 [ <a href="#structs">Structs</a> | <a href="#toc">ToC</a> ]
 
-<h2 id="enums">Enumerations</h2>
+---
+<h2 id="aliases">Aliases</h2>
 
-<a href="#BlendMode">BlendMode</a> | <a href="#CameraMode">CameraMode</a> | <a href="#CameraProjection">CameraProjection</a> | <a href="#ConfigFlags">ConfigFlags</a> | <a href="#CubemapLayout">CubemapLayout</a> | <a href="#FontType">FontType</a> | <a href="#GamepadAxis">GamepadAxis</a> | <a href="#GamepadButton">GamepadButton</a> | <a href="#Gesture">Gesture</a> | <a href="#KeyboardKey">KeyboardKey</a> | <a href="#MaterialMapIndex">MaterialMapIndex</a> | <a href="#MouseButton">MouseButton</a> | <a href="#MouseCursor">MouseCursor</a> | <a href="#NPatchLayout">NPatchLayout</a> | <a href="#PixelFormat">PixelFormat</a> | <a href="#ShaderAttributeDataType">ShaderAttributeDataType</a> | <a href="#ShaderLocationIndex">ShaderLocationIndex</a> | <a href="#ShaderUniformDataType">ShaderUniformDataType</a> | <a href="#TextureFilter">TextureFilter</a> | <a href="#TextureWrap">TextureWrap</a> | <a href="#TraceLogLevel">TraceLogLevel</a> | <a href="#rlBlendMode">rlBlendMode</a> | <a href="#rlFramebufferAttachTextureType">rlFramebufferAttachTextureType</a> | <a href="#rlFramebufferAttachType">rlFramebufferAttachType</a> | <a href="#rlGlVersion">rlGlVersion</a> | <a href="#rlPixelFormat">rlPixelFormat</a> | <a href="#rlShaderAttributeDataType">rlShaderAttributeDataType</a> | <a href="#rlShaderLocationIndex">rlShaderLocationIndex</a> | <a href="#rlShaderUniformDataType">rlShaderUniformDataType</a> | <a href="#rlTextureFilter">rlTextureFilter</a> | <a href="#rlTraceLogLevel">rlTraceLogLevel</a>
+Alias Name | Type | Description
+-----------|------|------------
+`Quaternion` | `<a href="#Vector4">Vector4</a>` | Quaternion, 4 components (Vector4 alias)
+`Texture2D` | `<a href="#Texture">Texture</a>` | Texture2D, same as Texture
+`TextureCubemap` | `<a href="#Texture">Texture</a>` | TextureCubemap, same as Texture
+`RenderTexture2D` | `<a href="#RenderTexture">RenderTexture</a>` | RenderTexture2D, same as RenderTexture
+`Camera` | `<a href="#Camera3D">Camera3D</a>` | Camera type fallback, defaults to Camera3D
 
 [ <a href="#toc">ToC</a> ]
 
-<h3 id="ConfigFlags">ConfigFlags enum</h3>
+<h2 id="enums">Enumerations</h2>
+
+Item|Item|Item|Item|Item
+--------|--------|--------|--------|--------
+<a href="#BlendMode">BlendMode</a> | <a href="#CameraMode">CameraMode</a> | <a href="#CameraProjection">CameraProjection</a> | <a href="#ConfigFlags">ConfigFlags</a> | <a href="#CubemapLayout">CubemapLayout</a>
+<a href="#FontType">FontType</a> | <a href="#GamepadAxis">GamepadAxis</a> | <a href="#GamepadButton">GamepadButton</a> | <a href="#Gesture">Gesture</a> | <a href="#KeyboardKey">KeyboardKey</a>
+<a href="#MaterialMapIndex">MaterialMapIndex</a> | <a href="#MouseButton">MouseButton</a> | <a href="#MouseCursor">MouseCursor</a> | <a href="#NPatchLayout">NPatchLayout</a> | <a href="#PixelFormat">PixelFormat</a>
+<a href="#ShaderAttributeDataType">ShaderAttributeDataType</a> | <a href="#ShaderLocationIndex">ShaderLocationIndex</a> | <a href="#ShaderUniformDataType">ShaderUniformDataType</a> | <a href="#TextureFilter">TextureFilter</a> | <a href="#TextureWrap">TextureWrap</a>
+<a href="#TraceLogLevel">TraceLogLevel</a> | <a href="#rlBlendMode">rlBlendMode</a> | <a href="#rlFramebufferAttachTextureType">rlFramebufferAttachTextureType</a> | <a href="#rlFramebufferAttachType">rlFramebufferAttachType</a> | <a href="#rlGlVersion">rlGlVersion</a>
+<a href="#rlPixelFormat">rlPixelFormat</a> | <a href="#rlShaderAttributeDataType">rlShaderAttributeDataType</a> | <a href="#rlShaderLocationIndex">rlShaderLocationIndex</a> | <a href="#rlShaderUniformDataType">rlShaderUniformDataType</a> | <a href="#rlTextureFilter">rlTextureFilter</a>
+<a href="#rlTraceLogLevel">rlTraceLogLevel</a>
+
+[ <a href="#toc">ToC</a> ]
+
+<h2 id="ConfigFlags"><code>ConfigFlags</code> enum</h2>
 
 **Members**
 
@@ -705,7 +1488,8 @@ Name | Value | Description
 
 [ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="TraceLogLevel">TraceLogLevel enum</h3>
+---
+<h2 id="TraceLogLevel"><code>TraceLogLevel</code> enum</h2>
 
 **Members**
 
@@ -722,7 +1506,8 @@ Name | Value | Description
 
 [ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="KeyboardKey">KeyboardKey enum</h3>
+---
+<h2 id="KeyboardKey"><code>KeyboardKey</code> enum</h2>
 
 **Members**
 
@@ -841,7 +1626,8 @@ Name | Value | Description
 
 [ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="MouseButton">MouseButton enum</h3>
+---
+<h2 id="MouseButton"><code>MouseButton</code> enum</h2>
 
 **Members**
 
@@ -857,7 +1643,8 @@ Name | Value | Description
 
 [ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="MouseCursor">MouseCursor enum</h3>
+---
+<h2 id="MouseCursor"><code>MouseCursor</code> enum</h2>
 
 **Members**
 
@@ -877,7 +1664,8 @@ Name | Value | Description
 
 [ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GamepadButton">GamepadButton enum</h3>
+---
+<h2 id="GamepadButton"><code>GamepadButton</code> enum</h2>
 
 **Members**
 
@@ -904,7 +1692,8 @@ Name | Value | Description
 
 [ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GamepadAxis">GamepadAxis enum</h3>
+---
+<h2 id="GamepadAxis"><code>GamepadAxis</code> enum</h2>
 
 **Members**
 
@@ -919,7 +1708,8 @@ Name | Value | Description
 
 [ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="MaterialMapIndex">MaterialMapIndex enum</h3>
+---
+<h2 id="MaterialMapIndex"><code>MaterialMapIndex</code> enum</h2>
 
 **Members**
 
@@ -939,7 +1729,8 @@ Name | Value | Description
 
 [ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="ShaderLocationIndex">ShaderLocationIndex enum</h3>
+---
+<h2 id="ShaderLocationIndex"><code>ShaderLocationIndex</code> enum</h2>
 
 **Members**
 
@@ -974,7 +1765,8 @@ Name | Value | Description
 
 [ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="ShaderUniformDataType">ShaderUniformDataType enum</h3>
+---
+<h2 id="ShaderUniformDataType"><code>ShaderUniformDataType</code> enum</h2>
 
 **Members**
 
@@ -992,7 +1784,8 @@ Name | Value | Description
 
 [ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="ShaderAttributeDataType">ShaderAttributeDataType enum</h3>
+---
+<h2 id="ShaderAttributeDataType"><code>ShaderAttributeDataType</code> enum</h2>
 
 **Members**
 
@@ -1005,7 +1798,8 @@ Name | Value | Description
 
 [ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="PixelFormat">PixelFormat enum</h3>
+---
+<h2 id="PixelFormat"><code>PixelFormat</code> enum</h2>
 
 **Members**
 
@@ -1035,7 +1829,8 @@ Name | Value | Description
 
 [ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="TextureFilter">TextureFilter enum</h3>
+---
+<h2 id="TextureFilter"><code>TextureFilter</code> enum</h2>
 
 **Members**
 
@@ -1050,7 +1845,8 @@ Name | Value | Description
 
 [ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="TextureWrap">TextureWrap enum</h3>
+---
+<h2 id="TextureWrap"><code>TextureWrap</code> enum</h2>
 
 **Members**
 
@@ -1063,7 +1859,8 @@ Name | Value | Description
 
 [ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="CubemapLayout">CubemapLayout enum</h3>
+---
+<h2 id="CubemapLayout"><code>CubemapLayout</code> enum</h2>
 
 **Members**
 
@@ -1078,7 +1875,8 @@ Name | Value | Description
 
 [ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="FontType">FontType enum</h3>
+---
+<h2 id="FontType"><code>FontType</code> enum</h2>
 
 **Members**
 
@@ -1090,7 +1888,8 @@ Name | Value | Description
 
 [ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="BlendMode">BlendMode enum</h3>
+---
+<h2 id="BlendMode"><code>BlendMode</code> enum</h2>
 
 **Members**
 
@@ -1106,7 +1905,8 @@ Name | Value | Description
 
 [ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="Gesture">Gesture enum</h3>
+---
+<h2 id="Gesture"><code>Gesture</code> enum</h2>
 
 **Members**
 
@@ -1126,7 +1926,8 @@ Name | Value | Description
 
 [ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="CameraMode">CameraMode enum</h3>
+---
+<h2 id="CameraMode"><code>CameraMode</code> enum</h2>
 
 **Members**
 
@@ -1140,7 +1941,8 @@ Name | Value | Description
 
 [ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="CameraProjection">CameraProjection enum</h3>
+---
+<h2 id="CameraProjection"><code>CameraProjection</code> enum</h2>
 
 **Members**
 
@@ -1151,7 +1953,8 @@ Name | Value | Description
 
 [ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="NPatchLayout">NPatchLayout enum</h3>
+---
+<h2 id="NPatchLayout"><code>NPatchLayout</code> enum</h2>
 
 **Members**
 
@@ -1163,7 +1966,8 @@ Name | Value | Description
 
 [ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlGlVersion">rlGlVersion enum</h3>
+---
+<h2 id="rlGlVersion"><code>rlGlVersion</code> enum</h2>
 
 **Members**
 
@@ -1177,7 +1981,8 @@ Name | Value | Description
 
 [ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlFramebufferAttachType">rlFramebufferAttachType enum</h3>
+---
+<h2 id="rlFramebufferAttachType"><code>rlFramebufferAttachType</code> enum</h2>
 
 **Members**
 
@@ -1196,7 +2001,8 @@ Name | Value | Description
 
 [ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlFramebufferAttachTextureType">rlFramebufferAttachTextureType enum</h3>
+---
+<h2 id="rlFramebufferAttachTextureType"><code>rlFramebufferAttachTextureType</code> enum</h2>
 
 **Members**
 
@@ -1213,7 +2019,8 @@ Name | Value | Description
 
 [ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlTraceLogLevel">rlTraceLogLevel enum</h3>
+---
+<h2 id="rlTraceLogLevel"><code>rlTraceLogLevel</code> enum</h2>
 
 **Members**
 
@@ -1230,7 +2037,8 @@ Name | Value | Description
 
 [ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlPixelFormat">rlPixelFormat enum</h3>
+---
+<h2 id="rlPixelFormat"><code>rlPixelFormat</code> enum</h2>
 
 **Members**
 
@@ -1260,7 +2068,8 @@ Name | Value | Description
 
 [ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlTextureFilter">rlTextureFilter enum</h3>
+---
+<h2 id="rlTextureFilter"><code>rlTextureFilter</code> enum</h2>
 
 **Members**
 
@@ -1275,7 +2084,8 @@ Name | Value | Description
 
 [ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlBlendMode">rlBlendMode enum</h3>
+---
+<h2 id="rlBlendMode"><code>rlBlendMode</code> enum</h2>
 
 **Members**
 
@@ -1291,7 +2101,8 @@ Name | Value | Description
 
 [ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlShaderLocationIndex">rlShaderLocationIndex enum</h3>
+---
+<h2 id="rlShaderLocationIndex"><code>rlShaderLocationIndex</code> enum</h2>
 
 **Members**
 
@@ -1326,7 +2137,8 @@ Name | Value | Description
 
 [ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlShaderUniformDataType">rlShaderUniformDataType enum</h3>
+---
+<h2 id="rlShaderUniformDataType"><code>rlShaderUniformDataType</code> enum</h2>
 
 **Members**
 
@@ -1344,7 +2156,8 @@ Name | Value | Description
 
 [ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlShaderAttributeDataType">rlShaderAttributeDataType enum</h3>
+---
+<h2 id="rlShaderAttributeDataType"><code>rlShaderAttributeDataType</code> enum</h2>
 
 **Members**
 
@@ -1357,15 +2170,276 @@ Name | Value | Description
 
 [ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
 
-<h2 id="funcs">Functions</h2>
+---
+<h2 id="defines">Constants</h2>
 
-<a href="#AttachAudioStreamProcessor">AttachAudioStreamProcessor</a> | <a href="#BeginBlendMode">BeginBlendMode</a> | <a href="#BeginDrawing">BeginDrawing</a> | <a href="#BeginMode2D">BeginMode2D</a> | <a href="#BeginMode3D">BeginMode3D</a> | <a href="#BeginScissorMode">BeginScissorMode</a> | <a href="#BeginShaderMode">BeginShaderMode</a> | <a href="#BeginTextureMode">BeginTextureMode</a> | <a href="#BeginVrStereoMode">BeginVrStereoMode</a> | <a href="#ChangeDirectory">ChangeDirectory</a> | <a href="#CheckCollisionBoxSphere">CheckCollisionBoxSphere</a> | <a href="#CheckCollisionBoxes">CheckCollisionBoxes</a> | <a href="#CheckCollisionCircleRec">CheckCollisionCircleRec</a> | <a href="#CheckCollisionCircles">CheckCollisionCircles</a> | <a href="#CheckCollisionLines">CheckCollisionLines</a> | <a href="#CheckCollisionPointCircle">CheckCollisionPointCircle</a> | <a href="#CheckCollisionPointLine">CheckCollisionPointLine</a> | <a href="#CheckCollisionPointRec">CheckCollisionPointRec</a> | <a href="#CheckCollisionPointTriangle">CheckCollisionPointTriangle</a> | <a href="#CheckCollisionRecs">CheckCollisionRecs</a> | <a href="#CheckCollisionSpheres">CheckCollisionSpheres</a> | <a href="#Clamp">Clamp</a> | <a href="#ClearBackground">ClearBackground</a> | <a href="#ClearWindowState">ClearWindowState</a> | <a href="#CloseAudioDevice">CloseAudioDevice</a> | <a href="#CloseWindow">CloseWindow</a> | <a href="#CodepointToUTF8">CodepointToUTF8</a> | <a href="#ColorAlpha">ColorAlpha</a> | <a href="#ColorAlphaBlend">ColorAlphaBlend</a> | <a href="#ColorFromHSV">ColorFromHSV</a> | <a href="#ColorFromNormalized">ColorFromNormalized</a> | <a href="#ColorNormalize">ColorNormalize</a> | <a href="#ColorToHSV">ColorToHSV</a> | <a href="#ColorToInt">ColorToInt</a> | <a href="#CompressData">CompressData</a> | <a href="#DecodeDataBase64">DecodeDataBase64</a> | <a href="#DecompressData">DecompressData</a> | <a href="#DetachAudioStreamProcessor">DetachAudioStreamProcessor</a> | <a href="#DirectoryExists">DirectoryExists</a> | <a href="#DisableCursor">DisableCursor</a> | <a href="#DisableEventWaiting">DisableEventWaiting</a> | <a href="#DrawBillboard">DrawBillboard</a> | <a href="#DrawBillboardPro">DrawBillboardPro</a> | <a href="#DrawBillboardRec">DrawBillboardRec</a> | <a href="#DrawBoundingBox">DrawBoundingBox</a> | <a href="#DrawCircle">DrawCircle</a> | <a href="#DrawCircle3D">DrawCircle3D</a> | <a href="#DrawCircleGradient">DrawCircleGradient</a> | <a href="#DrawCircleLines">DrawCircleLines</a> | <a href="#DrawCircleSector">DrawCircleSector</a> | <a href="#DrawCircleSectorLines">DrawCircleSectorLines</a> | <a href="#DrawCircleV">DrawCircleV</a> | <a href="#DrawCube">DrawCube</a> | <a href="#DrawCubeTexture">DrawCubeTexture</a> | <a href="#DrawCubeTextureRec">DrawCubeTextureRec</a> | <a href="#DrawCubeV">DrawCubeV</a> | <a href="#DrawCubeWires">DrawCubeWires</a> | <a href="#DrawCubeWiresV">DrawCubeWiresV</a> | <a href="#DrawCylinder">DrawCylinder</a> | <a href="#DrawCylinderEx">DrawCylinderEx</a> | <a href="#DrawCylinderWires">DrawCylinderWires</a> | <a href="#DrawCylinderWiresEx">DrawCylinderWiresEx</a> | <a href="#DrawEllipse">DrawEllipse</a> | <a href="#DrawEllipseLines">DrawEllipseLines</a> | <a href="#DrawFPS">DrawFPS</a> | <a href="#DrawGrid">DrawGrid</a> | <a href="#DrawLine">DrawLine</a> | <a href="#DrawLine3D">DrawLine3D</a> | <a href="#DrawLineBezier">DrawLineBezier</a> | <a href="#DrawLineBezierCubic">DrawLineBezierCubic</a> | <a href="#DrawLineBezierQuad">DrawLineBezierQuad</a> | <a href="#DrawLineEx">DrawLineEx</a> | <a href="#DrawLineStrip">DrawLineStrip</a> | <a href="#DrawLineV">DrawLineV</a> | <a href="#DrawMesh">DrawMesh</a> | <a href="#DrawMeshInstanced">DrawMeshInstanced</a> | <a href="#DrawModel">DrawModel</a> | <a href="#DrawModelEx">DrawModelEx</a> | <a href="#DrawModelWires">DrawModelWires</a> | <a href="#DrawModelWiresEx">DrawModelWiresEx</a> | <a href="#DrawPixel">DrawPixel</a> | <a href="#DrawPixelV">DrawPixelV</a> | <a href="#DrawPlane">DrawPlane</a> | <a href="#DrawPoint3D">DrawPoint3D</a> | <a href="#DrawPoly">DrawPoly</a> | <a href="#DrawPolyLines">DrawPolyLines</a> | <a href="#DrawPolyLinesEx">DrawPolyLinesEx</a> | <a href="#DrawRay">DrawRay</a> | <a href="#DrawRectangle">DrawRectangle</a> | <a href="#DrawRectangleGradientEx">DrawRectangleGradientEx</a> | <a href="#DrawRectangleGradientH">DrawRectangleGradientH</a> | <a href="#DrawRectangleGradientV">DrawRectangleGradientV</a> | <a href="#DrawRectangleLines">DrawRectangleLines</a> | <a href="#DrawRectangleLinesEx">DrawRectangleLinesEx</a> | <a href="#DrawRectanglePro">DrawRectanglePro</a> | <a href="#DrawRectangleRec">DrawRectangleRec</a> | <a href="#DrawRectangleRounded">DrawRectangleRounded</a> | <a href="#DrawRectangleRoundedLines">DrawRectangleRoundedLines</a> | <a href="#DrawRectangleV">DrawRectangleV</a> | <a href="#DrawRing">DrawRing</a> | <a href="#DrawRingLines">DrawRingLines</a> | <a href="#DrawSphere">DrawSphere</a> | <a href="#DrawSphereEx">DrawSphereEx</a> | <a href="#DrawSphereWires">DrawSphereWires</a> | <a href="#DrawText">DrawText</a> | <a href="#DrawTextCodepoint">DrawTextCodepoint</a> | <a href="#DrawTextCodepoints">DrawTextCodepoints</a> | <a href="#DrawTextEx">DrawTextEx</a> | <a href="#DrawTextPro">DrawTextPro</a> | <a href="#DrawTexture">DrawTexture</a> | <a href="#DrawTextureEx">DrawTextureEx</a> | <a href="#DrawTextureNPatch">DrawTextureNPatch</a> | <a href="#DrawTexturePoly">DrawTexturePoly</a> | <a href="#DrawTexturePro">DrawTexturePro</a> | <a href="#DrawTextureQuad">DrawTextureQuad</a> | <a href="#DrawTextureRec">DrawTextureRec</a> | <a href="#DrawTextureTiled">DrawTextureTiled</a> | <a href="#DrawTextureV">DrawTextureV</a> | <a href="#DrawTriangle">DrawTriangle</a> | <a href="#DrawTriangle3D">DrawTriangle3D</a> | <a href="#DrawTriangleFan">DrawTriangleFan</a> | <a href="#DrawTriangleLines">DrawTriangleLines</a> | <a href="#DrawTriangleStrip">DrawTriangleStrip</a> | <a href="#DrawTriangleStrip3D">DrawTriangleStrip3D</a> | <a href="#EnableCursor">EnableCursor</a> | <a href="#EnableEventWaiting">EnableEventWaiting</a> | <a href="#EncodeDataBase64">EncodeDataBase64</a> | <a href="#EndBlendMode">EndBlendMode</a> | <a href="#EndDrawing">EndDrawing</a> | <a href="#EndMode2D">EndMode2D</a> | <a href="#EndMode3D">EndMode3D</a> | <a href="#EndScissorMode">EndScissorMode</a> | <a href="#EndShaderMode">EndShaderMode</a> | <a href="#EndTextureMode">EndTextureMode</a> | <a href="#EndVrStereoMode">EndVrStereoMode</a> | <a href="#ExportDataAsCode">ExportDataAsCode</a> | <a href="#ExportFontAsCode">ExportFontAsCode</a> | <a href="#ExportImage">ExportImage</a> | <a href="#ExportImageAsCode">ExportImageAsCode</a> | <a href="#ExportMesh">ExportMesh</a> | <a href="#ExportWave">ExportWave</a> | <a href="#ExportWaveAsCode">ExportWaveAsCode</a> | <a href="#Fade">Fade</a> | <a href="#FileExists">FileExists</a> | <a href="#FloatEquals">FloatEquals</a> | <a href="#GenImageCellular">GenImageCellular</a> | <a href="#GenImageChecked">GenImageChecked</a> | <a href="#GenImageColor">GenImageColor</a> | <a href="#GenImageFontAtlas">GenImageFontAtlas</a> | <a href="#GenImageGradientH">GenImageGradientH</a> | <a href="#GenImageGradientRadial">GenImageGradientRadial</a> | <a href="#GenImageGradientV">GenImageGradientV</a> | <a href="#GenImageWhiteNoise">GenImageWhiteNoise</a> | <a href="#GenMeshCone">GenMeshCone</a> | <a href="#GenMeshCube">GenMeshCube</a> | <a href="#GenMeshCubicmap">GenMeshCubicmap</a> | <a href="#GenMeshCylinder">GenMeshCylinder</a> | <a href="#GenMeshHeightmap">GenMeshHeightmap</a> | <a href="#GenMeshHemiSphere">GenMeshHemiSphere</a> | <a href="#GenMeshKnot">GenMeshKnot</a> | <a href="#GenMeshPlane">GenMeshPlane</a> | <a href="#GenMeshPoly">GenMeshPoly</a> | <a href="#GenMeshSphere">GenMeshSphere</a> | <a href="#GenMeshTangents">GenMeshTangents</a> | <a href="#GenMeshTorus">GenMeshTorus</a> | <a href="#GenTextureMipmaps">GenTextureMipmaps</a> | <a href="#GetApplicationDirectory">GetApplicationDirectory</a> | <a href="#GetCameraMatrix">GetCameraMatrix</a> | <a href="#GetCameraMatrix2D">GetCameraMatrix2D</a> | <a href="#GetCharPressed">GetCharPressed</a> | <a href="#GetClipboardText">GetClipboardText</a> | <a href="#GetCodepoint">GetCodepoint</a> | <a href="#GetCodepointCount">GetCodepointCount</a> | <a href="#GetCollisionRec">GetCollisionRec</a> | <a href="#GetColor">GetColor</a> | <a href="#GetCurrentMonitor">GetCurrentMonitor</a> | <a href="#GetDirectoryPath">GetDirectoryPath</a> | <a href="#GetFPS">GetFPS</a> | <a href="#GetFileExtension">GetFileExtension</a> | <a href="#GetFileLength">GetFileLength</a> | <a href="#GetFileModTime">GetFileModTime</a> | <a href="#GetFileName">GetFileName</a> | <a href="#GetFileNameWithoutExt">GetFileNameWithoutExt</a> | <a href="#GetFontDefault">GetFontDefault</a> | <a href="#GetFrameTime">GetFrameTime</a> | <a href="#GetGamepadAxisCount">GetGamepadAxisCount</a> | <a href="#GetGamepadAxisMovement">GetGamepadAxisMovement</a> | <a href="#GetGamepadButtonPressed">GetGamepadButtonPressed</a> | <a href="#GetGamepadName">GetGamepadName</a> | <a href="#GetGestureDetected">GetGestureDetected</a> | <a href="#GetGestureDragAngle">GetGestureDragAngle</a> | <a href="#GetGestureDragVector">GetGestureDragVector</a> | <a href="#GetGestureHoldDuration">GetGestureHoldDuration</a> | <a href="#GetGesturePinchAngle">GetGesturePinchAngle</a> | <a href="#GetGesturePinchVector">GetGesturePinchVector</a> | <a href="#GetGlyphAtlasRec">GetGlyphAtlasRec</a> | <a href="#GetGlyphIndex">GetGlyphIndex</a> | <a href="#GetGlyphInfo">GetGlyphInfo</a> | <a href="#GetImageAlphaBorder">GetImageAlphaBorder</a> | <a href="#GetImageColor">GetImageColor</a> | <a href="#GetKeyPressed">GetKeyPressed</a> | <a href="#GetMeshBoundingBox">GetMeshBoundingBox</a> | <a href="#GetModelBoundingBox">GetModelBoundingBox</a> | <a href="#GetMonitorCount">GetMonitorCount</a> | <a href="#GetMonitorHeight">GetMonitorHeight</a> | <a href="#GetMonitorName">GetMonitorName</a> | <a href="#GetMonitorPhysicalHeight">GetMonitorPhysicalHeight</a> | <a href="#GetMonitorPhysicalWidth">GetMonitorPhysicalWidth</a> | <a href="#GetMonitorPosition">GetMonitorPosition</a> | <a href="#GetMonitorRefreshRate">GetMonitorRefreshRate</a> | <a href="#GetMonitorWidth">GetMonitorWidth</a> | <a href="#GetMouseDelta">GetMouseDelta</a> | <a href="#GetMousePosition">GetMousePosition</a> | <a href="#GetMouseRay">GetMouseRay</a> | <a href="#GetMouseWheelMove">GetMouseWheelMove</a> | <a href="#GetMouseWheelMoveV">GetMouseWheelMoveV</a> | <a href="#GetMouseX">GetMouseX</a> | <a href="#GetMouseY">GetMouseY</a> | <a href="#GetMusicTimeLength">GetMusicTimeLength</a> | <a href="#GetMusicTimePlayed">GetMusicTimePlayed</a> | <a href="#GetPixelColor">GetPixelColor</a> | <a href="#GetPixelDataSize">GetPixelDataSize</a> | <a href="#GetPrevDirectoryPath">GetPrevDirectoryPath</a> | <a href="#GetRandomValue">GetRandomValue</a> | <a href="#GetRayCollisionBox">GetRayCollisionBox</a> | <a href="#GetRayCollisionMesh">GetRayCollisionMesh</a> | <a href="#GetRayCollisionQuad">GetRayCollisionQuad</a> | <a href="#GetRayCollisionSphere">GetRayCollisionSphere</a> | <a href="#GetRayCollisionTriangle">GetRayCollisionTriangle</a> | <a href="#GetRenderHeight">GetRenderHeight</a> | <a href="#GetRenderWidth">GetRenderWidth</a> | <a href="#GetScreenHeight">GetScreenHeight</a> | <a href="#GetScreenToWorld2D">GetScreenToWorld2D</a> | <a href="#GetScreenWidth">GetScreenWidth</a> | <a href="#GetShaderLocation">GetShaderLocation</a> | <a href="#GetShaderLocationAttrib">GetShaderLocationAttrib</a> | <a href="#GetSoundsPlaying">GetSoundsPlaying</a> | <a href="#GetTime">GetTime</a> | <a href="#GetTouchPointCount">GetTouchPointCount</a> | <a href="#GetTouchPointId">GetTouchPointId</a> | <a href="#GetTouchPosition">GetTouchPosition</a> | <a href="#GetTouchX">GetTouchX</a> | <a href="#GetTouchY">GetTouchY</a> | <a href="#GetWindowHandle">GetWindowHandle</a> | <a href="#GetWindowPosition">GetWindowPosition</a> | <a href="#GetWindowScaleDPI">GetWindowScaleDPI</a> | <a href="#GetWorkingDirectory">GetWorkingDirectory</a> | <a href="#GetWorldToScreen">GetWorldToScreen</a> | <a href="#GetWorldToScreen2D">GetWorldToScreen2D</a> | <a href="#GetWorldToScreenEx">GetWorldToScreenEx</a> | <a href="#HideCursor">HideCursor</a> | <a href="#ImageAlphaClear">ImageAlphaClear</a> | <a href="#ImageAlphaCrop">ImageAlphaCrop</a> | <a href="#ImageAlphaMask">ImageAlphaMask</a> | <a href="#ImageAlphaPremultiply">ImageAlphaPremultiply</a> | <a href="#ImageClearBackground">ImageClearBackground</a> | <a href="#ImageColorBrightness">ImageColorBrightness</a> | <a href="#ImageColorContrast">ImageColorContrast</a> | <a href="#ImageColorGrayscale">ImageColorGrayscale</a> | <a href="#ImageColorInvert">ImageColorInvert</a> | <a href="#ImageColorReplace">ImageColorReplace</a> | <a href="#ImageColorTint">ImageColorTint</a> | <a href="#ImageCopy">ImageCopy</a> | <a href="#ImageCrop">ImageCrop</a> | <a href="#ImageDither">ImageDither</a> | <a href="#ImageDraw">ImageDraw</a> | <a href="#ImageDrawCircle">ImageDrawCircle</a> | <a href="#ImageDrawCircleV">ImageDrawCircleV</a> | <a href="#ImageDrawLine">ImageDrawLine</a> | <a href="#ImageDrawLineV">ImageDrawLineV</a> | <a href="#ImageDrawPixel">ImageDrawPixel</a> | <a href="#ImageDrawPixelV">ImageDrawPixelV</a> | <a href="#ImageDrawRectangle">ImageDrawRectangle</a> | <a href="#ImageDrawRectangleLines">ImageDrawRectangleLines</a> | <a href="#ImageDrawRectangleRec">ImageDrawRectangleRec</a> | <a href="#ImageDrawRectangleV">ImageDrawRectangleV</a> | <a href="#ImageDrawText">ImageDrawText</a> | <a href="#ImageDrawTextEx">ImageDrawTextEx</a> | <a href="#ImageFlipHorizontal">ImageFlipHorizontal</a> | <a href="#ImageFlipVertical">ImageFlipVertical</a> | <a href="#ImageFormat">ImageFormat</a> | <a href="#ImageFromImage">ImageFromImage</a> | <a href="#ImageMipmaps">ImageMipmaps</a> | <a href="#ImageResize">ImageResize</a> | <a href="#ImageResizeCanvas">ImageResizeCanvas</a> | <a href="#ImageResizeNN">ImageResizeNN</a> | <a href="#ImageRotateCCW">ImageRotateCCW</a> | <a href="#ImageRotateCW">ImageRotateCW</a> | <a href="#ImageText">ImageText</a> | <a href="#ImageTextEx">ImageTextEx</a> | <a href="#ImageToPOT">ImageToPOT</a> | <a href="#InitAudioDevice">InitAudioDevice</a> | <a href="#InitWindow">InitWindow</a> | <a href="#IsAudioDeviceReady">IsAudioDeviceReady</a> | <a href="#IsAudioStreamPlaying">IsAudioStreamPlaying</a> | <a href="#IsAudioStreamProcessed">IsAudioStreamProcessed</a> | <a href="#IsCursorHidden">IsCursorHidden</a> | <a href="#IsCursorOnScreen">IsCursorOnScreen</a> | <a href="#IsFileDropped">IsFileDropped</a> | <a href="#IsFileExtension">IsFileExtension</a> | <a href="#IsGamepadAvailable">IsGamepadAvailable</a> | <a href="#IsGamepadButtonDown">IsGamepadButtonDown</a> | <a href="#IsGamepadButtonPressed">IsGamepadButtonPressed</a> | <a href="#IsGamepadButtonReleased">IsGamepadButtonReleased</a> | <a href="#IsGamepadButtonUp">IsGamepadButtonUp</a> | <a href="#IsGestureDetected">IsGestureDetected</a> | <a href="#IsKeyDown">IsKeyDown</a> | <a href="#IsKeyPressed">IsKeyPressed</a> | <a href="#IsKeyReleased">IsKeyReleased</a> | <a href="#IsKeyUp">IsKeyUp</a> | <a href="#IsModelAnimationValid">IsModelAnimationValid</a> | <a href="#IsMouseButtonDown">IsMouseButtonDown</a> | <a href="#IsMouseButtonPressed">IsMouseButtonPressed</a> | <a href="#IsMouseButtonReleased">IsMouseButtonReleased</a> | <a href="#IsMouseButtonUp">IsMouseButtonUp</a> | <a href="#IsMusicStreamPlaying">IsMusicStreamPlaying</a> | <a href="#IsPathFile">IsPathFile</a> | <a href="#IsSoundPlaying">IsSoundPlaying</a> | <a href="#IsWindowFocused">IsWindowFocused</a> | <a href="#IsWindowFullscreen">IsWindowFullscreen</a> | <a href="#IsWindowHidden">IsWindowHidden</a> | <a href="#IsWindowMaximized">IsWindowMaximized</a> | <a href="#IsWindowMinimized">IsWindowMinimized</a> | <a href="#IsWindowReady">IsWindowReady</a> | <a href="#IsWindowResized">IsWindowResized</a> | <a href="#IsWindowState">IsWindowState</a> | <a href="#Lerp">Lerp</a> | <a href="#LoadAudioStream">LoadAudioStream</a> | <a href="#LoadCodepoints">LoadCodepoints</a> | <a href="#LoadDirectoryFiles">LoadDirectoryFiles</a> | <a href="#LoadDirectoryFilesEx">LoadDirectoryFilesEx</a> | <a href="#LoadDroppedFiles">LoadDroppedFiles</a> | <a href="#LoadFileData">LoadFileData</a> | <a href="#LoadFileText">LoadFileText</a> | <a href="#LoadFont">LoadFont</a> | <a href="#LoadFontData">LoadFontData</a> | <a href="#LoadFontEx">LoadFontEx</a> | <a href="#LoadFontFromImage">LoadFontFromImage</a> | <a href="#LoadFontFromMemory">LoadFontFromMemory</a> | <a href="#LoadImage">LoadImage</a> | <a href="#LoadImageAnim">LoadImageAnim</a> | <a href="#LoadImageColors">LoadImageColors</a> | <a href="#LoadImageFromMemory">LoadImageFromMemory</a> | <a href="#LoadImageFromScreen">LoadImageFromScreen</a> | <a href="#LoadImageFromTexture">LoadImageFromTexture</a> | <a href="#LoadImagePalette">LoadImagePalette</a> | <a href="#LoadImageRaw">LoadImageRaw</a> | <a href="#LoadMaterialDefault">LoadMaterialDefault</a> | <a href="#LoadMaterials">LoadMaterials</a> | <a href="#LoadModel">LoadModel</a> | <a href="#LoadModelAnimations">LoadModelAnimations</a> | <a href="#LoadModelFromMesh">LoadModelFromMesh</a> | <a href="#LoadMusicStream">LoadMusicStream</a> | <a href="#LoadMusicStreamFromMemory">LoadMusicStreamFromMemory</a> | <a href="#LoadRenderTexture">LoadRenderTexture</a> | <a href="#LoadShader">LoadShader</a> | <a href="#LoadShaderFromMemory">LoadShaderFromMemory</a> | <a href="#LoadSound">LoadSound</a> | <a href="#LoadSoundFromWave">LoadSoundFromWave</a> | <a href="#LoadTexture">LoadTexture</a> | <a href="#LoadTextureCubemap">LoadTextureCubemap</a> | <a href="#LoadTextureFromImage">LoadTextureFromImage</a> | <a href="#LoadVrStereoConfig">LoadVrStereoConfig</a> | <a href="#LoadWave">LoadWave</a> | <a href="#LoadWaveFromMemory">LoadWaveFromMemory</a> | <a href="#LoadWaveSamples">LoadWaveSamples</a> | <a href="#MatrixAdd">MatrixAdd</a> | <a href="#MatrixDeterminant">MatrixDeterminant</a> | <a href="#MatrixFrustum">MatrixFrustum</a> | <a href="#MatrixIdentity">MatrixIdentity</a> | <a href="#MatrixInvert">MatrixInvert</a> | <a href="#MatrixLookAt">MatrixLookAt</a> | <a href="#MatrixMultiply">MatrixMultiply</a> | <a href="#MatrixOrtho">MatrixOrtho</a> | <a href="#MatrixPerspective">MatrixPerspective</a> | <a href="#MatrixRotate">MatrixRotate</a> | <a href="#MatrixRotateX">MatrixRotateX</a> | <a href="#MatrixRotateXYZ">MatrixRotateXYZ</a> | <a href="#MatrixRotateY">MatrixRotateY</a> | <a href="#MatrixRotateZ">MatrixRotateZ</a> | <a href="#MatrixRotateZYX">MatrixRotateZYX</a> | <a href="#MatrixScale">MatrixScale</a> | <a href="#MatrixSubtract">MatrixSubtract</a> | <a href="#MatrixToFloatV">MatrixToFloatV</a> | <a href="#MatrixTrace">MatrixTrace</a> | <a href="#MatrixTranslate">MatrixTranslate</a> | <a href="#MatrixTranspose">MatrixTranspose</a> | <a href="#MaximizeWindow">MaximizeWindow</a> | <a href="#MeasureText">MeasureText</a> | <a href="#MeasureTextEx">MeasureTextEx</a> | <a href="#MemAlloc">MemAlloc</a> | <a href="#MemFree">MemFree</a> | <a href="#MemRealloc">MemRealloc</a> | <a href="#MinimizeWindow">MinimizeWindow</a> | <a href="#Normalize">Normalize</a> | <a href="#OpenURL">OpenURL</a> | <a href="#PauseAudioStream">PauseAudioStream</a> | <a href="#PauseMusicStream">PauseMusicStream</a> | <a href="#PauseSound">PauseSound</a> | <a href="#PlayAudioStream">PlayAudioStream</a> | <a href="#PlayMusicStream">PlayMusicStream</a> | <a href="#PlaySound">PlaySound</a> | <a href="#PlaySoundMulti">PlaySoundMulti</a> | <a href="#PollInputEvents">PollInputEvents</a> | <a href="#QuaternionAdd">QuaternionAdd</a> | <a href="#QuaternionAddValue">QuaternionAddValue</a> | <a href="#QuaternionDivide">QuaternionDivide</a> | <a href="#QuaternionEquals">QuaternionEquals</a> | <a href="#QuaternionFromAxisAngle">QuaternionFromAxisAngle</a> | <a href="#QuaternionFromEuler">QuaternionFromEuler</a> | <a href="#QuaternionFromMatrix">QuaternionFromMatrix</a> | <a href="#QuaternionFromVector3ToVector3">QuaternionFromVector3ToVector3</a> | <a href="#QuaternionIdentity">QuaternionIdentity</a> | <a href="#QuaternionInvert">QuaternionInvert</a> | <a href="#QuaternionLength">QuaternionLength</a> | <a href="#QuaternionMultiply">QuaternionMultiply</a> | <a href="#QuaternionNlerp">QuaternionNlerp</a> | <a href="#QuaternionNormalize">QuaternionNormalize</a> | <a href="#QuaternionScale">QuaternionScale</a> | <a href="#QuaternionSlerp">QuaternionSlerp</a> | <a href="#QuaternionSubtract">QuaternionSubtract</a> | <a href="#QuaternionSubtractValue">QuaternionSubtractValue</a> | <a href="#QuaternionToAxisAngle">QuaternionToAxisAngle</a> | <a href="#QuaternionToEuler">QuaternionToEuler</a> | <a href="#QuaternionToMatrix">QuaternionToMatrix</a> | <a href="#QuaternionTransform">QuaternionTransform</a> | <a href="#Remap">Remap</a> | <a href="#RestoreWindow">RestoreWindow</a> | <a href="#ResumeAudioStream">ResumeAudioStream</a> | <a href="#ResumeMusicStream">ResumeMusicStream</a> | <a href="#ResumeSound">ResumeSound</a> | <a href="#SaveFileData">SaveFileData</a> | <a href="#SaveFileText">SaveFileText</a> | <a href="#SeekMusicStream">SeekMusicStream</a> | <a href="#SetAudioStreamBufferSizeDefault">SetAudioStreamBufferSizeDefault</a> | <a href="#SetAudioStreamCallback">SetAudioStreamCallback</a> | <a href="#SetAudioStreamPan">SetAudioStreamPan</a> | <a href="#SetAudioStreamPitch">SetAudioStreamPitch</a> | <a href="#SetAudioStreamVolume">SetAudioStreamVolume</a> | <a href="#SetCameraAltControl">SetCameraAltControl</a> | <a href="#SetCameraMode">SetCameraMode</a> | <a href="#SetCameraMoveControls">SetCameraMoveControls</a> | <a href="#SetCameraPanControl">SetCameraPanControl</a> | <a href="#SetCameraSmoothZoomControl">SetCameraSmoothZoomControl</a> | <a href="#SetClipboardText">SetClipboardText</a> | <a href="#SetConfigFlags">SetConfigFlags</a> | <a href="#SetExitKey">SetExitKey</a> | <a href="#SetGamepadMappings">SetGamepadMappings</a> | <a href="#SetGesturesEnabled">SetGesturesEnabled</a> | <a href="#SetLoadFileDataCallback">SetLoadFileDataCallback</a> | <a href="#SetLoadFileTextCallback">SetLoadFileTextCallback</a> | <a href="#SetMasterVolume">SetMasterVolume</a> | <a href="#SetMaterialTexture">SetMaterialTexture</a> | <a href="#SetModelMeshMaterial">SetModelMeshMaterial</a> | <a href="#SetMouseCursor">SetMouseCursor</a> | <a href="#SetMouseOffset">SetMouseOffset</a> | <a href="#SetMousePosition">SetMousePosition</a> | <a href="#SetMouseScale">SetMouseScale</a> | <a href="#SetMusicPan">SetMusicPan</a> | <a href="#SetMusicPitch">SetMusicPitch</a> | <a href="#SetMusicVolume">SetMusicVolume</a> | <a href="#SetPixelColor">SetPixelColor</a> | <a href="#SetRandomSeed">SetRandomSeed</a> | <a href="#SetSaveFileDataCallback">SetSaveFileDataCallback</a> | <a href="#SetSaveFileTextCallback">SetSaveFileTextCallback</a> | <a href="#SetShaderValue">SetShaderValue</a> | <a href="#SetShaderValueMatrix">SetShaderValueMatrix</a> | <a href="#SetShaderValueTexture">SetShaderValueTexture</a> | <a href="#SetShaderValueV">SetShaderValueV</a> | <a href="#SetShapesTexture">SetShapesTexture</a> | <a href="#SetSoundPan">SetSoundPan</a> | <a href="#SetSoundPitch">SetSoundPitch</a> | <a href="#SetSoundVolume">SetSoundVolume</a> | <a href="#SetTargetFPS">SetTargetFPS</a> | <a href="#SetTextureFilter">SetTextureFilter</a> | <a href="#SetTextureWrap">SetTextureWrap</a> | <a href="#SetTraceLogCallback">SetTraceLogCallback</a> | <a href="#SetTraceLogLevel">SetTraceLogLevel</a> | <a href="#SetWindowIcon">SetWindowIcon</a> | <a href="#SetWindowMinSize">SetWindowMinSize</a> | <a href="#SetWindowMonitor">SetWindowMonitor</a> | <a href="#SetWindowOpacity">SetWindowOpacity</a> | <a href="#SetWindowPosition">SetWindowPosition</a> | <a href="#SetWindowSize">SetWindowSize</a> | <a href="#SetWindowState">SetWindowState</a> | <a href="#SetWindowTitle">SetWindowTitle</a> | <a href="#ShowCursor">ShowCursor</a> | <a href="#StopAudioStream">StopAudioStream</a> | <a href="#StopMusicStream">StopMusicStream</a> | <a href="#StopSound">StopSound</a> | <a href="#StopSoundMulti">StopSoundMulti</a> | <a href="#SwapScreenBuffer">SwapScreenBuffer</a> | <a href="#TakeScreenshot">TakeScreenshot</a> | <a href="#TextAppend">TextAppend</a> | <a href="#TextCodepointsToUTF8">TextCodepointsToUTF8</a> | <a href="#TextCopy">TextCopy</a> | <a href="#TextFindIndex">TextFindIndex</a> | <a href="#TextFormat">TextFormat</a> | <a href="#TextInsert">TextInsert</a> | <a href="#TextIsEqual">TextIsEqual</a> | <a href="#TextJoin">TextJoin</a> | <a href="#TextLength">TextLength</a> | <a href="#TextReplace">TextReplace</a> | <a href="#TextSplit">TextSplit</a> | <a href="#TextSubtext">TextSubtext</a> | <a href="#TextToInteger">TextToInteger</a> | <a href="#TextToLower">TextToLower</a> | <a href="#TextToPascal">TextToPascal</a> | <a href="#TextToUpper">TextToUpper</a> | <a href="#ToggleFullscreen">ToggleFullscreen</a> | <a href="#TraceLog">TraceLog</a> | <a href="#UnloadAudioStream">UnloadAudioStream</a> | <a href="#UnloadCodepoints">UnloadCodepoints</a> | <a href="#UnloadDirectoryFiles">UnloadDirectoryFiles</a> | <a href="#UnloadDroppedFiles">UnloadDroppedFiles</a> | <a href="#UnloadFileData">UnloadFileData</a> | <a href="#UnloadFileText">UnloadFileText</a> | <a href="#UnloadFont">UnloadFont</a> | <a href="#UnloadFontData">UnloadFontData</a> | <a href="#UnloadImage">UnloadImage</a> | <a href="#UnloadImageColors">UnloadImageColors</a> | <a href="#UnloadImagePalette">UnloadImagePalette</a> | <a href="#UnloadMaterial">UnloadMaterial</a> | <a href="#UnloadMesh">UnloadMesh</a> | <a href="#UnloadModel">UnloadModel</a> | <a href="#UnloadModelAnimation">UnloadModelAnimation</a> | <a href="#UnloadModelAnimations">UnloadModelAnimations</a> | <a href="#UnloadModelKeepMeshes">UnloadModelKeepMeshes</a> | <a href="#UnloadMusicStream">UnloadMusicStream</a> | <a href="#UnloadRenderTexture">UnloadRenderTexture</a> | <a href="#UnloadShader">UnloadShader</a> | <a href="#UnloadSound">UnloadSound</a> | <a href="#UnloadTexture">UnloadTexture</a> | <a href="#UnloadVrStereoConfig">UnloadVrStereoConfig</a> | <a href="#UnloadWave">UnloadWave</a> | <a href="#UnloadWaveSamples">UnloadWaveSamples</a> | <a href="#UpdateAudioStream">UpdateAudioStream</a> | <a href="#UpdateCamera">UpdateCamera</a> | <a href="#UpdateMeshBuffer">UpdateMeshBuffer</a> | <a href="#UpdateModelAnimation">UpdateModelAnimation</a> | <a href="#UpdateMusicStream">UpdateMusicStream</a> | <a href="#UpdateSound">UpdateSound</a> | <a href="#UpdateTexture">UpdateTexture</a> | <a href="#UpdateTextureRec">UpdateTextureRec</a> | <a href="#UploadMesh">UploadMesh</a> | <a href="#Vector2Add">Vector2Add</a> | <a href="#Vector2AddValue">Vector2AddValue</a> | <a href="#Vector2Angle">Vector2Angle</a> | <a href="#Vector2Clamp">Vector2Clamp</a> | <a href="#Vector2ClampValue">Vector2ClampValue</a> | <a href="#Vector2Distance">Vector2Distance</a> | <a href="#Vector2DistanceSqr">Vector2DistanceSqr</a> | <a href="#Vector2Divide">Vector2Divide</a> | <a href="#Vector2DotProduct">Vector2DotProduct</a> | <a href="#Vector2Equals">Vector2Equals</a> | <a href="#Vector2Invert">Vector2Invert</a> | <a href="#Vector2Length">Vector2Length</a> | <a href="#Vector2LengthSqr">Vector2LengthSqr</a> | <a href="#Vector2Lerp">Vector2Lerp</a> | <a href="#Vector2MoveTowards">Vector2MoveTowards</a> | <a href="#Vector2Multiply">Vector2Multiply</a> | <a href="#Vector2Negate">Vector2Negate</a> | <a href="#Vector2Normalize">Vector2Normalize</a> | <a href="#Vector2One">Vector2One</a> | <a href="#Vector2Reflect">Vector2Reflect</a> | <a href="#Vector2Rotate">Vector2Rotate</a> | <a href="#Vector2Scale">Vector2Scale</a> | <a href="#Vector2Subtract">Vector2Subtract</a> | <a href="#Vector2SubtractValue">Vector2SubtractValue</a> | <a href="#Vector2Transform">Vector2Transform</a> | <a href="#Vector2Zero">Vector2Zero</a> | <a href="#Vector3Add">Vector3Add</a> | <a href="#Vector3AddValue">Vector3AddValue</a> | <a href="#Vector3Angle">Vector3Angle</a> | <a href="#Vector3Barycenter">Vector3Barycenter</a> | <a href="#Vector3Clamp">Vector3Clamp</a> | <a href="#Vector3ClampValue">Vector3ClampValue</a> | <a href="#Vector3CrossProduct">Vector3CrossProduct</a> | <a href="#Vector3Distance">Vector3Distance</a> | <a href="#Vector3DistanceSqr">Vector3DistanceSqr</a> | <a href="#Vector3Divide">Vector3Divide</a> | <a href="#Vector3DotProduct">Vector3DotProduct</a> | <a href="#Vector3Equals">Vector3Equals</a> | <a href="#Vector3Invert">Vector3Invert</a> | <a href="#Vector3Length">Vector3Length</a> | <a href="#Vector3LengthSqr">Vector3LengthSqr</a> | <a href="#Vector3Lerp">Vector3Lerp</a> | <a href="#Vector3Max">Vector3Max</a> | <a href="#Vector3Min">Vector3Min</a> | <a href="#Vector3Multiply">Vector3Multiply</a> | <a href="#Vector3Negate">Vector3Negate</a> | <a href="#Vector3Normalize">Vector3Normalize</a> | <a href="#Vector3One">Vector3One</a> | <a href="#Vector3OrthoNormalize">Vector3OrthoNormalize</a> | <a href="#Vector3Perpendicular">Vector3Perpendicular</a> | <a href="#Vector3Reflect">Vector3Reflect</a> | <a href="#Vector3Refract">Vector3Refract</a> | <a href="#Vector3RotateByAxisAngle">Vector3RotateByAxisAngle</a> | <a href="#Vector3RotateByQuaternion">Vector3RotateByQuaternion</a> | <a href="#Vector3Scale">Vector3Scale</a> | <a href="#Vector3Subtract">Vector3Subtract</a> | <a href="#Vector3SubtractValue">Vector3SubtractValue</a> | <a href="#Vector3ToFloatV">Vector3ToFloatV</a> | <a href="#Vector3Transform">Vector3Transform</a> | <a href="#Vector3Unproject">Vector3Unproject</a> | <a href="#Vector3Zero">Vector3Zero</a> | <a href="#WaitTime">WaitTime</a> | <a href="#WaveCopy">WaveCopy</a> | <a href="#WaveCrop">WaveCrop</a> | <a href="#WaveFormat">WaveFormat</a> | <a href="#WindowShouldClose">WindowShouldClose</a> | <a href="#Wrap">Wrap</a> | <a href="#rlActiveDrawBuffers">rlActiveDrawBuffers</a> | <a href="#rlActiveTextureSlot">rlActiveTextureSlot</a> | <a href="#rlBegin">rlBegin</a> | <a href="#rlBindImageTexture">rlBindImageTexture</a> | <a href="#rlBindShaderBuffer">rlBindShaderBuffer</a> | <a href="#rlCheckErrors">rlCheckErrors</a> | <a href="#rlCheckRenderBatchLimit">rlCheckRenderBatchLimit</a> | <a href="#rlClearColor">rlClearColor</a> | <a href="#rlClearScreenBuffers">rlClearScreenBuffers</a> | <a href="#rlColor3f">rlColor3f</a> | <a href="#rlColor4f">rlColor4f</a> | <a href="#rlColor4ub">rlColor4ub</a> | <a href="#rlCompileShader">rlCompileShader</a> | <a href="#rlComputeShaderDispatch">rlComputeShaderDispatch</a> | <a href="#rlCopyBuffersElements">rlCopyBuffersElements</a> | <a href="#rlDisableBackfaceCulling">rlDisableBackfaceCulling</a> | <a href="#rlDisableColorBlend">rlDisableColorBlend</a> | <a href="#rlDisableDepthMask">rlDisableDepthMask</a> | <a href="#rlDisableDepthTest">rlDisableDepthTest</a> | <a href="#rlDisableFramebuffer">rlDisableFramebuffer</a> | <a href="#rlDisableScissorTest">rlDisableScissorTest</a> | <a href="#rlDisableShader">rlDisableShader</a> | <a href="#rlDisableSmoothLines">rlDisableSmoothLines</a> | <a href="#rlDisableStereoRender">rlDisableStereoRender</a> | <a href="#rlDisableTexture">rlDisableTexture</a> | <a href="#rlDisableTextureCubemap">rlDisableTextureCubemap</a> | <a href="#rlDisableVertexArray">rlDisableVertexArray</a> | <a href="#rlDisableVertexAttribute">rlDisableVertexAttribute</a> | <a href="#rlDisableVertexBuffer">rlDisableVertexBuffer</a> | <a href="#rlDisableVertexBufferElement">rlDisableVertexBufferElement</a> | <a href="#rlDisableWireMode">rlDisableWireMode</a> | <a href="#rlDrawRenderBatch">rlDrawRenderBatch</a> | <a href="#rlDrawRenderBatchActive">rlDrawRenderBatchActive</a> | <a href="#rlDrawVertexArray">rlDrawVertexArray</a> | <a href="#rlDrawVertexArrayElements">rlDrawVertexArrayElements</a> | <a href="#rlDrawVertexArrayElementsInstanced">rlDrawVertexArrayElementsInstanced</a> | <a href="#rlDrawVertexArrayInstanced">rlDrawVertexArrayInstanced</a> | <a href="#rlEnableBackfaceCulling">rlEnableBackfaceCulling</a> | <a href="#rlEnableColorBlend">rlEnableColorBlend</a> | <a href="#rlEnableDepthMask">rlEnableDepthMask</a> | <a href="#rlEnableDepthTest">rlEnableDepthTest</a> | <a href="#rlEnableFramebuffer">rlEnableFramebuffer</a> | <a href="#rlEnableScissorTest">rlEnableScissorTest</a> | <a href="#rlEnableShader">rlEnableShader</a> | <a href="#rlEnableSmoothLines">rlEnableSmoothLines</a> | <a href="#rlEnableStereoRender">rlEnableStereoRender</a> | <a href="#rlEnableTexture">rlEnableTexture</a> | <a href="#rlEnableTextureCubemap">rlEnableTextureCubemap</a> | <a href="#rlEnableVertexArray">rlEnableVertexArray</a> | <a href="#rlEnableVertexAttribute">rlEnableVertexAttribute</a> | <a href="#rlEnableVertexBuffer">rlEnableVertexBuffer</a> | <a href="#rlEnableVertexBufferElement">rlEnableVertexBufferElement</a> | <a href="#rlEnableWireMode">rlEnableWireMode</a> | <a href="#rlEnd">rlEnd</a> | <a href="#rlFramebufferAttach">rlFramebufferAttach</a> | <a href="#rlFramebufferComplete">rlFramebufferComplete</a> | <a href="#rlFrustum">rlFrustum</a> | <a href="#rlGenTextureMipmaps">rlGenTextureMipmaps</a> | <a href="#rlGetFramebufferHeight">rlGetFramebufferHeight</a> | <a href="#rlGetFramebufferWidth">rlGetFramebufferWidth</a> | <a href="#rlGetGlTextureFormats">rlGetGlTextureFormats</a> | <a href="#rlGetLineWidth">rlGetLineWidth</a> | <a href="#rlGetLocationAttrib">rlGetLocationAttrib</a> | <a href="#rlGetLocationUniform">rlGetLocationUniform</a> | <a href="#rlGetMatrixModelview">rlGetMatrixModelview</a> | <a href="#rlGetMatrixProjection">rlGetMatrixProjection</a> | <a href="#rlGetMatrixProjectionStereo">rlGetMatrixProjectionStereo</a> | <a href="#rlGetMatrixTransform">rlGetMatrixTransform</a> | <a href="#rlGetMatrixViewOffsetStereo">rlGetMatrixViewOffsetStereo</a> | <a href="#rlGetPixelFormatName">rlGetPixelFormatName</a> | <a href="#rlGetShaderBufferSize">rlGetShaderBufferSize</a> | <a href="#rlGetShaderIdDefault">rlGetShaderIdDefault</a> | <a href="#rlGetShaderLocsDefault">rlGetShaderLocsDefault</a> | <a href="#rlGetTextureIdDefault">rlGetTextureIdDefault</a> | <a href="#rlGetVersion">rlGetVersion</a> | <a href="#rlIsStereoRenderEnabled">rlIsStereoRenderEnabled</a> | <a href="#rlLoadComputeShaderProgram">rlLoadComputeShaderProgram</a> | <a href="#rlLoadDrawCube">rlLoadDrawCube</a> | <a href="#rlLoadDrawQuad">rlLoadDrawQuad</a> | <a href="#rlLoadExtensions">rlLoadExtensions</a> | <a href="#rlLoadFramebuffer">rlLoadFramebuffer</a> | <a href="#rlLoadIdentity">rlLoadIdentity</a> | <a href="#rlLoadRenderBatch">rlLoadRenderBatch</a> | <a href="#rlLoadShaderBuffer">rlLoadShaderBuffer</a> | <a href="#rlLoadShaderCode">rlLoadShaderCode</a> | <a href="#rlLoadShaderProgram">rlLoadShaderProgram</a> | <a href="#rlLoadTexture">rlLoadTexture</a> | <a href="#rlLoadTextureCubemap">rlLoadTextureCubemap</a> | <a href="#rlLoadTextureDepth">rlLoadTextureDepth</a> | <a href="#rlLoadVertexArray">rlLoadVertexArray</a> | <a href="#rlLoadVertexBuffer">rlLoadVertexBuffer</a> | <a href="#rlLoadVertexBufferElement">rlLoadVertexBufferElement</a> | <a href="#rlMatrixMode">rlMatrixMode</a> | <a href="#rlMultMatrixf">rlMultMatrixf</a> | <a href="#rlNormal3f">rlNormal3f</a> | <a href="#rlOrtho">rlOrtho</a> | <a href="#rlPopMatrix">rlPopMatrix</a> | <a href="#rlPushMatrix">rlPushMatrix</a> | <a href="#rlReadScreenPixels">rlReadScreenPixels</a> | <a href="#rlReadShaderBufferElements">rlReadShaderBufferElements</a> | <a href="#rlReadTexturePixels">rlReadTexturePixels</a> | <a href="#rlRotatef">rlRotatef</a> | <a href="#rlScalef">rlScalef</a> | <a href="#rlScissor">rlScissor</a> | <a href="#rlSetBlendFactors">rlSetBlendFactors</a> | <a href="#rlSetBlendMode">rlSetBlendMode</a> | <a href="#rlSetFramebufferHeight">rlSetFramebufferHeight</a> | <a href="#rlSetFramebufferWidth">rlSetFramebufferWidth</a> | <a href="#rlSetLineWidth">rlSetLineWidth</a> | <a href="#rlSetMatrixModelview">rlSetMatrixModelview</a> | <a href="#rlSetMatrixProjection">rlSetMatrixProjection</a> | <a href="#rlSetMatrixProjectionStereo">rlSetMatrixProjectionStereo</a> | <a href="#rlSetMatrixViewOffsetStereo">rlSetMatrixViewOffsetStereo</a> | <a href="#rlSetRenderBatchActive">rlSetRenderBatchActive</a> | <a href="#rlSetShader">rlSetShader</a> | <a href="#rlSetTexture">rlSetTexture</a> | <a href="#rlSetUniform">rlSetUniform</a> | <a href="#rlSetUniformMatrix">rlSetUniformMatrix</a> | <a href="#rlSetUniformSampler">rlSetUniformSampler</a> | <a href="#rlSetVertexAttribute">rlSetVertexAttribute</a> | <a href="#rlSetVertexAttributeDefault">rlSetVertexAttributeDefault</a> | <a href="#rlSetVertexAttributeDivisor">rlSetVertexAttributeDivisor</a> | <a href="#rlTexCoord2f">rlTexCoord2f</a> | <a href="#rlTextureParameters">rlTextureParameters</a> | <a href="#rlTranslatef">rlTranslatef</a> | <a href="#rlUnloadFramebuffer">rlUnloadFramebuffer</a> | <a href="#rlUnloadRenderBatch">rlUnloadRenderBatch</a> | <a href="#rlUnloadShaderBuffer">rlUnloadShaderBuffer</a> | <a href="#rlUnloadShaderProgram">rlUnloadShaderProgram</a> | <a href="#rlUnloadTexture">rlUnloadTexture</a> | <a href="#rlUnloadVertexArray">rlUnloadVertexArray</a> | <a href="#rlUnloadVertexBuffer">rlUnloadVertexBuffer</a> | <a href="#rlUpdateShaderBufferElements">rlUpdateShaderBufferElements</a> | <a href="#rlUpdateTexture">rlUpdateTexture</a> | <a href="#rlUpdateVertexBuffer">rlUpdateVertexBuffer</a> | <a href="#rlUpdateVertexBufferElements">rlUpdateVertexBufferElements</a> | <a href="#rlVertex2f">rlVertex2f</a> | <a href="#rlVertex2i">rlVertex2i</a> | <a href="#rlVertex3f">rlVertex3f</a> | <a href="#rlViewport">rlViewport</a> | <a href="#rlglClose">rlglClose</a> | <a href="#rlglInit">rlglInit</a>
+Name | Value | Description
+-----|-------|------------
+`RAYLIB_VERSION` | `'4.2'` | *n/a*
+`PI` | `3.141592653589793` | *n/a*
+`DEG2RAD` | `(PI / 180.0)` | *n/a*
+`RAD2DEG` | `(180.0 / PI)` | *n/a*
+`LIGHTGRAY` | `Color(200, 200, 200, 255)` |  <span style="color:rgba(200, 200, 200, 255);">█████</span> Light Gray
+`GRAY` | `Color(130, 130, 130, 255)` |  <span style="color:rgba(130, 130, 130, 255);">█████</span> Gray
+`DARKGRAY` | `Color(80, 80, 80, 255)` |  <span style="color:rgba(80, 80, 80, 255);">█████</span> Dark Gray
+`YELLOW` | `Color(253, 249, 0, 255)` |  <span style="color:rgba(253, 249, 0, 255);">█████</span> Yellow
+`GOLD` | `Color(255, 203, 0, 255)` |  <span style="color:rgba(255, 203, 0, 255);">█████</span> Gold
+`ORANGE` | `Color(255, 161, 0, 255)` |  <span style="color:rgba(255, 161, 0, 255);">█████</span> Orange
+`PINK` | `Color(255, 109, 194, 255)` |  <span style="color:rgba(255, 109, 194, 255);">█████</span> Pink
+`RED` | `Color(230, 41, 55, 255)` |  <span style="color:rgba(230, 41, 55, 255);">█████</span> Red
+`MAROON` | `Color(190, 33, 55, 255)` |  <span style="color:rgba(190, 33, 55, 255);">█████</span> Maroon
+`GREEN` | `Color(0, 228, 48, 255)` |  <span style="color:rgba(0, 228, 48, 255);">█████</span> Green
+`LIME` | `Color(0, 158, 47, 255)` |  <span style="color:rgba(0, 158, 47, 255);">█████</span> Lime
+`DARKGREEN` | `Color(0, 117, 44, 255)` |  <span style="color:rgba(0, 117, 44, 255);">█████</span> Dark Green
+`SKYBLUE` | `Color(102, 191, 255, 255)` |  <span style="color:rgba(102, 191, 255, 255);">█████</span> Sky Blue
+`BLUE` | `Color(0, 121, 241, 255)` |  <span style="color:rgba(0, 121, 241, 255);">█████</span> Blue
+`DARKBLUE` | `Color(0, 82, 172, 255)` |  <span style="color:rgba(0, 82, 172, 255);">█████</span> Dark Blue
+`PURPLE` | `Color(200, 122, 255, 255)` |  <span style="color:rgba(200, 122, 255, 255);">█████</span> Purple
+`VIOLET` | `Color(135, 60, 190, 255)` |  <span style="color:rgba(135, 60, 190, 255);">█████</span> Violet
+`DARKPURPLE` | `Color(112, 31, 126, 255)` |  <span style="color:rgba(112, 31, 126, 255);">█████</span> Dark Purple
+`BEIGE` | `Color(211, 176, 131, 255)` |  <span style="color:rgba(211, 176, 131, 255);">█████</span> Beige
+`BROWN` | `Color(127, 106, 79, 255)` |  <span style="color:rgba(127, 106, 79, 255);">█████</span> Brown
+`DARKBROWN` | `Color(76, 63, 47, 255)` |  <span style="color:rgba(76, 63, 47, 255);">█████</span> Dark Brown
+`WHITE` | `Color(255, 255, 255, 255)` |  <span style="color:rgba(255, 255, 255, 255);">█████</span> White
+`BLACK` | `Color(0, 0, 0, 255)` |  <span style="color:rgba(0, 0, 0, 255);">█████</span> Black
+`BLANK` | `Color(0, 0, 0, 0)` |  <span style="color:rgba(0, 0, 0, 0);">█████</span> Blank (Transparent)
+`MAGENTA` | `Color(255, 0, 255, 255)` |  <span style="color:rgba(255, 0, 255, 255);">█████</span> Magenta
+`RAYWHITE` | `Color(245, 245, 245, 255)` |  <span style="color:rgba(245, 245, 245, 255);">█████</span> My own White (raylib logo)
+`RLGL_VERSION` | `'4.0'` | *n/a*
+`RL_DEFAULT_BATCH_BUFFER_ELEMENTS` | `8192` | *n/a*
+`RL_DEFAULT_BATCH_BUFFERS` | `1` | Default number of batch buffers (multi-buffering)
+`RL_DEFAULT_BATCH_DRAWCALLS` | `256` | Default number of batch draw calls (by state changes: mode, texture)
+`RL_DEFAULT_BATCH_MAX_TEXTURE_UNITS` | `4` | Maximum number of textures units that can be activated on batch drawing (SetShaderValueTexture())
+`RL_MAX_MATRIX_STACK_SIZE` | `32` | Maximum size of Matrix stack
+`RL_MAX_SHADER_LOCATIONS` | `32` | Maximum number of shader locations supported
+`RL_CULL_DISTANCE_NEAR` | `0.01` | Default near cull distance
+`RL_CULL_DISTANCE_FAR` | `1000.0` | Default far cull distance
+`RL_TEXTURE_WRAP_S` | `10242` | GL_TEXTURE_WRAP_S
+`RL_TEXTURE_WRAP_T` | `10243` | GL_TEXTURE_WRAP_T
+`RL_TEXTURE_MAG_FILTER` | `10240` | GL_TEXTURE_MAG_FILTER
+`RL_TEXTURE_MIN_FILTER` | `10241` | GL_TEXTURE_MIN_FILTER
+`RL_TEXTURE_FILTER_NEAREST` | `9728` | GL_NEAREST
+`RL_TEXTURE_FILTER_LINEAR` | `9729` | GL_LINEAR
+`RL_TEXTURE_FILTER_MIP_NEAREST` | `9984` | GL_NEAREST_MIPMAP_NEAREST
+`RL_TEXTURE_FILTER_NEAREST_MIP_LINEAR` | `9986` | GL_NEAREST_MIPMAP_LINEAR
+`RL_TEXTURE_FILTER_LINEAR_MIP_NEAREST` | `9985` | GL_LINEAR_MIPMAP_NEAREST
+`RL_TEXTURE_FILTER_MIP_LINEAR` | `9987` | GL_LINEAR_MIPMAP_LINEAR
+`RL_TEXTURE_FILTER_ANISOTROPIC` | `12288` | Anisotropic filter (custom identifier)
+`RL_TEXTURE_WRAP_REPEAT` | `10497` | GL_REPEAT
+`RL_TEXTURE_WRAP_CLAMP` | `33071` | GL_CLAMP_TO_EDGE
+`RL_TEXTURE_WRAP_MIRROR_REPEAT` | `33648` | GL_MIRRORED_REPEAT
+`RL_TEXTURE_WRAP_MIRROR_CLAMP` | `34626` | GL_MIRROR_CLAMP_EXT
+`RL_MODELVIEW` | `5888` | GL_MODELVIEW
+`RL_PROJECTION` | `5889` | GL_PROJECTION
+`RL_TEXTURE` | `5890` | GL_TEXTURE
+`RL_LINES` | `1` | GL_LINES
+`RL_TRIANGLES` | `4` | GL_TRIANGLES
+`RL_QUADS` | `7` | GL_QUADS
+`RL_UNSIGNED_BYTE` | `5121` | GL_UNSIGNED_BYTE
+`RL_FLOAT` | `5126` | GL_FLOAT
+`RL_STREAM_DRAW` | `35040` | GL_STREAM_DRAW
+`RL_STREAM_READ` | `35041` | GL_STREAM_READ
+`RL_STREAM_COPY` | `35042` | GL_STREAM_COPY
+`RL_STATIC_DRAW` | `35044` | GL_STATIC_DRAW
+`RL_STATIC_READ` | `35045` | GL_STATIC_READ
+`RL_STATIC_COPY` | `35046` | GL_STATIC_COPY
+`RL_DYNAMIC_DRAW` | `35048` | GL_DYNAMIC_DRAW
+`RL_DYNAMIC_READ` | `35049` | GL_DYNAMIC_READ
+`RL_DYNAMIC_COPY` | `35050` | GL_DYNAMIC_COPY
+`RL_FRAGMENT_SHADER` | `35632` | GL_FRAGMENT_SHADER
+`RL_VERTEX_SHADER` | `35633` | GL_VERTEX_SHADER
+`RL_COMPUTE_SHADER` | `37305` | GL_COMPUTE_SHADER
 
 [ <a href="#toc">ToC</a> ]
 
-<h3 id="InitWindow">InitWindow function</h3>
+<h2 id="callbacks">Callbacks</h2>
 
-Initialize window and OpenGL context
+To define and use your own callbacks, you can do like below:
+
+```python
+# defines a callback function decorating it with the AudioCallback CFUNCTYPE
+@AudioCallback
+def my_callback(data, frames):
+    # TODO: some logic
+    pass
+
+# then, somewhere ahead in the code
+set_audio_stream_callback(some_stream, my_callback)
+
+```
+
+Name | Signature | Description
+-----|-----------|------------
+`TraceLogCallback` | `(logLevel: 'int', text: 'Union[str, CharPtr]', args: 'bytes') -> None` | Logging: Redirect trace log messages
+`LoadFileDataCallback` | `(fileName: 'Union[str, CharPtr]', bytesRead: 'Union[Seq[int], UIntPtr]') -> Union[Seq[int], UCharPtr]` | FileIO: Load binary data
+`SaveFileDataCallback` | `(fileName: 'Union[str, CharPtr]', data: 'bytes', bytesToWrite: 'int') -> bool` | FileIO: Save binary data
+`LoadFileTextCallback` | `(fileName: 'Union[str, CharPtr]') -> Union[str, CharPtr]` | FileIO: Load text data
+`SaveFileTextCallback` | `(fileName: 'Union[str, CharPtr]', text: 'Union[str, CharPtr]') -> bool` | FileIO: Save text data
+`AudioCallback` | `(bufferData: 'bytes', frames: 'int') -> None` | *n/a*
+
+[ <a href="#toc">ToC</a> ]
+
+<h2 id="funcs">Functions</h2>
+
+Item|Item|Item|Item|Item
+--------|--------|--------|--------|--------
+<a href="#AttachAudioStreamProcessor">AttachAudioStreamProcessor</a> | <a href="#BeginBlendMode">BeginBlendMode</a> | <a href="#BeginDrawing">BeginDrawing</a> | <a href="#BeginMode2D">BeginMode2D</a> | <a href="#BeginMode3D">BeginMode3D</a>
+<a href="#BeginScissorMode">BeginScissorMode</a> | <a href="#BeginShaderMode">BeginShaderMode</a> | <a href="#BeginTextureMode">BeginTextureMode</a> | <a href="#BeginVrStereoMode">BeginVrStereoMode</a> | <a href="#ChangeDirectory">ChangeDirectory</a>
+<a href="#CheckCollisionBoxSphere">CheckCollisionBoxSphere</a> | <a href="#CheckCollisionBoxes">CheckCollisionBoxes</a> | <a href="#CheckCollisionCircleRec">CheckCollisionCircleRec</a> | <a href="#CheckCollisionCircles">CheckCollisionCircles</a> | <a href="#CheckCollisionLines">CheckCollisionLines</a>
+<a href="#CheckCollisionPointCircle">CheckCollisionPointCircle</a> | <a href="#CheckCollisionPointLine">CheckCollisionPointLine</a> | <a href="#CheckCollisionPointRec">CheckCollisionPointRec</a> | <a href="#CheckCollisionPointTriangle">CheckCollisionPointTriangle</a> | <a href="#CheckCollisionRecs">CheckCollisionRecs</a>
+<a href="#CheckCollisionSpheres">CheckCollisionSpheres</a> | <a href="#Clamp">Clamp</a> | <a href="#ClearBackground">ClearBackground</a> | <a href="#ClearWindowState">ClearWindowState</a> | <a href="#CloseAudioDevice">CloseAudioDevice</a>
+<a href="#CloseWindow">CloseWindow</a> | <a href="#CodepointToUTF8">CodepointToUTF8</a> | <a href="#ColorAlpha">ColorAlpha</a> | <a href="#ColorAlphaBlend">ColorAlphaBlend</a> | <a href="#ColorFromHSV">ColorFromHSV</a>
+<a href="#ColorFromNormalized">ColorFromNormalized</a> | <a href="#ColorNormalize">ColorNormalize</a> | <a href="#ColorToHSV">ColorToHSV</a> | <a href="#ColorToInt">ColorToInt</a> | <a href="#CompressData">CompressData</a>
+<a href="#DecodeDataBase64">DecodeDataBase64</a> | <a href="#DecompressData">DecompressData</a> | <a href="#DetachAudioStreamProcessor">DetachAudioStreamProcessor</a> | <a href="#DirectoryExists">DirectoryExists</a> | <a href="#DisableCursor">DisableCursor</a>
+<a href="#DisableEventWaiting">DisableEventWaiting</a> | <a href="#DrawBillboard">DrawBillboard</a> | <a href="#DrawBillboardPro">DrawBillboardPro</a> | <a href="#DrawBillboardRec">DrawBillboardRec</a> | <a href="#DrawBoundingBox">DrawBoundingBox</a>
+<a href="#DrawCircle">DrawCircle</a> | <a href="#DrawCircle3D">DrawCircle3D</a> | <a href="#DrawCircleGradient">DrawCircleGradient</a> | <a href="#DrawCircleLines">DrawCircleLines</a> | <a href="#DrawCircleSector">DrawCircleSector</a>
+<a href="#DrawCircleSectorLines">DrawCircleSectorLines</a> | <a href="#DrawCircleV">DrawCircleV</a> | <a href="#DrawCube">DrawCube</a> | <a href="#DrawCubeTexture">DrawCubeTexture</a> | <a href="#DrawCubeTextureRec">DrawCubeTextureRec</a>
+<a href="#DrawCubeV">DrawCubeV</a> | <a href="#DrawCubeWires">DrawCubeWires</a> | <a href="#DrawCubeWiresV">DrawCubeWiresV</a> | <a href="#DrawCylinder">DrawCylinder</a> | <a href="#DrawCylinderEx">DrawCylinderEx</a>
+<a href="#DrawCylinderWires">DrawCylinderWires</a> | <a href="#DrawCylinderWiresEx">DrawCylinderWiresEx</a> | <a href="#DrawEllipse">DrawEllipse</a> | <a href="#DrawEllipseLines">DrawEllipseLines</a> | <a href="#DrawFPS">DrawFPS</a>
+<a href="#DrawGrid">DrawGrid</a> | <a href="#DrawLine">DrawLine</a> | <a href="#DrawLine3D">DrawLine3D</a> | <a href="#DrawLineBezier">DrawLineBezier</a> | <a href="#DrawLineBezierCubic">DrawLineBezierCubic</a>
+<a href="#DrawLineBezierQuad">DrawLineBezierQuad</a> | <a href="#DrawLineEx">DrawLineEx</a> | <a href="#DrawLineStrip">DrawLineStrip</a> | <a href="#DrawLineV">DrawLineV</a> | <a href="#DrawMesh">DrawMesh</a>
+<a href="#DrawMeshInstanced">DrawMeshInstanced</a> | <a href="#DrawModel">DrawModel</a> | <a href="#DrawModelEx">DrawModelEx</a> | <a href="#DrawModelWires">DrawModelWires</a> | <a href="#DrawModelWiresEx">DrawModelWiresEx</a>
+<a href="#DrawPixel">DrawPixel</a> | <a href="#DrawPixelV">DrawPixelV</a> | <a href="#DrawPlane">DrawPlane</a> | <a href="#DrawPoint3D">DrawPoint3D</a> | <a href="#DrawPoly">DrawPoly</a>
+<a href="#DrawPolyLines">DrawPolyLines</a> | <a href="#DrawPolyLinesEx">DrawPolyLinesEx</a> | <a href="#DrawRay">DrawRay</a> | <a href="#DrawRectangle">DrawRectangle</a> | <a href="#DrawRectangleGradientEx">DrawRectangleGradientEx</a>
+<a href="#DrawRectangleGradientH">DrawRectangleGradientH</a> | <a href="#DrawRectangleGradientV">DrawRectangleGradientV</a> | <a href="#DrawRectangleLines">DrawRectangleLines</a> | <a href="#DrawRectangleLinesEx">DrawRectangleLinesEx</a> | <a href="#DrawRectanglePro">DrawRectanglePro</a>
+<a href="#DrawRectangleRec">DrawRectangleRec</a> | <a href="#DrawRectangleRounded">DrawRectangleRounded</a> | <a href="#DrawRectangleRoundedLines">DrawRectangleRoundedLines</a> | <a href="#DrawRectangleV">DrawRectangleV</a> | <a href="#DrawRing">DrawRing</a>
+<a href="#DrawRingLines">DrawRingLines</a> | <a href="#DrawSphere">DrawSphere</a> | <a href="#DrawSphereEx">DrawSphereEx</a> | <a href="#DrawSphereWires">DrawSphereWires</a> | <a href="#DrawText">DrawText</a>
+<a href="#DrawTextCodepoint">DrawTextCodepoint</a> | <a href="#DrawTextCodepoints">DrawTextCodepoints</a> | <a href="#DrawTextEx">DrawTextEx</a> | <a href="#DrawTextPro">DrawTextPro</a> | <a href="#DrawTexture">DrawTexture</a>
+<a href="#DrawTextureEx">DrawTextureEx</a> | <a href="#DrawTextureNPatch">DrawTextureNPatch</a> | <a href="#DrawTexturePoly">DrawTexturePoly</a> | <a href="#DrawTexturePro">DrawTexturePro</a> | <a href="#DrawTextureQuad">DrawTextureQuad</a>
+<a href="#DrawTextureRec">DrawTextureRec</a> | <a href="#DrawTextureTiled">DrawTextureTiled</a> | <a href="#DrawTextureV">DrawTextureV</a> | <a href="#DrawTriangle">DrawTriangle</a> | <a href="#DrawTriangle3D">DrawTriangle3D</a>
+<a href="#DrawTriangleFan">DrawTriangleFan</a> | <a href="#DrawTriangleLines">DrawTriangleLines</a> | <a href="#DrawTriangleStrip">DrawTriangleStrip</a> | <a href="#DrawTriangleStrip3D">DrawTriangleStrip3D</a> | <a href="#EnableCursor">EnableCursor</a>
+<a href="#EnableEventWaiting">EnableEventWaiting</a> | <a href="#EncodeDataBase64">EncodeDataBase64</a> | <a href="#EndBlendMode">EndBlendMode</a> | <a href="#EndDrawing">EndDrawing</a> | <a href="#EndMode2D">EndMode2D</a>
+<a href="#EndMode3D">EndMode3D</a> | <a href="#EndScissorMode">EndScissorMode</a> | <a href="#EndShaderMode">EndShaderMode</a> | <a href="#EndTextureMode">EndTextureMode</a> | <a href="#EndVrStereoMode">EndVrStereoMode</a>
+<a href="#ExportDataAsCode">ExportDataAsCode</a> | <a href="#ExportFontAsCode">ExportFontAsCode</a> | <a href="#ExportImage">ExportImage</a> | <a href="#ExportImageAsCode">ExportImageAsCode</a> | <a href="#ExportMesh">ExportMesh</a>
+<a href="#ExportWave">ExportWave</a> | <a href="#ExportWaveAsCode">ExportWaveAsCode</a> | <a href="#Fade">Fade</a> | <a href="#FileExists">FileExists</a> | <a href="#FloatEquals">FloatEquals</a>
+<a href="#GenImageCellular">GenImageCellular</a> | <a href="#GenImageChecked">GenImageChecked</a> | <a href="#GenImageColor">GenImageColor</a> | <a href="#GenImageFontAtlas">GenImageFontAtlas</a> | <a href="#GenImageGradientH">GenImageGradientH</a>
+<a href="#GenImageGradientRadial">GenImageGradientRadial</a> | <a href="#GenImageGradientV">GenImageGradientV</a> | <a href="#GenImageWhiteNoise">GenImageWhiteNoise</a> | <a href="#GenMeshCone">GenMeshCone</a> | <a href="#GenMeshCube">GenMeshCube</a>
+<a href="#GenMeshCubicmap">GenMeshCubicmap</a> | <a href="#GenMeshCylinder">GenMeshCylinder</a> | <a href="#GenMeshHeightmap">GenMeshHeightmap</a> | <a href="#GenMeshHemiSphere">GenMeshHemiSphere</a> | <a href="#GenMeshKnot">GenMeshKnot</a>
+<a href="#GenMeshPlane">GenMeshPlane</a> | <a href="#GenMeshPoly">GenMeshPoly</a> | <a href="#GenMeshSphere">GenMeshSphere</a> | <a href="#GenMeshTangents">GenMeshTangents</a> | <a href="#GenMeshTorus">GenMeshTorus</a>
+<a href="#GenTextureMipmaps">GenTextureMipmaps</a> | <a href="#GetApplicationDirectory">GetApplicationDirectory</a> | <a href="#GetCameraMatrix">GetCameraMatrix</a> | <a href="#GetCameraMatrix2D">GetCameraMatrix2D</a> | <a href="#GetCharPressed">GetCharPressed</a>
+<a href="#GetClipboardText">GetClipboardText</a> | <a href="#GetCodepoint">GetCodepoint</a> | <a href="#GetCodepointCount">GetCodepointCount</a> | <a href="#GetCollisionRec">GetCollisionRec</a> | <a href="#GetColor">GetColor</a>
+<a href="#GetCurrentMonitor">GetCurrentMonitor</a> | <a href="#GetDirectoryPath">GetDirectoryPath</a> | <a href="#GetFPS">GetFPS</a> | <a href="#GetFileExtension">GetFileExtension</a> | <a href="#GetFileLength">GetFileLength</a>
+<a href="#GetFileModTime">GetFileModTime</a> | <a href="#GetFileName">GetFileName</a> | <a href="#GetFileNameWithoutExt">GetFileNameWithoutExt</a> | <a href="#GetFontDefault">GetFontDefault</a> | <a href="#GetFrameTime">GetFrameTime</a>
+<a href="#GetGamepadAxisCount">GetGamepadAxisCount</a> | <a href="#GetGamepadAxisMovement">GetGamepadAxisMovement</a> | <a href="#GetGamepadButtonPressed">GetGamepadButtonPressed</a> | <a href="#GetGamepadName">GetGamepadName</a> | <a href="#GetGestureDetected">GetGestureDetected</a>
+<a href="#GetGestureDragAngle">GetGestureDragAngle</a> | <a href="#GetGestureDragVector">GetGestureDragVector</a> | <a href="#GetGestureHoldDuration">GetGestureHoldDuration</a> | <a href="#GetGesturePinchAngle">GetGesturePinchAngle</a> | <a href="#GetGesturePinchVector">GetGesturePinchVector</a>
+<a href="#GetGlyphAtlasRec">GetGlyphAtlasRec</a> | <a href="#GetGlyphIndex">GetGlyphIndex</a> | <a href="#GetGlyphInfo">GetGlyphInfo</a> | <a href="#GetImageAlphaBorder">GetImageAlphaBorder</a> | <a href="#GetImageColor">GetImageColor</a>
+<a href="#GetKeyPressed">GetKeyPressed</a> | <a href="#GetMeshBoundingBox">GetMeshBoundingBox</a> | <a href="#GetModelBoundingBox">GetModelBoundingBox</a> | <a href="#GetMonitorCount">GetMonitorCount</a> | <a href="#GetMonitorHeight">GetMonitorHeight</a>
+<a href="#GetMonitorName">GetMonitorName</a> | <a href="#GetMonitorPhysicalHeight">GetMonitorPhysicalHeight</a> | <a href="#GetMonitorPhysicalWidth">GetMonitorPhysicalWidth</a> | <a href="#GetMonitorPosition">GetMonitorPosition</a> | <a href="#GetMonitorRefreshRate">GetMonitorRefreshRate</a>
+<a href="#GetMonitorWidth">GetMonitorWidth</a> | <a href="#GetMouseDelta">GetMouseDelta</a> | <a href="#GetMousePosition">GetMousePosition</a> | <a href="#GetMouseRay">GetMouseRay</a> | <a href="#GetMouseWheelMove">GetMouseWheelMove</a>
+<a href="#GetMouseWheelMoveV">GetMouseWheelMoveV</a> | <a href="#GetMouseX">GetMouseX</a> | <a href="#GetMouseY">GetMouseY</a> | <a href="#GetMusicTimeLength">GetMusicTimeLength</a> | <a href="#GetMusicTimePlayed">GetMusicTimePlayed</a>
+<a href="#GetPixelColor">GetPixelColor</a> | <a href="#GetPixelDataSize">GetPixelDataSize</a> | <a href="#GetPrevDirectoryPath">GetPrevDirectoryPath</a> | <a href="#GetRandomValue">GetRandomValue</a> | <a href="#GetRayCollisionBox">GetRayCollisionBox</a>
+<a href="#GetRayCollisionMesh">GetRayCollisionMesh</a> | <a href="#GetRayCollisionQuad">GetRayCollisionQuad</a> | <a href="#GetRayCollisionSphere">GetRayCollisionSphere</a> | <a href="#GetRayCollisionTriangle">GetRayCollisionTriangle</a> | <a href="#GetRenderHeight">GetRenderHeight</a>
+<a href="#GetRenderWidth">GetRenderWidth</a> | <a href="#GetScreenHeight">GetScreenHeight</a> | <a href="#GetScreenToWorld2D">GetScreenToWorld2D</a> | <a href="#GetScreenWidth">GetScreenWidth</a> | <a href="#GetShaderLocation">GetShaderLocation</a>
+<a href="#GetShaderLocationAttrib">GetShaderLocationAttrib</a> | <a href="#GetSoundsPlaying">GetSoundsPlaying</a> | <a href="#GetTime">GetTime</a> | <a href="#GetTouchPointCount">GetTouchPointCount</a> | <a href="#GetTouchPointId">GetTouchPointId</a>
+<a href="#GetTouchPosition">GetTouchPosition</a> | <a href="#GetTouchX">GetTouchX</a> | <a href="#GetTouchY">GetTouchY</a> | <a href="#GetWindowHandle">GetWindowHandle</a> | <a href="#GetWindowPosition">GetWindowPosition</a>
+<a href="#GetWindowScaleDPI">GetWindowScaleDPI</a> | <a href="#GetWorkingDirectory">GetWorkingDirectory</a> | <a href="#GetWorldToScreen">GetWorldToScreen</a> | <a href="#GetWorldToScreen2D">GetWorldToScreen2D</a> | <a href="#GetWorldToScreenEx">GetWorldToScreenEx</a>
+<a href="#HideCursor">HideCursor</a> | <a href="#ImageAlphaClear">ImageAlphaClear</a> | <a href="#ImageAlphaCrop">ImageAlphaCrop</a> | <a href="#ImageAlphaMask">ImageAlphaMask</a> | <a href="#ImageAlphaPremultiply">ImageAlphaPremultiply</a>
+<a href="#ImageClearBackground">ImageClearBackground</a> | <a href="#ImageColorBrightness">ImageColorBrightness</a> | <a href="#ImageColorContrast">ImageColorContrast</a> | <a href="#ImageColorGrayscale">ImageColorGrayscale</a> | <a href="#ImageColorInvert">ImageColorInvert</a>
+<a href="#ImageColorReplace">ImageColorReplace</a> | <a href="#ImageColorTint">ImageColorTint</a> | <a href="#ImageCopy">ImageCopy</a> | <a href="#ImageCrop">ImageCrop</a> | <a href="#ImageDither">ImageDither</a>
+<a href="#ImageDraw">ImageDraw</a> | <a href="#ImageDrawCircle">ImageDrawCircle</a> | <a href="#ImageDrawCircleV">ImageDrawCircleV</a> | <a href="#ImageDrawLine">ImageDrawLine</a> | <a href="#ImageDrawLineV">ImageDrawLineV</a>
+<a href="#ImageDrawPixel">ImageDrawPixel</a> | <a href="#ImageDrawPixelV">ImageDrawPixelV</a> | <a href="#ImageDrawRectangle">ImageDrawRectangle</a> | <a href="#ImageDrawRectangleLines">ImageDrawRectangleLines</a> | <a href="#ImageDrawRectangleRec">ImageDrawRectangleRec</a>
+<a href="#ImageDrawRectangleV">ImageDrawRectangleV</a> | <a href="#ImageDrawText">ImageDrawText</a> | <a href="#ImageDrawTextEx">ImageDrawTextEx</a> | <a href="#ImageFlipHorizontal">ImageFlipHorizontal</a> | <a href="#ImageFlipVertical">ImageFlipVertical</a>
+<a href="#ImageFormat">ImageFormat</a> | <a href="#ImageFromImage">ImageFromImage</a> | <a href="#ImageMipmaps">ImageMipmaps</a> | <a href="#ImageResize">ImageResize</a> | <a href="#ImageResizeCanvas">ImageResizeCanvas</a>
+<a href="#ImageResizeNN">ImageResizeNN</a> | <a href="#ImageRotateCCW">ImageRotateCCW</a> | <a href="#ImageRotateCW">ImageRotateCW</a> | <a href="#ImageText">ImageText</a> | <a href="#ImageTextEx">ImageTextEx</a>
+<a href="#ImageToPOT">ImageToPOT</a> | <a href="#InitAudioDevice">InitAudioDevice</a> | <a href="#InitWindow">InitWindow</a> | <a href="#IsAudioDeviceReady">IsAudioDeviceReady</a> | <a href="#IsAudioStreamPlaying">IsAudioStreamPlaying</a>
+<a href="#IsAudioStreamProcessed">IsAudioStreamProcessed</a> | <a href="#IsCursorHidden">IsCursorHidden</a> | <a href="#IsCursorOnScreen">IsCursorOnScreen</a> | <a href="#IsFileDropped">IsFileDropped</a> | <a href="#IsFileExtension">IsFileExtension</a>
+<a href="#IsGamepadAvailable">IsGamepadAvailable</a> | <a href="#IsGamepadButtonDown">IsGamepadButtonDown</a> | <a href="#IsGamepadButtonPressed">IsGamepadButtonPressed</a> | <a href="#IsGamepadButtonReleased">IsGamepadButtonReleased</a> | <a href="#IsGamepadButtonUp">IsGamepadButtonUp</a>
+<a href="#IsGestureDetected">IsGestureDetected</a> | <a href="#IsKeyDown">IsKeyDown</a> | <a href="#IsKeyPressed">IsKeyPressed</a> | <a href="#IsKeyReleased">IsKeyReleased</a> | <a href="#IsKeyUp">IsKeyUp</a>
+<a href="#IsModelAnimationValid">IsModelAnimationValid</a> | <a href="#IsMouseButtonDown">IsMouseButtonDown</a> | <a href="#IsMouseButtonPressed">IsMouseButtonPressed</a> | <a href="#IsMouseButtonReleased">IsMouseButtonReleased</a> | <a href="#IsMouseButtonUp">IsMouseButtonUp</a>
+<a href="#IsMusicStreamPlaying">IsMusicStreamPlaying</a> | <a href="#IsPathFile">IsPathFile</a> | <a href="#IsSoundPlaying">IsSoundPlaying</a> | <a href="#IsWindowFocused">IsWindowFocused</a> | <a href="#IsWindowFullscreen">IsWindowFullscreen</a>
+<a href="#IsWindowHidden">IsWindowHidden</a> | <a href="#IsWindowMaximized">IsWindowMaximized</a> | <a href="#IsWindowMinimized">IsWindowMinimized</a> | <a href="#IsWindowReady">IsWindowReady</a> | <a href="#IsWindowResized">IsWindowResized</a>
+<a href="#IsWindowState">IsWindowState</a> | <a href="#Lerp">Lerp</a> | <a href="#LoadAudioStream">LoadAudioStream</a> | <a href="#LoadCodepoints">LoadCodepoints</a> | <a href="#LoadDirectoryFiles">LoadDirectoryFiles</a>
+<a href="#LoadDirectoryFilesEx">LoadDirectoryFilesEx</a> | <a href="#LoadDroppedFiles">LoadDroppedFiles</a> | <a href="#LoadFileData">LoadFileData</a> | <a href="#LoadFileText">LoadFileText</a> | <a href="#LoadFont">LoadFont</a>
+<a href="#LoadFontData">LoadFontData</a> | <a href="#LoadFontEx">LoadFontEx</a> | <a href="#LoadFontFromImage">LoadFontFromImage</a> | <a href="#LoadFontFromMemory">LoadFontFromMemory</a> | <a href="#LoadImage">LoadImage</a>
+<a href="#LoadImageAnim">LoadImageAnim</a> | <a href="#LoadImageColors">LoadImageColors</a> | <a href="#LoadImageFromMemory">LoadImageFromMemory</a> | <a href="#LoadImageFromScreen">LoadImageFromScreen</a> | <a href="#LoadImageFromTexture">LoadImageFromTexture</a>
+<a href="#LoadImagePalette">LoadImagePalette</a> | <a href="#LoadImageRaw">LoadImageRaw</a> | <a href="#LoadMaterialDefault">LoadMaterialDefault</a> | <a href="#LoadMaterials">LoadMaterials</a> | <a href="#LoadModel">LoadModel</a>
+<a href="#LoadModelAnimations">LoadModelAnimations</a> | <a href="#LoadModelFromMesh">LoadModelFromMesh</a> | <a href="#LoadMusicStream">LoadMusicStream</a> | <a href="#LoadMusicStreamFromMemory">LoadMusicStreamFromMemory</a> | <a href="#LoadRenderTexture">LoadRenderTexture</a>
+<a href="#LoadShader">LoadShader</a> | <a href="#LoadShaderFromMemory">LoadShaderFromMemory</a> | <a href="#LoadSound">LoadSound</a> | <a href="#LoadSoundFromWave">LoadSoundFromWave</a> | <a href="#LoadTexture">LoadTexture</a>
+<a href="#LoadTextureCubemap">LoadTextureCubemap</a> | <a href="#LoadTextureFromImage">LoadTextureFromImage</a> | <a href="#LoadVrStereoConfig">LoadVrStereoConfig</a> | <a href="#LoadWave">LoadWave</a> | <a href="#LoadWaveFromMemory">LoadWaveFromMemory</a>
+<a href="#LoadWaveSamples">LoadWaveSamples</a> | <a href="#MatrixAdd">MatrixAdd</a> | <a href="#MatrixDeterminant">MatrixDeterminant</a> | <a href="#MatrixFrustum">MatrixFrustum</a> | <a href="#MatrixIdentity">MatrixIdentity</a>
+<a href="#MatrixInvert">MatrixInvert</a> | <a href="#MatrixLookAt">MatrixLookAt</a> | <a href="#MatrixMultiply">MatrixMultiply</a> | <a href="#MatrixOrtho">MatrixOrtho</a> | <a href="#MatrixPerspective">MatrixPerspective</a>
+<a href="#MatrixRotate">MatrixRotate</a> | <a href="#MatrixRotateX">MatrixRotateX</a> | <a href="#MatrixRotateXYZ">MatrixRotateXYZ</a> | <a href="#MatrixRotateY">MatrixRotateY</a> | <a href="#MatrixRotateZ">MatrixRotateZ</a>
+<a href="#MatrixRotateZYX">MatrixRotateZYX</a> | <a href="#MatrixScale">MatrixScale</a> | <a href="#MatrixSubtract">MatrixSubtract</a> | <a href="#MatrixToFloatV">MatrixToFloatV</a> | <a href="#MatrixTrace">MatrixTrace</a>
+<a href="#MatrixTranslate">MatrixTranslate</a> | <a href="#MatrixTranspose">MatrixTranspose</a> | <a href="#MaximizeWindow">MaximizeWindow</a> | <a href="#MeasureText">MeasureText</a> | <a href="#MeasureTextEx">MeasureTextEx</a>
+<a href="#MemAlloc">MemAlloc</a> | <a href="#MemFree">MemFree</a> | <a href="#MemRealloc">MemRealloc</a> | <a href="#MinimizeWindow">MinimizeWindow</a> | <a href="#Normalize">Normalize</a>
+<a href="#OpenURL">OpenURL</a> | <a href="#PauseAudioStream">PauseAudioStream</a> | <a href="#PauseMusicStream">PauseMusicStream</a> | <a href="#PauseSound">PauseSound</a> | <a href="#PlayAudioStream">PlayAudioStream</a>
+<a href="#PlayMusicStream">PlayMusicStream</a> | <a href="#PlaySound">PlaySound</a> | <a href="#PlaySoundMulti">PlaySoundMulti</a> | <a href="#PollInputEvents">PollInputEvents</a> | <a href="#QuaternionAdd">QuaternionAdd</a>
+<a href="#QuaternionAddValue">QuaternionAddValue</a> | <a href="#QuaternionDivide">QuaternionDivide</a> | <a href="#QuaternionEquals">QuaternionEquals</a> | <a href="#QuaternionFromAxisAngle">QuaternionFromAxisAngle</a> | <a href="#QuaternionFromEuler">QuaternionFromEuler</a>
+<a href="#QuaternionFromMatrix">QuaternionFromMatrix</a> | <a href="#QuaternionFromVector3ToVector3">QuaternionFromVector3ToVector3</a> | <a href="#QuaternionIdentity">QuaternionIdentity</a> | <a href="#QuaternionInvert">QuaternionInvert</a> | <a href="#QuaternionLength">QuaternionLength</a>
+<a href="#QuaternionMultiply">QuaternionMultiply</a> | <a href="#QuaternionNlerp">QuaternionNlerp</a> | <a href="#QuaternionNormalize">QuaternionNormalize</a> | <a href="#QuaternionScale">QuaternionScale</a> | <a href="#QuaternionSlerp">QuaternionSlerp</a>
+<a href="#QuaternionSubtract">QuaternionSubtract</a> | <a href="#QuaternionSubtractValue">QuaternionSubtractValue</a> | <a href="#QuaternionToAxisAngle">QuaternionToAxisAngle</a> | <a href="#QuaternionToEuler">QuaternionToEuler</a> | <a href="#QuaternionToMatrix">QuaternionToMatrix</a>
+<a href="#QuaternionTransform">QuaternionTransform</a> | <a href="#Remap">Remap</a> | <a href="#RestoreWindow">RestoreWindow</a> | <a href="#ResumeAudioStream">ResumeAudioStream</a> | <a href="#ResumeMusicStream">ResumeMusicStream</a>
+<a href="#ResumeSound">ResumeSound</a> | <a href="#SaveFileData">SaveFileData</a> | <a href="#SaveFileText">SaveFileText</a> | <a href="#SeekMusicStream">SeekMusicStream</a> | <a href="#SetAudioStreamBufferSizeDefault">SetAudioStreamBufferSizeDefault</a>
+<a href="#SetAudioStreamCallback">SetAudioStreamCallback</a> | <a href="#SetAudioStreamPan">SetAudioStreamPan</a> | <a href="#SetAudioStreamPitch">SetAudioStreamPitch</a> | <a href="#SetAudioStreamVolume">SetAudioStreamVolume</a> | <a href="#SetCameraAltControl">SetCameraAltControl</a>
+<a href="#SetCameraMode">SetCameraMode</a> | <a href="#SetCameraMoveControls">SetCameraMoveControls</a> | <a href="#SetCameraPanControl">SetCameraPanControl</a> | <a href="#SetCameraSmoothZoomControl">SetCameraSmoothZoomControl</a> | <a href="#SetClipboardText">SetClipboardText</a>
+<a href="#SetConfigFlags">SetConfigFlags</a> | <a href="#SetExitKey">SetExitKey</a> | <a href="#SetGamepadMappings">SetGamepadMappings</a> | <a href="#SetGesturesEnabled">SetGesturesEnabled</a> | <a href="#SetLoadFileDataCallback">SetLoadFileDataCallback</a>
+<a href="#SetLoadFileTextCallback">SetLoadFileTextCallback</a> | <a href="#SetMasterVolume">SetMasterVolume</a> | <a href="#SetMaterialTexture">SetMaterialTexture</a> | <a href="#SetModelMeshMaterial">SetModelMeshMaterial</a> | <a href="#SetMouseCursor">SetMouseCursor</a>
+<a href="#SetMouseOffset">SetMouseOffset</a> | <a href="#SetMousePosition">SetMousePosition</a> | <a href="#SetMouseScale">SetMouseScale</a> | <a href="#SetMusicPan">SetMusicPan</a> | <a href="#SetMusicPitch">SetMusicPitch</a>
+<a href="#SetMusicVolume">SetMusicVolume</a> | <a href="#SetPixelColor">SetPixelColor</a> | <a href="#SetRandomSeed">SetRandomSeed</a> | <a href="#SetSaveFileDataCallback">SetSaveFileDataCallback</a> | <a href="#SetSaveFileTextCallback">SetSaveFileTextCallback</a>
+<a href="#SetShaderValue">SetShaderValue</a> | <a href="#SetShaderValueMatrix">SetShaderValueMatrix</a> | <a href="#SetShaderValueTexture">SetShaderValueTexture</a> | <a href="#SetShaderValueV">SetShaderValueV</a> | <a href="#SetShapesTexture">SetShapesTexture</a>
+<a href="#SetSoundPan">SetSoundPan</a> | <a href="#SetSoundPitch">SetSoundPitch</a> | <a href="#SetSoundVolume">SetSoundVolume</a> | <a href="#SetTargetFPS">SetTargetFPS</a> | <a href="#SetTextureFilter">SetTextureFilter</a>
+<a href="#SetTextureWrap">SetTextureWrap</a> | <a href="#SetTraceLogCallback">SetTraceLogCallback</a> | <a href="#SetTraceLogLevel">SetTraceLogLevel</a> | <a href="#SetWindowIcon">SetWindowIcon</a> | <a href="#SetWindowMinSize">SetWindowMinSize</a>
+<a href="#SetWindowMonitor">SetWindowMonitor</a> | <a href="#SetWindowOpacity">SetWindowOpacity</a> | <a href="#SetWindowPosition">SetWindowPosition</a> | <a href="#SetWindowSize">SetWindowSize</a> | <a href="#SetWindowState">SetWindowState</a>
+<a href="#SetWindowTitle">SetWindowTitle</a> | <a href="#ShowCursor">ShowCursor</a> | <a href="#StopAudioStream">StopAudioStream</a> | <a href="#StopMusicStream">StopMusicStream</a> | <a href="#StopSound">StopSound</a>
+<a href="#StopSoundMulti">StopSoundMulti</a> | <a href="#SwapScreenBuffer">SwapScreenBuffer</a> | <a href="#TakeScreenshot">TakeScreenshot</a> | <a href="#TextAppend">TextAppend</a> | <a href="#TextCodepointsToUTF8">TextCodepointsToUTF8</a>
+<a href="#TextCopy">TextCopy</a> | <a href="#TextFindIndex">TextFindIndex</a> | <a href="#TextFormat">TextFormat</a> | <a href="#TextInsert">TextInsert</a> | <a href="#TextIsEqual">TextIsEqual</a>
+<a href="#TextJoin">TextJoin</a> | <a href="#TextLength">TextLength</a> | <a href="#TextReplace">TextReplace</a> | <a href="#TextSplit">TextSplit</a> | <a href="#TextSubtext">TextSubtext</a>
+<a href="#TextToInteger">TextToInteger</a> | <a href="#TextToLower">TextToLower</a> | <a href="#TextToPascal">TextToPascal</a> | <a href="#TextToUpper">TextToUpper</a> | <a href="#ToggleFullscreen">ToggleFullscreen</a>
+<a href="#TraceLog">TraceLog</a> | <a href="#UnloadAudioStream">UnloadAudioStream</a> | <a href="#UnloadCodepoints">UnloadCodepoints</a> | <a href="#UnloadDirectoryFiles">UnloadDirectoryFiles</a> | <a href="#UnloadDroppedFiles">UnloadDroppedFiles</a>
+<a href="#UnloadFileData">UnloadFileData</a> | <a href="#UnloadFileText">UnloadFileText</a> | <a href="#UnloadFont">UnloadFont</a> | <a href="#UnloadFontData">UnloadFontData</a> | <a href="#UnloadImage">UnloadImage</a>
+<a href="#UnloadImageColors">UnloadImageColors</a> | <a href="#UnloadImagePalette">UnloadImagePalette</a> | <a href="#UnloadMaterial">UnloadMaterial</a> | <a href="#UnloadMesh">UnloadMesh</a> | <a href="#UnloadModel">UnloadModel</a>
+<a href="#UnloadModelAnimation">UnloadModelAnimation</a> | <a href="#UnloadModelAnimations">UnloadModelAnimations</a> | <a href="#UnloadModelKeepMeshes">UnloadModelKeepMeshes</a> | <a href="#UnloadMusicStream">UnloadMusicStream</a> | <a href="#UnloadRenderTexture">UnloadRenderTexture</a>
+<a href="#UnloadShader">UnloadShader</a> | <a href="#UnloadSound">UnloadSound</a> | <a href="#UnloadTexture">UnloadTexture</a> | <a href="#UnloadVrStereoConfig">UnloadVrStereoConfig</a> | <a href="#UnloadWave">UnloadWave</a>
+<a href="#UnloadWaveSamples">UnloadWaveSamples</a> | <a href="#UpdateAudioStream">UpdateAudioStream</a> | <a href="#UpdateCamera">UpdateCamera</a> | <a href="#UpdateMeshBuffer">UpdateMeshBuffer</a> | <a href="#UpdateModelAnimation">UpdateModelAnimation</a>
+<a href="#UpdateMusicStream">UpdateMusicStream</a> | <a href="#UpdateSound">UpdateSound</a> | <a href="#UpdateTexture">UpdateTexture</a> | <a href="#UpdateTextureRec">UpdateTextureRec</a> | <a href="#UploadMesh">UploadMesh</a>
+<a href="#Vector2Add">Vector2Add</a> | <a href="#Vector2AddValue">Vector2AddValue</a> | <a href="#Vector2Angle">Vector2Angle</a> | <a href="#Vector2Clamp">Vector2Clamp</a> | <a href="#Vector2ClampValue">Vector2ClampValue</a>
+<a href="#Vector2Distance">Vector2Distance</a> | <a href="#Vector2DistanceSqr">Vector2DistanceSqr</a> | <a href="#Vector2Divide">Vector2Divide</a> | <a href="#Vector2DotProduct">Vector2DotProduct</a> | <a href="#Vector2Equals">Vector2Equals</a>
+<a href="#Vector2Invert">Vector2Invert</a> | <a href="#Vector2Length">Vector2Length</a> | <a href="#Vector2LengthSqr">Vector2LengthSqr</a> | <a href="#Vector2Lerp">Vector2Lerp</a> | <a href="#Vector2MoveTowards">Vector2MoveTowards</a>
+<a href="#Vector2Multiply">Vector2Multiply</a> | <a href="#Vector2Negate">Vector2Negate</a> | <a href="#Vector2Normalize">Vector2Normalize</a> | <a href="#Vector2One">Vector2One</a> | <a href="#Vector2Reflect">Vector2Reflect</a>
+<a href="#Vector2Rotate">Vector2Rotate</a> | <a href="#Vector2Scale">Vector2Scale</a> | <a href="#Vector2Subtract">Vector2Subtract</a> | <a href="#Vector2SubtractValue">Vector2SubtractValue</a> | <a href="#Vector2Transform">Vector2Transform</a>
+<a href="#Vector2Zero">Vector2Zero</a> | <a href="#Vector3Add">Vector3Add</a> | <a href="#Vector3AddValue">Vector3AddValue</a> | <a href="#Vector3Angle">Vector3Angle</a> | <a href="#Vector3Barycenter">Vector3Barycenter</a>
+<a href="#Vector3Clamp">Vector3Clamp</a> | <a href="#Vector3ClampValue">Vector3ClampValue</a> | <a href="#Vector3CrossProduct">Vector3CrossProduct</a> | <a href="#Vector3Distance">Vector3Distance</a> | <a href="#Vector3DistanceSqr">Vector3DistanceSqr</a>
+<a href="#Vector3Divide">Vector3Divide</a> | <a href="#Vector3DotProduct">Vector3DotProduct</a> | <a href="#Vector3Equals">Vector3Equals</a> | <a href="#Vector3Invert">Vector3Invert</a> | <a href="#Vector3Length">Vector3Length</a>
+<a href="#Vector3LengthSqr">Vector3LengthSqr</a> | <a href="#Vector3Lerp">Vector3Lerp</a> | <a href="#Vector3Max">Vector3Max</a> | <a href="#Vector3Min">Vector3Min</a> | <a href="#Vector3Multiply">Vector3Multiply</a>
+<a href="#Vector3Negate">Vector3Negate</a> | <a href="#Vector3Normalize">Vector3Normalize</a> | <a href="#Vector3One">Vector3One</a> | <a href="#Vector3OrthoNormalize">Vector3OrthoNormalize</a> | <a href="#Vector3Perpendicular">Vector3Perpendicular</a>
+<a href="#Vector3Reflect">Vector3Reflect</a> | <a href="#Vector3Refract">Vector3Refract</a> | <a href="#Vector3RotateByAxisAngle">Vector3RotateByAxisAngle</a> | <a href="#Vector3RotateByQuaternion">Vector3RotateByQuaternion</a> | <a href="#Vector3Scale">Vector3Scale</a>
+<a href="#Vector3Subtract">Vector3Subtract</a> | <a href="#Vector3SubtractValue">Vector3SubtractValue</a> | <a href="#Vector3ToFloatV">Vector3ToFloatV</a> | <a href="#Vector3Transform">Vector3Transform</a> | <a href="#Vector3Unproject">Vector3Unproject</a>
+<a href="#Vector3Zero">Vector3Zero</a> | <a href="#WaitTime">WaitTime</a> | <a href="#WaveCopy">WaveCopy</a> | <a href="#WaveCrop">WaveCrop</a> | <a href="#WaveFormat">WaveFormat</a>
+<a href="#WindowShouldClose">WindowShouldClose</a> | <a href="#Wrap">Wrap</a> | <a href="#rlActiveDrawBuffers">rlActiveDrawBuffers</a> | <a href="#rlActiveTextureSlot">rlActiveTextureSlot</a> | <a href="#rlBegin">rlBegin</a>
+<a href="#rlBindImageTexture">rlBindImageTexture</a> | <a href="#rlBindShaderBuffer">rlBindShaderBuffer</a> | <a href="#rlCheckErrors">rlCheckErrors</a> | <a href="#rlCheckRenderBatchLimit">rlCheckRenderBatchLimit</a> | <a href="#rlClearColor">rlClearColor</a>
+<a href="#rlClearScreenBuffers">rlClearScreenBuffers</a> | <a href="#rlColor3f">rlColor3f</a> | <a href="#rlColor4f">rlColor4f</a> | <a href="#rlColor4ub">rlColor4ub</a> | <a href="#rlCompileShader">rlCompileShader</a>
+<a href="#rlComputeShaderDispatch">rlComputeShaderDispatch</a> | <a href="#rlCopyBuffersElements">rlCopyBuffersElements</a> | <a href="#rlDisableBackfaceCulling">rlDisableBackfaceCulling</a> | <a href="#rlDisableColorBlend">rlDisableColorBlend</a> | <a href="#rlDisableDepthMask">rlDisableDepthMask</a>
+<a href="#rlDisableDepthTest">rlDisableDepthTest</a> | <a href="#rlDisableFramebuffer">rlDisableFramebuffer</a> | <a href="#rlDisableScissorTest">rlDisableScissorTest</a> | <a href="#rlDisableShader">rlDisableShader</a> | <a href="#rlDisableSmoothLines">rlDisableSmoothLines</a>
+<a href="#rlDisableStereoRender">rlDisableStereoRender</a> | <a href="#rlDisableTexture">rlDisableTexture</a> | <a href="#rlDisableTextureCubemap">rlDisableTextureCubemap</a> | <a href="#rlDisableVertexArray">rlDisableVertexArray</a> | <a href="#rlDisableVertexAttribute">rlDisableVertexAttribute</a>
+<a href="#rlDisableVertexBuffer">rlDisableVertexBuffer</a> | <a href="#rlDisableVertexBufferElement">rlDisableVertexBufferElement</a> | <a href="#rlDisableWireMode">rlDisableWireMode</a> | <a href="#rlDrawRenderBatch">rlDrawRenderBatch</a> | <a href="#rlDrawRenderBatchActive">rlDrawRenderBatchActive</a>
+<a href="#rlDrawVertexArray">rlDrawVertexArray</a> | <a href="#rlDrawVertexArrayElements">rlDrawVertexArrayElements</a> | <a href="#rlDrawVertexArrayElementsInstanced">rlDrawVertexArrayElementsInstanced</a> | <a href="#rlDrawVertexArrayInstanced">rlDrawVertexArrayInstanced</a> | <a href="#rlEnableBackfaceCulling">rlEnableBackfaceCulling</a>
+<a href="#rlEnableColorBlend">rlEnableColorBlend</a> | <a href="#rlEnableDepthMask">rlEnableDepthMask</a> | <a href="#rlEnableDepthTest">rlEnableDepthTest</a> | <a href="#rlEnableFramebuffer">rlEnableFramebuffer</a> | <a href="#rlEnableScissorTest">rlEnableScissorTest</a>
+<a href="#rlEnableShader">rlEnableShader</a> | <a href="#rlEnableSmoothLines">rlEnableSmoothLines</a> | <a href="#rlEnableStereoRender">rlEnableStereoRender</a> | <a href="#rlEnableTexture">rlEnableTexture</a> | <a href="#rlEnableTextureCubemap">rlEnableTextureCubemap</a>
+<a href="#rlEnableVertexArray">rlEnableVertexArray</a> | <a href="#rlEnableVertexAttribute">rlEnableVertexAttribute</a> | <a href="#rlEnableVertexBuffer">rlEnableVertexBuffer</a> | <a href="#rlEnableVertexBufferElement">rlEnableVertexBufferElement</a> | <a href="#rlEnableWireMode">rlEnableWireMode</a>
+<a href="#rlEnd">rlEnd</a> | <a href="#rlFramebufferAttach">rlFramebufferAttach</a> | <a href="#rlFramebufferComplete">rlFramebufferComplete</a> | <a href="#rlFrustum">rlFrustum</a> | <a href="#rlGenTextureMipmaps">rlGenTextureMipmaps</a>
+<a href="#rlGetFramebufferHeight">rlGetFramebufferHeight</a> | <a href="#rlGetFramebufferWidth">rlGetFramebufferWidth</a> | <a href="#rlGetGlTextureFormats">rlGetGlTextureFormats</a> | <a href="#rlGetLineWidth">rlGetLineWidth</a> | <a href="#rlGetLocationAttrib">rlGetLocationAttrib</a>
+<a href="#rlGetLocationUniform">rlGetLocationUniform</a> | <a href="#rlGetMatrixModelview">rlGetMatrixModelview</a> | <a href="#rlGetMatrixProjection">rlGetMatrixProjection</a> | <a href="#rlGetMatrixProjectionStereo">rlGetMatrixProjectionStereo</a> | <a href="#rlGetMatrixTransform">rlGetMatrixTransform</a>
+<a href="#rlGetMatrixViewOffsetStereo">rlGetMatrixViewOffsetStereo</a> | <a href="#rlGetPixelFormatName">rlGetPixelFormatName</a> | <a href="#rlGetShaderBufferSize">rlGetShaderBufferSize</a> | <a href="#rlGetShaderIdDefault">rlGetShaderIdDefault</a> | <a href="#rlGetShaderLocsDefault">rlGetShaderLocsDefault</a>
+<a href="#rlGetTextureIdDefault">rlGetTextureIdDefault</a> | <a href="#rlGetVersion">rlGetVersion</a> | <a href="#rlIsStereoRenderEnabled">rlIsStereoRenderEnabled</a> | <a href="#rlLoadComputeShaderProgram">rlLoadComputeShaderProgram</a> | <a href="#rlLoadDrawCube">rlLoadDrawCube</a>
+<a href="#rlLoadDrawQuad">rlLoadDrawQuad</a> | <a href="#rlLoadExtensions">rlLoadExtensions</a> | <a href="#rlLoadFramebuffer">rlLoadFramebuffer</a> | <a href="#rlLoadIdentity">rlLoadIdentity</a> | <a href="#rlLoadRenderBatch">rlLoadRenderBatch</a>
+<a href="#rlLoadShaderBuffer">rlLoadShaderBuffer</a> | <a href="#rlLoadShaderCode">rlLoadShaderCode</a> | <a href="#rlLoadShaderProgram">rlLoadShaderProgram</a> | <a href="#rlLoadTexture">rlLoadTexture</a> | <a href="#rlLoadTextureCubemap">rlLoadTextureCubemap</a>
+<a href="#rlLoadTextureDepth">rlLoadTextureDepth</a> | <a href="#rlLoadVertexArray">rlLoadVertexArray</a> | <a href="#rlLoadVertexBuffer">rlLoadVertexBuffer</a> | <a href="#rlLoadVertexBufferElement">rlLoadVertexBufferElement</a> | <a href="#rlMatrixMode">rlMatrixMode</a>
+<a href="#rlMultMatrixf">rlMultMatrixf</a> | <a href="#rlNormal3f">rlNormal3f</a> | <a href="#rlOrtho">rlOrtho</a> | <a href="#rlPopMatrix">rlPopMatrix</a> | <a href="#rlPushMatrix">rlPushMatrix</a>
+<a href="#rlReadScreenPixels">rlReadScreenPixels</a> | <a href="#rlReadShaderBufferElements">rlReadShaderBufferElements</a> | <a href="#rlReadTexturePixels">rlReadTexturePixels</a> | <a href="#rlRotatef">rlRotatef</a> | <a href="#rlScalef">rlScalef</a>
+<a href="#rlScissor">rlScissor</a> | <a href="#rlSetBlendFactors">rlSetBlendFactors</a> | <a href="#rlSetBlendMode">rlSetBlendMode</a> | <a href="#rlSetFramebufferHeight">rlSetFramebufferHeight</a> | <a href="#rlSetFramebufferWidth">rlSetFramebufferWidth</a>
+<a href="#rlSetLineWidth">rlSetLineWidth</a> | <a href="#rlSetMatrixModelview">rlSetMatrixModelview</a> | <a href="#rlSetMatrixProjection">rlSetMatrixProjection</a> | <a href="#rlSetMatrixProjectionStereo">rlSetMatrixProjectionStereo</a> | <a href="#rlSetMatrixViewOffsetStereo">rlSetMatrixViewOffsetStereo</a>
+<a href="#rlSetRenderBatchActive">rlSetRenderBatchActive</a> | <a href="#rlSetShader">rlSetShader</a> | <a href="#rlSetTexture">rlSetTexture</a> | <a href="#rlSetUniform">rlSetUniform</a> | <a href="#rlSetUniformMatrix">rlSetUniformMatrix</a>
+<a href="#rlSetUniformSampler">rlSetUniformSampler</a> | <a href="#rlSetVertexAttribute">rlSetVertexAttribute</a> | <a href="#rlSetVertexAttributeDefault">rlSetVertexAttributeDefault</a> | <a href="#rlSetVertexAttributeDivisor">rlSetVertexAttributeDivisor</a> | <a href="#rlTexCoord2f">rlTexCoord2f</a>
+<a href="#rlTextureParameters">rlTextureParameters</a> | <a href="#rlTranslatef">rlTranslatef</a> | <a href="#rlUnloadFramebuffer">rlUnloadFramebuffer</a> | <a href="#rlUnloadRenderBatch">rlUnloadRenderBatch</a> | <a href="#rlUnloadShaderBuffer">rlUnloadShaderBuffer</a>
+<a href="#rlUnloadShaderProgram">rlUnloadShaderProgram</a> | <a href="#rlUnloadTexture">rlUnloadTexture</a> | <a href="#rlUnloadVertexArray">rlUnloadVertexArray</a> | <a href="#rlUnloadVertexBuffer">rlUnloadVertexBuffer</a> | <a href="#rlUpdateShaderBufferElements">rlUpdateShaderBufferElements</a>
+<a href="#rlUpdateTexture">rlUpdateTexture</a> | <a href="#rlUpdateVertexBuffer">rlUpdateVertexBuffer</a> | <a href="#rlUpdateVertexBufferElements">rlUpdateVertexBufferElements</a> | <a href="#rlVertex2f">rlVertex2f</a> | <a href="#rlVertex2i">rlVertex2i</a>
+<a href="#rlVertex3f">rlVertex3f</a> | <a href="#rlViewport">rlViewport</a> | <a href="#rlglClose">rlglClose</a> | <a href="#rlglInit">rlglInit</a>
+
+[ <a href="#toc">ToC</a> ]
+
+<h2 id="InitWindow"><code>InitWindow</code> function</h2>
+
+> Initialize window and OpenGL context
 
 Defined in raylib.h:
 
@@ -1381,9 +2455,10 @@ def InitWindow(width: int, height: int, title: Union[str, CharPtr]) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="WindowShouldClose">WindowShouldClose function</h3>
+---
+<h2 id="WindowShouldClose"><code>WindowShouldClose</code> function</h2>
 
-Check if KEY_ESCAPE pressed or Close icon pressed
+> Check if KEY_ESCAPE pressed or Close icon pressed
 
 Defined in raylib.h:
 
@@ -1399,9 +2474,10 @@ def WindowShouldClose() -> bool
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="CloseWindow">CloseWindow function</h3>
+---
+<h2 id="CloseWindow"><code>CloseWindow</code> function</h2>
 
-Close window and unload OpenGL context
+> Close window and unload OpenGL context
 
 Defined in raylib.h:
 
@@ -1417,9 +2493,10 @@ def CloseWindow() -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="IsWindowReady">IsWindowReady function</h3>
+---
+<h2 id="IsWindowReady"><code>IsWindowReady</code> function</h2>
 
-Check if window has been initialized successfully
+> Check if window has been initialized successfully
 
 Defined in raylib.h:
 
@@ -1435,9 +2512,10 @@ def IsWindowReady() -> bool
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="IsWindowFullscreen">IsWindowFullscreen function</h3>
+---
+<h2 id="IsWindowFullscreen"><code>IsWindowFullscreen</code> function</h2>
 
-Check if window is currently fullscreen
+> Check if window is currently fullscreen
 
 Defined in raylib.h:
 
@@ -1453,9 +2531,10 @@ def IsWindowFullscreen() -> bool
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="IsWindowHidden">IsWindowHidden function</h3>
+---
+<h2 id="IsWindowHidden"><code>IsWindowHidden</code> function</h2>
 
-Check if window is currently hidden (only PLATFORM_DESKTOP)
+> Check if window is currently hidden (only PLATFORM_DESKTOP)
 
 Defined in raylib.h:
 
@@ -1471,9 +2550,10 @@ def IsWindowHidden() -> bool
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="IsWindowMinimized">IsWindowMinimized function</h3>
+---
+<h2 id="IsWindowMinimized"><code>IsWindowMinimized</code> function</h2>
 
-Check if window is currently minimized (only PLATFORM_DESKTOP)
+> Check if window is currently minimized (only PLATFORM_DESKTOP)
 
 Defined in raylib.h:
 
@@ -1489,9 +2569,10 @@ def IsWindowMinimized() -> bool
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="IsWindowMaximized">IsWindowMaximized function</h3>
+---
+<h2 id="IsWindowMaximized"><code>IsWindowMaximized</code> function</h2>
 
-Check if window is currently maximized (only PLATFORM_DESKTOP)
+> Check if window is currently maximized (only PLATFORM_DESKTOP)
 
 Defined in raylib.h:
 
@@ -1507,9 +2588,10 @@ def IsWindowMaximized() -> bool
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="IsWindowFocused">IsWindowFocused function</h3>
+---
+<h2 id="IsWindowFocused"><code>IsWindowFocused</code> function</h2>
 
-Check if window is currently focused (only PLATFORM_DESKTOP)
+> Check if window is currently focused (only PLATFORM_DESKTOP)
 
 Defined in raylib.h:
 
@@ -1525,9 +2607,10 @@ def IsWindowFocused() -> bool
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="IsWindowResized">IsWindowResized function</h3>
+---
+<h2 id="IsWindowResized"><code>IsWindowResized</code> function</h2>
 
-Check if window has been resized last frame
+> Check if window has been resized last frame
 
 Defined in raylib.h:
 
@@ -1543,9 +2626,10 @@ def IsWindowResized() -> bool
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="IsWindowState">IsWindowState function</h3>
+---
+<h2 id="IsWindowState"><code>IsWindowState</code> function</h2>
 
-Check if one specific window flag is enabled
+> Check if one specific window flag is enabled
 
 Defined in raylib.h:
 
@@ -1561,9 +2645,10 @@ def IsWindowState(flag: int) -> bool
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="SetWindowState">SetWindowState function</h3>
+---
+<h2 id="SetWindowState"><code>SetWindowState</code> function</h2>
 
-Set window configuration state using flags (only PLATFORM_DESKTOP)
+> Set window configuration state using flags (only PLATFORM_DESKTOP)
 
 Defined in raylib.h:
 
@@ -1579,9 +2664,10 @@ def SetWindowState(flags: int) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="ClearWindowState">ClearWindowState function</h3>
+---
+<h2 id="ClearWindowState"><code>ClearWindowState</code> function</h2>
 
-Clear window configuration state flags
+> Clear window configuration state flags
 
 Defined in raylib.h:
 
@@ -1597,9 +2683,10 @@ def ClearWindowState(flags: int) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="ToggleFullscreen">ToggleFullscreen function</h3>
+---
+<h2 id="ToggleFullscreen"><code>ToggleFullscreen</code> function</h2>
 
-Toggle window state: fullscreen/windowed (only PLATFORM_DESKTOP)
+> Toggle window state: fullscreen/windowed (only PLATFORM_DESKTOP)
 
 Defined in raylib.h:
 
@@ -1615,9 +2702,10 @@ def ToggleFullscreen() -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="MaximizeWindow">MaximizeWindow function</h3>
+---
+<h2 id="MaximizeWindow"><code>MaximizeWindow</code> function</h2>
 
-Set window state: maximized, if resizable (only PLATFORM_DESKTOP)
+> Set window state: maximized, if resizable (only PLATFORM_DESKTOP)
 
 Defined in raylib.h:
 
@@ -1633,9 +2721,10 @@ def MaximizeWindow() -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="MinimizeWindow">MinimizeWindow function</h3>
+---
+<h2 id="MinimizeWindow"><code>MinimizeWindow</code> function</h2>
 
-Set window state: minimized, if resizable (only PLATFORM_DESKTOP)
+> Set window state: minimized, if resizable (only PLATFORM_DESKTOP)
 
 Defined in raylib.h:
 
@@ -1651,9 +2740,10 @@ def MinimizeWindow() -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="RestoreWindow">RestoreWindow function</h3>
+---
+<h2 id="RestoreWindow"><code>RestoreWindow</code> function</h2>
 
-Set window state: not minimized/maximized (only PLATFORM_DESKTOP)
+> Set window state: not minimized/maximized (only PLATFORM_DESKTOP)
 
 Defined in raylib.h:
 
@@ -1669,9 +2759,10 @@ def RestoreWindow() -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="SetWindowIcon">SetWindowIcon function</h3>
+---
+<h2 id="SetWindowIcon"><code>SetWindowIcon</code> function</h2>
 
-Set icon for window (only PLATFORM_DESKTOP)
+> Set icon for window (only PLATFORM_DESKTOP)
 
 Defined in raylib.h:
 
@@ -1685,13 +2776,15 @@ Python wrapper:
 def SetWindowIcon(image: Image) -> None
 ```
 
-See also: <a href="#Image">Image</a>
+See also:
+<a href="#Image">Image</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="SetWindowTitle">SetWindowTitle function</h3>
+---
+<h2 id="SetWindowTitle"><code>SetWindowTitle</code> function</h2>
 
-Set title for window (only PLATFORM_DESKTOP)
+> Set title for window (only PLATFORM_DESKTOP)
 
 Defined in raylib.h:
 
@@ -1707,9 +2800,10 @@ def SetWindowTitle(title: Union[str, CharPtr]) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="SetWindowPosition">SetWindowPosition function</h3>
+---
+<h2 id="SetWindowPosition"><code>SetWindowPosition</code> function</h2>
 
-Set window position on screen (only PLATFORM_DESKTOP)
+> Set window position on screen (only PLATFORM_DESKTOP)
 
 Defined in raylib.h:
 
@@ -1725,9 +2819,10 @@ def SetWindowPosition(x: int, y: int) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="SetWindowMonitor">SetWindowMonitor function</h3>
+---
+<h2 id="SetWindowMonitor"><code>SetWindowMonitor</code> function</h2>
 
-Set monitor for the current window (fullscreen mode)
+> Set monitor for the current window (fullscreen mode)
 
 Defined in raylib.h:
 
@@ -1743,9 +2838,10 @@ def SetWindowMonitor(monitor: int) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="SetWindowMinSize">SetWindowMinSize function</h3>
+---
+<h2 id="SetWindowMinSize"><code>SetWindowMinSize</code> function</h2>
 
-Set window minimum dimensions (for FLAG_WINDOW_RESIZABLE)
+> Set window minimum dimensions (for FLAG_WINDOW_RESIZABLE)
 
 Defined in raylib.h:
 
@@ -1761,9 +2857,10 @@ def SetWindowMinSize(width: int, height: int) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="SetWindowSize">SetWindowSize function</h3>
+---
+<h2 id="SetWindowSize"><code>SetWindowSize</code> function</h2>
 
-Set window dimensions
+> Set window dimensions
 
 Defined in raylib.h:
 
@@ -1779,9 +2876,10 @@ def SetWindowSize(width: int, height: int) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="SetWindowOpacity">SetWindowOpacity function</h3>
+---
+<h2 id="SetWindowOpacity"><code>SetWindowOpacity</code> function</h2>
 
-Set window opacity [0.0f..1.0f] (only PLATFORM_DESKTOP)
+> Set window opacity [0.0f..1.0f] (only PLATFORM_DESKTOP)
 
 Defined in raylib.h:
 
@@ -1797,9 +2895,10 @@ def SetWindowOpacity(opacity: float) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GetWindowHandle">GetWindowHandle function</h3>
+---
+<h2 id="GetWindowHandle"><code>GetWindowHandle</code> function</h2>
 
-Get native window handle
+> Get native window handle
 
 Defined in raylib.h:
 
@@ -1815,9 +2914,10 @@ def GetWindowHandle() -> bytes
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GetScreenWidth">GetScreenWidth function</h3>
+---
+<h2 id="GetScreenWidth"><code>GetScreenWidth</code> function</h2>
 
-Get current screen width
+> Get current screen width
 
 Defined in raylib.h:
 
@@ -1833,9 +2933,10 @@ def GetScreenWidth() -> int
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GetScreenHeight">GetScreenHeight function</h3>
+---
+<h2 id="GetScreenHeight"><code>GetScreenHeight</code> function</h2>
 
-Get current screen height
+> Get current screen height
 
 Defined in raylib.h:
 
@@ -1851,9 +2952,10 @@ def GetScreenHeight() -> int
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GetRenderWidth">GetRenderWidth function</h3>
+---
+<h2 id="GetRenderWidth"><code>GetRenderWidth</code> function</h2>
 
-Get current render width (it considers HiDPI)
+> Get current render width (it considers HiDPI)
 
 Defined in raylib.h:
 
@@ -1869,9 +2971,10 @@ def GetRenderWidth() -> int
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GetRenderHeight">GetRenderHeight function</h3>
+---
+<h2 id="GetRenderHeight"><code>GetRenderHeight</code> function</h2>
 
-Get current render height (it considers HiDPI)
+> Get current render height (it considers HiDPI)
 
 Defined in raylib.h:
 
@@ -1887,9 +2990,10 @@ def GetRenderHeight() -> int
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GetMonitorCount">GetMonitorCount function</h3>
+---
+<h2 id="GetMonitorCount"><code>GetMonitorCount</code> function</h2>
 
-Get number of connected monitors
+> Get number of connected monitors
 
 Defined in raylib.h:
 
@@ -1905,9 +3009,10 @@ def GetMonitorCount() -> int
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GetCurrentMonitor">GetCurrentMonitor function</h3>
+---
+<h2 id="GetCurrentMonitor"><code>GetCurrentMonitor</code> function</h2>
 
-Get current connected monitor
+> Get current connected monitor
 
 Defined in raylib.h:
 
@@ -1923,9 +3028,10 @@ def GetCurrentMonitor() -> int
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GetMonitorPosition">GetMonitorPosition function</h3>
+---
+<h2 id="GetMonitorPosition"><code>GetMonitorPosition</code> function</h2>
 
-Get specified monitor position
+> Get specified monitor position
 
 Defined in raylib.h:
 
@@ -1939,11 +3045,15 @@ Python wrapper:
 def GetMonitorPosition(monitor: int) -> Vector2
 ```
 
+See also:
+<a href="#Vector2">Vector2</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GetMonitorWidth">GetMonitorWidth function</h3>
+---
+<h2 id="GetMonitorWidth"><code>GetMonitorWidth</code> function</h2>
 
-Get specified monitor width (current video mode used by monitor)
+> Get specified monitor width (current video mode used by monitor)
 
 Defined in raylib.h:
 
@@ -1959,9 +3069,10 @@ def GetMonitorWidth(monitor: int) -> int
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GetMonitorHeight">GetMonitorHeight function</h3>
+---
+<h2 id="GetMonitorHeight"><code>GetMonitorHeight</code> function</h2>
 
-Get specified monitor height (current video mode used by monitor)
+> Get specified monitor height (current video mode used by monitor)
 
 Defined in raylib.h:
 
@@ -1977,9 +3088,10 @@ def GetMonitorHeight(monitor: int) -> int
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GetMonitorPhysicalWidth">GetMonitorPhysicalWidth function</h3>
+---
+<h2 id="GetMonitorPhysicalWidth"><code>GetMonitorPhysicalWidth</code> function</h2>
 
-Get specified monitor physical width in millimetres
+> Get specified monitor physical width in millimetres
 
 Defined in raylib.h:
 
@@ -1995,9 +3107,10 @@ def GetMonitorPhysicalWidth(monitor: int) -> int
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GetMonitorPhysicalHeight">GetMonitorPhysicalHeight function</h3>
+---
+<h2 id="GetMonitorPhysicalHeight"><code>GetMonitorPhysicalHeight</code> function</h2>
 
-Get specified monitor physical height in millimetres
+> Get specified monitor physical height in millimetres
 
 Defined in raylib.h:
 
@@ -2013,9 +3126,10 @@ def GetMonitorPhysicalHeight(monitor: int) -> int
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GetMonitorRefreshRate">GetMonitorRefreshRate function</h3>
+---
+<h2 id="GetMonitorRefreshRate"><code>GetMonitorRefreshRate</code> function</h2>
 
-Get specified monitor refresh rate
+> Get specified monitor refresh rate
 
 Defined in raylib.h:
 
@@ -2031,9 +3145,10 @@ def GetMonitorRefreshRate(monitor: int) -> int
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GetWindowPosition">GetWindowPosition function</h3>
+---
+<h2 id="GetWindowPosition"><code>GetWindowPosition</code> function</h2>
 
-Get window position XY on monitor
+> Get window position XY on monitor
 
 Defined in raylib.h:
 
@@ -2047,11 +3162,15 @@ Python wrapper:
 def GetWindowPosition() -> Vector2
 ```
 
+See also:
+<a href="#Vector2">Vector2</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GetWindowScaleDPI">GetWindowScaleDPI function</h3>
+---
+<h2 id="GetWindowScaleDPI"><code>GetWindowScaleDPI</code> function</h2>
 
-Get window scale DPI factor
+> Get window scale DPI factor
 
 Defined in raylib.h:
 
@@ -2065,11 +3184,15 @@ Python wrapper:
 def GetWindowScaleDPI() -> Vector2
 ```
 
+See also:
+<a href="#Vector2">Vector2</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GetMonitorName">GetMonitorName function</h3>
+---
+<h2 id="GetMonitorName"><code>GetMonitorName</code> function</h2>
 
-Get the human-readable, UTF-8 encoded name of the primary monitor
+> Get the human-readable, UTF-8 encoded name of the primary monitor
 
 Defined in raylib.h:
 
@@ -2085,9 +3208,10 @@ def GetMonitorName(monitor: int) -> Union[str, CharPtr]
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="SetClipboardText">SetClipboardText function</h3>
+---
+<h2 id="SetClipboardText"><code>SetClipboardText</code> function</h2>
 
-Set clipboard text content
+> Set clipboard text content
 
 Defined in raylib.h:
 
@@ -2103,9 +3227,10 @@ def SetClipboardText(text: Union[str, CharPtr]) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GetClipboardText">GetClipboardText function</h3>
+---
+<h2 id="GetClipboardText"><code>GetClipboardText</code> function</h2>
 
-Get clipboard text content
+> Get clipboard text content
 
 Defined in raylib.h:
 
@@ -2121,9 +3246,10 @@ def GetClipboardText() -> Union[str, CharPtr]
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="EnableEventWaiting">EnableEventWaiting function</h3>
+---
+<h2 id="EnableEventWaiting"><code>EnableEventWaiting</code> function</h2>
 
-Enable waiting for events on EndDrawing(), no automatic event polling
+> Enable waiting for events on EndDrawing(), no automatic event polling
 
 Defined in raylib.h:
 
@@ -2139,9 +3265,10 @@ def EnableEventWaiting() -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="DisableEventWaiting">DisableEventWaiting function</h3>
+---
+<h2 id="DisableEventWaiting"><code>DisableEventWaiting</code> function</h2>
 
-Disable waiting for events on EndDrawing(), automatic events polling
+> Disable waiting for events on EndDrawing(), automatic events polling
 
 Defined in raylib.h:
 
@@ -2157,9 +3284,10 @@ def DisableEventWaiting() -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="SwapScreenBuffer">SwapScreenBuffer function</h3>
+---
+<h2 id="SwapScreenBuffer"><code>SwapScreenBuffer</code> function</h2>
 
-Swap back buffer with front buffer (screen drawing)
+> Swap back buffer with front buffer (screen drawing)
 
 Defined in raylib.h:
 
@@ -2175,9 +3303,10 @@ def SwapScreenBuffer() -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="PollInputEvents">PollInputEvents function</h3>
+---
+<h2 id="PollInputEvents"><code>PollInputEvents</code> function</h2>
 
-Register all input events
+> Register all input events
 
 Defined in raylib.h:
 
@@ -2193,9 +3322,10 @@ def PollInputEvents() -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="WaitTime">WaitTime function</h3>
+---
+<h2 id="WaitTime"><code>WaitTime</code> function</h2>
 
-Wait for some time (halt program execution)
+> Wait for some time (halt program execution)
 
 Defined in raylib.h:
 
@@ -2211,9 +3341,10 @@ def WaitTime(seconds: float) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="ShowCursor">ShowCursor function</h3>
+---
+<h2 id="ShowCursor"><code>ShowCursor</code> function</h2>
 
-Shows cursor
+> Shows cursor
 
 Defined in raylib.h:
 
@@ -2229,9 +3360,10 @@ def ShowCursor() -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="HideCursor">HideCursor function</h3>
+---
+<h2 id="HideCursor"><code>HideCursor</code> function</h2>
 
-Hides cursor
+> Hides cursor
 
 Defined in raylib.h:
 
@@ -2247,9 +3379,10 @@ def HideCursor() -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="IsCursorHidden">IsCursorHidden function</h3>
+---
+<h2 id="IsCursorHidden"><code>IsCursorHidden</code> function</h2>
 
-Check if cursor is not visible
+> Check if cursor is not visible
 
 Defined in raylib.h:
 
@@ -2265,9 +3398,10 @@ def IsCursorHidden() -> bool
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="EnableCursor">EnableCursor function</h3>
+---
+<h2 id="EnableCursor"><code>EnableCursor</code> function</h2>
 
-Enables cursor (unlock cursor)
+> Enables cursor (unlock cursor)
 
 Defined in raylib.h:
 
@@ -2283,9 +3417,10 @@ def EnableCursor() -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="DisableCursor">DisableCursor function</h3>
+---
+<h2 id="DisableCursor"><code>DisableCursor</code> function</h2>
 
-Disables cursor (lock cursor)
+> Disables cursor (lock cursor)
 
 Defined in raylib.h:
 
@@ -2301,9 +3436,10 @@ def DisableCursor() -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="IsCursorOnScreen">IsCursorOnScreen function</h3>
+---
+<h2 id="IsCursorOnScreen"><code>IsCursorOnScreen</code> function</h2>
 
-Check if cursor is on the screen
+> Check if cursor is on the screen
 
 Defined in raylib.h:
 
@@ -2319,9 +3455,10 @@ def IsCursorOnScreen() -> bool
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="ClearBackground">ClearBackground function</h3>
+---
+<h2 id="ClearBackground"><code>ClearBackground</code> function</h2>
 
-Set background color (framebuffer clear color)
+> Set background color (framebuffer clear color)
 
 Defined in raylib.h:
 
@@ -2335,13 +3472,15 @@ Python wrapper:
 def ClearBackground(color: Color) -> None
 ```
 
-See also: <a href="#Color">Color</a>
+See also:
+<a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="BeginDrawing">BeginDrawing function</h3>
+---
+<h2 id="BeginDrawing"><code>BeginDrawing</code> function</h2>
 
-Setup canvas (framebuffer) to start drawing
+> Setup canvas (framebuffer) to start drawing
 
 Defined in raylib.h:
 
@@ -2357,9 +3496,10 @@ def BeginDrawing() -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="EndDrawing">EndDrawing function</h3>
+---
+<h2 id="EndDrawing"><code>EndDrawing</code> function</h2>
 
-End canvas drawing and swap buffers (double buffering)
+> End canvas drawing and swap buffers (double buffering)
 
 Defined in raylib.h:
 
@@ -2375,9 +3515,10 @@ def EndDrawing() -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="BeginMode2D">BeginMode2D function</h3>
+---
+<h2 id="BeginMode2D"><code>BeginMode2D</code> function</h2>
 
-Begin 2D mode with custom camera (2D)
+> Begin 2D mode with custom camera (2D)
 
 Defined in raylib.h:
 
@@ -2391,13 +3532,15 @@ Python wrapper:
 def BeginMode2D(camera: Camera2D) -> None
 ```
 
-See also: <a href="#Camera2D">Camera2D</a>
+See also:
+<a href="#Camera2D">Camera2D</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="EndMode2D">EndMode2D function</h3>
+---
+<h2 id="EndMode2D"><code>EndMode2D</code> function</h2>
 
-Ends 2D mode with custom camera
+> Ends 2D mode with custom camera
 
 Defined in raylib.h:
 
@@ -2413,9 +3556,10 @@ def EndMode2D() -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="BeginMode3D">BeginMode3D function</h3>
+---
+<h2 id="BeginMode3D"><code>BeginMode3D</code> function</h2>
 
-Begin 3D mode with custom camera (3D)
+> Begin 3D mode with custom camera (3D)
 
 Defined in raylib.h:
 
@@ -2429,13 +3573,15 @@ Python wrapper:
 def BeginMode3D(camera: Camera3D) -> None
 ```
 
-See also: <a href="#Camera3D">Camera3D</a>
+See also:
+<a href="#Camera3D">Camera3D</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="EndMode3D">EndMode3D function</h3>
+---
+<h2 id="EndMode3D"><code>EndMode3D</code> function</h2>
 
-Ends 3D mode and returns to default 2D orthographic mode
+> Ends 3D mode and returns to default 2D orthographic mode
 
 Defined in raylib.h:
 
@@ -2451,9 +3597,10 @@ def EndMode3D() -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="BeginTextureMode">BeginTextureMode function</h3>
+---
+<h2 id="BeginTextureMode"><code>BeginTextureMode</code> function</h2>
 
-Begin drawing to render texture
+> Begin drawing to render texture
 
 Defined in raylib.h:
 
@@ -2469,9 +3616,10 @@ def BeginTextureMode(target: RenderTexture2D) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="EndTextureMode">EndTextureMode function</h3>
+---
+<h2 id="EndTextureMode"><code>EndTextureMode</code> function</h2>
 
-Ends drawing to render texture
+> Ends drawing to render texture
 
 Defined in raylib.h:
 
@@ -2487,9 +3635,10 @@ def EndTextureMode() -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="BeginShaderMode">BeginShaderMode function</h3>
+---
+<h2 id="BeginShaderMode"><code>BeginShaderMode</code> function</h2>
 
-Begin custom shader drawing
+> Begin custom shader drawing
 
 Defined in raylib.h:
 
@@ -2503,13 +3652,15 @@ Python wrapper:
 def BeginShaderMode(shader: Shader) -> None
 ```
 
-See also: <a href="#Shader">Shader</a>
+See also:
+<a href="#Shader">Shader</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="EndShaderMode">EndShaderMode function</h3>
+---
+<h2 id="EndShaderMode"><code>EndShaderMode</code> function</h2>
 
-End custom shader drawing (use default shader)
+> End custom shader drawing (use default shader)
 
 Defined in raylib.h:
 
@@ -2525,9 +3676,10 @@ def EndShaderMode() -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="BeginBlendMode">BeginBlendMode function</h3>
+---
+<h2 id="BeginBlendMode"><code>BeginBlendMode</code> function</h2>
 
-Begin blending mode (alpha, additive, multiplied, subtract, custom)
+> Begin blending mode (alpha, additive, multiplied, subtract, custom)
 
 Defined in raylib.h:
 
@@ -2543,9 +3695,10 @@ def BeginBlendMode(mode: int) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="EndBlendMode">EndBlendMode function</h3>
+---
+<h2 id="EndBlendMode"><code>EndBlendMode</code> function</h2>
 
-End blending mode (reset to default: alpha blending)
+> End blending mode (reset to default: alpha blending)
 
 Defined in raylib.h:
 
@@ -2561,9 +3714,10 @@ def EndBlendMode() -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="BeginScissorMode">BeginScissorMode function</h3>
+---
+<h2 id="BeginScissorMode"><code>BeginScissorMode</code> function</h2>
 
-Begin scissor mode (define screen area for following drawing)
+> Begin scissor mode (define screen area for following drawing)
 
 Defined in raylib.h:
 
@@ -2579,9 +3733,10 @@ def BeginScissorMode(x: int, y: int, width: int, height: int) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="EndScissorMode">EndScissorMode function</h3>
+---
+<h2 id="EndScissorMode"><code>EndScissorMode</code> function</h2>
 
-End scissor mode
+> End scissor mode
 
 Defined in raylib.h:
 
@@ -2597,9 +3752,10 @@ def EndScissorMode() -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="BeginVrStereoMode">BeginVrStereoMode function</h3>
+---
+<h2 id="BeginVrStereoMode"><code>BeginVrStereoMode</code> function</h2>
 
-Begin stereo rendering (requires VR simulator)
+> Begin stereo rendering (requires VR simulator)
 
 Defined in raylib.h:
 
@@ -2613,13 +3769,15 @@ Python wrapper:
 def BeginVrStereoMode(config: VrStereoConfig) -> None
 ```
 
-See also: <a href="#VrStereoConfig">VrStereoConfig</a>
+See also:
+<a href="#VrStereoConfig">VrStereoConfig</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="EndVrStereoMode">EndVrStereoMode function</h3>
+---
+<h2 id="EndVrStereoMode"><code>EndVrStereoMode</code> function</h2>
 
-End stereo rendering (requires VR simulator)
+> End stereo rendering (requires VR simulator)
 
 Defined in raylib.h:
 
@@ -2635,9 +3793,10 @@ def EndVrStereoMode() -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="LoadVrStereoConfig">LoadVrStereoConfig function</h3>
+---
+<h2 id="LoadVrStereoConfig"><code>LoadVrStereoConfig</code> function</h2>
 
-Load VR stereo config for VR simulator device parameters
+> Load VR stereo config for VR simulator device parameters
 
 Defined in raylib.h:
 
@@ -2651,13 +3810,15 @@ Python wrapper:
 def LoadVrStereoConfig(device: VrDeviceInfo) -> VrStereoConfig
 ```
 
-See also: <a href="#VrDeviceInfo">VrDeviceInfo</a>
+See also:
+<a href="#VrDeviceInfo">VrDeviceInfo</a>, <a href="#VrStereoConfig">VrStereoConfig</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="UnloadVrStereoConfig">UnloadVrStereoConfig function</h3>
+---
+<h2 id="UnloadVrStereoConfig"><code>UnloadVrStereoConfig</code> function</h2>
 
-Unload VR stereo config
+> Unload VR stereo config
 
 Defined in raylib.h:
 
@@ -2671,13 +3832,15 @@ Python wrapper:
 def UnloadVrStereoConfig(config: VrStereoConfig) -> None
 ```
 
-See also: <a href="#VrStereoConfig">VrStereoConfig</a>
+See also:
+<a href="#VrStereoConfig">VrStereoConfig</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="LoadShader">LoadShader function</h3>
+---
+<h2 id="LoadShader"><code>LoadShader</code> function</h2>
 
-Load shader from files and bind default locations
+> Load shader from files and bind default locations
 
 Defined in raylib.h:
 
@@ -2691,11 +3854,15 @@ Python wrapper:
 def LoadShader(vsFileName: Union[str, CharPtr], fsFileName: Union[str, CharPtr]) -> Shader
 ```
 
+See also:
+<a href="#Shader">Shader</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="LoadShaderFromMemory">LoadShaderFromMemory function</h3>
+---
+<h2 id="LoadShaderFromMemory"><code>LoadShaderFromMemory</code> function</h2>
 
-Load shader from code strings and bind default locations
+> Load shader from code strings and bind default locations
 
 Defined in raylib.h:
 
@@ -2709,11 +3876,15 @@ Python wrapper:
 def LoadShaderFromMemory(vsCode: Union[str, CharPtr], fsCode: Union[str, CharPtr]) -> Shader
 ```
 
+See also:
+<a href="#Shader">Shader</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GetShaderLocation">GetShaderLocation function</h3>
+---
+<h2 id="GetShaderLocation"><code>GetShaderLocation</code> function</h2>
 
-Get shader uniform location
+> Get shader uniform location
 
 Defined in raylib.h:
 
@@ -2727,13 +3898,15 @@ Python wrapper:
 def GetShaderLocation(shader: Shader, uniformName: Union[str, CharPtr]) -> int
 ```
 
-See also: <a href="#Shader">Shader</a>
+See also:
+<a href="#Shader">Shader</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GetShaderLocationAttrib">GetShaderLocationAttrib function</h3>
+---
+<h2 id="GetShaderLocationAttrib"><code>GetShaderLocationAttrib</code> function</h2>
 
-Get shader attribute location
+> Get shader attribute location
 
 Defined in raylib.h:
 
@@ -2747,13 +3920,15 @@ Python wrapper:
 def GetShaderLocationAttrib(shader: Shader, attribName: Union[str, CharPtr]) -> int
 ```
 
-See also: <a href="#Shader">Shader</a>
+See also:
+<a href="#Shader">Shader</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="SetShaderValue">SetShaderValue function</h3>
+---
+<h2 id="SetShaderValue"><code>SetShaderValue</code> function</h2>
 
-Set shader uniform value
+> Set shader uniform value
 
 Defined in raylib.h:
 
@@ -2767,13 +3942,15 @@ Python wrapper:
 def SetShaderValue(shader: Shader, locIndex: int, value: bytes, uniformType: int) -> None
 ```
 
-See also: <a href="#Shader">Shader</a>
+See also:
+<a href="#Shader">Shader</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="SetShaderValueV">SetShaderValueV function</h3>
+---
+<h2 id="SetShaderValueV"><code>SetShaderValueV</code> function</h2>
 
-Set shader uniform value vector
+> Set shader uniform value vector
 
 Defined in raylib.h:
 
@@ -2787,13 +3964,15 @@ Python wrapper:
 def SetShaderValueV(shader: Shader, locIndex: int, value: bytes, uniformType: int, count: int) -> None
 ```
 
-See also: <a href="#Shader">Shader</a>
+See also:
+<a href="#Shader">Shader</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="SetShaderValueMatrix">SetShaderValueMatrix function</h3>
+---
+<h2 id="SetShaderValueMatrix"><code>SetShaderValueMatrix</code> function</h2>
 
-Set shader uniform value (matrix 4x4)
+> Set shader uniform value (matrix 4x4)
 
 Defined in raylib.h:
 
@@ -2807,13 +3986,15 @@ Python wrapper:
 def SetShaderValueMatrix(shader: Shader, locIndex: int, mat: Matrix) -> None
 ```
 
-See also: <a href="#Shader">Shader</a>, <a href="#Matrix">Matrix</a>
+See also:
+<a href="#Shader">Shader</a>, <a href="#Matrix">Matrix</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="SetShaderValueTexture">SetShaderValueTexture function</h3>
+---
+<h2 id="SetShaderValueTexture"><code>SetShaderValueTexture</code> function</h2>
 
-Set shader uniform value for texture (sampler2d)
+> Set shader uniform value for texture (sampler2d)
 
 Defined in raylib.h:
 
@@ -2827,13 +4008,15 @@ Python wrapper:
 def SetShaderValueTexture(shader: Shader, locIndex: int, texture: Texture2D) -> None
 ```
 
-See also: <a href="#Shader">Shader</a>
+See also:
+<a href="#Shader">Shader</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="UnloadShader">UnloadShader function</h3>
+---
+<h2 id="UnloadShader"><code>UnloadShader</code> function</h2>
 
-Unload shader from GPU memory (VRAM)
+> Unload shader from GPU memory (VRAM)
 
 Defined in raylib.h:
 
@@ -2847,13 +4030,15 @@ Python wrapper:
 def UnloadShader(shader: Shader) -> None
 ```
 
-See also: <a href="#Shader">Shader</a>
+See also:
+<a href="#Shader">Shader</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GetMouseRay">GetMouseRay function</h3>
+---
+<h2 id="GetMouseRay"><code>GetMouseRay</code> function</h2>
 
-Get a ray trace from mouse position
+> Get a ray trace from mouse position
 
 Defined in raylib.h:
 
@@ -2867,13 +4052,15 @@ Python wrapper:
 def GetMouseRay(mousePosition: Vector2, camera: Camera) -> Ray
 ```
 
-See also: <a href="#Vector2">Vector2</a>
+See also:
+<a href="#Vector2">Vector2</a>, <a href="#Ray">Ray</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GetCameraMatrix">GetCameraMatrix function</h3>
+---
+<h2 id="GetCameraMatrix"><code>GetCameraMatrix</code> function</h2>
 
-Get camera transform matrix (view matrix)
+> Get camera transform matrix (view matrix)
 
 Defined in raylib.h:
 
@@ -2887,11 +4074,15 @@ Python wrapper:
 def GetCameraMatrix(camera: Camera) -> Matrix
 ```
 
+See also:
+<a href="#Matrix">Matrix</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GetCameraMatrix2D">GetCameraMatrix2D function</h3>
+---
+<h2 id="GetCameraMatrix2D"><code>GetCameraMatrix2D</code> function</h2>
 
-Get camera 2d transform matrix
+> Get camera 2d transform matrix
 
 Defined in raylib.h:
 
@@ -2905,13 +4096,15 @@ Python wrapper:
 def GetCameraMatrix2D(camera: Camera2D) -> Matrix
 ```
 
-See also: <a href="#Camera2D">Camera2D</a>
+See also:
+<a href="#Camera2D">Camera2D</a>, <a href="#Matrix">Matrix</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GetWorldToScreen">GetWorldToScreen function</h3>
+---
+<h2 id="GetWorldToScreen"><code>GetWorldToScreen</code> function</h2>
 
-Get the screen space position for a 3d world space position
+> Get the screen space position for a 3d world space position
 
 Defined in raylib.h:
 
@@ -2925,13 +4118,15 @@ Python wrapper:
 def GetWorldToScreen(position: Vector3, camera: Camera) -> Vector2
 ```
 
-See also: <a href="#Vector3">Vector3</a>
+See also:
+<a href="#Vector3">Vector3</a>, <a href="#Vector2">Vector2</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GetScreenToWorld2D">GetScreenToWorld2D function</h3>
+---
+<h2 id="GetScreenToWorld2D"><code>GetScreenToWorld2D</code> function</h2>
 
-Get the world space position for a 2d camera screen space position
+> Get the world space position for a 2d camera screen space position
 
 Defined in raylib.h:
 
@@ -2945,13 +4140,15 @@ Python wrapper:
 def GetScreenToWorld2D(position: Vector2, camera: Camera2D) -> Vector2
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Camera2D">Camera2D</a>
+See also:
+<a href="#Vector2">Vector2</a>, <a href="#Camera2D">Camera2D</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GetWorldToScreenEx">GetWorldToScreenEx function</h3>
+---
+<h2 id="GetWorldToScreenEx"><code>GetWorldToScreenEx</code> function</h2>
 
-Get size position for a 3d world space position
+> Get size position for a 3d world space position
 
 Defined in raylib.h:
 
@@ -2965,13 +4162,15 @@ Python wrapper:
 def GetWorldToScreenEx(position: Vector3, camera: Camera, width: int, height: int) -> Vector2
 ```
 
-See also: <a href="#Vector3">Vector3</a>
+See also:
+<a href="#Vector3">Vector3</a>, <a href="#Vector2">Vector2</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GetWorldToScreen2D">GetWorldToScreen2D function</h3>
+---
+<h2 id="GetWorldToScreen2D"><code>GetWorldToScreen2D</code> function</h2>
 
-Get the screen space position for a 2d camera world space position
+> Get the screen space position for a 2d camera world space position
 
 Defined in raylib.h:
 
@@ -2985,13 +4184,15 @@ Python wrapper:
 def GetWorldToScreen2D(position: Vector2, camera: Camera2D) -> Vector2
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Camera2D">Camera2D</a>
+See also:
+<a href="#Vector2">Vector2</a>, <a href="#Camera2D">Camera2D</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="SetTargetFPS">SetTargetFPS function</h3>
+---
+<h2 id="SetTargetFPS"><code>SetTargetFPS</code> function</h2>
 
-Set target FPS (maximum)
+> Set target FPS (maximum)
 
 Defined in raylib.h:
 
@@ -3007,9 +4208,10 @@ def SetTargetFPS(fps: int) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GetFPS">GetFPS function</h3>
+---
+<h2 id="GetFPS"><code>GetFPS</code> function</h2>
 
-Get current FPS
+> Get current FPS
 
 Defined in raylib.h:
 
@@ -3025,9 +4227,10 @@ def GetFPS() -> int
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GetFrameTime">GetFrameTime function</h3>
+---
+<h2 id="GetFrameTime"><code>GetFrameTime</code> function</h2>
 
-Get time in seconds for last frame drawn (delta time)
+> Get time in seconds for last frame drawn (delta time)
 
 Defined in raylib.h:
 
@@ -3043,9 +4246,10 @@ def GetFrameTime() -> float
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GetTime">GetTime function</h3>
+---
+<h2 id="GetTime"><code>GetTime</code> function</h2>
 
-Get elapsed time in seconds since InitWindow()
+> Get elapsed time in seconds since InitWindow()
 
 Defined in raylib.h:
 
@@ -3061,9 +4265,10 @@ def GetTime() -> float
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GetRandomValue">GetRandomValue function</h3>
+---
+<h2 id="GetRandomValue"><code>GetRandomValue</code> function</h2>
 
-Get a random value between min and max (both included)
+> Get a random value between min and max (both included)
 
 Defined in raylib.h:
 
@@ -3079,9 +4284,10 @@ def GetRandomValue(min: int, max: int) -> int
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="SetRandomSeed">SetRandomSeed function</h3>
+---
+<h2 id="SetRandomSeed"><code>SetRandomSeed</code> function</h2>
 
-Set the seed for the random number generator
+> Set the seed for the random number generator
 
 Defined in raylib.h:
 
@@ -3097,9 +4303,10 @@ def SetRandomSeed(seed: int) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="TakeScreenshot">TakeScreenshot function</h3>
+---
+<h2 id="TakeScreenshot"><code>TakeScreenshot</code> function</h2>
 
-Takes a screenshot of current screen (filename extension defines format)
+> Takes a screenshot of current screen (filename extension defines format)
 
 Defined in raylib.h:
 
@@ -3115,9 +4322,10 @@ def TakeScreenshot(fileName: Union[str, CharPtr]) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="SetConfigFlags">SetConfigFlags function</h3>
+---
+<h2 id="SetConfigFlags"><code>SetConfigFlags</code> function</h2>
 
-Setup init configuration flags (view FLAGS)
+> Setup init configuration flags (view FLAGS)
 
 Defined in raylib.h:
 
@@ -3133,9 +4341,10 @@ def SetConfigFlags(flags: int) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="TraceLog">TraceLog function</h3>
+---
+<h2 id="TraceLog"><code>TraceLog</code> function</h2>
 
-Show trace log messages (LOG_DEBUG, LOG_INFO, LOG_WARNING, LOG_ERROR...)
+> Show trace log messages (LOG_DEBUG, LOG_INFO, LOG_WARNING, LOG_ERROR...)
 
 Defined in raylib.h:
 
@@ -3151,9 +4360,10 @@ def TraceLog(logLevel: int, text: Union[str, CharPtr], args: bytes) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="SetTraceLogLevel">SetTraceLogLevel function</h3>
+---
+<h2 id="SetTraceLogLevel"><code>SetTraceLogLevel</code> function</h2>
 
-Set the current threshold (minimum) log level
+> Set the current threshold (minimum) log level
 
 Defined in raylib.h:
 
@@ -3169,9 +4379,10 @@ def SetTraceLogLevel(logLevel: int) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="MemAlloc">MemAlloc function</h3>
+---
+<h2 id="MemAlloc"><code>MemAlloc</code> function</h2>
 
-Internal memory allocator
+> Internal memory allocator
 
 Defined in raylib.h:
 
@@ -3187,9 +4398,10 @@ def MemAlloc(size: int) -> bytes
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="MemRealloc">MemRealloc function</h3>
+---
+<h2 id="MemRealloc"><code>MemRealloc</code> function</h2>
 
-Internal memory reallocator
+> Internal memory reallocator
 
 Defined in raylib.h:
 
@@ -3205,9 +4417,10 @@ def MemRealloc(ptr: bytes, size: int) -> bytes
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="MemFree">MemFree function</h3>
+---
+<h2 id="MemFree"><code>MemFree</code> function</h2>
 
-Internal memory free
+> Internal memory free
 
 Defined in raylib.h:
 
@@ -3223,9 +4436,10 @@ def MemFree(ptr: bytes) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="OpenURL">OpenURL function</h3>
+---
+<h2 id="OpenURL"><code>OpenURL</code> function</h2>
 
-Open URL with default system browser (if available)
+> Open URL with default system browser (if available)
 
 Defined in raylib.h:
 
@@ -3241,9 +4455,10 @@ def OpenURL(url: Union[str, CharPtr]) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="SetTraceLogCallback">SetTraceLogCallback function</h3>
+---
+<h2 id="SetTraceLogCallback"><code>SetTraceLogCallback</code> function</h2>
 
-Set custom trace log
+> Set custom trace log
 
 Defined in raylib.h:
 
@@ -3259,9 +4474,10 @@ def SetTraceLogCallback(callback: TraceLogCallback) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="SetLoadFileDataCallback">SetLoadFileDataCallback function</h3>
+---
+<h2 id="SetLoadFileDataCallback"><code>SetLoadFileDataCallback</code> function</h2>
 
-Set custom file binary data loader
+> Set custom file binary data loader
 
 Defined in raylib.h:
 
@@ -3277,9 +4493,10 @@ def SetLoadFileDataCallback(callback: LoadFileDataCallback) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="SetSaveFileDataCallback">SetSaveFileDataCallback function</h3>
+---
+<h2 id="SetSaveFileDataCallback"><code>SetSaveFileDataCallback</code> function</h2>
 
-Set custom file binary data saver
+> Set custom file binary data saver
 
 Defined in raylib.h:
 
@@ -3295,9 +4512,10 @@ def SetSaveFileDataCallback(callback: SaveFileDataCallback) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="SetLoadFileTextCallback">SetLoadFileTextCallback function</h3>
+---
+<h2 id="SetLoadFileTextCallback"><code>SetLoadFileTextCallback</code> function</h2>
 
-Set custom file text data loader
+> Set custom file text data loader
 
 Defined in raylib.h:
 
@@ -3313,9 +4531,10 @@ def SetLoadFileTextCallback(callback: LoadFileTextCallback) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="SetSaveFileTextCallback">SetSaveFileTextCallback function</h3>
+---
+<h2 id="SetSaveFileTextCallback"><code>SetSaveFileTextCallback</code> function</h2>
 
-Set custom file text data saver
+> Set custom file text data saver
 
 Defined in raylib.h:
 
@@ -3331,9 +4550,10 @@ def SetSaveFileTextCallback(callback: SaveFileTextCallback) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="LoadFileData">LoadFileData function</h3>
+---
+<h2 id="LoadFileData"><code>LoadFileData</code> function</h2>
 
-Load file data as byte array (read)
+> Load file data as byte array (read)
 
 Defined in raylib.h:
 
@@ -3349,9 +4569,10 @@ def LoadFileData(fileName: Union[str, CharPtr], bytesRead: Union[Seq[int], UIntP
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="UnloadFileData">UnloadFileData function</h3>
+---
+<h2 id="UnloadFileData"><code>UnloadFileData</code> function</h2>
 
-Unload file data allocated by LoadFileData()
+> Unload file data allocated by LoadFileData()
 
 Defined in raylib.h:
 
@@ -3367,9 +4588,10 @@ def UnloadFileData(data: Union[Seq[int], UCharPtr]) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="SaveFileData">SaveFileData function</h3>
+---
+<h2 id="SaveFileData"><code>SaveFileData</code> function</h2>
 
-Save data to file from byte array (write), returns true on success
+> Save data to file from byte array (write), returns true on success
 
 Defined in raylib.h:
 
@@ -3385,9 +4607,10 @@ def SaveFileData(fileName: Union[str, CharPtr], data: bytes, bytesToWrite: int) 
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="ExportDataAsCode">ExportDataAsCode function</h3>
+---
+<h2 id="ExportDataAsCode"><code>ExportDataAsCode</code> function</h2>
 
-Export data to code (.h), returns true on success
+> Export data to code (.h), returns true on success
 
 Defined in raylib.h:
 
@@ -3403,9 +4626,10 @@ def ExportDataAsCode(data: Union[str, CharPtr], size: int, fileName: Union[str, 
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="LoadFileText">LoadFileText function</h3>
+---
+<h2 id="LoadFileText"><code>LoadFileText</code> function</h2>
 
-Load text data from file (read), returns a '\0' terminated string
+> Load text data from file (read), returns a '\0' terminated string
 
 Defined in raylib.h:
 
@@ -3421,9 +4645,10 @@ def LoadFileText(fileName: Union[str, CharPtr]) -> Union[str, CharPtr]
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="UnloadFileText">UnloadFileText function</h3>
+---
+<h2 id="UnloadFileText"><code>UnloadFileText</code> function</h2>
 
-Unload file text data allocated by LoadFileText()
+> Unload file text data allocated by LoadFileText()
 
 Defined in raylib.h:
 
@@ -3439,9 +4664,10 @@ def UnloadFileText(text: Union[str, CharPtr]) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="SaveFileText">SaveFileText function</h3>
+---
+<h2 id="SaveFileText"><code>SaveFileText</code> function</h2>
 
-Save text data to file (write), string must be '\0' terminated, returns true on success
+> Save text data to file (write), string must be '\0' terminated, returns true on success
 
 Defined in raylib.h:
 
@@ -3457,9 +4683,10 @@ def SaveFileText(fileName: Union[str, CharPtr], text: Union[str, CharPtr]) -> bo
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="FileExists">FileExists function</h3>
+---
+<h2 id="FileExists"><code>FileExists</code> function</h2>
 
-Check if file exists
+> Check if file exists
 
 Defined in raylib.h:
 
@@ -3475,9 +4702,10 @@ def FileExists(fileName: Union[str, CharPtr]) -> bool
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="DirectoryExists">DirectoryExists function</h3>
+---
+<h2 id="DirectoryExists"><code>DirectoryExists</code> function</h2>
 
-Check if a directory path exists
+> Check if a directory path exists
 
 Defined in raylib.h:
 
@@ -3493,9 +4721,10 @@ def DirectoryExists(dirPath: Union[str, CharPtr]) -> bool
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="IsFileExtension">IsFileExtension function</h3>
+---
+<h2 id="IsFileExtension"><code>IsFileExtension</code> function</h2>
 
-Check file extension (including point: .png, .wav)
+> Check file extension (including point: .png, .wav)
 
 Defined in raylib.h:
 
@@ -3511,9 +4740,10 @@ def IsFileExtension(fileName: Union[str, CharPtr], ext: Union[str, CharPtr]) -> 
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GetFileLength">GetFileLength function</h3>
+---
+<h2 id="GetFileLength"><code>GetFileLength</code> function</h2>
 
-Get file length in bytes (NOTE: GetFileSize() conflicts with windows.h)
+> Get file length in bytes (NOTE: GetFileSize() conflicts with windows.h)
 
 Defined in raylib.h:
 
@@ -3529,9 +4759,10 @@ def GetFileLength(fileName: Union[str, CharPtr]) -> int
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GetFileExtension">GetFileExtension function</h3>
+---
+<h2 id="GetFileExtension"><code>GetFileExtension</code> function</h2>
 
-Get pointer to extension for a filename string (includes dot: '.png')
+> Get pointer to extension for a filename string (includes dot: '.png')
 
 Defined in raylib.h:
 
@@ -3547,9 +4778,10 @@ def GetFileExtension(fileName: Union[str, CharPtr]) -> Union[str, CharPtr]
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GetFileName">GetFileName function</h3>
+---
+<h2 id="GetFileName"><code>GetFileName</code> function</h2>
 
-Get pointer to filename for a path string
+> Get pointer to filename for a path string
 
 Defined in raylib.h:
 
@@ -3565,9 +4797,10 @@ def GetFileName(filePath: Union[str, CharPtr]) -> Union[str, CharPtr]
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GetFileNameWithoutExt">GetFileNameWithoutExt function</h3>
+---
+<h2 id="GetFileNameWithoutExt"><code>GetFileNameWithoutExt</code> function</h2>
 
-Get filename string without extension (uses static string)
+> Get filename string without extension (uses static string)
 
 Defined in raylib.h:
 
@@ -3583,9 +4816,10 @@ def GetFileNameWithoutExt(filePath: Union[str, CharPtr]) -> Union[str, CharPtr]
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GetDirectoryPath">GetDirectoryPath function</h3>
+---
+<h2 id="GetDirectoryPath"><code>GetDirectoryPath</code> function</h2>
 
-Get full path for a given fileName with path (uses static string)
+> Get full path for a given fileName with path (uses static string)
 
 Defined in raylib.h:
 
@@ -3601,9 +4835,10 @@ def GetDirectoryPath(filePath: Union[str, CharPtr]) -> Union[str, CharPtr]
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GetPrevDirectoryPath">GetPrevDirectoryPath function</h3>
+---
+<h2 id="GetPrevDirectoryPath"><code>GetPrevDirectoryPath</code> function</h2>
 
-Get previous directory path for a given path (uses static string)
+> Get previous directory path for a given path (uses static string)
 
 Defined in raylib.h:
 
@@ -3619,9 +4854,10 @@ def GetPrevDirectoryPath(dirPath: Union[str, CharPtr]) -> Union[str, CharPtr]
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GetWorkingDirectory">GetWorkingDirectory function</h3>
+---
+<h2 id="GetWorkingDirectory"><code>GetWorkingDirectory</code> function</h2>
 
-Get current working directory (uses static string)
+> Get current working directory (uses static string)
 
 Defined in raylib.h:
 
@@ -3637,9 +4873,10 @@ def GetWorkingDirectory() -> Union[str, CharPtr]
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GetApplicationDirectory">GetApplicationDirectory function</h3>
+---
+<h2 id="GetApplicationDirectory"><code>GetApplicationDirectory</code> function</h2>
 
-Get the directory if the running application (uses static string)
+> Get the directory if the running application (uses static string)
 
 Defined in raylib.h:
 
@@ -3655,9 +4892,10 @@ def GetApplicationDirectory() -> Union[str, CharPtr]
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="ChangeDirectory">ChangeDirectory function</h3>
+---
+<h2 id="ChangeDirectory"><code>ChangeDirectory</code> function</h2>
 
-Change working directory, return true on success
+> Change working directory, return true on success
 
 Defined in raylib.h:
 
@@ -3673,9 +4911,10 @@ def ChangeDirectory(dir: Union[str, CharPtr]) -> bool
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="IsPathFile">IsPathFile function</h3>
+---
+<h2 id="IsPathFile"><code>IsPathFile</code> function</h2>
 
-Check if a given path is a file or a directory
+> Check if a given path is a file or a directory
 
 Defined in raylib.h:
 
@@ -3691,9 +4930,10 @@ def IsPathFile(path: Union[str, CharPtr]) -> bool
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="LoadDirectoryFiles">LoadDirectoryFiles function</h3>
+---
+<h2 id="LoadDirectoryFiles"><code>LoadDirectoryFiles</code> function</h2>
 
-Load directory filepaths
+> Load directory filepaths
 
 Defined in raylib.h:
 
@@ -3707,11 +4947,15 @@ Python wrapper:
 def LoadDirectoryFiles(dirPath: Union[str, CharPtr]) -> FilePathList
 ```
 
+See also:
+<a href="#FilePathList">FilePathList</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="LoadDirectoryFilesEx">LoadDirectoryFilesEx function</h3>
+---
+<h2 id="LoadDirectoryFilesEx"><code>LoadDirectoryFilesEx</code> function</h2>
 
-Load directory filepaths with extension filtering and recursive directory scan
+> Load directory filepaths with extension filtering and recursive directory scan
 
 Defined in raylib.h:
 
@@ -3725,11 +4969,15 @@ Python wrapper:
 def LoadDirectoryFilesEx(basePath: Union[str, CharPtr], filter: Union[str, CharPtr], scanSubdirs: bool) -> FilePathList
 ```
 
+See also:
+<a href="#FilePathList">FilePathList</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="UnloadDirectoryFiles">UnloadDirectoryFiles function</h3>
+---
+<h2 id="UnloadDirectoryFiles"><code>UnloadDirectoryFiles</code> function</h2>
 
-Unload filepaths
+> Unload filepaths
 
 Defined in raylib.h:
 
@@ -3743,13 +4991,15 @@ Python wrapper:
 def UnloadDirectoryFiles(files: FilePathList) -> None
 ```
 
-See also: <a href="#FilePathList">FilePathList</a>
+See also:
+<a href="#FilePathList">FilePathList</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="IsFileDropped">IsFileDropped function</h3>
+---
+<h2 id="IsFileDropped"><code>IsFileDropped</code> function</h2>
 
-Check if a file has been dropped into window
+> Check if a file has been dropped into window
 
 Defined in raylib.h:
 
@@ -3765,9 +5015,10 @@ def IsFileDropped() -> bool
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="LoadDroppedFiles">LoadDroppedFiles function</h3>
+---
+<h2 id="LoadDroppedFiles"><code>LoadDroppedFiles</code> function</h2>
 
-Load dropped filepaths
+> Load dropped filepaths
 
 Defined in raylib.h:
 
@@ -3781,11 +5032,15 @@ Python wrapper:
 def LoadDroppedFiles() -> FilePathList
 ```
 
+See also:
+<a href="#FilePathList">FilePathList</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="UnloadDroppedFiles">UnloadDroppedFiles function</h3>
+---
+<h2 id="UnloadDroppedFiles"><code>UnloadDroppedFiles</code> function</h2>
 
-Unload dropped filepaths
+> Unload dropped filepaths
 
 Defined in raylib.h:
 
@@ -3799,13 +5054,15 @@ Python wrapper:
 def UnloadDroppedFiles(files: FilePathList) -> None
 ```
 
-See also: <a href="#FilePathList">FilePathList</a>
+See also:
+<a href="#FilePathList">FilePathList</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GetFileModTime">GetFileModTime function</h3>
+---
+<h2 id="GetFileModTime"><code>GetFileModTime</code> function</h2>
 
-Get file modification time (last write time)
+> Get file modification time (last write time)
 
 Defined in raylib.h:
 
@@ -3821,9 +5078,10 @@ def GetFileModTime(fileName: Union[str, CharPtr]) -> int
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="CompressData">CompressData function</h3>
+---
+<h2 id="CompressData"><code>CompressData</code> function</h2>
 
-Compress data (DEFLATE algorithm), memory must be MemFree()
+> Compress data (DEFLATE algorithm), memory must be MemFree()
 
 Defined in raylib.h:
 
@@ -3839,9 +5097,10 @@ def CompressData(data: Union[Seq[int], UCharPtr], dataSize: int, compDataSize: U
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="DecompressData">DecompressData function</h3>
+---
+<h2 id="DecompressData"><code>DecompressData</code> function</h2>
 
-Decompress data (DEFLATE algorithm), memory must be MemFree()
+> Decompress data (DEFLATE algorithm), memory must be MemFree()
 
 Defined in raylib.h:
 
@@ -3857,9 +5116,10 @@ def DecompressData(compData: Union[Seq[int], UCharPtr], compDataSize: int, dataS
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="EncodeDataBase64">EncodeDataBase64 function</h3>
+---
+<h2 id="EncodeDataBase64"><code>EncodeDataBase64</code> function</h2>
 
-Encode data to Base64 string, memory must be MemFree()
+> Encode data to Base64 string, memory must be MemFree()
 
 Defined in raylib.h:
 
@@ -3875,9 +5135,10 @@ def EncodeDataBase64(data: Union[Seq[int], UCharPtr], dataSize: int, outputSize:
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="DecodeDataBase64">DecodeDataBase64 function</h3>
+---
+<h2 id="DecodeDataBase64"><code>DecodeDataBase64</code> function</h2>
 
-Decode Base64 string data, memory must be MemFree()
+> Decode Base64 string data, memory must be MemFree()
 
 Defined in raylib.h:
 
@@ -3893,9 +5154,10 @@ def DecodeDataBase64(data: Union[Seq[int], UCharPtr], outputSize: Union[Seq[int]
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="IsKeyPressed">IsKeyPressed function</h3>
+---
+<h2 id="IsKeyPressed"><code>IsKeyPressed</code> function</h2>
 
-Check if a key has been pressed once
+> Check if a key has been pressed once
 
 Defined in raylib.h:
 
@@ -3911,9 +5173,10 @@ def IsKeyPressed(key: int) -> bool
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="IsKeyDown">IsKeyDown function</h3>
+---
+<h2 id="IsKeyDown"><code>IsKeyDown</code> function</h2>
 
-Check if a key is being pressed
+> Check if a key is being pressed
 
 Defined in raylib.h:
 
@@ -3929,9 +5192,10 @@ def IsKeyDown(key: int) -> bool
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="IsKeyReleased">IsKeyReleased function</h3>
+---
+<h2 id="IsKeyReleased"><code>IsKeyReleased</code> function</h2>
 
-Check if a key has been released once
+> Check if a key has been released once
 
 Defined in raylib.h:
 
@@ -3947,9 +5211,10 @@ def IsKeyReleased(key: int) -> bool
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="IsKeyUp">IsKeyUp function</h3>
+---
+<h2 id="IsKeyUp"><code>IsKeyUp</code> function</h2>
 
-Check if a key is NOT being pressed
+> Check if a key is NOT being pressed
 
 Defined in raylib.h:
 
@@ -3965,9 +5230,10 @@ def IsKeyUp(key: int) -> bool
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="SetExitKey">SetExitKey function</h3>
+---
+<h2 id="SetExitKey"><code>SetExitKey</code> function</h2>
 
-Set a custom key to exit program (default is ESC)
+> Set a custom key to exit program (default is ESC)
 
 Defined in raylib.h:
 
@@ -3983,9 +5249,10 @@ def SetExitKey(key: int) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GetKeyPressed">GetKeyPressed function</h3>
+---
+<h2 id="GetKeyPressed"><code>GetKeyPressed</code> function</h2>
 
-Get key pressed (keycode), call it multiple times for keys queued, returns 0 when the queue is empty
+> Get key pressed (keycode), call it multiple times for keys queued, returns 0 when the queue is empty
 
 Defined in raylib.h:
 
@@ -4001,9 +5268,10 @@ def GetKeyPressed() -> int
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GetCharPressed">GetCharPressed function</h3>
+---
+<h2 id="GetCharPressed"><code>GetCharPressed</code> function</h2>
 
-Get char pressed (unicode), call it multiple times for chars queued, returns 0 when the queue is empty
+> Get char pressed (unicode), call it multiple times for chars queued, returns 0 when the queue is empty
 
 Defined in raylib.h:
 
@@ -4019,9 +5287,10 @@ def GetCharPressed() -> int
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="IsGamepadAvailable">IsGamepadAvailable function</h3>
+---
+<h2 id="IsGamepadAvailable"><code>IsGamepadAvailable</code> function</h2>
 
-Check if a gamepad is available
+> Check if a gamepad is available
 
 Defined in raylib.h:
 
@@ -4037,9 +5306,10 @@ def IsGamepadAvailable(gamepad: int) -> bool
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GetGamepadName">GetGamepadName function</h3>
+---
+<h2 id="GetGamepadName"><code>GetGamepadName</code> function</h2>
 
-Get gamepad internal name id
+> Get gamepad internal name id
 
 Defined in raylib.h:
 
@@ -4055,9 +5325,10 @@ def GetGamepadName(gamepad: int) -> Union[str, CharPtr]
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="IsGamepadButtonPressed">IsGamepadButtonPressed function</h3>
+---
+<h2 id="IsGamepadButtonPressed"><code>IsGamepadButtonPressed</code> function</h2>
 
-Check if a gamepad button has been pressed once
+> Check if a gamepad button has been pressed once
 
 Defined in raylib.h:
 
@@ -4073,9 +5344,10 @@ def IsGamepadButtonPressed(gamepad: int, button: int) -> bool
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="IsGamepadButtonDown">IsGamepadButtonDown function</h3>
+---
+<h2 id="IsGamepadButtonDown"><code>IsGamepadButtonDown</code> function</h2>
 
-Check if a gamepad button is being pressed
+> Check if a gamepad button is being pressed
 
 Defined in raylib.h:
 
@@ -4091,9 +5363,10 @@ def IsGamepadButtonDown(gamepad: int, button: int) -> bool
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="IsGamepadButtonReleased">IsGamepadButtonReleased function</h3>
+---
+<h2 id="IsGamepadButtonReleased"><code>IsGamepadButtonReleased</code> function</h2>
 
-Check if a gamepad button has been released once
+> Check if a gamepad button has been released once
 
 Defined in raylib.h:
 
@@ -4109,9 +5382,10 @@ def IsGamepadButtonReleased(gamepad: int, button: int) -> bool
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="IsGamepadButtonUp">IsGamepadButtonUp function</h3>
+---
+<h2 id="IsGamepadButtonUp"><code>IsGamepadButtonUp</code> function</h2>
 
-Check if a gamepad button is NOT being pressed
+> Check if a gamepad button is NOT being pressed
 
 Defined in raylib.h:
 
@@ -4127,9 +5401,10 @@ def IsGamepadButtonUp(gamepad: int, button: int) -> bool
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GetGamepadButtonPressed">GetGamepadButtonPressed function</h3>
+---
+<h2 id="GetGamepadButtonPressed"><code>GetGamepadButtonPressed</code> function</h2>
 
-Get the last gamepad button pressed
+> Get the last gamepad button pressed
 
 Defined in raylib.h:
 
@@ -4145,9 +5420,10 @@ def GetGamepadButtonPressed() -> int
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GetGamepadAxisCount">GetGamepadAxisCount function</h3>
+---
+<h2 id="GetGamepadAxisCount"><code>GetGamepadAxisCount</code> function</h2>
 
-Get gamepad axis count for a gamepad
+> Get gamepad axis count for a gamepad
 
 Defined in raylib.h:
 
@@ -4163,9 +5439,10 @@ def GetGamepadAxisCount(gamepad: int) -> int
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GetGamepadAxisMovement">GetGamepadAxisMovement function</h3>
+---
+<h2 id="GetGamepadAxisMovement"><code>GetGamepadAxisMovement</code> function</h2>
 
-Get axis movement value for a gamepad axis
+> Get axis movement value for a gamepad axis
 
 Defined in raylib.h:
 
@@ -4181,9 +5458,10 @@ def GetGamepadAxisMovement(gamepad: int, axis: int) -> float
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="SetGamepadMappings">SetGamepadMappings function</h3>
+---
+<h2 id="SetGamepadMappings"><code>SetGamepadMappings</code> function</h2>
 
-Set internal gamepad mappings (SDL_GameControllerDB)
+> Set internal gamepad mappings (SDL_GameControllerDB)
 
 Defined in raylib.h:
 
@@ -4199,9 +5477,10 @@ def SetGamepadMappings(mappings: Union[str, CharPtr]) -> int
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="IsMouseButtonPressed">IsMouseButtonPressed function</h3>
+---
+<h2 id="IsMouseButtonPressed"><code>IsMouseButtonPressed</code> function</h2>
 
-Check if a mouse button has been pressed once
+> Check if a mouse button has been pressed once
 
 Defined in raylib.h:
 
@@ -4217,9 +5496,10 @@ def IsMouseButtonPressed(button: int) -> bool
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="IsMouseButtonDown">IsMouseButtonDown function</h3>
+---
+<h2 id="IsMouseButtonDown"><code>IsMouseButtonDown</code> function</h2>
 
-Check if a mouse button is being pressed
+> Check if a mouse button is being pressed
 
 Defined in raylib.h:
 
@@ -4235,9 +5515,10 @@ def IsMouseButtonDown(button: int) -> bool
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="IsMouseButtonReleased">IsMouseButtonReleased function</h3>
+---
+<h2 id="IsMouseButtonReleased"><code>IsMouseButtonReleased</code> function</h2>
 
-Check if a mouse button has been released once
+> Check if a mouse button has been released once
 
 Defined in raylib.h:
 
@@ -4253,9 +5534,10 @@ def IsMouseButtonReleased(button: int) -> bool
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="IsMouseButtonUp">IsMouseButtonUp function</h3>
+---
+<h2 id="IsMouseButtonUp"><code>IsMouseButtonUp</code> function</h2>
 
-Check if a mouse button is NOT being pressed
+> Check if a mouse button is NOT being pressed
 
 Defined in raylib.h:
 
@@ -4271,9 +5553,10 @@ def IsMouseButtonUp(button: int) -> bool
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GetMouseX">GetMouseX function</h3>
+---
+<h2 id="GetMouseX"><code>GetMouseX</code> function</h2>
 
-Get mouse position X
+> Get mouse position X
 
 Defined in raylib.h:
 
@@ -4289,9 +5572,10 @@ def GetMouseX() -> int
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GetMouseY">GetMouseY function</h3>
+---
+<h2 id="GetMouseY"><code>GetMouseY</code> function</h2>
 
-Get mouse position Y
+> Get mouse position Y
 
 Defined in raylib.h:
 
@@ -4307,9 +5591,10 @@ def GetMouseY() -> int
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GetMousePosition">GetMousePosition function</h3>
+---
+<h2 id="GetMousePosition"><code>GetMousePosition</code> function</h2>
 
-Get mouse position XY
+> Get mouse position XY
 
 Defined in raylib.h:
 
@@ -4323,11 +5608,15 @@ Python wrapper:
 def GetMousePosition() -> Vector2
 ```
 
+See also:
+<a href="#Vector2">Vector2</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GetMouseDelta">GetMouseDelta function</h3>
+---
+<h2 id="GetMouseDelta"><code>GetMouseDelta</code> function</h2>
 
-Get mouse delta between frames
+> Get mouse delta between frames
 
 Defined in raylib.h:
 
@@ -4341,11 +5630,15 @@ Python wrapper:
 def GetMouseDelta() -> Vector2
 ```
 
+See also:
+<a href="#Vector2">Vector2</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="SetMousePosition">SetMousePosition function</h3>
+---
+<h2 id="SetMousePosition"><code>SetMousePosition</code> function</h2>
 
-Set mouse position XY
+> Set mouse position XY
 
 Defined in raylib.h:
 
@@ -4361,9 +5654,10 @@ def SetMousePosition(x: int, y: int) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="SetMouseOffset">SetMouseOffset function</h3>
+---
+<h2 id="SetMouseOffset"><code>SetMouseOffset</code> function</h2>
 
-Set mouse offset
+> Set mouse offset
 
 Defined in raylib.h:
 
@@ -4379,9 +5673,10 @@ def SetMouseOffset(offsetX: int, offsetY: int) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="SetMouseScale">SetMouseScale function</h3>
+---
+<h2 id="SetMouseScale"><code>SetMouseScale</code> function</h2>
 
-Set mouse scaling
+> Set mouse scaling
 
 Defined in raylib.h:
 
@@ -4397,9 +5692,10 @@ def SetMouseScale(scaleX: float, scaleY: float) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GetMouseWheelMove">GetMouseWheelMove function</h3>
+---
+<h2 id="GetMouseWheelMove"><code>GetMouseWheelMove</code> function</h2>
 
-Get mouse wheel movement for X or Y, whichever is larger
+> Get mouse wheel movement for X or Y, whichever is larger
 
 Defined in raylib.h:
 
@@ -4415,9 +5711,10 @@ def GetMouseWheelMove() -> float
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GetMouseWheelMoveV">GetMouseWheelMoveV function</h3>
+---
+<h2 id="GetMouseWheelMoveV"><code>GetMouseWheelMoveV</code> function</h2>
 
-Get mouse wheel movement for both X and Y
+> Get mouse wheel movement for both X and Y
 
 Defined in raylib.h:
 
@@ -4431,11 +5728,15 @@ Python wrapper:
 def GetMouseWheelMoveV() -> Vector2
 ```
 
+See also:
+<a href="#Vector2">Vector2</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="SetMouseCursor">SetMouseCursor function</h3>
+---
+<h2 id="SetMouseCursor"><code>SetMouseCursor</code> function</h2>
 
-Set mouse cursor
+> Set mouse cursor
 
 Defined in raylib.h:
 
@@ -4451,9 +5752,10 @@ def SetMouseCursor(cursor: int) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GetTouchX">GetTouchX function</h3>
+---
+<h2 id="GetTouchX"><code>GetTouchX</code> function</h2>
 
-Get touch position X for touch point 0 (relative to screen size)
+> Get touch position X for touch point 0 (relative to screen size)
 
 Defined in raylib.h:
 
@@ -4469,9 +5771,10 @@ def GetTouchX() -> int
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GetTouchY">GetTouchY function</h3>
+---
+<h2 id="GetTouchY"><code>GetTouchY</code> function</h2>
 
-Get touch position Y for touch point 0 (relative to screen size)
+> Get touch position Y for touch point 0 (relative to screen size)
 
 Defined in raylib.h:
 
@@ -4487,9 +5790,10 @@ def GetTouchY() -> int
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GetTouchPosition">GetTouchPosition function</h3>
+---
+<h2 id="GetTouchPosition"><code>GetTouchPosition</code> function</h2>
 
-Get touch position XY for a touch point index (relative to screen size)
+> Get touch position XY for a touch point index (relative to screen size)
 
 Defined in raylib.h:
 
@@ -4503,11 +5807,15 @@ Python wrapper:
 def GetTouchPosition(index: int) -> Vector2
 ```
 
+See also:
+<a href="#Vector2">Vector2</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GetTouchPointId">GetTouchPointId function</h3>
+---
+<h2 id="GetTouchPointId"><code>GetTouchPointId</code> function</h2>
 
-Get touch point identifier for given index
+> Get touch point identifier for given index
 
 Defined in raylib.h:
 
@@ -4523,9 +5831,10 @@ def GetTouchPointId(index: int) -> int
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GetTouchPointCount">GetTouchPointCount function</h3>
+---
+<h2 id="GetTouchPointCount"><code>GetTouchPointCount</code> function</h2>
 
-Get number of touch points
+> Get number of touch points
 
 Defined in raylib.h:
 
@@ -4541,9 +5850,10 @@ def GetTouchPointCount() -> int
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="SetGesturesEnabled">SetGesturesEnabled function</h3>
+---
+<h2 id="SetGesturesEnabled"><code>SetGesturesEnabled</code> function</h2>
 
-Enable a set of gestures using flags
+> Enable a set of gestures using flags
 
 Defined in raylib.h:
 
@@ -4559,9 +5869,10 @@ def SetGesturesEnabled(flags: int) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="IsGestureDetected">IsGestureDetected function</h3>
+---
+<h2 id="IsGestureDetected"><code>IsGestureDetected</code> function</h2>
 
-Check if a gesture have been detected
+> Check if a gesture have been detected
 
 Defined in raylib.h:
 
@@ -4577,9 +5888,10 @@ def IsGestureDetected(gesture: int) -> bool
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GetGestureDetected">GetGestureDetected function</h3>
+---
+<h2 id="GetGestureDetected"><code>GetGestureDetected</code> function</h2>
 
-Get latest detected gesture
+> Get latest detected gesture
 
 Defined in raylib.h:
 
@@ -4595,9 +5907,10 @@ def GetGestureDetected() -> int
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GetGestureHoldDuration">GetGestureHoldDuration function</h3>
+---
+<h2 id="GetGestureHoldDuration"><code>GetGestureHoldDuration</code> function</h2>
 
-Get gesture hold time in milliseconds
+> Get gesture hold time in milliseconds
 
 Defined in raylib.h:
 
@@ -4613,9 +5926,10 @@ def GetGestureHoldDuration() -> float
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GetGestureDragVector">GetGestureDragVector function</h3>
+---
+<h2 id="GetGestureDragVector"><code>GetGestureDragVector</code> function</h2>
 
-Get gesture drag vector
+> Get gesture drag vector
 
 Defined in raylib.h:
 
@@ -4629,11 +5943,15 @@ Python wrapper:
 def GetGestureDragVector() -> Vector2
 ```
 
+See also:
+<a href="#Vector2">Vector2</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GetGestureDragAngle">GetGestureDragAngle function</h3>
+---
+<h2 id="GetGestureDragAngle"><code>GetGestureDragAngle</code> function</h2>
 
-Get gesture drag angle
+> Get gesture drag angle
 
 Defined in raylib.h:
 
@@ -4649,9 +5967,10 @@ def GetGestureDragAngle() -> float
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GetGesturePinchVector">GetGesturePinchVector function</h3>
+---
+<h2 id="GetGesturePinchVector"><code>GetGesturePinchVector</code> function</h2>
 
-Get gesture pinch delta
+> Get gesture pinch delta
 
 Defined in raylib.h:
 
@@ -4665,11 +5984,15 @@ Python wrapper:
 def GetGesturePinchVector() -> Vector2
 ```
 
+See also:
+<a href="#Vector2">Vector2</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GetGesturePinchAngle">GetGesturePinchAngle function</h3>
+---
+<h2 id="GetGesturePinchAngle"><code>GetGesturePinchAngle</code> function</h2>
 
-Get gesture pinch angle
+> Get gesture pinch angle
 
 Defined in raylib.h:
 
@@ -4685,9 +6008,10 @@ def GetGesturePinchAngle() -> float
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="SetCameraMode">SetCameraMode function</h3>
+---
+<h2 id="SetCameraMode"><code>SetCameraMode</code> function</h2>
 
-Set camera mode (multiple camera modes available)
+> Set camera mode (multiple camera modes available)
 
 Defined in raylib.h:
 
@@ -4703,9 +6027,10 @@ def SetCameraMode(camera: Camera, mode: int) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="UpdateCamera">UpdateCamera function</h3>
+---
+<h2 id="UpdateCamera"><code>UpdateCamera</code> function</h2>
 
-Update camera position for selected mode
+> Update camera position for selected mode
 
 Defined in raylib.h:
 
@@ -4721,9 +6046,10 @@ def UpdateCamera(camera: CameraPtr) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="SetCameraPanControl">SetCameraPanControl function</h3>
+---
+<h2 id="SetCameraPanControl"><code>SetCameraPanControl</code> function</h2>
 
-Set camera pan key to combine with mouse movement (free camera)
+> Set camera pan key to combine with mouse movement (free camera)
 
 Defined in raylib.h:
 
@@ -4739,9 +6065,10 @@ def SetCameraPanControl(keyPan: int) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="SetCameraAltControl">SetCameraAltControl function</h3>
+---
+<h2 id="SetCameraAltControl"><code>SetCameraAltControl</code> function</h2>
 
-Set camera alt key to combine with mouse movement (free camera)
+> Set camera alt key to combine with mouse movement (free camera)
 
 Defined in raylib.h:
 
@@ -4757,9 +6084,10 @@ def SetCameraAltControl(keyAlt: int) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="SetCameraSmoothZoomControl">SetCameraSmoothZoomControl function</h3>
+---
+<h2 id="SetCameraSmoothZoomControl"><code>SetCameraSmoothZoomControl</code> function</h2>
 
-Set camera smooth zoom key to combine with mouse (free camera)
+> Set camera smooth zoom key to combine with mouse (free camera)
 
 Defined in raylib.h:
 
@@ -4775,9 +6103,10 @@ def SetCameraSmoothZoomControl(keySmoothZoom: int) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="SetCameraMoveControls">SetCameraMoveControls function</h3>
+---
+<h2 id="SetCameraMoveControls"><code>SetCameraMoveControls</code> function</h2>
 
-Set camera move controls (1st person and 3rd person cameras)
+> Set camera move controls (1st person and 3rd person cameras)
 
 Defined in raylib.h:
 
@@ -4793,9 +6122,10 @@ def SetCameraMoveControls(keyFront: int, keyBack: int, keyRight: int, keyLeft: i
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="SetShapesTexture">SetShapesTexture function</h3>
+---
+<h2 id="SetShapesTexture"><code>SetShapesTexture</code> function</h2>
 
-Set texture and rectangle to be used on shapes drawing
+> Set texture and rectangle to be used on shapes drawing
 
 Defined in raylib.h:
 
@@ -4809,13 +6139,15 @@ Python wrapper:
 def SetShapesTexture(texture: Texture2D, source: Rectangle) -> None
 ```
 
-See also: <a href="#Rectangle">Rectangle</a>
+See also:
+<a href="#Rectangle">Rectangle</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="DrawPixel">DrawPixel function</h3>
+---
+<h2 id="DrawPixel"><code>DrawPixel</code> function</h2>
 
-Draw a pixel
+> Draw a pixel
 
 Defined in raylib.h:
 
@@ -4829,13 +6161,15 @@ Python wrapper:
 def DrawPixel(posX: int, posY: int, color: Color) -> None
 ```
 
-See also: <a href="#Color">Color</a>
+See also:
+<a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="DrawPixelV">DrawPixelV function</h3>
+---
+<h2 id="DrawPixelV"><code>DrawPixelV</code> function</h2>
 
-Draw a pixel (Vector version)
+> Draw a pixel (Vector version)
 
 Defined in raylib.h:
 
@@ -4849,13 +6183,15 @@ Python wrapper:
 def DrawPixelV(position: Vector2, color: Color) -> None
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="DrawLine">DrawLine function</h3>
+---
+<h2 id="DrawLine"><code>DrawLine</code> function</h2>
 
-Draw a line
+> Draw a line
 
 Defined in raylib.h:
 
@@ -4869,13 +6205,15 @@ Python wrapper:
 def DrawLine(startPosX: int, startPosY: int, endPosX: int, endPosY: int, color: Color) -> None
 ```
 
-See also: <a href="#Color">Color</a>
+See also:
+<a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="DrawLineV">DrawLineV function</h3>
+---
+<h2 id="DrawLineV"><code>DrawLineV</code> function</h2>
 
-Draw a line (Vector version)
+> Draw a line (Vector version)
 
 Defined in raylib.h:
 
@@ -4889,13 +6227,15 @@ Python wrapper:
 def DrawLineV(startPos: Vector2, endPos: Vector2, color: Color) -> None
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="DrawLineEx">DrawLineEx function</h3>
+---
+<h2 id="DrawLineEx"><code>DrawLineEx</code> function</h2>
 
-Draw a line defining thickness
+> Draw a line defining thickness
 
 Defined in raylib.h:
 
@@ -4909,13 +6249,15 @@ Python wrapper:
 def DrawLineEx(startPos: Vector2, endPos: Vector2, thick: float, color: Color) -> None
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="DrawLineBezier">DrawLineBezier function</h3>
+---
+<h2 id="DrawLineBezier"><code>DrawLineBezier</code> function</h2>
 
-Draw a line using cubic-bezier curves in-out
+> Draw a line using cubic-bezier curves in-out
 
 Defined in raylib.h:
 
@@ -4929,13 +6271,15 @@ Python wrapper:
 def DrawLineBezier(startPos: Vector2, endPos: Vector2, thick: float, color: Color) -> None
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="DrawLineBezierQuad">DrawLineBezierQuad function</h3>
+---
+<h2 id="DrawLineBezierQuad"><code>DrawLineBezierQuad</code> function</h2>
 
-Draw line using quadratic bezier curves with a control point
+> Draw line using quadratic bezier curves with a control point
 
 Defined in raylib.h:
 
@@ -4949,13 +6293,15 @@ Python wrapper:
 def DrawLineBezierQuad(startPos: Vector2, endPos: Vector2, controlPos: Vector2, thick: float, color: Color) -> None
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Vector2">Vector2</a>, <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="DrawLineBezierCubic">DrawLineBezierCubic function</h3>
+---
+<h2 id="DrawLineBezierCubic"><code>DrawLineBezierCubic</code> function</h2>
 
-Draw line using cubic bezier curves with 2 control points
+> Draw line using cubic bezier curves with 2 control points
 
 Defined in raylib.h:
 
@@ -4969,13 +6315,15 @@ Python wrapper:
 def DrawLineBezierCubic(startPos: Vector2, endPos: Vector2, startControlPos: Vector2, endControlPos: Vector2, thick: float, color: Color) -> None
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Vector2">Vector2</a>, <a href="#Vector2">Vector2</a>, <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="DrawLineStrip">DrawLineStrip function</h3>
+---
+<h2 id="DrawLineStrip"><code>DrawLineStrip</code> function</h2>
 
-Draw lines sequence
+> Draw lines sequence
 
 Defined in raylib.h:
 
@@ -4989,13 +6337,15 @@ Python wrapper:
 def DrawLineStrip(points: Vector2Ptr, pointCount: int, color: Color) -> None
 ```
 
-See also: <a href="#Color">Color</a>
+See also:
+<a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="DrawCircle">DrawCircle function</h3>
+---
+<h2 id="DrawCircle"><code>DrawCircle</code> function</h2>
 
-Draw a color-filled circle
+> Draw a color-filled circle
 
 Defined in raylib.h:
 
@@ -5009,13 +6359,15 @@ Python wrapper:
 def DrawCircle(centerX: int, centerY: int, radius: float, color: Color) -> None
 ```
 
-See also: <a href="#Color">Color</a>
+See also:
+<a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="DrawCircleSector">DrawCircleSector function</h3>
+---
+<h2 id="DrawCircleSector"><code>DrawCircleSector</code> function</h2>
 
-Draw a piece of a circle
+> Draw a piece of a circle
 
 Defined in raylib.h:
 
@@ -5029,13 +6381,15 @@ Python wrapper:
 def DrawCircleSector(center: Vector2, radius: float, startAngle: float, endAngle: float, segments: int, color: Color) -> None
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="DrawCircleSectorLines">DrawCircleSectorLines function</h3>
+---
+<h2 id="DrawCircleSectorLines"><code>DrawCircleSectorLines</code> function</h2>
 
-Draw circle sector outline
+> Draw circle sector outline
 
 Defined in raylib.h:
 
@@ -5049,13 +6403,15 @@ Python wrapper:
 def DrawCircleSectorLines(center: Vector2, radius: float, startAngle: float, endAngle: float, segments: int, color: Color) -> None
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="DrawCircleGradient">DrawCircleGradient function</h3>
+---
+<h2 id="DrawCircleGradient"><code>DrawCircleGradient</code> function</h2>
 
-Draw a gradient-filled circle
+> Draw a gradient-filled circle
 
 Defined in raylib.h:
 
@@ -5069,13 +6425,15 @@ Python wrapper:
 def DrawCircleGradient(centerX: int, centerY: int, radius: float, color1: Color, color2: Color) -> None
 ```
 
-See also: <a href="#Color">Color</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="DrawCircleV">DrawCircleV function</h3>
+---
+<h2 id="DrawCircleV"><code>DrawCircleV</code> function</h2>
 
-Draw a color-filled circle (Vector version)
+> Draw a color-filled circle (Vector version)
 
 Defined in raylib.h:
 
@@ -5089,13 +6447,15 @@ Python wrapper:
 def DrawCircleV(center: Vector2, radius: float, color: Color) -> None
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="DrawCircleLines">DrawCircleLines function</h3>
+---
+<h2 id="DrawCircleLines"><code>DrawCircleLines</code> function</h2>
 
-Draw circle outline
+> Draw circle outline
 
 Defined in raylib.h:
 
@@ -5109,13 +6469,15 @@ Python wrapper:
 def DrawCircleLines(centerX: int, centerY: int, radius: float, color: Color) -> None
 ```
 
-See also: <a href="#Color">Color</a>
+See also:
+<a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="DrawEllipse">DrawEllipse function</h3>
+---
+<h2 id="DrawEllipse"><code>DrawEllipse</code> function</h2>
 
-Draw ellipse
+> Draw ellipse
 
 Defined in raylib.h:
 
@@ -5129,13 +6491,15 @@ Python wrapper:
 def DrawEllipse(centerX: int, centerY: int, radiusH: float, radiusV: float, color: Color) -> None
 ```
 
-See also: <a href="#Color">Color</a>
+See also:
+<a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="DrawEllipseLines">DrawEllipseLines function</h3>
+---
+<h2 id="DrawEllipseLines"><code>DrawEllipseLines</code> function</h2>
 
-Draw ellipse outline
+> Draw ellipse outline
 
 Defined in raylib.h:
 
@@ -5149,13 +6513,15 @@ Python wrapper:
 def DrawEllipseLines(centerX: int, centerY: int, radiusH: float, radiusV: float, color: Color) -> None
 ```
 
-See also: <a href="#Color">Color</a>
+See also:
+<a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="DrawRing">DrawRing function</h3>
+---
+<h2 id="DrawRing"><code>DrawRing</code> function</h2>
 
-Draw ring
+> Draw ring
 
 Defined in raylib.h:
 
@@ -5169,13 +6535,15 @@ Python wrapper:
 def DrawRing(center: Vector2, innerRadius: float, outerRadius: float, startAngle: float, endAngle: float, segments: int, color: Color) -> None
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="DrawRingLines">DrawRingLines function</h3>
+---
+<h2 id="DrawRingLines"><code>DrawRingLines</code> function</h2>
 
-Draw ring outline
+> Draw ring outline
 
 Defined in raylib.h:
 
@@ -5189,13 +6557,15 @@ Python wrapper:
 def DrawRingLines(center: Vector2, innerRadius: float, outerRadius: float, startAngle: float, endAngle: float, segments: int, color: Color) -> None
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="DrawRectangle">DrawRectangle function</h3>
+---
+<h2 id="DrawRectangle"><code>DrawRectangle</code> function</h2>
 
-Draw a color-filled rectangle
+> Draw a color-filled rectangle
 
 Defined in raylib.h:
 
@@ -5209,13 +6579,15 @@ Python wrapper:
 def DrawRectangle(posX: int, posY: int, width: int, height: int, color: Color) -> None
 ```
 
-See also: <a href="#Color">Color</a>
+See also:
+<a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="DrawRectangleV">DrawRectangleV function</h3>
+---
+<h2 id="DrawRectangleV"><code>DrawRectangleV</code> function</h2>
 
-Draw a color-filled rectangle (Vector version)
+> Draw a color-filled rectangle (Vector version)
 
 Defined in raylib.h:
 
@@ -5229,13 +6601,15 @@ Python wrapper:
 def DrawRectangleV(position: Vector2, size: Vector2, color: Color) -> None
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="DrawRectangleRec">DrawRectangleRec function</h3>
+---
+<h2 id="DrawRectangleRec"><code>DrawRectangleRec</code> function</h2>
 
-Draw a color-filled rectangle
+> Draw a color-filled rectangle
 
 Defined in raylib.h:
 
@@ -5249,13 +6623,15 @@ Python wrapper:
 def DrawRectangleRec(rec: Rectangle, color: Color) -> None
 ```
 
-See also: <a href="#Rectangle">Rectangle</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Rectangle">Rectangle</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="DrawRectanglePro">DrawRectanglePro function</h3>
+---
+<h2 id="DrawRectanglePro"><code>DrawRectanglePro</code> function</h2>
 
-Draw a color-filled rectangle with pro parameters
+> Draw a color-filled rectangle with pro parameters
 
 Defined in raylib.h:
 
@@ -5269,13 +6645,15 @@ Python wrapper:
 def DrawRectanglePro(rec: Rectangle, origin: Vector2, rotation: float, color: Color) -> None
 ```
 
-See also: <a href="#Rectangle">Rectangle</a>, <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Rectangle">Rectangle</a>, <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="DrawRectangleGradientV">DrawRectangleGradientV function</h3>
+---
+<h2 id="DrawRectangleGradientV"><code>DrawRectangleGradientV</code> function</h2>
 
-Draw a vertical-gradient-filled rectangle
+> Draw a vertical-gradient-filled rectangle
 
 Defined in raylib.h:
 
@@ -5289,13 +6667,15 @@ Python wrapper:
 def DrawRectangleGradientV(posX: int, posY: int, width: int, height: int, color1: Color, color2: Color) -> None
 ```
 
-See also: <a href="#Color">Color</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="DrawRectangleGradientH">DrawRectangleGradientH function</h3>
+---
+<h2 id="DrawRectangleGradientH"><code>DrawRectangleGradientH</code> function</h2>
 
-Draw a horizontal-gradient-filled rectangle
+> Draw a horizontal-gradient-filled rectangle
 
 Defined in raylib.h:
 
@@ -5309,13 +6689,15 @@ Python wrapper:
 def DrawRectangleGradientH(posX: int, posY: int, width: int, height: int, color1: Color, color2: Color) -> None
 ```
 
-See also: <a href="#Color">Color</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="DrawRectangleGradientEx">DrawRectangleGradientEx function</h3>
+---
+<h2 id="DrawRectangleGradientEx"><code>DrawRectangleGradientEx</code> function</h2>
 
-Draw a gradient-filled rectangle with custom vertex colors
+> Draw a gradient-filled rectangle with custom vertex colors
 
 Defined in raylib.h:
 
@@ -5329,13 +6711,15 @@ Python wrapper:
 def DrawRectangleGradientEx(rec: Rectangle, col1: Color, col2: Color, col3: Color, col4: Color) -> None
 ```
 
-See also: <a href="#Rectangle">Rectangle</a>, <a href="#Color">Color</a>, <a href="#Color">Color</a>, <a href="#Color">Color</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Rectangle">Rectangle</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="DrawRectangleLines">DrawRectangleLines function</h3>
+---
+<h2 id="DrawRectangleLines"><code>DrawRectangleLines</code> function</h2>
 
-Draw rectangle outline
+> Draw rectangle outline
 
 Defined in raylib.h:
 
@@ -5349,13 +6733,15 @@ Python wrapper:
 def DrawRectangleLines(posX: int, posY: int, width: int, height: int, color: Color) -> None
 ```
 
-See also: <a href="#Color">Color</a>
+See also:
+<a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="DrawRectangleLinesEx">DrawRectangleLinesEx function</h3>
+---
+<h2 id="DrawRectangleLinesEx"><code>DrawRectangleLinesEx</code> function</h2>
 
-Draw rectangle outline with extended parameters
+> Draw rectangle outline with extended parameters
 
 Defined in raylib.h:
 
@@ -5369,13 +6755,15 @@ Python wrapper:
 def DrawRectangleLinesEx(rec: Rectangle, lineThick: float, color: Color) -> None
 ```
 
-See also: <a href="#Rectangle">Rectangle</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Rectangle">Rectangle</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="DrawRectangleRounded">DrawRectangleRounded function</h3>
+---
+<h2 id="DrawRectangleRounded"><code>DrawRectangleRounded</code> function</h2>
 
-Draw rectangle with rounded edges
+> Draw rectangle with rounded edges
 
 Defined in raylib.h:
 
@@ -5389,13 +6777,15 @@ Python wrapper:
 def DrawRectangleRounded(rec: Rectangle, roundness: float, segments: int, color: Color) -> None
 ```
 
-See also: <a href="#Rectangle">Rectangle</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Rectangle">Rectangle</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="DrawRectangleRoundedLines">DrawRectangleRoundedLines function</h3>
+---
+<h2 id="DrawRectangleRoundedLines"><code>DrawRectangleRoundedLines</code> function</h2>
 
-Draw rectangle with rounded edges outline
+> Draw rectangle with rounded edges outline
 
 Defined in raylib.h:
 
@@ -5409,13 +6799,15 @@ Python wrapper:
 def DrawRectangleRoundedLines(rec: Rectangle, roundness: float, segments: int, lineThick: float, color: Color) -> None
 ```
 
-See also: <a href="#Rectangle">Rectangle</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Rectangle">Rectangle</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="DrawTriangle">DrawTriangle function</h3>
+---
+<h2 id="DrawTriangle"><code>DrawTriangle</code> function</h2>
 
-Draw a color-filled triangle (vertex in counter-clockwise order!)
+> Draw a color-filled triangle (vertex in counter-clockwise order!)
 
 Defined in raylib.h:
 
@@ -5429,13 +6821,15 @@ Python wrapper:
 def DrawTriangle(v1: Vector2, v2: Vector2, v3: Vector2, color: Color) -> None
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Vector2">Vector2</a>, <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="DrawTriangleLines">DrawTriangleLines function</h3>
+---
+<h2 id="DrawTriangleLines"><code>DrawTriangleLines</code> function</h2>
 
-Draw triangle outline (vertex in counter-clockwise order!)
+> Draw triangle outline (vertex in counter-clockwise order!)
 
 Defined in raylib.h:
 
@@ -5449,13 +6843,15 @@ Python wrapper:
 def DrawTriangleLines(v1: Vector2, v2: Vector2, v3: Vector2, color: Color) -> None
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Vector2">Vector2</a>, <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="DrawTriangleFan">DrawTriangleFan function</h3>
+---
+<h2 id="DrawTriangleFan"><code>DrawTriangleFan</code> function</h2>
 
-Draw a triangle fan defined by points (first vertex is the center)
+> Draw a triangle fan defined by points (first vertex is the center)
 
 Defined in raylib.h:
 
@@ -5469,13 +6865,15 @@ Python wrapper:
 def DrawTriangleFan(points: Vector2Ptr, pointCount: int, color: Color) -> None
 ```
 
-See also: <a href="#Color">Color</a>
+See also:
+<a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="DrawTriangleStrip">DrawTriangleStrip function</h3>
+---
+<h2 id="DrawTriangleStrip"><code>DrawTriangleStrip</code> function</h2>
 
-Draw a triangle strip defined by points
+> Draw a triangle strip defined by points
 
 Defined in raylib.h:
 
@@ -5489,13 +6887,15 @@ Python wrapper:
 def DrawTriangleStrip(points: Vector2Ptr, pointCount: int, color: Color) -> None
 ```
 
-See also: <a href="#Color">Color</a>
+See also:
+<a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="DrawPoly">DrawPoly function</h3>
+---
+<h2 id="DrawPoly"><code>DrawPoly</code> function</h2>
 
-Draw a regular polygon (Vector version)
+> Draw a regular polygon (Vector version)
 
 Defined in raylib.h:
 
@@ -5509,13 +6909,15 @@ Python wrapper:
 def DrawPoly(center: Vector2, sides: int, radius: float, rotation: float, color: Color) -> None
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="DrawPolyLines">DrawPolyLines function</h3>
+---
+<h2 id="DrawPolyLines"><code>DrawPolyLines</code> function</h2>
 
-Draw a polygon outline of n sides
+> Draw a polygon outline of n sides
 
 Defined in raylib.h:
 
@@ -5529,13 +6931,15 @@ Python wrapper:
 def DrawPolyLines(center: Vector2, sides: int, radius: float, rotation: float, color: Color) -> None
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="DrawPolyLinesEx">DrawPolyLinesEx function</h3>
+---
+<h2 id="DrawPolyLinesEx"><code>DrawPolyLinesEx</code> function</h2>
 
-Draw a polygon outline of n sides with extended parameters
+> Draw a polygon outline of n sides with extended parameters
 
 Defined in raylib.h:
 
@@ -5549,13 +6953,15 @@ Python wrapper:
 def DrawPolyLinesEx(center: Vector2, sides: int, radius: float, rotation: float, lineThick: float, color: Color) -> None
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="CheckCollisionRecs">CheckCollisionRecs function</h3>
+---
+<h2 id="CheckCollisionRecs"><code>CheckCollisionRecs</code> function</h2>
 
-Check collision between two rectangles
+> Check collision between two rectangles
 
 Defined in raylib.h:
 
@@ -5569,13 +6975,15 @@ Python wrapper:
 def CheckCollisionRecs(rec1: Rectangle, rec2: Rectangle) -> bool
 ```
 
-See also: <a href="#Rectangle">Rectangle</a>, <a href="#Rectangle">Rectangle</a>
+See also:
+<a href="#Rectangle">Rectangle</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="CheckCollisionCircles">CheckCollisionCircles function</h3>
+---
+<h2 id="CheckCollisionCircles"><code>CheckCollisionCircles</code> function</h2>
 
-Check collision between two circles
+> Check collision between two circles
 
 Defined in raylib.h:
 
@@ -5589,13 +6997,15 @@ Python wrapper:
 def CheckCollisionCircles(center1: Vector2, radius1: float, center2: Vector2, radius2: float) -> bool
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Vector2">Vector2</a>
+See also:
+<a href="#Vector2">Vector2</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="CheckCollisionCircleRec">CheckCollisionCircleRec function</h3>
+---
+<h2 id="CheckCollisionCircleRec"><code>CheckCollisionCircleRec</code> function</h2>
 
-Check collision between circle and rectangle
+> Check collision between circle and rectangle
 
 Defined in raylib.h:
 
@@ -5609,13 +7019,15 @@ Python wrapper:
 def CheckCollisionCircleRec(center: Vector2, radius: float, rec: Rectangle) -> bool
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Rectangle">Rectangle</a>
+See also:
+<a href="#Vector2">Vector2</a>, <a href="#Rectangle">Rectangle</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="CheckCollisionPointRec">CheckCollisionPointRec function</h3>
+---
+<h2 id="CheckCollisionPointRec"><code>CheckCollisionPointRec</code> function</h2>
 
-Check if point is inside rectangle
+> Check if point is inside rectangle
 
 Defined in raylib.h:
 
@@ -5629,13 +7041,15 @@ Python wrapper:
 def CheckCollisionPointRec(point: Vector2, rec: Rectangle) -> bool
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Rectangle">Rectangle</a>
+See also:
+<a href="#Vector2">Vector2</a>, <a href="#Rectangle">Rectangle</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="CheckCollisionPointCircle">CheckCollisionPointCircle function</h3>
+---
+<h2 id="CheckCollisionPointCircle"><code>CheckCollisionPointCircle</code> function</h2>
 
-Check if point is inside circle
+> Check if point is inside circle
 
 Defined in raylib.h:
 
@@ -5649,13 +7063,15 @@ Python wrapper:
 def CheckCollisionPointCircle(point: Vector2, center: Vector2, radius: float) -> bool
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Vector2">Vector2</a>
+See also:
+<a href="#Vector2">Vector2</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="CheckCollisionPointTriangle">CheckCollisionPointTriangle function</h3>
+---
+<h2 id="CheckCollisionPointTriangle"><code>CheckCollisionPointTriangle</code> function</h2>
 
-Check if point is inside a triangle
+> Check if point is inside a triangle
 
 Defined in raylib.h:
 
@@ -5669,13 +7085,15 @@ Python wrapper:
 def CheckCollisionPointTriangle(point: Vector2, p1: Vector2, p2: Vector2, p3: Vector2) -> bool
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Vector2">Vector2</a>, <a href="#Vector2">Vector2</a>, <a href="#Vector2">Vector2</a>
+See also:
+<a href="#Vector2">Vector2</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="CheckCollisionLines">CheckCollisionLines function</h3>
+---
+<h2 id="CheckCollisionLines"><code>CheckCollisionLines</code> function</h2>
 
-Check the collision between two lines defined by two points each, returns collision point by reference
+> Check the collision between two lines defined by two points each, returns collision point by reference
 
 Defined in raylib.h:
 
@@ -5689,13 +7107,15 @@ Python wrapper:
 def CheckCollisionLines(startPos1: Vector2, endPos1: Vector2, startPos2: Vector2, endPos2: Vector2, collisionPoint: Vector2Ptr) -> bool
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Vector2">Vector2</a>, <a href="#Vector2">Vector2</a>, <a href="#Vector2">Vector2</a>
+See also:
+<a href="#Vector2">Vector2</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="CheckCollisionPointLine">CheckCollisionPointLine function</h3>
+---
+<h2 id="CheckCollisionPointLine"><code>CheckCollisionPointLine</code> function</h2>
 
-Check if point belongs to line created between two points [p1] and [p2] with defined margin in pixels [threshold]
+> Check if point belongs to line created between two points [p1] and [p2] with defined margin in pixels [threshold]
 
 Defined in raylib.h:
 
@@ -5709,13 +7129,15 @@ Python wrapper:
 def CheckCollisionPointLine(point: Vector2, p1: Vector2, p2: Vector2, threshold: int) -> bool
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Vector2">Vector2</a>, <a href="#Vector2">Vector2</a>
+See also:
+<a href="#Vector2">Vector2</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GetCollisionRec">GetCollisionRec function</h3>
+---
+<h2 id="GetCollisionRec"><code>GetCollisionRec</code> function</h2>
 
-Get collision rectangle for two rectangles collision
+> Get collision rectangle for two rectangles collision
 
 Defined in raylib.h:
 
@@ -5729,13 +7151,15 @@ Python wrapper:
 def GetCollisionRec(rec1: Rectangle, rec2: Rectangle) -> Rectangle
 ```
 
-See also: <a href="#Rectangle">Rectangle</a>, <a href="#Rectangle">Rectangle</a>
+See also:
+<a href="#Rectangle">Rectangle</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="LoadImage">LoadImage function</h3>
+---
+<h2 id="LoadImage"><code>LoadImage</code> function</h2>
 
-Load image from file into CPU memory (RAM)
+> Load image from file into CPU memory (RAM)
 
 Defined in raylib.h:
 
@@ -5749,11 +7173,15 @@ Python wrapper:
 def LoadImage(fileName: Union[str, CharPtr]) -> Image
 ```
 
+See also:
+<a href="#Image">Image</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="LoadImageRaw">LoadImageRaw function</h3>
+---
+<h2 id="LoadImageRaw"><code>LoadImageRaw</code> function</h2>
 
-Load image from RAW file data
+> Load image from RAW file data
 
 Defined in raylib.h:
 
@@ -5767,11 +7195,15 @@ Python wrapper:
 def LoadImageRaw(fileName: Union[str, CharPtr], width: int, height: int, format: int, headerSize: int) -> Image
 ```
 
+See also:
+<a href="#Image">Image</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="LoadImageAnim">LoadImageAnim function</h3>
+---
+<h2 id="LoadImageAnim"><code>LoadImageAnim</code> function</h2>
 
-Load image sequence from file (frames appended to image.data)
+> Load image sequence from file (frames appended to image.data)
 
 Defined in raylib.h:
 
@@ -5785,11 +7217,15 @@ Python wrapper:
 def LoadImageAnim(fileName: Union[str, CharPtr], frames: Union[Seq[int], IntPtr]) -> Image
 ```
 
+See also:
+<a href="#Image">Image</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="LoadImageFromMemory">LoadImageFromMemory function</h3>
+---
+<h2 id="LoadImageFromMemory"><code>LoadImageFromMemory</code> function</h2>
 
-Load image from memory buffer, fileType refers to extension: i.e. '.png'
+> Load image from memory buffer, fileType refers to extension: i.e. '.png'
 
 Defined in raylib.h:
 
@@ -5803,11 +7239,15 @@ Python wrapper:
 def LoadImageFromMemory(fileType: Union[str, CharPtr], fileData: Union[Seq[int], UCharPtr], dataSize: int) -> Image
 ```
 
+See also:
+<a href="#Image">Image</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="LoadImageFromTexture">LoadImageFromTexture function</h3>
+---
+<h2 id="LoadImageFromTexture"><code>LoadImageFromTexture</code> function</h2>
 
-Load image from GPU texture data
+> Load image from GPU texture data
 
 Defined in raylib.h:
 
@@ -5821,11 +7261,15 @@ Python wrapper:
 def LoadImageFromTexture(texture: Texture2D) -> Image
 ```
 
+See also:
+<a href="#Image">Image</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="LoadImageFromScreen">LoadImageFromScreen function</h3>
+---
+<h2 id="LoadImageFromScreen"><code>LoadImageFromScreen</code> function</h2>
 
-Load image from screen buffer and (screenshot)
+> Load image from screen buffer and (screenshot)
 
 Defined in raylib.h:
 
@@ -5839,11 +7283,15 @@ Python wrapper:
 def LoadImageFromScreen() -> Image
 ```
 
+See also:
+<a href="#Image">Image</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="UnloadImage">UnloadImage function</h3>
+---
+<h2 id="UnloadImage"><code>UnloadImage</code> function</h2>
 
-Unload image from CPU memory (RAM)
+> Unload image from CPU memory (RAM)
 
 Defined in raylib.h:
 
@@ -5857,13 +7305,15 @@ Python wrapper:
 def UnloadImage(image: Image) -> None
 ```
 
-See also: <a href="#Image">Image</a>
+See also:
+<a href="#Image">Image</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="ExportImage">ExportImage function</h3>
+---
+<h2 id="ExportImage"><code>ExportImage</code> function</h2>
 
-Export image data to file, returns true on success
+> Export image data to file, returns true on success
 
 Defined in raylib.h:
 
@@ -5877,13 +7327,15 @@ Python wrapper:
 def ExportImage(image: Image, fileName: Union[str, CharPtr]) -> bool
 ```
 
-See also: <a href="#Image">Image</a>
+See also:
+<a href="#Image">Image</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="ExportImageAsCode">ExportImageAsCode function</h3>
+---
+<h2 id="ExportImageAsCode"><code>ExportImageAsCode</code> function</h2>
 
-Export image as code file defining an array of bytes, returns true on success
+> Export image as code file defining an array of bytes, returns true on success
 
 Defined in raylib.h:
 
@@ -5897,13 +7349,15 @@ Python wrapper:
 def ExportImageAsCode(image: Image, fileName: Union[str, CharPtr]) -> bool
 ```
 
-See also: <a href="#Image">Image</a>
+See also:
+<a href="#Image">Image</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GenImageColor">GenImageColor function</h3>
+---
+<h2 id="GenImageColor"><code>GenImageColor</code> function</h2>
 
-Generate image: plain color
+> Generate image: plain color
 
 Defined in raylib.h:
 
@@ -5917,13 +7371,15 @@ Python wrapper:
 def GenImageColor(width: int, height: int, color: Color) -> Image
 ```
 
-See also: <a href="#Color">Color</a>
+See also:
+<a href="#Color">Color</a>, <a href="#Image">Image</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GenImageGradientV">GenImageGradientV function</h3>
+---
+<h2 id="GenImageGradientV"><code>GenImageGradientV</code> function</h2>
 
-Generate image: vertical gradient
+> Generate image: vertical gradient
 
 Defined in raylib.h:
 
@@ -5937,13 +7393,15 @@ Python wrapper:
 def GenImageGradientV(width: int, height: int, top: Color, bottom: Color) -> Image
 ```
 
-See also: <a href="#Color">Color</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Color">Color</a>, <a href="#Image">Image</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GenImageGradientH">GenImageGradientH function</h3>
+---
+<h2 id="GenImageGradientH"><code>GenImageGradientH</code> function</h2>
 
-Generate image: horizontal gradient
+> Generate image: horizontal gradient
 
 Defined in raylib.h:
 
@@ -5957,13 +7415,15 @@ Python wrapper:
 def GenImageGradientH(width: int, height: int, left: Color, right: Color) -> Image
 ```
 
-See also: <a href="#Color">Color</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Color">Color</a>, <a href="#Image">Image</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GenImageGradientRadial">GenImageGradientRadial function</h3>
+---
+<h2 id="GenImageGradientRadial"><code>GenImageGradientRadial</code> function</h2>
 
-Generate image: radial gradient
+> Generate image: radial gradient
 
 Defined in raylib.h:
 
@@ -5977,13 +7437,15 @@ Python wrapper:
 def GenImageGradientRadial(width: int, height: int, density: float, inner: Color, outer: Color) -> Image
 ```
 
-See also: <a href="#Color">Color</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Color">Color</a>, <a href="#Image">Image</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GenImageChecked">GenImageChecked function</h3>
+---
+<h2 id="GenImageChecked"><code>GenImageChecked</code> function</h2>
 
-Generate image: checked
+> Generate image: checked
 
 Defined in raylib.h:
 
@@ -5997,13 +7459,15 @@ Python wrapper:
 def GenImageChecked(width: int, height: int, checksX: int, checksY: int, col1: Color, col2: Color) -> Image
 ```
 
-See also: <a href="#Color">Color</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Color">Color</a>, <a href="#Image">Image</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GenImageWhiteNoise">GenImageWhiteNoise function</h3>
+---
+<h2 id="GenImageWhiteNoise"><code>GenImageWhiteNoise</code> function</h2>
 
-Generate image: white noise
+> Generate image: white noise
 
 Defined in raylib.h:
 
@@ -6017,11 +7481,15 @@ Python wrapper:
 def GenImageWhiteNoise(width: int, height: int, factor: float) -> Image
 ```
 
+See also:
+<a href="#Image">Image</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GenImageCellular">GenImageCellular function</h3>
+---
+<h2 id="GenImageCellular"><code>GenImageCellular</code> function</h2>
 
-Generate image: cellular algorithm, bigger tileSize means bigger cells
+> Generate image: cellular algorithm, bigger tileSize means bigger cells
 
 Defined in raylib.h:
 
@@ -6035,11 +7503,15 @@ Python wrapper:
 def GenImageCellular(width: int, height: int, tileSize: int) -> Image
 ```
 
+See also:
+<a href="#Image">Image</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="ImageCopy">ImageCopy function</h3>
+---
+<h2 id="ImageCopy"><code>ImageCopy</code> function</h2>
 
-Create an image duplicate (useful for transformations)
+> Create an image duplicate (useful for transformations)
 
 Defined in raylib.h:
 
@@ -6053,13 +7525,15 @@ Python wrapper:
 def ImageCopy(image: Image) -> Image
 ```
 
-See also: <a href="#Image">Image</a>
+See also:
+<a href="#Image">Image</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="ImageFromImage">ImageFromImage function</h3>
+---
+<h2 id="ImageFromImage"><code>ImageFromImage</code> function</h2>
 
-Create an image from another image piece
+> Create an image from another image piece
 
 Defined in raylib.h:
 
@@ -6073,13 +7547,15 @@ Python wrapper:
 def ImageFromImage(image: Image, rec: Rectangle) -> Image
 ```
 
-See also: <a href="#Image">Image</a>, <a href="#Rectangle">Rectangle</a>
+See also:
+<a href="#Image">Image</a>, <a href="#Rectangle">Rectangle</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="ImageText">ImageText function</h3>
+---
+<h2 id="ImageText"><code>ImageText</code> function</h2>
 
-Create an image from text (default font)
+> Create an image from text (default font)
 
 Defined in raylib.h:
 
@@ -6093,13 +7569,15 @@ Python wrapper:
 def ImageText(text: Union[str, CharPtr], fontSize: int, color: Color) -> Image
 ```
 
-See also: <a href="#Color">Color</a>
+See also:
+<a href="#Color">Color</a>, <a href="#Image">Image</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="ImageTextEx">ImageTextEx function</h3>
+---
+<h2 id="ImageTextEx"><code>ImageTextEx</code> function</h2>
 
-Create an image from text (custom sprite font)
+> Create an image from text (custom sprite font)
 
 Defined in raylib.h:
 
@@ -6113,13 +7591,15 @@ Python wrapper:
 def ImageTextEx(font: Font, text: Union[str, CharPtr], fontSize: float, spacing: float, tint: Color) -> Image
 ```
 
-See also: <a href="#Font">Font</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Font">Font</a>, <a href="#Color">Color</a>, <a href="#Image">Image</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="ImageFormat">ImageFormat function</h3>
+---
+<h2 id="ImageFormat"><code>ImageFormat</code> function</h2>
 
-Convert image data to desired format
+> Convert image data to desired format
 
 Defined in raylib.h:
 
@@ -6133,11 +7613,15 @@ Python wrapper:
 def ImageFormat(image: ImagePtr, newFormat: int) -> None
 ```
 
+See also:
+<a href="#Image">Image</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="ImageToPOT">ImageToPOT function</h3>
+---
+<h2 id="ImageToPOT"><code>ImageToPOT</code> function</h2>
 
-Convert image to POT (power-of-two)
+> Convert image to POT (power-of-two)
 
 Defined in raylib.h:
 
@@ -6151,13 +7635,15 @@ Python wrapper:
 def ImageToPOT(image: ImagePtr, fill: Color) -> None
 ```
 
-See also: <a href="#Color">Color</a>
+See also:
+<a href="#Image">Image</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="ImageCrop">ImageCrop function</h3>
+---
+<h2 id="ImageCrop"><code>ImageCrop</code> function</h2>
 
-Crop an image to a defined rectangle
+> Crop an image to a defined rectangle
 
 Defined in raylib.h:
 
@@ -6171,13 +7657,15 @@ Python wrapper:
 def ImageCrop(image: ImagePtr, crop: Rectangle) -> None
 ```
 
-See also: <a href="#Rectangle">Rectangle</a>
+See also:
+<a href="#Image">Image</a>, <a href="#Rectangle">Rectangle</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="ImageAlphaCrop">ImageAlphaCrop function</h3>
+---
+<h2 id="ImageAlphaCrop"><code>ImageAlphaCrop</code> function</h2>
 
-Crop image depending on alpha value
+> Crop image depending on alpha value
 
 Defined in raylib.h:
 
@@ -6191,11 +7679,15 @@ Python wrapper:
 def ImageAlphaCrop(image: ImagePtr, threshold: float) -> None
 ```
 
+See also:
+<a href="#Image">Image</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="ImageAlphaClear">ImageAlphaClear function</h3>
+---
+<h2 id="ImageAlphaClear"><code>ImageAlphaClear</code> function</h2>
 
-Clear alpha channel to desired color
+> Clear alpha channel to desired color
 
 Defined in raylib.h:
 
@@ -6209,13 +7701,15 @@ Python wrapper:
 def ImageAlphaClear(image: ImagePtr, color: Color, threshold: float) -> None
 ```
 
-See also: <a href="#Color">Color</a>
+See also:
+<a href="#Image">Image</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="ImageAlphaMask">ImageAlphaMask function</h3>
+---
+<h2 id="ImageAlphaMask"><code>ImageAlphaMask</code> function</h2>
 
-Apply alpha mask to image
+> Apply alpha mask to image
 
 Defined in raylib.h:
 
@@ -6229,13 +7723,15 @@ Python wrapper:
 def ImageAlphaMask(image: ImagePtr, alphaMask: Image) -> None
 ```
 
-See also: <a href="#Image">Image</a>
+See also:
+<a href="#Image">Image</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="ImageAlphaPremultiply">ImageAlphaPremultiply function</h3>
+---
+<h2 id="ImageAlphaPremultiply"><code>ImageAlphaPremultiply</code> function</h2>
 
-Premultiply alpha channel
+> Premultiply alpha channel
 
 Defined in raylib.h:
 
@@ -6249,11 +7745,15 @@ Python wrapper:
 def ImageAlphaPremultiply(image: ImagePtr) -> None
 ```
 
+See also:
+<a href="#Image">Image</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="ImageResize">ImageResize function</h3>
+---
+<h2 id="ImageResize"><code>ImageResize</code> function</h2>
 
-Resize image (Bicubic scaling algorithm)
+> Resize image (Bicubic scaling algorithm)
 
 Defined in raylib.h:
 
@@ -6267,11 +7767,15 @@ Python wrapper:
 def ImageResize(image: ImagePtr, newWidth: int, newHeight: int) -> None
 ```
 
+See also:
+<a href="#Image">Image</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="ImageResizeNN">ImageResizeNN function</h3>
+---
+<h2 id="ImageResizeNN"><code>ImageResizeNN</code> function</h2>
 
-Resize image (Nearest-Neighbor scaling algorithm)
+> Resize image (Nearest-Neighbor scaling algorithm)
 
 Defined in raylib.h:
 
@@ -6285,11 +7789,15 @@ Python wrapper:
 def ImageResizeNN(image: ImagePtr, newWidth: int, newHeight: int) -> None
 ```
 
+See also:
+<a href="#Image">Image</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="ImageResizeCanvas">ImageResizeCanvas function</h3>
+---
+<h2 id="ImageResizeCanvas"><code>ImageResizeCanvas</code> function</h2>
 
-Resize canvas and fill with color
+> Resize canvas and fill with color
 
 Defined in raylib.h:
 
@@ -6303,13 +7811,15 @@ Python wrapper:
 def ImageResizeCanvas(image: ImagePtr, newWidth: int, newHeight: int, offsetX: int, offsetY: int, fill: Color) -> None
 ```
 
-See also: <a href="#Color">Color</a>
+See also:
+<a href="#Image">Image</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="ImageMipmaps">ImageMipmaps function</h3>
+---
+<h2 id="ImageMipmaps"><code>ImageMipmaps</code> function</h2>
 
-Compute all mipmap levels for a provided image
+> Compute all mipmap levels for a provided image
 
 Defined in raylib.h:
 
@@ -6323,11 +7833,15 @@ Python wrapper:
 def ImageMipmaps(image: ImagePtr) -> None
 ```
 
+See also:
+<a href="#Image">Image</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="ImageDither">ImageDither function</h3>
+---
+<h2 id="ImageDither"><code>ImageDither</code> function</h2>
 
-Dither image data to 16bpp or lower (Floyd-Steinberg dithering)
+> Dither image data to 16bpp or lower (Floyd-Steinberg dithering)
 
 Defined in raylib.h:
 
@@ -6341,11 +7855,15 @@ Python wrapper:
 def ImageDither(image: ImagePtr, rBpp: int, gBpp: int, bBpp: int, aBpp: int) -> None
 ```
 
+See also:
+<a href="#Image">Image</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="ImageFlipVertical">ImageFlipVertical function</h3>
+---
+<h2 id="ImageFlipVertical"><code>ImageFlipVertical</code> function</h2>
 
-Flip image vertically
+> Flip image vertically
 
 Defined in raylib.h:
 
@@ -6359,11 +7877,15 @@ Python wrapper:
 def ImageFlipVertical(image: ImagePtr) -> None
 ```
 
+See also:
+<a href="#Image">Image</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="ImageFlipHorizontal">ImageFlipHorizontal function</h3>
+---
+<h2 id="ImageFlipHorizontal"><code>ImageFlipHorizontal</code> function</h2>
 
-Flip image horizontally
+> Flip image horizontally
 
 Defined in raylib.h:
 
@@ -6377,11 +7899,15 @@ Python wrapper:
 def ImageFlipHorizontal(image: ImagePtr) -> None
 ```
 
+See also:
+<a href="#Image">Image</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="ImageRotateCW">ImageRotateCW function</h3>
+---
+<h2 id="ImageRotateCW"><code>ImageRotateCW</code> function</h2>
 
-Rotate image clockwise 90deg
+> Rotate image clockwise 90deg
 
 Defined in raylib.h:
 
@@ -6395,11 +7921,15 @@ Python wrapper:
 def ImageRotateCW(image: ImagePtr) -> None
 ```
 
+See also:
+<a href="#Image">Image</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="ImageRotateCCW">ImageRotateCCW function</h3>
+---
+<h2 id="ImageRotateCCW"><code>ImageRotateCCW</code> function</h2>
 
-Rotate image counter-clockwise 90deg
+> Rotate image counter-clockwise 90deg
 
 Defined in raylib.h:
 
@@ -6413,11 +7943,15 @@ Python wrapper:
 def ImageRotateCCW(image: ImagePtr) -> None
 ```
 
+See also:
+<a href="#Image">Image</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="ImageColorTint">ImageColorTint function</h3>
+---
+<h2 id="ImageColorTint"><code>ImageColorTint</code> function</h2>
 
-Modify image color: tint
+> Modify image color: tint
 
 Defined in raylib.h:
 
@@ -6431,13 +7965,15 @@ Python wrapper:
 def ImageColorTint(image: ImagePtr, color: Color) -> None
 ```
 
-See also: <a href="#Color">Color</a>
+See also:
+<a href="#Image">Image</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="ImageColorInvert">ImageColorInvert function</h3>
+---
+<h2 id="ImageColorInvert"><code>ImageColorInvert</code> function</h2>
 
-Modify image color: invert
+> Modify image color: invert
 
 Defined in raylib.h:
 
@@ -6451,11 +7987,15 @@ Python wrapper:
 def ImageColorInvert(image: ImagePtr) -> None
 ```
 
+See also:
+<a href="#Image">Image</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="ImageColorGrayscale">ImageColorGrayscale function</h3>
+---
+<h2 id="ImageColorGrayscale"><code>ImageColorGrayscale</code> function</h2>
 
-Modify image color: grayscale
+> Modify image color: grayscale
 
 Defined in raylib.h:
 
@@ -6469,11 +8009,15 @@ Python wrapper:
 def ImageColorGrayscale(image: ImagePtr) -> None
 ```
 
+See also:
+<a href="#Image">Image</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="ImageColorContrast">ImageColorContrast function</h3>
+---
+<h2 id="ImageColorContrast"><code>ImageColorContrast</code> function</h2>
 
-Modify image color: contrast (-100 to 100)
+> Modify image color: contrast (-100 to 100)
 
 Defined in raylib.h:
 
@@ -6487,11 +8031,15 @@ Python wrapper:
 def ImageColorContrast(image: ImagePtr, contrast: float) -> None
 ```
 
+See also:
+<a href="#Image">Image</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="ImageColorBrightness">ImageColorBrightness function</h3>
+---
+<h2 id="ImageColorBrightness"><code>ImageColorBrightness</code> function</h2>
 
-Modify image color: brightness (-255 to 255)
+> Modify image color: brightness (-255 to 255)
 
 Defined in raylib.h:
 
@@ -6505,11 +8053,15 @@ Python wrapper:
 def ImageColorBrightness(image: ImagePtr, brightness: int) -> None
 ```
 
+See also:
+<a href="#Image">Image</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="ImageColorReplace">ImageColorReplace function</h3>
+---
+<h2 id="ImageColorReplace"><code>ImageColorReplace</code> function</h2>
 
-Modify image color: replace color
+> Modify image color: replace color
 
 Defined in raylib.h:
 
@@ -6523,13 +8075,15 @@ Python wrapper:
 def ImageColorReplace(image: ImagePtr, color: Color, replace: Color) -> None
 ```
 
-See also: <a href="#Color">Color</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Image">Image</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="LoadImageColors">LoadImageColors function</h3>
+---
+<h2 id="LoadImageColors"><code>LoadImageColors</code> function</h2>
 
-Load color data from image as a Color array (RGBA - 32bit)
+> Load color data from image as a Color array (RGBA - 32bit)
 
 Defined in raylib.h:
 
@@ -6543,13 +8097,15 @@ Python wrapper:
 def LoadImageColors(image: Image) -> ColorPtr
 ```
 
-See also: <a href="#Image">Image</a>
+See also:
+<a href="#Image">Image</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="LoadImagePalette">LoadImagePalette function</h3>
+---
+<h2 id="LoadImagePalette"><code>LoadImagePalette</code> function</h2>
 
-Load colors palette from image as a Color array (RGBA - 32bit)
+> Load colors palette from image as a Color array (RGBA - 32bit)
 
 Defined in raylib.h:
 
@@ -6563,13 +8119,15 @@ Python wrapper:
 def LoadImagePalette(image: Image, maxPaletteSize: int, colorCount: Union[Seq[int], IntPtr]) -> ColorPtr
 ```
 
-See also: <a href="#Image">Image</a>
+See also:
+<a href="#Image">Image</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="UnloadImageColors">UnloadImageColors function</h3>
+---
+<h2 id="UnloadImageColors"><code>UnloadImageColors</code> function</h2>
 
-Unload color data loaded with LoadImageColors()
+> Unload color data loaded with LoadImageColors()
 
 Defined in raylib.h:
 
@@ -6583,11 +8141,15 @@ Python wrapper:
 def UnloadImageColors(colors: ColorPtr) -> None
 ```
 
+See also:
+<a href="#Color">Color</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="UnloadImagePalette">UnloadImagePalette function</h3>
+---
+<h2 id="UnloadImagePalette"><code>UnloadImagePalette</code> function</h2>
 
-Unload colors palette loaded with LoadImagePalette()
+> Unload colors palette loaded with LoadImagePalette()
 
 Defined in raylib.h:
 
@@ -6601,11 +8163,15 @@ Python wrapper:
 def UnloadImagePalette(colors: ColorPtr) -> None
 ```
 
+See also:
+<a href="#Color">Color</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GetImageAlphaBorder">GetImageAlphaBorder function</h3>
+---
+<h2 id="GetImageAlphaBorder"><code>GetImageAlphaBorder</code> function</h2>
 
-Get image alpha border rectangle
+> Get image alpha border rectangle
 
 Defined in raylib.h:
 
@@ -6619,13 +8185,15 @@ Python wrapper:
 def GetImageAlphaBorder(image: Image, threshold: float) -> Rectangle
 ```
 
-See also: <a href="#Image">Image</a>
+See also:
+<a href="#Image">Image</a>, <a href="#Rectangle">Rectangle</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GetImageColor">GetImageColor function</h3>
+---
+<h2 id="GetImageColor"><code>GetImageColor</code> function</h2>
 
-Get image pixel color at (x, y) position
+> Get image pixel color at (x, y) position
 
 Defined in raylib.h:
 
@@ -6639,13 +8207,15 @@ Python wrapper:
 def GetImageColor(image: Image, x: int, y: int) -> Color
 ```
 
-See also: <a href="#Image">Image</a>
+See also:
+<a href="#Image">Image</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="ImageClearBackground">ImageClearBackground function</h3>
+---
+<h2 id="ImageClearBackground"><code>ImageClearBackground</code> function</h2>
 
-Clear image background with given color
+> Clear image background with given color
 
 Defined in raylib.h:
 
@@ -6659,13 +8229,15 @@ Python wrapper:
 def ImageClearBackground(dst: ImagePtr, color: Color) -> None
 ```
 
-See also: <a href="#Color">Color</a>
+See also:
+<a href="#Image">Image</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="ImageDrawPixel">ImageDrawPixel function</h3>
+---
+<h2 id="ImageDrawPixel"><code>ImageDrawPixel</code> function</h2>
 
-Draw pixel within an image
+> Draw pixel within an image
 
 Defined in raylib.h:
 
@@ -6679,13 +8251,15 @@ Python wrapper:
 def ImageDrawPixel(dst: ImagePtr, posX: int, posY: int, color: Color) -> None
 ```
 
-See also: <a href="#Color">Color</a>
+See also:
+<a href="#Image">Image</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="ImageDrawPixelV">ImageDrawPixelV function</h3>
+---
+<h2 id="ImageDrawPixelV"><code>ImageDrawPixelV</code> function</h2>
 
-Draw pixel within an image (Vector version)
+> Draw pixel within an image (Vector version)
 
 Defined in raylib.h:
 
@@ -6699,13 +8273,15 @@ Python wrapper:
 def ImageDrawPixelV(dst: ImagePtr, position: Vector2, color: Color) -> None
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Image">Image</a>, <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="ImageDrawLine">ImageDrawLine function</h3>
+---
+<h2 id="ImageDrawLine"><code>ImageDrawLine</code> function</h2>
 
-Draw line within an image
+> Draw line within an image
 
 Defined in raylib.h:
 
@@ -6719,13 +8295,15 @@ Python wrapper:
 def ImageDrawLine(dst: ImagePtr, startPosX: int, startPosY: int, endPosX: int, endPosY: int, color: Color) -> None
 ```
 
-See also: <a href="#Color">Color</a>
+See also:
+<a href="#Image">Image</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="ImageDrawLineV">ImageDrawLineV function</h3>
+---
+<h2 id="ImageDrawLineV"><code>ImageDrawLineV</code> function</h2>
 
-Draw line within an image (Vector version)
+> Draw line within an image (Vector version)
 
 Defined in raylib.h:
 
@@ -6739,13 +8317,15 @@ Python wrapper:
 def ImageDrawLineV(dst: ImagePtr, start: Vector2, end: Vector2, color: Color) -> None
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Image">Image</a>, <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="ImageDrawCircle">ImageDrawCircle function</h3>
+---
+<h2 id="ImageDrawCircle"><code>ImageDrawCircle</code> function</h2>
 
-Draw circle within an image
+> Draw circle within an image
 
 Defined in raylib.h:
 
@@ -6759,13 +8339,15 @@ Python wrapper:
 def ImageDrawCircle(dst: ImagePtr, centerX: int, centerY: int, radius: int, color: Color) -> None
 ```
 
-See also: <a href="#Color">Color</a>
+See also:
+<a href="#Image">Image</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="ImageDrawCircleV">ImageDrawCircleV function</h3>
+---
+<h2 id="ImageDrawCircleV"><code>ImageDrawCircleV</code> function</h2>
 
-Draw circle within an image (Vector version)
+> Draw circle within an image (Vector version)
 
 Defined in raylib.h:
 
@@ -6779,13 +8361,15 @@ Python wrapper:
 def ImageDrawCircleV(dst: ImagePtr, center: Vector2, radius: int, color: Color) -> None
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Image">Image</a>, <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="ImageDrawRectangle">ImageDrawRectangle function</h3>
+---
+<h2 id="ImageDrawRectangle"><code>ImageDrawRectangle</code> function</h2>
 
-Draw rectangle within an image
+> Draw rectangle within an image
 
 Defined in raylib.h:
 
@@ -6799,13 +8383,15 @@ Python wrapper:
 def ImageDrawRectangle(dst: ImagePtr, posX: int, posY: int, width: int, height: int, color: Color) -> None
 ```
 
-See also: <a href="#Color">Color</a>
+See also:
+<a href="#Image">Image</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="ImageDrawRectangleV">ImageDrawRectangleV function</h3>
+---
+<h2 id="ImageDrawRectangleV"><code>ImageDrawRectangleV</code> function</h2>
 
-Draw rectangle within an image (Vector version)
+> Draw rectangle within an image (Vector version)
 
 Defined in raylib.h:
 
@@ -6819,13 +8405,15 @@ Python wrapper:
 def ImageDrawRectangleV(dst: ImagePtr, position: Vector2, size: Vector2, color: Color) -> None
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Image">Image</a>, <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="ImageDrawRectangleRec">ImageDrawRectangleRec function</h3>
+---
+<h2 id="ImageDrawRectangleRec"><code>ImageDrawRectangleRec</code> function</h2>
 
-Draw rectangle within an image
+> Draw rectangle within an image
 
 Defined in raylib.h:
 
@@ -6839,13 +8427,15 @@ Python wrapper:
 def ImageDrawRectangleRec(dst: ImagePtr, rec: Rectangle, color: Color) -> None
 ```
 
-See also: <a href="#Rectangle">Rectangle</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Image">Image</a>, <a href="#Rectangle">Rectangle</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="ImageDrawRectangleLines">ImageDrawRectangleLines function</h3>
+---
+<h2 id="ImageDrawRectangleLines"><code>ImageDrawRectangleLines</code> function</h2>
 
-Draw rectangle lines within an image
+> Draw rectangle lines within an image
 
 Defined in raylib.h:
 
@@ -6859,13 +8449,15 @@ Python wrapper:
 def ImageDrawRectangleLines(dst: ImagePtr, rec: Rectangle, thick: int, color: Color) -> None
 ```
 
-See also: <a href="#Rectangle">Rectangle</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Image">Image</a>, <a href="#Rectangle">Rectangle</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="ImageDraw">ImageDraw function</h3>
+---
+<h2 id="ImageDraw"><code>ImageDraw</code> function</h2>
 
-Draw a source image within a destination image (tint applied to source)
+> Draw a source image within a destination image (tint applied to source)
 
 Defined in raylib.h:
 
@@ -6879,13 +8471,15 @@ Python wrapper:
 def ImageDraw(dst: ImagePtr, src: Image, srcRec: Rectangle, dstRec: Rectangle, tint: Color) -> None
 ```
 
-See also: <a href="#Image">Image</a>, <a href="#Rectangle">Rectangle</a>, <a href="#Rectangle">Rectangle</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Image">Image</a>, <a href="#Rectangle">Rectangle</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="ImageDrawText">ImageDrawText function</h3>
+---
+<h2 id="ImageDrawText"><code>ImageDrawText</code> function</h2>
 
-Draw text (using default font) within an image (destination)
+> Draw text (using default font) within an image (destination)
 
 Defined in raylib.h:
 
@@ -6899,13 +8493,15 @@ Python wrapper:
 def ImageDrawText(dst: ImagePtr, text: Union[str, CharPtr], posX: int, posY: int, fontSize: int, color: Color) -> None
 ```
 
-See also: <a href="#Color">Color</a>
+See also:
+<a href="#Image">Image</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="ImageDrawTextEx">ImageDrawTextEx function</h3>
+---
+<h2 id="ImageDrawTextEx"><code>ImageDrawTextEx</code> function</h2>
 
-Draw text (custom sprite font) within an image (destination)
+> Draw text (custom sprite font) within an image (destination)
 
 Defined in raylib.h:
 
@@ -6919,13 +8515,15 @@ Python wrapper:
 def ImageDrawTextEx(dst: ImagePtr, font: Font, text: Union[str, CharPtr], position: Vector2, fontSize: float, spacing: float, tint: Color) -> None
 ```
 
-See also: <a href="#Font">Font</a>, <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Image">Image</a>, <a href="#Font">Font</a>, <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="LoadTexture">LoadTexture function</h3>
+---
+<h2 id="LoadTexture"><code>LoadTexture</code> function</h2>
 
-Load texture from file into GPU memory (VRAM)
+> Load texture from file into GPU memory (VRAM)
 
 Defined in raylib.h:
 
@@ -6941,9 +8539,10 @@ def LoadTexture(fileName: Union[str, CharPtr]) -> Texture2D
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="LoadTextureFromImage">LoadTextureFromImage function</h3>
+---
+<h2 id="LoadTextureFromImage"><code>LoadTextureFromImage</code> function</h2>
 
-Load texture from image data
+> Load texture from image data
 
 Defined in raylib.h:
 
@@ -6957,13 +8556,15 @@ Python wrapper:
 def LoadTextureFromImage(image: Image) -> Texture2D
 ```
 
-See also: <a href="#Image">Image</a>
+See also:
+<a href="#Image">Image</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="LoadTextureCubemap">LoadTextureCubemap function</h3>
+---
+<h2 id="LoadTextureCubemap"><code>LoadTextureCubemap</code> function</h2>
 
-Load cubemap from image, multiple image cubemap layouts supported
+> Load cubemap from image, multiple image cubemap layouts supported
 
 Defined in raylib.h:
 
@@ -6977,13 +8578,15 @@ Python wrapper:
 def LoadTextureCubemap(image: Image, layout: int) -> TextureCubemap
 ```
 
-See also: <a href="#Image">Image</a>
+See also:
+<a href="#Image">Image</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="LoadRenderTexture">LoadRenderTexture function</h3>
+---
+<h2 id="LoadRenderTexture"><code>LoadRenderTexture</code> function</h2>
 
-Load texture for rendering (framebuffer)
+> Load texture for rendering (framebuffer)
 
 Defined in raylib.h:
 
@@ -6999,9 +8602,10 @@ def LoadRenderTexture(width: int, height: int) -> RenderTexture2D
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="UnloadTexture">UnloadTexture function</h3>
+---
+<h2 id="UnloadTexture"><code>UnloadTexture</code> function</h2>
 
-Unload texture from GPU memory (VRAM)
+> Unload texture from GPU memory (VRAM)
 
 Defined in raylib.h:
 
@@ -7017,9 +8621,10 @@ def UnloadTexture(texture: Texture2D) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="UnloadRenderTexture">UnloadRenderTexture function</h3>
+---
+<h2 id="UnloadRenderTexture"><code>UnloadRenderTexture</code> function</h2>
 
-Unload render texture from GPU memory (VRAM)
+> Unload render texture from GPU memory (VRAM)
 
 Defined in raylib.h:
 
@@ -7035,9 +8640,10 @@ def UnloadRenderTexture(target: RenderTexture2D) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="UpdateTexture">UpdateTexture function</h3>
+---
+<h2 id="UpdateTexture"><code>UpdateTexture</code> function</h2>
 
-Update GPU texture with new data
+> Update GPU texture with new data
 
 Defined in raylib.h:
 
@@ -7053,9 +8659,10 @@ def UpdateTexture(texture: Texture2D, pixels: bytes) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="UpdateTextureRec">UpdateTextureRec function</h3>
+---
+<h2 id="UpdateTextureRec"><code>UpdateTextureRec</code> function</h2>
 
-Update GPU texture rectangle with new data
+> Update GPU texture rectangle with new data
 
 Defined in raylib.h:
 
@@ -7069,13 +8676,15 @@ Python wrapper:
 def UpdateTextureRec(texture: Texture2D, rec: Rectangle, pixels: bytes) -> None
 ```
 
-See also: <a href="#Rectangle">Rectangle</a>
+See also:
+<a href="#Rectangle">Rectangle</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GenTextureMipmaps">GenTextureMipmaps function</h3>
+---
+<h2 id="GenTextureMipmaps"><code>GenTextureMipmaps</code> function</h2>
 
-Generate GPU mipmaps for a texture
+> Generate GPU mipmaps for a texture
 
 Defined in raylib.h:
 
@@ -7091,9 +8700,10 @@ def GenTextureMipmaps(texture: Texture2DPtr) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="SetTextureFilter">SetTextureFilter function</h3>
+---
+<h2 id="SetTextureFilter"><code>SetTextureFilter</code> function</h2>
 
-Set texture scaling filter mode
+> Set texture scaling filter mode
 
 Defined in raylib.h:
 
@@ -7109,9 +8719,10 @@ def SetTextureFilter(texture: Texture2D, filter: int) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="SetTextureWrap">SetTextureWrap function</h3>
+---
+<h2 id="SetTextureWrap"><code>SetTextureWrap</code> function</h2>
 
-Set texture wrapping mode
+> Set texture wrapping mode
 
 Defined in raylib.h:
 
@@ -7127,9 +8738,10 @@ def SetTextureWrap(texture: Texture2D, wrap: int) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="DrawTexture">DrawTexture function</h3>
+---
+<h2 id="DrawTexture"><code>DrawTexture</code> function</h2>
 
-Draw a Texture2D
+> Draw a Texture2D
 
 Defined in raylib.h:
 
@@ -7143,13 +8755,15 @@ Python wrapper:
 def DrawTexture(texture: Texture2D, posX: int, posY: int, tint: Color) -> None
 ```
 
-See also: <a href="#Color">Color</a>
+See also:
+<a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="DrawTextureV">DrawTextureV function</h3>
+---
+<h2 id="DrawTextureV"><code>DrawTextureV</code> function</h2>
 
-Draw a Texture2D with position defined as Vector2
+> Draw a Texture2D with position defined as Vector2
 
 Defined in raylib.h:
 
@@ -7163,13 +8777,15 @@ Python wrapper:
 def DrawTextureV(texture: Texture2D, position: Vector2, tint: Color) -> None
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="DrawTextureEx">DrawTextureEx function</h3>
+---
+<h2 id="DrawTextureEx"><code>DrawTextureEx</code> function</h2>
 
-Draw a Texture2D with extended parameters
+> Draw a Texture2D with extended parameters
 
 Defined in raylib.h:
 
@@ -7183,13 +8799,15 @@ Python wrapper:
 def DrawTextureEx(texture: Texture2D, position: Vector2, rotation: float, scale: float, tint: Color) -> None
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="DrawTextureRec">DrawTextureRec function</h3>
+---
+<h2 id="DrawTextureRec"><code>DrawTextureRec</code> function</h2>
 
-Draw a part of a texture defined by a rectangle
+> Draw a part of a texture defined by a rectangle
 
 Defined in raylib.h:
 
@@ -7203,13 +8821,15 @@ Python wrapper:
 def DrawTextureRec(texture: Texture2D, source: Rectangle, position: Vector2, tint: Color) -> None
 ```
 
-See also: <a href="#Rectangle">Rectangle</a>, <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Rectangle">Rectangle</a>, <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="DrawTextureQuad">DrawTextureQuad function</h3>
+---
+<h2 id="DrawTextureQuad"><code>DrawTextureQuad</code> function</h2>
 
-Draw texture quad with tiling and offset parameters
+> Draw texture quad with tiling and offset parameters
 
 Defined in raylib.h:
 
@@ -7223,13 +8843,15 @@ Python wrapper:
 def DrawTextureQuad(texture: Texture2D, tiling: Vector2, offset: Vector2, quad: Rectangle, tint: Color) -> None
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Vector2">Vector2</a>, <a href="#Rectangle">Rectangle</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Vector2">Vector2</a>, <a href="#Rectangle">Rectangle</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="DrawTextureTiled">DrawTextureTiled function</h3>
+---
+<h2 id="DrawTextureTiled"><code>DrawTextureTiled</code> function</h2>
 
-Draw part of a texture (defined by a rectangle) with rotation and scale tiled into dest.
+> Draw part of a texture (defined by a rectangle) with rotation and scale tiled into dest.
 
 Defined in raylib.h:
 
@@ -7243,13 +8865,15 @@ Python wrapper:
 def DrawTextureTiled(texture: Texture2D, source: Rectangle, dest: Rectangle, origin: Vector2, rotation: float, scale: float, tint: Color) -> None
 ```
 
-See also: <a href="#Rectangle">Rectangle</a>, <a href="#Rectangle">Rectangle</a>, <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Rectangle">Rectangle</a>, <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="DrawTexturePro">DrawTexturePro function</h3>
+---
+<h2 id="DrawTexturePro"><code>DrawTexturePro</code> function</h2>
 
-Draw a part of a texture defined by a rectangle with 'pro' parameters
+> Draw a part of a texture defined by a rectangle with 'pro' parameters
 
 Defined in raylib.h:
 
@@ -7263,13 +8887,15 @@ Python wrapper:
 def DrawTexturePro(texture: Texture2D, source: Rectangle, dest: Rectangle, origin: Vector2, rotation: float, tint: Color) -> None
 ```
 
-See also: <a href="#Rectangle">Rectangle</a>, <a href="#Rectangle">Rectangle</a>, <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Rectangle">Rectangle</a>, <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="DrawTextureNPatch">DrawTextureNPatch function</h3>
+---
+<h2 id="DrawTextureNPatch"><code>DrawTextureNPatch</code> function</h2>
 
-Draws a texture (or part of it) that stretches or shrinks nicely
+> Draws a texture (or part of it) that stretches or shrinks nicely
 
 Defined in raylib.h:
 
@@ -7283,13 +8909,15 @@ Python wrapper:
 def DrawTextureNPatch(texture: Texture2D, nPatchInfo: NPatchInfo, dest: Rectangle, origin: Vector2, rotation: float, tint: Color) -> None
 ```
 
-See also: <a href="#NPatchInfo">NPatchInfo</a>, <a href="#Rectangle">Rectangle</a>, <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
+See also:
+<a href="#NPatchInfo">NPatchInfo</a>, <a href="#Rectangle">Rectangle</a>, <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="DrawTexturePoly">DrawTexturePoly function</h3>
+---
+<h2 id="DrawTexturePoly"><code>DrawTexturePoly</code> function</h2>
 
-Draw a textured polygon
+> Draw a textured polygon
 
 Defined in raylib.h:
 
@@ -7303,13 +8931,15 @@ Python wrapper:
 def DrawTexturePoly(texture: Texture2D, center: Vector2, points: Vector2Ptr, texcoords: Vector2Ptr, pointCount: int, tint: Color) -> None
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="Fade">Fade function</h3>
+---
+<h2 id="Fade"><code>Fade</code> function</h2>
 
-Get color with alpha applied, alpha goes from 0.0f to 1.0f
+> Get color with alpha applied, alpha goes from 0.0f to 1.0f
 
 Defined in raylib.h:
 
@@ -7323,13 +8953,15 @@ Python wrapper:
 def Fade(color: Color, alpha: float) -> Color
 ```
 
-See also: <a href="#Color">Color</a>
+See also:
+<a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="ColorToInt">ColorToInt function</h3>
+---
+<h2 id="ColorToInt"><code>ColorToInt</code> function</h2>
 
-Get hexadecimal value for a Color
+> Get hexadecimal value for a Color
 
 Defined in raylib.h:
 
@@ -7343,13 +8975,15 @@ Python wrapper:
 def ColorToInt(color: Color) -> int
 ```
 
-See also: <a href="#Color">Color</a>
+See also:
+<a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="ColorNormalize">ColorNormalize function</h3>
+---
+<h2 id="ColorNormalize"><code>ColorNormalize</code> function</h2>
 
-Get Color normalized as float [0..1]
+> Get Color normalized as float [0..1]
 
 Defined in raylib.h:
 
@@ -7363,13 +8997,15 @@ Python wrapper:
 def ColorNormalize(color: Color) -> Vector4
 ```
 
-See also: <a href="#Color">Color</a>
+See also:
+<a href="#Color">Color</a>, <a href="#Vector4">Vector4</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="ColorFromNormalized">ColorFromNormalized function</h3>
+---
+<h2 id="ColorFromNormalized"><code>ColorFromNormalized</code> function</h2>
 
-Get Color from normalized values [0..1]
+> Get Color from normalized values [0..1]
 
 Defined in raylib.h:
 
@@ -7383,13 +9019,15 @@ Python wrapper:
 def ColorFromNormalized(normalized: Vector4) -> Color
 ```
 
-See also: <a href="#Vector4">Vector4</a>
+See also:
+<a href="#Vector4">Vector4</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="ColorToHSV">ColorToHSV function</h3>
+---
+<h2 id="ColorToHSV"><code>ColorToHSV</code> function</h2>
 
-Get HSV values for a Color, hue [0..360], saturation/value [0..1]
+> Get HSV values for a Color, hue [0..360], saturation/value [0..1]
 
 Defined in raylib.h:
 
@@ -7403,13 +9041,15 @@ Python wrapper:
 def ColorToHSV(color: Color) -> Vector3
 ```
 
-See also: <a href="#Color">Color</a>
+See also:
+<a href="#Color">Color</a>, <a href="#Vector3">Vector3</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="ColorFromHSV">ColorFromHSV function</h3>
+---
+<h2 id="ColorFromHSV"><code>ColorFromHSV</code> function</h2>
 
-Get a Color from HSV values, hue [0..360], saturation/value [0..1]
+> Get a Color from HSV values, hue [0..360], saturation/value [0..1]
 
 Defined in raylib.h:
 
@@ -7423,11 +9063,15 @@ Python wrapper:
 def ColorFromHSV(hue: float, saturation: float, value: float) -> Color
 ```
 
+See also:
+<a href="#Color">Color</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="ColorAlpha">ColorAlpha function</h3>
+---
+<h2 id="ColorAlpha"><code>ColorAlpha</code> function</h2>
 
-Get color with alpha applied, alpha goes from 0.0f to 1.0f
+> Get color with alpha applied, alpha goes from 0.0f to 1.0f
 
 Defined in raylib.h:
 
@@ -7441,13 +9085,15 @@ Python wrapper:
 def ColorAlpha(color: Color, alpha: float) -> Color
 ```
 
-See also: <a href="#Color">Color</a>
+See also:
+<a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="ColorAlphaBlend">ColorAlphaBlend function</h3>
+---
+<h2 id="ColorAlphaBlend"><code>ColorAlphaBlend</code> function</h2>
 
-Get src alpha-blended into dst color with tint
+> Get src alpha-blended into dst color with tint
 
 Defined in raylib.h:
 
@@ -7461,13 +9107,15 @@ Python wrapper:
 def ColorAlphaBlend(dst: Color, src: Color, tint: Color) -> Color
 ```
 
-See also: <a href="#Color">Color</a>, <a href="#Color">Color</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GetColor">GetColor function</h3>
+---
+<h2 id="GetColor"><code>GetColor</code> function</h2>
 
-Get Color structure from hexadecimal value
+> Get Color structure from hexadecimal value
 
 Defined in raylib.h:
 
@@ -7481,11 +9129,15 @@ Python wrapper:
 def GetColor(hexValue: int) -> Color
 ```
 
+See also:
+<a href="#Color">Color</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GetPixelColor">GetPixelColor function</h3>
+---
+<h2 id="GetPixelColor"><code>GetPixelColor</code> function</h2>
 
-Get Color from a source pixel pointer of certain format
+> Get Color from a source pixel pointer of certain format
 
 Defined in raylib.h:
 
@@ -7499,11 +9151,15 @@ Python wrapper:
 def GetPixelColor(srcPtr: bytes, format: int) -> Color
 ```
 
+See also:
+<a href="#Color">Color</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="SetPixelColor">SetPixelColor function</h3>
+---
+<h2 id="SetPixelColor"><code>SetPixelColor</code> function</h2>
 
-Set color formatted into destination pixel pointer
+> Set color formatted into destination pixel pointer
 
 Defined in raylib.h:
 
@@ -7517,13 +9173,15 @@ Python wrapper:
 def SetPixelColor(dstPtr: bytes, color: Color, format: int) -> None
 ```
 
-See also: <a href="#Color">Color</a>
+See also:
+<a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GetPixelDataSize">GetPixelDataSize function</h3>
+---
+<h2 id="GetPixelDataSize"><code>GetPixelDataSize</code> function</h2>
 
-Get pixel data size in bytes for certain format
+> Get pixel data size in bytes for certain format
 
 Defined in raylib.h:
 
@@ -7539,9 +9197,10 @@ def GetPixelDataSize(width: int, height: int, format: int) -> int
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GetFontDefault">GetFontDefault function</h3>
+---
+<h2 id="GetFontDefault"><code>GetFontDefault</code> function</h2>
 
-Get the default Font
+> Get the default Font
 
 Defined in raylib.h:
 
@@ -7555,11 +9214,15 @@ Python wrapper:
 def GetFontDefault() -> Font
 ```
 
+See also:
+<a href="#Font">Font</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="LoadFont">LoadFont function</h3>
+---
+<h2 id="LoadFont"><code>LoadFont</code> function</h2>
 
-Load font from file into GPU memory (VRAM)
+> Load font from file into GPU memory (VRAM)
 
 Defined in raylib.h:
 
@@ -7573,11 +9236,15 @@ Python wrapper:
 def LoadFont(fileName: Union[str, CharPtr]) -> Font
 ```
 
+See also:
+<a href="#Font">Font</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="LoadFontEx">LoadFontEx function</h3>
+---
+<h2 id="LoadFontEx"><code>LoadFontEx</code> function</h2>
 
-Load font from file with extended parameters, use NULL for fontChars and 0 for glyphCount to load the default character set
+> Load font from file with extended parameters, use NULL for fontChars and 0 for glyphCount to load the default character set
 
 Defined in raylib.h:
 
@@ -7591,11 +9258,15 @@ Python wrapper:
 def LoadFontEx(fileName: Union[str, CharPtr], fontSize: int, fontChars: Union[Seq[int], IntPtr], glyphCount: int) -> Font
 ```
 
+See also:
+<a href="#Font">Font</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="LoadFontFromImage">LoadFontFromImage function</h3>
+---
+<h2 id="LoadFontFromImage"><code>LoadFontFromImage</code> function</h2>
 
-Load font from Image (XNA style)
+> Load font from Image (XNA style)
 
 Defined in raylib.h:
 
@@ -7609,13 +9280,15 @@ Python wrapper:
 def LoadFontFromImage(image: Image, key: Color, firstChar: int) -> Font
 ```
 
-See also: <a href="#Image">Image</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Image">Image</a>, <a href="#Color">Color</a>, <a href="#Font">Font</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="LoadFontFromMemory">LoadFontFromMemory function</h3>
+---
+<h2 id="LoadFontFromMemory"><code>LoadFontFromMemory</code> function</h2>
 
-Load font from memory buffer, fileType refers to extension: i.e. '.ttf'
+> Load font from memory buffer, fileType refers to extension: i.e. '.ttf'
 
 Defined in raylib.h:
 
@@ -7629,11 +9302,15 @@ Python wrapper:
 def LoadFontFromMemory(fileType: Union[str, CharPtr], fileData: Union[Seq[int], UCharPtr], dataSize: int, fontSize: int, fontChars: Union[Seq[int], IntPtr], glyphCount: int) -> Font
 ```
 
+See also:
+<a href="#Font">Font</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="LoadFontData">LoadFontData function</h3>
+---
+<h2 id="LoadFontData"><code>LoadFontData</code> function</h2>
 
-Load font data for further use
+> Load font data for further use
 
 Defined in raylib.h:
 
@@ -7647,11 +9324,15 @@ Python wrapper:
 def LoadFontData(fileData: Union[Seq[int], UCharPtr], dataSize: int, fontSize: int, fontChars: Union[Seq[int], IntPtr], glyphCount: int, type: int) -> GlyphInfoPtr
 ```
 
+See also:
+<a href="#GlyphInfo">GlyphInfo</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GenImageFontAtlas">GenImageFontAtlas function</h3>
+---
+<h2 id="GenImageFontAtlas"><code>GenImageFontAtlas</code> function</h2>
 
-Generate image font atlas using chars info
+> Generate image font atlas using chars info
 
 Defined in raylib.h:
 
@@ -7665,11 +9346,15 @@ Python wrapper:
 def GenImageFontAtlas(chars: GlyphInfoPtr, recs: RectanglePtr, glyphCount: int, fontSize: int, padding: int, packMethod: int) -> Image
 ```
 
+See also:
+<a href="#GlyphInfo">GlyphInfo</a>, <a href="#Rectangle">Rectangle</a>, <a href="#Image">Image</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="UnloadFontData">UnloadFontData function</h3>
+---
+<h2 id="UnloadFontData"><code>UnloadFontData</code> function</h2>
 
-Unload font chars info data (RAM)
+> Unload font chars info data (RAM)
 
 Defined in raylib.h:
 
@@ -7683,11 +9368,15 @@ Python wrapper:
 def UnloadFontData(chars: GlyphInfoPtr, glyphCount: int) -> None
 ```
 
+See also:
+<a href="#GlyphInfo">GlyphInfo</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="UnloadFont">UnloadFont function</h3>
+---
+<h2 id="UnloadFont"><code>UnloadFont</code> function</h2>
 
-Unload font from GPU memory (VRAM)
+> Unload font from GPU memory (VRAM)
 
 Defined in raylib.h:
 
@@ -7701,13 +9390,15 @@ Python wrapper:
 def UnloadFont(font: Font) -> None
 ```
 
-See also: <a href="#Font">Font</a>
+See also:
+<a href="#Font">Font</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="ExportFontAsCode">ExportFontAsCode function</h3>
+---
+<h2 id="ExportFontAsCode"><code>ExportFontAsCode</code> function</h2>
 
-Export font as code file, returns true on success
+> Export font as code file, returns true on success
 
 Defined in raylib.h:
 
@@ -7721,13 +9412,15 @@ Python wrapper:
 def ExportFontAsCode(font: Font, fileName: Union[str, CharPtr]) -> bool
 ```
 
-See also: <a href="#Font">Font</a>
+See also:
+<a href="#Font">Font</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="DrawFPS">DrawFPS function</h3>
+---
+<h2 id="DrawFPS"><code>DrawFPS</code> function</h2>
 
-Draw current FPS
+> Draw current FPS
 
 Defined in raylib.h:
 
@@ -7743,9 +9436,10 @@ def DrawFPS(posX: int, posY: int) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="DrawText">DrawText function</h3>
+---
+<h2 id="DrawText"><code>DrawText</code> function</h2>
 
-Draw text (using default font)
+> Draw text (using default font)
 
 Defined in raylib.h:
 
@@ -7759,13 +9453,15 @@ Python wrapper:
 def DrawText(text: Union[str, CharPtr], posX: int, posY: int, fontSize: int, color: Color) -> None
 ```
 
-See also: <a href="#Color">Color</a>
+See also:
+<a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="DrawTextEx">DrawTextEx function</h3>
+---
+<h2 id="DrawTextEx"><code>DrawTextEx</code> function</h2>
 
-Draw text using font and additional parameters
+> Draw text using font and additional parameters
 
 Defined in raylib.h:
 
@@ -7779,13 +9475,15 @@ Python wrapper:
 def DrawTextEx(font: Font, text: Union[str, CharPtr], position: Vector2, fontSize: float, spacing: float, tint: Color) -> None
 ```
 
-See also: <a href="#Font">Font</a>, <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Font">Font</a>, <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="DrawTextPro">DrawTextPro function</h3>
+---
+<h2 id="DrawTextPro"><code>DrawTextPro</code> function</h2>
 
-Draw text using Font and pro parameters (rotation)
+> Draw text using Font and pro parameters (rotation)
 
 Defined in raylib.h:
 
@@ -7799,13 +9497,15 @@ Python wrapper:
 def DrawTextPro(font: Font, text: Union[str, CharPtr], position: Vector2, origin: Vector2, rotation: float, fontSize: float, spacing: float, tint: Color) -> None
 ```
 
-See also: <a href="#Font">Font</a>, <a href="#Vector2">Vector2</a>, <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Font">Font</a>, <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="DrawTextCodepoint">DrawTextCodepoint function</h3>
+---
+<h2 id="DrawTextCodepoint"><code>DrawTextCodepoint</code> function</h2>
 
-Draw one character (codepoint)
+> Draw one character (codepoint)
 
 Defined in raylib.h:
 
@@ -7819,13 +9519,15 @@ Python wrapper:
 def DrawTextCodepoint(font: Font, codepoint: int, position: Vector2, fontSize: float, tint: Color) -> None
 ```
 
-See also: <a href="#Font">Font</a>, <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Font">Font</a>, <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="DrawTextCodepoints">DrawTextCodepoints function</h3>
+---
+<h2 id="DrawTextCodepoints"><code>DrawTextCodepoints</code> function</h2>
 
-Draw multiple character (codepoint)
+> Draw multiple character (codepoint)
 
 Defined in raylib.h:
 
@@ -7839,13 +9541,15 @@ Python wrapper:
 def DrawTextCodepoints(font: Font, codepoints: Union[Seq[int], IntPtr], count: int, position: Vector2, fontSize: float, spacing: float, tint: Color) -> None
 ```
 
-See also: <a href="#Font">Font</a>, <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Font">Font</a>, <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="MeasureText">MeasureText function</h3>
+---
+<h2 id="MeasureText"><code>MeasureText</code> function</h2>
 
-Measure string width for default font
+> Measure string width for default font
 
 Defined in raylib.h:
 
@@ -7861,9 +9565,10 @@ def MeasureText(text: Union[str, CharPtr], fontSize: int) -> int
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="MeasureTextEx">MeasureTextEx function</h3>
+---
+<h2 id="MeasureTextEx"><code>MeasureTextEx</code> function</h2>
 
-Measure string size for Font
+> Measure string size for Font
 
 Defined in raylib.h:
 
@@ -7877,13 +9582,15 @@ Python wrapper:
 def MeasureTextEx(font: Font, text: Union[str, CharPtr], fontSize: float, spacing: float) -> Vector2
 ```
 
-See also: <a href="#Font">Font</a>
+See also:
+<a href="#Font">Font</a>, <a href="#Vector2">Vector2</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GetGlyphIndex">GetGlyphIndex function</h3>
+---
+<h2 id="GetGlyphIndex"><code>GetGlyphIndex</code> function</h2>
 
-Get glyph index position in font for a codepoint (unicode character), fallback to '?' if not found
+> Get glyph index position in font for a codepoint (unicode character), fallback to '?' if not found
 
 Defined in raylib.h:
 
@@ -7897,13 +9604,15 @@ Python wrapper:
 def GetGlyphIndex(font: Font, codepoint: int) -> int
 ```
 
-See also: <a href="#Font">Font</a>
+See also:
+<a href="#Font">Font</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GetGlyphInfo">GetGlyphInfo function</h3>
+---
+<h2 id="GetGlyphInfo"><code>GetGlyphInfo</code> function</h2>
 
-Get glyph font info data for a codepoint (unicode character), fallback to '?' if not found
+> Get glyph font info data for a codepoint (unicode character), fallback to '?' if not found
 
 Defined in raylib.h:
 
@@ -7917,13 +9626,15 @@ Python wrapper:
 def GetGlyphInfo(font: Font, codepoint: int) -> GlyphInfo
 ```
 
-See also: <a href="#Font">Font</a>
+See also:
+<a href="#Font">Font</a>, <a href="#GlyphInfo">GlyphInfo</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GetGlyphAtlasRec">GetGlyphAtlasRec function</h3>
+---
+<h2 id="GetGlyphAtlasRec"><code>GetGlyphAtlasRec</code> function</h2>
 
-Get glyph rectangle in font atlas for a codepoint (unicode character), fallback to '?' if not found
+> Get glyph rectangle in font atlas for a codepoint (unicode character), fallback to '?' if not found
 
 Defined in raylib.h:
 
@@ -7937,13 +9648,15 @@ Python wrapper:
 def GetGlyphAtlasRec(font: Font, codepoint: int) -> Rectangle
 ```
 
-See also: <a href="#Font">Font</a>
+See also:
+<a href="#Font">Font</a>, <a href="#Rectangle">Rectangle</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="LoadCodepoints">LoadCodepoints function</h3>
+---
+<h2 id="LoadCodepoints"><code>LoadCodepoints</code> function</h2>
 
-Load all codepoints from a UTF-8 text string, codepoints count returned by parameter
+> Load all codepoints from a UTF-8 text string, codepoints count returned by parameter
 
 Defined in raylib.h:
 
@@ -7959,9 +9672,10 @@ def LoadCodepoints(text: Union[str, CharPtr], count: Union[Seq[int], IntPtr]) ->
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="UnloadCodepoints">UnloadCodepoints function</h3>
+---
+<h2 id="UnloadCodepoints"><code>UnloadCodepoints</code> function</h2>
 
-Unload codepoints data from memory
+> Unload codepoints data from memory
 
 Defined in raylib.h:
 
@@ -7977,9 +9691,10 @@ def UnloadCodepoints(codepoints: Union[Seq[int], IntPtr]) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GetCodepointCount">GetCodepointCount function</h3>
+---
+<h2 id="GetCodepointCount"><code>GetCodepointCount</code> function</h2>
 
-Get total number of codepoints in a UTF-8 encoded string
+> Get total number of codepoints in a UTF-8 encoded string
 
 Defined in raylib.h:
 
@@ -7995,9 +9710,10 @@ def GetCodepointCount(text: Union[str, CharPtr]) -> int
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GetCodepoint">GetCodepoint function</h3>
+---
+<h2 id="GetCodepoint"><code>GetCodepoint</code> function</h2>
 
-Get next codepoint in a UTF-8 encoded string, 0x3f('?') is returned on failure
+> Get next codepoint in a UTF-8 encoded string, 0x3f('?') is returned on failure
 
 Defined in raylib.h:
 
@@ -8013,9 +9729,10 @@ def GetCodepoint(text: Union[str, CharPtr], bytesProcessed: Union[Seq[int], IntP
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="CodepointToUTF8">CodepointToUTF8 function</h3>
+---
+<h2 id="CodepointToUTF8"><code>CodepointToUTF8</code> function</h2>
 
-Encode one codepoint into UTF-8 byte array (array length returned as parameter)
+> Encode one codepoint into UTF-8 byte array (array length returned as parameter)
 
 Defined in raylib.h:
 
@@ -8031,9 +9748,10 @@ def CodepointToUTF8(codepoint: int, byteSize: Union[Seq[int], IntPtr]) -> Union[
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="TextCodepointsToUTF8">TextCodepointsToUTF8 function</h3>
+---
+<h2 id="TextCodepointsToUTF8"><code>TextCodepointsToUTF8</code> function</h2>
 
-Encode text as codepoints array into UTF-8 text string (WARNING: memory must be freed!)
+> Encode text as codepoints array into UTF-8 text string (WARNING: memory must be freed!)
 
 Defined in raylib.h:
 
@@ -8049,9 +9767,10 @@ def TextCodepointsToUTF8(codepoints: Union[Seq[int], IntPtr], length: int) -> Un
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="TextCopy">TextCopy function</h3>
+---
+<h2 id="TextCopy"><code>TextCopy</code> function</h2>
 
-Copy one string to another, returns bytes copied
+> Copy one string to another, returns bytes copied
 
 Defined in raylib.h:
 
@@ -8067,9 +9786,10 @@ def TextCopy(dst: Union[str, CharPtr], src: Union[str, CharPtr]) -> int
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="TextIsEqual">TextIsEqual function</h3>
+---
+<h2 id="TextIsEqual"><code>TextIsEqual</code> function</h2>
 
-Check if two text string are equal
+> Check if two text string are equal
 
 Defined in raylib.h:
 
@@ -8085,9 +9805,10 @@ def TextIsEqual(text1: Union[str, CharPtr], text2: Union[str, CharPtr]) -> bool
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="TextLength">TextLength function</h3>
+---
+<h2 id="TextLength"><code>TextLength</code> function</h2>
 
-Get text length, checks for '\0' ending
+> Get text length, checks for '\0' ending
 
 Defined in raylib.h:
 
@@ -8103,9 +9824,10 @@ def TextLength(text: Union[str, CharPtr]) -> int
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="TextFormat">TextFormat function</h3>
+---
+<h2 id="TextFormat"><code>TextFormat</code> function</h2>
 
-Text formatting with variables (sprintf() style)
+> Text formatting with variables (sprintf() style)
 
 Defined in raylib.h:
 
@@ -8121,9 +9843,10 @@ def TextFormat(text: Union[str, CharPtr], args: bytes) -> Union[str, CharPtr]
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="TextSubtext">TextSubtext function</h3>
+---
+<h2 id="TextSubtext"><code>TextSubtext</code> function</h2>
 
-Get a piece of a text string
+> Get a piece of a text string
 
 Defined in raylib.h:
 
@@ -8139,9 +9862,10 @@ def TextSubtext(text: Union[str, CharPtr], position: int, length: int) -> Union[
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="TextReplace">TextReplace function</h3>
+---
+<h2 id="TextReplace"><code>TextReplace</code> function</h2>
 
-Replace text string (WARNING: memory must be freed!)
+> Replace text string (WARNING: memory must be freed!)
 
 Defined in raylib.h:
 
@@ -8157,9 +9881,10 @@ def TextReplace(text: Union[str, CharPtr], replace: Union[str, CharPtr], by: Uni
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="TextInsert">TextInsert function</h3>
+---
+<h2 id="TextInsert"><code>TextInsert</code> function</h2>
 
-Insert text in a position (WARNING: memory must be freed!)
+> Insert text in a position (WARNING: memory must be freed!)
 
 Defined in raylib.h:
 
@@ -8175,9 +9900,10 @@ def TextInsert(text: Union[str, CharPtr], insert: Union[str, CharPtr], position:
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="TextJoin">TextJoin function</h3>
+---
+<h2 id="TextJoin"><code>TextJoin</code> function</h2>
 
-Join text strings with delimiter
+> Join text strings with delimiter
 
 Defined in raylib.h:
 
@@ -8193,9 +9919,10 @@ def TextJoin(textList: Seq[Union[str, CharPtr]], count: int, delimiter: Union[st
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="TextSplit">TextSplit function</h3>
+---
+<h2 id="TextSplit"><code>TextSplit</code> function</h2>
 
-Split text into multiple strings
+> Split text into multiple strings
 
 Defined in raylib.h:
 
@@ -8211,9 +9938,10 @@ def TextSplit(text: Union[str, CharPtr], delimiter: int, count: Union[Seq[int], 
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="TextAppend">TextAppend function</h3>
+---
+<h2 id="TextAppend"><code>TextAppend</code> function</h2>
 
-Append text at specific position and move cursor!
+> Append text at specific position and move cursor!
 
 Defined in raylib.h:
 
@@ -8229,9 +9957,10 @@ def TextAppend(text: Union[str, CharPtr], append: Union[str, CharPtr], position:
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="TextFindIndex">TextFindIndex function</h3>
+---
+<h2 id="TextFindIndex"><code>TextFindIndex</code> function</h2>
 
-Find first text occurrence within a string
+> Find first text occurrence within a string
 
 Defined in raylib.h:
 
@@ -8247,9 +9976,10 @@ def TextFindIndex(text: Union[str, CharPtr], find: Union[str, CharPtr]) -> int
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="TextToUpper">TextToUpper function</h3>
+---
+<h2 id="TextToUpper"><code>TextToUpper</code> function</h2>
 
-Get upper case version of provided string
+> Get upper case version of provided string
 
 Defined in raylib.h:
 
@@ -8265,9 +9995,10 @@ def TextToUpper(text: Union[str, CharPtr]) -> Union[str, CharPtr]
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="TextToLower">TextToLower function</h3>
+---
+<h2 id="TextToLower"><code>TextToLower</code> function</h2>
 
-Get lower case version of provided string
+> Get lower case version of provided string
 
 Defined in raylib.h:
 
@@ -8283,9 +10014,10 @@ def TextToLower(text: Union[str, CharPtr]) -> Union[str, CharPtr]
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="TextToPascal">TextToPascal function</h3>
+---
+<h2 id="TextToPascal"><code>TextToPascal</code> function</h2>
 
-Get Pascal case notation version of provided string
+> Get Pascal case notation version of provided string
 
 Defined in raylib.h:
 
@@ -8301,9 +10033,10 @@ def TextToPascal(text: Union[str, CharPtr]) -> Union[str, CharPtr]
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="TextToInteger">TextToInteger function</h3>
+---
+<h2 id="TextToInteger"><code>TextToInteger</code> function</h2>
 
-Get integer value from text (negative values not supported)
+> Get integer value from text (negative values not supported)
 
 Defined in raylib.h:
 
@@ -8319,9 +10052,10 @@ def TextToInteger(text: Union[str, CharPtr]) -> int
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="DrawLine3D">DrawLine3D function</h3>
+---
+<h2 id="DrawLine3D"><code>DrawLine3D</code> function</h2>
 
-Draw a line in 3D world space
+> Draw a line in 3D world space
 
 Defined in raylib.h:
 
@@ -8335,13 +10069,15 @@ Python wrapper:
 def DrawLine3D(startPos: Vector3, endPos: Vector3, color: Color) -> None
 ```
 
-See also: <a href="#Vector3">Vector3</a>, <a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="DrawPoint3D">DrawPoint3D function</h3>
+---
+<h2 id="DrawPoint3D"><code>DrawPoint3D</code> function</h2>
 
-Draw a point in 3D space, actually a small line
+> Draw a point in 3D space, actually a small line
 
 Defined in raylib.h:
 
@@ -8355,13 +10091,15 @@ Python wrapper:
 def DrawPoint3D(position: Vector3, color: Color) -> None
 ```
 
-See also: <a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="DrawCircle3D">DrawCircle3D function</h3>
+---
+<h2 id="DrawCircle3D"><code>DrawCircle3D</code> function</h2>
 
-Draw a circle in 3D world space
+> Draw a circle in 3D world space
 
 Defined in raylib.h:
 
@@ -8375,13 +10113,15 @@ Python wrapper:
 def DrawCircle3D(center: Vector3, radius: float, rotationAxis: Vector3, rotationAngle: float, color: Color) -> None
 ```
 
-See also: <a href="#Vector3">Vector3</a>, <a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="DrawTriangle3D">DrawTriangle3D function</h3>
+---
+<h2 id="DrawTriangle3D"><code>DrawTriangle3D</code> function</h2>
 
-Draw a color-filled triangle (vertex in counter-clockwise order!)
+> Draw a color-filled triangle (vertex in counter-clockwise order!)
 
 Defined in raylib.h:
 
@@ -8395,13 +10135,15 @@ Python wrapper:
 def DrawTriangle3D(v1: Vector3, v2: Vector3, v3: Vector3, color: Color) -> None
 ```
 
-See also: <a href="#Vector3">Vector3</a>, <a href="#Vector3">Vector3</a>, <a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="DrawTriangleStrip3D">DrawTriangleStrip3D function</h3>
+---
+<h2 id="DrawTriangleStrip3D"><code>DrawTriangleStrip3D</code> function</h2>
 
-Draw a triangle strip defined by points
+> Draw a triangle strip defined by points
 
 Defined in raylib.h:
 
@@ -8415,13 +10157,15 @@ Python wrapper:
 def DrawTriangleStrip3D(points: Vector3Ptr, pointCount: int, color: Color) -> None
 ```
 
-See also: <a href="#Color">Color</a>
+See also:
+<a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="DrawCube">DrawCube function</h3>
+---
+<h2 id="DrawCube"><code>DrawCube</code> function</h2>
 
-Draw cube
+> Draw cube
 
 Defined in raylib.h:
 
@@ -8435,13 +10179,15 @@ Python wrapper:
 def DrawCube(position: Vector3, width: float, height: float, length: float, color: Color) -> None
 ```
 
-See also: <a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="DrawCubeV">DrawCubeV function</h3>
+---
+<h2 id="DrawCubeV"><code>DrawCubeV</code> function</h2>
 
-Draw cube (Vector version)
+> Draw cube (Vector version)
 
 Defined in raylib.h:
 
@@ -8455,13 +10201,15 @@ Python wrapper:
 def DrawCubeV(position: Vector3, size: Vector3, color: Color) -> None
 ```
 
-See also: <a href="#Vector3">Vector3</a>, <a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="DrawCubeWires">DrawCubeWires function</h3>
+---
+<h2 id="DrawCubeWires"><code>DrawCubeWires</code> function</h2>
 
-Draw cube wires
+> Draw cube wires
 
 Defined in raylib.h:
 
@@ -8475,13 +10223,15 @@ Python wrapper:
 def DrawCubeWires(position: Vector3, width: float, height: float, length: float, color: Color) -> None
 ```
 
-See also: <a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="DrawCubeWiresV">DrawCubeWiresV function</h3>
+---
+<h2 id="DrawCubeWiresV"><code>DrawCubeWiresV</code> function</h2>
 
-Draw cube wires (Vector version)
+> Draw cube wires (Vector version)
 
 Defined in raylib.h:
 
@@ -8495,13 +10245,15 @@ Python wrapper:
 def DrawCubeWiresV(position: Vector3, size: Vector3, color: Color) -> None
 ```
 
-See also: <a href="#Vector3">Vector3</a>, <a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="DrawCubeTexture">DrawCubeTexture function</h3>
+---
+<h2 id="DrawCubeTexture"><code>DrawCubeTexture</code> function</h2>
 
-Draw cube textured
+> Draw cube textured
 
 Defined in raylib.h:
 
@@ -8515,13 +10267,15 @@ Python wrapper:
 def DrawCubeTexture(texture: Texture2D, position: Vector3, width: float, height: float, length: float, color: Color) -> None
 ```
 
-See also: <a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="DrawCubeTextureRec">DrawCubeTextureRec function</h3>
+---
+<h2 id="DrawCubeTextureRec"><code>DrawCubeTextureRec</code> function</h2>
 
-Draw cube with a region of a texture
+> Draw cube with a region of a texture
 
 Defined in raylib.h:
 
@@ -8535,13 +10289,15 @@ Python wrapper:
 def DrawCubeTextureRec(texture: Texture2D, source: Rectangle, position: Vector3, width: float, height: float, length: float, color: Color) -> None
 ```
 
-See also: <a href="#Rectangle">Rectangle</a>, <a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Rectangle">Rectangle</a>, <a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="DrawSphere">DrawSphere function</h3>
+---
+<h2 id="DrawSphere"><code>DrawSphere</code> function</h2>
 
-Draw sphere
+> Draw sphere
 
 Defined in raylib.h:
 
@@ -8555,13 +10311,15 @@ Python wrapper:
 def DrawSphere(centerPos: Vector3, radius: float, color: Color) -> None
 ```
 
-See also: <a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="DrawSphereEx">DrawSphereEx function</h3>
+---
+<h2 id="DrawSphereEx"><code>DrawSphereEx</code> function</h2>
 
-Draw sphere with extended parameters
+> Draw sphere with extended parameters
 
 Defined in raylib.h:
 
@@ -8575,13 +10333,15 @@ Python wrapper:
 def DrawSphereEx(centerPos: Vector3, radius: float, rings: int, slices: int, color: Color) -> None
 ```
 
-See also: <a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="DrawSphereWires">DrawSphereWires function</h3>
+---
+<h2 id="DrawSphereWires"><code>DrawSphereWires</code> function</h2>
 
-Draw sphere wires
+> Draw sphere wires
 
 Defined in raylib.h:
 
@@ -8595,13 +10355,15 @@ Python wrapper:
 def DrawSphereWires(centerPos: Vector3, radius: float, rings: int, slices: int, color: Color) -> None
 ```
 
-See also: <a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="DrawCylinder">DrawCylinder function</h3>
+---
+<h2 id="DrawCylinder"><code>DrawCylinder</code> function</h2>
 
-Draw a cylinder/cone
+> Draw a cylinder/cone
 
 Defined in raylib.h:
 
@@ -8615,13 +10377,15 @@ Python wrapper:
 def DrawCylinder(position: Vector3, radiusTop: float, radiusBottom: float, height: float, slices: int, color: Color) -> None
 ```
 
-See also: <a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="DrawCylinderEx">DrawCylinderEx function</h3>
+---
+<h2 id="DrawCylinderEx"><code>DrawCylinderEx</code> function</h2>
 
-Draw a cylinder with base at startPos and top at endPos
+> Draw a cylinder with base at startPos and top at endPos
 
 Defined in raylib.h:
 
@@ -8635,13 +10399,15 @@ Python wrapper:
 def DrawCylinderEx(startPos: Vector3, endPos: Vector3, startRadius: float, endRadius: float, sides: int, color: Color) -> None
 ```
 
-See also: <a href="#Vector3">Vector3</a>, <a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="DrawCylinderWires">DrawCylinderWires function</h3>
+---
+<h2 id="DrawCylinderWires"><code>DrawCylinderWires</code> function</h2>
 
-Draw a cylinder/cone wires
+> Draw a cylinder/cone wires
 
 Defined in raylib.h:
 
@@ -8655,13 +10421,15 @@ Python wrapper:
 def DrawCylinderWires(position: Vector3, radiusTop: float, radiusBottom: float, height: float, slices: int, color: Color) -> None
 ```
 
-See also: <a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="DrawCylinderWiresEx">DrawCylinderWiresEx function</h3>
+---
+<h2 id="DrawCylinderWiresEx"><code>DrawCylinderWiresEx</code> function</h2>
 
-Draw a cylinder wires with base at startPos and top at endPos
+> Draw a cylinder wires with base at startPos and top at endPos
 
 Defined in raylib.h:
 
@@ -8675,13 +10443,15 @@ Python wrapper:
 def DrawCylinderWiresEx(startPos: Vector3, endPos: Vector3, startRadius: float, endRadius: float, sides: int, color: Color) -> None
 ```
 
-See also: <a href="#Vector3">Vector3</a>, <a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="DrawPlane">DrawPlane function</h3>
+---
+<h2 id="DrawPlane"><code>DrawPlane</code> function</h2>
 
-Draw a plane XZ
+> Draw a plane XZ
 
 Defined in raylib.h:
 
@@ -8695,13 +10465,15 @@ Python wrapper:
 def DrawPlane(centerPos: Vector3, size: Vector2, color: Color) -> None
 ```
 
-See also: <a href="#Vector3">Vector3</a>, <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Vector3">Vector3</a>, <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="DrawRay">DrawRay function</h3>
+---
+<h2 id="DrawRay"><code>DrawRay</code> function</h2>
 
-Draw a ray line
+> Draw a ray line
 
 Defined in raylib.h:
 
@@ -8715,13 +10487,15 @@ Python wrapper:
 def DrawRay(ray: Ray, color: Color) -> None
 ```
 
-See also: <a href="#Ray">Ray</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Ray">Ray</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="DrawGrid">DrawGrid function</h3>
+---
+<h2 id="DrawGrid"><code>DrawGrid</code> function</h2>
 
-Draw a grid (centered at (0, 0, 0))
+> Draw a grid (centered at (0, 0, 0))
 
 Defined in raylib.h:
 
@@ -8737,9 +10511,10 @@ def DrawGrid(slices: int, spacing: float) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="LoadModel">LoadModel function</h3>
+---
+<h2 id="LoadModel"><code>LoadModel</code> function</h2>
 
-Load model from files (meshes and materials)
+> Load model from files (meshes and materials)
 
 Defined in raylib.h:
 
@@ -8753,11 +10528,15 @@ Python wrapper:
 def LoadModel(fileName: Union[str, CharPtr]) -> Model
 ```
 
+See also:
+<a href="#Model">Model</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="LoadModelFromMesh">LoadModelFromMesh function</h3>
+---
+<h2 id="LoadModelFromMesh"><code>LoadModelFromMesh</code> function</h2>
 
-Load model from generated mesh (default material)
+> Load model from generated mesh (default material)
 
 Defined in raylib.h:
 
@@ -8771,13 +10550,15 @@ Python wrapper:
 def LoadModelFromMesh(mesh: Mesh) -> Model
 ```
 
-See also: <a href="#Mesh">Mesh</a>
+See also:
+<a href="#Mesh">Mesh</a>, <a href="#Model">Model</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="UnloadModel">UnloadModel function</h3>
+---
+<h2 id="UnloadModel"><code>UnloadModel</code> function</h2>
 
-Unload model (including meshes) from memory (RAM and/or VRAM)
+> Unload model (including meshes) from memory (RAM and/or VRAM)
 
 Defined in raylib.h:
 
@@ -8791,13 +10572,15 @@ Python wrapper:
 def UnloadModel(model: Model) -> None
 ```
 
-See also: <a href="#Model">Model</a>
+See also:
+<a href="#Model">Model</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="UnloadModelKeepMeshes">UnloadModelKeepMeshes function</h3>
+---
+<h2 id="UnloadModelKeepMeshes"><code>UnloadModelKeepMeshes</code> function</h2>
 
-Unload model (but not meshes) from memory (RAM and/or VRAM)
+> Unload model (but not meshes) from memory (RAM and/or VRAM)
 
 Defined in raylib.h:
 
@@ -8811,13 +10594,15 @@ Python wrapper:
 def UnloadModelKeepMeshes(model: Model) -> None
 ```
 
-See also: <a href="#Model">Model</a>
+See also:
+<a href="#Model">Model</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GetModelBoundingBox">GetModelBoundingBox function</h3>
+---
+<h2 id="GetModelBoundingBox"><code>GetModelBoundingBox</code> function</h2>
 
-Compute model bounding box limits (considers all meshes)
+> Compute model bounding box limits (considers all meshes)
 
 Defined in raylib.h:
 
@@ -8831,13 +10616,15 @@ Python wrapper:
 def GetModelBoundingBox(model: Model) -> BoundingBox
 ```
 
-See also: <a href="#Model">Model</a>
+See also:
+<a href="#Model">Model</a>, <a href="#BoundingBox">BoundingBox</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="DrawModel">DrawModel function</h3>
+---
+<h2 id="DrawModel"><code>DrawModel</code> function</h2>
 
-Draw a model (with texture if set)
+> Draw a model (with texture if set)
 
 Defined in raylib.h:
 
@@ -8851,13 +10638,15 @@ Python wrapper:
 def DrawModel(model: Model, position: Vector3, scale: float, tint: Color) -> None
 ```
 
-See also: <a href="#Model">Model</a>, <a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Model">Model</a>, <a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="DrawModelEx">DrawModelEx function</h3>
+---
+<h2 id="DrawModelEx"><code>DrawModelEx</code> function</h2>
 
-Draw a model with extended parameters
+> Draw a model with extended parameters
 
 Defined in raylib.h:
 
@@ -8871,13 +10660,15 @@ Python wrapper:
 def DrawModelEx(model: Model, position: Vector3, rotationAxis: Vector3, rotationAngle: float, scale: Vector3, tint: Color) -> None
 ```
 
-See also: <a href="#Model">Model</a>, <a href="#Vector3">Vector3</a>, <a href="#Vector3">Vector3</a>, <a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Model">Model</a>, <a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="DrawModelWires">DrawModelWires function</h3>
+---
+<h2 id="DrawModelWires"><code>DrawModelWires</code> function</h2>
 
-Draw a model wires (with texture if set)
+> Draw a model wires (with texture if set)
 
 Defined in raylib.h:
 
@@ -8891,13 +10682,15 @@ Python wrapper:
 def DrawModelWires(model: Model, position: Vector3, scale: float, tint: Color) -> None
 ```
 
-See also: <a href="#Model">Model</a>, <a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Model">Model</a>, <a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="DrawModelWiresEx">DrawModelWiresEx function</h3>
+---
+<h2 id="DrawModelWiresEx"><code>DrawModelWiresEx</code> function</h2>
 
-Draw a model wires (with texture if set) with extended parameters
+> Draw a model wires (with texture if set) with extended parameters
 
 Defined in raylib.h:
 
@@ -8911,13 +10704,15 @@ Python wrapper:
 def DrawModelWiresEx(model: Model, position: Vector3, rotationAxis: Vector3, rotationAngle: float, scale: Vector3, tint: Color) -> None
 ```
 
-See also: <a href="#Model">Model</a>, <a href="#Vector3">Vector3</a>, <a href="#Vector3">Vector3</a>, <a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Model">Model</a>, <a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="DrawBoundingBox">DrawBoundingBox function</h3>
+---
+<h2 id="DrawBoundingBox"><code>DrawBoundingBox</code> function</h2>
 
-Draw bounding box (wires)
+> Draw bounding box (wires)
 
 Defined in raylib.h:
 
@@ -8931,13 +10726,15 @@ Python wrapper:
 def DrawBoundingBox(box: BoundingBox, color: Color) -> None
 ```
 
-See also: <a href="#BoundingBox">BoundingBox</a>, <a href="#Color">Color</a>
+See also:
+<a href="#BoundingBox">BoundingBox</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="DrawBillboard">DrawBillboard function</h3>
+---
+<h2 id="DrawBillboard"><code>DrawBillboard</code> function</h2>
 
-Draw a billboard texture
+> Draw a billboard texture
 
 Defined in raylib.h:
 
@@ -8951,13 +10748,15 @@ Python wrapper:
 def DrawBillboard(camera: Camera, texture: Texture2D, position: Vector3, size: float, tint: Color) -> None
 ```
 
-See also: <a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="DrawBillboardRec">DrawBillboardRec function</h3>
+---
+<h2 id="DrawBillboardRec"><code>DrawBillboardRec</code> function</h2>
 
-Draw a billboard texture defined by source
+> Draw a billboard texture defined by source
 
 Defined in raylib.h:
 
@@ -8971,13 +10770,15 @@ Python wrapper:
 def DrawBillboardRec(camera: Camera, texture: Texture2D, source: Rectangle, position: Vector3, size: Vector2, tint: Color) -> None
 ```
 
-See also: <a href="#Rectangle">Rectangle</a>, <a href="#Vector3">Vector3</a>, <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Rectangle">Rectangle</a>, <a href="#Vector3">Vector3</a>, <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="DrawBillboardPro">DrawBillboardPro function</h3>
+---
+<h2 id="DrawBillboardPro"><code>DrawBillboardPro</code> function</h2>
 
-Draw a billboard texture defined by source and rotation
+> Draw a billboard texture defined by source and rotation
 
 Defined in raylib.h:
 
@@ -8991,13 +10792,15 @@ Python wrapper:
 def DrawBillboardPro(camera: Camera, texture: Texture2D, source: Rectangle, position: Vector3, up: Vector3, size: Vector2, origin: Vector2, rotation: float, tint: Color) -> None
 ```
 
-See also: <a href="#Rectangle">Rectangle</a>, <a href="#Vector3">Vector3</a>, <a href="#Vector3">Vector3</a>, <a href="#Vector2">Vector2</a>, <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Rectangle">Rectangle</a>, <a href="#Vector3">Vector3</a>, <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="UploadMesh">UploadMesh function</h3>
+---
+<h2 id="UploadMesh"><code>UploadMesh</code> function</h2>
 
-Upload mesh vertex data in GPU and provide VAO/VBO ids
+> Upload mesh vertex data in GPU and provide VAO/VBO ids
 
 Defined in raylib.h:
 
@@ -9011,11 +10814,15 @@ Python wrapper:
 def UploadMesh(mesh: MeshPtr, dynamic: bool) -> None
 ```
 
+See also:
+<a href="#Mesh">Mesh</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="UpdateMeshBuffer">UpdateMeshBuffer function</h3>
+---
+<h2 id="UpdateMeshBuffer"><code>UpdateMeshBuffer</code> function</h2>
 
-Update mesh vertex data in GPU for a specific buffer index
+> Update mesh vertex data in GPU for a specific buffer index
 
 Defined in raylib.h:
 
@@ -9029,13 +10836,15 @@ Python wrapper:
 def UpdateMeshBuffer(mesh: Mesh, index: int, data: bytes, dataSize: int, offset: int) -> None
 ```
 
-See also: <a href="#Mesh">Mesh</a>
+See also:
+<a href="#Mesh">Mesh</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="UnloadMesh">UnloadMesh function</h3>
+---
+<h2 id="UnloadMesh"><code>UnloadMesh</code> function</h2>
 
-Unload mesh data from CPU and GPU
+> Unload mesh data from CPU and GPU
 
 Defined in raylib.h:
 
@@ -9049,13 +10858,15 @@ Python wrapper:
 def UnloadMesh(mesh: Mesh) -> None
 ```
 
-See also: <a href="#Mesh">Mesh</a>
+See also:
+<a href="#Mesh">Mesh</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="DrawMesh">DrawMesh function</h3>
+---
+<h2 id="DrawMesh"><code>DrawMesh</code> function</h2>
 
-Draw a 3d mesh with material and transform
+> Draw a 3d mesh with material and transform
 
 Defined in raylib.h:
 
@@ -9069,13 +10880,15 @@ Python wrapper:
 def DrawMesh(mesh: Mesh, material: Material, transform: Matrix) -> None
 ```
 
-See also: <a href="#Mesh">Mesh</a>, <a href="#Material">Material</a>, <a href="#Matrix">Matrix</a>
+See also:
+<a href="#Mesh">Mesh</a>, <a href="#Material">Material</a>, <a href="#Matrix">Matrix</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="DrawMeshInstanced">DrawMeshInstanced function</h3>
+---
+<h2 id="DrawMeshInstanced"><code>DrawMeshInstanced</code> function</h2>
 
-Draw multiple mesh instances with material and different transforms
+> Draw multiple mesh instances with material and different transforms
 
 Defined in raylib.h:
 
@@ -9089,13 +10902,15 @@ Python wrapper:
 def DrawMeshInstanced(mesh: Mesh, material: Material, transforms: MatrixPtr, instances: int) -> None
 ```
 
-See also: <a href="#Mesh">Mesh</a>, <a href="#Material">Material</a>
+See also:
+<a href="#Mesh">Mesh</a>, <a href="#Material">Material</a>, <a href="#Matrix">Matrix</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="ExportMesh">ExportMesh function</h3>
+---
+<h2 id="ExportMesh"><code>ExportMesh</code> function</h2>
 
-Export mesh data to file, returns true on success
+> Export mesh data to file, returns true on success
 
 Defined in raylib.h:
 
@@ -9109,13 +10924,15 @@ Python wrapper:
 def ExportMesh(mesh: Mesh, fileName: Union[str, CharPtr]) -> bool
 ```
 
-See also: <a href="#Mesh">Mesh</a>
+See also:
+<a href="#Mesh">Mesh</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GetMeshBoundingBox">GetMeshBoundingBox function</h3>
+---
+<h2 id="GetMeshBoundingBox"><code>GetMeshBoundingBox</code> function</h2>
 
-Compute mesh bounding box limits
+> Compute mesh bounding box limits
 
 Defined in raylib.h:
 
@@ -9129,13 +10946,15 @@ Python wrapper:
 def GetMeshBoundingBox(mesh: Mesh) -> BoundingBox
 ```
 
-See also: <a href="#Mesh">Mesh</a>
+See also:
+<a href="#Mesh">Mesh</a>, <a href="#BoundingBox">BoundingBox</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GenMeshTangents">GenMeshTangents function</h3>
+---
+<h2 id="GenMeshTangents"><code>GenMeshTangents</code> function</h2>
 
-Compute mesh tangents
+> Compute mesh tangents
 
 Defined in raylib.h:
 
@@ -9149,11 +10968,15 @@ Python wrapper:
 def GenMeshTangents(mesh: MeshPtr) -> None
 ```
 
+See also:
+<a href="#Mesh">Mesh</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GenMeshPoly">GenMeshPoly function</h3>
+---
+<h2 id="GenMeshPoly"><code>GenMeshPoly</code> function</h2>
 
-Generate polygonal mesh
+> Generate polygonal mesh
 
 Defined in raylib.h:
 
@@ -9167,11 +10990,15 @@ Python wrapper:
 def GenMeshPoly(sides: int, radius: float) -> Mesh
 ```
 
+See also:
+<a href="#Mesh">Mesh</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GenMeshPlane">GenMeshPlane function</h3>
+---
+<h2 id="GenMeshPlane"><code>GenMeshPlane</code> function</h2>
 
-Generate plane mesh (with subdivisions)
+> Generate plane mesh (with subdivisions)
 
 Defined in raylib.h:
 
@@ -9185,11 +11012,15 @@ Python wrapper:
 def GenMeshPlane(width: float, length: float, resX: int, resZ: int) -> Mesh
 ```
 
+See also:
+<a href="#Mesh">Mesh</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GenMeshCube">GenMeshCube function</h3>
+---
+<h2 id="GenMeshCube"><code>GenMeshCube</code> function</h2>
 
-Generate cuboid mesh
+> Generate cuboid mesh
 
 Defined in raylib.h:
 
@@ -9203,11 +11034,15 @@ Python wrapper:
 def GenMeshCube(width: float, height: float, length: float) -> Mesh
 ```
 
+See also:
+<a href="#Mesh">Mesh</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GenMeshSphere">GenMeshSphere function</h3>
+---
+<h2 id="GenMeshSphere"><code>GenMeshSphere</code> function</h2>
 
-Generate sphere mesh (standard sphere)
+> Generate sphere mesh (standard sphere)
 
 Defined in raylib.h:
 
@@ -9221,11 +11056,15 @@ Python wrapper:
 def GenMeshSphere(radius: float, rings: int, slices: int) -> Mesh
 ```
 
+See also:
+<a href="#Mesh">Mesh</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GenMeshHemiSphere">GenMeshHemiSphere function</h3>
+---
+<h2 id="GenMeshHemiSphere"><code>GenMeshHemiSphere</code> function</h2>
 
-Generate half-sphere mesh (no bottom cap)
+> Generate half-sphere mesh (no bottom cap)
 
 Defined in raylib.h:
 
@@ -9239,11 +11078,15 @@ Python wrapper:
 def GenMeshHemiSphere(radius: float, rings: int, slices: int) -> Mesh
 ```
 
+See also:
+<a href="#Mesh">Mesh</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GenMeshCylinder">GenMeshCylinder function</h3>
+---
+<h2 id="GenMeshCylinder"><code>GenMeshCylinder</code> function</h2>
 
-Generate cylinder mesh
+> Generate cylinder mesh
 
 Defined in raylib.h:
 
@@ -9257,11 +11100,15 @@ Python wrapper:
 def GenMeshCylinder(radius: float, height: float, slices: int) -> Mesh
 ```
 
+See also:
+<a href="#Mesh">Mesh</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GenMeshCone">GenMeshCone function</h3>
+---
+<h2 id="GenMeshCone"><code>GenMeshCone</code> function</h2>
 
-Generate cone/pyramid mesh
+> Generate cone/pyramid mesh
 
 Defined in raylib.h:
 
@@ -9275,11 +11122,15 @@ Python wrapper:
 def GenMeshCone(radius: float, height: float, slices: int) -> Mesh
 ```
 
+See also:
+<a href="#Mesh">Mesh</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GenMeshTorus">GenMeshTorus function</h3>
+---
+<h2 id="GenMeshTorus"><code>GenMeshTorus</code> function</h2>
 
-Generate torus mesh
+> Generate torus mesh
 
 Defined in raylib.h:
 
@@ -9293,11 +11144,15 @@ Python wrapper:
 def GenMeshTorus(radius: float, size: float, radSeg: int, sides: int) -> Mesh
 ```
 
+See also:
+<a href="#Mesh">Mesh</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GenMeshKnot">GenMeshKnot function</h3>
+---
+<h2 id="GenMeshKnot"><code>GenMeshKnot</code> function</h2>
 
-Generate trefoil knot mesh
+> Generate trefoil knot mesh
 
 Defined in raylib.h:
 
@@ -9311,11 +11166,15 @@ Python wrapper:
 def GenMeshKnot(radius: float, size: float, radSeg: int, sides: int) -> Mesh
 ```
 
+See also:
+<a href="#Mesh">Mesh</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GenMeshHeightmap">GenMeshHeightmap function</h3>
+---
+<h2 id="GenMeshHeightmap"><code>GenMeshHeightmap</code> function</h2>
 
-Generate heightmap mesh from image data
+> Generate heightmap mesh from image data
 
 Defined in raylib.h:
 
@@ -9329,13 +11188,15 @@ Python wrapper:
 def GenMeshHeightmap(heightmap: Image, size: Vector3) -> Mesh
 ```
 
-See also: <a href="#Image">Image</a>, <a href="#Vector3">Vector3</a>
+See also:
+<a href="#Image">Image</a>, <a href="#Vector3">Vector3</a>, <a href="#Mesh">Mesh</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GenMeshCubicmap">GenMeshCubicmap function</h3>
+---
+<h2 id="GenMeshCubicmap"><code>GenMeshCubicmap</code> function</h2>
 
-Generate cubes-based map mesh from image data
+> Generate cubes-based map mesh from image data
 
 Defined in raylib.h:
 
@@ -9349,13 +11210,15 @@ Python wrapper:
 def GenMeshCubicmap(cubicmap: Image, cubeSize: Vector3) -> Mesh
 ```
 
-See also: <a href="#Image">Image</a>, <a href="#Vector3">Vector3</a>
+See also:
+<a href="#Image">Image</a>, <a href="#Vector3">Vector3</a>, <a href="#Mesh">Mesh</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="LoadMaterials">LoadMaterials function</h3>
+---
+<h2 id="LoadMaterials"><code>LoadMaterials</code> function</h2>
 
-Load materials from model file
+> Load materials from model file
 
 Defined in raylib.h:
 
@@ -9369,11 +11232,15 @@ Python wrapper:
 def LoadMaterials(fileName: Union[str, CharPtr], materialCount: Union[Seq[int], IntPtr]) -> MaterialPtr
 ```
 
+See also:
+<a href="#Material">Material</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="LoadMaterialDefault">LoadMaterialDefault function</h3>
+---
+<h2 id="LoadMaterialDefault"><code>LoadMaterialDefault</code> function</h2>
 
-Load default material (Supports: DIFFUSE, SPECULAR, NORMAL maps)
+> Load default material (Supports: DIFFUSE, SPECULAR, NORMAL maps)
 
 Defined in raylib.h:
 
@@ -9387,11 +11254,15 @@ Python wrapper:
 def LoadMaterialDefault() -> Material
 ```
 
+See also:
+<a href="#Material">Material</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="UnloadMaterial">UnloadMaterial function</h3>
+---
+<h2 id="UnloadMaterial"><code>UnloadMaterial</code> function</h2>
 
-Unload material from GPU memory (VRAM)
+> Unload material from GPU memory (VRAM)
 
 Defined in raylib.h:
 
@@ -9405,13 +11276,15 @@ Python wrapper:
 def UnloadMaterial(material: Material) -> None
 ```
 
-See also: <a href="#Material">Material</a>
+See also:
+<a href="#Material">Material</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="SetMaterialTexture">SetMaterialTexture function</h3>
+---
+<h2 id="SetMaterialTexture"><code>SetMaterialTexture</code> function</h2>
 
-Set texture for a material map type (MATERIAL_MAP_DIFFUSE, MATERIAL_MAP_SPECULAR...)
+> Set texture for a material map type (MATERIAL_MAP_DIFFUSE, MATERIAL_MAP_SPECULAR...)
 
 Defined in raylib.h:
 
@@ -9425,11 +11298,15 @@ Python wrapper:
 def SetMaterialTexture(material: MaterialPtr, mapType: int, texture: Texture2D) -> None
 ```
 
+See also:
+<a href="#Material">Material</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="SetModelMeshMaterial">SetModelMeshMaterial function</h3>
+---
+<h2 id="SetModelMeshMaterial"><code>SetModelMeshMaterial</code> function</h2>
 
-Set material for a mesh
+> Set material for a mesh
 
 Defined in raylib.h:
 
@@ -9443,11 +11320,15 @@ Python wrapper:
 def SetModelMeshMaterial(model: ModelPtr, meshId: int, materialId: int) -> None
 ```
 
+See also:
+<a href="#Model">Model</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="LoadModelAnimations">LoadModelAnimations function</h3>
+---
+<h2 id="LoadModelAnimations"><code>LoadModelAnimations</code> function</h2>
 
-Load model animations from file
+> Load model animations from file
 
 Defined in raylib.h:
 
@@ -9461,11 +11342,15 @@ Python wrapper:
 def LoadModelAnimations(fileName: Union[str, CharPtr], animCount: Union[Seq[int], UIntPtr]) -> ModelAnimationPtr
 ```
 
+See also:
+<a href="#ModelAnimation">ModelAnimation</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="UpdateModelAnimation">UpdateModelAnimation function</h3>
+---
+<h2 id="UpdateModelAnimation"><code>UpdateModelAnimation</code> function</h2>
 
-Update model animation pose
+> Update model animation pose
 
 Defined in raylib.h:
 
@@ -9479,13 +11364,15 @@ Python wrapper:
 def UpdateModelAnimation(model: Model, anim: ModelAnimation, frame: int) -> None
 ```
 
-See also: <a href="#Model">Model</a>, <a href="#ModelAnimation">ModelAnimation</a>
+See also:
+<a href="#Model">Model</a>, <a href="#ModelAnimation">ModelAnimation</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="UnloadModelAnimation">UnloadModelAnimation function</h3>
+---
+<h2 id="UnloadModelAnimation"><code>UnloadModelAnimation</code> function</h2>
 
-Unload animation data
+> Unload animation data
 
 Defined in raylib.h:
 
@@ -9499,13 +11386,15 @@ Python wrapper:
 def UnloadModelAnimation(anim: ModelAnimation) -> None
 ```
 
-See also: <a href="#ModelAnimation">ModelAnimation</a>
+See also:
+<a href="#ModelAnimation">ModelAnimation</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="UnloadModelAnimations">UnloadModelAnimations function</h3>
+---
+<h2 id="UnloadModelAnimations"><code>UnloadModelAnimations</code> function</h2>
 
-Unload animation array data
+> Unload animation array data
 
 Defined in raylib.h:
 
@@ -9519,11 +11408,15 @@ Python wrapper:
 def UnloadModelAnimations(animations: ModelAnimationPtr, count: int) -> None
 ```
 
+See also:
+<a href="#ModelAnimation">ModelAnimation</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="IsModelAnimationValid">IsModelAnimationValid function</h3>
+---
+<h2 id="IsModelAnimationValid"><code>IsModelAnimationValid</code> function</h2>
 
-Check model animation skeleton match
+> Check model animation skeleton match
 
 Defined in raylib.h:
 
@@ -9537,13 +11430,15 @@ Python wrapper:
 def IsModelAnimationValid(model: Model, anim: ModelAnimation) -> bool
 ```
 
-See also: <a href="#Model">Model</a>, <a href="#ModelAnimation">ModelAnimation</a>
+See also:
+<a href="#Model">Model</a>, <a href="#ModelAnimation">ModelAnimation</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="CheckCollisionSpheres">CheckCollisionSpheres function</h3>
+---
+<h2 id="CheckCollisionSpheres"><code>CheckCollisionSpheres</code> function</h2>
 
-Check collision between two spheres
+> Check collision between two spheres
 
 Defined in raylib.h:
 
@@ -9557,13 +11452,15 @@ Python wrapper:
 def CheckCollisionSpheres(center1: Vector3, radius1: float, center2: Vector3, radius2: float) -> bool
 ```
 
-See also: <a href="#Vector3">Vector3</a>, <a href="#Vector3">Vector3</a>
+See also:
+<a href="#Vector3">Vector3</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="CheckCollisionBoxes">CheckCollisionBoxes function</h3>
+---
+<h2 id="CheckCollisionBoxes"><code>CheckCollisionBoxes</code> function</h2>
 
-Check collision between two bounding boxes
+> Check collision between two bounding boxes
 
 Defined in raylib.h:
 
@@ -9577,13 +11474,15 @@ Python wrapper:
 def CheckCollisionBoxes(box1: BoundingBox, box2: BoundingBox) -> bool
 ```
 
-See also: <a href="#BoundingBox">BoundingBox</a>, <a href="#BoundingBox">BoundingBox</a>
+See also:
+<a href="#BoundingBox">BoundingBox</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="CheckCollisionBoxSphere">CheckCollisionBoxSphere function</h3>
+---
+<h2 id="CheckCollisionBoxSphere"><code>CheckCollisionBoxSphere</code> function</h2>
 
-Check collision between box and sphere
+> Check collision between box and sphere
 
 Defined in raylib.h:
 
@@ -9597,13 +11496,15 @@ Python wrapper:
 def CheckCollisionBoxSphere(box: BoundingBox, center: Vector3, radius: float) -> bool
 ```
 
-See also: <a href="#BoundingBox">BoundingBox</a>, <a href="#Vector3">Vector3</a>
+See also:
+<a href="#BoundingBox">BoundingBox</a>, <a href="#Vector3">Vector3</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GetRayCollisionSphere">GetRayCollisionSphere function</h3>
+---
+<h2 id="GetRayCollisionSphere"><code>GetRayCollisionSphere</code> function</h2>
 
-Get collision info between ray and sphere
+> Get collision info between ray and sphere
 
 Defined in raylib.h:
 
@@ -9617,13 +11518,15 @@ Python wrapper:
 def GetRayCollisionSphere(ray: Ray, center: Vector3, radius: float) -> RayCollision
 ```
 
-See also: <a href="#Ray">Ray</a>, <a href="#Vector3">Vector3</a>
+See also:
+<a href="#Ray">Ray</a>, <a href="#Vector3">Vector3</a>, <a href="#RayCollision">RayCollision</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GetRayCollisionBox">GetRayCollisionBox function</h3>
+---
+<h2 id="GetRayCollisionBox"><code>GetRayCollisionBox</code> function</h2>
 
-Get collision info between ray and box
+> Get collision info between ray and box
 
 Defined in raylib.h:
 
@@ -9637,13 +11540,15 @@ Python wrapper:
 def GetRayCollisionBox(ray: Ray, box: BoundingBox) -> RayCollision
 ```
 
-See also: <a href="#Ray">Ray</a>, <a href="#BoundingBox">BoundingBox</a>
+See also:
+<a href="#Ray">Ray</a>, <a href="#BoundingBox">BoundingBox</a>, <a href="#RayCollision">RayCollision</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GetRayCollisionMesh">GetRayCollisionMesh function</h3>
+---
+<h2 id="GetRayCollisionMesh"><code>GetRayCollisionMesh</code> function</h2>
 
-Get collision info between ray and mesh
+> Get collision info between ray and mesh
 
 Defined in raylib.h:
 
@@ -9657,13 +11562,15 @@ Python wrapper:
 def GetRayCollisionMesh(ray: Ray, mesh: Mesh, transform: Matrix) -> RayCollision
 ```
 
-See also: <a href="#Ray">Ray</a>, <a href="#Mesh">Mesh</a>, <a href="#Matrix">Matrix</a>
+See also:
+<a href="#Ray">Ray</a>, <a href="#Mesh">Mesh</a>, <a href="#Matrix">Matrix</a>, <a href="#RayCollision">RayCollision</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GetRayCollisionTriangle">GetRayCollisionTriangle function</h3>
+---
+<h2 id="GetRayCollisionTriangle"><code>GetRayCollisionTriangle</code> function</h2>
 
-Get collision info between ray and triangle
+> Get collision info between ray and triangle
 
 Defined in raylib.h:
 
@@ -9677,13 +11584,15 @@ Python wrapper:
 def GetRayCollisionTriangle(ray: Ray, p1: Vector3, p2: Vector3, p3: Vector3) -> RayCollision
 ```
 
-See also: <a href="#Ray">Ray</a>, <a href="#Vector3">Vector3</a>, <a href="#Vector3">Vector3</a>, <a href="#Vector3">Vector3</a>
+See also:
+<a href="#Ray">Ray</a>, <a href="#Vector3">Vector3</a>, <a href="#RayCollision">RayCollision</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GetRayCollisionQuad">GetRayCollisionQuad function</h3>
+---
+<h2 id="GetRayCollisionQuad"><code>GetRayCollisionQuad</code> function</h2>
 
-Get collision info between ray and quad
+> Get collision info between ray and quad
 
 Defined in raylib.h:
 
@@ -9697,13 +11606,15 @@ Python wrapper:
 def GetRayCollisionQuad(ray: Ray, p1: Vector3, p2: Vector3, p3: Vector3, p4: Vector3) -> RayCollision
 ```
 
-See also: <a href="#Ray">Ray</a>, <a href="#Vector3">Vector3</a>, <a href="#Vector3">Vector3</a>, <a href="#Vector3">Vector3</a>, <a href="#Vector3">Vector3</a>
+See also:
+<a href="#Ray">Ray</a>, <a href="#Vector3">Vector3</a>, <a href="#RayCollision">RayCollision</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="InitAudioDevice">InitAudioDevice function</h3>
+---
+<h2 id="InitAudioDevice"><code>InitAudioDevice</code> function</h2>
 
-Initialize audio device and context
+> Initialize audio device and context
 
 Defined in raylib.h:
 
@@ -9719,9 +11630,10 @@ def InitAudioDevice() -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="CloseAudioDevice">CloseAudioDevice function</h3>
+---
+<h2 id="CloseAudioDevice"><code>CloseAudioDevice</code> function</h2>
 
-Close the audio device and context
+> Close the audio device and context
 
 Defined in raylib.h:
 
@@ -9737,9 +11649,10 @@ def CloseAudioDevice() -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="IsAudioDeviceReady">IsAudioDeviceReady function</h3>
+---
+<h2 id="IsAudioDeviceReady"><code>IsAudioDeviceReady</code> function</h2>
 
-Check if audio device has been initialized successfully
+> Check if audio device has been initialized successfully
 
 Defined in raylib.h:
 
@@ -9755,9 +11668,10 @@ def IsAudioDeviceReady() -> bool
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="SetMasterVolume">SetMasterVolume function</h3>
+---
+<h2 id="SetMasterVolume"><code>SetMasterVolume</code> function</h2>
 
-Set master volume (listener)
+> Set master volume (listener)
 
 Defined in raylib.h:
 
@@ -9773,9 +11687,10 @@ def SetMasterVolume(volume: float) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="LoadWave">LoadWave function</h3>
+---
+<h2 id="LoadWave"><code>LoadWave</code> function</h2>
 
-Load wave data from file
+> Load wave data from file
 
 Defined in raylib.h:
 
@@ -9789,11 +11704,15 @@ Python wrapper:
 def LoadWave(fileName: Union[str, CharPtr]) -> Wave
 ```
 
+See also:
+<a href="#Wave">Wave</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="LoadWaveFromMemory">LoadWaveFromMemory function</h3>
+---
+<h2 id="LoadWaveFromMemory"><code>LoadWaveFromMemory</code> function</h2>
 
-Load wave from memory buffer, fileType refers to extension: i.e. '.wav'
+> Load wave from memory buffer, fileType refers to extension: i.e. '.wav'
 
 Defined in raylib.h:
 
@@ -9807,11 +11726,15 @@ Python wrapper:
 def LoadWaveFromMemory(fileType: Union[str, CharPtr], fileData: Union[Seq[int], UCharPtr], dataSize: int) -> Wave
 ```
 
+See also:
+<a href="#Wave">Wave</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="LoadSound">LoadSound function</h3>
+---
+<h2 id="LoadSound"><code>LoadSound</code> function</h2>
 
-Load sound from file
+> Load sound from file
 
 Defined in raylib.h:
 
@@ -9825,11 +11748,15 @@ Python wrapper:
 def LoadSound(fileName: Union[str, CharPtr]) -> Sound
 ```
 
+See also:
+<a href="#Sound">Sound</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="LoadSoundFromWave">LoadSoundFromWave function</h3>
+---
+<h2 id="LoadSoundFromWave"><code>LoadSoundFromWave</code> function</h2>
 
-Load sound from wave data
+> Load sound from wave data
 
 Defined in raylib.h:
 
@@ -9843,13 +11770,15 @@ Python wrapper:
 def LoadSoundFromWave(wave: Wave) -> Sound
 ```
 
-See also: <a href="#Wave">Wave</a>
+See also:
+<a href="#Wave">Wave</a>, <a href="#Sound">Sound</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="UpdateSound">UpdateSound function</h3>
+---
+<h2 id="UpdateSound"><code>UpdateSound</code> function</h2>
 
-Update sound buffer with new data
+> Update sound buffer with new data
 
 Defined in raylib.h:
 
@@ -9863,13 +11792,15 @@ Python wrapper:
 def UpdateSound(sound: Sound, data: bytes, sampleCount: int) -> None
 ```
 
-See also: <a href="#Sound">Sound</a>
+See also:
+<a href="#Sound">Sound</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="UnloadWave">UnloadWave function</h3>
+---
+<h2 id="UnloadWave"><code>UnloadWave</code> function</h2>
 
-Unload wave data
+> Unload wave data
 
 Defined in raylib.h:
 
@@ -9883,13 +11814,15 @@ Python wrapper:
 def UnloadWave(wave: Wave) -> None
 ```
 
-See also: <a href="#Wave">Wave</a>
+See also:
+<a href="#Wave">Wave</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="UnloadSound">UnloadSound function</h3>
+---
+<h2 id="UnloadSound"><code>UnloadSound</code> function</h2>
 
-Unload sound
+> Unload sound
 
 Defined in raylib.h:
 
@@ -9903,13 +11836,15 @@ Python wrapper:
 def UnloadSound(sound: Sound) -> None
 ```
 
-See also: <a href="#Sound">Sound</a>
+See also:
+<a href="#Sound">Sound</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="ExportWave">ExportWave function</h3>
+---
+<h2 id="ExportWave"><code>ExportWave</code> function</h2>
 
-Export wave data to file, returns true on success
+> Export wave data to file, returns true on success
 
 Defined in raylib.h:
 
@@ -9923,13 +11858,15 @@ Python wrapper:
 def ExportWave(wave: Wave, fileName: Union[str, CharPtr]) -> bool
 ```
 
-See also: <a href="#Wave">Wave</a>
+See also:
+<a href="#Wave">Wave</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="ExportWaveAsCode">ExportWaveAsCode function</h3>
+---
+<h2 id="ExportWaveAsCode"><code>ExportWaveAsCode</code> function</h2>
 
-Export wave sample data to code (.h), returns true on success
+> Export wave sample data to code (.h), returns true on success
 
 Defined in raylib.h:
 
@@ -9943,13 +11880,15 @@ Python wrapper:
 def ExportWaveAsCode(wave: Wave, fileName: Union[str, CharPtr]) -> bool
 ```
 
-See also: <a href="#Wave">Wave</a>
+See also:
+<a href="#Wave">Wave</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="PlaySound">PlaySound function</h3>
+---
+<h2 id="PlaySound"><code>PlaySound</code> function</h2>
 
-Play a sound
+> Play a sound
 
 Defined in raylib.h:
 
@@ -9963,13 +11902,15 @@ Python wrapper:
 def PlaySound(sound: Sound) -> None
 ```
 
-See also: <a href="#Sound">Sound</a>
+See also:
+<a href="#Sound">Sound</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="StopSound">StopSound function</h3>
+---
+<h2 id="StopSound"><code>StopSound</code> function</h2>
 
-Stop playing a sound
+> Stop playing a sound
 
 Defined in raylib.h:
 
@@ -9983,13 +11924,15 @@ Python wrapper:
 def StopSound(sound: Sound) -> None
 ```
 
-See also: <a href="#Sound">Sound</a>
+See also:
+<a href="#Sound">Sound</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="PauseSound">PauseSound function</h3>
+---
+<h2 id="PauseSound"><code>PauseSound</code> function</h2>
 
-Pause a sound
+> Pause a sound
 
 Defined in raylib.h:
 
@@ -10003,13 +11946,15 @@ Python wrapper:
 def PauseSound(sound: Sound) -> None
 ```
 
-See also: <a href="#Sound">Sound</a>
+See also:
+<a href="#Sound">Sound</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="ResumeSound">ResumeSound function</h3>
+---
+<h2 id="ResumeSound"><code>ResumeSound</code> function</h2>
 
-Resume a paused sound
+> Resume a paused sound
 
 Defined in raylib.h:
 
@@ -10023,13 +11968,15 @@ Python wrapper:
 def ResumeSound(sound: Sound) -> None
 ```
 
-See also: <a href="#Sound">Sound</a>
+See also:
+<a href="#Sound">Sound</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="PlaySoundMulti">PlaySoundMulti function</h3>
+---
+<h2 id="PlaySoundMulti"><code>PlaySoundMulti</code> function</h2>
 
-Play a sound (using multichannel buffer pool)
+> Play a sound (using multichannel buffer pool)
 
 Defined in raylib.h:
 
@@ -10043,13 +11990,15 @@ Python wrapper:
 def PlaySoundMulti(sound: Sound) -> None
 ```
 
-See also: <a href="#Sound">Sound</a>
+See also:
+<a href="#Sound">Sound</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="StopSoundMulti">StopSoundMulti function</h3>
+---
+<h2 id="StopSoundMulti"><code>StopSoundMulti</code> function</h2>
 
-Stop any sound playing (using multichannel buffer pool)
+> Stop any sound playing (using multichannel buffer pool)
 
 Defined in raylib.h:
 
@@ -10065,9 +12014,10 @@ def StopSoundMulti() -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GetSoundsPlaying">GetSoundsPlaying function</h3>
+---
+<h2 id="GetSoundsPlaying"><code>GetSoundsPlaying</code> function</h2>
 
-Get number of sounds playing in the multichannel
+> Get number of sounds playing in the multichannel
 
 Defined in raylib.h:
 
@@ -10083,9 +12033,10 @@ def GetSoundsPlaying() -> int
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="IsSoundPlaying">IsSoundPlaying function</h3>
+---
+<h2 id="IsSoundPlaying"><code>IsSoundPlaying</code> function</h2>
 
-Check if a sound is currently playing
+> Check if a sound is currently playing
 
 Defined in raylib.h:
 
@@ -10099,13 +12050,15 @@ Python wrapper:
 def IsSoundPlaying(sound: Sound) -> bool
 ```
 
-See also: <a href="#Sound">Sound</a>
+See also:
+<a href="#Sound">Sound</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="SetSoundVolume">SetSoundVolume function</h3>
+---
+<h2 id="SetSoundVolume"><code>SetSoundVolume</code> function</h2>
 
-Set volume for a sound (1.0 is max level)
+> Set volume for a sound (1.0 is max level)
 
 Defined in raylib.h:
 
@@ -10119,13 +12072,15 @@ Python wrapper:
 def SetSoundVolume(sound: Sound, volume: float) -> None
 ```
 
-See also: <a href="#Sound">Sound</a>
+See also:
+<a href="#Sound">Sound</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="SetSoundPitch">SetSoundPitch function</h3>
+---
+<h2 id="SetSoundPitch"><code>SetSoundPitch</code> function</h2>
 
-Set pitch for a sound (1.0 is base level)
+> Set pitch for a sound (1.0 is base level)
 
 Defined in raylib.h:
 
@@ -10139,13 +12094,15 @@ Python wrapper:
 def SetSoundPitch(sound: Sound, pitch: float) -> None
 ```
 
-See also: <a href="#Sound">Sound</a>
+See also:
+<a href="#Sound">Sound</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="SetSoundPan">SetSoundPan function</h3>
+---
+<h2 id="SetSoundPan"><code>SetSoundPan</code> function</h2>
 
-Set pan for a sound (0.5 is center)
+> Set pan for a sound (0.5 is center)
 
 Defined in raylib.h:
 
@@ -10159,13 +12116,15 @@ Python wrapper:
 def SetSoundPan(sound: Sound, pan: float) -> None
 ```
 
-See also: <a href="#Sound">Sound</a>
+See also:
+<a href="#Sound">Sound</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="WaveCopy">WaveCopy function</h3>
+---
+<h2 id="WaveCopy"><code>WaveCopy</code> function</h2>
 
-Copy a wave to a new wave
+> Copy a wave to a new wave
 
 Defined in raylib.h:
 
@@ -10179,13 +12138,15 @@ Python wrapper:
 def WaveCopy(wave: Wave) -> Wave
 ```
 
-See also: <a href="#Wave">Wave</a>
+See also:
+<a href="#Wave">Wave</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="WaveCrop">WaveCrop function</h3>
+---
+<h2 id="WaveCrop"><code>WaveCrop</code> function</h2>
 
-Crop a wave to defined samples range
+> Crop a wave to defined samples range
 
 Defined in raylib.h:
 
@@ -10199,11 +12160,15 @@ Python wrapper:
 def WaveCrop(wave: WavePtr, initSample: int, finalSample: int) -> None
 ```
 
+See also:
+<a href="#Wave">Wave</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="WaveFormat">WaveFormat function</h3>
+---
+<h2 id="WaveFormat"><code>WaveFormat</code> function</h2>
 
-Convert wave data to desired format
+> Convert wave data to desired format
 
 Defined in raylib.h:
 
@@ -10217,11 +12182,15 @@ Python wrapper:
 def WaveFormat(wave: WavePtr, sampleRate: int, sampleSize: int, channels: int) -> None
 ```
 
+See also:
+<a href="#Wave">Wave</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="LoadWaveSamples">LoadWaveSamples function</h3>
+---
+<h2 id="LoadWaveSamples"><code>LoadWaveSamples</code> function</h2>
 
-Load samples data from wave as a 32bit float data array
+> Load samples data from wave as a 32bit float data array
 
 Defined in raylib.h:
 
@@ -10235,13 +12204,15 @@ Python wrapper:
 def LoadWaveSamples(wave: Wave) -> Union[Seq[float], FloatPtr]
 ```
 
-See also: <a href="#Wave">Wave</a>
+See also:
+<a href="#Wave">Wave</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="UnloadWaveSamples">UnloadWaveSamples function</h3>
+---
+<h2 id="UnloadWaveSamples"><code>UnloadWaveSamples</code> function</h2>
 
-Unload samples data loaded with LoadWaveSamples()
+> Unload samples data loaded with LoadWaveSamples()
 
 Defined in raylib.h:
 
@@ -10257,9 +12228,10 @@ def UnloadWaveSamples(samples: Union[Seq[float], FloatPtr]) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="LoadMusicStream">LoadMusicStream function</h3>
+---
+<h2 id="LoadMusicStream"><code>LoadMusicStream</code> function</h2>
 
-Load music stream from file
+> Load music stream from file
 
 Defined in raylib.h:
 
@@ -10273,11 +12245,15 @@ Python wrapper:
 def LoadMusicStream(fileName: Union[str, CharPtr]) -> Music
 ```
 
+See also:
+<a href="#Music">Music</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="LoadMusicStreamFromMemory">LoadMusicStreamFromMemory function</h3>
+---
+<h2 id="LoadMusicStreamFromMemory"><code>LoadMusicStreamFromMemory</code> function</h2>
 
-Load music stream from data
+> Load music stream from data
 
 Defined in raylib.h:
 
@@ -10291,11 +12267,15 @@ Python wrapper:
 def LoadMusicStreamFromMemory(fileType: Union[str, CharPtr], data: Union[Seq[int], UCharPtr], dataSize: int) -> Music
 ```
 
+See also:
+<a href="#Music">Music</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="UnloadMusicStream">UnloadMusicStream function</h3>
+---
+<h2 id="UnloadMusicStream"><code>UnloadMusicStream</code> function</h2>
 
-Unload music stream
+> Unload music stream
 
 Defined in raylib.h:
 
@@ -10309,13 +12289,15 @@ Python wrapper:
 def UnloadMusicStream(music: Music) -> None
 ```
 
-See also: <a href="#Music">Music</a>
+See also:
+<a href="#Music">Music</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="PlayMusicStream">PlayMusicStream function</h3>
+---
+<h2 id="PlayMusicStream"><code>PlayMusicStream</code> function</h2>
 
-Start music playing
+> Start music playing
 
 Defined in raylib.h:
 
@@ -10329,13 +12311,15 @@ Python wrapper:
 def PlayMusicStream(music: Music) -> None
 ```
 
-See also: <a href="#Music">Music</a>
+See also:
+<a href="#Music">Music</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="IsMusicStreamPlaying">IsMusicStreamPlaying function</h3>
+---
+<h2 id="IsMusicStreamPlaying"><code>IsMusicStreamPlaying</code> function</h2>
 
-Check if music is playing
+> Check if music is playing
 
 Defined in raylib.h:
 
@@ -10349,13 +12333,15 @@ Python wrapper:
 def IsMusicStreamPlaying(music: Music) -> bool
 ```
 
-See also: <a href="#Music">Music</a>
+See also:
+<a href="#Music">Music</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="UpdateMusicStream">UpdateMusicStream function</h3>
+---
+<h2 id="UpdateMusicStream"><code>UpdateMusicStream</code> function</h2>
 
-Updates buffers for music streaming
+> Updates buffers for music streaming
 
 Defined in raylib.h:
 
@@ -10369,13 +12355,15 @@ Python wrapper:
 def UpdateMusicStream(music: Music) -> None
 ```
 
-See also: <a href="#Music">Music</a>
+See also:
+<a href="#Music">Music</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="StopMusicStream">StopMusicStream function</h3>
+---
+<h2 id="StopMusicStream"><code>StopMusicStream</code> function</h2>
 
-Stop music playing
+> Stop music playing
 
 Defined in raylib.h:
 
@@ -10389,13 +12377,15 @@ Python wrapper:
 def StopMusicStream(music: Music) -> None
 ```
 
-See also: <a href="#Music">Music</a>
+See also:
+<a href="#Music">Music</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="PauseMusicStream">PauseMusicStream function</h3>
+---
+<h2 id="PauseMusicStream"><code>PauseMusicStream</code> function</h2>
 
-Pause music playing
+> Pause music playing
 
 Defined in raylib.h:
 
@@ -10409,13 +12399,15 @@ Python wrapper:
 def PauseMusicStream(music: Music) -> None
 ```
 
-See also: <a href="#Music">Music</a>
+See also:
+<a href="#Music">Music</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="ResumeMusicStream">ResumeMusicStream function</h3>
+---
+<h2 id="ResumeMusicStream"><code>ResumeMusicStream</code> function</h2>
 
-Resume playing paused music
+> Resume playing paused music
 
 Defined in raylib.h:
 
@@ -10429,13 +12421,15 @@ Python wrapper:
 def ResumeMusicStream(music: Music) -> None
 ```
 
-See also: <a href="#Music">Music</a>
+See also:
+<a href="#Music">Music</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="SeekMusicStream">SeekMusicStream function</h3>
+---
+<h2 id="SeekMusicStream"><code>SeekMusicStream</code> function</h2>
 
-Seek music to a position (in seconds)
+> Seek music to a position (in seconds)
 
 Defined in raylib.h:
 
@@ -10449,13 +12443,15 @@ Python wrapper:
 def SeekMusicStream(music: Music, position: float) -> None
 ```
 
-See also: <a href="#Music">Music</a>
+See also:
+<a href="#Music">Music</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="SetMusicVolume">SetMusicVolume function</h3>
+---
+<h2 id="SetMusicVolume"><code>SetMusicVolume</code> function</h2>
 
-Set volume for music (1.0 is max level)
+> Set volume for music (1.0 is max level)
 
 Defined in raylib.h:
 
@@ -10469,13 +12465,15 @@ Python wrapper:
 def SetMusicVolume(music: Music, volume: float) -> None
 ```
 
-See also: <a href="#Music">Music</a>
+See also:
+<a href="#Music">Music</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="SetMusicPitch">SetMusicPitch function</h3>
+---
+<h2 id="SetMusicPitch"><code>SetMusicPitch</code> function</h2>
 
-Set pitch for a music (1.0 is base level)
+> Set pitch for a music (1.0 is base level)
 
 Defined in raylib.h:
 
@@ -10489,13 +12487,15 @@ Python wrapper:
 def SetMusicPitch(music: Music, pitch: float) -> None
 ```
 
-See also: <a href="#Music">Music</a>
+See also:
+<a href="#Music">Music</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="SetMusicPan">SetMusicPan function</h3>
+---
+<h2 id="SetMusicPan"><code>SetMusicPan</code> function</h2>
 
-Set pan for a music (0.5 is center)
+> Set pan for a music (0.5 is center)
 
 Defined in raylib.h:
 
@@ -10509,13 +12509,15 @@ Python wrapper:
 def SetMusicPan(music: Music, pan: float) -> None
 ```
 
-See also: <a href="#Music">Music</a>
+See also:
+<a href="#Music">Music</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GetMusicTimeLength">GetMusicTimeLength function</h3>
+---
+<h2 id="GetMusicTimeLength"><code>GetMusicTimeLength</code> function</h2>
 
-Get music time length (in seconds)
+> Get music time length (in seconds)
 
 Defined in raylib.h:
 
@@ -10529,13 +12531,15 @@ Python wrapper:
 def GetMusicTimeLength(music: Music) -> float
 ```
 
-See also: <a href="#Music">Music</a>
+See also:
+<a href="#Music">Music</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="GetMusicTimePlayed">GetMusicTimePlayed function</h3>
+---
+<h2 id="GetMusicTimePlayed"><code>GetMusicTimePlayed</code> function</h2>
 
-Get current music time played (in seconds)
+> Get current music time played (in seconds)
 
 Defined in raylib.h:
 
@@ -10549,13 +12553,15 @@ Python wrapper:
 def GetMusicTimePlayed(music: Music) -> float
 ```
 
-See also: <a href="#Music">Music</a>
+See also:
+<a href="#Music">Music</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="LoadAudioStream">LoadAudioStream function</h3>
+---
+<h2 id="LoadAudioStream"><code>LoadAudioStream</code> function</h2>
 
-Load audio stream (to stream raw audio pcm data)
+> Load audio stream (to stream raw audio pcm data)
 
 Defined in raylib.h:
 
@@ -10569,11 +12575,15 @@ Python wrapper:
 def LoadAudioStream(sampleRate: int, sampleSize: int, channels: int) -> AudioStream
 ```
 
+See also:
+<a href="#AudioStream">AudioStream</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="UnloadAudioStream">UnloadAudioStream function</h3>
+---
+<h2 id="UnloadAudioStream"><code>UnloadAudioStream</code> function</h2>
 
-Unload audio stream and free memory
+> Unload audio stream and free memory
 
 Defined in raylib.h:
 
@@ -10587,13 +12597,15 @@ Python wrapper:
 def UnloadAudioStream(stream: AudioStream) -> None
 ```
 
-See also: <a href="#AudioStream">AudioStream</a>
+See also:
+<a href="#AudioStream">AudioStream</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="UpdateAudioStream">UpdateAudioStream function</h3>
+---
+<h2 id="UpdateAudioStream"><code>UpdateAudioStream</code> function</h2>
 
-Update audio stream buffers with data
+> Update audio stream buffers with data
 
 Defined in raylib.h:
 
@@ -10607,13 +12619,15 @@ Python wrapper:
 def UpdateAudioStream(stream: AudioStream, data: bytes, frameCount: int) -> None
 ```
 
-See also: <a href="#AudioStream">AudioStream</a>
+See also:
+<a href="#AudioStream">AudioStream</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="IsAudioStreamProcessed">IsAudioStreamProcessed function</h3>
+---
+<h2 id="IsAudioStreamProcessed"><code>IsAudioStreamProcessed</code> function</h2>
 
-Check if any audio stream buffers requires refill
+> Check if any audio stream buffers requires refill
 
 Defined in raylib.h:
 
@@ -10627,13 +12641,15 @@ Python wrapper:
 def IsAudioStreamProcessed(stream: AudioStream) -> bool
 ```
 
-See also: <a href="#AudioStream">AudioStream</a>
+See also:
+<a href="#AudioStream">AudioStream</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="PlayAudioStream">PlayAudioStream function</h3>
+---
+<h2 id="PlayAudioStream"><code>PlayAudioStream</code> function</h2>
 
-Play audio stream
+> Play audio stream
 
 Defined in raylib.h:
 
@@ -10647,13 +12663,15 @@ Python wrapper:
 def PlayAudioStream(stream: AudioStream) -> None
 ```
 
-See also: <a href="#AudioStream">AudioStream</a>
+See also:
+<a href="#AudioStream">AudioStream</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="PauseAudioStream">PauseAudioStream function</h3>
+---
+<h2 id="PauseAudioStream"><code>PauseAudioStream</code> function</h2>
 
-Pause audio stream
+> Pause audio stream
 
 Defined in raylib.h:
 
@@ -10667,13 +12685,15 @@ Python wrapper:
 def PauseAudioStream(stream: AudioStream) -> None
 ```
 
-See also: <a href="#AudioStream">AudioStream</a>
+See also:
+<a href="#AudioStream">AudioStream</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="ResumeAudioStream">ResumeAudioStream function</h3>
+---
+<h2 id="ResumeAudioStream"><code>ResumeAudioStream</code> function</h2>
 
-Resume audio stream
+> Resume audio stream
 
 Defined in raylib.h:
 
@@ -10687,13 +12707,15 @@ Python wrapper:
 def ResumeAudioStream(stream: AudioStream) -> None
 ```
 
-See also: <a href="#AudioStream">AudioStream</a>
+See also:
+<a href="#AudioStream">AudioStream</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="IsAudioStreamPlaying">IsAudioStreamPlaying function</h3>
+---
+<h2 id="IsAudioStreamPlaying"><code>IsAudioStreamPlaying</code> function</h2>
 
-Check if audio stream is playing
+> Check if audio stream is playing
 
 Defined in raylib.h:
 
@@ -10707,13 +12729,15 @@ Python wrapper:
 def IsAudioStreamPlaying(stream: AudioStream) -> bool
 ```
 
-See also: <a href="#AudioStream">AudioStream</a>
+See also:
+<a href="#AudioStream">AudioStream</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="StopAudioStream">StopAudioStream function</h3>
+---
+<h2 id="StopAudioStream"><code>StopAudioStream</code> function</h2>
 
-Stop audio stream
+> Stop audio stream
 
 Defined in raylib.h:
 
@@ -10727,13 +12751,15 @@ Python wrapper:
 def StopAudioStream(stream: AudioStream) -> None
 ```
 
-See also: <a href="#AudioStream">AudioStream</a>
+See also:
+<a href="#AudioStream">AudioStream</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="SetAudioStreamVolume">SetAudioStreamVolume function</h3>
+---
+<h2 id="SetAudioStreamVolume"><code>SetAudioStreamVolume</code> function</h2>
 
-Set volume for audio stream (1.0 is max level)
+> Set volume for audio stream (1.0 is max level)
 
 Defined in raylib.h:
 
@@ -10747,13 +12773,15 @@ Python wrapper:
 def SetAudioStreamVolume(stream: AudioStream, volume: float) -> None
 ```
 
-See also: <a href="#AudioStream">AudioStream</a>
+See also:
+<a href="#AudioStream">AudioStream</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="SetAudioStreamPitch">SetAudioStreamPitch function</h3>
+---
+<h2 id="SetAudioStreamPitch"><code>SetAudioStreamPitch</code> function</h2>
 
-Set pitch for audio stream (1.0 is base level)
+> Set pitch for audio stream (1.0 is base level)
 
 Defined in raylib.h:
 
@@ -10767,13 +12795,15 @@ Python wrapper:
 def SetAudioStreamPitch(stream: AudioStream, pitch: float) -> None
 ```
 
-See also: <a href="#AudioStream">AudioStream</a>
+See also:
+<a href="#AudioStream">AudioStream</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="SetAudioStreamPan">SetAudioStreamPan function</h3>
+---
+<h2 id="SetAudioStreamPan"><code>SetAudioStreamPan</code> function</h2>
 
-Set pan for audio stream (0.5 is centered)
+> Set pan for audio stream (0.5 is centered)
 
 Defined in raylib.h:
 
@@ -10787,13 +12817,15 @@ Python wrapper:
 def SetAudioStreamPan(stream: AudioStream, pan: float) -> None
 ```
 
-See also: <a href="#AudioStream">AudioStream</a>
+See also:
+<a href="#AudioStream">AudioStream</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="SetAudioStreamBufferSizeDefault">SetAudioStreamBufferSizeDefault function</h3>
+---
+<h2 id="SetAudioStreamBufferSizeDefault"><code>SetAudioStreamBufferSizeDefault</code> function</h2>
 
-Default size for new audio streams
+> Default size for new audio streams
 
 Defined in raylib.h:
 
@@ -10809,9 +12841,10 @@ def SetAudioStreamBufferSizeDefault(size: int) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="SetAudioStreamCallback">SetAudioStreamCallback function</h3>
+---
+<h2 id="SetAudioStreamCallback"><code>SetAudioStreamCallback</code> function</h2>
 
-Audio thread callback to request new data
+> Audio thread callback to request new data
 
 Defined in raylib.h:
 
@@ -10825,13 +12858,15 @@ Python wrapper:
 def SetAudioStreamCallback(stream: AudioStream, callback: AudioCallback) -> None
 ```
 
-See also: <a href="#AudioStream">AudioStream</a>
+See also:
+<a href="#AudioStream">AudioStream</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="AttachAudioStreamProcessor">AttachAudioStreamProcessor function</h3>
+---
+<h2 id="AttachAudioStreamProcessor"><code>AttachAudioStreamProcessor</code> function</h2>
 
-
+> 
 
 Defined in raylib.h:
 
@@ -10845,13 +12880,15 @@ Python wrapper:
 def AttachAudioStreamProcessor(stream: AudioStream, processor: AudioCallback) -> None
 ```
 
-See also: <a href="#AudioStream">AudioStream</a>
+See also:
+<a href="#AudioStream">AudioStream</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="DetachAudioStreamProcessor">DetachAudioStreamProcessor function</h3>
+---
+<h2 id="DetachAudioStreamProcessor"><code>DetachAudioStreamProcessor</code> function</h2>
 
-
+> 
 
 Defined in raylib.h:
 
@@ -10865,13 +12902,15 @@ Python wrapper:
 def DetachAudioStreamProcessor(stream: AudioStream, processor: AudioCallback) -> None
 ```
 
-See also: <a href="#AudioStream">AudioStream</a>
+See also:
+<a href="#AudioStream">AudioStream</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="Clamp">Clamp function</h3>
+---
+<h2 id="Clamp"><code>Clamp</code> function</h2>
 
-Clamp float value
+> Clamp float value
 
 Defined in raylib.h:
 
@@ -10887,9 +12926,10 @@ def Clamp(value: float, min_: float, max_: float) -> float
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="Lerp">Lerp function</h3>
+---
+<h2 id="Lerp"><code>Lerp</code> function</h2>
 
-Calculate linear interpolation between two floats
+> Calculate linear interpolation between two floats
 
 Defined in raylib.h:
 
@@ -10905,9 +12945,10 @@ def Lerp(start: float, end: float, amount: float) -> float
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="Normalize">Normalize function</h3>
+---
+<h2 id="Normalize"><code>Normalize</code> function</h2>
 
-Calculate linear interpolation between two floats
+> Calculate linear interpolation between two floats
 
 Defined in raylib.h:
 
@@ -10923,9 +12964,10 @@ def Normalize(value: float, start: float, end: float) -> float
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="Remap">Remap function</h3>
+---
+<h2 id="Remap"><code>Remap</code> function</h2>
 
-Remap input value within input range to output range
+> Remap input value within input range to output range
 
 Defined in raylib.h:
 
@@ -10941,9 +12983,10 @@ def Remap(value: float, inputStart: float, inputEnd: float, outputStart: float, 
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="Wrap">Wrap function</h3>
+---
+<h2 id="Wrap"><code>Wrap</code> function</h2>
 
-Wrap input value from min to max
+> Wrap input value from min to max
 
 Defined in raylib.h:
 
@@ -10959,9 +13002,10 @@ def Wrap(value: float, min_: float, max_: float) -> float
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="FloatEquals">FloatEquals function</h3>
+---
+<h2 id="FloatEquals"><code>FloatEquals</code> function</h2>
 
-Check whether two given floats are almost equal
+> Check whether two given floats are almost equal
 
 Defined in raylib.h:
 
@@ -10977,9 +13021,10 @@ def FloatEquals(x: float, y: float) -> int
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="Vector2Zero">Vector2Zero function</h3>
+---
+<h2 id="Vector2Zero"><code>Vector2Zero</code> function</h2>
 
-Vector with components value 0.0f
+> Vector with components value 0.0f
 
 Defined in raylib.h:
 
@@ -10993,11 +13038,15 @@ Python wrapper:
 def Vector2Zero() -> Vector2
 ```
 
+See also:
+<a href="#Vector2">Vector2</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="Vector2One">Vector2One function</h3>
+---
+<h2 id="Vector2One"><code>Vector2One</code> function</h2>
 
-Vector with components value 1.0f
+> Vector with components value 1.0f
 
 Defined in raylib.h:
 
@@ -11011,11 +13060,15 @@ Python wrapper:
 def Vector2One() -> Vector2
 ```
 
+See also:
+<a href="#Vector2">Vector2</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="Vector2Add">Vector2Add function</h3>
+---
+<h2 id="Vector2Add"><code>Vector2Add</code> function</h2>
 
-Add two vectors (v1 + v2)
+> Add two vectors (v1 + v2)
 
 Defined in raylib.h:
 
@@ -11029,13 +13082,15 @@ Python wrapper:
 def Vector2Add(v1: Vector2, v2: Vector2) -> Vector2
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Vector2">Vector2</a>
+See also:
+<a href="#Vector2">Vector2</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="Vector2AddValue">Vector2AddValue function</h3>
+---
+<h2 id="Vector2AddValue"><code>Vector2AddValue</code> function</h2>
 
-Add vector and float value
+> Add vector and float value
 
 Defined in raylib.h:
 
@@ -11049,13 +13104,15 @@ Python wrapper:
 def Vector2AddValue(v: Vector2, add: float) -> Vector2
 ```
 
-See also: <a href="#Vector2">Vector2</a>
+See also:
+<a href="#Vector2">Vector2</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="Vector2Subtract">Vector2Subtract function</h3>
+---
+<h2 id="Vector2Subtract"><code>Vector2Subtract</code> function</h2>
 
-Subtract two vectors (v1 - v2)
+> Subtract two vectors (v1 - v2)
 
 Defined in raylib.h:
 
@@ -11069,13 +13126,15 @@ Python wrapper:
 def Vector2Subtract(v1: Vector2, v2: Vector2) -> Vector2
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Vector2">Vector2</a>
+See also:
+<a href="#Vector2">Vector2</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="Vector2SubtractValue">Vector2SubtractValue function</h3>
+---
+<h2 id="Vector2SubtractValue"><code>Vector2SubtractValue</code> function</h2>
 
-Subtract vector by float value
+> Subtract vector by float value
 
 Defined in raylib.h:
 
@@ -11089,13 +13148,15 @@ Python wrapper:
 def Vector2SubtractValue(v: Vector2, sub: float) -> Vector2
 ```
 
-See also: <a href="#Vector2">Vector2</a>
+See also:
+<a href="#Vector2">Vector2</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="Vector2Length">Vector2Length function</h3>
+---
+<h2 id="Vector2Length"><code>Vector2Length</code> function</h2>
 
-Calculate vector length
+> Calculate vector length
 
 Defined in raylib.h:
 
@@ -11109,13 +13170,15 @@ Python wrapper:
 def Vector2Length(v: Vector2) -> float
 ```
 
-See also: <a href="#Vector2">Vector2</a>
+See also:
+<a href="#Vector2">Vector2</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="Vector2LengthSqr">Vector2LengthSqr function</h3>
+---
+<h2 id="Vector2LengthSqr"><code>Vector2LengthSqr</code> function</h2>
 
-Calculate vector square length
+> Calculate vector square length
 
 Defined in raylib.h:
 
@@ -11129,13 +13192,15 @@ Python wrapper:
 def Vector2LengthSqr(v: Vector2) -> float
 ```
 
-See also: <a href="#Vector2">Vector2</a>
+See also:
+<a href="#Vector2">Vector2</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="Vector2DotProduct">Vector2DotProduct function</h3>
+---
+<h2 id="Vector2DotProduct"><code>Vector2DotProduct</code> function</h2>
 
-Calculate two vectors dot product
+> Calculate two vectors dot product
 
 Defined in raylib.h:
 
@@ -11149,13 +13214,15 @@ Python wrapper:
 def Vector2DotProduct(v1: Vector2, v2: Vector2) -> float
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Vector2">Vector2</a>
+See also:
+<a href="#Vector2">Vector2</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="Vector2Distance">Vector2Distance function</h3>
+---
+<h2 id="Vector2Distance"><code>Vector2Distance</code> function</h2>
 
-Calculate distance between two vectors
+> Calculate distance between two vectors
 
 Defined in raylib.h:
 
@@ -11169,13 +13236,15 @@ Python wrapper:
 def Vector2Distance(v1: Vector2, v2: Vector2) -> float
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Vector2">Vector2</a>
+See also:
+<a href="#Vector2">Vector2</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="Vector2DistanceSqr">Vector2DistanceSqr function</h3>
+---
+<h2 id="Vector2DistanceSqr"><code>Vector2DistanceSqr</code> function</h2>
 
-Calculate square distance between two vectors
+> Calculate square distance between two vectors
 
 Defined in raylib.h:
 
@@ -11189,13 +13258,15 @@ Python wrapper:
 def Vector2DistanceSqr(v1: Vector2, v2: Vector2) -> float
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Vector2">Vector2</a>
+See also:
+<a href="#Vector2">Vector2</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="Vector2Angle">Vector2Angle function</h3>
+---
+<h2 id="Vector2Angle"><code>Vector2Angle</code> function</h2>
 
-Calculate angle from two vectors
+> Calculate angle from two vectors
 
 Defined in raylib.h:
 
@@ -11209,13 +13280,15 @@ Python wrapper:
 def Vector2Angle(v1: Vector2, v2: Vector2) -> float
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Vector2">Vector2</a>
+See also:
+<a href="#Vector2">Vector2</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="Vector2Scale">Vector2Scale function</h3>
+---
+<h2 id="Vector2Scale"><code>Vector2Scale</code> function</h2>
 
-Scale vector (multiply by value)
+> Scale vector (multiply by value)
 
 Defined in raylib.h:
 
@@ -11229,13 +13302,15 @@ Python wrapper:
 def Vector2Scale(v: Vector2, scale: float) -> Vector2
 ```
 
-See also: <a href="#Vector2">Vector2</a>
+See also:
+<a href="#Vector2">Vector2</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="Vector2Multiply">Vector2Multiply function</h3>
+---
+<h2 id="Vector2Multiply"><code>Vector2Multiply</code> function</h2>
 
-Multiply vector by vector
+> Multiply vector by vector
 
 Defined in raylib.h:
 
@@ -11249,13 +13324,15 @@ Python wrapper:
 def Vector2Multiply(v1: Vector2, v2: Vector2) -> Vector2
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Vector2">Vector2</a>
+See also:
+<a href="#Vector2">Vector2</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="Vector2Negate">Vector2Negate function</h3>
+---
+<h2 id="Vector2Negate"><code>Vector2Negate</code> function</h2>
 
-Negate vector
+> Negate vector
 
 Defined in raylib.h:
 
@@ -11269,13 +13346,15 @@ Python wrapper:
 def Vector2Negate(v: Vector2) -> Vector2
 ```
 
-See also: <a href="#Vector2">Vector2</a>
+See also:
+<a href="#Vector2">Vector2</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="Vector2Divide">Vector2Divide function</h3>
+---
+<h2 id="Vector2Divide"><code>Vector2Divide</code> function</h2>
 
-Divide vector by vector
+> Divide vector by vector
 
 Defined in raylib.h:
 
@@ -11289,13 +13368,15 @@ Python wrapper:
 def Vector2Divide(v1: Vector2, v2: Vector2) -> Vector2
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Vector2">Vector2</a>
+See also:
+<a href="#Vector2">Vector2</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="Vector2Normalize">Vector2Normalize function</h3>
+---
+<h2 id="Vector2Normalize"><code>Vector2Normalize</code> function</h2>
 
-Normalize provided vector
+> Normalize provided vector
 
 Defined in raylib.h:
 
@@ -11309,13 +13390,15 @@ Python wrapper:
 def Vector2Normalize(v: Vector2) -> Vector2
 ```
 
-See also: <a href="#Vector2">Vector2</a>
+See also:
+<a href="#Vector2">Vector2</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="Vector2Transform">Vector2Transform function</h3>
+---
+<h2 id="Vector2Transform"><code>Vector2Transform</code> function</h2>
 
-Transforms a Vector2 by a given Matrix
+> Transforms a Vector2 by a given Matrix
 
 Defined in raylib.h:
 
@@ -11329,13 +13412,15 @@ Python wrapper:
 def Vector2Transform(v: Vector2, mat: Matrix) -> Vector2
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Matrix">Matrix</a>
+See also:
+<a href="#Vector2">Vector2</a>, <a href="#Matrix">Matrix</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="Vector2Lerp">Vector2Lerp function</h3>
+---
+<h2 id="Vector2Lerp"><code>Vector2Lerp</code> function</h2>
 
-Calculate linear interpolation between two vectors
+> Calculate linear interpolation between two vectors
 
 Defined in raylib.h:
 
@@ -11349,13 +13434,15 @@ Python wrapper:
 def Vector2Lerp(v1: Vector2, v2: Vector2, amount: float) -> Vector2
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Vector2">Vector2</a>
+See also:
+<a href="#Vector2">Vector2</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="Vector2Reflect">Vector2Reflect function</h3>
+---
+<h2 id="Vector2Reflect"><code>Vector2Reflect</code> function</h2>
 
-Calculate reflected vector to normal
+> Calculate reflected vector to normal
 
 Defined in raylib.h:
 
@@ -11369,13 +13456,15 @@ Python wrapper:
 def Vector2Reflect(v1: Vector2, normal: Vector2) -> Vector2
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Vector2">Vector2</a>
+See also:
+<a href="#Vector2">Vector2</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="Vector2Rotate">Vector2Rotate function</h3>
+---
+<h2 id="Vector2Rotate"><code>Vector2Rotate</code> function</h2>
 
-Rotate vector by angle
+> Rotate vector by angle
 
 Defined in raylib.h:
 
@@ -11389,13 +13478,15 @@ Python wrapper:
 def Vector2Rotate(v1: Vector2, angle: float) -> Vector2
 ```
 
-See also: <a href="#Vector2">Vector2</a>
+See also:
+<a href="#Vector2">Vector2</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="Vector2MoveTowards">Vector2MoveTowards function</h3>
+---
+<h2 id="Vector2MoveTowards"><code>Vector2MoveTowards</code> function</h2>
 
-Move Vector towards target
+> Move Vector towards target
 
 Defined in raylib.h:
 
@@ -11409,13 +13500,15 @@ Python wrapper:
 def Vector2MoveTowards(v1: Vector2, target: Vector2, maxDistance: float) -> Vector2
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Vector2">Vector2</a>
+See also:
+<a href="#Vector2">Vector2</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="Vector2Invert">Vector2Invert function</h3>
+---
+<h2 id="Vector2Invert"><code>Vector2Invert</code> function</h2>
 
-Invert the given vector
+> Invert the given vector
 
 Defined in raylib.h:
 
@@ -11429,13 +13522,15 @@ Python wrapper:
 def Vector2Invert(v: Vector2) -> Vector2
 ```
 
-See also: <a href="#Vector2">Vector2</a>
+See also:
+<a href="#Vector2">Vector2</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="Vector2Clamp">Vector2Clamp function</h3>
+---
+<h2 id="Vector2Clamp"><code>Vector2Clamp</code> function</h2>
 
-Clamp the components of the vector between min and max values specified by the given vectors
+> Clamp the components of the vector between min and max values specified by the given vectors
 
 Defined in raylib.h:
 
@@ -11449,13 +13544,15 @@ Python wrapper:
 def Vector2Clamp(v: Vector2, min_: Vector2, max_: Vector2) -> Vector2
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Vector2">Vector2</a>, <a href="#Vector2">Vector2</a>
+See also:
+<a href="#Vector2">Vector2</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="Vector2ClampValue">Vector2ClampValue function</h3>
+---
+<h2 id="Vector2ClampValue"><code>Vector2ClampValue</code> function</h2>
 
-Clamp the magnitude of the vector between two min and max values
+> Clamp the magnitude of the vector between two min and max values
 
 Defined in raylib.h:
 
@@ -11469,13 +13566,15 @@ Python wrapper:
 def Vector2ClampValue(v: Vector2, min_: float, max_: float) -> Vector2
 ```
 
-See also: <a href="#Vector2">Vector2</a>
+See also:
+<a href="#Vector2">Vector2</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="Vector2Equals">Vector2Equals function</h3>
+---
+<h2 id="Vector2Equals"><code>Vector2Equals</code> function</h2>
 
-Check whether two given vectors are almost equal
+> Check whether two given vectors are almost equal
 
 Defined in raylib.h:
 
@@ -11489,13 +13588,15 @@ Python wrapper:
 def Vector2Equals(p: Vector2, q: Vector2) -> int
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Vector2">Vector2</a>
+See also:
+<a href="#Vector2">Vector2</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="Vector3Zero">Vector3Zero function</h3>
+---
+<h2 id="Vector3Zero"><code>Vector3Zero</code> function</h2>
 
-Vector with components value 0.0f
+> Vector with components value 0.0f
 
 Defined in raylib.h:
 
@@ -11509,11 +13610,15 @@ Python wrapper:
 def Vector3Zero() -> Vector3
 ```
 
+See also:
+<a href="#Vector3">Vector3</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="Vector3One">Vector3One function</h3>
+---
+<h2 id="Vector3One"><code>Vector3One</code> function</h2>
 
-Vector with components value 1.0f
+> Vector with components value 1.0f
 
 Defined in raylib.h:
 
@@ -11527,11 +13632,15 @@ Python wrapper:
 def Vector3One() -> Vector3
 ```
 
+See also:
+<a href="#Vector3">Vector3</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="Vector3Add">Vector3Add function</h3>
+---
+<h2 id="Vector3Add"><code>Vector3Add</code> function</h2>
 
-Add two vectors
+> Add two vectors
 
 Defined in raylib.h:
 
@@ -11545,13 +13654,15 @@ Python wrapper:
 def Vector3Add(v1: Vector3, v2: Vector3) -> Vector3
 ```
 
-See also: <a href="#Vector3">Vector3</a>, <a href="#Vector3">Vector3</a>
+See also:
+<a href="#Vector3">Vector3</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="Vector3AddValue">Vector3AddValue function</h3>
+---
+<h2 id="Vector3AddValue"><code>Vector3AddValue</code> function</h2>
 
-Add vector and float value
+> Add vector and float value
 
 Defined in raylib.h:
 
@@ -11565,13 +13676,15 @@ Python wrapper:
 def Vector3AddValue(v: Vector3, add: float) -> Vector3
 ```
 
-See also: <a href="#Vector3">Vector3</a>
+See also:
+<a href="#Vector3">Vector3</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="Vector3Subtract">Vector3Subtract function</h3>
+---
+<h2 id="Vector3Subtract"><code>Vector3Subtract</code> function</h2>
 
-Subtract two vectors
+> Subtract two vectors
 
 Defined in raylib.h:
 
@@ -11585,13 +13698,15 @@ Python wrapper:
 def Vector3Subtract(v1: Vector3, v2: Vector3) -> Vector3
 ```
 
-See also: <a href="#Vector3">Vector3</a>, <a href="#Vector3">Vector3</a>
+See also:
+<a href="#Vector3">Vector3</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="Vector3SubtractValue">Vector3SubtractValue function</h3>
+---
+<h2 id="Vector3SubtractValue"><code>Vector3SubtractValue</code> function</h2>
 
-Subtract vector and float value
+> Subtract vector and float value
 
 Defined in raylib.h:
 
@@ -11605,13 +13720,15 @@ Python wrapper:
 def Vector3SubtractValue(v: Vector3, sub: float) -> Vector3
 ```
 
-See also: <a href="#Vector3">Vector3</a>
+See also:
+<a href="#Vector3">Vector3</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="Vector3Scale">Vector3Scale function</h3>
+---
+<h2 id="Vector3Scale"><code>Vector3Scale</code> function</h2>
 
-Multiply vector by scalar
+> Multiply vector by scalar
 
 Defined in raylib.h:
 
@@ -11625,13 +13742,15 @@ Python wrapper:
 def Vector3Scale(v: Vector3, scalar: float) -> Vector3
 ```
 
-See also: <a href="#Vector3">Vector3</a>
+See also:
+<a href="#Vector3">Vector3</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="Vector3Multiply">Vector3Multiply function</h3>
+---
+<h2 id="Vector3Multiply"><code>Vector3Multiply</code> function</h2>
 
-Multiply vector by vector
+> Multiply vector by vector
 
 Defined in raylib.h:
 
@@ -11645,13 +13764,15 @@ Python wrapper:
 def Vector3Multiply(v1: Vector3, v2: Vector3) -> Vector3
 ```
 
-See also: <a href="#Vector3">Vector3</a>, <a href="#Vector3">Vector3</a>
+See also:
+<a href="#Vector3">Vector3</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="Vector3CrossProduct">Vector3CrossProduct function</h3>
+---
+<h2 id="Vector3CrossProduct"><code>Vector3CrossProduct</code> function</h2>
 
-Calculate two vectors cross product
+> Calculate two vectors cross product
 
 Defined in raylib.h:
 
@@ -11665,13 +13786,15 @@ Python wrapper:
 def Vector3CrossProduct(v1: Vector3, v2: Vector3) -> float
 ```
 
-See also: <a href="#Vector3">Vector3</a>, <a href="#Vector3">Vector3</a>
+See also:
+<a href="#Vector3">Vector3</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="Vector3Perpendicular">Vector3Perpendicular function</h3>
+---
+<h2 id="Vector3Perpendicular"><code>Vector3Perpendicular</code> function</h2>
 
-Calculate one vector perpendicular vector
+> Calculate one vector perpendicular vector
 
 Defined in raylib.h:
 
@@ -11685,13 +13808,15 @@ Python wrapper:
 def Vector3Perpendicular(v1: Vector3) -> Vector3
 ```
 
-See also: <a href="#Vector3">Vector3</a>
+See also:
+<a href="#Vector3">Vector3</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="Vector3Length">Vector3Length function</h3>
+---
+<h2 id="Vector3Length"><code>Vector3Length</code> function</h2>
 
-Calculate vector length
+> Calculate vector length
 
 Defined in raylib.h:
 
@@ -11705,13 +13830,15 @@ Python wrapper:
 def Vector3Length(v1: Vector3) -> float
 ```
 
-See also: <a href="#Vector3">Vector3</a>
+See also:
+<a href="#Vector3">Vector3</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="Vector3LengthSqr">Vector3LengthSqr function</h3>
+---
+<h2 id="Vector3LengthSqr"><code>Vector3LengthSqr</code> function</h2>
 
-Calculate vector square length
+> Calculate vector square length
 
 Defined in raylib.h:
 
@@ -11725,13 +13852,15 @@ Python wrapper:
 def Vector3LengthSqr(v1: Vector3) -> float
 ```
 
-See also: <a href="#Vector3">Vector3</a>
+See also:
+<a href="#Vector3">Vector3</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="Vector3DotProduct">Vector3DotProduct function</h3>
+---
+<h2 id="Vector3DotProduct"><code>Vector3DotProduct</code> function</h2>
 
-Calculate two vectors dot product
+> Calculate two vectors dot product
 
 Defined in raylib.h:
 
@@ -11745,13 +13874,15 @@ Python wrapper:
 def Vector3DotProduct(v1: Vector3, v2: Vector3) -> float
 ```
 
-See also: <a href="#Vector3">Vector3</a>, <a href="#Vector3">Vector3</a>
+See also:
+<a href="#Vector3">Vector3</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="Vector3Distance">Vector3Distance function</h3>
+---
+<h2 id="Vector3Distance"><code>Vector3Distance</code> function</h2>
 
-Calculate distance between two vectors
+> Calculate distance between two vectors
 
 Defined in raylib.h:
 
@@ -11765,13 +13896,15 @@ Python wrapper:
 def Vector3Distance(v1: Vector3, v2: Vector3) -> float
 ```
 
-See also: <a href="#Vector3">Vector3</a>, <a href="#Vector3">Vector3</a>
+See also:
+<a href="#Vector3">Vector3</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="Vector3DistanceSqr">Vector3DistanceSqr function</h3>
+---
+<h2 id="Vector3DistanceSqr"><code>Vector3DistanceSqr</code> function</h2>
 
-Calculate square distance between two vectors
+> Calculate square distance between two vectors
 
 Defined in raylib.h:
 
@@ -11785,13 +13918,15 @@ Python wrapper:
 def Vector3DistanceSqr(v1: Vector3, v2: Vector3) -> float
 ```
 
-See also: <a href="#Vector3">Vector3</a>, <a href="#Vector3">Vector3</a>
+See also:
+<a href="#Vector3">Vector3</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="Vector3Angle">Vector3Angle function</h3>
+---
+<h2 id="Vector3Angle"><code>Vector3Angle</code> function</h2>
 
-Calculate angle between two vectors
+> Calculate angle between two vectors
 
 Defined in raylib.h:
 
@@ -11805,13 +13940,15 @@ Python wrapper:
 def Vector3Angle(v1: Vector3, v2: Vector3) -> float
 ```
 
-See also: <a href="#Vector3">Vector3</a>, <a href="#Vector3">Vector3</a>
+See also:
+<a href="#Vector3">Vector3</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="Vector3Negate">Vector3Negate function</h3>
+---
+<h2 id="Vector3Negate"><code>Vector3Negate</code> function</h2>
 
-Negate provided vector (invert direction)
+> Negate provided vector (invert direction)
 
 Defined in raylib.h:
 
@@ -11825,13 +13962,15 @@ Python wrapper:
 def Vector3Negate(v: Vector3) -> Vector3
 ```
 
-See also: <a href="#Vector3">Vector3</a>
+See also:
+<a href="#Vector3">Vector3</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="Vector3Divide">Vector3Divide function</h3>
+---
+<h2 id="Vector3Divide"><code>Vector3Divide</code> function</h2>
 
-Divide vector by vector
+> Divide vector by vector
 
 Defined in raylib.h:
 
@@ -11845,13 +13984,15 @@ Python wrapper:
 def Vector3Divide(v1: Vector3, v2: Vector3) -> float
 ```
 
-See also: <a href="#Vector3">Vector3</a>, <a href="#Vector3">Vector3</a>
+See also:
+<a href="#Vector3">Vector3</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="Vector3Normalize">Vector3Normalize function</h3>
+---
+<h2 id="Vector3Normalize"><code>Vector3Normalize</code> function</h2>
 
-Normalize provided vector
+> Normalize provided vector
 
 Defined in raylib.h:
 
@@ -11865,13 +14006,15 @@ Python wrapper:
 def Vector3Normalize(v: Vector3) -> Vector3
 ```
 
-See also: <a href="#Vector3">Vector3</a>
+See also:
+<a href="#Vector3">Vector3</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="Vector3OrthoNormalize">Vector3OrthoNormalize function</h3>
+---
+<h2 id="Vector3OrthoNormalize"><code>Vector3OrthoNormalize</code> function</h2>
 
-Makes vectors normalized and orthogonal to each other
+> Makes vectors normalized and orthogonal to each other
 
 Defined in raylib.h:
 
@@ -11885,11 +14028,15 @@ Python wrapper:
 def Vector3OrthoNormalize(v1: Vector3Ptr, v2: Vector3Ptr) -> Vector3
 ```
 
+See also:
+<a href="#Vector3">Vector3</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="Vector3Transform">Vector3Transform function</h3>
+---
+<h2 id="Vector3Transform"><code>Vector3Transform</code> function</h2>
 
-Transforms a Vector3 by a given Matrix
+> Transforms a Vector3 by a given Matrix
 
 Defined in raylib.h:
 
@@ -11903,13 +14050,15 @@ Python wrapper:
 def Vector3Transform(v: Vector3, mat: Matrix) -> Vector3
 ```
 
-See also: <a href="#Vector3">Vector3</a>, <a href="#Matrix">Matrix</a>
+See also:
+<a href="#Vector3">Vector3</a>, <a href="#Matrix">Matrix</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="Vector3RotateByQuaternion">Vector3RotateByQuaternion function</h3>
+---
+<h2 id="Vector3RotateByQuaternion"><code>Vector3RotateByQuaternion</code> function</h2>
 
-Transform a vector by quaternion rotation
+> Transform a vector by quaternion rotation
 
 Defined in raylib.h:
 
@@ -11923,13 +14072,15 @@ Python wrapper:
 def Vector3RotateByQuaternion(v: Vector3, q: Quaternion) -> Vector3
 ```
 
-See also: <a href="#Vector3">Vector3</a>
+See also:
+<a href="#Vector3">Vector3</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="Vector3RotateByAxisAngle">Vector3RotateByAxisAngle function</h3>
+---
+<h2 id="Vector3RotateByAxisAngle"><code>Vector3RotateByAxisAngle</code> function</h2>
 
-Rotates a vector around an axis
+> Rotates a vector around an axis
 
 Defined in raylib.h:
 
@@ -11943,13 +14094,15 @@ Python wrapper:
 def Vector3RotateByAxisAngle(v: Vector3, axis: Vector3, angle: float) -> Vector3
 ```
 
-See also: <a href="#Vector3">Vector3</a>, <a href="#Vector3">Vector3</a>
+See also:
+<a href="#Vector3">Vector3</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="Vector3Lerp">Vector3Lerp function</h3>
+---
+<h2 id="Vector3Lerp"><code>Vector3Lerp</code> function</h2>
 
-Calculate linear interpolation between two vectors
+> Calculate linear interpolation between two vectors
 
 Defined in raylib.h:
 
@@ -11963,13 +14116,15 @@ Python wrapper:
 def Vector3Lerp(v1: Vector3, v2: Vector3, amount: float) -> Vector3
 ```
 
-See also: <a href="#Vector3">Vector3</a>, <a href="#Vector3">Vector3</a>
+See also:
+<a href="#Vector3">Vector3</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="Vector3Reflect">Vector3Reflect function</h3>
+---
+<h2 id="Vector3Reflect"><code>Vector3Reflect</code> function</h2>
 
-Calculate reflected vector to normal
+> Calculate reflected vector to normal
 
 Defined in raylib.h:
 
@@ -11983,13 +14138,15 @@ Python wrapper:
 def Vector3Reflect(v: Vector3, normal: Vector3) -> Vector3
 ```
 
-See also: <a href="#Vector3">Vector3</a>, <a href="#Vector3">Vector3</a>
+See also:
+<a href="#Vector3">Vector3</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="Vector3Min">Vector3Min function</h3>
+---
+<h2 id="Vector3Min"><code>Vector3Min</code> function</h2>
 
-Get min value for each pair of components
+> Get min value for each pair of components
 
 Defined in raylib.h:
 
@@ -12003,13 +14160,15 @@ Python wrapper:
 def Vector3Min(v1: Vector3, v2: Vector3) -> Vector3
 ```
 
-See also: <a href="#Vector3">Vector3</a>, <a href="#Vector3">Vector3</a>
+See also:
+<a href="#Vector3">Vector3</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="Vector3Max">Vector3Max function</h3>
+---
+<h2 id="Vector3Max"><code>Vector3Max</code> function</h2>
 
-Get max value for each pair of components
+> Get max value for each pair of components
 
 Defined in raylib.h:
 
@@ -12023,13 +14182,15 @@ Python wrapper:
 def Vector3Max(v1: Vector3, v2: Vector3) -> Vector3
 ```
 
-See also: <a href="#Vector3">Vector3</a>, <a href="#Vector3">Vector3</a>
+See also:
+<a href="#Vector3">Vector3</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="Vector3Barycenter">Vector3Barycenter function</h3>
+---
+<h2 id="Vector3Barycenter"><code>Vector3Barycenter</code> function</h2>
 
-Compute barycenter coordinates (u, v, w) for point p with respect to triangle (a, b, c). Assumes P is on the plane of the triangle
+> Compute barycenter coordinates (u, v, w) for point p with respect to triangle (a, b, c). Assumes P is on the plane of the triangle
 
 Defined in raylib.h:
 
@@ -12043,13 +14204,15 @@ Python wrapper:
 def Vector3Barycenter(p: Vector3, a: Vector3, b: Vector3, c: Vector3) -> Vector3
 ```
 
-See also: <a href="#Vector3">Vector3</a>, <a href="#Vector3">Vector3</a>, <a href="#Vector3">Vector3</a>, <a href="#Vector3">Vector3</a>
+See also:
+<a href="#Vector3">Vector3</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="Vector3Unproject">Vector3Unproject function</h3>
+---
+<h2 id="Vector3Unproject"><code>Vector3Unproject</code> function</h2>
 
-Projects a Vector3 from screen space into object space
+> Projects a Vector3 from screen space into object space
 
 Defined in raylib.h:
 
@@ -12063,13 +14226,15 @@ Python wrapper:
 def Vector3Unproject(source: Vector3, projection: Matrix, view: Matrix) -> Vector3
 ```
 
-See also: <a href="#Vector3">Vector3</a>, <a href="#Matrix">Matrix</a>, <a href="#Matrix">Matrix</a>
+See also:
+<a href="#Vector3">Vector3</a>, <a href="#Matrix">Matrix</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="Vector3ToFloatV">Vector3ToFloatV function</h3>
+---
+<h2 id="Vector3ToFloatV"><code>Vector3ToFloatV</code> function</h2>
 
-Get Vector3 as float array
+> Get Vector3 as float array
 
 Defined in raylib.h:
 
@@ -12083,13 +14248,15 @@ Python wrapper:
 def Vector3ToFloatV(v: Vector3) -> Seq[float]
 ```
 
-See also: <a href="#Vector3">Vector3</a>
+See also:
+<a href="#Vector3">Vector3</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="Vector3Invert">Vector3Invert function</h3>
+---
+<h2 id="Vector3Invert"><code>Vector3Invert</code> function</h2>
 
-Invert the given vector
+> Invert the given vector
 
 Defined in raylib.h:
 
@@ -12103,13 +14270,15 @@ Python wrapper:
 def Vector3Invert(v: Vector3) -> Vector3
 ```
 
-See also: <a href="#Vector3">Vector3</a>
+See also:
+<a href="#Vector3">Vector3</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="Vector3Clamp">Vector3Clamp function</h3>
+---
+<h2 id="Vector3Clamp"><code>Vector3Clamp</code> function</h2>
 
-Clamp the components of the vector between min and max values specified by the given vectors
+> Clamp the components of the vector between min and max values specified by the given vectors
 
 Defined in raylib.h:
 
@@ -12123,13 +14292,15 @@ Python wrapper:
 def Vector3Clamp(v: Vector3, min_: Vector3, max_: Vector3) -> Vector3
 ```
 
-See also: <a href="#Vector3">Vector3</a>, <a href="#Vector3">Vector3</a>, <a href="#Vector3">Vector3</a>
+See also:
+<a href="#Vector3">Vector3</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="Vector3ClampValue">Vector3ClampValue function</h3>
+---
+<h2 id="Vector3ClampValue"><code>Vector3ClampValue</code> function</h2>
 
-Clamp the magnitude of the vector between two values
+> Clamp the magnitude of the vector between two values
 
 Defined in raylib.h:
 
@@ -12143,13 +14314,15 @@ Python wrapper:
 def Vector3ClampValue(v: Vector3, min_: float, max_: float) -> Vector3
 ```
 
-See also: <a href="#Vector3">Vector3</a>
+See also:
+<a href="#Vector3">Vector3</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="Vector3Equals">Vector3Equals function</h3>
+---
+<h2 id="Vector3Equals"><code>Vector3Equals</code> function</h2>
 
-Check whether two given vectors are almost equal
+> Check whether two given vectors are almost equal
 
 Defined in raylib.h:
 
@@ -12163,13 +14336,15 @@ Python wrapper:
 def Vector3Equals(v: Vector3, min_: float, max_: float) -> int
 ```
 
-See also: <a href="#Vector3">Vector3</a>
+See also:
+<a href="#Vector3">Vector3</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="Vector3Refract">Vector3Refract function</h3>
+---
+<h2 id="Vector3Refract"><code>Vector3Refract</code> function</h2>
 
-Compute the direction of a refracted ray where v specifies the normalized direction of the incoming ray, n specifies the normalized normal vector of the interface of two optical media, and r specifies the ratio of the refractive index of the medium from where the ray comes to the refractive index of the medium on the other side of the surface
+> Compute the direction of a refracted ray where v specifies the normalized direction of the incoming ray, n specifies the normalized normal vector of the interface of two optical media, and r specifies the ratio of the refractive index of the medium from where the ray comes to the refractive index of the medium on the other side of the surface
 
 Defined in raylib.h:
 
@@ -12183,13 +14358,15 @@ Python wrapper:
 def Vector3Refract(v: Vector3, n: Vector3, r: float) -> int
 ```
 
-See also: <a href="#Vector3">Vector3</a>, <a href="#Vector3">Vector3</a>
+See also:
+<a href="#Vector3">Vector3</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="MatrixDeterminant">MatrixDeterminant function</h3>
+---
+<h2 id="MatrixDeterminant"><code>MatrixDeterminant</code> function</h2>
 
-Compute matrix determinant
+> Compute matrix determinant
 
 Defined in raylib.h:
 
@@ -12203,13 +14380,15 @@ Python wrapper:
 def MatrixDeterminant(mat: Matrix) -> float
 ```
 
-See also: <a href="#Matrix">Matrix</a>
+See also:
+<a href="#Matrix">Matrix</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="MatrixTrace">MatrixTrace function</h3>
+---
+<h2 id="MatrixTrace"><code>MatrixTrace</code> function</h2>
 
-Get the trace of the matrix (sum of the values along the diagonal)
+> Get the trace of the matrix (sum of the values along the diagonal)
 
 Defined in raylib.h:
 
@@ -12223,13 +14402,15 @@ Python wrapper:
 def MatrixTrace(mat: Matrix) -> float
 ```
 
-See also: <a href="#Matrix">Matrix</a>
+See also:
+<a href="#Matrix">Matrix</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="MatrixTranspose">MatrixTranspose function</h3>
+---
+<h2 id="MatrixTranspose"><code>MatrixTranspose</code> function</h2>
 
-Get the trace of the matrix (sum of the values along the diagonal)
+> Get the trace of the matrix (sum of the values along the diagonal)
 
 Defined in raylib.h:
 
@@ -12243,13 +14424,15 @@ Python wrapper:
 def MatrixTranspose(mat: Matrix) -> Matrix
 ```
 
-See also: <a href="#Matrix">Matrix</a>
+See also:
+<a href="#Matrix">Matrix</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="MatrixInvert">MatrixInvert function</h3>
+---
+<h2 id="MatrixInvert"><code>MatrixInvert</code> function</h2>
 
-Invert provided matrix
+> Invert provided matrix
 
 Defined in raylib.h:
 
@@ -12263,13 +14446,15 @@ Python wrapper:
 def MatrixInvert(mat: Matrix) -> Matrix
 ```
 
-See also: <a href="#Matrix">Matrix</a>
+See also:
+<a href="#Matrix">Matrix</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="MatrixIdentity">MatrixIdentity function</h3>
+---
+<h2 id="MatrixIdentity"><code>MatrixIdentity</code> function</h2>
 
-Get identity matrix
+> Get identity matrix
 
 Defined in raylib.h:
 
@@ -12283,11 +14468,15 @@ Python wrapper:
 def MatrixIdentity() -> Matrix
 ```
 
+See also:
+<a href="#Matrix">Matrix</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="MatrixAdd">MatrixAdd function</h3>
+---
+<h2 id="MatrixAdd"><code>MatrixAdd</code> function</h2>
 
-Add two matrices
+> Add two matrices
 
 Defined in raylib.h:
 
@@ -12301,13 +14490,15 @@ Python wrapper:
 def MatrixAdd(left: Matrix, right: Matrix) -> Matrix
 ```
 
-See also: <a href="#Matrix">Matrix</a>, <a href="#Matrix">Matrix</a>
+See also:
+<a href="#Matrix">Matrix</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="MatrixSubtract">MatrixSubtract function</h3>
+---
+<h2 id="MatrixSubtract"><code>MatrixSubtract</code> function</h2>
 
-Subtract two matrices (left - right)
+> Subtract two matrices (left - right)
 
 Defined in raylib.h:
 
@@ -12321,13 +14512,15 @@ Python wrapper:
 def MatrixSubtract(left: Matrix, right: Matrix) -> Matrix
 ```
 
-See also: <a href="#Matrix">Matrix</a>, <a href="#Matrix">Matrix</a>
+See also:
+<a href="#Matrix">Matrix</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="MatrixMultiply">MatrixMultiply function</h3>
+---
+<h2 id="MatrixMultiply"><code>MatrixMultiply</code> function</h2>
 
-Get two matrix multiplication. When multiplying matrices... the order matters!
+> Get two matrix multiplication. When multiplying matrices... the order matters!
 
 Defined in raylib.h:
 
@@ -12341,13 +14534,15 @@ Python wrapper:
 def MatrixMultiply(left: Matrix, right: Matrix) -> Matrix
 ```
 
-See also: <a href="#Matrix">Matrix</a>, <a href="#Matrix">Matrix</a>
+See also:
+<a href="#Matrix">Matrix</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="MatrixTranslate">MatrixTranslate function</h3>
+---
+<h2 id="MatrixTranslate"><code>MatrixTranslate</code> function</h2>
 
-Get translation matrix
+> Get translation matrix
 
 Defined in raylib.h:
 
@@ -12361,11 +14556,15 @@ Python wrapper:
 def MatrixTranslate(x: float, y: float, z: float) -> Matrix
 ```
 
+See also:
+<a href="#Matrix">Matrix</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="MatrixRotate">MatrixRotate function</h3>
+---
+<h2 id="MatrixRotate"><code>MatrixRotate</code> function</h2>
 
-Create rotation matrix from axis and angle. Angle should be provided in radians
+> Create rotation matrix from axis and angle. Angle should be provided in radians
 
 Defined in raylib.h:
 
@@ -12379,13 +14578,15 @@ Python wrapper:
 def MatrixRotate(axis: Vector3, angle: float) -> Matrix
 ```
 
-See also: <a href="#Vector3">Vector3</a>
+See also:
+<a href="#Vector3">Vector3</a>, <a href="#Matrix">Matrix</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="MatrixRotateX">MatrixRotateX function</h3>
+---
+<h2 id="MatrixRotateX"><code>MatrixRotateX</code> function</h2>
 
-Get x-rotation matrix. Angle must be provided in radians
+> Get x-rotation matrix. Angle must be provided in radians
 
 Defined in raylib.h:
 
@@ -12399,11 +14600,15 @@ Python wrapper:
 def MatrixRotateX(angle: float) -> Matrix
 ```
 
+See also:
+<a href="#Matrix">Matrix</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="MatrixRotateY">MatrixRotateY function</h3>
+---
+<h2 id="MatrixRotateY"><code>MatrixRotateY</code> function</h2>
 
-Get y-rotation matrix. Angle must be provided in radians
+> Get y-rotation matrix. Angle must be provided in radians
 
 Defined in raylib.h:
 
@@ -12417,11 +14622,15 @@ Python wrapper:
 def MatrixRotateY(angle: float) -> Matrix
 ```
 
+See also:
+<a href="#Matrix">Matrix</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="MatrixRotateZ">MatrixRotateZ function</h3>
+---
+<h2 id="MatrixRotateZ"><code>MatrixRotateZ</code> function</h2>
 
-Get z-rotation matrix. Angle must be provided in radians
+> Get z-rotation matrix. Angle must be provided in radians
 
 Defined in raylib.h:
 
@@ -12435,11 +14644,15 @@ Python wrapper:
 def MatrixRotateZ(angle: float) -> Matrix
 ```
 
+See also:
+<a href="#Matrix">Matrix</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="MatrixRotateXYZ">MatrixRotateXYZ function</h3>
+---
+<h2 id="MatrixRotateXYZ"><code>MatrixRotateXYZ</code> function</h2>
 
-Get xyz-rotation matrix. Angle must be provided in radians
+> Get xyz-rotation matrix. Angle must be provided in radians
 
 Defined in raylib.h:
 
@@ -12453,13 +14666,15 @@ Python wrapper:
 def MatrixRotateXYZ(angle: Vector3) -> Matrix
 ```
 
-See also: <a href="#Vector3">Vector3</a>
+See also:
+<a href="#Vector3">Vector3</a>, <a href="#Matrix">Matrix</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="MatrixRotateZYX">MatrixRotateZYX function</h3>
+---
+<h2 id="MatrixRotateZYX"><code>MatrixRotateZYX</code> function</h2>
 
-Get zyx-rotation matrix. Angle must be provided in radians
+> Get zyx-rotation matrix. Angle must be provided in radians
 
 Defined in raylib.h:
 
@@ -12473,13 +14688,15 @@ Python wrapper:
 def MatrixRotateZYX(angle: Vector3) -> Matrix
 ```
 
-See also: <a href="#Vector3">Vector3</a>
+See also:
+<a href="#Vector3">Vector3</a>, <a href="#Matrix">Matrix</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="MatrixScale">MatrixScale function</h3>
+---
+<h2 id="MatrixScale"><code>MatrixScale</code> function</h2>
 
-Get scaling matrix
+> Get scaling matrix
 
 Defined in raylib.h:
 
@@ -12493,11 +14710,15 @@ Python wrapper:
 def MatrixScale(x: float, y: float, z: float) -> Matrix
 ```
 
+See also:
+<a href="#Matrix">Matrix</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="MatrixFrustum">MatrixFrustum function</h3>
+---
+<h2 id="MatrixFrustum"><code>MatrixFrustum</code> function</h2>
 
-Get perspective projection matrix
+> Get perspective projection matrix
 
 Defined in raylib.h:
 
@@ -12511,11 +14732,15 @@ Python wrapper:
 def MatrixFrustum(left: float, right: float, bottom: float, top: float, near: float, far: float) -> Matrix
 ```
 
+See also:
+<a href="#Matrix">Matrix</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="MatrixPerspective">MatrixPerspective function</h3>
+---
+<h2 id="MatrixPerspective"><code>MatrixPerspective</code> function</h2>
 
-Get perspective projection matrix. Fovy angle must be provided in radians
+> Get perspective projection matrix. Fovy angle must be provided in radians
 
 Defined in raylib.h:
 
@@ -12529,11 +14754,15 @@ Python wrapper:
 def MatrixPerspective(fovy: float, aspect: float, near: float, far: float) -> Matrix
 ```
 
+See also:
+<a href="#Matrix">Matrix</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="MatrixOrtho">MatrixOrtho function</h3>
+---
+<h2 id="MatrixOrtho"><code>MatrixOrtho</code> function</h2>
 
-Get orthographic projection matrix
+> Get orthographic projection matrix
 
 Defined in raylib.h:
 
@@ -12547,11 +14776,15 @@ Python wrapper:
 def MatrixOrtho(left: float, right: float, bottom: float, top: float, near: float, far: float) -> Matrix
 ```
 
+See also:
+<a href="#Matrix">Matrix</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="MatrixLookAt">MatrixLookAt function</h3>
+---
+<h2 id="MatrixLookAt"><code>MatrixLookAt</code> function</h2>
 
-Get camera look-at matrix (view matrix)
+> Get camera look-at matrix (view matrix)
 
 Defined in raylib.h:
 
@@ -12565,13 +14798,15 @@ Python wrapper:
 def MatrixLookAt(eye: Vector3, target: Vector3, up: Vector3) -> Matrix
 ```
 
-See also: <a href="#Vector3">Vector3</a>, <a href="#Vector3">Vector3</a>, <a href="#Vector3">Vector3</a>
+See also:
+<a href="#Vector3">Vector3</a>, <a href="#Matrix">Matrix</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="MatrixToFloatV">MatrixToFloatV function</h3>
+---
+<h2 id="MatrixToFloatV"><code>MatrixToFloatV</code> function</h2>
 
-Get float array of matrix data
+> Get float array of matrix data
 
 Defined in raylib.h:
 
@@ -12585,13 +14820,15 @@ Python wrapper:
 def MatrixToFloatV(mat: Matrix) -> Seq[float]
 ```
 
-See also: <a href="#Matrix">Matrix</a>
+See also:
+<a href="#Matrix">Matrix</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="QuaternionAdd">QuaternionAdd function</h3>
+---
+<h2 id="QuaternionAdd"><code>QuaternionAdd</code> function</h2>
 
-Add two quaternions
+> Add two quaternions
 
 Defined in raylib.h:
 
@@ -12607,9 +14844,10 @@ def QuaternionAdd(q1: Quaternion, q2: Quaternion) -> Quaternion
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="QuaternionAddValue">QuaternionAddValue function</h3>
+---
+<h2 id="QuaternionAddValue"><code>QuaternionAddValue</code> function</h2>
 
-Add quaternion and float value
+> Add quaternion and float value
 
 Defined in raylib.h:
 
@@ -12625,9 +14863,10 @@ def QuaternionAddValue(q: Quaternion, add: float) -> Quaternion
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="QuaternionSubtract">QuaternionSubtract function</h3>
+---
+<h2 id="QuaternionSubtract"><code>QuaternionSubtract</code> function</h2>
 
-Subtract two quaternions
+> Subtract two quaternions
 
 Defined in raylib.h:
 
@@ -12643,9 +14882,10 @@ def QuaternionSubtract(q1: Quaternion, q2: Quaternion) -> Quaternion
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="QuaternionSubtractValue">QuaternionSubtractValue function</h3>
+---
+<h2 id="QuaternionSubtractValue"><code>QuaternionSubtractValue</code> function</h2>
 
-Subtract quaternion and float value
+> Subtract quaternion and float value
 
 Defined in raylib.h:
 
@@ -12661,9 +14901,10 @@ def QuaternionSubtractValue(q: Quaternion, sub: float) -> Quaternion
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="QuaternionIdentity">QuaternionIdentity function</h3>
+---
+<h2 id="QuaternionIdentity"><code>QuaternionIdentity</code> function</h2>
 
-Get identity quaternion
+> Get identity quaternion
 
 Defined in raylib.h:
 
@@ -12679,9 +14920,10 @@ def QuaternionIdentity() -> Quaternion
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="QuaternionLength">QuaternionLength function</h3>
+---
+<h2 id="QuaternionLength"><code>QuaternionLength</code> function</h2>
 
-Computes the length of a quaternion
+> Computes the length of a quaternion
 
 Defined in raylib.h:
 
@@ -12697,9 +14939,10 @@ def QuaternionLength(q: Quaternion) -> Quaternion
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="QuaternionNormalize">QuaternionNormalize function</h3>
+---
+<h2 id="QuaternionNormalize"><code>QuaternionNormalize</code> function</h2>
 
-Normalize provided quaternion
+> Normalize provided quaternion
 
 Defined in raylib.h:
 
@@ -12715,9 +14958,10 @@ def QuaternionNormalize(q: Quaternion) -> Quaternion
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="QuaternionInvert">QuaternionInvert function</h3>
+---
+<h2 id="QuaternionInvert"><code>QuaternionInvert</code> function</h2>
 
-Invert provided quaternion
+> Invert provided quaternion
 
 Defined in raylib.h:
 
@@ -12733,9 +14977,10 @@ def QuaternionInvert(q: Quaternion) -> Quaternion
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="QuaternionMultiply">QuaternionMultiply function</h3>
+---
+<h2 id="QuaternionMultiply"><code>QuaternionMultiply</code> function</h2>
 
-Calculate two quaternion multiplication
+> Calculate two quaternion multiplication
 
 Defined in raylib.h:
 
@@ -12751,9 +14996,10 @@ def QuaternionMultiply(q1: Quaternion, q2: Quaternion) -> Quaternion
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="QuaternionScale">QuaternionScale function</h3>
+---
+<h2 id="QuaternionScale"><code>QuaternionScale</code> function</h2>
 
-Scale quaternion by float value
+> Scale quaternion by float value
 
 Defined in raylib.h:
 
@@ -12769,9 +15015,10 @@ def QuaternionScale(q1: Quaternion, mul: float) -> Quaternion
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="QuaternionDivide">QuaternionDivide function</h3>
+---
+<h2 id="QuaternionDivide"><code>QuaternionDivide</code> function</h2>
 
-Divide two quaternions
+> Divide two quaternions
 
 Defined in raylib.h:
 
@@ -12787,9 +15034,10 @@ def QuaternionDivide(q1: Quaternion, q2: Quaternion) -> Quaternion
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="QuaternionNlerp">QuaternionNlerp function</h3>
+---
+<h2 id="QuaternionNlerp"><code>QuaternionNlerp</code> function</h2>
 
-Calculate slerp-optimized interpolation between two quaternions
+> Calculate slerp-optimized interpolation between two quaternions
 
 Defined in raylib.h:
 
@@ -12805,9 +15053,10 @@ def QuaternionNlerp(q1: Quaternion, q2: Quaternion, amount: float) -> Quaternion
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="QuaternionSlerp">QuaternionSlerp function</h3>
+---
+<h2 id="QuaternionSlerp"><code>QuaternionSlerp</code> function</h2>
 
-Calculates spherical linear interpolation between two quaternions
+> Calculates spherical linear interpolation between two quaternions
 
 Defined in raylib.h:
 
@@ -12823,9 +15072,10 @@ def QuaternionSlerp(q1: Quaternion, q2: Quaternion, amount: float) -> Quaternion
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="QuaternionFromVector3ToVector3">QuaternionFromVector3ToVector3 function</h3>
+---
+<h2 id="QuaternionFromVector3ToVector3"><code>QuaternionFromVector3ToVector3</code> function</h2>
 
-Calculate quaternion based on the rotation from one vector to another
+> Calculate quaternion based on the rotation from one vector to another
 
 Defined in raylib.h:
 
@@ -12839,13 +15089,15 @@ Python wrapper:
 def QuaternionFromVector3ToVector3(from_: Vector3, to: Vector3) -> Quaternion
 ```
 
-See also: <a href="#Vector3">Vector3</a>, <a href="#Vector3">Vector3</a>
+See also:
+<a href="#Vector3">Vector3</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="QuaternionToMatrix">QuaternionToMatrix function</h3>
+---
+<h2 id="QuaternionToMatrix"><code>QuaternionToMatrix</code> function</h2>
 
-Get a quaternion for a given rotation matrix
+> Get a quaternion for a given rotation matrix
 
 Defined in raylib.h:
 
@@ -12859,11 +15111,15 @@ Python wrapper:
 def QuaternionToMatrix(q: Quaternion) -> Matrix
 ```
 
+See also:
+<a href="#Matrix">Matrix</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="QuaternionFromMatrix">QuaternionFromMatrix function</h3>
+---
+<h2 id="QuaternionFromMatrix"><code>QuaternionFromMatrix</code> function</h2>
 
-Get a quaternion for a given rotation matrix
+> Get a quaternion for a given rotation matrix
 
 Defined in raylib.h:
 
@@ -12877,13 +15133,15 @@ Python wrapper:
 def QuaternionFromMatrix(mat: Matrix) -> Quaternion
 ```
 
-See also: <a href="#Matrix">Matrix</a>
+See also:
+<a href="#Matrix">Matrix</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="QuaternionFromAxisAngle">QuaternionFromAxisAngle function</h3>
+---
+<h2 id="QuaternionFromAxisAngle"><code>QuaternionFromAxisAngle</code> function</h2>
 
-Get rotation quaternion for an angle and axis. Angle must be provided in radians
+> Get rotation quaternion for an angle and axis. Angle must be provided in radians
 
 Defined in raylib.h:
 
@@ -12897,13 +15155,15 @@ Python wrapper:
 def QuaternionFromAxisAngle(mat: Vector3, angle: float) -> Quaternion
 ```
 
-See also: <a href="#Vector3">Vector3</a>
+See also:
+<a href="#Vector3">Vector3</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="QuaternionToAxisAngle">QuaternionToAxisAngle function</h3>
+---
+<h2 id="QuaternionToAxisAngle"><code>QuaternionToAxisAngle</code> function</h2>
 
-Get the rotation angle and axis for a given quaternion
+> Get the rotation angle and axis for a given quaternion
 
 Defined in raylib.h:
 
@@ -12917,11 +15177,15 @@ Python wrapper:
 def QuaternionToAxisAngle(q: Quaternion, outAxis: Vector3Ptr, outAngle: Union[Seq[float], FloatPtr]) -> None
 ```
 
+See also:
+<a href="#Vector3">Vector3</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="QuaternionFromEuler">QuaternionFromEuler function</h3>
+---
+<h2 id="QuaternionFromEuler"><code>QuaternionFromEuler</code> function</h2>
 
-Get the quaternion equivalent to Euler angles. Rotation order is ZYX
+> Get the quaternion equivalent to Euler angles. Rotation order is ZYX
 
 Defined in raylib.h:
 
@@ -12937,9 +15201,10 @@ def QuaternionFromEuler(pitch: float, yaw: float, roll: float) -> Quaternion
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="QuaternionToEuler">QuaternionToEuler function</h3>
+---
+<h2 id="QuaternionToEuler"><code>QuaternionToEuler</code> function</h2>
 
-Get the quaternion equivalent to Euler angles. Rotation order is ZYX
+> Get the quaternion equivalent to Euler angles. Rotation order is ZYX
 
 Defined in raylib.h:
 
@@ -12953,11 +15218,15 @@ Python wrapper:
 def QuaternionToEuler(q: Quaternion) -> Vector3
 ```
 
+See also:
+<a href="#Vector3">Vector3</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="QuaternionTransform">QuaternionTransform function</h3>
+---
+<h2 id="QuaternionTransform"><code>QuaternionTransform</code> function</h2>
 
-Transform a quaternion given a transformation matrix
+> Transform a quaternion given a transformation matrix
 
 Defined in raylib.h:
 
@@ -12971,13 +15240,15 @@ Python wrapper:
 def QuaternionTransform(q: Quaternion, mat: Matrix) -> Quaternion
 ```
 
-See also: <a href="#Matrix">Matrix</a>
+See also:
+<a href="#Matrix">Matrix</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="QuaternionEquals">QuaternionEquals function</h3>
+---
+<h2 id="QuaternionEquals"><code>QuaternionEquals</code> function</h2>
 
-Check whether two given quaternions are almost equal
+> Check whether two given quaternions are almost equal
 
 Defined in raylib.h:
 
@@ -12993,9 +15264,10 @@ def QuaternionEquals(p: Quaternion, q: Quaternion) -> int
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlMatrixMode">rlMatrixMode function</h3>
+---
+<h2 id="rlMatrixMode"><code>rlMatrixMode</code> function</h2>
 
-Choose the current matrix to be transformed
+> Choose the current matrix to be transformed
 
 Defined in raylib.h:
 
@@ -13011,9 +15283,10 @@ def rlMatrixMode(mode: int) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlPushMatrix">rlPushMatrix function</h3>
+---
+<h2 id="rlPushMatrix"><code>rlPushMatrix</code> function</h2>
 
-Push the current matrix to stack
+> Push the current matrix to stack
 
 Defined in raylib.h:
 
@@ -13029,9 +15302,10 @@ def rlPushMatrix() -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlPopMatrix">rlPopMatrix function</h3>
+---
+<h2 id="rlPopMatrix"><code>rlPopMatrix</code> function</h2>
 
-Pop lattest inserted matrix from stack
+> Pop lattest inserted matrix from stack
 
 Defined in raylib.h:
 
@@ -13047,9 +15321,10 @@ def rlPopMatrix() -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlLoadIdentity">rlLoadIdentity function</h3>
+---
+<h2 id="rlLoadIdentity"><code>rlLoadIdentity</code> function</h2>
 
-Reset current matrix to identity matrix
+> Reset current matrix to identity matrix
 
 Defined in raylib.h:
 
@@ -13065,9 +15340,10 @@ def rlLoadIdentity() -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlTranslatef">rlTranslatef function</h3>
+---
+<h2 id="rlTranslatef"><code>rlTranslatef</code> function</h2>
 
-Multiply the current matrix by a translation matrix
+> Multiply the current matrix by a translation matrix
 
 Defined in raylib.h:
 
@@ -13083,9 +15359,10 @@ def rlTranslatef(x: float, y: float, z: float) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlRotatef">rlRotatef function</h3>
+---
+<h2 id="rlRotatef"><code>rlRotatef</code> function</h2>
 
-Multiply the current matrix by a rotation matrix
+> Multiply the current matrix by a rotation matrix
 
 Defined in raylib.h:
 
@@ -13101,9 +15378,10 @@ def rlRotatef(angle: float, x: float, y: float, z: float) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlScalef">rlScalef function</h3>
+---
+<h2 id="rlScalef"><code>rlScalef</code> function</h2>
 
-Multiply the current matrix by a scaling matrix
+> Multiply the current matrix by a scaling matrix
 
 Defined in raylib.h:
 
@@ -13119,9 +15397,10 @@ def rlScalef(x: float, y: float, z: float) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlMultMatrixf">rlMultMatrixf function</h3>
+---
+<h2 id="rlMultMatrixf"><code>rlMultMatrixf</code> function</h2>
 
-Multiply the current matrix by another matrix
+> Multiply the current matrix by another matrix
 
 Defined in raylib.h:
 
@@ -13137,9 +15416,10 @@ def rlMultMatrixf(matf: Union[Seq[float], FloatPtr]) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlFrustum">rlFrustum function</h3>
+---
+<h2 id="rlFrustum"><code>rlFrustum</code> function</h2>
 
-
+> 
 
 Defined in raylib.h:
 
@@ -13155,9 +15435,10 @@ def rlFrustum(left: float, right: float, bottom: float, top: float, znear: float
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlOrtho">rlOrtho function</h3>
+---
+<h2 id="rlOrtho"><code>rlOrtho</code> function</h2>
 
-
+> 
 
 Defined in raylib.h:
 
@@ -13173,9 +15454,10 @@ def rlOrtho(left: float, right: float, bottom: float, top: float, znear: float, 
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlViewport">rlViewport function</h3>
+---
+<h2 id="rlViewport"><code>rlViewport</code> function</h2>
 
-Set the viewport area
+> Set the viewport area
 
 Defined in raylib.h:
 
@@ -13191,9 +15473,10 @@ def rlViewport(x: int, y: int, width: int, height: int) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlBegin">rlBegin function</h3>
+---
+<h2 id="rlBegin"><code>rlBegin</code> function</h2>
 
-Initialize drawing mode (how to organize vertex)
+> Initialize drawing mode (how to organize vertex)
 
 Defined in raylib.h:
 
@@ -13209,9 +15492,10 @@ def rlBegin(mode: int) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlEnd">rlEnd function</h3>
+---
+<h2 id="rlEnd"><code>rlEnd</code> function</h2>
 
-Finish vertex providing
+> Finish vertex providing
 
 Defined in raylib.h:
 
@@ -13227,9 +15511,10 @@ def rlEnd() -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlVertex2i">rlVertex2i function</h3>
+---
+<h2 id="rlVertex2i"><code>rlVertex2i</code> function</h2>
 
-Define one vertex (position) - 2 int
+> Define one vertex (position) - 2 int
 
 Defined in raylib.h:
 
@@ -13245,9 +15530,10 @@ def rlVertex2i(x: int, y: int) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlVertex2f">rlVertex2f function</h3>
+---
+<h2 id="rlVertex2f"><code>rlVertex2f</code> function</h2>
 
-Define one vertex (position) - 2 float
+> Define one vertex (position) - 2 float
 
 Defined in raylib.h:
 
@@ -13263,9 +15549,10 @@ def rlVertex2f(x: float, y: float) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlVertex3f">rlVertex3f function</h3>
+---
+<h2 id="rlVertex3f"><code>rlVertex3f</code> function</h2>
 
-Define one vertex (position) - 3 float
+> Define one vertex (position) - 3 float
 
 Defined in raylib.h:
 
@@ -13281,9 +15568,10 @@ def rlVertex3f(x: float, y: float, z: float) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlTexCoord2f">rlTexCoord2f function</h3>
+---
+<h2 id="rlTexCoord2f"><code>rlTexCoord2f</code> function</h2>
 
-Define one vertex (texture coordinate) - 2 float
+> Define one vertex (texture coordinate) - 2 float
 
 Defined in raylib.h:
 
@@ -13299,9 +15587,10 @@ def rlTexCoord2f(x: float, y: float) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlNormal3f">rlNormal3f function</h3>
+---
+<h2 id="rlNormal3f"><code>rlNormal3f</code> function</h2>
 
-Define one vertex (normal) - 3 float
+> Define one vertex (normal) - 3 float
 
 Defined in raylib.h:
 
@@ -13317,9 +15606,10 @@ def rlNormal3f(x: float, y: float, z: float) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlColor4ub">rlColor4ub function</h3>
+---
+<h2 id="rlColor4ub"><code>rlColor4ub</code> function</h2>
 
-Define one vertex (color) - 4 byte
+> Define one vertex (color) - 4 byte
 
 Defined in raylib.h:
 
@@ -13335,9 +15625,10 @@ def rlColor4ub(r: int, g: int, b: int, a: int) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlColor3f">rlColor3f function</h3>
+---
+<h2 id="rlColor3f"><code>rlColor3f</code> function</h2>
 
-Define one vertex (color) - 3 float
+> Define one vertex (color) - 3 float
 
 Defined in raylib.h:
 
@@ -13353,9 +15644,10 @@ def rlColor3f(x: float, y: float, z: float) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlColor4f">rlColor4f function</h3>
+---
+<h2 id="rlColor4f"><code>rlColor4f</code> function</h2>
 
-Define one vertex (color) - 4 float
+> Define one vertex (color) - 4 float
 
 Defined in raylib.h:
 
@@ -13371,9 +15663,10 @@ def rlColor4f(x: float, y: float, z: float, w: float) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlEnableVertexArray">rlEnableVertexArray function</h3>
+---
+<h2 id="rlEnableVertexArray"><code>rlEnableVertexArray</code> function</h2>
 
-Enable vertex array (VAO, if supported)
+> Enable vertex array (VAO, if supported)
 
 Defined in raylib.h:
 
@@ -13389,9 +15682,10 @@ def rlEnableVertexArray(vaoId: int) -> bool
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlDisableVertexArray">rlDisableVertexArray function</h3>
+---
+<h2 id="rlDisableVertexArray"><code>rlDisableVertexArray</code> function</h2>
 
-Disable vertex array (VAO, if supported)
+> Disable vertex array (VAO, if supported)
 
 Defined in raylib.h:
 
@@ -13407,9 +15701,10 @@ def rlDisableVertexArray() -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlEnableVertexBuffer">rlEnableVertexBuffer function</h3>
+---
+<h2 id="rlEnableVertexBuffer"><code>rlEnableVertexBuffer</code> function</h2>
 
-Enable vertex buffer (VBO)
+> Enable vertex buffer (VBO)
 
 Defined in raylib.h:
 
@@ -13425,9 +15720,10 @@ def rlEnableVertexBuffer(id: int) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlDisableVertexBuffer">rlDisableVertexBuffer function</h3>
+---
+<h2 id="rlDisableVertexBuffer"><code>rlDisableVertexBuffer</code> function</h2>
 
-Disable vertex buffer (VBO)
+> Disable vertex buffer (VBO)
 
 Defined in raylib.h:
 
@@ -13443,9 +15739,10 @@ def rlDisableVertexBuffer() -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlEnableVertexBufferElement">rlEnableVertexBufferElement function</h3>
+---
+<h2 id="rlEnableVertexBufferElement"><code>rlEnableVertexBufferElement</code> function</h2>
 
-Enable vertex buffer element (VBO element)
+> Enable vertex buffer element (VBO element)
 
 Defined in raylib.h:
 
@@ -13461,9 +15758,10 @@ def rlEnableVertexBufferElement(id: int) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlDisableVertexBufferElement">rlDisableVertexBufferElement function</h3>
+---
+<h2 id="rlDisableVertexBufferElement"><code>rlDisableVertexBufferElement</code> function</h2>
 
-Disable vertex buffer element (VBO element)
+> Disable vertex buffer element (VBO element)
 
 Defined in raylib.h:
 
@@ -13479,9 +15777,10 @@ def rlDisableVertexBufferElement() -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlEnableVertexAttribute">rlEnableVertexAttribute function</h3>
+---
+<h2 id="rlEnableVertexAttribute"><code>rlEnableVertexAttribute</code> function</h2>
 
-Enable vertex attribute index
+> Enable vertex attribute index
 
 Defined in raylib.h:
 
@@ -13497,9 +15796,10 @@ def rlEnableVertexAttribute(index: int) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlDisableVertexAttribute">rlDisableVertexAttribute function</h3>
+---
+<h2 id="rlDisableVertexAttribute"><code>rlDisableVertexAttribute</code> function</h2>
 
-Disable vertex attribute index
+> Disable vertex attribute index
 
 Defined in raylib.h:
 
@@ -13515,9 +15815,10 @@ def rlDisableVertexAttribute(index: int) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlActiveTextureSlot">rlActiveTextureSlot function</h3>
+---
+<h2 id="rlActiveTextureSlot"><code>rlActiveTextureSlot</code> function</h2>
 
-Select and active a texture slot
+> Select and active a texture slot
 
 Defined in raylib.h:
 
@@ -13533,9 +15834,10 @@ def rlActiveTextureSlot(slot: int) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlEnableTexture">rlEnableTexture function</h3>
+---
+<h2 id="rlEnableTexture"><code>rlEnableTexture</code> function</h2>
 
-Enable texture
+> Enable texture
 
 Defined in raylib.h:
 
@@ -13551,9 +15853,10 @@ def rlEnableTexture(id: int) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlDisableTexture">rlDisableTexture function</h3>
+---
+<h2 id="rlDisableTexture"><code>rlDisableTexture</code> function</h2>
 
-Disable texture
+> Disable texture
 
 Defined in raylib.h:
 
@@ -13569,9 +15872,10 @@ def rlDisableTexture() -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlEnableTextureCubemap">rlEnableTextureCubemap function</h3>
+---
+<h2 id="rlEnableTextureCubemap"><code>rlEnableTextureCubemap</code> function</h2>
 
-Enable texture cubemap
+> Enable texture cubemap
 
 Defined in raylib.h:
 
@@ -13587,9 +15891,10 @@ def rlEnableTextureCubemap(id: int) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlDisableTextureCubemap">rlDisableTextureCubemap function</h3>
+---
+<h2 id="rlDisableTextureCubemap"><code>rlDisableTextureCubemap</code> function</h2>
 
-Disable texture cubemap
+> Disable texture cubemap
 
 Defined in raylib.h:
 
@@ -13605,9 +15910,10 @@ def rlDisableTextureCubemap() -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlTextureParameters">rlTextureParameters function</h3>
+---
+<h2 id="rlTextureParameters"><code>rlTextureParameters</code> function</h2>
 
-Set texture parameters (filter, wrap)
+> Set texture parameters (filter, wrap)
 
 Defined in raylib.h:
 
@@ -13623,9 +15929,10 @@ def rlTextureParameters(id: int, param: int, value: int) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlEnableShader">rlEnableShader function</h3>
+---
+<h2 id="rlEnableShader"><code>rlEnableShader</code> function</h2>
 
-Enable shader program
+> Enable shader program
 
 Defined in raylib.h:
 
@@ -13641,9 +15948,10 @@ def rlEnableShader(id: int) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlDisableShader">rlDisableShader function</h3>
+---
+<h2 id="rlDisableShader"><code>rlDisableShader</code> function</h2>
 
-Disable shader program
+> Disable shader program
 
 Defined in raylib.h:
 
@@ -13659,9 +15967,10 @@ def rlDisableShader() -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlEnableFramebuffer">rlEnableFramebuffer function</h3>
+---
+<h2 id="rlEnableFramebuffer"><code>rlEnableFramebuffer</code> function</h2>
 
-Enable render texture (fbo)
+> Enable render texture (fbo)
 
 Defined in raylib.h:
 
@@ -13677,9 +15986,10 @@ def rlEnableFramebuffer(id: int) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlDisableFramebuffer">rlDisableFramebuffer function</h3>
+---
+<h2 id="rlDisableFramebuffer"><code>rlDisableFramebuffer</code> function</h2>
 
-Disable render texture (fbo), return to default framebuffer
+> Disable render texture (fbo), return to default framebuffer
 
 Defined in raylib.h:
 
@@ -13695,9 +16005,10 @@ def rlDisableFramebuffer() -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlActiveDrawBuffers">rlActiveDrawBuffers function</h3>
+---
+<h2 id="rlActiveDrawBuffers"><code>rlActiveDrawBuffers</code> function</h2>
 
-Activate multiple draw color buffers
+> Activate multiple draw color buffers
 
 Defined in raylib.h:
 
@@ -13713,9 +16024,10 @@ def rlActiveDrawBuffers(count: int) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlEnableColorBlend">rlEnableColorBlend function</h3>
+---
+<h2 id="rlEnableColorBlend"><code>rlEnableColorBlend</code> function</h2>
 
-Enable color blending
+> Enable color blending
 
 Defined in raylib.h:
 
@@ -13731,9 +16043,10 @@ def rlEnableColorBlend() -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlDisableColorBlend">rlDisableColorBlend function</h3>
+---
+<h2 id="rlDisableColorBlend"><code>rlDisableColorBlend</code> function</h2>
 
-Disable color blending
+> Disable color blending
 
 Defined in raylib.h:
 
@@ -13749,9 +16062,10 @@ def rlDisableColorBlend() -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlEnableDepthTest">rlEnableDepthTest function</h3>
+---
+<h2 id="rlEnableDepthTest"><code>rlEnableDepthTest</code> function</h2>
 
-Enable depth test
+> Enable depth test
 
 Defined in raylib.h:
 
@@ -13767,9 +16081,10 @@ def rlEnableDepthTest() -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlDisableDepthTest">rlDisableDepthTest function</h3>
+---
+<h2 id="rlDisableDepthTest"><code>rlDisableDepthTest</code> function</h2>
 
-Disable depth test
+> Disable depth test
 
 Defined in raylib.h:
 
@@ -13785,9 +16100,10 @@ def rlDisableDepthTest() -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlEnableDepthMask">rlEnableDepthMask function</h3>
+---
+<h2 id="rlEnableDepthMask"><code>rlEnableDepthMask</code> function</h2>
 
-Enable depth write
+> Enable depth write
 
 Defined in raylib.h:
 
@@ -13803,9 +16119,10 @@ def rlEnableDepthMask() -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlDisableDepthMask">rlDisableDepthMask function</h3>
+---
+<h2 id="rlDisableDepthMask"><code>rlDisableDepthMask</code> function</h2>
 
-Disable depth write
+> Disable depth write
 
 Defined in raylib.h:
 
@@ -13821,9 +16138,10 @@ def rlDisableDepthMask() -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlEnableBackfaceCulling">rlEnableBackfaceCulling function</h3>
+---
+<h2 id="rlEnableBackfaceCulling"><code>rlEnableBackfaceCulling</code> function</h2>
 
-Enable backface culling
+> Enable backface culling
 
 Defined in raylib.h:
 
@@ -13839,9 +16157,10 @@ def rlEnableBackfaceCulling() -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlDisableBackfaceCulling">rlDisableBackfaceCulling function</h3>
+---
+<h2 id="rlDisableBackfaceCulling"><code>rlDisableBackfaceCulling</code> function</h2>
 
-Disable backface culling
+> Disable backface culling
 
 Defined in raylib.h:
 
@@ -13857,9 +16176,10 @@ def rlDisableBackfaceCulling() -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlEnableScissorTest">rlEnableScissorTest function</h3>
+---
+<h2 id="rlEnableScissorTest"><code>rlEnableScissorTest</code> function</h2>
 
-Enable scissor test
+> Enable scissor test
 
 Defined in raylib.h:
 
@@ -13875,9 +16195,10 @@ def rlEnableScissorTest() -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlDisableScissorTest">rlDisableScissorTest function</h3>
+---
+<h2 id="rlDisableScissorTest"><code>rlDisableScissorTest</code> function</h2>
 
-Disable scissor test
+> Disable scissor test
 
 Defined in raylib.h:
 
@@ -13893,9 +16214,10 @@ def rlDisableScissorTest() -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlScissor">rlScissor function</h3>
+---
+<h2 id="rlScissor"><code>rlScissor</code> function</h2>
 
-Scissor test
+> Scissor test
 
 Defined in raylib.h:
 
@@ -13911,9 +16233,10 @@ def rlScissor(x: int, y: int, width: int, height: int) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlEnableWireMode">rlEnableWireMode function</h3>
+---
+<h2 id="rlEnableWireMode"><code>rlEnableWireMode</code> function</h2>
 
-Enable wire mode
+> Enable wire mode
 
 Defined in raylib.h:
 
@@ -13929,9 +16252,10 @@ def rlEnableWireMode() -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlDisableWireMode">rlDisableWireMode function</h3>
+---
+<h2 id="rlDisableWireMode"><code>rlDisableWireMode</code> function</h2>
 
-Disable wire mode
+> Disable wire mode
 
 Defined in raylib.h:
 
@@ -13947,9 +16271,10 @@ def rlDisableWireMode() -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlSetLineWidth">rlSetLineWidth function</h3>
+---
+<h2 id="rlSetLineWidth"><code>rlSetLineWidth</code> function</h2>
 
-Set the line drawing width
+> Set the line drawing width
 
 Defined in raylib.h:
 
@@ -13965,9 +16290,10 @@ def rlSetLineWidth(width: float) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlGetLineWidth">rlGetLineWidth function</h3>
+---
+<h2 id="rlGetLineWidth"><code>rlGetLineWidth</code> function</h2>
 
-Get the line drawing width
+> Get the line drawing width
 
 Defined in raylib.h:
 
@@ -13983,9 +16309,10 @@ def rlGetLineWidth() -> float
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlEnableSmoothLines">rlEnableSmoothLines function</h3>
+---
+<h2 id="rlEnableSmoothLines"><code>rlEnableSmoothLines</code> function</h2>
 
-Enable line aliasing
+> Enable line aliasing
 
 Defined in raylib.h:
 
@@ -14001,9 +16328,10 @@ def rlEnableSmoothLines() -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlDisableSmoothLines">rlDisableSmoothLines function</h3>
+---
+<h2 id="rlDisableSmoothLines"><code>rlDisableSmoothLines</code> function</h2>
 
-Disable line aliasing
+> Disable line aliasing
 
 Defined in raylib.h:
 
@@ -14019,9 +16347,10 @@ def rlDisableSmoothLines() -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlEnableStereoRender">rlEnableStereoRender function</h3>
+---
+<h2 id="rlEnableStereoRender"><code>rlEnableStereoRender</code> function</h2>
 
-Enable stereo rendering
+> Enable stereo rendering
 
 Defined in raylib.h:
 
@@ -14037,9 +16366,10 @@ def rlEnableStereoRender() -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlDisableStereoRender">rlDisableStereoRender function</h3>
+---
+<h2 id="rlDisableStereoRender"><code>rlDisableStereoRender</code> function</h2>
 
-Disable stereo rendering
+> Disable stereo rendering
 
 Defined in raylib.h:
 
@@ -14055,9 +16385,10 @@ def rlDisableStereoRender() -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlIsStereoRenderEnabled">rlIsStereoRenderEnabled function</h3>
+---
+<h2 id="rlIsStereoRenderEnabled"><code>rlIsStereoRenderEnabled</code> function</h2>
 
-Check if stereo render is enabled
+> Check if stereo render is enabled
 
 Defined in raylib.h:
 
@@ -14073,9 +16404,10 @@ def rlIsStereoRenderEnabled() -> bool
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlClearColor">rlClearColor function</h3>
+---
+<h2 id="rlClearColor"><code>rlClearColor</code> function</h2>
 
-Clear color buffer with color
+> Clear color buffer with color
 
 Defined in raylib.h:
 
@@ -14091,9 +16423,10 @@ def rlClearColor(r: int, g: int, b: int, a: int) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlClearScreenBuffers">rlClearScreenBuffers function</h3>
+---
+<h2 id="rlClearScreenBuffers"><code>rlClearScreenBuffers</code> function</h2>
 
-Clear used screen buffers (color and depth)
+> Clear used screen buffers (color and depth)
 
 Defined in raylib.h:
 
@@ -14109,9 +16442,10 @@ def rlClearScreenBuffers() -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlCheckErrors">rlCheckErrors function</h3>
+---
+<h2 id="rlCheckErrors"><code>rlCheckErrors</code> function</h2>
 
-Check and log OpenGL error codes
+> Check and log OpenGL error codes
 
 Defined in raylib.h:
 
@@ -14127,9 +16461,10 @@ def rlCheckErrors() -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlSetBlendMode">rlSetBlendMode function</h3>
+---
+<h2 id="rlSetBlendMode"><code>rlSetBlendMode</code> function</h2>
 
-Set blending mode
+> Set blending mode
 
 Defined in raylib.h:
 
@@ -14145,9 +16480,10 @@ def rlSetBlendMode(mode: int) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlSetBlendFactors">rlSetBlendFactors function</h3>
+---
+<h2 id="rlSetBlendFactors"><code>rlSetBlendFactors</code> function</h2>
 
-Set blending mode factor and equation (using OpenGL factors)
+> Set blending mode factor and equation (using OpenGL factors)
 
 Defined in raylib.h:
 
@@ -14163,9 +16499,10 @@ def rlSetBlendFactors(glSrcFactor: int, glDstFactor: int, glEquation: int) -> No
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlglInit">rlglInit function</h3>
+---
+<h2 id="rlglInit"><code>rlglInit</code> function</h2>
 
-Initialize rlgl (buffers, shaders, textures, states)
+> Initialize rlgl (buffers, shaders, textures, states)
 
 Defined in raylib.h:
 
@@ -14181,9 +16518,10 @@ def rlglInit(width: int, height: int) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlglClose">rlglClose function</h3>
+---
+<h2 id="rlglClose"><code>rlglClose</code> function</h2>
 
-De-inititialize rlgl (buffers, shaders, textures)
+> De-inititialize rlgl (buffers, shaders, textures)
 
 Defined in raylib.h:
 
@@ -14199,9 +16537,10 @@ def rlglClose() -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlLoadExtensions">rlLoadExtensions function</h3>
+---
+<h2 id="rlLoadExtensions"><code>rlLoadExtensions</code> function</h2>
 
-Load OpenGL extensions (loader function required)
+> Load OpenGL extensions (loader function required)
 
 Defined in raylib.h:
 
@@ -14217,9 +16556,10 @@ def rlLoadExtensions(loader: bytes) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlGetVersion">rlGetVersion function</h3>
+---
+<h2 id="rlGetVersion"><code>rlGetVersion</code> function</h2>
 
-Get current OpenGL version
+> Get current OpenGL version
 
 Defined in raylib.h:
 
@@ -14235,9 +16575,10 @@ def rlGetVersion() -> int
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlSetFramebufferWidth">rlSetFramebufferWidth function</h3>
+---
+<h2 id="rlSetFramebufferWidth"><code>rlSetFramebufferWidth</code> function</h2>
 
-Set current framebuffer width
+> Set current framebuffer width
 
 Defined in raylib.h:
 
@@ -14253,9 +16594,10 @@ def rlSetFramebufferWidth(width: int) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlGetFramebufferWidth">rlGetFramebufferWidth function</h3>
+---
+<h2 id="rlGetFramebufferWidth"><code>rlGetFramebufferWidth</code> function</h2>
 
-Get default framebuffer width
+> Get default framebuffer width
 
 Defined in raylib.h:
 
@@ -14271,9 +16613,10 @@ def rlGetFramebufferWidth() -> int
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlSetFramebufferHeight">rlSetFramebufferHeight function</h3>
+---
+<h2 id="rlSetFramebufferHeight"><code>rlSetFramebufferHeight</code> function</h2>
 
-Set current framebuffer height
+> Set current framebuffer height
 
 Defined in raylib.h:
 
@@ -14289,9 +16632,10 @@ def rlSetFramebufferHeight(height: int) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlGetFramebufferHeight">rlGetFramebufferHeight function</h3>
+---
+<h2 id="rlGetFramebufferHeight"><code>rlGetFramebufferHeight</code> function</h2>
 
-Get default framebuffer height
+> Get default framebuffer height
 
 Defined in raylib.h:
 
@@ -14307,9 +16651,10 @@ def rlGetFramebufferHeight() -> int
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlGetTextureIdDefault">rlGetTextureIdDefault function</h3>
+---
+<h2 id="rlGetTextureIdDefault"><code>rlGetTextureIdDefault</code> function</h2>
 
-Get default texture id
+> Get default texture id
 
 Defined in raylib.h:
 
@@ -14325,9 +16670,10 @@ def rlGetTextureIdDefault() -> int
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlGetShaderIdDefault">rlGetShaderIdDefault function</h3>
+---
+<h2 id="rlGetShaderIdDefault"><code>rlGetShaderIdDefault</code> function</h2>
 
-Get default shader id
+> Get default shader id
 
 Defined in raylib.h:
 
@@ -14343,9 +16689,10 @@ def rlGetShaderIdDefault() -> int
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlGetShaderLocsDefault">rlGetShaderLocsDefault function</h3>
+---
+<h2 id="rlGetShaderLocsDefault"><code>rlGetShaderLocsDefault</code> function</h2>
 
-Get default shader locations
+> Get default shader locations
 
 Defined in raylib.h:
 
@@ -14361,9 +16708,10 @@ def rlGetShaderLocsDefault() -> Union[Seq[int], IntPtr]
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlLoadRenderBatch">rlLoadRenderBatch function</h3>
+---
+<h2 id="rlLoadRenderBatch"><code>rlLoadRenderBatch</code> function</h2>
 
-Load a render batch system
+> Load a render batch system
 
 Defined in raylib.h:
 
@@ -14377,11 +16725,15 @@ Python wrapper:
 def rlLoadRenderBatch(numBuffers: int, bufferElements: int) -> rlRenderBatch
 ```
 
+See also:
+<a href="#rlRenderBatch">rlRenderBatch</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlUnloadRenderBatch">rlUnloadRenderBatch function</h3>
+---
+<h2 id="rlUnloadRenderBatch"><code>rlUnloadRenderBatch</code> function</h2>
 
-Unload render batch system
+> Unload render batch system
 
 Defined in raylib.h:
 
@@ -14395,13 +16747,15 @@ Python wrapper:
 def rlUnloadRenderBatch(batch: rlRenderBatch) -> None
 ```
 
-See also: <a href="#rlRenderBatch">rlRenderBatch</a>
+See also:
+<a href="#rlRenderBatch">rlRenderBatch</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlDrawRenderBatch">rlDrawRenderBatch function</h3>
+---
+<h2 id="rlDrawRenderBatch"><code>rlDrawRenderBatch</code> function</h2>
 
-Draw render batch data (Update->Draw->Reset)
+> Draw render batch data (Update->Draw->Reset)
 
 Defined in raylib.h:
 
@@ -14415,11 +16769,15 @@ Python wrapper:
 def rlDrawRenderBatch(batch: rlRenderBatchPtr) -> None
 ```
 
+See also:
+<a href="#rlRenderBatch">rlRenderBatch</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlSetRenderBatchActive">rlSetRenderBatchActive function</h3>
+---
+<h2 id="rlSetRenderBatchActive"><code>rlSetRenderBatchActive</code> function</h2>
 
-Set the active render batch for rlgl (NULL for default internal)
+> Set the active render batch for rlgl (NULL for default internal)
 
 Defined in raylib.h:
 
@@ -14433,11 +16791,15 @@ Python wrapper:
 def rlSetRenderBatchActive(batch: rlRenderBatchPtr) -> None
 ```
 
+See also:
+<a href="#rlRenderBatch">rlRenderBatch</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlDrawRenderBatchActive">rlDrawRenderBatchActive function</h3>
+---
+<h2 id="rlDrawRenderBatchActive"><code>rlDrawRenderBatchActive</code> function</h2>
 
-Update and draw internal render batch
+> Update and draw internal render batch
 
 Defined in raylib.h:
 
@@ -14453,9 +16815,10 @@ def rlDrawRenderBatchActive() -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlCheckRenderBatchLimit">rlCheckRenderBatchLimit function</h3>
+---
+<h2 id="rlCheckRenderBatchLimit"><code>rlCheckRenderBatchLimit</code> function</h2>
 
-Check internal buffer overflow for a given number of vertex
+> Check internal buffer overflow for a given number of vertex
 
 Defined in raylib.h:
 
@@ -14471,9 +16834,10 @@ def rlCheckRenderBatchLimit(vCount: int) -> bool
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlSetTexture">rlSetTexture function</h3>
+---
+<h2 id="rlSetTexture"><code>rlSetTexture</code> function</h2>
 
-Set current texture for render batch and check buffers limits
+> Set current texture for render batch and check buffers limits
 
 Defined in raylib.h:
 
@@ -14489,9 +16853,10 @@ def rlSetTexture(id: int) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlLoadVertexArray">rlLoadVertexArray function</h3>
+---
+<h2 id="rlLoadVertexArray"><code>rlLoadVertexArray</code> function</h2>
 
-Load vertex array (vao) if supported
+> Load vertex array (vao) if supported
 
 Defined in raylib.h:
 
@@ -14507,9 +16872,10 @@ def rlLoadVertexArray() -> int
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlLoadVertexBuffer">rlLoadVertexBuffer function</h3>
+---
+<h2 id="rlLoadVertexBuffer"><code>rlLoadVertexBuffer</code> function</h2>
 
-Load a vertex buffer attribute
+> Load a vertex buffer attribute
 
 Defined in raylib.h:
 
@@ -14525,9 +16891,10 @@ def rlLoadVertexBuffer(buffer: bytes, size: int, dynamic: bool) -> int
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlLoadVertexBufferElement">rlLoadVertexBufferElement function</h3>
+---
+<h2 id="rlLoadVertexBufferElement"><code>rlLoadVertexBufferElement</code> function</h2>
 
-Load a new attributes element buffer
+> Load a new attributes element buffer
 
 Defined in raylib.h:
 
@@ -14543,9 +16910,10 @@ def rlLoadVertexBufferElement(buffer: bytes, size: int, dynamic: bool) -> int
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlUpdateVertexBuffer">rlUpdateVertexBuffer function</h3>
+---
+<h2 id="rlUpdateVertexBuffer"><code>rlUpdateVertexBuffer</code> function</h2>
 
-Update GPU buffer with new data
+> Update GPU buffer with new data
 
 Defined in raylib.h:
 
@@ -14561,9 +16929,10 @@ def rlUpdateVertexBuffer(bufferId: int, data: bytes, dataSize: int, offset: int)
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlUpdateVertexBufferElements">rlUpdateVertexBufferElements function</h3>
+---
+<h2 id="rlUpdateVertexBufferElements"><code>rlUpdateVertexBufferElements</code> function</h2>
 
-Update vertex buffer elements with new data
+> Update vertex buffer elements with new data
 
 Defined in raylib.h:
 
@@ -14579,9 +16948,10 @@ def rlUpdateVertexBufferElements(id: int, data: bytes, dataSize: int, offset: in
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlUnloadVertexArray">rlUnloadVertexArray function</h3>
+---
+<h2 id="rlUnloadVertexArray"><code>rlUnloadVertexArray</code> function</h2>
 
-
+> 
 
 Defined in raylib.h:
 
@@ -14597,9 +16967,10 @@ def rlUnloadVertexArray(vaoId: int) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlUnloadVertexBuffer">rlUnloadVertexBuffer function</h3>
+---
+<h2 id="rlUnloadVertexBuffer"><code>rlUnloadVertexBuffer</code> function</h2>
 
-
+> 
 
 Defined in raylib.h:
 
@@ -14615,9 +16986,10 @@ def rlUnloadVertexBuffer(vboId: int) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlSetVertexAttribute">rlSetVertexAttribute function</h3>
+---
+<h2 id="rlSetVertexAttribute"><code>rlSetVertexAttribute</code> function</h2>
 
-
+> 
 
 Defined in raylib.h:
 
@@ -14633,9 +17005,10 @@ def rlSetVertexAttribute(index: int, compSize: int, type: int, normalized: bool,
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlSetVertexAttributeDivisor">rlSetVertexAttributeDivisor function</h3>
+---
+<h2 id="rlSetVertexAttributeDivisor"><code>rlSetVertexAttributeDivisor</code> function</h2>
 
-
+> 
 
 Defined in raylib.h:
 
@@ -14651,9 +17024,10 @@ def rlSetVertexAttributeDivisor(index: int, divisor: int) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlSetVertexAttributeDefault">rlSetVertexAttributeDefault function</h3>
+---
+<h2 id="rlSetVertexAttributeDefault"><code>rlSetVertexAttributeDefault</code> function</h2>
 
-Set vertex attribute default value
+> Set vertex attribute default value
 
 Defined in raylib.h:
 
@@ -14669,9 +17043,10 @@ def rlSetVertexAttributeDefault(locIndex: int, value: bytes, attribType: int, co
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlDrawVertexArray">rlDrawVertexArray function</h3>
+---
+<h2 id="rlDrawVertexArray"><code>rlDrawVertexArray</code> function</h2>
 
-
+> 
 
 Defined in raylib.h:
 
@@ -14687,9 +17062,10 @@ def rlDrawVertexArray(offset: int, count: int) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlDrawVertexArrayElements">rlDrawVertexArrayElements function</h3>
+---
+<h2 id="rlDrawVertexArrayElements"><code>rlDrawVertexArrayElements</code> function</h2>
 
-
+> 
 
 Defined in raylib.h:
 
@@ -14705,9 +17081,10 @@ def rlDrawVertexArrayElements(offset: int, count: int, buffer: bytes) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlDrawVertexArrayInstanced">rlDrawVertexArrayInstanced function</h3>
+---
+<h2 id="rlDrawVertexArrayInstanced"><code>rlDrawVertexArrayInstanced</code> function</h2>
 
-
+> 
 
 Defined in raylib.h:
 
@@ -14723,9 +17100,10 @@ def rlDrawVertexArrayInstanced(offset: int, count: int, instances: int) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlDrawVertexArrayElementsInstanced">rlDrawVertexArrayElementsInstanced function</h3>
+---
+<h2 id="rlDrawVertexArrayElementsInstanced"><code>rlDrawVertexArrayElementsInstanced</code> function</h2>
 
-
+> 
 
 Defined in raylib.h:
 
@@ -14741,9 +17119,10 @@ def rlDrawVertexArrayElementsInstanced(offset: int, count: int, buffer: bytes, i
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlLoadTexture">rlLoadTexture function</h3>
+---
+<h2 id="rlLoadTexture"><code>rlLoadTexture</code> function</h2>
 
-Load texture in GPU
+> Load texture in GPU
 
 Defined in raylib.h:
 
@@ -14759,9 +17138,10 @@ def rlLoadTexture(data: bytes, width: int, height: int, format: int, mipmapCount
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlLoadTextureDepth">rlLoadTextureDepth function</h3>
+---
+<h2 id="rlLoadTextureDepth"><code>rlLoadTextureDepth</code> function</h2>
 
-Load depth texture/renderbuffer (to be attached to fbo)
+> Load depth texture/renderbuffer (to be attached to fbo)
 
 Defined in raylib.h:
 
@@ -14777,9 +17157,10 @@ def rlLoadTextureDepth(width: int, height: int, useRenderBuffer: bool) -> int
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlLoadTextureCubemap">rlLoadTextureCubemap function</h3>
+---
+<h2 id="rlLoadTextureCubemap"><code>rlLoadTextureCubemap</code> function</h2>
 
-Load texture cubemap
+> Load texture cubemap
 
 Defined in raylib.h:
 
@@ -14795,9 +17176,10 @@ def rlLoadTextureCubemap(data: bytes, size: int, format: int) -> int
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlUpdateTexture">rlUpdateTexture function</h3>
+---
+<h2 id="rlUpdateTexture"><code>rlUpdateTexture</code> function</h2>
 
-Update GPU texture with new data
+> Update GPU texture with new data
 
 Defined in raylib.h:
 
@@ -14813,9 +17195,10 @@ def rlUpdateTexture(id: int, offsetX: int, offsetY: int, width: int, height: int
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlGetGlTextureFormats">rlGetGlTextureFormats function</h3>
+---
+<h2 id="rlGetGlTextureFormats"><code>rlGetGlTextureFormats</code> function</h2>
 
-Get OpenGL internal formats
+> Get OpenGL internal formats
 
 Defined in raylib.h:
 
@@ -14831,9 +17214,10 @@ def rlGetGlTextureFormats(format: int, glInternalFormat: Union[Seq[int], UIntPtr
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlGetPixelFormatName">rlGetPixelFormatName function</h3>
+---
+<h2 id="rlGetPixelFormatName"><code>rlGetPixelFormatName</code> function</h2>
 
-Get name string for pixel format
+> Get name string for pixel format
 
 Defined in raylib.h:
 
@@ -14849,9 +17233,10 @@ def rlGetPixelFormatName(format: int) -> Union[str, CharPtr]
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlUnloadTexture">rlUnloadTexture function</h3>
+---
+<h2 id="rlUnloadTexture"><code>rlUnloadTexture</code> function</h2>
 
-Unload texture from GPU memory
+> Unload texture from GPU memory
 
 Defined in raylib.h:
 
@@ -14867,9 +17252,10 @@ def rlUnloadTexture(id: int) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlGenTextureMipmaps">rlGenTextureMipmaps function</h3>
+---
+<h2 id="rlGenTextureMipmaps"><code>rlGenTextureMipmaps</code> function</h2>
 
-Generate mipmap data for selected texture
+> Generate mipmap data for selected texture
 
 Defined in raylib.h:
 
@@ -14885,9 +17271,10 @@ def rlGenTextureMipmaps(id: int, width: int, height: int, format: int, mipmaps: 
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlReadTexturePixels">rlReadTexturePixels function</h3>
+---
+<h2 id="rlReadTexturePixels"><code>rlReadTexturePixels</code> function</h2>
 
-Read texture pixel data
+> Read texture pixel data
 
 Defined in raylib.h:
 
@@ -14903,9 +17290,10 @@ def rlReadTexturePixels(id: int, width: int, height: int, format: int) -> bytes
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlReadScreenPixels">rlReadScreenPixels function</h3>
+---
+<h2 id="rlReadScreenPixels"><code>rlReadScreenPixels</code> function</h2>
 
-Read screen pixel data (color buffer)
+> Read screen pixel data (color buffer)
 
 Defined in raylib.h:
 
@@ -14921,9 +17309,10 @@ def rlReadScreenPixels(width: int, height: int) -> Union[Seq[int], UCharPtr]
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlLoadFramebuffer">rlLoadFramebuffer function</h3>
+---
+<h2 id="rlLoadFramebuffer"><code>rlLoadFramebuffer</code> function</h2>
 
-Load an empty framebuffer
+> Load an empty framebuffer
 
 Defined in raylib.h:
 
@@ -14939,9 +17328,10 @@ def rlLoadFramebuffer(width: int, height: int) -> int
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlFramebufferAttach">rlFramebufferAttach function</h3>
+---
+<h2 id="rlFramebufferAttach"><code>rlFramebufferAttach</code> function</h2>
 
-Attach texture/renderbuffer to a framebuffer
+> Attach texture/renderbuffer to a framebuffer
 
 Defined in raylib.h:
 
@@ -14957,9 +17347,10 @@ def rlFramebufferAttach(fboId: int, texId: int, attachType: int, texType: int, m
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlFramebufferComplete">rlFramebufferComplete function</h3>
+---
+<h2 id="rlFramebufferComplete"><code>rlFramebufferComplete</code> function</h2>
 
-Verify framebuffer is complete
+> Verify framebuffer is complete
 
 Defined in raylib.h:
 
@@ -14975,9 +17366,10 @@ def rlFramebufferComplete(id: int) -> bool
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlUnloadFramebuffer">rlUnloadFramebuffer function</h3>
+---
+<h2 id="rlUnloadFramebuffer"><code>rlUnloadFramebuffer</code> function</h2>
 
-Delete framebuffer from GPU
+> Delete framebuffer from GPU
 
 Defined in raylib.h:
 
@@ -14993,9 +17385,10 @@ def rlUnloadFramebuffer(id: int) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlLoadShaderCode">rlLoadShaderCode function</h3>
+---
+<h2 id="rlLoadShaderCode"><code>rlLoadShaderCode</code> function</h2>
 
-Load shader from code strings
+> Load shader from code strings
 
 Defined in raylib.h:
 
@@ -15011,9 +17404,10 @@ def rlLoadShaderCode(vsCode: Union[str, CharPtr], fsCode: Union[str, CharPtr]) -
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlCompileShader">rlCompileShader function</h3>
+---
+<h2 id="rlCompileShader"><code>rlCompileShader</code> function</h2>
 
-Compile custom shader and return shader id (type: RL_VERTEX_SHADER, RL_FRAGMENT_SHADER, RL_COMPUTE_SHADER)
+> Compile custom shader and return shader id (type: RL_VERTEX_SHADER, RL_FRAGMENT_SHADER, RL_COMPUTE_SHADER)
 
 Defined in raylib.h:
 
@@ -15029,9 +17423,10 @@ def rlCompileShader(shaderCode: Union[str, CharPtr], type: int) -> int
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlLoadShaderProgram">rlLoadShaderProgram function</h3>
+---
+<h2 id="rlLoadShaderProgram"><code>rlLoadShaderProgram</code> function</h2>
 
-Load custom shader program
+> Load custom shader program
 
 Defined in raylib.h:
 
@@ -15047,9 +17442,10 @@ def rlLoadShaderProgram(vShaderId: int, fShaderId: int) -> int
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlUnloadShaderProgram">rlUnloadShaderProgram function</h3>
+---
+<h2 id="rlUnloadShaderProgram"><code>rlUnloadShaderProgram</code> function</h2>
 
-Unload shader program
+> Unload shader program
 
 Defined in raylib.h:
 
@@ -15065,9 +17461,10 @@ def rlUnloadShaderProgram(id: int) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlGetLocationUniform">rlGetLocationUniform function</h3>
+---
+<h2 id="rlGetLocationUniform"><code>rlGetLocationUniform</code> function</h2>
 
-Get shader location uniform
+> Get shader location uniform
 
 Defined in raylib.h:
 
@@ -15083,9 +17480,10 @@ def rlGetLocationUniform(shaderId: int, uniformName: Union[str, CharPtr]) -> int
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlGetLocationAttrib">rlGetLocationAttrib function</h3>
+---
+<h2 id="rlGetLocationAttrib"><code>rlGetLocationAttrib</code> function</h2>
 
-Get shader location attribute
+> Get shader location attribute
 
 Defined in raylib.h:
 
@@ -15101,9 +17499,10 @@ def rlGetLocationAttrib(shaderId: int, attribName: Union[str, CharPtr]) -> int
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlSetUniform">rlSetUniform function</h3>
+---
+<h2 id="rlSetUniform"><code>rlSetUniform</code> function</h2>
 
-Set shader value uniform
+> Set shader value uniform
 
 Defined in raylib.h:
 
@@ -15119,9 +17518,10 @@ def rlSetUniform(locIndex: int, value: bytes, uniformType: int, count: int) -> N
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlSetUniformMatrix">rlSetUniformMatrix function</h3>
+---
+<h2 id="rlSetUniformMatrix"><code>rlSetUniformMatrix</code> function</h2>
 
-Set shader value matrix
+> Set shader value matrix
 
 Defined in raylib.h:
 
@@ -15135,13 +17535,15 @@ Python wrapper:
 def rlSetUniformMatrix(locIndex: int, mat: Matrix) -> None
 ```
 
-See also: <a href="#Matrix">Matrix</a>
+See also:
+<a href="#Matrix">Matrix</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlSetUniformSampler">rlSetUniformSampler function</h3>
+---
+<h2 id="rlSetUniformSampler"><code>rlSetUniformSampler</code> function</h2>
 
-Set shader value sampler
+> Set shader value sampler
 
 Defined in raylib.h:
 
@@ -15157,9 +17559,10 @@ def rlSetUniformSampler(locIndex: int, textureId: int) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlSetShader">rlSetShader function</h3>
+---
+<h2 id="rlSetShader"><code>rlSetShader</code> function</h2>
 
-Set shader currently active (id and locations)
+> Set shader currently active (id and locations)
 
 Defined in raylib.h:
 
@@ -15175,9 +17578,10 @@ def rlSetShader(id: int, locs: Union[Seq[int], IntPtr]) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlLoadComputeShaderProgram">rlLoadComputeShaderProgram function</h3>
+---
+<h2 id="rlLoadComputeShaderProgram"><code>rlLoadComputeShaderProgram</code> function</h2>
 
-Load compute shader program
+> Load compute shader program
 
 Defined in raylib.h:
 
@@ -15193,9 +17597,10 @@ def rlLoadComputeShaderProgram(shaderId: int) -> int
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlComputeShaderDispatch">rlComputeShaderDispatch function</h3>
+---
+<h2 id="rlComputeShaderDispatch"><code>rlComputeShaderDispatch</code> function</h2>
 
-Dispatch compute shader (equivalent to *draw* for graphics pilepine)
+> Dispatch compute shader (equivalent to *draw* for graphics pilepine)
 
 Defined in raylib.h:
 
@@ -15211,9 +17616,10 @@ def rlComputeShaderDispatch(groupX: int, groupY: int, groupZ: int) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlLoadShaderBuffer">rlLoadShaderBuffer function</h3>
+---
+<h2 id="rlLoadShaderBuffer"><code>rlLoadShaderBuffer</code> function</h2>
 
-Load shader storage buffer object (SSBO)
+> Load shader storage buffer object (SSBO)
 
 Defined in raylib.h:
 
@@ -15229,9 +17635,10 @@ def rlLoadShaderBuffer(size: int, data: bytes, usageHint: int) -> int
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlUnloadShaderBuffer">rlUnloadShaderBuffer function</h3>
+---
+<h2 id="rlUnloadShaderBuffer"><code>rlUnloadShaderBuffer</code> function</h2>
 
-Unload shader storage buffer object (SSBO)
+> Unload shader storage buffer object (SSBO)
 
 Defined in raylib.h:
 
@@ -15247,9 +17654,10 @@ def rlUnloadShaderBuffer(ssboId: int) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlUpdateShaderBufferElements">rlUpdateShaderBufferElements function</h3>
+---
+<h2 id="rlUpdateShaderBufferElements"><code>rlUpdateShaderBufferElements</code> function</h2>
 
-Update SSBO buffer data
+> Update SSBO buffer data
 
 Defined in raylib.h:
 
@@ -15265,9 +17673,10 @@ def rlUpdateShaderBufferElements(id: int, data: bytes, dataSize: int, offset: in
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlGetShaderBufferSize">rlGetShaderBufferSize function</h3>
+---
+<h2 id="rlGetShaderBufferSize"><code>rlGetShaderBufferSize</code> function</h2>
 
-Get SSBO buffer size
+> Get SSBO buffer size
 
 Defined in raylib.h:
 
@@ -15283,9 +17692,10 @@ def rlGetShaderBufferSize(id: int) -> int
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlReadShaderBufferElements">rlReadShaderBufferElements function</h3>
+---
+<h2 id="rlReadShaderBufferElements"><code>rlReadShaderBufferElements</code> function</h2>
 
-Bind SSBO buffer
+> Bind SSBO buffer
 
 Defined in raylib.h:
 
@@ -15301,9 +17711,10 @@ def rlReadShaderBufferElements(id: int, dest: bytes, count: int, offset: int) ->
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlBindShaderBuffer">rlBindShaderBuffer function</h3>
+---
+<h2 id="rlBindShaderBuffer"><code>rlBindShaderBuffer</code> function</h2>
 
-Copy SSBO buffer data
+> Copy SSBO buffer data
 
 Defined in raylib.h:
 
@@ -15319,9 +17730,10 @@ def rlBindShaderBuffer(id: int, index: int) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlCopyBuffersElements">rlCopyBuffersElements function</h3>
+---
+<h2 id="rlCopyBuffersElements"><code>rlCopyBuffersElements</code> function</h2>
 
-Copy SSBO buffer data
+> Copy SSBO buffer data
 
 Defined in raylib.h:
 
@@ -15337,9 +17749,10 @@ def rlCopyBuffersElements(destId: int, srcId: int, destOffset: int, srcOffset: i
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlBindImageTexture">rlBindImageTexture function</h3>
+---
+<h2 id="rlBindImageTexture"><code>rlBindImageTexture</code> function</h2>
 
-Bind image texture
+> Bind image texture
 
 Defined in raylib.h:
 
@@ -15355,9 +17768,10 @@ def rlBindImageTexture(id: int, index: int, format: int, readonly: int) -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlGetMatrixModelview">rlGetMatrixModelview function</h3>
+---
+<h2 id="rlGetMatrixModelview"><code>rlGetMatrixModelview</code> function</h2>
 
-Get internal modelview matrix
+> Get internal modelview matrix
 
 Defined in raylib.h:
 
@@ -15371,11 +17785,15 @@ Python wrapper:
 def rlGetMatrixModelview() -> Matrix
 ```
 
+See also:
+<a href="#Matrix">Matrix</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlGetMatrixProjection">rlGetMatrixProjection function</h3>
+---
+<h2 id="rlGetMatrixProjection"><code>rlGetMatrixProjection</code> function</h2>
 
-Get internal projection matrix
+> Get internal projection matrix
 
 Defined in raylib.h:
 
@@ -15389,11 +17807,15 @@ Python wrapper:
 def rlGetMatrixProjection() -> Matrix
 ```
 
+See also:
+<a href="#Matrix">Matrix</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlGetMatrixTransform">rlGetMatrixTransform function</h3>
+---
+<h2 id="rlGetMatrixTransform"><code>rlGetMatrixTransform</code> function</h2>
 
-Get internal accumulated transform matrix
+> Get internal accumulated transform matrix
 
 Defined in raylib.h:
 
@@ -15407,11 +17829,15 @@ Python wrapper:
 def rlGetMatrixTransform() -> Matrix
 ```
 
+See also:
+<a href="#Matrix">Matrix</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlGetMatrixProjectionStereo">rlGetMatrixProjectionStereo function</h3>
+---
+<h2 id="rlGetMatrixProjectionStereo"><code>rlGetMatrixProjectionStereo</code> function</h2>
 
-Get internal projection matrix for stereo render (selected eye)
+> Get internal projection matrix for stereo render (selected eye)
 
 Defined in raylib.h:
 
@@ -15425,11 +17851,15 @@ Python wrapper:
 def rlGetMatrixProjectionStereo(eye: int) -> Matrix
 ```
 
+See also:
+<a href="#Matrix">Matrix</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlGetMatrixViewOffsetStereo">rlGetMatrixViewOffsetStereo function</h3>
+---
+<h2 id="rlGetMatrixViewOffsetStereo"><code>rlGetMatrixViewOffsetStereo</code> function</h2>
 
-Get internal view offset matrix for stereo render (selected eye)
+> Get internal view offset matrix for stereo render (selected eye)
 
 Defined in raylib.h:
 
@@ -15443,11 +17873,15 @@ Python wrapper:
 def rlGetMatrixViewOffsetStereo(eye: int) -> Matrix
 ```
 
+See also:
+<a href="#Matrix">Matrix</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlSetMatrixProjection">rlSetMatrixProjection function</h3>
+---
+<h2 id="rlSetMatrixProjection"><code>rlSetMatrixProjection</code> function</h2>
 
-Set a custom projection matrix (replaces internal projection matrix)
+> Set a custom projection matrix (replaces internal projection matrix)
 
 Defined in raylib.h:
 
@@ -15461,13 +17895,15 @@ Python wrapper:
 def rlSetMatrixProjection(proj: Matrix) -> None
 ```
 
-See also: <a href="#Matrix">Matrix</a>
+See also:
+<a href="#Matrix">Matrix</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlSetMatrixModelview">rlSetMatrixModelview function</h3>
+---
+<h2 id="rlSetMatrixModelview"><code>rlSetMatrixModelview</code> function</h2>
 
-Set a custom modelview matrix (replaces internal modelview matrix)
+> Set a custom modelview matrix (replaces internal modelview matrix)
 
 Defined in raylib.h:
 
@@ -15481,13 +17917,15 @@ Python wrapper:
 def rlSetMatrixModelview(view: Matrix) -> None
 ```
 
-See also: <a href="#Matrix">Matrix</a>
+See also:
+<a href="#Matrix">Matrix</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlSetMatrixProjectionStereo">rlSetMatrixProjectionStereo function</h3>
+---
+<h2 id="rlSetMatrixProjectionStereo"><code>rlSetMatrixProjectionStereo</code> function</h2>
 
-Set eyes projection matrices for stereo rendering
+> Set eyes projection matrices for stereo rendering
 
 Defined in raylib.h:
 
@@ -15501,13 +17939,15 @@ Python wrapper:
 def rlSetMatrixProjectionStereo(right: Matrix, left: Matrix) -> None
 ```
 
-See also: <a href="#Matrix">Matrix</a>, <a href="#Matrix">Matrix</a>
+See also:
+<a href="#Matrix">Matrix</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlSetMatrixViewOffsetStereo">rlSetMatrixViewOffsetStereo function</h3>
+---
+<h2 id="rlSetMatrixViewOffsetStereo"><code>rlSetMatrixViewOffsetStereo</code> function</h2>
 
-Set eyes view offsets matrices for stereo rendering
+> Set eyes view offsets matrices for stereo rendering
 
 Defined in raylib.h:
 
@@ -15521,13 +17961,15 @@ Python wrapper:
 def rlSetMatrixViewOffsetStereo(right: Matrix, left: Matrix) -> None
 ```
 
-See also: <a href="#Matrix">Matrix</a>, <a href="#Matrix">Matrix</a>
+See also:
+<a href="#Matrix">Matrix</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlLoadDrawCube">rlLoadDrawCube function</h3>
+---
+<h2 id="rlLoadDrawCube"><code>rlLoadDrawCube</code> function</h2>
 
-Load and draw a cube
+> Load and draw a cube
 
 Defined in raylib.h:
 
@@ -15543,9 +17985,10 @@ def rlLoadDrawCube() -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
-<h3 id="rlLoadDrawQuad">rlLoadDrawQuad function</h3>
+---
+<h2 id="rlLoadDrawQuad"><code>rlLoadDrawQuad</code> function</h2>
 
-Load and draw a quad
+> Load and draw a quad
 
 Defined in raylib.h:
 
@@ -15561,3 +18004,124 @@ def rlLoadDrawQuad() -> None
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
+---
+<h2 id="contexts">Context Managers</h2>
+
+To use context managers, you can do like below:
+
+```python
+# this example shows a rendering step
+
+with drawing():
+
+    with texture_mode(minimap_texture):
+        # render the minimap
+        draw_line(2, 2, 5, 5, RED)
+    # no texture mode after this line
+
+    with mode2d(main_camera):
+        # 2d drawing logic...
+        draw_texture(minimap_texture, 10, 10, WHITE)
+    # no mode 2d after this line
+# no drawing after this line
+
+```
+
+Item|Item|Item|Item|Item
+--------|--------|--------|--------|--------
+<a href="#Drawing">Drawing</a> | <a href="#Mode2D">Mode2D</a> | <a href="#Mode3D">Mode3D</a> | <a href="#ScissorMode">ScissorMode</a> | <a href="#ShaderMode">ShaderMode</a>
+<a href="#TextureMode">TextureMode</a> | <a href="#VrStereoMode">VrStereoMode</a>
+
+[ <a href="#toc">ToC</a> ]
+
+<h2 id="Drawing"><code>Drawing</code> context manager</h2>
+
+> On entering the context: *Setup canvas (framebuffer) to start drawing*
+> On leaving the context: *End canvas drawing and swap buffers (double buffering)*
+
+```python
+@contextmanager
+def Drawing() -> None
+```
+
+[ <a href="#contexts">Contexts</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="ScissorMode"><code>ScissorMode</code> context manager</h2>
+
+> On entering the context: *Begin scissor mode (define screen area for following drawing)*
+> On leaving the context: *End scissor mode*
+
+```python
+@contextmanager
+def ScissorMode(x: 'int', y: 'int', width: 'int', height: 'int') -> None
+```
+
+[ <a href="#contexts">Contexts</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="Mode2D"><code>Mode2D</code> context manager</h2>
+
+> On entering the context: *Begin 2D mode with custom camera (2D)*
+> On leaving the context: *Ends 2D mode with custom camera*
+
+```python
+@contextmanager
+def Mode2D(camera: 'Camera2D') -> None
+```
+
+[ <a href="#contexts">Contexts</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="Mode3D"><code>Mode3D</code> context manager</h2>
+
+> On entering the context: *Begin 3D mode with custom camera (3D)*
+> On leaving the context: *Ends 3D mode and returns to default 2D orthographic mode*
+
+```python
+@contextmanager
+def Mode3D(camera: 'Camera3D') -> None
+```
+
+[ <a href="#contexts">Contexts</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="ShaderMode"><code>ShaderMode</code> context manager</h2>
+
+> On entering the context: *Begin custom shader drawing*
+> On leaving the context: *End custom shader drawing (use default shader)*
+
+```python
+@contextmanager
+def ShaderMode(shader: 'Shader') -> None
+```
+
+[ <a href="#contexts">Contexts</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="TextureMode"><code>TextureMode</code> context manager</h2>
+
+> On entering the context: *Begin drawing to render texture*
+> On leaving the context: *Ends drawing to render texture*
+
+```python
+@contextmanager
+def TextureMode(target: 'RenderTexture2D') -> None
+```
+
+[ <a href="#contexts">Contexts</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="VrStereoMode"><code>VrStereoMode</code> context manager</h2>
+
+> On entering the context: *Begin stereo rendering (requires VR simulator)*
+> On leaving the context: *End stereo rendering (requires VR simulator)*
+
+```python
+@contextmanager
+def VrStereoMode(config: 'VrStereoConfig') -> None
+```
+
+[ <a href="#contexts">Contexts</a> | <a href="#toc">ToC</a> ]
+
+---

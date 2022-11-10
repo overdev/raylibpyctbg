@@ -4,15 +4,26 @@ This is an API reference documentation generated for Raylib 4.2.
 
 <h2 id="toc">Table of Contents</h2>
 
-- <a href="#enums">Enumerations</a>
 - <a href="#structs">Structures</a>
+- <a href="#aliases">Aliases</a>
+- <a href="#enums">Enumerations</a>
+- <a href="#defines">Constants</a>
 - <a href="#funcs">Functions</a>
 - <a href="#callbacks">Callbacks</a>
 - <a href="#contexts">Context Managers</a>
 
 <h2 id="structs">Structures</h2>
 
-<a href="#AudioStream">AudioStream</a> | <a href="#BoneInfo">BoneInfo</a> | <a href="#BoundingBox">BoundingBox</a> | <a href="#Camera2D">Camera2D</a> | <a href="#Camera3D">Camera3D</a> | <a href="#Color">Color</a> | <a href="#FilePathList">FilePathList</a> | <a href="#Font">Font</a> | <a href="#GlyphInfo">GlyphInfo</a> | <a href="#Image">Image</a> | <a href="#Material">Material</a> | <a href="#MaterialMap">MaterialMap</a> | <a href="#Matrix">Matrix</a> | <a href="#Matrix">Matrix</a> | <a href="#Mesh">Mesh</a> | <a href="#Model">Model</a> | <a href="#ModelAnimation">ModelAnimation</a> | <a href="#Music">Music</a> | <a href="#NPatchInfo">NPatchInfo</a> | <a href="#Ray">Ray</a> | <a href="#RayCollision">RayCollision</a> | <a href="#Rectangle">Rectangle</a> | <a href="#RenderTexture">RenderTexture</a> | <a href="#Shader">Shader</a> | <a href="#Sound">Sound</a> | <a href="#Texture">Texture</a> | <a href="#Transform">Transform</a> | <a href="#Vector2">Vector2</a> | <a href="#Vector3">Vector3</a> | <a href="#Vector4">Vector4</a> | <a href="#VrDeviceInfo">VrDeviceInfo</a> | <a href="#VrStereoConfig">VrStereoConfig</a> | <a href="#Wave">Wave</a> | <a href="#rlDrawCall">rlDrawCall</a> | <a href="#rlRenderBatch">rlRenderBatch</a> | <a href="#rlVertexBuffer">rlVertexBuffer</a>
+Item|Item|Item|Item|Item
+--------|--------|--------|--------|--------
+<a href="#AudioStream">AudioStream</a> | <a href="#BoneInfo">BoneInfo</a> | <a href="#BoundingBox">BoundingBox</a> | <a href="#Camera2D">Camera2D</a> | <a href="#Camera3D">Camera3D</a>
+<a href="#Color">Color</a> | <a href="#FilePathList">FilePathList</a> | <a href="#Font">Font</a> | <a href="#GlyphInfo">GlyphInfo</a> | <a href="#Image">Image</a>
+<a href="#Material">Material</a> | <a href="#MaterialMap">MaterialMap</a> | <a href="#Matrix">Matrix</a> | <a href="#Matrix">Matrix</a> | <a href="#Mesh">Mesh</a>
+<a href="#Model">Model</a> | <a href="#ModelAnimation">ModelAnimation</a> | <a href="#Music">Music</a> | <a href="#NPatchInfo">NPatchInfo</a> | <a href="#Ray">Ray</a>
+<a href="#RayCollision">RayCollision</a> | <a href="#Rectangle">Rectangle</a> | <a href="#RenderTexture">RenderTexture</a> | <a href="#Shader">Shader</a> | <a href="#Sound">Sound</a>
+<a href="#Texture">Texture</a> | <a href="#Transform">Transform</a> | <a href="#Vector2">Vector2</a> | <a href="#Vector3">Vector3</a> | <a href="#Vector4">Vector4</a>
+<a href="#VrDeviceInfo">VrDeviceInfo</a> | <a href="#VrStereoConfig">VrStereoConfig</a> | <a href="#Wave">Wave</a> | <a href="#rlDrawCall">rlDrawCall</a> | <a href="#rlRenderBatch">rlRenderBatch</a>
+<a href="#rlVertexBuffer">rlVertexBuffer</a>
 
 [ <a href="#toc">ToC</a> ]
 <h2 id="Vector2"><code>Vector2</code> structure</h2>
@@ -1427,9 +1438,29 @@ Bound as | Name | API
 [ <a href="#structs">Structs</a> | <a href="#toc">ToC</a> ]
 
 ---
+<h2 id="aliases">Aliases</h2>
+
+Alias Name | Type | Description
+-----------|------|------------
+`Quaternion` | `<a href="#Vector4">Vector4</a>` | Quaternion, 4 components (Vector4 alias)
+`Texture2D` | `<a href="#Texture">Texture</a>` | Texture2D, same as Texture
+`TextureCubemap` | `<a href="#Texture">Texture</a>` | TextureCubemap, same as Texture
+`RenderTexture2D` | `<a href="#RenderTexture">RenderTexture</a>` | RenderTexture2D, same as RenderTexture
+`Camera` | `<a href="#Camera3D">Camera3D</a>` | Camera type fallback, defaults to Camera3D
+
+[ <a href="#toc">ToC</a> ]
+
 <h2 id="enums">Enumerations</h2>
 
-<a href="#BlendMode">BlendMode</a> | <a href="#CameraMode">CameraMode</a> | <a href="#CameraProjection">CameraProjection</a> | <a href="#ConfigFlags">ConfigFlags</a> | <a href="#CubemapLayout">CubemapLayout</a> | <a href="#FontType">FontType</a> | <a href="#GamepadAxis">GamepadAxis</a> | <a href="#GamepadButton">GamepadButton</a> | <a href="#Gesture">Gesture</a> | <a href="#KeyboardKey">KeyboardKey</a> | <a href="#MaterialMapIndex">MaterialMapIndex</a> | <a href="#MouseButton">MouseButton</a> | <a href="#MouseCursor">MouseCursor</a> | <a href="#NPatchLayout">NPatchLayout</a> | <a href="#PixelFormat">PixelFormat</a> | <a href="#ShaderAttributeDataType">ShaderAttributeDataType</a> | <a href="#ShaderLocationIndex">ShaderLocationIndex</a> | <a href="#ShaderUniformDataType">ShaderUniformDataType</a> | <a href="#TextureFilter">TextureFilter</a> | <a href="#TextureWrap">TextureWrap</a> | <a href="#TraceLogLevel">TraceLogLevel</a> | <a href="#rlBlendMode">rlBlendMode</a> | <a href="#rlFramebufferAttachTextureType">rlFramebufferAttachTextureType</a> | <a href="#rlFramebufferAttachType">rlFramebufferAttachType</a> | <a href="#rlGlVersion">rlGlVersion</a> | <a href="#rlPixelFormat">rlPixelFormat</a> | <a href="#rlShaderAttributeDataType">rlShaderAttributeDataType</a> | <a href="#rlShaderLocationIndex">rlShaderLocationIndex</a> | <a href="#rlShaderUniformDataType">rlShaderUniformDataType</a> | <a href="#rlTextureFilter">rlTextureFilter</a> | <a href="#rlTraceLogLevel">rlTraceLogLevel</a>
+Item|Item|Item|Item|Item
+--------|--------|--------|--------|--------
+<a href="#BlendMode">BlendMode</a> | <a href="#CameraMode">CameraMode</a> | <a href="#CameraProjection">CameraProjection</a> | <a href="#ConfigFlags">ConfigFlags</a> | <a href="#CubemapLayout">CubemapLayout</a>
+<a href="#FontType">FontType</a> | <a href="#GamepadAxis">GamepadAxis</a> | <a href="#GamepadButton">GamepadButton</a> | <a href="#Gesture">Gesture</a> | <a href="#KeyboardKey">KeyboardKey</a>
+<a href="#MaterialMapIndex">MaterialMapIndex</a> | <a href="#MouseButton">MouseButton</a> | <a href="#MouseCursor">MouseCursor</a> | <a href="#NPatchLayout">NPatchLayout</a> | <a href="#PixelFormat">PixelFormat</a>
+<a href="#ShaderAttributeDataType">ShaderAttributeDataType</a> | <a href="#ShaderLocationIndex">ShaderLocationIndex</a> | <a href="#ShaderUniformDataType">ShaderUniformDataType</a> | <a href="#TextureFilter">TextureFilter</a> | <a href="#TextureWrap">TextureWrap</a>
+<a href="#TraceLogLevel">TraceLogLevel</a> | <a href="#rlBlendMode">rlBlendMode</a> | <a href="#rlFramebufferAttachTextureType">rlFramebufferAttachTextureType</a> | <a href="#rlFramebufferAttachType">rlFramebufferAttachType</a> | <a href="#rlGlVersion">rlGlVersion</a>
+<a href="#rlPixelFormat">rlPixelFormat</a> | <a href="#rlShaderAttributeDataType">rlShaderAttributeDataType</a> | <a href="#rlShaderLocationIndex">rlShaderLocationIndex</a> | <a href="#rlShaderUniformDataType">rlShaderUniformDataType</a> | <a href="#rlTextureFilter">rlTextureFilter</a>
+<a href="#rlTraceLogLevel">rlTraceLogLevel</a>
 
 [ <a href="#toc">ToC</a> ]
 
@@ -2140,9 +2171,269 @@ Name | Value | Description
 [ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
 
 ---
+<h2 id="defines">Constants</h2>
+
+Name | Value | Description
+-----|-------|------------
+`RAYLIB_VERSION` | `'4.2'` | *n/a*
+`PI` | `3.141592653589793` | *n/a*
+`DEG2RAD` | `(PI / 180.0)` | *n/a*
+`RAD2DEG` | `(180.0 / PI)` | *n/a*
+`LIGHTGRAY` | `Color(200, 200, 200, 255)` |  <span style="color:rgba(200, 200, 200, 255);">█████</span> Light Gray
+`GRAY` | `Color(130, 130, 130, 255)` |  <span style="color:rgba(130, 130, 130, 255);">█████</span> Gray
+`DARKGRAY` | `Color(80, 80, 80, 255)` |  <span style="color:rgba(80, 80, 80, 255);">█████</span> Dark Gray
+`YELLOW` | `Color(253, 249, 0, 255)` |  <span style="color:rgba(253, 249, 0, 255);">█████</span> Yellow
+`GOLD` | `Color(255, 203, 0, 255)` |  <span style="color:rgba(255, 203, 0, 255);">█████</span> Gold
+`ORANGE` | `Color(255, 161, 0, 255)` |  <span style="color:rgba(255, 161, 0, 255);">█████</span> Orange
+`PINK` | `Color(255, 109, 194, 255)` |  <span style="color:rgba(255, 109, 194, 255);">█████</span> Pink
+`RED` | `Color(230, 41, 55, 255)` |  <span style="color:rgba(230, 41, 55, 255);">█████</span> Red
+`MAROON` | `Color(190, 33, 55, 255)` |  <span style="color:rgba(190, 33, 55, 255);">█████</span> Maroon
+`GREEN` | `Color(0, 228, 48, 255)` |  <span style="color:rgba(0, 228, 48, 255);">█████</span> Green
+`LIME` | `Color(0, 158, 47, 255)` |  <span style="color:rgba(0, 158, 47, 255);">█████</span> Lime
+`DARKGREEN` | `Color(0, 117, 44, 255)` |  <span style="color:rgba(0, 117, 44, 255);">█████</span> Dark Green
+`SKYBLUE` | `Color(102, 191, 255, 255)` |  <span style="color:rgba(102, 191, 255, 255);">█████</span> Sky Blue
+`BLUE` | `Color(0, 121, 241, 255)` |  <span style="color:rgba(0, 121, 241, 255);">█████</span> Blue
+`DARKBLUE` | `Color(0, 82, 172, 255)` |  <span style="color:rgba(0, 82, 172, 255);">█████</span> Dark Blue
+`PURPLE` | `Color(200, 122, 255, 255)` |  <span style="color:rgba(200, 122, 255, 255);">█████</span> Purple
+`VIOLET` | `Color(135, 60, 190, 255)` |  <span style="color:rgba(135, 60, 190, 255);">█████</span> Violet
+`DARKPURPLE` | `Color(112, 31, 126, 255)` |  <span style="color:rgba(112, 31, 126, 255);">█████</span> Dark Purple
+`BEIGE` | `Color(211, 176, 131, 255)` |  <span style="color:rgba(211, 176, 131, 255);">█████</span> Beige
+`BROWN` | `Color(127, 106, 79, 255)` |  <span style="color:rgba(127, 106, 79, 255);">█████</span> Brown
+`DARKBROWN` | `Color(76, 63, 47, 255)` |  <span style="color:rgba(76, 63, 47, 255);">█████</span> Dark Brown
+`WHITE` | `Color(255, 255, 255, 255)` |  <span style="color:rgba(255, 255, 255, 255);">█████</span> White
+`BLACK` | `Color(0, 0, 0, 255)` |  <span style="color:rgba(0, 0, 0, 255);">█████</span> Black
+`BLANK` | `Color(0, 0, 0, 0)` |  <span style="color:rgba(0, 0, 0, 0);">█████</span> Blank (Transparent)
+`MAGENTA` | `Color(255, 0, 255, 255)` |  <span style="color:rgba(255, 0, 255, 255);">█████</span> Magenta
+`RAYWHITE` | `Color(245, 245, 245, 255)` |  <span style="color:rgba(245, 245, 245, 255);">█████</span> My own White (raylib logo)
+`RLGL_VERSION` | `'4.0'` | *n/a*
+`RL_DEFAULT_BATCH_BUFFER_ELEMENTS` | `8192` | *n/a*
+`RL_DEFAULT_BATCH_BUFFERS` | `1` | Default number of batch buffers (multi-buffering)
+`RL_DEFAULT_BATCH_DRAWCALLS` | `256` | Default number of batch draw calls (by state changes: mode, texture)
+`RL_DEFAULT_BATCH_MAX_TEXTURE_UNITS` | `4` | Maximum number of textures units that can be activated on batch drawing (SetShaderValueTexture())
+`RL_MAX_MATRIX_STACK_SIZE` | `32` | Maximum size of Matrix stack
+`RL_MAX_SHADER_LOCATIONS` | `32` | Maximum number of shader locations supported
+`RL_CULL_DISTANCE_NEAR` | `0.01` | Default near cull distance
+`RL_CULL_DISTANCE_FAR` | `1000.0` | Default far cull distance
+`RL_TEXTURE_WRAP_S` | `10242` | GL_TEXTURE_WRAP_S
+`RL_TEXTURE_WRAP_T` | `10243` | GL_TEXTURE_WRAP_T
+`RL_TEXTURE_MAG_FILTER` | `10240` | GL_TEXTURE_MAG_FILTER
+`RL_TEXTURE_MIN_FILTER` | `10241` | GL_TEXTURE_MIN_FILTER
+`RL_TEXTURE_FILTER_NEAREST` | `9728` | GL_NEAREST
+`RL_TEXTURE_FILTER_LINEAR` | `9729` | GL_LINEAR
+`RL_TEXTURE_FILTER_MIP_NEAREST` | `9984` | GL_NEAREST_MIPMAP_NEAREST
+`RL_TEXTURE_FILTER_NEAREST_MIP_LINEAR` | `9986` | GL_NEAREST_MIPMAP_LINEAR
+`RL_TEXTURE_FILTER_LINEAR_MIP_NEAREST` | `9985` | GL_LINEAR_MIPMAP_NEAREST
+`RL_TEXTURE_FILTER_MIP_LINEAR` | `9987` | GL_LINEAR_MIPMAP_LINEAR
+`RL_TEXTURE_FILTER_ANISOTROPIC` | `12288` | Anisotropic filter (custom identifier)
+`RL_TEXTURE_WRAP_REPEAT` | `10497` | GL_REPEAT
+`RL_TEXTURE_WRAP_CLAMP` | `33071` | GL_CLAMP_TO_EDGE
+`RL_TEXTURE_WRAP_MIRROR_REPEAT` | `33648` | GL_MIRRORED_REPEAT
+`RL_TEXTURE_WRAP_MIRROR_CLAMP` | `34626` | GL_MIRROR_CLAMP_EXT
+`RL_MODELVIEW` | `5888` | GL_MODELVIEW
+`RL_PROJECTION` | `5889` | GL_PROJECTION
+`RL_TEXTURE` | `5890` | GL_TEXTURE
+`RL_LINES` | `1` | GL_LINES
+`RL_TRIANGLES` | `4` | GL_TRIANGLES
+`RL_QUADS` | `7` | GL_QUADS
+`RL_UNSIGNED_BYTE` | `5121` | GL_UNSIGNED_BYTE
+`RL_FLOAT` | `5126` | GL_FLOAT
+`RL_STREAM_DRAW` | `35040` | GL_STREAM_DRAW
+`RL_STREAM_READ` | `35041` | GL_STREAM_READ
+`RL_STREAM_COPY` | `35042` | GL_STREAM_COPY
+`RL_STATIC_DRAW` | `35044` | GL_STATIC_DRAW
+`RL_STATIC_READ` | `35045` | GL_STATIC_READ
+`RL_STATIC_COPY` | `35046` | GL_STATIC_COPY
+`RL_DYNAMIC_DRAW` | `35048` | GL_DYNAMIC_DRAW
+`RL_DYNAMIC_READ` | `35049` | GL_DYNAMIC_READ
+`RL_DYNAMIC_COPY` | `35050` | GL_DYNAMIC_COPY
+`RL_FRAGMENT_SHADER` | `35632` | GL_FRAGMENT_SHADER
+`RL_VERTEX_SHADER` | `35633` | GL_VERTEX_SHADER
+`RL_COMPUTE_SHADER` | `37305` | GL_COMPUTE_SHADER
+
+[ <a href="#toc">ToC</a> ]
+
+<h2 id="callbacks">Callbacks</h2>
+
+To define and use your own callbacks, you can do like below:
+
+```python
+# defines a callback function decorating it with the AudioCallback CFUNCTYPE
+@AudioCallback
+def my_callback(data, frames):
+    # TODO: some logic
+    pass
+
+# then, somewhere ahead in the code
+set_audio_stream_callback(some_stream, my_callback)
+
+```
+
+Name | Signature | Description
+-----|-----------|------------
+`TraceLogCallback` | `(log_level: 'int', text: 'Union[str, CharPtr]', args: 'bytes') -> None` | Logging: Redirect trace log messages
+`LoadFileDataCallback` | `(file_name: 'Union[str, CharPtr]', bytes_read: 'Union[Seq[int], UIntPtr]') -> Union[Seq[int], UCharPtr]` | FileIO: Load binary data
+`SaveFileDataCallback` | `(file_name: 'Union[str, CharPtr]', data: 'bytes', bytes_to_write: 'int') -> bool` | FileIO: Save binary data
+`LoadFileTextCallback` | `(file_name: 'Union[str, CharPtr]') -> Union[str, CharPtr]` | FileIO: Load text data
+`SaveFileTextCallback` | `(file_name: 'Union[str, CharPtr]', text: 'Union[str, CharPtr]') -> bool` | FileIO: Save text data
+`AudioCallback` | `(buffer_data: 'bytes', frames: 'int') -> None` | *n/a*
+
+[ <a href="#toc">ToC</a> ]
+
 <h2 id="funcs">Functions</h2>
 
-<a href="#AttachAudioStreamProcessor">AttachAudioStreamProcessor</a> | <a href="#BeginBlendMode">BeginBlendMode</a> | <a href="#BeginDrawing">BeginDrawing</a> | <a href="#BeginMode2D">BeginMode2D</a> | <a href="#BeginMode3D">BeginMode3D</a> | <a href="#BeginScissorMode">BeginScissorMode</a> | <a href="#BeginShaderMode">BeginShaderMode</a> | <a href="#BeginTextureMode">BeginTextureMode</a> | <a href="#BeginVrStereoMode">BeginVrStereoMode</a> | <a href="#ChangeDirectory">ChangeDirectory</a> | <a href="#CheckCollisionBoxSphere">CheckCollisionBoxSphere</a> | <a href="#CheckCollisionBoxes">CheckCollisionBoxes</a> | <a href="#CheckCollisionCircleRec">CheckCollisionCircleRec</a> | <a href="#CheckCollisionCircles">CheckCollisionCircles</a> | <a href="#CheckCollisionLines">CheckCollisionLines</a> | <a href="#CheckCollisionPointCircle">CheckCollisionPointCircle</a> | <a href="#CheckCollisionPointLine">CheckCollisionPointLine</a> | <a href="#CheckCollisionPointRec">CheckCollisionPointRec</a> | <a href="#CheckCollisionPointTriangle">CheckCollisionPointTriangle</a> | <a href="#CheckCollisionRecs">CheckCollisionRecs</a> | <a href="#CheckCollisionSpheres">CheckCollisionSpheres</a> | <a href="#Clamp">Clamp</a> | <a href="#ClearBackground">ClearBackground</a> | <a href="#ClearWindowState">ClearWindowState</a> | <a href="#CloseAudioDevice">CloseAudioDevice</a> | <a href="#CloseWindow">CloseWindow</a> | <a href="#CodepointToUTF8">CodepointToUTF8</a> | <a href="#ColorAlpha">ColorAlpha</a> | <a href="#ColorAlphaBlend">ColorAlphaBlend</a> | <a href="#ColorFromHSV">ColorFromHSV</a> | <a href="#ColorFromNormalized">ColorFromNormalized</a> | <a href="#ColorNormalize">ColorNormalize</a> | <a href="#ColorToHSV">ColorToHSV</a> | <a href="#ColorToInt">ColorToInt</a> | <a href="#CompressData">CompressData</a> | <a href="#DecodeDataBase64">DecodeDataBase64</a> | <a href="#DecompressData">DecompressData</a> | <a href="#DetachAudioStreamProcessor">DetachAudioStreamProcessor</a> | <a href="#DirectoryExists">DirectoryExists</a> | <a href="#DisableCursor">DisableCursor</a> | <a href="#DisableEventWaiting">DisableEventWaiting</a> | <a href="#DrawBillboard">DrawBillboard</a> | <a href="#DrawBillboardPro">DrawBillboardPro</a> | <a href="#DrawBillboardRec">DrawBillboardRec</a> | <a href="#DrawBoundingBox">DrawBoundingBox</a> | <a href="#DrawCircle">DrawCircle</a> | <a href="#DrawCircle3D">DrawCircle3D</a> | <a href="#DrawCircleGradient">DrawCircleGradient</a> | <a href="#DrawCircleLines">DrawCircleLines</a> | <a href="#DrawCircleSector">DrawCircleSector</a> | <a href="#DrawCircleSectorLines">DrawCircleSectorLines</a> | <a href="#DrawCircleV">DrawCircleV</a> | <a href="#DrawCube">DrawCube</a> | <a href="#DrawCubeTexture">DrawCubeTexture</a> | <a href="#DrawCubeTextureRec">DrawCubeTextureRec</a> | <a href="#DrawCubeV">DrawCubeV</a> | <a href="#DrawCubeWires">DrawCubeWires</a> | <a href="#DrawCubeWiresV">DrawCubeWiresV</a> | <a href="#DrawCylinder">DrawCylinder</a> | <a href="#DrawCylinderEx">DrawCylinderEx</a> | <a href="#DrawCylinderWires">DrawCylinderWires</a> | <a href="#DrawCylinderWiresEx">DrawCylinderWiresEx</a> | <a href="#DrawEllipse">DrawEllipse</a> | <a href="#DrawEllipseLines">DrawEllipseLines</a> | <a href="#DrawFPS">DrawFPS</a> | <a href="#DrawGrid">DrawGrid</a> | <a href="#DrawLine">DrawLine</a> | <a href="#DrawLine3D">DrawLine3D</a> | <a href="#DrawLineBezier">DrawLineBezier</a> | <a href="#DrawLineBezierCubic">DrawLineBezierCubic</a> | <a href="#DrawLineBezierQuad">DrawLineBezierQuad</a> | <a href="#DrawLineEx">DrawLineEx</a> | <a href="#DrawLineStrip">DrawLineStrip</a> | <a href="#DrawLineV">DrawLineV</a> | <a href="#DrawMesh">DrawMesh</a> | <a href="#DrawMeshInstanced">DrawMeshInstanced</a> | <a href="#DrawModel">DrawModel</a> | <a href="#DrawModelEx">DrawModelEx</a> | <a href="#DrawModelWires">DrawModelWires</a> | <a href="#DrawModelWiresEx">DrawModelWiresEx</a> | <a href="#DrawPixel">DrawPixel</a> | <a href="#DrawPixelV">DrawPixelV</a> | <a href="#DrawPlane">DrawPlane</a> | <a href="#DrawPoint3D">DrawPoint3D</a> | <a href="#DrawPoly">DrawPoly</a> | <a href="#DrawPolyLines">DrawPolyLines</a> | <a href="#DrawPolyLinesEx">DrawPolyLinesEx</a> | <a href="#DrawRay">DrawRay</a> | <a href="#DrawRectangle">DrawRectangle</a> | <a href="#DrawRectangleGradientEx">DrawRectangleGradientEx</a> | <a href="#DrawRectangleGradientH">DrawRectangleGradientH</a> | <a href="#DrawRectangleGradientV">DrawRectangleGradientV</a> | <a href="#DrawRectangleLines">DrawRectangleLines</a> | <a href="#DrawRectangleLinesEx">DrawRectangleLinesEx</a> | <a href="#DrawRectanglePro">DrawRectanglePro</a> | <a href="#DrawRectangleRec">DrawRectangleRec</a> | <a href="#DrawRectangleRounded">DrawRectangleRounded</a> | <a href="#DrawRectangleRoundedLines">DrawRectangleRoundedLines</a> | <a href="#DrawRectangleV">DrawRectangleV</a> | <a href="#DrawRing">DrawRing</a> | <a href="#DrawRingLines">DrawRingLines</a> | <a href="#DrawSphere">DrawSphere</a> | <a href="#DrawSphereEx">DrawSphereEx</a> | <a href="#DrawSphereWires">DrawSphereWires</a> | <a href="#DrawText">DrawText</a> | <a href="#DrawTextCodepoint">DrawTextCodepoint</a> | <a href="#DrawTextCodepoints">DrawTextCodepoints</a> | <a href="#DrawTextEx">DrawTextEx</a> | <a href="#DrawTextPro">DrawTextPro</a> | <a href="#DrawTexture">DrawTexture</a> | <a href="#DrawTextureEx">DrawTextureEx</a> | <a href="#DrawTextureNPatch">DrawTextureNPatch</a> | <a href="#DrawTexturePoly">DrawTexturePoly</a> | <a href="#DrawTexturePro">DrawTexturePro</a> | <a href="#DrawTextureQuad">DrawTextureQuad</a> | <a href="#DrawTextureRec">DrawTextureRec</a> | <a href="#DrawTextureTiled">DrawTextureTiled</a> | <a href="#DrawTextureV">DrawTextureV</a> | <a href="#DrawTriangle">DrawTriangle</a> | <a href="#DrawTriangle3D">DrawTriangle3D</a> | <a href="#DrawTriangleFan">DrawTriangleFan</a> | <a href="#DrawTriangleLines">DrawTriangleLines</a> | <a href="#DrawTriangleStrip">DrawTriangleStrip</a> | <a href="#DrawTriangleStrip3D">DrawTriangleStrip3D</a> | <a href="#EnableCursor">EnableCursor</a> | <a href="#EnableEventWaiting">EnableEventWaiting</a> | <a href="#EncodeDataBase64">EncodeDataBase64</a> | <a href="#EndBlendMode">EndBlendMode</a> | <a href="#EndDrawing">EndDrawing</a> | <a href="#EndMode2D">EndMode2D</a> | <a href="#EndMode3D">EndMode3D</a> | <a href="#EndScissorMode">EndScissorMode</a> | <a href="#EndShaderMode">EndShaderMode</a> | <a href="#EndTextureMode">EndTextureMode</a> | <a href="#EndVrStereoMode">EndVrStereoMode</a> | <a href="#ExportDataAsCode">ExportDataAsCode</a> | <a href="#ExportFontAsCode">ExportFontAsCode</a> | <a href="#ExportImage">ExportImage</a> | <a href="#ExportImageAsCode">ExportImageAsCode</a> | <a href="#ExportMesh">ExportMesh</a> | <a href="#ExportWave">ExportWave</a> | <a href="#ExportWaveAsCode">ExportWaveAsCode</a> | <a href="#Fade">Fade</a> | <a href="#FileExists">FileExists</a> | <a href="#FloatEquals">FloatEquals</a> | <a href="#GenImageCellular">GenImageCellular</a> | <a href="#GenImageChecked">GenImageChecked</a> | <a href="#GenImageColor">GenImageColor</a> | <a href="#GenImageFontAtlas">GenImageFontAtlas</a> | <a href="#GenImageGradientH">GenImageGradientH</a> | <a href="#GenImageGradientRadial">GenImageGradientRadial</a> | <a href="#GenImageGradientV">GenImageGradientV</a> | <a href="#GenImageWhiteNoise">GenImageWhiteNoise</a> | <a href="#GenMeshCone">GenMeshCone</a> | <a href="#GenMeshCube">GenMeshCube</a> | <a href="#GenMeshCubicmap">GenMeshCubicmap</a> | <a href="#GenMeshCylinder">GenMeshCylinder</a> | <a href="#GenMeshHeightmap">GenMeshHeightmap</a> | <a href="#GenMeshHemiSphere">GenMeshHemiSphere</a> | <a href="#GenMeshKnot">GenMeshKnot</a> | <a href="#GenMeshPlane">GenMeshPlane</a> | <a href="#GenMeshPoly">GenMeshPoly</a> | <a href="#GenMeshSphere">GenMeshSphere</a> | <a href="#GenMeshTangents">GenMeshTangents</a> | <a href="#GenMeshTorus">GenMeshTorus</a> | <a href="#GenTextureMipmaps">GenTextureMipmaps</a> | <a href="#GetApplicationDirectory">GetApplicationDirectory</a> | <a href="#GetCameraMatrix">GetCameraMatrix</a> | <a href="#GetCameraMatrix2D">GetCameraMatrix2D</a> | <a href="#GetCharPressed">GetCharPressed</a> | <a href="#GetClipboardText">GetClipboardText</a> | <a href="#GetCodepoint">GetCodepoint</a> | <a href="#GetCodepointCount">GetCodepointCount</a> | <a href="#GetCollisionRec">GetCollisionRec</a> | <a href="#GetColor">GetColor</a> | <a href="#GetCurrentMonitor">GetCurrentMonitor</a> | <a href="#GetDirectoryPath">GetDirectoryPath</a> | <a href="#GetFPS">GetFPS</a> | <a href="#GetFileExtension">GetFileExtension</a> | <a href="#GetFileLength">GetFileLength</a> | <a href="#GetFileModTime">GetFileModTime</a> | <a href="#GetFileName">GetFileName</a> | <a href="#GetFileNameWithoutExt">GetFileNameWithoutExt</a> | <a href="#GetFontDefault">GetFontDefault</a> | <a href="#GetFrameTime">GetFrameTime</a> | <a href="#GetGamepadAxisCount">GetGamepadAxisCount</a> | <a href="#GetGamepadAxisMovement">GetGamepadAxisMovement</a> | <a href="#GetGamepadButtonPressed">GetGamepadButtonPressed</a> | <a href="#GetGamepadName">GetGamepadName</a> | <a href="#GetGestureDetected">GetGestureDetected</a> | <a href="#GetGestureDragAngle">GetGestureDragAngle</a> | <a href="#GetGestureDragVector">GetGestureDragVector</a> | <a href="#GetGestureHoldDuration">GetGestureHoldDuration</a> | <a href="#GetGesturePinchAngle">GetGesturePinchAngle</a> | <a href="#GetGesturePinchVector">GetGesturePinchVector</a> | <a href="#GetGlyphAtlasRec">GetGlyphAtlasRec</a> | <a href="#GetGlyphIndex">GetGlyphIndex</a> | <a href="#GetGlyphInfo">GetGlyphInfo</a> | <a href="#GetImageAlphaBorder">GetImageAlphaBorder</a> | <a href="#GetImageColor">GetImageColor</a> | <a href="#GetKeyPressed">GetKeyPressed</a> | <a href="#GetMeshBoundingBox">GetMeshBoundingBox</a> | <a href="#GetModelBoundingBox">GetModelBoundingBox</a> | <a href="#GetMonitorCount">GetMonitorCount</a> | <a href="#GetMonitorHeight">GetMonitorHeight</a> | <a href="#GetMonitorName">GetMonitorName</a> | <a href="#GetMonitorPhysicalHeight">GetMonitorPhysicalHeight</a> | <a href="#GetMonitorPhysicalWidth">GetMonitorPhysicalWidth</a> | <a href="#GetMonitorPosition">GetMonitorPosition</a> | <a href="#GetMonitorRefreshRate">GetMonitorRefreshRate</a> | <a href="#GetMonitorWidth">GetMonitorWidth</a> | <a href="#GetMouseDelta">GetMouseDelta</a> | <a href="#GetMousePosition">GetMousePosition</a> | <a href="#GetMouseRay">GetMouseRay</a> | <a href="#GetMouseWheelMove">GetMouseWheelMove</a> | <a href="#GetMouseWheelMoveV">GetMouseWheelMoveV</a> | <a href="#GetMouseX">GetMouseX</a> | <a href="#GetMouseY">GetMouseY</a> | <a href="#GetMusicTimeLength">GetMusicTimeLength</a> | <a href="#GetMusicTimePlayed">GetMusicTimePlayed</a> | <a href="#GetPixelColor">GetPixelColor</a> | <a href="#GetPixelDataSize">GetPixelDataSize</a> | <a href="#GetPrevDirectoryPath">GetPrevDirectoryPath</a> | <a href="#GetRandomValue">GetRandomValue</a> | <a href="#GetRayCollisionBox">GetRayCollisionBox</a> | <a href="#GetRayCollisionMesh">GetRayCollisionMesh</a> | <a href="#GetRayCollisionQuad">GetRayCollisionQuad</a> | <a href="#GetRayCollisionSphere">GetRayCollisionSphere</a> | <a href="#GetRayCollisionTriangle">GetRayCollisionTriangle</a> | <a href="#GetRenderHeight">GetRenderHeight</a> | <a href="#GetRenderWidth">GetRenderWidth</a> | <a href="#GetScreenHeight">GetScreenHeight</a> | <a href="#GetScreenToWorld2D">GetScreenToWorld2D</a> | <a href="#GetScreenWidth">GetScreenWidth</a> | <a href="#GetShaderLocation">GetShaderLocation</a> | <a href="#GetShaderLocationAttrib">GetShaderLocationAttrib</a> | <a href="#GetSoundsPlaying">GetSoundsPlaying</a> | <a href="#GetTime">GetTime</a> | <a href="#GetTouchPointCount">GetTouchPointCount</a> | <a href="#GetTouchPointId">GetTouchPointId</a> | <a href="#GetTouchPosition">GetTouchPosition</a> | <a href="#GetTouchX">GetTouchX</a> | <a href="#GetTouchY">GetTouchY</a> | <a href="#GetWindowHandle">GetWindowHandle</a> | <a href="#GetWindowPosition">GetWindowPosition</a> | <a href="#GetWindowScaleDPI">GetWindowScaleDPI</a> | <a href="#GetWorkingDirectory">GetWorkingDirectory</a> | <a href="#GetWorldToScreen">GetWorldToScreen</a> | <a href="#GetWorldToScreen2D">GetWorldToScreen2D</a> | <a href="#GetWorldToScreenEx">GetWorldToScreenEx</a> | <a href="#HideCursor">HideCursor</a> | <a href="#ImageAlphaClear">ImageAlphaClear</a> | <a href="#ImageAlphaCrop">ImageAlphaCrop</a> | <a href="#ImageAlphaMask">ImageAlphaMask</a> | <a href="#ImageAlphaPremultiply">ImageAlphaPremultiply</a> | <a href="#ImageClearBackground">ImageClearBackground</a> | <a href="#ImageColorBrightness">ImageColorBrightness</a> | <a href="#ImageColorContrast">ImageColorContrast</a> | <a href="#ImageColorGrayscale">ImageColorGrayscale</a> | <a href="#ImageColorInvert">ImageColorInvert</a> | <a href="#ImageColorReplace">ImageColorReplace</a> | <a href="#ImageColorTint">ImageColorTint</a> | <a href="#ImageCopy">ImageCopy</a> | <a href="#ImageCrop">ImageCrop</a> | <a href="#ImageDither">ImageDither</a> | <a href="#ImageDraw">ImageDraw</a> | <a href="#ImageDrawCircle">ImageDrawCircle</a> | <a href="#ImageDrawCircleV">ImageDrawCircleV</a> | <a href="#ImageDrawLine">ImageDrawLine</a> | <a href="#ImageDrawLineV">ImageDrawLineV</a> | <a href="#ImageDrawPixel">ImageDrawPixel</a> | <a href="#ImageDrawPixelV">ImageDrawPixelV</a> | <a href="#ImageDrawRectangle">ImageDrawRectangle</a> | <a href="#ImageDrawRectangleLines">ImageDrawRectangleLines</a> | <a href="#ImageDrawRectangleRec">ImageDrawRectangleRec</a> | <a href="#ImageDrawRectangleV">ImageDrawRectangleV</a> | <a href="#ImageDrawText">ImageDrawText</a> | <a href="#ImageDrawTextEx">ImageDrawTextEx</a> | <a href="#ImageFlipHorizontal">ImageFlipHorizontal</a> | <a href="#ImageFlipVertical">ImageFlipVertical</a> | <a href="#ImageFormat">ImageFormat</a> | <a href="#ImageFromImage">ImageFromImage</a> | <a href="#ImageMipmaps">ImageMipmaps</a> | <a href="#ImageResize">ImageResize</a> | <a href="#ImageResizeCanvas">ImageResizeCanvas</a> | <a href="#ImageResizeNN">ImageResizeNN</a> | <a href="#ImageRotateCCW">ImageRotateCCW</a> | <a href="#ImageRotateCW">ImageRotateCW</a> | <a href="#ImageText">ImageText</a> | <a href="#ImageTextEx">ImageTextEx</a> | <a href="#ImageToPOT">ImageToPOT</a> | <a href="#InitAudioDevice">InitAudioDevice</a> | <a href="#InitWindow">InitWindow</a> | <a href="#IsAudioDeviceReady">IsAudioDeviceReady</a> | <a href="#IsAudioStreamPlaying">IsAudioStreamPlaying</a> | <a href="#IsAudioStreamProcessed">IsAudioStreamProcessed</a> | <a href="#IsCursorHidden">IsCursorHidden</a> | <a href="#IsCursorOnScreen">IsCursorOnScreen</a> | <a href="#IsFileDropped">IsFileDropped</a> | <a href="#IsFileExtension">IsFileExtension</a> | <a href="#IsGamepadAvailable">IsGamepadAvailable</a> | <a href="#IsGamepadButtonDown">IsGamepadButtonDown</a> | <a href="#IsGamepadButtonPressed">IsGamepadButtonPressed</a> | <a href="#IsGamepadButtonReleased">IsGamepadButtonReleased</a> | <a href="#IsGamepadButtonUp">IsGamepadButtonUp</a> | <a href="#IsGestureDetected">IsGestureDetected</a> | <a href="#IsKeyDown">IsKeyDown</a> | <a href="#IsKeyPressed">IsKeyPressed</a> | <a href="#IsKeyReleased">IsKeyReleased</a> | <a href="#IsKeyUp">IsKeyUp</a> | <a href="#IsModelAnimationValid">IsModelAnimationValid</a> | <a href="#IsMouseButtonDown">IsMouseButtonDown</a> | <a href="#IsMouseButtonPressed">IsMouseButtonPressed</a> | <a href="#IsMouseButtonReleased">IsMouseButtonReleased</a> | <a href="#IsMouseButtonUp">IsMouseButtonUp</a> | <a href="#IsMusicStreamPlaying">IsMusicStreamPlaying</a> | <a href="#IsPathFile">IsPathFile</a> | <a href="#IsSoundPlaying">IsSoundPlaying</a> | <a href="#IsWindowFocused">IsWindowFocused</a> | <a href="#IsWindowFullscreen">IsWindowFullscreen</a> | <a href="#IsWindowHidden">IsWindowHidden</a> | <a href="#IsWindowMaximized">IsWindowMaximized</a> | <a href="#IsWindowMinimized">IsWindowMinimized</a> | <a href="#IsWindowReady">IsWindowReady</a> | <a href="#IsWindowResized">IsWindowResized</a> | <a href="#IsWindowState">IsWindowState</a> | <a href="#Lerp">Lerp</a> | <a href="#LoadAudioStream">LoadAudioStream</a> | <a href="#LoadCodepoints">LoadCodepoints</a> | <a href="#LoadDirectoryFiles">LoadDirectoryFiles</a> | <a href="#LoadDirectoryFilesEx">LoadDirectoryFilesEx</a> | <a href="#LoadDroppedFiles">LoadDroppedFiles</a> | <a href="#LoadFileData">LoadFileData</a> | <a href="#LoadFileText">LoadFileText</a> | <a href="#LoadFont">LoadFont</a> | <a href="#LoadFontData">LoadFontData</a> | <a href="#LoadFontEx">LoadFontEx</a> | <a href="#LoadFontFromImage">LoadFontFromImage</a> | <a href="#LoadFontFromMemory">LoadFontFromMemory</a> | <a href="#LoadImage">LoadImage</a> | <a href="#LoadImageAnim">LoadImageAnim</a> | <a href="#LoadImageColors">LoadImageColors</a> | <a href="#LoadImageFromMemory">LoadImageFromMemory</a> | <a href="#LoadImageFromScreen">LoadImageFromScreen</a> | <a href="#LoadImageFromTexture">LoadImageFromTexture</a> | <a href="#LoadImagePalette">LoadImagePalette</a> | <a href="#LoadImageRaw">LoadImageRaw</a> | <a href="#LoadMaterialDefault">LoadMaterialDefault</a> | <a href="#LoadMaterials">LoadMaterials</a> | <a href="#LoadModel">LoadModel</a> | <a href="#LoadModelAnimations">LoadModelAnimations</a> | <a href="#LoadModelFromMesh">LoadModelFromMesh</a> | <a href="#LoadMusicStream">LoadMusicStream</a> | <a href="#LoadMusicStreamFromMemory">LoadMusicStreamFromMemory</a> | <a href="#LoadRenderTexture">LoadRenderTexture</a> | <a href="#LoadShader">LoadShader</a> | <a href="#LoadShaderFromMemory">LoadShaderFromMemory</a> | <a href="#LoadSound">LoadSound</a> | <a href="#LoadSoundFromWave">LoadSoundFromWave</a> | <a href="#LoadTexture">LoadTexture</a> | <a href="#LoadTextureCubemap">LoadTextureCubemap</a> | <a href="#LoadTextureFromImage">LoadTextureFromImage</a> | <a href="#LoadVrStereoConfig">LoadVrStereoConfig</a> | <a href="#LoadWave">LoadWave</a> | <a href="#LoadWaveFromMemory">LoadWaveFromMemory</a> | <a href="#LoadWaveSamples">LoadWaveSamples</a> | <a href="#MatrixAdd">MatrixAdd</a> | <a href="#MatrixDeterminant">MatrixDeterminant</a> | <a href="#MatrixFrustum">MatrixFrustum</a> | <a href="#MatrixIdentity">MatrixIdentity</a> | <a href="#MatrixInvert">MatrixInvert</a> | <a href="#MatrixLookAt">MatrixLookAt</a> | <a href="#MatrixMultiply">MatrixMultiply</a> | <a href="#MatrixOrtho">MatrixOrtho</a> | <a href="#MatrixPerspective">MatrixPerspective</a> | <a href="#MatrixRotate">MatrixRotate</a> | <a href="#MatrixRotateX">MatrixRotateX</a> | <a href="#MatrixRotateXYZ">MatrixRotateXYZ</a> | <a href="#MatrixRotateY">MatrixRotateY</a> | <a href="#MatrixRotateZ">MatrixRotateZ</a> | <a href="#MatrixRotateZYX">MatrixRotateZYX</a> | <a href="#MatrixScale">MatrixScale</a> | <a href="#MatrixSubtract">MatrixSubtract</a> | <a href="#MatrixToFloatV">MatrixToFloatV</a> | <a href="#MatrixTrace">MatrixTrace</a> | <a href="#MatrixTranslate">MatrixTranslate</a> | <a href="#MatrixTranspose">MatrixTranspose</a> | <a href="#MaximizeWindow">MaximizeWindow</a> | <a href="#MeasureText">MeasureText</a> | <a href="#MeasureTextEx">MeasureTextEx</a> | <a href="#MemAlloc">MemAlloc</a> | <a href="#MemFree">MemFree</a> | <a href="#MemRealloc">MemRealloc</a> | <a href="#MinimizeWindow">MinimizeWindow</a> | <a href="#Normalize">Normalize</a> | <a href="#OpenURL">OpenURL</a> | <a href="#PauseAudioStream">PauseAudioStream</a> | <a href="#PauseMusicStream">PauseMusicStream</a> | <a href="#PauseSound">PauseSound</a> | <a href="#PlayAudioStream">PlayAudioStream</a> | <a href="#PlayMusicStream">PlayMusicStream</a> | <a href="#PlaySound">PlaySound</a> | <a href="#PlaySoundMulti">PlaySoundMulti</a> | <a href="#PollInputEvents">PollInputEvents</a> | <a href="#QuaternionAdd">QuaternionAdd</a> | <a href="#QuaternionAddValue">QuaternionAddValue</a> | <a href="#QuaternionDivide">QuaternionDivide</a> | <a href="#QuaternionEquals">QuaternionEquals</a> | <a href="#QuaternionFromAxisAngle">QuaternionFromAxisAngle</a> | <a href="#QuaternionFromEuler">QuaternionFromEuler</a> | <a href="#QuaternionFromMatrix">QuaternionFromMatrix</a> | <a href="#QuaternionFromVector3ToVector3">QuaternionFromVector3ToVector3</a> | <a href="#QuaternionIdentity">QuaternionIdentity</a> | <a href="#QuaternionInvert">QuaternionInvert</a> | <a href="#QuaternionLength">QuaternionLength</a> | <a href="#QuaternionMultiply">QuaternionMultiply</a> | <a href="#QuaternionNlerp">QuaternionNlerp</a> | <a href="#QuaternionNormalize">QuaternionNormalize</a> | <a href="#QuaternionScale">QuaternionScale</a> | <a href="#QuaternionSlerp">QuaternionSlerp</a> | <a href="#QuaternionSubtract">QuaternionSubtract</a> | <a href="#QuaternionSubtractValue">QuaternionSubtractValue</a> | <a href="#QuaternionToAxisAngle">QuaternionToAxisAngle</a> | <a href="#QuaternionToEuler">QuaternionToEuler</a> | <a href="#QuaternionToMatrix">QuaternionToMatrix</a> | <a href="#QuaternionTransform">QuaternionTransform</a> | <a href="#Remap">Remap</a> | <a href="#RestoreWindow">RestoreWindow</a> | <a href="#ResumeAudioStream">ResumeAudioStream</a> | <a href="#ResumeMusicStream">ResumeMusicStream</a> | <a href="#ResumeSound">ResumeSound</a> | <a href="#SaveFileData">SaveFileData</a> | <a href="#SaveFileText">SaveFileText</a> | <a href="#SeekMusicStream">SeekMusicStream</a> | <a href="#SetAudioStreamBufferSizeDefault">SetAudioStreamBufferSizeDefault</a> | <a href="#SetAudioStreamCallback">SetAudioStreamCallback</a> | <a href="#SetAudioStreamPan">SetAudioStreamPan</a> | <a href="#SetAudioStreamPitch">SetAudioStreamPitch</a> | <a href="#SetAudioStreamVolume">SetAudioStreamVolume</a> | <a href="#SetCameraAltControl">SetCameraAltControl</a> | <a href="#SetCameraMode">SetCameraMode</a> | <a href="#SetCameraMoveControls">SetCameraMoveControls</a> | <a href="#SetCameraPanControl">SetCameraPanControl</a> | <a href="#SetCameraSmoothZoomControl">SetCameraSmoothZoomControl</a> | <a href="#SetClipboardText">SetClipboardText</a> | <a href="#SetConfigFlags">SetConfigFlags</a> | <a href="#SetExitKey">SetExitKey</a> | <a href="#SetGamepadMappings">SetGamepadMappings</a> | <a href="#SetGesturesEnabled">SetGesturesEnabled</a> | <a href="#SetLoadFileDataCallback">SetLoadFileDataCallback</a> | <a href="#SetLoadFileTextCallback">SetLoadFileTextCallback</a> | <a href="#SetMasterVolume">SetMasterVolume</a> | <a href="#SetMaterialTexture">SetMaterialTexture</a> | <a href="#SetModelMeshMaterial">SetModelMeshMaterial</a> | <a href="#SetMouseCursor">SetMouseCursor</a> | <a href="#SetMouseOffset">SetMouseOffset</a> | <a href="#SetMousePosition">SetMousePosition</a> | <a href="#SetMouseScale">SetMouseScale</a> | <a href="#SetMusicPan">SetMusicPan</a> | <a href="#SetMusicPitch">SetMusicPitch</a> | <a href="#SetMusicVolume">SetMusicVolume</a> | <a href="#SetPixelColor">SetPixelColor</a> | <a href="#SetRandomSeed">SetRandomSeed</a> | <a href="#SetSaveFileDataCallback">SetSaveFileDataCallback</a> | <a href="#SetSaveFileTextCallback">SetSaveFileTextCallback</a> | <a href="#SetShaderValue">SetShaderValue</a> | <a href="#SetShaderValueMatrix">SetShaderValueMatrix</a> | <a href="#SetShaderValueTexture">SetShaderValueTexture</a> | <a href="#SetShaderValueV">SetShaderValueV</a> | <a href="#SetShapesTexture">SetShapesTexture</a> | <a href="#SetSoundPan">SetSoundPan</a> | <a href="#SetSoundPitch">SetSoundPitch</a> | <a href="#SetSoundVolume">SetSoundVolume</a> | <a href="#SetTargetFPS">SetTargetFPS</a> | <a href="#SetTextureFilter">SetTextureFilter</a> | <a href="#SetTextureWrap">SetTextureWrap</a> | <a href="#SetTraceLogCallback">SetTraceLogCallback</a> | <a href="#SetTraceLogLevel">SetTraceLogLevel</a> | <a href="#SetWindowIcon">SetWindowIcon</a> | <a href="#SetWindowMinSize">SetWindowMinSize</a> | <a href="#SetWindowMonitor">SetWindowMonitor</a> | <a href="#SetWindowOpacity">SetWindowOpacity</a> | <a href="#SetWindowPosition">SetWindowPosition</a> | <a href="#SetWindowSize">SetWindowSize</a> | <a href="#SetWindowState">SetWindowState</a> | <a href="#SetWindowTitle">SetWindowTitle</a> | <a href="#ShowCursor">ShowCursor</a> | <a href="#StopAudioStream">StopAudioStream</a> | <a href="#StopMusicStream">StopMusicStream</a> | <a href="#StopSound">StopSound</a> | <a href="#StopSoundMulti">StopSoundMulti</a> | <a href="#SwapScreenBuffer">SwapScreenBuffer</a> | <a href="#TakeScreenshot">TakeScreenshot</a> | <a href="#TextAppend">TextAppend</a> | <a href="#TextCodepointsToUTF8">TextCodepointsToUTF8</a> | <a href="#TextCopy">TextCopy</a> | <a href="#TextFindIndex">TextFindIndex</a> | <a href="#TextFormat">TextFormat</a> | <a href="#TextInsert">TextInsert</a> | <a href="#TextIsEqual">TextIsEqual</a> | <a href="#TextJoin">TextJoin</a> | <a href="#TextLength">TextLength</a> | <a href="#TextReplace">TextReplace</a> | <a href="#TextSplit">TextSplit</a> | <a href="#TextSubtext">TextSubtext</a> | <a href="#TextToInteger">TextToInteger</a> | <a href="#TextToLower">TextToLower</a> | <a href="#TextToPascal">TextToPascal</a> | <a href="#TextToUpper">TextToUpper</a> | <a href="#ToggleFullscreen">ToggleFullscreen</a> | <a href="#TraceLog">TraceLog</a> | <a href="#UnloadAudioStream">UnloadAudioStream</a> | <a href="#UnloadCodepoints">UnloadCodepoints</a> | <a href="#UnloadDirectoryFiles">UnloadDirectoryFiles</a> | <a href="#UnloadDroppedFiles">UnloadDroppedFiles</a> | <a href="#UnloadFileData">UnloadFileData</a> | <a href="#UnloadFileText">UnloadFileText</a> | <a href="#UnloadFont">UnloadFont</a> | <a href="#UnloadFontData">UnloadFontData</a> | <a href="#UnloadImage">UnloadImage</a> | <a href="#UnloadImageColors">UnloadImageColors</a> | <a href="#UnloadImagePalette">UnloadImagePalette</a> | <a href="#UnloadMaterial">UnloadMaterial</a> | <a href="#UnloadMesh">UnloadMesh</a> | <a href="#UnloadModel">UnloadModel</a> | <a href="#UnloadModelAnimation">UnloadModelAnimation</a> | <a href="#UnloadModelAnimations">UnloadModelAnimations</a> | <a href="#UnloadModelKeepMeshes">UnloadModelKeepMeshes</a> | <a href="#UnloadMusicStream">UnloadMusicStream</a> | <a href="#UnloadRenderTexture">UnloadRenderTexture</a> | <a href="#UnloadShader">UnloadShader</a> | <a href="#UnloadSound">UnloadSound</a> | <a href="#UnloadTexture">UnloadTexture</a> | <a href="#UnloadVrStereoConfig">UnloadVrStereoConfig</a> | <a href="#UnloadWave">UnloadWave</a> | <a href="#UnloadWaveSamples">UnloadWaveSamples</a> | <a href="#UpdateAudioStream">UpdateAudioStream</a> | <a href="#UpdateCamera">UpdateCamera</a> | <a href="#UpdateMeshBuffer">UpdateMeshBuffer</a> | <a href="#UpdateModelAnimation">UpdateModelAnimation</a> | <a href="#UpdateMusicStream">UpdateMusicStream</a> | <a href="#UpdateSound">UpdateSound</a> | <a href="#UpdateTexture">UpdateTexture</a> | <a href="#UpdateTextureRec">UpdateTextureRec</a> | <a href="#UploadMesh">UploadMesh</a> | <a href="#Vector2Add">Vector2Add</a> | <a href="#Vector2AddValue">Vector2AddValue</a> | <a href="#Vector2Angle">Vector2Angle</a> | <a href="#Vector2Clamp">Vector2Clamp</a> | <a href="#Vector2ClampValue">Vector2ClampValue</a> | <a href="#Vector2Distance">Vector2Distance</a> | <a href="#Vector2DistanceSqr">Vector2DistanceSqr</a> | <a href="#Vector2Divide">Vector2Divide</a> | <a href="#Vector2DotProduct">Vector2DotProduct</a> | <a href="#Vector2Equals">Vector2Equals</a> | <a href="#Vector2Invert">Vector2Invert</a> | <a href="#Vector2Length">Vector2Length</a> | <a href="#Vector2LengthSqr">Vector2LengthSqr</a> | <a href="#Vector2Lerp">Vector2Lerp</a> | <a href="#Vector2MoveTowards">Vector2MoveTowards</a> | <a href="#Vector2Multiply">Vector2Multiply</a> | <a href="#Vector2Negate">Vector2Negate</a> | <a href="#Vector2Normalize">Vector2Normalize</a> | <a href="#Vector2One">Vector2One</a> | <a href="#Vector2Reflect">Vector2Reflect</a> | <a href="#Vector2Rotate">Vector2Rotate</a> | <a href="#Vector2Scale">Vector2Scale</a> | <a href="#Vector2Subtract">Vector2Subtract</a> | <a href="#Vector2SubtractValue">Vector2SubtractValue</a> | <a href="#Vector2Transform">Vector2Transform</a> | <a href="#Vector2Zero">Vector2Zero</a> | <a href="#Vector3Add">Vector3Add</a> | <a href="#Vector3AddValue">Vector3AddValue</a> | <a href="#Vector3Angle">Vector3Angle</a> | <a href="#Vector3Barycenter">Vector3Barycenter</a> | <a href="#Vector3Clamp">Vector3Clamp</a> | <a href="#Vector3ClampValue">Vector3ClampValue</a> | <a href="#Vector3CrossProduct">Vector3CrossProduct</a> | <a href="#Vector3Distance">Vector3Distance</a> | <a href="#Vector3DistanceSqr">Vector3DistanceSqr</a> | <a href="#Vector3Divide">Vector3Divide</a> | <a href="#Vector3DotProduct">Vector3DotProduct</a> | <a href="#Vector3Equals">Vector3Equals</a> | <a href="#Vector3Invert">Vector3Invert</a> | <a href="#Vector3Length">Vector3Length</a> | <a href="#Vector3LengthSqr">Vector3LengthSqr</a> | <a href="#Vector3Lerp">Vector3Lerp</a> | <a href="#Vector3Max">Vector3Max</a> | <a href="#Vector3Min">Vector3Min</a> | <a href="#Vector3Multiply">Vector3Multiply</a> | <a href="#Vector3Negate">Vector3Negate</a> | <a href="#Vector3Normalize">Vector3Normalize</a> | <a href="#Vector3One">Vector3One</a> | <a href="#Vector3OrthoNormalize">Vector3OrthoNormalize</a> | <a href="#Vector3Perpendicular">Vector3Perpendicular</a> | <a href="#Vector3Reflect">Vector3Reflect</a> | <a href="#Vector3Refract">Vector3Refract</a> | <a href="#Vector3RotateByAxisAngle">Vector3RotateByAxisAngle</a> | <a href="#Vector3RotateByQuaternion">Vector3RotateByQuaternion</a> | <a href="#Vector3Scale">Vector3Scale</a> | <a href="#Vector3Subtract">Vector3Subtract</a> | <a href="#Vector3SubtractValue">Vector3SubtractValue</a> | <a href="#Vector3ToFloatV">Vector3ToFloatV</a> | <a href="#Vector3Transform">Vector3Transform</a> | <a href="#Vector3Unproject">Vector3Unproject</a> | <a href="#Vector3Zero">Vector3Zero</a> | <a href="#WaitTime">WaitTime</a> | <a href="#WaveCopy">WaveCopy</a> | <a href="#WaveCrop">WaveCrop</a> | <a href="#WaveFormat">WaveFormat</a> | <a href="#WindowShouldClose">WindowShouldClose</a> | <a href="#Wrap">Wrap</a> | <a href="#rlActiveDrawBuffers">rlActiveDrawBuffers</a> | <a href="#rlActiveTextureSlot">rlActiveTextureSlot</a> | <a href="#rlBegin">rlBegin</a> | <a href="#rlBindImageTexture">rlBindImageTexture</a> | <a href="#rlBindShaderBuffer">rlBindShaderBuffer</a> | <a href="#rlCheckErrors">rlCheckErrors</a> | <a href="#rlCheckRenderBatchLimit">rlCheckRenderBatchLimit</a> | <a href="#rlClearColor">rlClearColor</a> | <a href="#rlClearScreenBuffers">rlClearScreenBuffers</a> | <a href="#rlColor3f">rlColor3f</a> | <a href="#rlColor4f">rlColor4f</a> | <a href="#rlColor4ub">rlColor4ub</a> | <a href="#rlCompileShader">rlCompileShader</a> | <a href="#rlComputeShaderDispatch">rlComputeShaderDispatch</a> | <a href="#rlCopyBuffersElements">rlCopyBuffersElements</a> | <a href="#rlDisableBackfaceCulling">rlDisableBackfaceCulling</a> | <a href="#rlDisableColorBlend">rlDisableColorBlend</a> | <a href="#rlDisableDepthMask">rlDisableDepthMask</a> | <a href="#rlDisableDepthTest">rlDisableDepthTest</a> | <a href="#rlDisableFramebuffer">rlDisableFramebuffer</a> | <a href="#rlDisableScissorTest">rlDisableScissorTest</a> | <a href="#rlDisableShader">rlDisableShader</a> | <a href="#rlDisableSmoothLines">rlDisableSmoothLines</a> | <a href="#rlDisableStereoRender">rlDisableStereoRender</a> | <a href="#rlDisableTexture">rlDisableTexture</a> | <a href="#rlDisableTextureCubemap">rlDisableTextureCubemap</a> | <a href="#rlDisableVertexArray">rlDisableVertexArray</a> | <a href="#rlDisableVertexAttribute">rlDisableVertexAttribute</a> | <a href="#rlDisableVertexBuffer">rlDisableVertexBuffer</a> | <a href="#rlDisableVertexBufferElement">rlDisableVertexBufferElement</a> | <a href="#rlDisableWireMode">rlDisableWireMode</a> | <a href="#rlDrawRenderBatch">rlDrawRenderBatch</a> | <a href="#rlDrawRenderBatchActive">rlDrawRenderBatchActive</a> | <a href="#rlDrawVertexArray">rlDrawVertexArray</a> | <a href="#rlDrawVertexArrayElements">rlDrawVertexArrayElements</a> | <a href="#rlDrawVertexArrayElementsInstanced">rlDrawVertexArrayElementsInstanced</a> | <a href="#rlDrawVertexArrayInstanced">rlDrawVertexArrayInstanced</a> | <a href="#rlEnableBackfaceCulling">rlEnableBackfaceCulling</a> | <a href="#rlEnableColorBlend">rlEnableColorBlend</a> | <a href="#rlEnableDepthMask">rlEnableDepthMask</a> | <a href="#rlEnableDepthTest">rlEnableDepthTest</a> | <a href="#rlEnableFramebuffer">rlEnableFramebuffer</a> | <a href="#rlEnableScissorTest">rlEnableScissorTest</a> | <a href="#rlEnableShader">rlEnableShader</a> | <a href="#rlEnableSmoothLines">rlEnableSmoothLines</a> | <a href="#rlEnableStereoRender">rlEnableStereoRender</a> | <a href="#rlEnableTexture">rlEnableTexture</a> | <a href="#rlEnableTextureCubemap">rlEnableTextureCubemap</a> | <a href="#rlEnableVertexArray">rlEnableVertexArray</a> | <a href="#rlEnableVertexAttribute">rlEnableVertexAttribute</a> | <a href="#rlEnableVertexBuffer">rlEnableVertexBuffer</a> | <a href="#rlEnableVertexBufferElement">rlEnableVertexBufferElement</a> | <a href="#rlEnableWireMode">rlEnableWireMode</a> | <a href="#rlEnd">rlEnd</a> | <a href="#rlFramebufferAttach">rlFramebufferAttach</a> | <a href="#rlFramebufferComplete">rlFramebufferComplete</a> | <a href="#rlFrustum">rlFrustum</a> | <a href="#rlGenTextureMipmaps">rlGenTextureMipmaps</a> | <a href="#rlGetFramebufferHeight">rlGetFramebufferHeight</a> | <a href="#rlGetFramebufferWidth">rlGetFramebufferWidth</a> | <a href="#rlGetGlTextureFormats">rlGetGlTextureFormats</a> | <a href="#rlGetLineWidth">rlGetLineWidth</a> | <a href="#rlGetLocationAttrib">rlGetLocationAttrib</a> | <a href="#rlGetLocationUniform">rlGetLocationUniform</a> | <a href="#rlGetMatrixModelview">rlGetMatrixModelview</a> | <a href="#rlGetMatrixProjection">rlGetMatrixProjection</a> | <a href="#rlGetMatrixProjectionStereo">rlGetMatrixProjectionStereo</a> | <a href="#rlGetMatrixTransform">rlGetMatrixTransform</a> | <a href="#rlGetMatrixViewOffsetStereo">rlGetMatrixViewOffsetStereo</a> | <a href="#rlGetPixelFormatName">rlGetPixelFormatName</a> | <a href="#rlGetShaderBufferSize">rlGetShaderBufferSize</a> | <a href="#rlGetShaderIdDefault">rlGetShaderIdDefault</a> | <a href="#rlGetShaderLocsDefault">rlGetShaderLocsDefault</a> | <a href="#rlGetTextureIdDefault">rlGetTextureIdDefault</a> | <a href="#rlGetVersion">rlGetVersion</a> | <a href="#rlIsStereoRenderEnabled">rlIsStereoRenderEnabled</a> | <a href="#rlLoadComputeShaderProgram">rlLoadComputeShaderProgram</a> | <a href="#rlLoadDrawCube">rlLoadDrawCube</a> | <a href="#rlLoadDrawQuad">rlLoadDrawQuad</a> | <a href="#rlLoadExtensions">rlLoadExtensions</a> | <a href="#rlLoadFramebuffer">rlLoadFramebuffer</a> | <a href="#rlLoadIdentity">rlLoadIdentity</a> | <a href="#rlLoadRenderBatch">rlLoadRenderBatch</a> | <a href="#rlLoadShaderBuffer">rlLoadShaderBuffer</a> | <a href="#rlLoadShaderCode">rlLoadShaderCode</a> | <a href="#rlLoadShaderProgram">rlLoadShaderProgram</a> | <a href="#rlLoadTexture">rlLoadTexture</a> | <a href="#rlLoadTextureCubemap">rlLoadTextureCubemap</a> | <a href="#rlLoadTextureDepth">rlLoadTextureDepth</a> | <a href="#rlLoadVertexArray">rlLoadVertexArray</a> | <a href="#rlLoadVertexBuffer">rlLoadVertexBuffer</a> | <a href="#rlLoadVertexBufferElement">rlLoadVertexBufferElement</a> | <a href="#rlMatrixMode">rlMatrixMode</a> | <a href="#rlMultMatrixf">rlMultMatrixf</a> | <a href="#rlNormal3f">rlNormal3f</a> | <a href="#rlOrtho">rlOrtho</a> | <a href="#rlPopMatrix">rlPopMatrix</a> | <a href="#rlPushMatrix">rlPushMatrix</a> | <a href="#rlReadScreenPixels">rlReadScreenPixels</a> | <a href="#rlReadShaderBufferElements">rlReadShaderBufferElements</a> | <a href="#rlReadTexturePixels">rlReadTexturePixels</a> | <a href="#rlRotatef">rlRotatef</a> | <a href="#rlScalef">rlScalef</a> | <a href="#rlScissor">rlScissor</a> | <a href="#rlSetBlendFactors">rlSetBlendFactors</a> | <a href="#rlSetBlendMode">rlSetBlendMode</a> | <a href="#rlSetFramebufferHeight">rlSetFramebufferHeight</a> | <a href="#rlSetFramebufferWidth">rlSetFramebufferWidth</a> | <a href="#rlSetLineWidth">rlSetLineWidth</a> | <a href="#rlSetMatrixModelview">rlSetMatrixModelview</a> | <a href="#rlSetMatrixProjection">rlSetMatrixProjection</a> | <a href="#rlSetMatrixProjectionStereo">rlSetMatrixProjectionStereo</a> | <a href="#rlSetMatrixViewOffsetStereo">rlSetMatrixViewOffsetStereo</a> | <a href="#rlSetRenderBatchActive">rlSetRenderBatchActive</a> | <a href="#rlSetShader">rlSetShader</a> | <a href="#rlSetTexture">rlSetTexture</a> | <a href="#rlSetUniform">rlSetUniform</a> | <a href="#rlSetUniformMatrix">rlSetUniformMatrix</a> | <a href="#rlSetUniformSampler">rlSetUniformSampler</a> | <a href="#rlSetVertexAttribute">rlSetVertexAttribute</a> | <a href="#rlSetVertexAttributeDefault">rlSetVertexAttributeDefault</a> | <a href="#rlSetVertexAttributeDivisor">rlSetVertexAttributeDivisor</a> | <a href="#rlTexCoord2f">rlTexCoord2f</a> | <a href="#rlTextureParameters">rlTextureParameters</a> | <a href="#rlTranslatef">rlTranslatef</a> | <a href="#rlUnloadFramebuffer">rlUnloadFramebuffer</a> | <a href="#rlUnloadRenderBatch">rlUnloadRenderBatch</a> | <a href="#rlUnloadShaderBuffer">rlUnloadShaderBuffer</a> | <a href="#rlUnloadShaderProgram">rlUnloadShaderProgram</a> | <a href="#rlUnloadTexture">rlUnloadTexture</a> | <a href="#rlUnloadVertexArray">rlUnloadVertexArray</a> | <a href="#rlUnloadVertexBuffer">rlUnloadVertexBuffer</a> | <a href="#rlUpdateShaderBufferElements">rlUpdateShaderBufferElements</a> | <a href="#rlUpdateTexture">rlUpdateTexture</a> | <a href="#rlUpdateVertexBuffer">rlUpdateVertexBuffer</a> | <a href="#rlUpdateVertexBufferElements">rlUpdateVertexBufferElements</a> | <a href="#rlVertex2f">rlVertex2f</a> | <a href="#rlVertex2i">rlVertex2i</a> | <a href="#rlVertex3f">rlVertex3f</a> | <a href="#rlViewport">rlViewport</a> | <a href="#rlglClose">rlglClose</a> | <a href="#rlglInit">rlglInit</a>
+Item|Item|Item|Item|Item
+--------|--------|--------|--------|--------
+<a href="#AttachAudioStreamProcessor">AttachAudioStreamProcessor</a> | <a href="#BeginBlendMode">BeginBlendMode</a> | <a href="#BeginDrawing">BeginDrawing</a> | <a href="#BeginMode2D">BeginMode2D</a> | <a href="#BeginMode3D">BeginMode3D</a>
+<a href="#BeginScissorMode">BeginScissorMode</a> | <a href="#BeginShaderMode">BeginShaderMode</a> | <a href="#BeginTextureMode">BeginTextureMode</a> | <a href="#BeginVrStereoMode">BeginVrStereoMode</a> | <a href="#ChangeDirectory">ChangeDirectory</a>
+<a href="#CheckCollisionBoxSphere">CheckCollisionBoxSphere</a> | <a href="#CheckCollisionBoxes">CheckCollisionBoxes</a> | <a href="#CheckCollisionCircleRec">CheckCollisionCircleRec</a> | <a href="#CheckCollisionCircles">CheckCollisionCircles</a> | <a href="#CheckCollisionLines">CheckCollisionLines</a>
+<a href="#CheckCollisionPointCircle">CheckCollisionPointCircle</a> | <a href="#CheckCollisionPointLine">CheckCollisionPointLine</a> | <a href="#CheckCollisionPointRec">CheckCollisionPointRec</a> | <a href="#CheckCollisionPointTriangle">CheckCollisionPointTriangle</a> | <a href="#CheckCollisionRecs">CheckCollisionRecs</a>
+<a href="#CheckCollisionSpheres">CheckCollisionSpheres</a> | <a href="#Clamp">Clamp</a> | <a href="#ClearBackground">ClearBackground</a> | <a href="#ClearWindowState">ClearWindowState</a> | <a href="#CloseAudioDevice">CloseAudioDevice</a>
+<a href="#CloseWindow">CloseWindow</a> | <a href="#CodepointToUTF8">CodepointToUTF8</a> | <a href="#ColorAlpha">ColorAlpha</a> | <a href="#ColorAlphaBlend">ColorAlphaBlend</a> | <a href="#ColorFromHSV">ColorFromHSV</a>
+<a href="#ColorFromNormalized">ColorFromNormalized</a> | <a href="#ColorNormalize">ColorNormalize</a> | <a href="#ColorToHSV">ColorToHSV</a> | <a href="#ColorToInt">ColorToInt</a> | <a href="#CompressData">CompressData</a>
+<a href="#DecodeDataBase64">DecodeDataBase64</a> | <a href="#DecompressData">DecompressData</a> | <a href="#DetachAudioStreamProcessor">DetachAudioStreamProcessor</a> | <a href="#DirectoryExists">DirectoryExists</a> | <a href="#DisableCursor">DisableCursor</a>
+<a href="#DisableEventWaiting">DisableEventWaiting</a> | <a href="#DrawBillboard">DrawBillboard</a> | <a href="#DrawBillboardPro">DrawBillboardPro</a> | <a href="#DrawBillboardRec">DrawBillboardRec</a> | <a href="#DrawBoundingBox">DrawBoundingBox</a>
+<a href="#DrawCircle">DrawCircle</a> | <a href="#DrawCircle3D">DrawCircle3D</a> | <a href="#DrawCircleGradient">DrawCircleGradient</a> | <a href="#DrawCircleLines">DrawCircleLines</a> | <a href="#DrawCircleSector">DrawCircleSector</a>
+<a href="#DrawCircleSectorLines">DrawCircleSectorLines</a> | <a href="#DrawCircleV">DrawCircleV</a> | <a href="#DrawCube">DrawCube</a> | <a href="#DrawCubeTexture">DrawCubeTexture</a> | <a href="#DrawCubeTextureRec">DrawCubeTextureRec</a>
+<a href="#DrawCubeV">DrawCubeV</a> | <a href="#DrawCubeWires">DrawCubeWires</a> | <a href="#DrawCubeWiresV">DrawCubeWiresV</a> | <a href="#DrawCylinder">DrawCylinder</a> | <a href="#DrawCylinderEx">DrawCylinderEx</a>
+<a href="#DrawCylinderWires">DrawCylinderWires</a> | <a href="#DrawCylinderWiresEx">DrawCylinderWiresEx</a> | <a href="#DrawEllipse">DrawEllipse</a> | <a href="#DrawEllipseLines">DrawEllipseLines</a> | <a href="#DrawFPS">DrawFPS</a>
+<a href="#DrawGrid">DrawGrid</a> | <a href="#DrawLine">DrawLine</a> | <a href="#DrawLine3D">DrawLine3D</a> | <a href="#DrawLineBezier">DrawLineBezier</a> | <a href="#DrawLineBezierCubic">DrawLineBezierCubic</a>
+<a href="#DrawLineBezierQuad">DrawLineBezierQuad</a> | <a href="#DrawLineEx">DrawLineEx</a> | <a href="#DrawLineStrip">DrawLineStrip</a> | <a href="#DrawLineV">DrawLineV</a> | <a href="#DrawMesh">DrawMesh</a>
+<a href="#DrawMeshInstanced">DrawMeshInstanced</a> | <a href="#DrawModel">DrawModel</a> | <a href="#DrawModelEx">DrawModelEx</a> | <a href="#DrawModelWires">DrawModelWires</a> | <a href="#DrawModelWiresEx">DrawModelWiresEx</a>
+<a href="#DrawPixel">DrawPixel</a> | <a href="#DrawPixelV">DrawPixelV</a> | <a href="#DrawPlane">DrawPlane</a> | <a href="#DrawPoint3D">DrawPoint3D</a> | <a href="#DrawPoly">DrawPoly</a>
+<a href="#DrawPolyLines">DrawPolyLines</a> | <a href="#DrawPolyLinesEx">DrawPolyLinesEx</a> | <a href="#DrawRay">DrawRay</a> | <a href="#DrawRectangle">DrawRectangle</a> | <a href="#DrawRectangleGradientEx">DrawRectangleGradientEx</a>
+<a href="#DrawRectangleGradientH">DrawRectangleGradientH</a> | <a href="#DrawRectangleGradientV">DrawRectangleGradientV</a> | <a href="#DrawRectangleLines">DrawRectangleLines</a> | <a href="#DrawRectangleLinesEx">DrawRectangleLinesEx</a> | <a href="#DrawRectanglePro">DrawRectanglePro</a>
+<a href="#DrawRectangleRec">DrawRectangleRec</a> | <a href="#DrawRectangleRounded">DrawRectangleRounded</a> | <a href="#DrawRectangleRoundedLines">DrawRectangleRoundedLines</a> | <a href="#DrawRectangleV">DrawRectangleV</a> | <a href="#DrawRing">DrawRing</a>
+<a href="#DrawRingLines">DrawRingLines</a> | <a href="#DrawSphere">DrawSphere</a> | <a href="#DrawSphereEx">DrawSphereEx</a> | <a href="#DrawSphereWires">DrawSphereWires</a> | <a href="#DrawText">DrawText</a>
+<a href="#DrawTextCodepoint">DrawTextCodepoint</a> | <a href="#DrawTextCodepoints">DrawTextCodepoints</a> | <a href="#DrawTextEx">DrawTextEx</a> | <a href="#DrawTextPro">DrawTextPro</a> | <a href="#DrawTexture">DrawTexture</a>
+<a href="#DrawTextureEx">DrawTextureEx</a> | <a href="#DrawTextureNPatch">DrawTextureNPatch</a> | <a href="#DrawTexturePoly">DrawTexturePoly</a> | <a href="#DrawTexturePro">DrawTexturePro</a> | <a href="#DrawTextureQuad">DrawTextureQuad</a>
+<a href="#DrawTextureRec">DrawTextureRec</a> | <a href="#DrawTextureTiled">DrawTextureTiled</a> | <a href="#DrawTextureV">DrawTextureV</a> | <a href="#DrawTriangle">DrawTriangle</a> | <a href="#DrawTriangle3D">DrawTriangle3D</a>
+<a href="#DrawTriangleFan">DrawTriangleFan</a> | <a href="#DrawTriangleLines">DrawTriangleLines</a> | <a href="#DrawTriangleStrip">DrawTriangleStrip</a> | <a href="#DrawTriangleStrip3D">DrawTriangleStrip3D</a> | <a href="#EnableCursor">EnableCursor</a>
+<a href="#EnableEventWaiting">EnableEventWaiting</a> | <a href="#EncodeDataBase64">EncodeDataBase64</a> | <a href="#EndBlendMode">EndBlendMode</a> | <a href="#EndDrawing">EndDrawing</a> | <a href="#EndMode2D">EndMode2D</a>
+<a href="#EndMode3D">EndMode3D</a> | <a href="#EndScissorMode">EndScissorMode</a> | <a href="#EndShaderMode">EndShaderMode</a> | <a href="#EndTextureMode">EndTextureMode</a> | <a href="#EndVrStereoMode">EndVrStereoMode</a>
+<a href="#ExportDataAsCode">ExportDataAsCode</a> | <a href="#ExportFontAsCode">ExportFontAsCode</a> | <a href="#ExportImage">ExportImage</a> | <a href="#ExportImageAsCode">ExportImageAsCode</a> | <a href="#ExportMesh">ExportMesh</a>
+<a href="#ExportWave">ExportWave</a> | <a href="#ExportWaveAsCode">ExportWaveAsCode</a> | <a href="#Fade">Fade</a> | <a href="#FileExists">FileExists</a> | <a href="#FloatEquals">FloatEquals</a>
+<a href="#GenImageCellular">GenImageCellular</a> | <a href="#GenImageChecked">GenImageChecked</a> | <a href="#GenImageColor">GenImageColor</a> | <a href="#GenImageFontAtlas">GenImageFontAtlas</a> | <a href="#GenImageGradientH">GenImageGradientH</a>
+<a href="#GenImageGradientRadial">GenImageGradientRadial</a> | <a href="#GenImageGradientV">GenImageGradientV</a> | <a href="#GenImageWhiteNoise">GenImageWhiteNoise</a> | <a href="#GenMeshCone">GenMeshCone</a> | <a href="#GenMeshCube">GenMeshCube</a>
+<a href="#GenMeshCubicmap">GenMeshCubicmap</a> | <a href="#GenMeshCylinder">GenMeshCylinder</a> | <a href="#GenMeshHeightmap">GenMeshHeightmap</a> | <a href="#GenMeshHemiSphere">GenMeshHemiSphere</a> | <a href="#GenMeshKnot">GenMeshKnot</a>
+<a href="#GenMeshPlane">GenMeshPlane</a> | <a href="#GenMeshPoly">GenMeshPoly</a> | <a href="#GenMeshSphere">GenMeshSphere</a> | <a href="#GenMeshTangents">GenMeshTangents</a> | <a href="#GenMeshTorus">GenMeshTorus</a>
+<a href="#GenTextureMipmaps">GenTextureMipmaps</a> | <a href="#GetApplicationDirectory">GetApplicationDirectory</a> | <a href="#GetCameraMatrix">GetCameraMatrix</a> | <a href="#GetCameraMatrix2D">GetCameraMatrix2D</a> | <a href="#GetCharPressed">GetCharPressed</a>
+<a href="#GetClipboardText">GetClipboardText</a> | <a href="#GetCodepoint">GetCodepoint</a> | <a href="#GetCodepointCount">GetCodepointCount</a> | <a href="#GetCollisionRec">GetCollisionRec</a> | <a href="#GetColor">GetColor</a>
+<a href="#GetCurrentMonitor">GetCurrentMonitor</a> | <a href="#GetDirectoryPath">GetDirectoryPath</a> | <a href="#GetFPS">GetFPS</a> | <a href="#GetFileExtension">GetFileExtension</a> | <a href="#GetFileLength">GetFileLength</a>
+<a href="#GetFileModTime">GetFileModTime</a> | <a href="#GetFileName">GetFileName</a> | <a href="#GetFileNameWithoutExt">GetFileNameWithoutExt</a> | <a href="#GetFontDefault">GetFontDefault</a> | <a href="#GetFrameTime">GetFrameTime</a>
+<a href="#GetGamepadAxisCount">GetGamepadAxisCount</a> | <a href="#GetGamepadAxisMovement">GetGamepadAxisMovement</a> | <a href="#GetGamepadButtonPressed">GetGamepadButtonPressed</a> | <a href="#GetGamepadName">GetGamepadName</a> | <a href="#GetGestureDetected">GetGestureDetected</a>
+<a href="#GetGestureDragAngle">GetGestureDragAngle</a> | <a href="#GetGestureDragVector">GetGestureDragVector</a> | <a href="#GetGestureHoldDuration">GetGestureHoldDuration</a> | <a href="#GetGesturePinchAngle">GetGesturePinchAngle</a> | <a href="#GetGesturePinchVector">GetGesturePinchVector</a>
+<a href="#GetGlyphAtlasRec">GetGlyphAtlasRec</a> | <a href="#GetGlyphIndex">GetGlyphIndex</a> | <a href="#GetGlyphInfo">GetGlyphInfo</a> | <a href="#GetImageAlphaBorder">GetImageAlphaBorder</a> | <a href="#GetImageColor">GetImageColor</a>
+<a href="#GetKeyPressed">GetKeyPressed</a> | <a href="#GetMeshBoundingBox">GetMeshBoundingBox</a> | <a href="#GetModelBoundingBox">GetModelBoundingBox</a> | <a href="#GetMonitorCount">GetMonitorCount</a> | <a href="#GetMonitorHeight">GetMonitorHeight</a>
+<a href="#GetMonitorName">GetMonitorName</a> | <a href="#GetMonitorPhysicalHeight">GetMonitorPhysicalHeight</a> | <a href="#GetMonitorPhysicalWidth">GetMonitorPhysicalWidth</a> | <a href="#GetMonitorPosition">GetMonitorPosition</a> | <a href="#GetMonitorRefreshRate">GetMonitorRefreshRate</a>
+<a href="#GetMonitorWidth">GetMonitorWidth</a> | <a href="#GetMouseDelta">GetMouseDelta</a> | <a href="#GetMousePosition">GetMousePosition</a> | <a href="#GetMouseRay">GetMouseRay</a> | <a href="#GetMouseWheelMove">GetMouseWheelMove</a>
+<a href="#GetMouseWheelMoveV">GetMouseWheelMoveV</a> | <a href="#GetMouseX">GetMouseX</a> | <a href="#GetMouseY">GetMouseY</a> | <a href="#GetMusicTimeLength">GetMusicTimeLength</a> | <a href="#GetMusicTimePlayed">GetMusicTimePlayed</a>
+<a href="#GetPixelColor">GetPixelColor</a> | <a href="#GetPixelDataSize">GetPixelDataSize</a> | <a href="#GetPrevDirectoryPath">GetPrevDirectoryPath</a> | <a href="#GetRandomValue">GetRandomValue</a> | <a href="#GetRayCollisionBox">GetRayCollisionBox</a>
+<a href="#GetRayCollisionMesh">GetRayCollisionMesh</a> | <a href="#GetRayCollisionQuad">GetRayCollisionQuad</a> | <a href="#GetRayCollisionSphere">GetRayCollisionSphere</a> | <a href="#GetRayCollisionTriangle">GetRayCollisionTriangle</a> | <a href="#GetRenderHeight">GetRenderHeight</a>
+<a href="#GetRenderWidth">GetRenderWidth</a> | <a href="#GetScreenHeight">GetScreenHeight</a> | <a href="#GetScreenToWorld2D">GetScreenToWorld2D</a> | <a href="#GetScreenWidth">GetScreenWidth</a> | <a href="#GetShaderLocation">GetShaderLocation</a>
+<a href="#GetShaderLocationAttrib">GetShaderLocationAttrib</a> | <a href="#GetSoundsPlaying">GetSoundsPlaying</a> | <a href="#GetTime">GetTime</a> | <a href="#GetTouchPointCount">GetTouchPointCount</a> | <a href="#GetTouchPointId">GetTouchPointId</a>
+<a href="#GetTouchPosition">GetTouchPosition</a> | <a href="#GetTouchX">GetTouchX</a> | <a href="#GetTouchY">GetTouchY</a> | <a href="#GetWindowHandle">GetWindowHandle</a> | <a href="#GetWindowPosition">GetWindowPosition</a>
+<a href="#GetWindowScaleDPI">GetWindowScaleDPI</a> | <a href="#GetWorkingDirectory">GetWorkingDirectory</a> | <a href="#GetWorldToScreen">GetWorldToScreen</a> | <a href="#GetWorldToScreen2D">GetWorldToScreen2D</a> | <a href="#GetWorldToScreenEx">GetWorldToScreenEx</a>
+<a href="#HideCursor">HideCursor</a> | <a href="#ImageAlphaClear">ImageAlphaClear</a> | <a href="#ImageAlphaCrop">ImageAlphaCrop</a> | <a href="#ImageAlphaMask">ImageAlphaMask</a> | <a href="#ImageAlphaPremultiply">ImageAlphaPremultiply</a>
+<a href="#ImageClearBackground">ImageClearBackground</a> | <a href="#ImageColorBrightness">ImageColorBrightness</a> | <a href="#ImageColorContrast">ImageColorContrast</a> | <a href="#ImageColorGrayscale">ImageColorGrayscale</a> | <a href="#ImageColorInvert">ImageColorInvert</a>
+<a href="#ImageColorReplace">ImageColorReplace</a> | <a href="#ImageColorTint">ImageColorTint</a> | <a href="#ImageCopy">ImageCopy</a> | <a href="#ImageCrop">ImageCrop</a> | <a href="#ImageDither">ImageDither</a>
+<a href="#ImageDraw">ImageDraw</a> | <a href="#ImageDrawCircle">ImageDrawCircle</a> | <a href="#ImageDrawCircleV">ImageDrawCircleV</a> | <a href="#ImageDrawLine">ImageDrawLine</a> | <a href="#ImageDrawLineV">ImageDrawLineV</a>
+<a href="#ImageDrawPixel">ImageDrawPixel</a> | <a href="#ImageDrawPixelV">ImageDrawPixelV</a> | <a href="#ImageDrawRectangle">ImageDrawRectangle</a> | <a href="#ImageDrawRectangleLines">ImageDrawRectangleLines</a> | <a href="#ImageDrawRectangleRec">ImageDrawRectangleRec</a>
+<a href="#ImageDrawRectangleV">ImageDrawRectangleV</a> | <a href="#ImageDrawText">ImageDrawText</a> | <a href="#ImageDrawTextEx">ImageDrawTextEx</a> | <a href="#ImageFlipHorizontal">ImageFlipHorizontal</a> | <a href="#ImageFlipVertical">ImageFlipVertical</a>
+<a href="#ImageFormat">ImageFormat</a> | <a href="#ImageFromImage">ImageFromImage</a> | <a href="#ImageMipmaps">ImageMipmaps</a> | <a href="#ImageResize">ImageResize</a> | <a href="#ImageResizeCanvas">ImageResizeCanvas</a>
+<a href="#ImageResizeNN">ImageResizeNN</a> | <a href="#ImageRotateCCW">ImageRotateCCW</a> | <a href="#ImageRotateCW">ImageRotateCW</a> | <a href="#ImageText">ImageText</a> | <a href="#ImageTextEx">ImageTextEx</a>
+<a href="#ImageToPOT">ImageToPOT</a> | <a href="#InitAudioDevice">InitAudioDevice</a> | <a href="#InitWindow">InitWindow</a> | <a href="#IsAudioDeviceReady">IsAudioDeviceReady</a> | <a href="#IsAudioStreamPlaying">IsAudioStreamPlaying</a>
+<a href="#IsAudioStreamProcessed">IsAudioStreamProcessed</a> | <a href="#IsCursorHidden">IsCursorHidden</a> | <a href="#IsCursorOnScreen">IsCursorOnScreen</a> | <a href="#IsFileDropped">IsFileDropped</a> | <a href="#IsFileExtension">IsFileExtension</a>
+<a href="#IsGamepadAvailable">IsGamepadAvailable</a> | <a href="#IsGamepadButtonDown">IsGamepadButtonDown</a> | <a href="#IsGamepadButtonPressed">IsGamepadButtonPressed</a> | <a href="#IsGamepadButtonReleased">IsGamepadButtonReleased</a> | <a href="#IsGamepadButtonUp">IsGamepadButtonUp</a>
+<a href="#IsGestureDetected">IsGestureDetected</a> | <a href="#IsKeyDown">IsKeyDown</a> | <a href="#IsKeyPressed">IsKeyPressed</a> | <a href="#IsKeyReleased">IsKeyReleased</a> | <a href="#IsKeyUp">IsKeyUp</a>
+<a href="#IsModelAnimationValid">IsModelAnimationValid</a> | <a href="#IsMouseButtonDown">IsMouseButtonDown</a> | <a href="#IsMouseButtonPressed">IsMouseButtonPressed</a> | <a href="#IsMouseButtonReleased">IsMouseButtonReleased</a> | <a href="#IsMouseButtonUp">IsMouseButtonUp</a>
+<a href="#IsMusicStreamPlaying">IsMusicStreamPlaying</a> | <a href="#IsPathFile">IsPathFile</a> | <a href="#IsSoundPlaying">IsSoundPlaying</a> | <a href="#IsWindowFocused">IsWindowFocused</a> | <a href="#IsWindowFullscreen">IsWindowFullscreen</a>
+<a href="#IsWindowHidden">IsWindowHidden</a> | <a href="#IsWindowMaximized">IsWindowMaximized</a> | <a href="#IsWindowMinimized">IsWindowMinimized</a> | <a href="#IsWindowReady">IsWindowReady</a> | <a href="#IsWindowResized">IsWindowResized</a>
+<a href="#IsWindowState">IsWindowState</a> | <a href="#Lerp">Lerp</a> | <a href="#LoadAudioStream">LoadAudioStream</a> | <a href="#LoadCodepoints">LoadCodepoints</a> | <a href="#LoadDirectoryFiles">LoadDirectoryFiles</a>
+<a href="#LoadDirectoryFilesEx">LoadDirectoryFilesEx</a> | <a href="#LoadDroppedFiles">LoadDroppedFiles</a> | <a href="#LoadFileData">LoadFileData</a> | <a href="#LoadFileText">LoadFileText</a> | <a href="#LoadFont">LoadFont</a>
+<a href="#LoadFontData">LoadFontData</a> | <a href="#LoadFontEx">LoadFontEx</a> | <a href="#LoadFontFromImage">LoadFontFromImage</a> | <a href="#LoadFontFromMemory">LoadFontFromMemory</a> | <a href="#LoadImage">LoadImage</a>
+<a href="#LoadImageAnim">LoadImageAnim</a> | <a href="#LoadImageColors">LoadImageColors</a> | <a href="#LoadImageFromMemory">LoadImageFromMemory</a> | <a href="#LoadImageFromScreen">LoadImageFromScreen</a> | <a href="#LoadImageFromTexture">LoadImageFromTexture</a>
+<a href="#LoadImagePalette">LoadImagePalette</a> | <a href="#LoadImageRaw">LoadImageRaw</a> | <a href="#LoadMaterialDefault">LoadMaterialDefault</a> | <a href="#LoadMaterials">LoadMaterials</a> | <a href="#LoadModel">LoadModel</a>
+<a href="#LoadModelAnimations">LoadModelAnimations</a> | <a href="#LoadModelFromMesh">LoadModelFromMesh</a> | <a href="#LoadMusicStream">LoadMusicStream</a> | <a href="#LoadMusicStreamFromMemory">LoadMusicStreamFromMemory</a> | <a href="#LoadRenderTexture">LoadRenderTexture</a>
+<a href="#LoadShader">LoadShader</a> | <a href="#LoadShaderFromMemory">LoadShaderFromMemory</a> | <a href="#LoadSound">LoadSound</a> | <a href="#LoadSoundFromWave">LoadSoundFromWave</a> | <a href="#LoadTexture">LoadTexture</a>
+<a href="#LoadTextureCubemap">LoadTextureCubemap</a> | <a href="#LoadTextureFromImage">LoadTextureFromImage</a> | <a href="#LoadVrStereoConfig">LoadVrStereoConfig</a> | <a href="#LoadWave">LoadWave</a> | <a href="#LoadWaveFromMemory">LoadWaveFromMemory</a>
+<a href="#LoadWaveSamples">LoadWaveSamples</a> | <a href="#MatrixAdd">MatrixAdd</a> | <a href="#MatrixDeterminant">MatrixDeterminant</a> | <a href="#MatrixFrustum">MatrixFrustum</a> | <a href="#MatrixIdentity">MatrixIdentity</a>
+<a href="#MatrixInvert">MatrixInvert</a> | <a href="#MatrixLookAt">MatrixLookAt</a> | <a href="#MatrixMultiply">MatrixMultiply</a> | <a href="#MatrixOrtho">MatrixOrtho</a> | <a href="#MatrixPerspective">MatrixPerspective</a>
+<a href="#MatrixRotate">MatrixRotate</a> | <a href="#MatrixRotateX">MatrixRotateX</a> | <a href="#MatrixRotateXYZ">MatrixRotateXYZ</a> | <a href="#MatrixRotateY">MatrixRotateY</a> | <a href="#MatrixRotateZ">MatrixRotateZ</a>
+<a href="#MatrixRotateZYX">MatrixRotateZYX</a> | <a href="#MatrixScale">MatrixScale</a> | <a href="#MatrixSubtract">MatrixSubtract</a> | <a href="#MatrixToFloatV">MatrixToFloatV</a> | <a href="#MatrixTrace">MatrixTrace</a>
+<a href="#MatrixTranslate">MatrixTranslate</a> | <a href="#MatrixTranspose">MatrixTranspose</a> | <a href="#MaximizeWindow">MaximizeWindow</a> | <a href="#MeasureText">MeasureText</a> | <a href="#MeasureTextEx">MeasureTextEx</a>
+<a href="#MemAlloc">MemAlloc</a> | <a href="#MemFree">MemFree</a> | <a href="#MemRealloc">MemRealloc</a> | <a href="#MinimizeWindow">MinimizeWindow</a> | <a href="#Normalize">Normalize</a>
+<a href="#OpenURL">OpenURL</a> | <a href="#PauseAudioStream">PauseAudioStream</a> | <a href="#PauseMusicStream">PauseMusicStream</a> | <a href="#PauseSound">PauseSound</a> | <a href="#PlayAudioStream">PlayAudioStream</a>
+<a href="#PlayMusicStream">PlayMusicStream</a> | <a href="#PlaySound">PlaySound</a> | <a href="#PlaySoundMulti">PlaySoundMulti</a> | <a href="#PollInputEvents">PollInputEvents</a> | <a href="#QuaternionAdd">QuaternionAdd</a>
+<a href="#QuaternionAddValue">QuaternionAddValue</a> | <a href="#QuaternionDivide">QuaternionDivide</a> | <a href="#QuaternionEquals">QuaternionEquals</a> | <a href="#QuaternionFromAxisAngle">QuaternionFromAxisAngle</a> | <a href="#QuaternionFromEuler">QuaternionFromEuler</a>
+<a href="#QuaternionFromMatrix">QuaternionFromMatrix</a> | <a href="#QuaternionFromVector3ToVector3">QuaternionFromVector3ToVector3</a> | <a href="#QuaternionIdentity">QuaternionIdentity</a> | <a href="#QuaternionInvert">QuaternionInvert</a> | <a href="#QuaternionLength">QuaternionLength</a>
+<a href="#QuaternionMultiply">QuaternionMultiply</a> | <a href="#QuaternionNlerp">QuaternionNlerp</a> | <a href="#QuaternionNormalize">QuaternionNormalize</a> | <a href="#QuaternionScale">QuaternionScale</a> | <a href="#QuaternionSlerp">QuaternionSlerp</a>
+<a href="#QuaternionSubtract">QuaternionSubtract</a> | <a href="#QuaternionSubtractValue">QuaternionSubtractValue</a> | <a href="#QuaternionToAxisAngle">QuaternionToAxisAngle</a> | <a href="#QuaternionToEuler">QuaternionToEuler</a> | <a href="#QuaternionToMatrix">QuaternionToMatrix</a>
+<a href="#QuaternionTransform">QuaternionTransform</a> | <a href="#Remap">Remap</a> | <a href="#RestoreWindow">RestoreWindow</a> | <a href="#ResumeAudioStream">ResumeAudioStream</a> | <a href="#ResumeMusicStream">ResumeMusicStream</a>
+<a href="#ResumeSound">ResumeSound</a> | <a href="#SaveFileData">SaveFileData</a> | <a href="#SaveFileText">SaveFileText</a> | <a href="#SeekMusicStream">SeekMusicStream</a> | <a href="#SetAudioStreamBufferSizeDefault">SetAudioStreamBufferSizeDefault</a>
+<a href="#SetAudioStreamCallback">SetAudioStreamCallback</a> | <a href="#SetAudioStreamPan">SetAudioStreamPan</a> | <a href="#SetAudioStreamPitch">SetAudioStreamPitch</a> | <a href="#SetAudioStreamVolume">SetAudioStreamVolume</a> | <a href="#SetCameraAltControl">SetCameraAltControl</a>
+<a href="#SetCameraMode">SetCameraMode</a> | <a href="#SetCameraMoveControls">SetCameraMoveControls</a> | <a href="#SetCameraPanControl">SetCameraPanControl</a> | <a href="#SetCameraSmoothZoomControl">SetCameraSmoothZoomControl</a> | <a href="#SetClipboardText">SetClipboardText</a>
+<a href="#SetConfigFlags">SetConfigFlags</a> | <a href="#SetExitKey">SetExitKey</a> | <a href="#SetGamepadMappings">SetGamepadMappings</a> | <a href="#SetGesturesEnabled">SetGesturesEnabled</a> | <a href="#SetLoadFileDataCallback">SetLoadFileDataCallback</a>
+<a href="#SetLoadFileTextCallback">SetLoadFileTextCallback</a> | <a href="#SetMasterVolume">SetMasterVolume</a> | <a href="#SetMaterialTexture">SetMaterialTexture</a> | <a href="#SetModelMeshMaterial">SetModelMeshMaterial</a> | <a href="#SetMouseCursor">SetMouseCursor</a>
+<a href="#SetMouseOffset">SetMouseOffset</a> | <a href="#SetMousePosition">SetMousePosition</a> | <a href="#SetMouseScale">SetMouseScale</a> | <a href="#SetMusicPan">SetMusicPan</a> | <a href="#SetMusicPitch">SetMusicPitch</a>
+<a href="#SetMusicVolume">SetMusicVolume</a> | <a href="#SetPixelColor">SetPixelColor</a> | <a href="#SetRandomSeed">SetRandomSeed</a> | <a href="#SetSaveFileDataCallback">SetSaveFileDataCallback</a> | <a href="#SetSaveFileTextCallback">SetSaveFileTextCallback</a>
+<a href="#SetShaderValue">SetShaderValue</a> | <a href="#SetShaderValueMatrix">SetShaderValueMatrix</a> | <a href="#SetShaderValueTexture">SetShaderValueTexture</a> | <a href="#SetShaderValueV">SetShaderValueV</a> | <a href="#SetShapesTexture">SetShapesTexture</a>
+<a href="#SetSoundPan">SetSoundPan</a> | <a href="#SetSoundPitch">SetSoundPitch</a> | <a href="#SetSoundVolume">SetSoundVolume</a> | <a href="#SetTargetFPS">SetTargetFPS</a> | <a href="#SetTextureFilter">SetTextureFilter</a>
+<a href="#SetTextureWrap">SetTextureWrap</a> | <a href="#SetTraceLogCallback">SetTraceLogCallback</a> | <a href="#SetTraceLogLevel">SetTraceLogLevel</a> | <a href="#SetWindowIcon">SetWindowIcon</a> | <a href="#SetWindowMinSize">SetWindowMinSize</a>
+<a href="#SetWindowMonitor">SetWindowMonitor</a> | <a href="#SetWindowOpacity">SetWindowOpacity</a> | <a href="#SetWindowPosition">SetWindowPosition</a> | <a href="#SetWindowSize">SetWindowSize</a> | <a href="#SetWindowState">SetWindowState</a>
+<a href="#SetWindowTitle">SetWindowTitle</a> | <a href="#ShowCursor">ShowCursor</a> | <a href="#StopAudioStream">StopAudioStream</a> | <a href="#StopMusicStream">StopMusicStream</a> | <a href="#StopSound">StopSound</a>
+<a href="#StopSoundMulti">StopSoundMulti</a> | <a href="#SwapScreenBuffer">SwapScreenBuffer</a> | <a href="#TakeScreenshot">TakeScreenshot</a> | <a href="#TextAppend">TextAppend</a> | <a href="#TextCodepointsToUTF8">TextCodepointsToUTF8</a>
+<a href="#TextCopy">TextCopy</a> | <a href="#TextFindIndex">TextFindIndex</a> | <a href="#TextFormat">TextFormat</a> | <a href="#TextInsert">TextInsert</a> | <a href="#TextIsEqual">TextIsEqual</a>
+<a href="#TextJoin">TextJoin</a> | <a href="#TextLength">TextLength</a> | <a href="#TextReplace">TextReplace</a> | <a href="#TextSplit">TextSplit</a> | <a href="#TextSubtext">TextSubtext</a>
+<a href="#TextToInteger">TextToInteger</a> | <a href="#TextToLower">TextToLower</a> | <a href="#TextToPascal">TextToPascal</a> | <a href="#TextToUpper">TextToUpper</a> | <a href="#ToggleFullscreen">ToggleFullscreen</a>
+<a href="#TraceLog">TraceLog</a> | <a href="#UnloadAudioStream">UnloadAudioStream</a> | <a href="#UnloadCodepoints">UnloadCodepoints</a> | <a href="#UnloadDirectoryFiles">UnloadDirectoryFiles</a> | <a href="#UnloadDroppedFiles">UnloadDroppedFiles</a>
+<a href="#UnloadFileData">UnloadFileData</a> | <a href="#UnloadFileText">UnloadFileText</a> | <a href="#UnloadFont">UnloadFont</a> | <a href="#UnloadFontData">UnloadFontData</a> | <a href="#UnloadImage">UnloadImage</a>
+<a href="#UnloadImageColors">UnloadImageColors</a> | <a href="#UnloadImagePalette">UnloadImagePalette</a> | <a href="#UnloadMaterial">UnloadMaterial</a> | <a href="#UnloadMesh">UnloadMesh</a> | <a href="#UnloadModel">UnloadModel</a>
+<a href="#UnloadModelAnimation">UnloadModelAnimation</a> | <a href="#UnloadModelAnimations">UnloadModelAnimations</a> | <a href="#UnloadModelKeepMeshes">UnloadModelKeepMeshes</a> | <a href="#UnloadMusicStream">UnloadMusicStream</a> | <a href="#UnloadRenderTexture">UnloadRenderTexture</a>
+<a href="#UnloadShader">UnloadShader</a> | <a href="#UnloadSound">UnloadSound</a> | <a href="#UnloadTexture">UnloadTexture</a> | <a href="#UnloadVrStereoConfig">UnloadVrStereoConfig</a> | <a href="#UnloadWave">UnloadWave</a>
+<a href="#UnloadWaveSamples">UnloadWaveSamples</a> | <a href="#UpdateAudioStream">UpdateAudioStream</a> | <a href="#UpdateCamera">UpdateCamera</a> | <a href="#UpdateMeshBuffer">UpdateMeshBuffer</a> | <a href="#UpdateModelAnimation">UpdateModelAnimation</a>
+<a href="#UpdateMusicStream">UpdateMusicStream</a> | <a href="#UpdateSound">UpdateSound</a> | <a href="#UpdateTexture">UpdateTexture</a> | <a href="#UpdateTextureRec">UpdateTextureRec</a> | <a href="#UploadMesh">UploadMesh</a>
+<a href="#Vector2Add">Vector2Add</a> | <a href="#Vector2AddValue">Vector2AddValue</a> | <a href="#Vector2Angle">Vector2Angle</a> | <a href="#Vector2Clamp">Vector2Clamp</a> | <a href="#Vector2ClampValue">Vector2ClampValue</a>
+<a href="#Vector2Distance">Vector2Distance</a> | <a href="#Vector2DistanceSqr">Vector2DistanceSqr</a> | <a href="#Vector2Divide">Vector2Divide</a> | <a href="#Vector2DotProduct">Vector2DotProduct</a> | <a href="#Vector2Equals">Vector2Equals</a>
+<a href="#Vector2Invert">Vector2Invert</a> | <a href="#Vector2Length">Vector2Length</a> | <a href="#Vector2LengthSqr">Vector2LengthSqr</a> | <a href="#Vector2Lerp">Vector2Lerp</a> | <a href="#Vector2MoveTowards">Vector2MoveTowards</a>
+<a href="#Vector2Multiply">Vector2Multiply</a> | <a href="#Vector2Negate">Vector2Negate</a> | <a href="#Vector2Normalize">Vector2Normalize</a> | <a href="#Vector2One">Vector2One</a> | <a href="#Vector2Reflect">Vector2Reflect</a>
+<a href="#Vector2Rotate">Vector2Rotate</a> | <a href="#Vector2Scale">Vector2Scale</a> | <a href="#Vector2Subtract">Vector2Subtract</a> | <a href="#Vector2SubtractValue">Vector2SubtractValue</a> | <a href="#Vector2Transform">Vector2Transform</a>
+<a href="#Vector2Zero">Vector2Zero</a> | <a href="#Vector3Add">Vector3Add</a> | <a href="#Vector3AddValue">Vector3AddValue</a> | <a href="#Vector3Angle">Vector3Angle</a> | <a href="#Vector3Barycenter">Vector3Barycenter</a>
+<a href="#Vector3Clamp">Vector3Clamp</a> | <a href="#Vector3ClampValue">Vector3ClampValue</a> | <a href="#Vector3CrossProduct">Vector3CrossProduct</a> | <a href="#Vector3Distance">Vector3Distance</a> | <a href="#Vector3DistanceSqr">Vector3DistanceSqr</a>
+<a href="#Vector3Divide">Vector3Divide</a> | <a href="#Vector3DotProduct">Vector3DotProduct</a> | <a href="#Vector3Equals">Vector3Equals</a> | <a href="#Vector3Invert">Vector3Invert</a> | <a href="#Vector3Length">Vector3Length</a>
+<a href="#Vector3LengthSqr">Vector3LengthSqr</a> | <a href="#Vector3Lerp">Vector3Lerp</a> | <a href="#Vector3Max">Vector3Max</a> | <a href="#Vector3Min">Vector3Min</a> | <a href="#Vector3Multiply">Vector3Multiply</a>
+<a href="#Vector3Negate">Vector3Negate</a> | <a href="#Vector3Normalize">Vector3Normalize</a> | <a href="#Vector3One">Vector3One</a> | <a href="#Vector3OrthoNormalize">Vector3OrthoNormalize</a> | <a href="#Vector3Perpendicular">Vector3Perpendicular</a>
+<a href="#Vector3Reflect">Vector3Reflect</a> | <a href="#Vector3Refract">Vector3Refract</a> | <a href="#Vector3RotateByAxisAngle">Vector3RotateByAxisAngle</a> | <a href="#Vector3RotateByQuaternion">Vector3RotateByQuaternion</a> | <a href="#Vector3Scale">Vector3Scale</a>
+<a href="#Vector3Subtract">Vector3Subtract</a> | <a href="#Vector3SubtractValue">Vector3SubtractValue</a> | <a href="#Vector3ToFloatV">Vector3ToFloatV</a> | <a href="#Vector3Transform">Vector3Transform</a> | <a href="#Vector3Unproject">Vector3Unproject</a>
+<a href="#Vector3Zero">Vector3Zero</a> | <a href="#WaitTime">WaitTime</a> | <a href="#WaveCopy">WaveCopy</a> | <a href="#WaveCrop">WaveCrop</a> | <a href="#WaveFormat">WaveFormat</a>
+<a href="#WindowShouldClose">WindowShouldClose</a> | <a href="#Wrap">Wrap</a> | <a href="#rlActiveDrawBuffers">rlActiveDrawBuffers</a> | <a href="#rlActiveTextureSlot">rlActiveTextureSlot</a> | <a href="#rlBegin">rlBegin</a>
+<a href="#rlBindImageTexture">rlBindImageTexture</a> | <a href="#rlBindShaderBuffer">rlBindShaderBuffer</a> | <a href="#rlCheckErrors">rlCheckErrors</a> | <a href="#rlCheckRenderBatchLimit">rlCheckRenderBatchLimit</a> | <a href="#rlClearColor">rlClearColor</a>
+<a href="#rlClearScreenBuffers">rlClearScreenBuffers</a> | <a href="#rlColor3f">rlColor3f</a> | <a href="#rlColor4f">rlColor4f</a> | <a href="#rlColor4ub">rlColor4ub</a> | <a href="#rlCompileShader">rlCompileShader</a>
+<a href="#rlComputeShaderDispatch">rlComputeShaderDispatch</a> | <a href="#rlCopyBuffersElements">rlCopyBuffersElements</a> | <a href="#rlDisableBackfaceCulling">rlDisableBackfaceCulling</a> | <a href="#rlDisableColorBlend">rlDisableColorBlend</a> | <a href="#rlDisableDepthMask">rlDisableDepthMask</a>
+<a href="#rlDisableDepthTest">rlDisableDepthTest</a> | <a href="#rlDisableFramebuffer">rlDisableFramebuffer</a> | <a href="#rlDisableScissorTest">rlDisableScissorTest</a> | <a href="#rlDisableShader">rlDisableShader</a> | <a href="#rlDisableSmoothLines">rlDisableSmoothLines</a>
+<a href="#rlDisableStereoRender">rlDisableStereoRender</a> | <a href="#rlDisableTexture">rlDisableTexture</a> | <a href="#rlDisableTextureCubemap">rlDisableTextureCubemap</a> | <a href="#rlDisableVertexArray">rlDisableVertexArray</a> | <a href="#rlDisableVertexAttribute">rlDisableVertexAttribute</a>
+<a href="#rlDisableVertexBuffer">rlDisableVertexBuffer</a> | <a href="#rlDisableVertexBufferElement">rlDisableVertexBufferElement</a> | <a href="#rlDisableWireMode">rlDisableWireMode</a> | <a href="#rlDrawRenderBatch">rlDrawRenderBatch</a> | <a href="#rlDrawRenderBatchActive">rlDrawRenderBatchActive</a>
+<a href="#rlDrawVertexArray">rlDrawVertexArray</a> | <a href="#rlDrawVertexArrayElements">rlDrawVertexArrayElements</a> | <a href="#rlDrawVertexArrayElementsInstanced">rlDrawVertexArrayElementsInstanced</a> | <a href="#rlDrawVertexArrayInstanced">rlDrawVertexArrayInstanced</a> | <a href="#rlEnableBackfaceCulling">rlEnableBackfaceCulling</a>
+<a href="#rlEnableColorBlend">rlEnableColorBlend</a> | <a href="#rlEnableDepthMask">rlEnableDepthMask</a> | <a href="#rlEnableDepthTest">rlEnableDepthTest</a> | <a href="#rlEnableFramebuffer">rlEnableFramebuffer</a> | <a href="#rlEnableScissorTest">rlEnableScissorTest</a>
+<a href="#rlEnableShader">rlEnableShader</a> | <a href="#rlEnableSmoothLines">rlEnableSmoothLines</a> | <a href="#rlEnableStereoRender">rlEnableStereoRender</a> | <a href="#rlEnableTexture">rlEnableTexture</a> | <a href="#rlEnableTextureCubemap">rlEnableTextureCubemap</a>
+<a href="#rlEnableVertexArray">rlEnableVertexArray</a> | <a href="#rlEnableVertexAttribute">rlEnableVertexAttribute</a> | <a href="#rlEnableVertexBuffer">rlEnableVertexBuffer</a> | <a href="#rlEnableVertexBufferElement">rlEnableVertexBufferElement</a> | <a href="#rlEnableWireMode">rlEnableWireMode</a>
+<a href="#rlEnd">rlEnd</a> | <a href="#rlFramebufferAttach">rlFramebufferAttach</a> | <a href="#rlFramebufferComplete">rlFramebufferComplete</a> | <a href="#rlFrustum">rlFrustum</a> | <a href="#rlGenTextureMipmaps">rlGenTextureMipmaps</a>
+<a href="#rlGetFramebufferHeight">rlGetFramebufferHeight</a> | <a href="#rlGetFramebufferWidth">rlGetFramebufferWidth</a> | <a href="#rlGetGlTextureFormats">rlGetGlTextureFormats</a> | <a href="#rlGetLineWidth">rlGetLineWidth</a> | <a href="#rlGetLocationAttrib">rlGetLocationAttrib</a>
+<a href="#rlGetLocationUniform">rlGetLocationUniform</a> | <a href="#rlGetMatrixModelview">rlGetMatrixModelview</a> | <a href="#rlGetMatrixProjection">rlGetMatrixProjection</a> | <a href="#rlGetMatrixProjectionStereo">rlGetMatrixProjectionStereo</a> | <a href="#rlGetMatrixTransform">rlGetMatrixTransform</a>
+<a href="#rlGetMatrixViewOffsetStereo">rlGetMatrixViewOffsetStereo</a> | <a href="#rlGetPixelFormatName">rlGetPixelFormatName</a> | <a href="#rlGetShaderBufferSize">rlGetShaderBufferSize</a> | <a href="#rlGetShaderIdDefault">rlGetShaderIdDefault</a> | <a href="#rlGetShaderLocsDefault">rlGetShaderLocsDefault</a>
+<a href="#rlGetTextureIdDefault">rlGetTextureIdDefault</a> | <a href="#rlGetVersion">rlGetVersion</a> | <a href="#rlIsStereoRenderEnabled">rlIsStereoRenderEnabled</a> | <a href="#rlLoadComputeShaderProgram">rlLoadComputeShaderProgram</a> | <a href="#rlLoadDrawCube">rlLoadDrawCube</a>
+<a href="#rlLoadDrawQuad">rlLoadDrawQuad</a> | <a href="#rlLoadExtensions">rlLoadExtensions</a> | <a href="#rlLoadFramebuffer">rlLoadFramebuffer</a> | <a href="#rlLoadIdentity">rlLoadIdentity</a> | <a href="#rlLoadRenderBatch">rlLoadRenderBatch</a>
+<a href="#rlLoadShaderBuffer">rlLoadShaderBuffer</a> | <a href="#rlLoadShaderCode">rlLoadShaderCode</a> | <a href="#rlLoadShaderProgram">rlLoadShaderProgram</a> | <a href="#rlLoadTexture">rlLoadTexture</a> | <a href="#rlLoadTextureCubemap">rlLoadTextureCubemap</a>
+<a href="#rlLoadTextureDepth">rlLoadTextureDepth</a> | <a href="#rlLoadVertexArray">rlLoadVertexArray</a> | <a href="#rlLoadVertexBuffer">rlLoadVertexBuffer</a> | <a href="#rlLoadVertexBufferElement">rlLoadVertexBufferElement</a> | <a href="#rlMatrixMode">rlMatrixMode</a>
+<a href="#rlMultMatrixf">rlMultMatrixf</a> | <a href="#rlNormal3f">rlNormal3f</a> | <a href="#rlOrtho">rlOrtho</a> | <a href="#rlPopMatrix">rlPopMatrix</a> | <a href="#rlPushMatrix">rlPushMatrix</a>
+<a href="#rlReadScreenPixels">rlReadScreenPixels</a> | <a href="#rlReadShaderBufferElements">rlReadShaderBufferElements</a> | <a href="#rlReadTexturePixels">rlReadTexturePixels</a> | <a href="#rlRotatef">rlRotatef</a> | <a href="#rlScalef">rlScalef</a>
+<a href="#rlScissor">rlScissor</a> | <a href="#rlSetBlendFactors">rlSetBlendFactors</a> | <a href="#rlSetBlendMode">rlSetBlendMode</a> | <a href="#rlSetFramebufferHeight">rlSetFramebufferHeight</a> | <a href="#rlSetFramebufferWidth">rlSetFramebufferWidth</a>
+<a href="#rlSetLineWidth">rlSetLineWidth</a> | <a href="#rlSetMatrixModelview">rlSetMatrixModelview</a> | <a href="#rlSetMatrixProjection">rlSetMatrixProjection</a> | <a href="#rlSetMatrixProjectionStereo">rlSetMatrixProjectionStereo</a> | <a href="#rlSetMatrixViewOffsetStereo">rlSetMatrixViewOffsetStereo</a>
+<a href="#rlSetRenderBatchActive">rlSetRenderBatchActive</a> | <a href="#rlSetShader">rlSetShader</a> | <a href="#rlSetTexture">rlSetTexture</a> | <a href="#rlSetUniform">rlSetUniform</a> | <a href="#rlSetUniformMatrix">rlSetUniformMatrix</a>
+<a href="#rlSetUniformSampler">rlSetUniformSampler</a> | <a href="#rlSetVertexAttribute">rlSetVertexAttribute</a> | <a href="#rlSetVertexAttributeDefault">rlSetVertexAttributeDefault</a> | <a href="#rlSetVertexAttributeDivisor">rlSetVertexAttributeDivisor</a> | <a href="#rlTexCoord2f">rlTexCoord2f</a>
+<a href="#rlTextureParameters">rlTextureParameters</a> | <a href="#rlTranslatef">rlTranslatef</a> | <a href="#rlUnloadFramebuffer">rlUnloadFramebuffer</a> | <a href="#rlUnloadRenderBatch">rlUnloadRenderBatch</a> | <a href="#rlUnloadShaderBuffer">rlUnloadShaderBuffer</a>
+<a href="#rlUnloadShaderProgram">rlUnloadShaderProgram</a> | <a href="#rlUnloadTexture">rlUnloadTexture</a> | <a href="#rlUnloadVertexArray">rlUnloadVertexArray</a> | <a href="#rlUnloadVertexBuffer">rlUnloadVertexBuffer</a> | <a href="#rlUpdateShaderBufferElements">rlUpdateShaderBufferElements</a>
+<a href="#rlUpdateTexture">rlUpdateTexture</a> | <a href="#rlUpdateVertexBuffer">rlUpdateVertexBuffer</a> | <a href="#rlUpdateVertexBufferElements">rlUpdateVertexBufferElements</a> | <a href="#rlVertex2f">rlVertex2f</a> | <a href="#rlVertex2i">rlVertex2i</a>
+<a href="#rlVertex3f">rlVertex3f</a> | <a href="#rlViewport">rlViewport</a> | <a href="#rlglClose">rlglClose</a> | <a href="#rlglInit">rlglInit</a>
 
 [ <a href="#toc">ToC</a> ]
 
@@ -2485,7 +2776,8 @@ Python wrapper:
 def set_window_icon(image: Image) -> None
 ```
 
-See also: <a href="#Image">Image</a>
+See also:
+<a href="#Image">Image</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -2753,6 +3045,9 @@ Python wrapper:
 def get_monitor_position(monitor: int) -> Vector2
 ```
 
+See also:
+<a href="#Vector2">Vector2</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
@@ -2867,6 +3162,9 @@ Python wrapper:
 def get_window_position() -> Vector2
 ```
 
+See also:
+<a href="#Vector2">Vector2</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
@@ -2885,6 +3183,9 @@ Python wrapper:
 ```python
 def get_window_scale_dpi() -> Vector2
 ```
+
+See also:
+<a href="#Vector2">Vector2</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -3171,7 +3472,8 @@ Python wrapper:
 def clear_background(color: Color) -> None
 ```
 
-See also: <a href="#Color">Color</a>
+See also:
+<a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -3230,7 +3532,8 @@ Python wrapper:
 def begin_mode2d(camera: Camera2D) -> None
 ```
 
-See also: <a href="#Camera2D">Camera2D</a>
+See also:
+<a href="#Camera2D">Camera2D</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -3270,7 +3573,8 @@ Python wrapper:
 def begin_mode3d(camera: Camera3D) -> None
 ```
 
-See also: <a href="#Camera3D">Camera3D</a>
+See also:
+<a href="#Camera3D">Camera3D</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -3348,7 +3652,8 @@ Python wrapper:
 def begin_shader_mode(shader: Shader) -> None
 ```
 
-See also: <a href="#Shader">Shader</a>
+See also:
+<a href="#Shader">Shader</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -3464,7 +3769,8 @@ Python wrapper:
 def begin_vr_stereo_mode(config: VrStereoConfig) -> None
 ```
 
-See also: <a href="#VrStereoConfig">VrStereoConfig</a>
+See also:
+<a href="#VrStereoConfig">VrStereoConfig</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -3504,7 +3810,8 @@ Python wrapper:
 def load_vr_stereo_config(device: VrDeviceInfo) -> VrStereoConfig
 ```
 
-See also: <a href="#VrDeviceInfo">VrDeviceInfo</a>
+See also:
+<a href="#VrDeviceInfo">VrDeviceInfo</a>, <a href="#VrStereoConfig">VrStereoConfig</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -3525,7 +3832,8 @@ Python wrapper:
 def unload_vr_stereo_config(config: VrStereoConfig) -> None
 ```
 
-See also: <a href="#VrStereoConfig">VrStereoConfig</a>
+See also:
+<a href="#VrStereoConfig">VrStereoConfig</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -3546,6 +3854,9 @@ Python wrapper:
 def load_shader(vs_file_name: Union[str, CharPtr], fs_file_name: Union[str, CharPtr]) -> Shader
 ```
 
+See also:
+<a href="#Shader">Shader</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
@@ -3564,6 +3875,9 @@ Python wrapper:
 ```python
 def load_shader_from_memory(vs_code: Union[str, CharPtr], fs_code: Union[str, CharPtr]) -> Shader
 ```
+
+See also:
+<a href="#Shader">Shader</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -3584,7 +3898,8 @@ Python wrapper:
 def get_shader_location(shader: Shader, uniform_name: Union[str, CharPtr]) -> int
 ```
 
-See also: <a href="#Shader">Shader</a>
+See also:
+<a href="#Shader">Shader</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -3605,7 +3920,8 @@ Python wrapper:
 def get_shader_location_attrib(shader: Shader, attrib_name: Union[str, CharPtr]) -> int
 ```
 
-See also: <a href="#Shader">Shader</a>
+See also:
+<a href="#Shader">Shader</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -3626,7 +3942,8 @@ Python wrapper:
 def set_shader_value(shader: Shader, loc_index: int, value: bytes, uniform_type: int) -> None
 ```
 
-See also: <a href="#Shader">Shader</a>
+See also:
+<a href="#Shader">Shader</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -3647,7 +3964,8 @@ Python wrapper:
 def set_shader_value_v(shader: Shader, loc_index: int, value: bytes, uniform_type: int, count: int) -> None
 ```
 
-See also: <a href="#Shader">Shader</a>
+See also:
+<a href="#Shader">Shader</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -3668,7 +3986,8 @@ Python wrapper:
 def set_shader_value_matrix(shader: Shader, loc_index: int, mat: Matrix) -> None
 ```
 
-See also: <a href="#Shader">Shader</a>, <a href="#Matrix">Matrix</a>
+See also:
+<a href="#Shader">Shader</a>, <a href="#Matrix">Matrix</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -3689,7 +4008,8 @@ Python wrapper:
 def set_shader_value_texture(shader: Shader, loc_index: int, texture: Texture2D) -> None
 ```
 
-See also: <a href="#Shader">Shader</a>
+See also:
+<a href="#Shader">Shader</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -3710,7 +4030,8 @@ Python wrapper:
 def unload_shader(shader: Shader) -> None
 ```
 
-See also: <a href="#Shader">Shader</a>
+See also:
+<a href="#Shader">Shader</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -3731,7 +4052,8 @@ Python wrapper:
 def get_mouse_ray(mouse_position: Vector2, camera: Camera) -> Ray
 ```
 
-See also: <a href="#Vector2">Vector2</a>
+See also:
+<a href="#Vector2">Vector2</a>, <a href="#Ray">Ray</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -3752,6 +4074,9 @@ Python wrapper:
 def get_camera_matrix(camera: Camera) -> Matrix
 ```
 
+See also:
+<a href="#Matrix">Matrix</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
@@ -3771,7 +4096,8 @@ Python wrapper:
 def get_camera_matrix2d(camera: Camera2D) -> Matrix
 ```
 
-See also: <a href="#Camera2D">Camera2D</a>
+See also:
+<a href="#Camera2D">Camera2D</a>, <a href="#Matrix">Matrix</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -3792,7 +4118,8 @@ Python wrapper:
 def get_world_to_screen(position: Vector3, camera: Camera) -> Vector2
 ```
 
-See also: <a href="#Vector3">Vector3</a>
+See also:
+<a href="#Vector3">Vector3</a>, <a href="#Vector2">Vector2</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -3813,7 +4140,8 @@ Python wrapper:
 def get_screen_to_world2d(position: Vector2, camera: Camera2D) -> Vector2
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Camera2D">Camera2D</a>
+See also:
+<a href="#Vector2">Vector2</a>, <a href="#Camera2D">Camera2D</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -3834,7 +4162,8 @@ Python wrapper:
 def get_world_to_screen_ex(position: Vector3, camera: Camera, width: int, height: int) -> Vector2
 ```
 
-See also: <a href="#Vector3">Vector3</a>
+See also:
+<a href="#Vector3">Vector3</a>, <a href="#Vector2">Vector2</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -3855,7 +4184,8 @@ Python wrapper:
 def get_world_to_screen2d(position: Vector2, camera: Camera2D) -> Vector2
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Camera2D">Camera2D</a>
+See also:
+<a href="#Vector2">Vector2</a>, <a href="#Camera2D">Camera2D</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -4617,6 +4947,9 @@ Python wrapper:
 def load_directory_files(dir_path: Union[str, CharPtr]) -> FilePathList
 ```
 
+See also:
+<a href="#FilePathList">FilePathList</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
@@ -4635,6 +4968,9 @@ Python wrapper:
 ```python
 def load_directory_files_ex(base_path: Union[str, CharPtr], filter: Union[str, CharPtr], scan_subdirs: bool) -> FilePathList
 ```
+
+See also:
+<a href="#FilePathList">FilePathList</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -4655,7 +4991,8 @@ Python wrapper:
 def unload_directory_files(files: FilePathList) -> None
 ```
 
-See also: <a href="#FilePathList">FilePathList</a>
+See also:
+<a href="#FilePathList">FilePathList</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -4695,6 +5032,9 @@ Python wrapper:
 def load_dropped_files() -> FilePathList
 ```
 
+See also:
+<a href="#FilePathList">FilePathList</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
@@ -4714,7 +5054,8 @@ Python wrapper:
 def unload_dropped_files(files: FilePathList) -> None
 ```
 
-See also: <a href="#FilePathList">FilePathList</a>
+See also:
+<a href="#FilePathList">FilePathList</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -5267,6 +5608,9 @@ Python wrapper:
 def get_mouse_position() -> Vector2
 ```
 
+See also:
+<a href="#Vector2">Vector2</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
@@ -5285,6 +5629,9 @@ Python wrapper:
 ```python
 def get_mouse_delta() -> Vector2
 ```
+
+See also:
+<a href="#Vector2">Vector2</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -5381,6 +5728,9 @@ Python wrapper:
 def get_mouse_wheel_move_v() -> Vector2
 ```
 
+See also:
+<a href="#Vector2">Vector2</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
@@ -5456,6 +5806,9 @@ Python wrapper:
 ```python
 def get_touch_position(index: int) -> Vector2
 ```
+
+See also:
+<a href="#Vector2">Vector2</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -5590,6 +5943,9 @@ Python wrapper:
 def get_gesture_drag_vector() -> Vector2
 ```
 
+See also:
+<a href="#Vector2">Vector2</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
@@ -5627,6 +5983,9 @@ Python wrapper:
 ```python
 def get_gesture_pinch_vector() -> Vector2
 ```
+
+See also:
+<a href="#Vector2">Vector2</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -5780,7 +6139,8 @@ Python wrapper:
 def set_shapes_texture(texture: Texture2D, source: Rectangle) -> None
 ```
 
-See also: <a href="#Rectangle">Rectangle</a>
+See also:
+<a href="#Rectangle">Rectangle</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -5801,7 +6161,8 @@ Python wrapper:
 def draw_pixel(pos_x: int, pos_y: int, color: Color) -> None
 ```
 
-See also: <a href="#Color">Color</a>
+See also:
+<a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -5822,7 +6183,8 @@ Python wrapper:
 def draw_pixel_v(position: Vector2, color: Color) -> None
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -5843,7 +6205,8 @@ Python wrapper:
 def draw_line(start_pos_x: int, start_pos_y: int, end_pos_x: int, end_pos_y: int, color: Color) -> None
 ```
 
-See also: <a href="#Color">Color</a>
+See also:
+<a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -5864,7 +6227,8 @@ Python wrapper:
 def draw_line_v(start_pos: Vector2, end_pos: Vector2, color: Color) -> None
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -5885,7 +6249,8 @@ Python wrapper:
 def draw_line_ex(start_pos: Vector2, end_pos: Vector2, thick: float, color: Color) -> None
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -5906,7 +6271,8 @@ Python wrapper:
 def draw_line_bezier(start_pos: Vector2, end_pos: Vector2, thick: float, color: Color) -> None
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -5927,7 +6293,8 @@ Python wrapper:
 def draw_line_bezier_quad(start_pos: Vector2, end_pos: Vector2, control_pos: Vector2, thick: float, color: Color) -> None
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Vector2">Vector2</a>, <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -5948,7 +6315,8 @@ Python wrapper:
 def draw_line_bezier_cubic(start_pos: Vector2, end_pos: Vector2, start_control_pos: Vector2, end_control_pos: Vector2, thick: float, color: Color) -> None
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Vector2">Vector2</a>, <a href="#Vector2">Vector2</a>, <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -5969,7 +6337,8 @@ Python wrapper:
 def draw_line_strip(points: Vector2Ptr, point_count: int, color: Color) -> None
 ```
 
-See also: <a href="#Color">Color</a>
+See also:
+<a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -5990,7 +6359,8 @@ Python wrapper:
 def draw_circle(center_x: int, center_y: int, radius: float, color: Color) -> None
 ```
 
-See also: <a href="#Color">Color</a>
+See also:
+<a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -6011,7 +6381,8 @@ Python wrapper:
 def draw_circle_sector(center: Vector2, radius: float, start_angle: float, end_angle: float, segments: int, color: Color) -> None
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -6032,7 +6403,8 @@ Python wrapper:
 def draw_circle_sector_lines(center: Vector2, radius: float, start_angle: float, end_angle: float, segments: int, color: Color) -> None
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -6053,7 +6425,8 @@ Python wrapper:
 def draw_circle_gradient(center_x: int, center_y: int, radius: float, color1: Color, color2: Color) -> None
 ```
 
-See also: <a href="#Color">Color</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -6074,7 +6447,8 @@ Python wrapper:
 def draw_circle_v(center: Vector2, radius: float, color: Color) -> None
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -6095,7 +6469,8 @@ Python wrapper:
 def draw_circle_lines(center_x: int, center_y: int, radius: float, color: Color) -> None
 ```
 
-See also: <a href="#Color">Color</a>
+See also:
+<a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -6116,7 +6491,8 @@ Python wrapper:
 def draw_ellipse(center_x: int, center_y: int, radius_h: float, radius_v: float, color: Color) -> None
 ```
 
-See also: <a href="#Color">Color</a>
+See also:
+<a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -6137,7 +6513,8 @@ Python wrapper:
 def draw_ellipse_lines(center_x: int, center_y: int, radius_h: float, radius_v: float, color: Color) -> None
 ```
 
-See also: <a href="#Color">Color</a>
+See also:
+<a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -6158,7 +6535,8 @@ Python wrapper:
 def draw_ring(center: Vector2, inner_radius: float, outer_radius: float, start_angle: float, end_angle: float, segments: int, color: Color) -> None
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -6179,7 +6557,8 @@ Python wrapper:
 def draw_ring_lines(center: Vector2, inner_radius: float, outer_radius: float, start_angle: float, end_angle: float, segments: int, color: Color) -> None
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -6200,7 +6579,8 @@ Python wrapper:
 def draw_rectangle(pos_x: int, pos_y: int, width: int, height: int, color: Color) -> None
 ```
 
-See also: <a href="#Color">Color</a>
+See also:
+<a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -6221,7 +6601,8 @@ Python wrapper:
 def draw_rectangle_v(position: Vector2, size: Vector2, color: Color) -> None
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -6242,7 +6623,8 @@ Python wrapper:
 def draw_rectangle_rec(rec: Rectangle, color: Color) -> None
 ```
 
-See also: <a href="#Rectangle">Rectangle</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Rectangle">Rectangle</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -6263,7 +6645,8 @@ Python wrapper:
 def draw_rectangle_pro(rec: Rectangle, origin: Vector2, rotation: float, color: Color) -> None
 ```
 
-See also: <a href="#Rectangle">Rectangle</a>, <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Rectangle">Rectangle</a>, <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -6284,7 +6667,8 @@ Python wrapper:
 def draw_rectangle_gradient_v(pos_x: int, pos_y: int, width: int, height: int, color1: Color, color2: Color) -> None
 ```
 
-See also: <a href="#Color">Color</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -6305,7 +6689,8 @@ Python wrapper:
 def draw_rectangle_gradient_h(pos_x: int, pos_y: int, width: int, height: int, color1: Color, color2: Color) -> None
 ```
 
-See also: <a href="#Color">Color</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -6326,7 +6711,8 @@ Python wrapper:
 def draw_rectangle_gradient_ex(rec: Rectangle, col1: Color, col2: Color, col3: Color, col4: Color) -> None
 ```
 
-See also: <a href="#Rectangle">Rectangle</a>, <a href="#Color">Color</a>, <a href="#Color">Color</a>, <a href="#Color">Color</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Rectangle">Rectangle</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -6347,7 +6733,8 @@ Python wrapper:
 def draw_rectangle_lines(pos_x: int, pos_y: int, width: int, height: int, color: Color) -> None
 ```
 
-See also: <a href="#Color">Color</a>
+See also:
+<a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -6368,7 +6755,8 @@ Python wrapper:
 def draw_rectangle_lines_ex(rec: Rectangle, line_thick: float, color: Color) -> None
 ```
 
-See also: <a href="#Rectangle">Rectangle</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Rectangle">Rectangle</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -6389,7 +6777,8 @@ Python wrapper:
 def draw_rectangle_rounded(rec: Rectangle, roundness: float, segments: int, color: Color) -> None
 ```
 
-See also: <a href="#Rectangle">Rectangle</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Rectangle">Rectangle</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -6410,7 +6799,8 @@ Python wrapper:
 def draw_rectangle_rounded_lines(rec: Rectangle, roundness: float, segments: int, line_thick: float, color: Color) -> None
 ```
 
-See also: <a href="#Rectangle">Rectangle</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Rectangle">Rectangle</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -6431,7 +6821,8 @@ Python wrapper:
 def draw_triangle(v1: Vector2, v2: Vector2, v3: Vector2, color: Color) -> None
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Vector2">Vector2</a>, <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -6452,7 +6843,8 @@ Python wrapper:
 def draw_triangle_lines(v1: Vector2, v2: Vector2, v3: Vector2, color: Color) -> None
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Vector2">Vector2</a>, <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -6473,7 +6865,8 @@ Python wrapper:
 def draw_triangle_fan(points: Vector2Ptr, point_count: int, color: Color) -> None
 ```
 
-See also: <a href="#Color">Color</a>
+See also:
+<a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -6494,7 +6887,8 @@ Python wrapper:
 def draw_triangle_strip(points: Vector2Ptr, point_count: int, color: Color) -> None
 ```
 
-See also: <a href="#Color">Color</a>
+See also:
+<a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -6515,7 +6909,8 @@ Python wrapper:
 def draw_poly(center: Vector2, sides: int, radius: float, rotation: float, color: Color) -> None
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -6536,7 +6931,8 @@ Python wrapper:
 def draw_poly_lines(center: Vector2, sides: int, radius: float, rotation: float, color: Color) -> None
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -6557,7 +6953,8 @@ Python wrapper:
 def draw_poly_lines_ex(center: Vector2, sides: int, radius: float, rotation: float, line_thick: float, color: Color) -> None
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -6578,7 +6975,8 @@ Python wrapper:
 def check_collision_recs(rec1: Rectangle, rec2: Rectangle) -> bool
 ```
 
-See also: <a href="#Rectangle">Rectangle</a>, <a href="#Rectangle">Rectangle</a>
+See also:
+<a href="#Rectangle">Rectangle</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -6599,7 +6997,8 @@ Python wrapper:
 def check_collision_circles(center1: Vector2, radius1: float, center2: Vector2, radius2: float) -> bool
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Vector2">Vector2</a>
+See also:
+<a href="#Vector2">Vector2</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -6620,7 +7019,8 @@ Python wrapper:
 def check_collision_circle_rec(center: Vector2, radius: float, rec: Rectangle) -> bool
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Rectangle">Rectangle</a>
+See also:
+<a href="#Vector2">Vector2</a>, <a href="#Rectangle">Rectangle</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -6641,7 +7041,8 @@ Python wrapper:
 def check_collision_point_rec(point: Vector2, rec: Rectangle) -> bool
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Rectangle">Rectangle</a>
+See also:
+<a href="#Vector2">Vector2</a>, <a href="#Rectangle">Rectangle</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -6662,7 +7063,8 @@ Python wrapper:
 def check_collision_point_circle(point: Vector2, center: Vector2, radius: float) -> bool
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Vector2">Vector2</a>
+See also:
+<a href="#Vector2">Vector2</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -6683,7 +7085,8 @@ Python wrapper:
 def check_collision_point_triangle(point: Vector2, p1: Vector2, p2: Vector2, p3: Vector2) -> bool
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Vector2">Vector2</a>, <a href="#Vector2">Vector2</a>, <a href="#Vector2">Vector2</a>
+See also:
+<a href="#Vector2">Vector2</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -6704,7 +7107,8 @@ Python wrapper:
 def check_collision_lines(start_pos1: Vector2, end_pos1: Vector2, start_pos2: Vector2, end_pos2: Vector2, collision_point: Vector2Ptr) -> bool
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Vector2">Vector2</a>, <a href="#Vector2">Vector2</a>, <a href="#Vector2">Vector2</a>
+See also:
+<a href="#Vector2">Vector2</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -6725,7 +7129,8 @@ Python wrapper:
 def check_collision_point_line(point: Vector2, p1: Vector2, p2: Vector2, threshold: int) -> bool
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Vector2">Vector2</a>, <a href="#Vector2">Vector2</a>
+See also:
+<a href="#Vector2">Vector2</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -6746,7 +7151,8 @@ Python wrapper:
 def get_collision_rec(rec1: Rectangle, rec2: Rectangle) -> Rectangle
 ```
 
-See also: <a href="#Rectangle">Rectangle</a>, <a href="#Rectangle">Rectangle</a>
+See also:
+<a href="#Rectangle">Rectangle</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -6767,6 +7173,9 @@ Python wrapper:
 def load_image(file_name: Union[str, CharPtr]) -> Image
 ```
 
+See also:
+<a href="#Image">Image</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
@@ -6785,6 +7194,9 @@ Python wrapper:
 ```python
 def load_image_raw(file_name: Union[str, CharPtr], width: int, height: int, format: int, header_size: int) -> Image
 ```
+
+See also:
+<a href="#Image">Image</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -6805,6 +7217,9 @@ Python wrapper:
 def load_image_anim(file_name: Union[str, CharPtr], frames: Union[Seq[int], IntPtr]) -> Image
 ```
 
+See also:
+<a href="#Image">Image</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
@@ -6823,6 +7238,9 @@ Python wrapper:
 ```python
 def load_image_from_memory(file_type: Union[str, CharPtr], file_data: Union[Seq[int], UCharPtr], data_size: int) -> Image
 ```
+
+See also:
+<a href="#Image">Image</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -6843,6 +7261,9 @@ Python wrapper:
 def load_image_from_texture(texture: Texture2D) -> Image
 ```
 
+See also:
+<a href="#Image">Image</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
@@ -6861,6 +7282,9 @@ Python wrapper:
 ```python
 def load_image_from_screen() -> Image
 ```
+
+See also:
+<a href="#Image">Image</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -6881,7 +7305,8 @@ Python wrapper:
 def unload_image(image: Image) -> None
 ```
 
-See also: <a href="#Image">Image</a>
+See also:
+<a href="#Image">Image</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -6902,7 +7327,8 @@ Python wrapper:
 def export_image(image: Image, file_name: Union[str, CharPtr]) -> bool
 ```
 
-See also: <a href="#Image">Image</a>
+See also:
+<a href="#Image">Image</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -6923,7 +7349,8 @@ Python wrapper:
 def export_image_as_code(image: Image, file_name: Union[str, CharPtr]) -> bool
 ```
 
-See also: <a href="#Image">Image</a>
+See also:
+<a href="#Image">Image</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -6944,7 +7371,8 @@ Python wrapper:
 def gen_image_color(width: int, height: int, color: Color) -> Image
 ```
 
-See also: <a href="#Color">Color</a>
+See also:
+<a href="#Color">Color</a>, <a href="#Image">Image</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -6965,7 +7393,8 @@ Python wrapper:
 def gen_image_gradient_v(width: int, height: int, top: Color, bottom: Color) -> Image
 ```
 
-See also: <a href="#Color">Color</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Color">Color</a>, <a href="#Image">Image</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -6986,7 +7415,8 @@ Python wrapper:
 def gen_image_gradient_h(width: int, height: int, left: Color, right: Color) -> Image
 ```
 
-See also: <a href="#Color">Color</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Color">Color</a>, <a href="#Image">Image</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -7007,7 +7437,8 @@ Python wrapper:
 def gen_image_gradient_radial(width: int, height: int, density: float, inner: Color, outer: Color) -> Image
 ```
 
-See also: <a href="#Color">Color</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Color">Color</a>, <a href="#Image">Image</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -7028,7 +7459,8 @@ Python wrapper:
 def gen_image_checked(width: int, height: int, checks_x: int, checks_y: int, col1: Color, col2: Color) -> Image
 ```
 
-See also: <a href="#Color">Color</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Color">Color</a>, <a href="#Image">Image</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -7049,6 +7481,9 @@ Python wrapper:
 def gen_image_white_noise(width: int, height: int, factor: float) -> Image
 ```
 
+See also:
+<a href="#Image">Image</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
@@ -7067,6 +7502,9 @@ Python wrapper:
 ```python
 def gen_image_cellular(width: int, height: int, tile_size: int) -> Image
 ```
+
+See also:
+<a href="#Image">Image</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -7087,7 +7525,8 @@ Python wrapper:
 def image_copy(image: Image) -> Image
 ```
 
-See also: <a href="#Image">Image</a>
+See also:
+<a href="#Image">Image</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -7108,7 +7547,8 @@ Python wrapper:
 def image_from_image(image: Image, rec: Rectangle) -> Image
 ```
 
-See also: <a href="#Image">Image</a>, <a href="#Rectangle">Rectangle</a>
+See also:
+<a href="#Image">Image</a>, <a href="#Rectangle">Rectangle</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -7129,7 +7569,8 @@ Python wrapper:
 def image_text(text: Union[str, CharPtr], font_size: int, color: Color) -> Image
 ```
 
-See also: <a href="#Color">Color</a>
+See also:
+<a href="#Color">Color</a>, <a href="#Image">Image</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -7150,7 +7591,8 @@ Python wrapper:
 def image_text_ex(font: Font, text: Union[str, CharPtr], font_size: float, spacing: float, tint: Color) -> Image
 ```
 
-See also: <a href="#Font">Font</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Font">Font</a>, <a href="#Color">Color</a>, <a href="#Image">Image</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -7171,6 +7613,9 @@ Python wrapper:
 def image_format(image: ImagePtr, new_format: int) -> None
 ```
 
+See also:
+<a href="#Image">Image</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
@@ -7190,7 +7635,8 @@ Python wrapper:
 def image_to_pot(image: ImagePtr, fill: Color) -> None
 ```
 
-See also: <a href="#Color">Color</a>
+See also:
+<a href="#Image">Image</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -7211,7 +7657,8 @@ Python wrapper:
 def image_crop(image: ImagePtr, crop: Rectangle) -> None
 ```
 
-See also: <a href="#Rectangle">Rectangle</a>
+See also:
+<a href="#Image">Image</a>, <a href="#Rectangle">Rectangle</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -7232,6 +7679,9 @@ Python wrapper:
 def image_alpha_crop(image: ImagePtr, threshold: float) -> None
 ```
 
+See also:
+<a href="#Image">Image</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
@@ -7251,7 +7701,8 @@ Python wrapper:
 def image_alpha_clear(image: ImagePtr, color: Color, threshold: float) -> None
 ```
 
-See also: <a href="#Color">Color</a>
+See also:
+<a href="#Image">Image</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -7272,7 +7723,8 @@ Python wrapper:
 def image_alpha_mask(image: ImagePtr, alpha_mask: Image) -> None
 ```
 
-See also: <a href="#Image">Image</a>
+See also:
+<a href="#Image">Image</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -7293,6 +7745,9 @@ Python wrapper:
 def image_alpha_premultiply(image: ImagePtr) -> None
 ```
 
+See also:
+<a href="#Image">Image</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
@@ -7311,6 +7766,9 @@ Python wrapper:
 ```python
 def image_resize(image: ImagePtr, new_width: int, new_height: int) -> None
 ```
+
+See also:
+<a href="#Image">Image</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -7331,6 +7789,9 @@ Python wrapper:
 def image_resize_nn(image: ImagePtr, new_width: int, new_height: int) -> None
 ```
 
+See also:
+<a href="#Image">Image</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
@@ -7350,7 +7811,8 @@ Python wrapper:
 def image_resize_canvas(image: ImagePtr, new_width: int, new_height: int, offset_x: int, offset_y: int, fill: Color) -> None
 ```
 
-See also: <a href="#Color">Color</a>
+See also:
+<a href="#Image">Image</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -7371,6 +7833,9 @@ Python wrapper:
 def image_mipmaps(image: ImagePtr) -> None
 ```
 
+See also:
+<a href="#Image">Image</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
@@ -7389,6 +7854,9 @@ Python wrapper:
 ```python
 def image_dither(image: ImagePtr, r_bpp: int, g_bpp: int, b_bpp: int, a_bpp: int) -> None
 ```
+
+See also:
+<a href="#Image">Image</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -7409,6 +7877,9 @@ Python wrapper:
 def image_flip_vertical(image: ImagePtr) -> None
 ```
 
+See also:
+<a href="#Image">Image</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
@@ -7427,6 +7898,9 @@ Python wrapper:
 ```python
 def image_flip_horizontal(image: ImagePtr) -> None
 ```
+
+See also:
+<a href="#Image">Image</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -7447,6 +7921,9 @@ Python wrapper:
 def image_rotate_cw(image: ImagePtr) -> None
 ```
 
+See also:
+<a href="#Image">Image</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
@@ -7465,6 +7942,9 @@ Python wrapper:
 ```python
 def image_rotate_ccw(image: ImagePtr) -> None
 ```
+
+See also:
+<a href="#Image">Image</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -7485,7 +7965,8 @@ Python wrapper:
 def image_color_tint(image: ImagePtr, color: Color) -> None
 ```
 
-See also: <a href="#Color">Color</a>
+See also:
+<a href="#Image">Image</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -7506,6 +7987,9 @@ Python wrapper:
 def image_color_invert(image: ImagePtr) -> None
 ```
 
+See also:
+<a href="#Image">Image</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
@@ -7524,6 +8008,9 @@ Python wrapper:
 ```python
 def image_color_grayscale(image: ImagePtr) -> None
 ```
+
+See also:
+<a href="#Image">Image</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -7544,6 +8031,9 @@ Python wrapper:
 def image_color_contrast(image: ImagePtr, contrast: float) -> None
 ```
 
+See also:
+<a href="#Image">Image</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
@@ -7562,6 +8052,9 @@ Python wrapper:
 ```python
 def image_color_brightness(image: ImagePtr, brightness: int) -> None
 ```
+
+See also:
+<a href="#Image">Image</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -7582,7 +8075,8 @@ Python wrapper:
 def image_color_replace(image: ImagePtr, color: Color, replace: Color) -> None
 ```
 
-See also: <a href="#Color">Color</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Image">Image</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -7603,7 +8097,8 @@ Python wrapper:
 def load_image_colors(image: Image) -> ColorPtr
 ```
 
-See also: <a href="#Image">Image</a>
+See also:
+<a href="#Image">Image</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -7624,7 +8119,8 @@ Python wrapper:
 def load_image_palette(image: Image, max_palette_size: int, color_count: Union[Seq[int], IntPtr]) -> ColorPtr
 ```
 
-See also: <a href="#Image">Image</a>
+See also:
+<a href="#Image">Image</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -7645,6 +8141,9 @@ Python wrapper:
 def unload_image_colors(colors: ColorPtr) -> None
 ```
 
+See also:
+<a href="#Color">Color</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
@@ -7663,6 +8162,9 @@ Python wrapper:
 ```python
 def unload_image_palette(colors: ColorPtr) -> None
 ```
+
+See also:
+<a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -7683,7 +8185,8 @@ Python wrapper:
 def get_image_alpha_border(image: Image, threshold: float) -> Rectangle
 ```
 
-See also: <a href="#Image">Image</a>
+See also:
+<a href="#Image">Image</a>, <a href="#Rectangle">Rectangle</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -7704,7 +8207,8 @@ Python wrapper:
 def get_image_color(image: Image, x: int, y: int) -> Color
 ```
 
-See also: <a href="#Image">Image</a>
+See also:
+<a href="#Image">Image</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -7725,7 +8229,8 @@ Python wrapper:
 def image_clear_background(dst: ImagePtr, color: Color) -> None
 ```
 
-See also: <a href="#Color">Color</a>
+See also:
+<a href="#Image">Image</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -7746,7 +8251,8 @@ Python wrapper:
 def image_draw_pixel(dst: ImagePtr, pos_x: int, pos_y: int, color: Color) -> None
 ```
 
-See also: <a href="#Color">Color</a>
+See also:
+<a href="#Image">Image</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -7767,7 +8273,8 @@ Python wrapper:
 def image_draw_pixel_v(dst: ImagePtr, position: Vector2, color: Color) -> None
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Image">Image</a>, <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -7788,7 +8295,8 @@ Python wrapper:
 def image_draw_line(dst: ImagePtr, start_pos_x: int, start_pos_y: int, end_pos_x: int, end_pos_y: int, color: Color) -> None
 ```
 
-See also: <a href="#Color">Color</a>
+See also:
+<a href="#Image">Image</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -7809,7 +8317,8 @@ Python wrapper:
 def image_draw_line_v(dst: ImagePtr, start: Vector2, end: Vector2, color: Color) -> None
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Image">Image</a>, <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -7830,7 +8339,8 @@ Python wrapper:
 def image_draw_circle(dst: ImagePtr, center_x: int, center_y: int, radius: int, color: Color) -> None
 ```
 
-See also: <a href="#Color">Color</a>
+See also:
+<a href="#Image">Image</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -7851,7 +8361,8 @@ Python wrapper:
 def image_draw_circle_v(dst: ImagePtr, center: Vector2, radius: int, color: Color) -> None
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Image">Image</a>, <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -7872,7 +8383,8 @@ Python wrapper:
 def image_draw_rectangle(dst: ImagePtr, pos_x: int, pos_y: int, width: int, height: int, color: Color) -> None
 ```
 
-See also: <a href="#Color">Color</a>
+See also:
+<a href="#Image">Image</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -7893,7 +8405,8 @@ Python wrapper:
 def image_draw_rectangle_v(dst: ImagePtr, position: Vector2, size: Vector2, color: Color) -> None
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Image">Image</a>, <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -7914,7 +8427,8 @@ Python wrapper:
 def image_draw_rectangle_rec(dst: ImagePtr, rec: Rectangle, color: Color) -> None
 ```
 
-See also: <a href="#Rectangle">Rectangle</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Image">Image</a>, <a href="#Rectangle">Rectangle</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -7935,7 +8449,8 @@ Python wrapper:
 def image_draw_rectangle_lines(dst: ImagePtr, rec: Rectangle, thick: int, color: Color) -> None
 ```
 
-See also: <a href="#Rectangle">Rectangle</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Image">Image</a>, <a href="#Rectangle">Rectangle</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -7956,7 +8471,8 @@ Python wrapper:
 def image_draw(dst: ImagePtr, src: Image, src_rec: Rectangle, dst_rec: Rectangle, tint: Color) -> None
 ```
 
-See also: <a href="#Image">Image</a>, <a href="#Rectangle">Rectangle</a>, <a href="#Rectangle">Rectangle</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Image">Image</a>, <a href="#Rectangle">Rectangle</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -7977,7 +8493,8 @@ Python wrapper:
 def image_draw_text(dst: ImagePtr, text: Union[str, CharPtr], pos_x: int, pos_y: int, font_size: int, color: Color) -> None
 ```
 
-See also: <a href="#Color">Color</a>
+See also:
+<a href="#Image">Image</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -7998,7 +8515,8 @@ Python wrapper:
 def image_draw_text_ex(dst: ImagePtr, font: Font, text: Union[str, CharPtr], position: Vector2, font_size: float, spacing: float, tint: Color) -> None
 ```
 
-See also: <a href="#Font">Font</a>, <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Image">Image</a>, <a href="#Font">Font</a>, <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -8038,7 +8556,8 @@ Python wrapper:
 def load_texture_from_image(image: Image) -> Texture2D
 ```
 
-See also: <a href="#Image">Image</a>
+See also:
+<a href="#Image">Image</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -8059,7 +8578,8 @@ Python wrapper:
 def load_texture_cubemap(image: Image, layout: int) -> TextureCubemap
 ```
 
-See also: <a href="#Image">Image</a>
+See also:
+<a href="#Image">Image</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -8156,7 +8676,8 @@ Python wrapper:
 def update_texture_rec(texture: Texture2D, rec: Rectangle, pixels: bytes) -> None
 ```
 
-See also: <a href="#Rectangle">Rectangle</a>
+See also:
+<a href="#Rectangle">Rectangle</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -8234,7 +8755,8 @@ Python wrapper:
 def draw_texture(texture: Texture2D, pos_x: int, pos_y: int, tint: Color) -> None
 ```
 
-See also: <a href="#Color">Color</a>
+See also:
+<a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -8255,7 +8777,8 @@ Python wrapper:
 def draw_texture_v(texture: Texture2D, position: Vector2, tint: Color) -> None
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -8276,7 +8799,8 @@ Python wrapper:
 def draw_texture_ex(texture: Texture2D, position: Vector2, rotation: float, scale: float, tint: Color) -> None
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -8297,7 +8821,8 @@ Python wrapper:
 def draw_texture_rec(texture: Texture2D, source: Rectangle, position: Vector2, tint: Color) -> None
 ```
 
-See also: <a href="#Rectangle">Rectangle</a>, <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Rectangle">Rectangle</a>, <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -8318,7 +8843,8 @@ Python wrapper:
 def draw_texture_quad(texture: Texture2D, tiling: Vector2, offset: Vector2, quad: Rectangle, tint: Color) -> None
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Vector2">Vector2</a>, <a href="#Rectangle">Rectangle</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Vector2">Vector2</a>, <a href="#Rectangle">Rectangle</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -8339,7 +8865,8 @@ Python wrapper:
 def draw_texture_tiled(texture: Texture2D, source: Rectangle, dest: Rectangle, origin: Vector2, rotation: float, scale: float, tint: Color) -> None
 ```
 
-See also: <a href="#Rectangle">Rectangle</a>, <a href="#Rectangle">Rectangle</a>, <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Rectangle">Rectangle</a>, <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -8360,7 +8887,8 @@ Python wrapper:
 def draw_texture_pro(texture: Texture2D, source: Rectangle, dest: Rectangle, origin: Vector2, rotation: float, tint: Color) -> None
 ```
 
-See also: <a href="#Rectangle">Rectangle</a>, <a href="#Rectangle">Rectangle</a>, <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Rectangle">Rectangle</a>, <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -8381,7 +8909,8 @@ Python wrapper:
 def draw_texture_npatch(texture: Texture2D, n_patch_info: NPatchInfo, dest: Rectangle, origin: Vector2, rotation: float, tint: Color) -> None
 ```
 
-See also: <a href="#NPatchInfo">NPatchInfo</a>, <a href="#Rectangle">Rectangle</a>, <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
+See also:
+<a href="#NPatchInfo">NPatchInfo</a>, <a href="#Rectangle">Rectangle</a>, <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -8402,7 +8931,8 @@ Python wrapper:
 def draw_texture_poly(texture: Texture2D, center: Vector2, points: Vector2Ptr, texcoords: Vector2Ptr, point_count: int, tint: Color) -> None
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -8423,7 +8953,8 @@ Python wrapper:
 def fade(color: Color, alpha: float) -> Color
 ```
 
-See also: <a href="#Color">Color</a>
+See also:
+<a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -8444,7 +8975,8 @@ Python wrapper:
 def color_to_int(color: Color) -> int
 ```
 
-See also: <a href="#Color">Color</a>
+See also:
+<a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -8465,7 +8997,8 @@ Python wrapper:
 def color_normalize(color: Color) -> Vector4
 ```
 
-See also: <a href="#Color">Color</a>
+See also:
+<a href="#Color">Color</a>, <a href="#Vector4">Vector4</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -8486,7 +9019,8 @@ Python wrapper:
 def color_from_normalized(normalized: Vector4) -> Color
 ```
 
-See also: <a href="#Vector4">Vector4</a>
+See also:
+<a href="#Vector4">Vector4</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -8507,7 +9041,8 @@ Python wrapper:
 def color_to_hsv(color: Color) -> Vector3
 ```
 
-See also: <a href="#Color">Color</a>
+See also:
+<a href="#Color">Color</a>, <a href="#Vector3">Vector3</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -8528,6 +9063,9 @@ Python wrapper:
 def color_from_hsv(hue: float, saturation: float, value: float) -> Color
 ```
 
+See also:
+<a href="#Color">Color</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
@@ -8547,7 +9085,8 @@ Python wrapper:
 def color_alpha(color: Color, alpha: float) -> Color
 ```
 
-See also: <a href="#Color">Color</a>
+See also:
+<a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -8568,7 +9107,8 @@ Python wrapper:
 def color_alpha_blend(dst: Color, src: Color, tint: Color) -> Color
 ```
 
-See also: <a href="#Color">Color</a>, <a href="#Color">Color</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -8589,6 +9129,9 @@ Python wrapper:
 def get_color(hex_value: int) -> Color
 ```
 
+See also:
+<a href="#Color">Color</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
@@ -8607,6 +9150,9 @@ Python wrapper:
 ```python
 def get_pixel_color(src_ptr: bytes, format: int) -> Color
 ```
+
+See also:
+<a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -8627,7 +9173,8 @@ Python wrapper:
 def set_pixel_color(dst_ptr: bytes, color: Color, format: int) -> None
 ```
 
-See also: <a href="#Color">Color</a>
+See also:
+<a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -8667,6 +9214,9 @@ Python wrapper:
 def get_font_default() -> Font
 ```
 
+See also:
+<a href="#Font">Font</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
@@ -8685,6 +9235,9 @@ Python wrapper:
 ```python
 def load_font(file_name: Union[str, CharPtr]) -> Font
 ```
+
+See also:
+<a href="#Font">Font</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -8705,6 +9258,9 @@ Python wrapper:
 def load_font_ex(file_name: Union[str, CharPtr], font_size: int, font_chars: Union[Seq[int], IntPtr], glyph_count: int) -> Font
 ```
 
+See also:
+<a href="#Font">Font</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
@@ -8724,7 +9280,8 @@ Python wrapper:
 def load_font_from_image(image: Image, key: Color, first_char: int) -> Font
 ```
 
-See also: <a href="#Image">Image</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Image">Image</a>, <a href="#Color">Color</a>, <a href="#Font">Font</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -8745,6 +9302,9 @@ Python wrapper:
 def load_font_from_memory(file_type: Union[str, CharPtr], file_data: Union[Seq[int], UCharPtr], data_size: int, font_size: int, font_chars: Union[Seq[int], IntPtr], glyph_count: int) -> Font
 ```
 
+See also:
+<a href="#Font">Font</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
@@ -8763,6 +9323,9 @@ Python wrapper:
 ```python
 def load_font_data(file_data: Union[Seq[int], UCharPtr], data_size: int, font_size: int, font_chars: Union[Seq[int], IntPtr], glyph_count: int, type: int) -> GlyphInfoPtr
 ```
+
+See also:
+<a href="#GlyphInfo">GlyphInfo</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -8783,6 +9346,9 @@ Python wrapper:
 def gen_image_font_atlas(chars: GlyphInfoPtr, recs: RectanglePtr, glyph_count: int, font_size: int, padding: int, pack_method: int) -> Image
 ```
 
+See also:
+<a href="#GlyphInfo">GlyphInfo</a>, <a href="#Rectangle">Rectangle</a>, <a href="#Image">Image</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
@@ -8801,6 +9367,9 @@ Python wrapper:
 ```python
 def unload_font_data(chars: GlyphInfoPtr, glyph_count: int) -> None
 ```
+
+See also:
+<a href="#GlyphInfo">GlyphInfo</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -8821,7 +9390,8 @@ Python wrapper:
 def unload_font(font: Font) -> None
 ```
 
-See also: <a href="#Font">Font</a>
+See also:
+<a href="#Font">Font</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -8842,7 +9412,8 @@ Python wrapper:
 def export_font_as_code(font: Font, file_name: Union[str, CharPtr]) -> bool
 ```
 
-See also: <a href="#Font">Font</a>
+See also:
+<a href="#Font">Font</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -8882,7 +9453,8 @@ Python wrapper:
 def draw_text(text: Union[str, CharPtr], pos_x: int, pos_y: int, font_size: int, color: Color) -> None
 ```
 
-See also: <a href="#Color">Color</a>
+See also:
+<a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -8903,7 +9475,8 @@ Python wrapper:
 def draw_text_ex(font: Font, text: Union[str, CharPtr], position: Vector2, font_size: float, spacing: float, tint: Color) -> None
 ```
 
-See also: <a href="#Font">Font</a>, <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Font">Font</a>, <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -8924,7 +9497,8 @@ Python wrapper:
 def draw_text_pro(font: Font, text: Union[str, CharPtr], position: Vector2, origin: Vector2, rotation: float, font_size: float, spacing: float, tint: Color) -> None
 ```
 
-See also: <a href="#Font">Font</a>, <a href="#Vector2">Vector2</a>, <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Font">Font</a>, <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -8945,7 +9519,8 @@ Python wrapper:
 def draw_text_codepoint(font: Font, codepoint: int, position: Vector2, font_size: float, tint: Color) -> None
 ```
 
-See also: <a href="#Font">Font</a>, <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Font">Font</a>, <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -8966,7 +9541,8 @@ Python wrapper:
 def draw_text_codepoints(font: Font, codepoints: Union[Seq[int], IntPtr], count: int, position: Vector2, font_size: float, spacing: float, tint: Color) -> None
 ```
 
-See also: <a href="#Font">Font</a>, <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Font">Font</a>, <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -9006,7 +9582,8 @@ Python wrapper:
 def measure_text_ex(font: Font, text: Union[str, CharPtr], font_size: float, spacing: float) -> Vector2
 ```
 
-See also: <a href="#Font">Font</a>
+See also:
+<a href="#Font">Font</a>, <a href="#Vector2">Vector2</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -9027,7 +9604,8 @@ Python wrapper:
 def get_glyph_index(font: Font, codepoint: int) -> int
 ```
 
-See also: <a href="#Font">Font</a>
+See also:
+<a href="#Font">Font</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -9048,7 +9626,8 @@ Python wrapper:
 def get_glyph_info(font: Font, codepoint: int) -> GlyphInfo
 ```
 
-See also: <a href="#Font">Font</a>
+See also:
+<a href="#Font">Font</a>, <a href="#GlyphInfo">GlyphInfo</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -9069,7 +9648,8 @@ Python wrapper:
 def get_glyph_atlas_rec(font: Font, codepoint: int) -> Rectangle
 ```
 
-See also: <a href="#Font">Font</a>
+See also:
+<a href="#Font">Font</a>, <a href="#Rectangle">Rectangle</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -9489,7 +10069,8 @@ Python wrapper:
 def draw_line3d(start_pos: Vector3, end_pos: Vector3, color: Color) -> None
 ```
 
-See also: <a href="#Vector3">Vector3</a>, <a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -9510,7 +10091,8 @@ Python wrapper:
 def draw_point3d(position: Vector3, color: Color) -> None
 ```
 
-See also: <a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -9531,7 +10113,8 @@ Python wrapper:
 def draw_circle3d(center: Vector3, radius: float, rotation_axis: Vector3, rotation_angle: float, color: Color) -> None
 ```
 
-See also: <a href="#Vector3">Vector3</a>, <a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -9552,7 +10135,8 @@ Python wrapper:
 def draw_triangle3d(v1: Vector3, v2: Vector3, v3: Vector3, color: Color) -> None
 ```
 
-See also: <a href="#Vector3">Vector3</a>, <a href="#Vector3">Vector3</a>, <a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -9573,7 +10157,8 @@ Python wrapper:
 def draw_triangle_strip3d(points: Vector3Ptr, point_count: int, color: Color) -> None
 ```
 
-See also: <a href="#Color">Color</a>
+See also:
+<a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -9594,7 +10179,8 @@ Python wrapper:
 def draw_cube(position: Vector3, width: float, height: float, length: float, color: Color) -> None
 ```
 
-See also: <a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -9615,7 +10201,8 @@ Python wrapper:
 def draw_cube_v(position: Vector3, size: Vector3, color: Color) -> None
 ```
 
-See also: <a href="#Vector3">Vector3</a>, <a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -9636,7 +10223,8 @@ Python wrapper:
 def draw_cube_wires(position: Vector3, width: float, height: float, length: float, color: Color) -> None
 ```
 
-See also: <a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -9657,7 +10245,8 @@ Python wrapper:
 def draw_cube_wires_v(position: Vector3, size: Vector3, color: Color) -> None
 ```
 
-See also: <a href="#Vector3">Vector3</a>, <a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -9678,7 +10267,8 @@ Python wrapper:
 def draw_cube_texture(texture: Texture2D, position: Vector3, width: float, height: float, length: float, color: Color) -> None
 ```
 
-See also: <a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -9699,7 +10289,8 @@ Python wrapper:
 def draw_cube_texture_rec(texture: Texture2D, source: Rectangle, position: Vector3, width: float, height: float, length: float, color: Color) -> None
 ```
 
-See also: <a href="#Rectangle">Rectangle</a>, <a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Rectangle">Rectangle</a>, <a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -9720,7 +10311,8 @@ Python wrapper:
 def draw_sphere(center_pos: Vector3, radius: float, color: Color) -> None
 ```
 
-See also: <a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -9741,7 +10333,8 @@ Python wrapper:
 def draw_sphere_ex(center_pos: Vector3, radius: float, rings: int, slices: int, color: Color) -> None
 ```
 
-See also: <a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -9762,7 +10355,8 @@ Python wrapper:
 def draw_sphere_wires(center_pos: Vector3, radius: float, rings: int, slices: int, color: Color) -> None
 ```
 
-See also: <a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -9783,7 +10377,8 @@ Python wrapper:
 def draw_cylinder(position: Vector3, radius_top: float, radius_bottom: float, height: float, slices: int, color: Color) -> None
 ```
 
-See also: <a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -9804,7 +10399,8 @@ Python wrapper:
 def draw_cylinder_ex(start_pos: Vector3, end_pos: Vector3, start_radius: float, end_radius: float, sides: int, color: Color) -> None
 ```
 
-See also: <a href="#Vector3">Vector3</a>, <a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -9825,7 +10421,8 @@ Python wrapper:
 def draw_cylinder_wires(position: Vector3, radius_top: float, radius_bottom: float, height: float, slices: int, color: Color) -> None
 ```
 
-See also: <a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -9846,7 +10443,8 @@ Python wrapper:
 def draw_cylinder_wires_ex(start_pos: Vector3, end_pos: Vector3, start_radius: float, end_radius: float, sides: int, color: Color) -> None
 ```
 
-See also: <a href="#Vector3">Vector3</a>, <a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -9867,7 +10465,8 @@ Python wrapper:
 def draw_plane(center_pos: Vector3, size: Vector2, color: Color) -> None
 ```
 
-See also: <a href="#Vector3">Vector3</a>, <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Vector3">Vector3</a>, <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -9888,7 +10487,8 @@ Python wrapper:
 def draw_ray(ray: Ray, color: Color) -> None
 ```
 
-See also: <a href="#Ray">Ray</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Ray">Ray</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -9928,6 +10528,9 @@ Python wrapper:
 def load_model(file_name: Union[str, CharPtr]) -> Model
 ```
 
+See also:
+<a href="#Model">Model</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
@@ -9947,7 +10550,8 @@ Python wrapper:
 def load_model_from_mesh(mesh: Mesh) -> Model
 ```
 
-See also: <a href="#Mesh">Mesh</a>
+See also:
+<a href="#Mesh">Mesh</a>, <a href="#Model">Model</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -9968,7 +10572,8 @@ Python wrapper:
 def unload_model(model: Model) -> None
 ```
 
-See also: <a href="#Model">Model</a>
+See also:
+<a href="#Model">Model</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -9989,7 +10594,8 @@ Python wrapper:
 def unload_model_keep_meshes(model: Model) -> None
 ```
 
-See also: <a href="#Model">Model</a>
+See also:
+<a href="#Model">Model</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -10010,7 +10616,8 @@ Python wrapper:
 def get_model_bounding_box(model: Model) -> BoundingBox
 ```
 
-See also: <a href="#Model">Model</a>
+See also:
+<a href="#Model">Model</a>, <a href="#BoundingBox">BoundingBox</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -10031,7 +10638,8 @@ Python wrapper:
 def draw_model(model: Model, position: Vector3, scale: float, tint: Color) -> None
 ```
 
-See also: <a href="#Model">Model</a>, <a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Model">Model</a>, <a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -10052,7 +10660,8 @@ Python wrapper:
 def draw_model_ex(model: Model, position: Vector3, rotation_axis: Vector3, rotation_angle: float, scale: Vector3, tint: Color) -> None
 ```
 
-See also: <a href="#Model">Model</a>, <a href="#Vector3">Vector3</a>, <a href="#Vector3">Vector3</a>, <a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Model">Model</a>, <a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -10073,7 +10682,8 @@ Python wrapper:
 def draw_model_wires(model: Model, position: Vector3, scale: float, tint: Color) -> None
 ```
 
-See also: <a href="#Model">Model</a>, <a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Model">Model</a>, <a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -10094,7 +10704,8 @@ Python wrapper:
 def draw_model_wires_ex(model: Model, position: Vector3, rotation_axis: Vector3, rotation_angle: float, scale: Vector3, tint: Color) -> None
 ```
 
-See also: <a href="#Model">Model</a>, <a href="#Vector3">Vector3</a>, <a href="#Vector3">Vector3</a>, <a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Model">Model</a>, <a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -10115,7 +10726,8 @@ Python wrapper:
 def draw_bounding_box(box: BoundingBox, color: Color) -> None
 ```
 
-See also: <a href="#BoundingBox">BoundingBox</a>, <a href="#Color">Color</a>
+See also:
+<a href="#BoundingBox">BoundingBox</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -10136,7 +10748,8 @@ Python wrapper:
 def draw_billboard(camera: Camera, texture: Texture2D, position: Vector3, size: float, tint: Color) -> None
 ```
 
-See also: <a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -10157,7 +10770,8 @@ Python wrapper:
 def draw_billboard_rec(camera: Camera, texture: Texture2D, source: Rectangle, position: Vector3, size: Vector2, tint: Color) -> None
 ```
 
-See also: <a href="#Rectangle">Rectangle</a>, <a href="#Vector3">Vector3</a>, <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Rectangle">Rectangle</a>, <a href="#Vector3">Vector3</a>, <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -10178,7 +10792,8 @@ Python wrapper:
 def draw_billboard_pro(camera: Camera, texture: Texture2D, source: Rectangle, position: Vector3, up: Vector3, size: Vector2, origin: Vector2, rotation: float, tint: Color) -> None
 ```
 
-See also: <a href="#Rectangle">Rectangle</a>, <a href="#Vector3">Vector3</a>, <a href="#Vector3">Vector3</a>, <a href="#Vector2">Vector2</a>, <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
+See also:
+<a href="#Rectangle">Rectangle</a>, <a href="#Vector3">Vector3</a>, <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -10199,6 +10814,9 @@ Python wrapper:
 def upload_mesh(mesh: MeshPtr, dynamic: bool) -> None
 ```
 
+See also:
+<a href="#Mesh">Mesh</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
@@ -10218,7 +10836,8 @@ Python wrapper:
 def update_mesh_buffer(mesh: Mesh, index: int, data: bytes, data_size: int, offset: int) -> None
 ```
 
-See also: <a href="#Mesh">Mesh</a>
+See also:
+<a href="#Mesh">Mesh</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -10239,7 +10858,8 @@ Python wrapper:
 def unload_mesh(mesh: Mesh) -> None
 ```
 
-See also: <a href="#Mesh">Mesh</a>
+See also:
+<a href="#Mesh">Mesh</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -10260,7 +10880,8 @@ Python wrapper:
 def draw_mesh(mesh: Mesh, material: Material, transform: Matrix) -> None
 ```
 
-See also: <a href="#Mesh">Mesh</a>, <a href="#Material">Material</a>, <a href="#Matrix">Matrix</a>
+See also:
+<a href="#Mesh">Mesh</a>, <a href="#Material">Material</a>, <a href="#Matrix">Matrix</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -10281,7 +10902,8 @@ Python wrapper:
 def draw_mesh_instanced(mesh: Mesh, material: Material, transforms: MatrixPtr, instances: int) -> None
 ```
 
-See also: <a href="#Mesh">Mesh</a>, <a href="#Material">Material</a>
+See also:
+<a href="#Mesh">Mesh</a>, <a href="#Material">Material</a>, <a href="#Matrix">Matrix</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -10302,7 +10924,8 @@ Python wrapper:
 def export_mesh(mesh: Mesh, file_name: Union[str, CharPtr]) -> bool
 ```
 
-See also: <a href="#Mesh">Mesh</a>
+See also:
+<a href="#Mesh">Mesh</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -10323,7 +10946,8 @@ Python wrapper:
 def get_mesh_bounding_box(mesh: Mesh) -> BoundingBox
 ```
 
-See also: <a href="#Mesh">Mesh</a>
+See also:
+<a href="#Mesh">Mesh</a>, <a href="#BoundingBox">BoundingBox</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -10344,6 +10968,9 @@ Python wrapper:
 def gen_mesh_tangents(mesh: MeshPtr) -> None
 ```
 
+See also:
+<a href="#Mesh">Mesh</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
@@ -10362,6 +10989,9 @@ Python wrapper:
 ```python
 def gen_mesh_poly(sides: int, radius: float) -> Mesh
 ```
+
+See also:
+<a href="#Mesh">Mesh</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -10382,6 +11012,9 @@ Python wrapper:
 def gen_mesh_plane(width: float, length: float, res_x: int, res_z: int) -> Mesh
 ```
 
+See also:
+<a href="#Mesh">Mesh</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
@@ -10400,6 +11033,9 @@ Python wrapper:
 ```python
 def gen_mesh_cube(width: float, height: float, length: float) -> Mesh
 ```
+
+See also:
+<a href="#Mesh">Mesh</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -10420,6 +11056,9 @@ Python wrapper:
 def gen_mesh_sphere(radius: float, rings: int, slices: int) -> Mesh
 ```
 
+See also:
+<a href="#Mesh">Mesh</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
@@ -10438,6 +11077,9 @@ Python wrapper:
 ```python
 def gen_mesh_hemi_sphere(radius: float, rings: int, slices: int) -> Mesh
 ```
+
+See also:
+<a href="#Mesh">Mesh</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -10458,6 +11100,9 @@ Python wrapper:
 def gen_mesh_cylinder(radius: float, height: float, slices: int) -> Mesh
 ```
 
+See also:
+<a href="#Mesh">Mesh</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
@@ -10476,6 +11121,9 @@ Python wrapper:
 ```python
 def gen_mesh_cone(radius: float, height: float, slices: int) -> Mesh
 ```
+
+See also:
+<a href="#Mesh">Mesh</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -10496,6 +11144,9 @@ Python wrapper:
 def gen_mesh_torus(radius: float, size: float, rad_seg: int, sides: int) -> Mesh
 ```
 
+See also:
+<a href="#Mesh">Mesh</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
@@ -10514,6 +11165,9 @@ Python wrapper:
 ```python
 def gen_mesh_knot(radius: float, size: float, rad_seg: int, sides: int) -> Mesh
 ```
+
+See also:
+<a href="#Mesh">Mesh</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -10534,7 +11188,8 @@ Python wrapper:
 def gen_mesh_heightmap(heightmap: Image, size: Vector3) -> Mesh
 ```
 
-See also: <a href="#Image">Image</a>, <a href="#Vector3">Vector3</a>
+See also:
+<a href="#Image">Image</a>, <a href="#Vector3">Vector3</a>, <a href="#Mesh">Mesh</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -10555,7 +11210,8 @@ Python wrapper:
 def gen_mesh_cubicmap(cubicmap: Image, cube_size: Vector3) -> Mesh
 ```
 
-See also: <a href="#Image">Image</a>, <a href="#Vector3">Vector3</a>
+See also:
+<a href="#Image">Image</a>, <a href="#Vector3">Vector3</a>, <a href="#Mesh">Mesh</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -10576,6 +11232,9 @@ Python wrapper:
 def load_materials(file_name: Union[str, CharPtr], material_count: Union[Seq[int], IntPtr]) -> MaterialPtr
 ```
 
+See also:
+<a href="#Material">Material</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
@@ -10594,6 +11253,9 @@ Python wrapper:
 ```python
 def load_material_default() -> Material
 ```
+
+See also:
+<a href="#Material">Material</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -10614,7 +11276,8 @@ Python wrapper:
 def unload_material(material: Material) -> None
 ```
 
-See also: <a href="#Material">Material</a>
+See also:
+<a href="#Material">Material</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -10635,6 +11298,9 @@ Python wrapper:
 def set_material_texture(material: MaterialPtr, map_type: int, texture: Texture2D) -> None
 ```
 
+See also:
+<a href="#Material">Material</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
@@ -10653,6 +11319,9 @@ Python wrapper:
 ```python
 def set_model_mesh_material(model: ModelPtr, mesh_id: int, material_id: int) -> None
 ```
+
+See also:
+<a href="#Model">Model</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -10673,6 +11342,9 @@ Python wrapper:
 def load_model_animations(file_name: Union[str, CharPtr], anim_count: Union[Seq[int], UIntPtr]) -> ModelAnimationPtr
 ```
 
+See also:
+<a href="#ModelAnimation">ModelAnimation</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
@@ -10692,7 +11364,8 @@ Python wrapper:
 def update_model_animation(model: Model, anim: ModelAnimation, frame: int) -> None
 ```
 
-See also: <a href="#Model">Model</a>, <a href="#ModelAnimation">ModelAnimation</a>
+See also:
+<a href="#Model">Model</a>, <a href="#ModelAnimation">ModelAnimation</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -10713,7 +11386,8 @@ Python wrapper:
 def unload_model_animation(anim: ModelAnimation) -> None
 ```
 
-See also: <a href="#ModelAnimation">ModelAnimation</a>
+See also:
+<a href="#ModelAnimation">ModelAnimation</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -10734,6 +11408,9 @@ Python wrapper:
 def unload_model_animations(animations: ModelAnimationPtr, count: int) -> None
 ```
 
+See also:
+<a href="#ModelAnimation">ModelAnimation</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
@@ -10753,7 +11430,8 @@ Python wrapper:
 def is_model_animation_valid(model: Model, anim: ModelAnimation) -> bool
 ```
 
-See also: <a href="#Model">Model</a>, <a href="#ModelAnimation">ModelAnimation</a>
+See also:
+<a href="#Model">Model</a>, <a href="#ModelAnimation">ModelAnimation</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -10774,7 +11452,8 @@ Python wrapper:
 def check_collision_spheres(center1: Vector3, radius1: float, center2: Vector3, radius2: float) -> bool
 ```
 
-See also: <a href="#Vector3">Vector3</a>, <a href="#Vector3">Vector3</a>
+See also:
+<a href="#Vector3">Vector3</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -10795,7 +11474,8 @@ Python wrapper:
 def check_collision_boxes(box1: BoundingBox, box2: BoundingBox) -> bool
 ```
 
-See also: <a href="#BoundingBox">BoundingBox</a>, <a href="#BoundingBox">BoundingBox</a>
+See also:
+<a href="#BoundingBox">BoundingBox</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -10816,7 +11496,8 @@ Python wrapper:
 def check_collision_box_sphere(box: BoundingBox, center: Vector3, radius: float) -> bool
 ```
 
-See also: <a href="#BoundingBox">BoundingBox</a>, <a href="#Vector3">Vector3</a>
+See also:
+<a href="#BoundingBox">BoundingBox</a>, <a href="#Vector3">Vector3</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -10837,7 +11518,8 @@ Python wrapper:
 def get_ray_collision_sphere(ray: Ray, center: Vector3, radius: float) -> RayCollision
 ```
 
-See also: <a href="#Ray">Ray</a>, <a href="#Vector3">Vector3</a>
+See also:
+<a href="#Ray">Ray</a>, <a href="#Vector3">Vector3</a>, <a href="#RayCollision">RayCollision</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -10858,7 +11540,8 @@ Python wrapper:
 def get_ray_collision_box(ray: Ray, box: BoundingBox) -> RayCollision
 ```
 
-See also: <a href="#Ray">Ray</a>, <a href="#BoundingBox">BoundingBox</a>
+See also:
+<a href="#Ray">Ray</a>, <a href="#BoundingBox">BoundingBox</a>, <a href="#RayCollision">RayCollision</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -10879,7 +11562,8 @@ Python wrapper:
 def get_ray_collision_mesh(ray: Ray, mesh: Mesh, transform: Matrix) -> RayCollision
 ```
 
-See also: <a href="#Ray">Ray</a>, <a href="#Mesh">Mesh</a>, <a href="#Matrix">Matrix</a>
+See also:
+<a href="#Ray">Ray</a>, <a href="#Mesh">Mesh</a>, <a href="#Matrix">Matrix</a>, <a href="#RayCollision">RayCollision</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -10900,7 +11584,8 @@ Python wrapper:
 def get_ray_collision_triangle(ray: Ray, p1: Vector3, p2: Vector3, p3: Vector3) -> RayCollision
 ```
 
-See also: <a href="#Ray">Ray</a>, <a href="#Vector3">Vector3</a>, <a href="#Vector3">Vector3</a>, <a href="#Vector3">Vector3</a>
+See also:
+<a href="#Ray">Ray</a>, <a href="#Vector3">Vector3</a>, <a href="#RayCollision">RayCollision</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -10921,7 +11606,8 @@ Python wrapper:
 def get_ray_collision_quad(ray: Ray, p1: Vector3, p2: Vector3, p3: Vector3, p4: Vector3) -> RayCollision
 ```
 
-See also: <a href="#Ray">Ray</a>, <a href="#Vector3">Vector3</a>, <a href="#Vector3">Vector3</a>, <a href="#Vector3">Vector3</a>, <a href="#Vector3">Vector3</a>
+See also:
+<a href="#Ray">Ray</a>, <a href="#Vector3">Vector3</a>, <a href="#RayCollision">RayCollision</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -11018,6 +11704,9 @@ Python wrapper:
 def load_wave(file_name: Union[str, CharPtr]) -> Wave
 ```
 
+See also:
+<a href="#Wave">Wave</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
@@ -11036,6 +11725,9 @@ Python wrapper:
 ```python
 def load_wave_from_memory(file_type: Union[str, CharPtr], file_data: Union[Seq[int], UCharPtr], data_size: int) -> Wave
 ```
+
+See also:
+<a href="#Wave">Wave</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -11056,6 +11748,9 @@ Python wrapper:
 def load_sound(file_name: Union[str, CharPtr]) -> Sound
 ```
 
+See also:
+<a href="#Sound">Sound</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
@@ -11075,7 +11770,8 @@ Python wrapper:
 def load_sound_from_wave(wave: Wave) -> Sound
 ```
 
-See also: <a href="#Wave">Wave</a>
+See also:
+<a href="#Wave">Wave</a>, <a href="#Sound">Sound</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -11096,7 +11792,8 @@ Python wrapper:
 def update_sound(sound: Sound, data: bytes, sample_count: int) -> None
 ```
 
-See also: <a href="#Sound">Sound</a>
+See also:
+<a href="#Sound">Sound</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -11117,7 +11814,8 @@ Python wrapper:
 def unload_wave(wave: Wave) -> None
 ```
 
-See also: <a href="#Wave">Wave</a>
+See also:
+<a href="#Wave">Wave</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -11138,7 +11836,8 @@ Python wrapper:
 def unload_sound(sound: Sound) -> None
 ```
 
-See also: <a href="#Sound">Sound</a>
+See also:
+<a href="#Sound">Sound</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -11159,7 +11858,8 @@ Python wrapper:
 def export_wave(wave: Wave, file_name: Union[str, CharPtr]) -> bool
 ```
 
-See also: <a href="#Wave">Wave</a>
+See also:
+<a href="#Wave">Wave</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -11180,7 +11880,8 @@ Python wrapper:
 def export_wave_as_code(wave: Wave, file_name: Union[str, CharPtr]) -> bool
 ```
 
-See also: <a href="#Wave">Wave</a>
+See also:
+<a href="#Wave">Wave</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -11201,7 +11902,8 @@ Python wrapper:
 def play_sound(sound: Sound) -> None
 ```
 
-See also: <a href="#Sound">Sound</a>
+See also:
+<a href="#Sound">Sound</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -11222,7 +11924,8 @@ Python wrapper:
 def stop_sound(sound: Sound) -> None
 ```
 
-See also: <a href="#Sound">Sound</a>
+See also:
+<a href="#Sound">Sound</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -11243,7 +11946,8 @@ Python wrapper:
 def pause_sound(sound: Sound) -> None
 ```
 
-See also: <a href="#Sound">Sound</a>
+See also:
+<a href="#Sound">Sound</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -11264,7 +11968,8 @@ Python wrapper:
 def resume_sound(sound: Sound) -> None
 ```
 
-See also: <a href="#Sound">Sound</a>
+See also:
+<a href="#Sound">Sound</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -11285,7 +11990,8 @@ Python wrapper:
 def play_sound_multi(sound: Sound) -> None
 ```
 
-See also: <a href="#Sound">Sound</a>
+See also:
+<a href="#Sound">Sound</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -11344,7 +12050,8 @@ Python wrapper:
 def is_sound_playing(sound: Sound) -> bool
 ```
 
-See also: <a href="#Sound">Sound</a>
+See also:
+<a href="#Sound">Sound</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -11365,7 +12072,8 @@ Python wrapper:
 def set_sound_volume(sound: Sound, volume: float) -> None
 ```
 
-See also: <a href="#Sound">Sound</a>
+See also:
+<a href="#Sound">Sound</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -11386,7 +12094,8 @@ Python wrapper:
 def set_sound_pitch(sound: Sound, pitch: float) -> None
 ```
 
-See also: <a href="#Sound">Sound</a>
+See also:
+<a href="#Sound">Sound</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -11407,7 +12116,8 @@ Python wrapper:
 def set_sound_pan(sound: Sound, pan: float) -> None
 ```
 
-See also: <a href="#Sound">Sound</a>
+See also:
+<a href="#Sound">Sound</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -11428,7 +12138,8 @@ Python wrapper:
 def wave_copy(wave: Wave) -> Wave
 ```
 
-See also: <a href="#Wave">Wave</a>
+See also:
+<a href="#Wave">Wave</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -11449,6 +12160,9 @@ Python wrapper:
 def wave_crop(wave: WavePtr, init_sample: int, final_sample: int) -> None
 ```
 
+See also:
+<a href="#Wave">Wave</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
@@ -11467,6 +12181,9 @@ Python wrapper:
 ```python
 def wave_format(wave: WavePtr, sample_rate: int, sample_size: int, channels: int) -> None
 ```
+
+See also:
+<a href="#Wave">Wave</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -11487,7 +12204,8 @@ Python wrapper:
 def load_wave_samples(wave: Wave) -> Union[Seq[float], FloatPtr]
 ```
 
-See also: <a href="#Wave">Wave</a>
+See also:
+<a href="#Wave">Wave</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -11527,6 +12245,9 @@ Python wrapper:
 def load_music_stream(file_name: Union[str, CharPtr]) -> Music
 ```
 
+See also:
+<a href="#Music">Music</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
@@ -11545,6 +12266,9 @@ Python wrapper:
 ```python
 def load_music_stream_from_memory(file_type: Union[str, CharPtr], data: Union[Seq[int], UCharPtr], data_size: int) -> Music
 ```
+
+See also:
+<a href="#Music">Music</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -11565,7 +12289,8 @@ Python wrapper:
 def unload_music_stream(music: Music) -> None
 ```
 
-See also: <a href="#Music">Music</a>
+See also:
+<a href="#Music">Music</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -11586,7 +12311,8 @@ Python wrapper:
 def play_music_stream(music: Music) -> None
 ```
 
-See also: <a href="#Music">Music</a>
+See also:
+<a href="#Music">Music</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -11607,7 +12333,8 @@ Python wrapper:
 def is_music_stream_playing(music: Music) -> bool
 ```
 
-See also: <a href="#Music">Music</a>
+See also:
+<a href="#Music">Music</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -11628,7 +12355,8 @@ Python wrapper:
 def update_music_stream(music: Music) -> None
 ```
 
-See also: <a href="#Music">Music</a>
+See also:
+<a href="#Music">Music</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -11649,7 +12377,8 @@ Python wrapper:
 def stop_music_stream(music: Music) -> None
 ```
 
-See also: <a href="#Music">Music</a>
+See also:
+<a href="#Music">Music</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -11670,7 +12399,8 @@ Python wrapper:
 def pause_music_stream(music: Music) -> None
 ```
 
-See also: <a href="#Music">Music</a>
+See also:
+<a href="#Music">Music</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -11691,7 +12421,8 @@ Python wrapper:
 def resume_music_stream(music: Music) -> None
 ```
 
-See also: <a href="#Music">Music</a>
+See also:
+<a href="#Music">Music</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -11712,7 +12443,8 @@ Python wrapper:
 def seek_music_stream(music: Music, position: float) -> None
 ```
 
-See also: <a href="#Music">Music</a>
+See also:
+<a href="#Music">Music</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -11733,7 +12465,8 @@ Python wrapper:
 def set_music_volume(music: Music, volume: float) -> None
 ```
 
-See also: <a href="#Music">Music</a>
+See also:
+<a href="#Music">Music</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -11754,7 +12487,8 @@ Python wrapper:
 def set_music_pitch(music: Music, pitch: float) -> None
 ```
 
-See also: <a href="#Music">Music</a>
+See also:
+<a href="#Music">Music</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -11775,7 +12509,8 @@ Python wrapper:
 def set_music_pan(music: Music, pan: float) -> None
 ```
 
-See also: <a href="#Music">Music</a>
+See also:
+<a href="#Music">Music</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -11796,7 +12531,8 @@ Python wrapper:
 def get_music_time_length(music: Music) -> float
 ```
 
-See also: <a href="#Music">Music</a>
+See also:
+<a href="#Music">Music</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -11817,7 +12553,8 @@ Python wrapper:
 def get_music_time_played(music: Music) -> float
 ```
 
-See also: <a href="#Music">Music</a>
+See also:
+<a href="#Music">Music</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -11838,6 +12575,9 @@ Python wrapper:
 def load_audio_stream(sample_rate: int, sample_size: int, channels: int) -> AudioStream
 ```
 
+See also:
+<a href="#AudioStream">AudioStream</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
@@ -11857,7 +12597,8 @@ Python wrapper:
 def unload_audio_stream(stream: AudioStream) -> None
 ```
 
-See also: <a href="#AudioStream">AudioStream</a>
+See also:
+<a href="#AudioStream">AudioStream</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -11878,7 +12619,8 @@ Python wrapper:
 def update_audio_stream(stream: AudioStream, data: bytes, frame_count: int) -> None
 ```
 
-See also: <a href="#AudioStream">AudioStream</a>
+See also:
+<a href="#AudioStream">AudioStream</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -11899,7 +12641,8 @@ Python wrapper:
 def is_audio_stream_processed(stream: AudioStream) -> bool
 ```
 
-See also: <a href="#AudioStream">AudioStream</a>
+See also:
+<a href="#AudioStream">AudioStream</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -11920,7 +12663,8 @@ Python wrapper:
 def play_audio_stream(stream: AudioStream) -> None
 ```
 
-See also: <a href="#AudioStream">AudioStream</a>
+See also:
+<a href="#AudioStream">AudioStream</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -11941,7 +12685,8 @@ Python wrapper:
 def pause_audio_stream(stream: AudioStream) -> None
 ```
 
-See also: <a href="#AudioStream">AudioStream</a>
+See also:
+<a href="#AudioStream">AudioStream</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -11962,7 +12707,8 @@ Python wrapper:
 def resume_audio_stream(stream: AudioStream) -> None
 ```
 
-See also: <a href="#AudioStream">AudioStream</a>
+See also:
+<a href="#AudioStream">AudioStream</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -11983,7 +12729,8 @@ Python wrapper:
 def is_audio_stream_playing(stream: AudioStream) -> bool
 ```
 
-See also: <a href="#AudioStream">AudioStream</a>
+See also:
+<a href="#AudioStream">AudioStream</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -12004,7 +12751,8 @@ Python wrapper:
 def stop_audio_stream(stream: AudioStream) -> None
 ```
 
-See also: <a href="#AudioStream">AudioStream</a>
+See also:
+<a href="#AudioStream">AudioStream</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -12025,7 +12773,8 @@ Python wrapper:
 def set_audio_stream_volume(stream: AudioStream, volume: float) -> None
 ```
 
-See also: <a href="#AudioStream">AudioStream</a>
+See also:
+<a href="#AudioStream">AudioStream</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -12046,7 +12795,8 @@ Python wrapper:
 def set_audio_stream_pitch(stream: AudioStream, pitch: float) -> None
 ```
 
-See also: <a href="#AudioStream">AudioStream</a>
+See also:
+<a href="#AudioStream">AudioStream</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -12067,7 +12817,8 @@ Python wrapper:
 def set_audio_stream_pan(stream: AudioStream, pan: float) -> None
 ```
 
-See also: <a href="#AudioStream">AudioStream</a>
+See also:
+<a href="#AudioStream">AudioStream</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -12107,7 +12858,8 @@ Python wrapper:
 def set_audio_stream_callback(stream: AudioStream, callback: AudioCallback) -> None
 ```
 
-See also: <a href="#AudioStream">AudioStream</a>
+See also:
+<a href="#AudioStream">AudioStream</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -12128,7 +12880,8 @@ Python wrapper:
 def attach_audio_stream_processor(stream: AudioStream, processor: AudioCallback) -> None
 ```
 
-See also: <a href="#AudioStream">AudioStream</a>
+See also:
+<a href="#AudioStream">AudioStream</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -12149,7 +12902,8 @@ Python wrapper:
 def detach_audio_stream_processor(stream: AudioStream, processor: AudioCallback) -> None
 ```
 
-See also: <a href="#AudioStream">AudioStream</a>
+See also:
+<a href="#AudioStream">AudioStream</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -12284,6 +13038,9 @@ Python wrapper:
 def vector2zero() -> Vector2
 ```
 
+See also:
+<a href="#Vector2">Vector2</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
@@ -12302,6 +13059,9 @@ Python wrapper:
 ```python
 def vector2one() -> Vector2
 ```
+
+See also:
+<a href="#Vector2">Vector2</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -12322,7 +13082,8 @@ Python wrapper:
 def vector2add(v1: Vector2, v2: Vector2) -> Vector2
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Vector2">Vector2</a>
+See also:
+<a href="#Vector2">Vector2</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -12343,7 +13104,8 @@ Python wrapper:
 def vector2add_value(v: Vector2, add: float) -> Vector2
 ```
 
-See also: <a href="#Vector2">Vector2</a>
+See also:
+<a href="#Vector2">Vector2</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -12364,7 +13126,8 @@ Python wrapper:
 def vector2subtract(v1: Vector2, v2: Vector2) -> Vector2
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Vector2">Vector2</a>
+See also:
+<a href="#Vector2">Vector2</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -12385,7 +13148,8 @@ Python wrapper:
 def vector2subtract_value(v: Vector2, sub: float) -> Vector2
 ```
 
-See also: <a href="#Vector2">Vector2</a>
+See also:
+<a href="#Vector2">Vector2</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -12406,7 +13170,8 @@ Python wrapper:
 def vector2length(v: Vector2) -> float
 ```
 
-See also: <a href="#Vector2">Vector2</a>
+See also:
+<a href="#Vector2">Vector2</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -12427,7 +13192,8 @@ Python wrapper:
 def vector2length_sqr(v: Vector2) -> float
 ```
 
-See also: <a href="#Vector2">Vector2</a>
+See also:
+<a href="#Vector2">Vector2</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -12448,7 +13214,8 @@ Python wrapper:
 def vector2dot_product(v1: Vector2, v2: Vector2) -> float
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Vector2">Vector2</a>
+See also:
+<a href="#Vector2">Vector2</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -12469,7 +13236,8 @@ Python wrapper:
 def vector2distance(v1: Vector2, v2: Vector2) -> float
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Vector2">Vector2</a>
+See also:
+<a href="#Vector2">Vector2</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -12490,7 +13258,8 @@ Python wrapper:
 def vector2distance_sqr(v1: Vector2, v2: Vector2) -> float
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Vector2">Vector2</a>
+See also:
+<a href="#Vector2">Vector2</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -12511,7 +13280,8 @@ Python wrapper:
 def vector2angle(v1: Vector2, v2: Vector2) -> float
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Vector2">Vector2</a>
+See also:
+<a href="#Vector2">Vector2</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -12532,7 +13302,8 @@ Python wrapper:
 def vector2scale(v: Vector2, scale: float) -> Vector2
 ```
 
-See also: <a href="#Vector2">Vector2</a>
+See also:
+<a href="#Vector2">Vector2</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -12553,7 +13324,8 @@ Python wrapper:
 def vector2multiply(v1: Vector2, v2: Vector2) -> Vector2
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Vector2">Vector2</a>
+See also:
+<a href="#Vector2">Vector2</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -12574,7 +13346,8 @@ Python wrapper:
 def vector2negate(v: Vector2) -> Vector2
 ```
 
-See also: <a href="#Vector2">Vector2</a>
+See also:
+<a href="#Vector2">Vector2</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -12595,7 +13368,8 @@ Python wrapper:
 def vector2divide(v1: Vector2, v2: Vector2) -> Vector2
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Vector2">Vector2</a>
+See also:
+<a href="#Vector2">Vector2</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -12616,7 +13390,8 @@ Python wrapper:
 def vector2normalize(v: Vector2) -> Vector2
 ```
 
-See also: <a href="#Vector2">Vector2</a>
+See also:
+<a href="#Vector2">Vector2</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -12637,7 +13412,8 @@ Python wrapper:
 def vector2transform(v: Vector2, mat: Matrix) -> Vector2
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Matrix">Matrix</a>
+See also:
+<a href="#Vector2">Vector2</a>, <a href="#Matrix">Matrix</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -12658,7 +13434,8 @@ Python wrapper:
 def vector2lerp(v1: Vector2, v2: Vector2, amount: float) -> Vector2
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Vector2">Vector2</a>
+See also:
+<a href="#Vector2">Vector2</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -12679,7 +13456,8 @@ Python wrapper:
 def vector2reflect(v1: Vector2, normal: Vector2) -> Vector2
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Vector2">Vector2</a>
+See also:
+<a href="#Vector2">Vector2</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -12700,7 +13478,8 @@ Python wrapper:
 def vector2rotate(v1: Vector2, angle: float) -> Vector2
 ```
 
-See also: <a href="#Vector2">Vector2</a>
+See also:
+<a href="#Vector2">Vector2</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -12721,7 +13500,8 @@ Python wrapper:
 def vector2move_towards(v1: Vector2, target: Vector2, max_distance: float) -> Vector2
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Vector2">Vector2</a>
+See also:
+<a href="#Vector2">Vector2</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -12742,7 +13522,8 @@ Python wrapper:
 def vector2invert(v: Vector2) -> Vector2
 ```
 
-See also: <a href="#Vector2">Vector2</a>
+See also:
+<a href="#Vector2">Vector2</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -12763,7 +13544,8 @@ Python wrapper:
 def vector2clamp(v: Vector2, min_: Vector2, max_: Vector2) -> Vector2
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Vector2">Vector2</a>, <a href="#Vector2">Vector2</a>
+See also:
+<a href="#Vector2">Vector2</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -12784,7 +13566,8 @@ Python wrapper:
 def vector2clamp_value(v: Vector2, min_: float, max_: float) -> Vector2
 ```
 
-See also: <a href="#Vector2">Vector2</a>
+See also:
+<a href="#Vector2">Vector2</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -12805,7 +13588,8 @@ Python wrapper:
 def vector2equals(p: Vector2, q: Vector2) -> int
 ```
 
-See also: <a href="#Vector2">Vector2</a>, <a href="#Vector2">Vector2</a>
+See also:
+<a href="#Vector2">Vector2</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -12826,6 +13610,9 @@ Python wrapper:
 def vector3zero() -> Vector3
 ```
 
+See also:
+<a href="#Vector3">Vector3</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
@@ -12844,6 +13631,9 @@ Python wrapper:
 ```python
 def vector3one() -> Vector3
 ```
+
+See also:
+<a href="#Vector3">Vector3</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -12864,7 +13654,8 @@ Python wrapper:
 def vector3add(v1: Vector3, v2: Vector3) -> Vector3
 ```
 
-See also: <a href="#Vector3">Vector3</a>, <a href="#Vector3">Vector3</a>
+See also:
+<a href="#Vector3">Vector3</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -12885,7 +13676,8 @@ Python wrapper:
 def vector3add_value(v: Vector3, add: float) -> Vector3
 ```
 
-See also: <a href="#Vector3">Vector3</a>
+See also:
+<a href="#Vector3">Vector3</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -12906,7 +13698,8 @@ Python wrapper:
 def vector3subtract(v1: Vector3, v2: Vector3) -> Vector3
 ```
 
-See also: <a href="#Vector3">Vector3</a>, <a href="#Vector3">Vector3</a>
+See also:
+<a href="#Vector3">Vector3</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -12927,7 +13720,8 @@ Python wrapper:
 def vector3subtract_value(v: Vector3, sub: float) -> Vector3
 ```
 
-See also: <a href="#Vector3">Vector3</a>
+See also:
+<a href="#Vector3">Vector3</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -12948,7 +13742,8 @@ Python wrapper:
 def vector3scale(v: Vector3, scalar: float) -> Vector3
 ```
 
-See also: <a href="#Vector3">Vector3</a>
+See also:
+<a href="#Vector3">Vector3</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -12969,7 +13764,8 @@ Python wrapper:
 def vector3multiply(v1: Vector3, v2: Vector3) -> Vector3
 ```
 
-See also: <a href="#Vector3">Vector3</a>, <a href="#Vector3">Vector3</a>
+See also:
+<a href="#Vector3">Vector3</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -12990,7 +13786,8 @@ Python wrapper:
 def vector3cross_product(v1: Vector3, v2: Vector3) -> float
 ```
 
-See also: <a href="#Vector3">Vector3</a>, <a href="#Vector3">Vector3</a>
+See also:
+<a href="#Vector3">Vector3</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -13011,7 +13808,8 @@ Python wrapper:
 def vector3perpendicular(v1: Vector3) -> Vector3
 ```
 
-See also: <a href="#Vector3">Vector3</a>
+See also:
+<a href="#Vector3">Vector3</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -13032,7 +13830,8 @@ Python wrapper:
 def vector3length(v1: Vector3) -> float
 ```
 
-See also: <a href="#Vector3">Vector3</a>
+See also:
+<a href="#Vector3">Vector3</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -13053,7 +13852,8 @@ Python wrapper:
 def vector3length_sqr(v1: Vector3) -> float
 ```
 
-See also: <a href="#Vector3">Vector3</a>
+See also:
+<a href="#Vector3">Vector3</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -13074,7 +13874,8 @@ Python wrapper:
 def vector3dot_product(v1: Vector3, v2: Vector3) -> float
 ```
 
-See also: <a href="#Vector3">Vector3</a>, <a href="#Vector3">Vector3</a>
+See also:
+<a href="#Vector3">Vector3</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -13095,7 +13896,8 @@ Python wrapper:
 def vector3distance(v1: Vector3, v2: Vector3) -> float
 ```
 
-See also: <a href="#Vector3">Vector3</a>, <a href="#Vector3">Vector3</a>
+See also:
+<a href="#Vector3">Vector3</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -13116,7 +13918,8 @@ Python wrapper:
 def vector3distance_sqr(v1: Vector3, v2: Vector3) -> float
 ```
 
-See also: <a href="#Vector3">Vector3</a>, <a href="#Vector3">Vector3</a>
+See also:
+<a href="#Vector3">Vector3</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -13137,7 +13940,8 @@ Python wrapper:
 def vector3angle(v1: Vector3, v2: Vector3) -> float
 ```
 
-See also: <a href="#Vector3">Vector3</a>, <a href="#Vector3">Vector3</a>
+See also:
+<a href="#Vector3">Vector3</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -13158,7 +13962,8 @@ Python wrapper:
 def vector3negate(v: Vector3) -> Vector3
 ```
 
-See also: <a href="#Vector3">Vector3</a>
+See also:
+<a href="#Vector3">Vector3</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -13179,7 +13984,8 @@ Python wrapper:
 def vector3divide(v1: Vector3, v2: Vector3) -> float
 ```
 
-See also: <a href="#Vector3">Vector3</a>, <a href="#Vector3">Vector3</a>
+See also:
+<a href="#Vector3">Vector3</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -13200,7 +14006,8 @@ Python wrapper:
 def vector3normalize(v: Vector3) -> Vector3
 ```
 
-See also: <a href="#Vector3">Vector3</a>
+See also:
+<a href="#Vector3">Vector3</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -13221,6 +14028,9 @@ Python wrapper:
 def vector3ortho_normalize(v1: Vector3Ptr, v2: Vector3Ptr) -> Vector3
 ```
 
+See also:
+<a href="#Vector3">Vector3</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
@@ -13240,7 +14050,8 @@ Python wrapper:
 def vector3transform(v: Vector3, mat: Matrix) -> Vector3
 ```
 
-See also: <a href="#Vector3">Vector3</a>, <a href="#Matrix">Matrix</a>
+See also:
+<a href="#Vector3">Vector3</a>, <a href="#Matrix">Matrix</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -13261,7 +14072,8 @@ Python wrapper:
 def vector3rotate_by_quaternion(v: Vector3, q: Quaternion) -> Vector3
 ```
 
-See also: <a href="#Vector3">Vector3</a>
+See also:
+<a href="#Vector3">Vector3</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -13282,7 +14094,8 @@ Python wrapper:
 def vector3rotate_by_axis_angle(v: Vector3, axis: Vector3, angle: float) -> Vector3
 ```
 
-See also: <a href="#Vector3">Vector3</a>, <a href="#Vector3">Vector3</a>
+See also:
+<a href="#Vector3">Vector3</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -13303,7 +14116,8 @@ Python wrapper:
 def vector3lerp(v1: Vector3, v2: Vector3, amount: float) -> Vector3
 ```
 
-See also: <a href="#Vector3">Vector3</a>, <a href="#Vector3">Vector3</a>
+See also:
+<a href="#Vector3">Vector3</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -13324,7 +14138,8 @@ Python wrapper:
 def vector3reflect(v: Vector3, normal: Vector3) -> Vector3
 ```
 
-See also: <a href="#Vector3">Vector3</a>, <a href="#Vector3">Vector3</a>
+See also:
+<a href="#Vector3">Vector3</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -13345,7 +14160,8 @@ Python wrapper:
 def vector3min(v1: Vector3, v2: Vector3) -> Vector3
 ```
 
-See also: <a href="#Vector3">Vector3</a>, <a href="#Vector3">Vector3</a>
+See also:
+<a href="#Vector3">Vector3</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -13366,7 +14182,8 @@ Python wrapper:
 def vector3max(v1: Vector3, v2: Vector3) -> Vector3
 ```
 
-See also: <a href="#Vector3">Vector3</a>, <a href="#Vector3">Vector3</a>
+See also:
+<a href="#Vector3">Vector3</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -13387,7 +14204,8 @@ Python wrapper:
 def vector3barycenter(p: Vector3, a: Vector3, b: Vector3, c: Vector3) -> Vector3
 ```
 
-See also: <a href="#Vector3">Vector3</a>, <a href="#Vector3">Vector3</a>, <a href="#Vector3">Vector3</a>, <a href="#Vector3">Vector3</a>
+See also:
+<a href="#Vector3">Vector3</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -13408,7 +14226,8 @@ Python wrapper:
 def vector3unproject(source: Vector3, projection: Matrix, view: Matrix) -> Vector3
 ```
 
-See also: <a href="#Vector3">Vector3</a>, <a href="#Matrix">Matrix</a>, <a href="#Matrix">Matrix</a>
+See also:
+<a href="#Vector3">Vector3</a>, <a href="#Matrix">Matrix</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -13429,7 +14248,8 @@ Python wrapper:
 def vector3to_float_v(v: Vector3) -> Seq[float]
 ```
 
-See also: <a href="#Vector3">Vector3</a>
+See also:
+<a href="#Vector3">Vector3</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -13450,7 +14270,8 @@ Python wrapper:
 def vector3invert(v: Vector3) -> Vector3
 ```
 
-See also: <a href="#Vector3">Vector3</a>
+See also:
+<a href="#Vector3">Vector3</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -13471,7 +14292,8 @@ Python wrapper:
 def vector3clamp(v: Vector3, min_: Vector3, max_: Vector3) -> Vector3
 ```
 
-See also: <a href="#Vector3">Vector3</a>, <a href="#Vector3">Vector3</a>, <a href="#Vector3">Vector3</a>
+See also:
+<a href="#Vector3">Vector3</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -13492,7 +14314,8 @@ Python wrapper:
 def vector3clamp_value(v: Vector3, min_: float, max_: float) -> Vector3
 ```
 
-See also: <a href="#Vector3">Vector3</a>
+See also:
+<a href="#Vector3">Vector3</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -13513,7 +14336,8 @@ Python wrapper:
 def vector3equals(v: Vector3, min_: float, max_: float) -> int
 ```
 
-See also: <a href="#Vector3">Vector3</a>
+See also:
+<a href="#Vector3">Vector3</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -13534,7 +14358,8 @@ Python wrapper:
 def vector3refract(v: Vector3, n: Vector3, r: float) -> int
 ```
 
-See also: <a href="#Vector3">Vector3</a>, <a href="#Vector3">Vector3</a>
+See also:
+<a href="#Vector3">Vector3</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -13555,7 +14380,8 @@ Python wrapper:
 def matrix_determinant(mat: Matrix) -> float
 ```
 
-See also: <a href="#Matrix">Matrix</a>
+See also:
+<a href="#Matrix">Matrix</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -13576,7 +14402,8 @@ Python wrapper:
 def matrix_trace(mat: Matrix) -> float
 ```
 
-See also: <a href="#Matrix">Matrix</a>
+See also:
+<a href="#Matrix">Matrix</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -13597,7 +14424,8 @@ Python wrapper:
 def matrix_transpose(mat: Matrix) -> Matrix
 ```
 
-See also: <a href="#Matrix">Matrix</a>
+See also:
+<a href="#Matrix">Matrix</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -13618,7 +14446,8 @@ Python wrapper:
 def matrix_invert(mat: Matrix) -> Matrix
 ```
 
-See also: <a href="#Matrix">Matrix</a>
+See also:
+<a href="#Matrix">Matrix</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -13639,6 +14468,9 @@ Python wrapper:
 def matrix_identity() -> Matrix
 ```
 
+See also:
+<a href="#Matrix">Matrix</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
@@ -13658,7 +14490,8 @@ Python wrapper:
 def matrix_add(left: Matrix, right: Matrix) -> Matrix
 ```
 
-See also: <a href="#Matrix">Matrix</a>, <a href="#Matrix">Matrix</a>
+See also:
+<a href="#Matrix">Matrix</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -13679,7 +14512,8 @@ Python wrapper:
 def matrix_subtract(left: Matrix, right: Matrix) -> Matrix
 ```
 
-See also: <a href="#Matrix">Matrix</a>, <a href="#Matrix">Matrix</a>
+See also:
+<a href="#Matrix">Matrix</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -13700,7 +14534,8 @@ Python wrapper:
 def matrix_multiply(left: Matrix, right: Matrix) -> Matrix
 ```
 
-See also: <a href="#Matrix">Matrix</a>, <a href="#Matrix">Matrix</a>
+See also:
+<a href="#Matrix">Matrix</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -13721,6 +14556,9 @@ Python wrapper:
 def matrix_translate(x: float, y: float, z: float) -> Matrix
 ```
 
+See also:
+<a href="#Matrix">Matrix</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
@@ -13740,7 +14578,8 @@ Python wrapper:
 def matrix_rotate(axis: Vector3, angle: float) -> Matrix
 ```
 
-See also: <a href="#Vector3">Vector3</a>
+See also:
+<a href="#Vector3">Vector3</a>, <a href="#Matrix">Matrix</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -13761,6 +14600,9 @@ Python wrapper:
 def matrix_rotate_x(angle: float) -> Matrix
 ```
 
+See also:
+<a href="#Matrix">Matrix</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
@@ -13779,6 +14621,9 @@ Python wrapper:
 ```python
 def matrix_rotate_y(angle: float) -> Matrix
 ```
+
+See also:
+<a href="#Matrix">Matrix</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -13799,6 +14644,9 @@ Python wrapper:
 def matrix_rotate_z(angle: float) -> Matrix
 ```
 
+See also:
+<a href="#Matrix">Matrix</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
@@ -13818,7 +14666,8 @@ Python wrapper:
 def matrix_rotate_xyz(angle: Vector3) -> Matrix
 ```
 
-See also: <a href="#Vector3">Vector3</a>
+See also:
+<a href="#Vector3">Vector3</a>, <a href="#Matrix">Matrix</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -13839,7 +14688,8 @@ Python wrapper:
 def matrix_rotate_zyx(angle: Vector3) -> Matrix
 ```
 
-See also: <a href="#Vector3">Vector3</a>
+See also:
+<a href="#Vector3">Vector3</a>, <a href="#Matrix">Matrix</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -13860,6 +14710,9 @@ Python wrapper:
 def matrix_scale(x: float, y: float, z: float) -> Matrix
 ```
 
+See also:
+<a href="#Matrix">Matrix</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
@@ -13878,6 +14731,9 @@ Python wrapper:
 ```python
 def matrix_frustum(left: float, right: float, bottom: float, top: float, near: float, far: float) -> Matrix
 ```
+
+See also:
+<a href="#Matrix">Matrix</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -13898,6 +14754,9 @@ Python wrapper:
 def matrix_perspective(fovy: float, aspect: float, near: float, far: float) -> Matrix
 ```
 
+See also:
+<a href="#Matrix">Matrix</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
@@ -13916,6 +14775,9 @@ Python wrapper:
 ```python
 def matrix_ortho(left: float, right: float, bottom: float, top: float, near: float, far: float) -> Matrix
 ```
+
+See also:
+<a href="#Matrix">Matrix</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -13936,7 +14798,8 @@ Python wrapper:
 def matrix_look_at(eye: Vector3, target: Vector3, up: Vector3) -> Matrix
 ```
 
-See also: <a href="#Vector3">Vector3</a>, <a href="#Vector3">Vector3</a>, <a href="#Vector3">Vector3</a>
+See also:
+<a href="#Vector3">Vector3</a>, <a href="#Matrix">Matrix</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -13957,7 +14820,8 @@ Python wrapper:
 def matrix_to_float_v(mat: Matrix) -> Seq[float]
 ```
 
-See also: <a href="#Matrix">Matrix</a>
+See also:
+<a href="#Matrix">Matrix</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -14225,7 +15089,8 @@ Python wrapper:
 def quaternion_from_vector3to_vector3(from_: Vector3, to: Vector3) -> Quaternion
 ```
 
-See also: <a href="#Vector3">Vector3</a>, <a href="#Vector3">Vector3</a>
+See also:
+<a href="#Vector3">Vector3</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -14246,6 +15111,9 @@ Python wrapper:
 def quaternion_to_matrix(q: Quaternion) -> Matrix
 ```
 
+See also:
+<a href="#Matrix">Matrix</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
@@ -14265,7 +15133,8 @@ Python wrapper:
 def quaternion_from_matrix(mat: Matrix) -> Quaternion
 ```
 
-See also: <a href="#Matrix">Matrix</a>
+See also:
+<a href="#Matrix">Matrix</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -14286,7 +15155,8 @@ Python wrapper:
 def quaternion_from_axis_angle(mat: Vector3, angle: float) -> Quaternion
 ```
 
-See also: <a href="#Vector3">Vector3</a>
+See also:
+<a href="#Vector3">Vector3</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -14306,6 +15176,9 @@ Python wrapper:
 ```python
 def quaternion_to_axis_angle(q: Quaternion, out_axis: Vector3Ptr, out_angle: Union[Seq[float], FloatPtr]) -> None
 ```
+
+See also:
+<a href="#Vector3">Vector3</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -14345,6 +15218,9 @@ Python wrapper:
 def quaternion_to_euler(q: Quaternion) -> Vector3
 ```
 
+See also:
+<a href="#Vector3">Vector3</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
@@ -14364,7 +15240,8 @@ Python wrapper:
 def quaternion_transform(q: Quaternion, mat: Matrix) -> Quaternion
 ```
 
-See also: <a href="#Matrix">Matrix</a>
+See also:
+<a href="#Matrix">Matrix</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -15848,6 +16725,9 @@ Python wrapper:
 def rl_load_render_batch(num_buffers: int, buffer_elements: int) -> rlRenderBatch
 ```
 
+See also:
+<a href="#rlRenderBatch">rlRenderBatch</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
@@ -15867,7 +16747,8 @@ Python wrapper:
 def rl_unload_render_batch(batch: rlRenderBatch) -> None
 ```
 
-See also: <a href="#rlRenderBatch">rlRenderBatch</a>
+See also:
+<a href="#rlRenderBatch">rlRenderBatch</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -15888,6 +16769,9 @@ Python wrapper:
 def rl_draw_render_batch(batch: rlRenderBatchPtr) -> None
 ```
 
+See also:
+<a href="#rlRenderBatch">rlRenderBatch</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
@@ -15906,6 +16790,9 @@ Python wrapper:
 ```python
 def rl_set_render_batch_active(batch: rlRenderBatchPtr) -> None
 ```
+
+See also:
+<a href="#rlRenderBatch">rlRenderBatch</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -16648,7 +17535,8 @@ Python wrapper:
 def rl_set_uniform_matrix(loc_index: int, mat: Matrix) -> None
 ```
 
-See also: <a href="#Matrix">Matrix</a>
+See also:
+<a href="#Matrix">Matrix</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -16897,6 +17785,9 @@ Python wrapper:
 def rl_get_matrix_modelview() -> Matrix
 ```
 
+See also:
+<a href="#Matrix">Matrix</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
@@ -16915,6 +17806,9 @@ Python wrapper:
 ```python
 def rl_get_matrix_projection() -> Matrix
 ```
+
+See also:
+<a href="#Matrix">Matrix</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -16935,6 +17829,9 @@ Python wrapper:
 def rl_get_matrix_transform() -> Matrix
 ```
 
+See also:
+<a href="#Matrix">Matrix</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
@@ -16953,6 +17850,9 @@ Python wrapper:
 ```python
 def rl_get_matrix_projection_stereo(eye: int) -> Matrix
 ```
+
+See also:
+<a href="#Matrix">Matrix</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -16973,6 +17873,9 @@ Python wrapper:
 def rl_get_matrix_view_offset_stereo(eye: int) -> Matrix
 ```
 
+See also:
+<a href="#Matrix">Matrix</a>
+
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
@@ -16992,7 +17895,8 @@ Python wrapper:
 def rl_set_matrix_projection(proj: Matrix) -> None
 ```
 
-See also: <a href="#Matrix">Matrix</a>
+See also:
+<a href="#Matrix">Matrix</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -17013,7 +17917,8 @@ Python wrapper:
 def rl_set_matrix_modelview(view: Matrix) -> None
 ```
 
-See also: <a href="#Matrix">Matrix</a>
+See also:
+<a href="#Matrix">Matrix</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -17034,7 +17939,8 @@ Python wrapper:
 def rl_set_matrix_projection_stereo(right: Matrix, left: Matrix) -> None
 ```
 
-See also: <a href="#Matrix">Matrix</a>, <a href="#Matrix">Matrix</a>
+See also:
+<a href="#Matrix">Matrix</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -17055,7 +17961,8 @@ Python wrapper:
 def rl_set_matrix_view_offset_stereo(right: Matrix, left: Matrix) -> None
 ```
 
-See also: <a href="#Matrix">Matrix</a>, <a href="#Matrix">Matrix</a>
+See also:
+<a href="#Matrix">Matrix</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -17096,5 +18003,125 @@ def rl_load_draw_quad() -> None
 ```
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="contexts">Context Managers</h2>
+
+To use context managers, you can do like below:
+
+```python
+# this example shows a rendering step
+
+with drawing():
+
+    with texture_mode(minimap_texture):
+        # render the minimap
+        draw_line(2, 2, 5, 5, RED)
+    # no texture mode after this line
+
+    with mode2d(main_camera):
+        # 2d drawing logic...
+        draw_texture(minimap_texture, 10, 10, WHITE)
+    # no mode 2d after this line
+# no drawing after this line
+
+```
+
+Item|Item|Item|Item|Item
+--------|--------|--------|--------|--------
+<a href="#Drawing">Drawing</a> | <a href="#Mode2D">Mode2D</a> | <a href="#Mode3D">Mode3D</a> | <a href="#ScissorMode">ScissorMode</a> | <a href="#ShaderMode">ShaderMode</a>
+<a href="#TextureMode">TextureMode</a> | <a href="#VrStereoMode">VrStereoMode</a>
+
+[ <a href="#toc">ToC</a> ]
+
+<h2 id="Drawing"><code>drawing</code> context manager</h2>
+
+> On entering the context: *Setup canvas (framebuffer) to start drawing*
+> On leaving the context: *End canvas drawing and swap buffers (double buffering)*
+
+```python
+@contextmanager
+def drawing() -> None
+```
+
+[ <a href="#contexts">Contexts</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="ScissorMode"><code>scissor_mode</code> context manager</h2>
+
+> On entering the context: *Begin scissor mode (define screen area for following drawing)*
+> On leaving the context: *End scissor mode*
+
+```python
+@contextmanager
+def scissor_mode(x: 'int', y: 'int', width: 'int', height: 'int') -> None
+```
+
+[ <a href="#contexts">Contexts</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="Mode2D"><code>mode2d</code> context manager</h2>
+
+> On entering the context: *Begin 2D mode with custom camera (2D)*
+> On leaving the context: *Ends 2D mode with custom camera*
+
+```python
+@contextmanager
+def mode2d(camera: 'Camera2D') -> None
+```
+
+[ <a href="#contexts">Contexts</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="Mode3D"><code>mode3d</code> context manager</h2>
+
+> On entering the context: *Begin 3D mode with custom camera (3D)*
+> On leaving the context: *Ends 3D mode and returns to default 2D orthographic mode*
+
+```python
+@contextmanager
+def mode3d(camera: 'Camera3D') -> None
+```
+
+[ <a href="#contexts">Contexts</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="ShaderMode"><code>shader_mode</code> context manager</h2>
+
+> On entering the context: *Begin custom shader drawing*
+> On leaving the context: *End custom shader drawing (use default shader)*
+
+```python
+@contextmanager
+def shader_mode(shader: 'Shader') -> None
+```
+
+[ <a href="#contexts">Contexts</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="TextureMode"><code>texture_mode</code> context manager</h2>
+
+> On entering the context: *Begin drawing to render texture*
+> On leaving the context: *Ends drawing to render texture*
+
+```python
+@contextmanager
+def texture_mode(target: 'RenderTexture2D') -> None
+```
+
+[ <a href="#contexts">Contexts</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="VrStereoMode"><code>vr_stereo_mode</code> context manager</h2>
+
+> On entering the context: *Begin stereo rendering (requires VR simulator)*
+> On leaving the context: *End stereo rendering (requires VR simulator)*
+
+```python
+@contextmanager
+def vr_stereo_mode(config: 'VrStereoConfig') -> None
+```
+
+[ <a href="#contexts">Contexts</a> | <a href="#toc">ToC</a> ]
 
 ---
