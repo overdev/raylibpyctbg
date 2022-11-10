@@ -91,6 +91,11 @@ When added to the binding, it includes all functions in the raymath header.
 
 When added to the binding, it includes all functions in the rlgl header.
 
+### Documentation
+
+You can generate API reference for all symbols wrapped by the generator. For some examples,
+check out the markdown files in the _output_ folder.
+
 ## Using the python binding
 
 Please, note that this binding does not include any raylib binary file. You can grab the binary 
