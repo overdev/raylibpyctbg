@@ -116,6 +116,9 @@ class InfoBase:
     def type_hint(self):
         return ''
 
+    def get(self, key, default=None):
+        return self.info.get(key, default)
+
     def gen_wrapper(self):
         """Wraps this info object"""
         return ''
@@ -305,7 +308,27 @@ class DefineInfo(InfoBase):
         return '\n'
 
     def gen_docs(self):
-        return "{name}: TODO.\n".format(name=self.name)
+        if self.type in ('FLOAT', 'DOUBLE', 'INT', 'UNKNOWN'):
+            return '`{}` | `{}` | {}'.format(self.name, self.value, self.description or '*n/a*')
+
+        elif self.type == 'STRING':
+            val = "'{}'".format(self.value)
+
+            return '`{}` | `{}` | {}'.format(self.name, val, self.description or '*n/a*')
+
+        elif self.type == 'FLOAT_MATH':
+            val = self.value.replace('.0f', '.0').replace('/', ' / ')
+
+            return '`{}` | `{}` | {}'.format(self.name, val, self.description or '*n/a*')
+
+        elif self.type == 'COLOR':
+            val = self.value.replace('CLITERAL(Color){ ', 'Color(').replace(' }', ')')
+            rgb = self.value.replace('CLITERAL(Color){ ', 'rgba(').replace(' }', ')')
+            extra = ' <span style="color:{};">█████</span> {}'.format(rgb, self.description or '*n/a*')
+
+            return '`{}` | `{}` | {}'.format(self.name, val, extra)
+
+        return ''
 
 
 class AliasInfo(InfoBase):
@@ -334,7 +357,8 @@ class AliasInfo(InfoBase):
                                        annotation=self.type_annotation, type_hint=self.type_hint)
 
     def gen_docs(self):
-        return "{name}: TODO.\n".format(name=self.name)
+        link = '<a href="#{name}">{name}</a>'.format(name=self.type.info.name)
+        return "`{alias}` | `{link}` | {descr}".format(alias=self.name, link=link, descr=self.description)
 
 # endregion (values)
 
@@ -657,6 +681,26 @@ class CallbackInfo(InfoBase):
             description=self.description,
             args=', '.join(args)
         )
+
+    def gen_param_list(self, bound_as=''):
+        plist = [p.gen_wrapper() for p in self.params if not p.ommit]
+        if bound_as == 'classmethod':
+            if plist:
+                plist.insert(0, 'cls')
+        elif bound_as == 'staticmethod':
+            pass
+        elif bound_as == 'method':
+            if plist:
+                plist[0] = 'self'
+
+        return ', '.join(plist)
+
+    def gen_docs(self):
+        # t_params = ', '.join([p.type.py_type for p in self.params])
+        t_params = self.gen_param_list()
+        signature = "({}) -> {}".format(t_params, self.type.py_type)
+
+        return '`{}` | `{}` | {}'.format(self.name, signature, self.description or '*n/a*')
 
 # endregion (functions)
 
@@ -1191,7 +1235,7 @@ class BindGenerator:
 
         fulldocs = ''
         if gen_docs:
-            fulldocs += TPL_DOC_HEADER.format(version='4.2')
+            fulldocs += TPL_DOC_HEADER.format(version=self.find('RAYLIB_VERSION').value)
 
         fullcode += TPL_HEADER_UTILS
 
@@ -1210,6 +1254,12 @@ class BindGenerator:
                 fulldocs += struct.gen_docs()
 
         if gen_docs:
+            items = []
+            for alias in self.aliases:
+                items.append(alias.gen_docs())
+            fulldocs += TPL_DOC_ALIASES.format(aliases_list='\n'.join(items))
+
+        if gen_docs:
             fulldocs += TPL_DOC_ENUMS.format(enum_list=self.gen_docs(self.enums))
         for enum in self.enums:
             fullcode += enum.gen_wrapper()
@@ -1217,11 +1267,24 @@ class BindGenerator:
             if gen_docs:
                 fulldocs += enum.gen_docs()
 
+        defn_list = []
         for define in self.defines:
             fullcode += define.gen_wrapper()
+            if gen_docs:
+                defn_list.append(define.gen_docs())
+        if gen_docs:
+            fulldocs += TPL_DOC_DEFINES.format(
+                defn_list='\n'.join(defn_list)
+            )
 
+        items = []
         for callback in self.callbacks:
             fullcode += callback.gen_wrapper()
+            if gen_docs:
+                items.append(callback.gen_docs())
+
+        if gen_docs:
+            fulldocs += TPL_DOC_CALLBACKS.format(cb_list='\n'.join(items))
 
         if gen_docs:
             fulldocs += TPL_DOC_FUNCS.format(func_list=self.gen_docs(self.functions))
@@ -1233,6 +1296,8 @@ class BindGenerator:
         for function in self.functions:
             fullcode += function.gen_wrapper()
 
+        if gen_docs:
+            fulldocs += TPL_DOC_CONTEXTS.format(ctx_list=self.gen_docs(self.context_managers, 'api'))
         if config.add_contextmanagers:
             for ctxmgr in self.context_managers:
                 fn_enter = self.functions_by_name.get(ctxmgr.get('enter'))
@@ -1240,6 +1305,9 @@ class BindGenerator:
 
                 if fn_enter and fn_leave:
                     fullcode += self.gen_contextmanager_wrapper(config, ctxmgr, fn_enter, fn_leave)
+
+                if gen_docs:
+                    fulldocs += self.gen_contextmanager_docs(config, ctxmgr, fn_enter, fn_leave)
 
         # with open(out_fname, 'w', encoding='utf8') as wrapper:
             # wrapper.write(fullcode)
@@ -1249,12 +1317,45 @@ class BindGenerator:
             with open(doc_out_fname, 'w', encoding='utf8') as wrapper:
                 wrapper.write(fulldocs)
 
-    def gen_docs(self, ref_list=None):
+    def gen_docs(self, ref_list=None, name_key='name', cols=5, title='Item'):
         if ref_list:
-            items = ['<a href="#{name}">{name}</a>'.format(name=info.name) for info in sorted(ref_list, key=lambda k: k.name)]
-            return " | ".join(items)
+            items = [
+                '<a href="#{name}">{name}</a>'.format(name=info.get(name_key))
+                for info in sorted(ref_list, key=lambda k: k.get(name_key))
+            ]
+            rows = len(items) // cols
+            rem = len(items) % cols
+            ttl = '|'.join([title for _ in range(cols)])
+            hdr = '|'.join(['--------' for _ in range(cols)])
+            lines = [ttl, hdr]
+
+            for i in range(rows):
+                idx = i * cols
+                lines.append(' | '.join(items[idx: idx + cols]))
+
+            if rem:
+                idx = rows * cols
+                lines.append(' | '.join(items[idx: idx + rem]))
+
+            return '\n'.join(lines)
+
         return ""
 
+    def gen_contextmanager_docs(self, config, ctx_info, fn_enter, fn_leave):
+        name = snakefy(ctx_info.get('api')) if config.snakefy_functions else ctx_info.get('api')
+        py_decl = 'def {}({}) -> None'.format(
+            name,
+            fn_enter.gen_param_list()
+        )
+
+        return TPL_DOC_CONTEXTMANAGER.format(
+            ctx_id=ctx_info.get('api'),
+            name=name,
+            ctx_description_enter=fn_enter.description,
+            ctx_description_leave=fn_leave.description,
+            py_decl=py_decl
+        )
+    
     def gen_contextmanager_wrapper(self, config, ctx_info, fn_enter, fn_leave):
         name = snakefy(ctx_info.get('api')) if config.snakefy_functions else ctx_info.get('api')
         params = fn_enter.gen_param_list()

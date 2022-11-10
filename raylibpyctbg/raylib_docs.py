@@ -6,8 +6,10 @@ This is an API reference documentation generated for Raylib {version}.
 
 <h2 id="toc">Table of Contents</h2>
 
-- <a href="#enums">Enumerations</a>
 - <a href="#structs">Structures</a>
+- <a href="#aliases">Aliases</a>
+- <a href="#enums">Enumerations</a>
+- <a href="#defines">Constants</a>
 - <a href="#funcs">Functions</a>
 - <a href="#callbacks">Callbacks</a>
 - <a href="#contexts">Context Managers</a>
@@ -135,7 +137,27 @@ Python wrapper:
 
 TPL_DOC_CONTEXTS = '''<h2 id="contexts">Context Managers</h2>
 
-{func_list}
+To use context managers, you can do like below:
+
+```python
+# this example shows a rendering step
+
+with drawing():
+
+    with texture_mode(minimap_texture):
+        # render the minimap
+        draw_line(2, 2, 5, 5, RED)
+    # no texture mode after this line
+
+    with mode2d(main_camera):
+        # 2d drawing logic...
+        draw_texture(minimap_texture, 10, 10, WHITE)
+    # no mode 2d after this line
+# no drawing after this line
+
+```
+
+{ctx_list}
 
 [ <a href="#toc">ToC</a> ]
 
@@ -143,7 +165,8 @@ TPL_DOC_CONTEXTS = '''<h2 id="contexts">Context Managers</h2>
 
 TPL_DOC_CONTEXTMANAGER = '''<h2 id="{ctx_id}"><code>{name}</code> context manager</h2>
 
-> {ctx_description}
+> On entering the context: *{ctx_description_enter}*
+> On leaving the context: *{ctx_description_leave}*
 
 ```python
 @contextmanager
@@ -155,3 +178,59 @@ TPL_DOC_CONTEXTMANAGER = '''<h2 id="{ctx_id}"><code>{name}</code> context manage
 ---
 '''
 # endregion (CONTEXT MANAGERS)
+
+# region DEFINES
+
+TPL_DOC_DEFINES = '''<h2 id="defines">Constants</h2>
+
+Name | Value | Description
+-----|-------|------------
+{defn_list}
+
+[ <a href="#toc">ToC</a> ]
+
+'''
+
+# endregion (DEFINES)
+
+# region ALIASES
+
+TPL_DOC_ALIASES = '''<h2 id="aliases">Aliases</h2>
+
+Alias Name | Type | Description
+-----------|------|------------
+{aliases_list}
+
+[ <a href="#toc">ToC</a> ]
+
+'''
+
+# endregion (ALIASES)
+
+# region CALLBACKS
+
+TPL_DOC_CALLBACKS = '''<h2 id="callbacks">Callbacks</h2>
+
+To define and use your own callbacks, you can do like below:
+
+```python
+# defines a callback function decorating it with the AudioCallback CFUNCTYPE
+@AudioCallback
+def my_callback(data, frames):
+    # TODO: some logic
+    pass
+
+# then, somewhere ahead in the code
+set_audio_stream_callback(some_stream, my_callback)
+
+```
+
+Name | Signature | Description
+-----|-----------|------------
+{cb_list}
+
+[ <a href="#toc">ToC</a> ]
+
+'''
+
+# endregion (CALLBACKS)
