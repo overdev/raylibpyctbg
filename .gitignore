@@ -133,3 +133,10 @@ raylibpyctbg/rmath.h
 raylibpyctbg/test_out.txt
 examples
 output/
+package/src/raylibpy/bin/32bit/*.dll
+package/src/raylibpy/bin/32bit/*.so
+package/src/raylibpy/bin/32bit/*.dylib
+
+package/src/raylibpy/bin/64bit/*.dll
+package/src/raylibpy/bin/64bit/*.so
+package/src/raylibpy/bin/64bit/*.dylib
