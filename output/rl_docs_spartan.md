@@ -12,6 +12,67 @@ This is an API reference documentation generated for Raylib 4.2.
 - <a href="#callbacks">Callbacks</a>
 - <a href="#contexts">Context Managers</a>
 
+---
+
+## Helper Types
+
+Many types are aliases to ctypes types. Types suffixed with `Ptr` are pointer types.
+
+To create array types, you can multiply the type to the array length, like below:
+
+```python
+
+# Create an array of 4 floats:
+arr = (Float * 4)(1.0, 3.5, -10.0, 0.0)
+
+```
+
+Raylib wrapped structures provide the `array_of()` classmethod for this same purpose:
+
+```python
+
+# Create an array of Vector2:
+v_arr = Vector2.array_of([vec1, vec2, vec3, vec4])
+
+```
+
+Alias | Ctypes type
+------|-------
+`Bool` | `c_bool`
+`BoolPtr` | `POINTER(c_bool)`
+`Byte` | `c_byte`
+`BytePtr` | `POINTER(c_byte)`
+`Char` | `c_char`
+`CharPtr` | `POINTER(c_char)`
+`Short` | `c_short`
+`ShortPtr` | `POINTER(c_short)`
+`Int` | `c_long`
+`IntPtr` | `POINTER(c_long)`
+`Long` | `c_long`
+`LongPtr` | `POINTER(c_long)`
+`LongLong` | `c_longlong`
+`LongLongPtr` | `POINTER(c_longlong)`
+`UChar` | `c_ubyte`
+`UCharPtr` | `POINTER(c_ubyte)`
+`UByte` | `c_ubyte`
+`UBytePtr` | `POINTER(c_ubyte)`
+`UShort` | `c_ushort`
+`UShortPtr` | `POINTER(c_ushort)`
+`UInt` | `c_ulong`
+`UIntPtr` | `POINTER(c_ulong)`
+`ULong` | `c_ulong`
+`ULongPtr` | `POINTER(c_ulong)`
+`ULongLong` | `c_ulonglong`
+`ULongLongPtr` | `POINTER(c_ulonglong)`
+`Float` | `c_float`
+`FloatPtr` | `POINTER(c_float)`
+`Double` | `c_double`
+`DoublePtr` | `POINTER(c_double)`
+`VoidPtr` | `c_void_p`
+`VoidPtrPtr` | `POINTER(c_void_p)`
+`CharPtr` | `c_char_p`
+`CharPtrPtr` | `POINTER(c_char_p)`
+
 <h2 id="structs">Structures</h2>
 
 Item|Item|Item|Item|Item
