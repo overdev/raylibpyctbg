@@ -73,6 +73,7 @@ Usage:
         -addRectangleAttribSwizzling    adds attribute swizzling to Rectangle
         -pythonic                       combines -bindApi -typeAnnotate -snakecase -attribSwizzling -addContextManager
         -spartan                        combines -no-bindApi -typeHint -no-snakecase -no-attribSwizzling -no-addContextManager
+        -onlyDocs                       no binding code generation, only documentation
 
         -no-type                        no type hinting nor annotations
         -no-snakecase                   keeps lib naming convention (C99 camelCase/PascalCase) on all names

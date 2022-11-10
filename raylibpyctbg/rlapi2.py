@@ -1309,10 +1309,10 @@ class BindGenerator:
                 if gen_docs:
                     fulldocs += self.gen_contextmanager_docs(config, ctxmgr, fn_enter, fn_leave)
 
-        # with open(out_fname, 'w', encoding='utf8') as wrapper:
-            # wrapper.write(fullcode)
+        if not config.get('onlyDocs', False):
+            with open(out_fname, 'w', encoding='utf8') as wrapper:
+                wrapper.write(fullcode)
 
-        print('will gen docs:', gen_docs, doc_out_fname)
         if gen_docs:
             with open(doc_out_fname, 'w', encoding='utf8') as wrapper:
                 wrapper.write(fulldocs)
@@ -1454,6 +1454,9 @@ class Config:
     @property
     def lib_basedir(self):
         return self.info.get('libBasedir')
+
+    def get(self, key, default=None):
+        return self.info.get(key, default)
 
 
 # endregion (classes)
