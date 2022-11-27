@@ -413,19 +413,19 @@ def {py_name}({param_list}){annotation}:{type_hint}
 TPL_VECTOR2_MATH = """
 
     def __eq__(self, other):
-        return rl.Vector2Equals(self, other)
+        return _Vector2Equals(self, other)
 
     def __ne__(self, other):
-        return not rl.Vector2Equals(self, other)
+        return not _Vector2Equals(self, other)
 
     def __pos__(self):
-        return rl.Vector2(+self.x, +self.y)
+        return Vector2(+self.x, +self.y)
 
     def __neg__(self):
-        return rl.Vector2(-self.x, -self.y)
+        return Vector2(-self.x, -self.y)
 
     def __abs__(self):
-        return rl.Vector2(abs(self.x), abs(self.y))
+        return Vector2(abs(self.x), abs(self.y))
 
     def __add__(self, other):
         if isinstance(other, (int, float)):
@@ -503,19 +503,19 @@ TPL_VECTOR2_MATH = """
 TPL_VECTOR3_MATH = """
 
     def __eq__(self, other):
-        return rl.Vector3Equals(self, other)
+        return _Vector3Equals(self, other)
 
     def __ne__(self, other):
-        return not rl.Vector3Equals(self, other)
+        return not _Vector3Equals(self, other)
 
     def __pos__(self):
-        return rl.Vector3(+self.x, +self.y, +self.z)
+        return Vector3(+self.x, +self.y, +self.z)
 
     def __neg__(self):
-        return rl.Vector3(-self.x, -self.y, -self.z)
+        return Vector3(-self.x, -self.y, -self.z)
 
     def __abs__(self):
-        return rl.Vector3(abs(self.x), abs(self.y), abs(self.z))
+        return Vector3(abs(self.x), abs(self.y), abs(self.z))
 
     def __add__(self, other):
         if isinstance(other, (int, float)):
@@ -579,7 +579,7 @@ TPL_VECTOR3_MATH = """
 
     def __rtruediv__(self, other):
         if isinstance(other, (int, float)):
-            return Vector3(other / self.x, other / self.y, other, / self.z)
+            return Vector3(other / self.x, other / self.y, other / self.z)
         return _Vector3Divide(Vector3(other[0], other[1], other[2]), self)
 
     def __itruediv__(self, other):

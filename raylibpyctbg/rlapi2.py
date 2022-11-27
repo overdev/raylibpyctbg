@@ -67,7 +67,7 @@ PRIMITIVE_TYPE_MAPPING = {
     'void *': ('bytes', 'VoidPtr', 'void', 'None', None),
     'bool *': ('Union[Seq[bool], BoolPtr]', 'BoolPtr', 'bool', 'False', None),
     'char *': ('Union[str, CharPtr]', 'CharPtr', 'char *', 'None', '_str_in({})'),
-    'char **': ('Seq[Union[str, CharPtr]]', 'CharPtrPtr', 'char **', 'None', 'str_in2({})'),
+    'char **': ('Seq[Union[str, CharPtr]]', 'CharPtrPtr', 'char **', 'None', '_str_in2({})'),
     'byte *': ('Union[Seq[int], BytePtr]', 'BytePtr', 'byte', 'None', None),
     'short *': ('Union[Seq[int], ShortPtr]', 'ShortPtr', 'short', 'None', None),
     'int *': ('Union[Seq[int], IntPtr]', 'IntPtr', 'int', 'None', None),
@@ -909,11 +909,17 @@ class StructureInfo(InfoBase):
 
     def gen_extra_methods(self): 
         extra_methods = ''
-        if self.name == "Vector2" and self.config.add_vector_attrib_swizzling:
-            extra_methods += TPL_VECTOR2_SWIZZLING
+        if self.name == "Vector2":
+            if self.config.add_vector_attrib_swizzling:
+                extra_methods += TPL_VECTOR2_SWIZZLING
+            if self.config.add_vector_math and self.config.rmath_included and self.config.add_vector_attrib_swizzling:
+                extra_methods += TPL_VECTOR2_MATH
 
-        if self.name == "Vector3" and self.config.add_vector_attrib_swizzling:
-            extra_methods += TPL_VECTOR3_SWIZZLING
+        if self.name == "Vector3":
+            if self.config.add_vector_attrib_swizzling:
+                extra_methods += TPL_VECTOR3_SWIZZLING
+            if self.config.add_vector_math and self.config.rmath_included and self.config.add_vector_attrib_swizzling:
+                extra_methods += TPL_VECTOR3_MATH
 
         if self.name == "Vector4" and self.config.add_vector_attrib_swizzling:
             extra_methods += TPL_VECTOR4_SWIZZLING
@@ -1403,6 +1409,18 @@ class Config:
     @property
     def snakefy_fields(self):
         return self.info.get('snakecaseFields', False)
+
+    @property
+    def add_vector_math(self):
+        return self.info.get('addVectorMath', False)
+
+    @property
+    def rmath_included(self):
+        return self.info.get('rmathIncluded', False)
+
+    @property
+    def rlgl_included(self):
+        return self.info.get('rlglIncluded', False)
 
     @property
     def add_vector_attrib_swizzling(self):

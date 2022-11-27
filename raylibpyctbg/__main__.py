@@ -47,34 +47,37 @@ __all__ = [
 # ---------------------------------------------------------
 # region CONSTANTS & ENUMS
 
-USAGE = '''raylibpy wrapper tools
+USAGE = '''raylibpy ctypes binding generator help
 
 Usage:
     $ python raylibpyctbg [options...]
 
     OPTIONS:
-        -help                           prints this message and exits
-        -typeHint                       adds Python2 type hinting
-        -typeAnnotate                   adds Python3.3+ type annotation
-        -snakecase                      apply Python's naming convention to all names
-        -attribSwizzling                adds attribute swizzling to Vector{2,3,4}, Color and Rectangle
-        -bindApi                        binds functions as property, context manager, classmethod, staticmethod and instancemethod
-        -snakecaseFunctions             apply Python's naming convention to functions (and methods)
-        -snakecaseParameters            apply Python's naming convention to parameters
-        -snakecaseFields                apply Python's naming convention to fields
-        -bindApiAsClassmethod           binds functions as classmethod
-        -bindApiAsStaticmethod          binds functions as staticmethod
-        -bindApiAsMethod                binds functions as method
-        -bindApiAsProperty              binds functions as property
-        -bindApiAsContextManager        context management binding for structs (Camera{2,3}D, Shader, VrStereoConfig, RenderTexture)
-        -addContextManager              context management for Mode functions (Drawing, Scissor, Blend, 2D, 3D, Shader, Texture, VrStereoMode)
-        -addVectorAttribSwizzling       adds attribute swizzling to Vector{2,3,4}
-        -addColorAttribSwizzling        adds attribute swizzling to Color
-        -addRectangleAttribSwizzling    adds attribute swizzling to Rectangle
-        -pythonic                       combines -bindApi -typeAnnotate -snakecase -attribSwizzling -addContextManager
-        -spartan                        combines -no-bindApi -typeHint -no-snakecase -no-attribSwizzling -no-addContextManager
-        -onlyDocs                       no binding code generation, only documentation
+        OPT NAME                        DEFAULT?    DESCRIPTION
+        -help                           --          prints this message and exits
+        -typeHint                       no          adds Python2 type hinting
+        -typeAnnotate                   no          adds Python3.3+ type annotation
+        -snakecase                      no          apply Python's naming convention to all names
+        -attribSwizzling                no          adds attribute swizzling to Vector{2,3,4}, Color and Rectangle
+        -bindApi                        no          binds functions as property, context manager, classmethod, staticmethod and instancemethod
+        -snakecaseFunctions             no          apply Python's naming convention to functions (and methods)
+        -snakecaseParameters            no          apply Python's naming convention to parameters
+        -snakecaseFields                no          apply Python's naming convention to fields
+        -bindApiAsClassmethod           no          binds functions as classmethod
+        -bindApiAsStaticmethod          no          binds functions as staticmethod
+        -bindApiAsMethod                no          binds functions as method
+        -bindApiAsProperty              no          binds functions as property
+        -bindApiAsContextManager        no          context management binding for structs (Camera{2,3}D, Shader, VrStereoConfig, RenderTexture)
+        -addContextManager              no          context management for Mode functions (Drawing, Scissor, Blend, 2D, 3D, Shader, Texture, VrStereoMode)
+        -addVectorAttribSwizzling       yes         adds attribute swizzling to Vector{2,3,4}
+        -addVectorMath                  yes         adds vector math to Vector{2,3} (requires swizzling and rmath to be included)
+        -addColorAttribSwizzling        yes         adds attribute swizzling to Color
+        -addRectangleAttribSwizzling    yes         adds attribute swizzling to Rectangle
+        -pythonic                       no          combines -bindApi -typeAnnotate -snakecase -attribSwizzling -addContextManager -addVectorMath
+        -spartan                        no          combines -no-bindApi -typeHint -no-snakecase -no-attribSwizzling -no-addContextManager -no-addVectorMath
+        -onlyDocs                       no          no binding code generation, only documentation
 
+        OPT NAME                        DESCRIPTION
         -no-type                        no type hinting nor annotations
         -no-snakecase                   keeps lib naming convention (C99 camelCase/PascalCase) on all names
         -no-attribSwizzling             no attribute zwizzling at all
@@ -89,16 +92,18 @@ Usage:
         -no-bindApiAsContextManager     no context management binding for structs (Camera{2,3}D, Shader, VrStereoConfig, RenderTexture)
         -no-addContextManager           no context management for Mode functions (Drawing, Scissor, Blend, 2D, 3D, Shader, Texture, VrStereoMode)
         -no-addVectorAttribSwizzling    no attribute swizzling to Vector{2,3,4}
+        -no-addVectorMath               no vector math to Vector{2,3}
         -no-addColorAttribSwizzling     no attribute swizzling to Color
         -no-addRectangleAttribSwizzling no attribute swizzling to Rectangle
 
         --libBaseDir <value>            set basepath to load the lib binaries to specified directory
+                                            Note: this value is passed as first argument(s) to os.path.join()
         --win32LibFilename <value>      custom .dll binary to be loaded on Windows (only file name and extension)
         --linuxLibFilename <value>      custom .so binary to be loaded on Linux (only file name and extension)
         --darwinLibFilename <value>     custom .dylib binary to be loaded on MacOS (only file name and extension)
         --include <value>               include extra parsed headers:
-                                            rmath: include rmath_api.json
-                                            rlgl: include rlgl.json
+                                            use 'rmath' to include rmath.h functions from 'input/rmath_api.json'
+                                            use 'rlgl' to include rlgl.h functions and types from 'input/rlgl.json'
                                             filepath to any other parsed header exposed in raylib (JSON)
         --out <value>                   filepath to write the binding into
         --markdown <value>              filepath to write the api reference (Markdown format) into
@@ -150,8 +155,10 @@ def main(*args) -> int:
             if key == 'include':
                 if val == 'rmath':
                     val = rmath
+                    config['rmathIncluded'] = True
                 elif val == 'rlgl':
                     val = rlgl
+                    config['rlglIncluded'] = True
 
                 if val not in include:
                     include.append(val)
@@ -228,6 +235,7 @@ def main(*args) -> int:
                 config["addColorAttribSwizzling"] = True
                 config["addRectangleAttribSwizzling"] = True
                 config["addContextManager"] = True
+                config["addVectorMath"] = True
             elif key == 'spartan':
                 config["snakecaseFunctions"] = False
                 config["snakecaseParameters"] = False
@@ -243,6 +251,7 @@ def main(*args) -> int:
                 config["addColorAttribSwizzling"] = False
                 config["addRectangleAttribSwizzling"] = False
                 config["addContextManager"] = False
+                config["addVectorMath"] = False
             else:
                 config[key] = True
 
