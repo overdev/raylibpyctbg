@@ -725,7 +725,7 @@ TPL_RECTANGLE_SWIZZLING = """
             w = self.width
             h = self.height
             for i, ch in enumerate(attr):
-                if ch in (xywh):
+                if ch in 'xywh':
                     super(Rectangle, self).__setattr__(ch, float(value[i]))
                 elif ch == 'c':
                     super(Rectangle, self).__setattr__('x', float(value[i] - w * 0.5))
