@@ -102,7 +102,9 @@
       "dunderReprExpression": "return \"Vector4{}\".format(self.__str__())"
     },
     "Rectangle": {
-      "func": "_rect({})"
+      "func": "_rect({})",
+      "dunderStrExpression": "return \"({}, {}, {}, {})\".format(self.x, self.y, self.width, self.height)",
+      "dunderReprExpression": "return \"Rectangle{}\".format(self.__str__())"
     },
     "Matrix": {
       "bindApiAsMethod": [
