@@ -1703,6 +1703,94 @@ class Vector2(Structure):
         self.y = float(d.get('y', self.y))
 
 
+
+    def __eq__(self, other):
+        return _Vector2Equals(self, other)
+
+    def __ne__(self, other):
+        return not _Vector2Equals(self, other)
+
+    def __pos__(self):
+        return Vector2(+self.x, +self.y)
+
+    def __neg__(self):
+        return Vector2(-self.x, -self.y)
+
+    def __abs__(self):
+        return Vector2(abs(self.x), abs(self.y))
+
+    def __add__(self, other):
+        if isinstance(other, (int, float)):
+            return _Vector2AddValue(self, float(other))
+        return _Vector2Add(self, Vector2(other[0], other[1]))
+
+    def __radd__(self, other):
+        if isinstance(other, (int, float)):
+            return _Vector2AddValue(self, float(other))
+        return _Vector2Add(self, Vector2(other[0], other[1]))
+
+    def __iadd__(self, other):
+        if isinstance(other, (int, float)):
+            self.xy = _Vector2AddValue(self, float(other))
+        else:
+            self.xy = _Vector2Add(self, Vector2(other[0], other[1]))
+        return self
+
+    def __sub__(self, other):
+        if isinstance(other, (int, float)):
+            return _Vector2SubtractValue(self, float(other))
+        return _Vector2Subtract(self, Vector2(other[0], other[1]))
+
+    def __rsub__(self, other):
+        if isinstance(other, (int, float)):
+            return Vector2(other - self.x, other - self.y)
+        return _Vector2Subtract(Vector2(other[0], other[1]), self)
+
+    def __isub__(self, other):
+        if isinstance(other, (int, float)):
+            self.xy = _Vector2SubtractValue(self, float(other))
+        else:
+            self.xy = _Vector2Subtract(self, Vector2(other[0], other[1]))
+        return self
+
+    def __mul__(self, other):
+        if isinstance(other, (int, float)):
+            return _Vector2Scale(self, float(other))
+        elif isinstance(other, Matrix):
+            return _Vector2Transform(self, other)
+        return _Vector2Multiply(self, Vector2(other[0], other[1]))
+
+    def __rmul__(self, other):
+        if isinstance(other, (int, float)):
+            return _Vector2Scale(self, float(other))
+        return _Vector2Multiply(self, Vector2(other[0], other[1]))
+
+    def __imul__(self, other):
+        if isinstance(other, (int, float)):
+            self.xy = _Vector2Scale(self, float(other))
+        elif isinstance(other, Matrix):
+            self.xy = _Vector2Transform(self, other)
+        else:
+            self.xy = _Vector2Multiply(self, Vector2(other[0], other[1]))
+        return self
+
+    def __truediv__(self, other):
+        if isinstance(other, (int, float)):
+            return _Vector2Divide(self, Vector2(other, other))
+        return _Vector2Divide(self, Vector2(other[0], other[1]))
+
+    def __rtruediv__(self, other):
+        if isinstance(other, (int, float)):
+            return Vector2(other / self.x, other / self.y)
+        return _Vector2Divide(Vector2(other[0], other[1]), self)
+
+    def __itruediv__(self, other):
+        if isinstance(other, (int, float)):
+            self.xy = _Vector2Divide(self, Vector2(other, other))
+        else:
+            self.xy = _Vector2Divide(self, Vector2(other[0], other[1]))
+        return self
+
     def __str__(self):
         return "({}, {})".format(self.x, self.y)
 
@@ -1873,6 +1961,94 @@ class Vector3(Structure):
         self.x = float(d.get('x', self.x))
         self.y = float(d.get('y', self.y))
         self.z = float(d.get('z', self.z))
+
+
+    def __eq__(self, other):
+        return _Vector3Equals(self, other)
+
+    def __ne__(self, other):
+        return not _Vector3Equals(self, other)
+
+    def __pos__(self):
+        return Vector3(+self.x, +self.y, +self.z)
+
+    def __neg__(self):
+        return Vector3(-self.x, -self.y, -self.z)
+
+    def __abs__(self):
+        return Vector3(abs(self.x), abs(self.y), abs(self.z))
+
+    def __add__(self, other):
+        if isinstance(other, (int, float)):
+            return _Vector3AddValue(self, float(other))
+        return _Vector3Add(self, Vector3(other[0], other[1], other[2]))
+
+    def __radd__(self, other):
+        if isinstance(other, (int, float)):
+            return _Vector3AddValue(self, float(other))
+        return _Vector3Add(self, Vector3(other[0], other[1], other[2]))
+
+    def __iadd__(self, other):
+        if isinstance(other, (int, float)):
+            self.xy = _Vector3AddValue(self, float(other))
+        else:
+            self.xy = _Vector3Add(self, Vector3(other[0], other[1], other[2]))
+        return self
+
+    def __sub__(self, other):
+        if isinstance(other, (int, float)):
+            return _Vector3SubtractValue(self, float(other))
+        return _Vector3Subtract(self, Vector3(other[0], other[1], other[2]))
+
+    def __rsub__(self, other):
+        if isinstance(other, (int, float)):
+            return Vector3(other - self.x, other - self.y, other - self.z)
+        return _Vector3Subtract(Vector3(other[0], other[1], other[2]), self)
+
+    def __isub__(self, other):
+        if isinstance(other, (int, float)):
+            self.xy = _Vector3SubtractValue(self, float(other))
+        else:
+            self.xy = _Vector3Subtract(self, Vector3(other[0], other[1], other[2]))
+        return self
+
+    def __mul__(self, other):
+        if isinstance(other, (int, float)):
+            return _Vector3Scale(self, float(other))
+        elif isinstance(other, Matrix):
+            return _Vector3Transform(self, other)
+        return _Vector3Multiply(self, Vector3(other[0], other[1], other[2]))
+
+    def __rmul__(self, other):
+        if isinstance(other, (int, float)):
+            return _Vector3Scale(self, float(other))
+        return _Vector3Multiply(self, Vector3(other[0], other[1], other[2]))
+
+    def __imul__(self, other):
+        if isinstance(other, (int, float)):
+            self.xy = _Vector3Scale(self, float(other))
+        elif isinstance(other, Matrix):
+            self.xy = _Vector3Transform(self, other)
+        else:
+            self.xy = _Vector3Multiply(self, Vector3(other[0], other[1], other[2]))
+        return self
+
+    def __truediv__(self, other):
+        if isinstance(other, (int, float)):
+            return _Vector3Divide(self, Vector3(other, other))
+        return _Vector3Divide(self, Vector3(other[0], other[1]))
+
+    def __rtruediv__(self, other):
+        if isinstance(other, (int, float)):
+            return Vector3(other / self.x, other / self.y, other / self.z)
+        return _Vector3Divide(Vector3(other[0], other[1], other[2]), self)
+
+    def __itruediv__(self, other):
+        if isinstance(other, (int, float)):
+            self.xy = _Vector3Divide(self, Vector3(other, other))
+        else:
+            self.xy = _Vector3Divide(self, Vector3(other[0], other[1], other[2]))
+        return self
 
     def __str__(self):
         return "({}, {}, {})".format(self.x, self.y, self.z)
@@ -10213,7 +10389,7 @@ def text_insert(text, insert, position):
 def text_join(text_list, count, delimiter):
     # type: (Seq[Union[str, CharPtr]], int, Union[str, CharPtr]) -> Union[str, CharPtr]
     """Join text strings with delimiter"""
-    result = _ptr_out(_TextJoin(str_in2(text_list), int(count), _str_in(delimiter)))
+    result = _ptr_out(_TextJoin(_str_in2(text_list), int(count), _str_in(delimiter)))
     return result
 
 
