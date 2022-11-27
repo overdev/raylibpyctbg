@@ -1217,8 +1217,9 @@ class BindGenerator:
             self.name_table[f_info.name] = f_info
 
         for ctxmgr in meta_info.get('functions', {}).get('*', {}).get('contextManager', []):
-            if not ctxmgr.get('api') in self.export_names:
-                self.export_names.append(ctxmgr.get('api'))
+            name = snakefy(ctxmgr.get('api')) if config.snakefy_functions else ctxmgr.get('api')
+            if not name in self.export_names:
+                self.export_names.append(name)
                 self.context_managers.append(ctxmgr)
 
     def gen_wrapper(self, out_fname, config, doc_out_fname=None):
