@@ -198,14 +198,14 @@ CharPtrPtr = POINTER(c_char_p)
 _VEC2_GET_SWZL = re.compile(r'[xy]{,4}')
 _VEC3_GET_SWZL = re.compile(r'[xyz]{,4}')
 _VEC4_GET_SWZL = re.compile(r'[xyzw]{,4}')
-_RGBA_GET_SWZL = re.compile(r'[rgba]{4}')
-_RECT_GET_SWZL = re.compile(r'(width|height|[xywh]{4})')
+_RGBA_GET_SWZL = re.compile(r'[rgba]{1,4}')
+_RECT_GET_SWZL = re.compile(r'(width|height|[xywhcmrb]{1,2,3,4})')
 
 _VEC2_SET_SWZL = re.compile(r'[xy]{,2}')
 _VEC3_SET_SWZL = re.compile(r'[xyz]{,3}')
 _VEC4_SET_SWZL = re.compile(r'[xyzw]{,4}')
 _RGBA_SET_SWZL = re.compile(r'[rgba]{1,4}')
-_RECT_SET_SWZL = re.compile(r'(width|height|[xywh]{1,4})')
+_RECT_SET_SWZL = re.compile(r'(width|height|[xywhcmrb]{1,2,4})')
 
 # region FUNCTIONS
 
@@ -302,7 +302,7 @@ def _color(seq):
         return seq
     r, g, b, q = seq
     rng = 0, 255
-    return Color(_int(r, rng), _int(r, rng), _int(b, rng), _int(q, rng))
+    return Color(_int(r, rng), _int(g, rng), _int(b, rng), _int(q, rng))
 
 # endregion (type cast funcs)
 
@@ -409,6 +409,187 @@ def {py_name}({param_list}){annotation}:{type_hint}
     yield
     {prefix}{c_name_leave}()
 '''
+
+TPL_VECTOR2_MATH = """
+
+    def __eq__(self, other):
+        return rl.Vector2Equals(self, other)
+
+    def __ne__(self, other):
+        return not rl.Vector2Equals(self, other)
+
+    def __pos__(self):
+        return rl.Vector2(+self.x, +self.y)
+
+    def __neg__(self):
+        return rl.Vector2(-self.x, -self.y)
+
+    def __abs__(self):
+        return rl.Vector2(abs(self.x), abs(self.y))
+
+    def __add__(self, other):
+        if isinstance(other, (int, float)):
+            return _Vector2AddValue(self, float(other))
+        return _Vector2Add(self, Vector2(other[0], other[1]))
+
+    def __radd__(self, other):
+        if isinstance(other, (int, float)):
+            return _Vector2AddValue(self, float(other))
+        return _Vector2Add(self, Vector2(other[0], other[1]))
+
+    def __iadd__(self, other):
+        if isinstance(other, (int, float)):
+            self.xy = _Vector2AddValue(self, float(other))
+        else:
+            self.xy = _Vector2Add(self, Vector2(other[0], other[1]))
+        return self
+
+    def __sub__(self, other):
+        if isinstance(other, (int, float)):
+            return _Vector2SubtractValue(self, float(other))
+        return _Vector2Subtract(self, Vector2(other[0], other[1]))
+
+    def __rsub__(self, other):
+        if isinstance(other, (int, float)):
+            return Vector2(other - self.x, other - self.y)
+        return _Vector2Subtract(Vector2(other[0], other[1]), self)
+
+    def __isub__(self, other):
+        if isinstance(other, (int, float)):
+            self.xy = _Vector2SubtractValue(self, float(other))
+        else:
+            self.xy = _Vector2Subtract(self, Vector2(other[0], other[1]))
+        return self
+
+    def __mul__(self, other):
+        if isinstance(other, (int, float)):
+            return _Vector2Scale(self, float(other))
+        elif isinstance(other, Matrix):
+            return _Vector2Transform(self, other)
+        return _Vector2Multiply(self, Vector2(other[0], other[1]))
+
+    def __rmul__(self, other):
+        if isinstance(other, (int, float)):
+            return _Vector2Scale(self, float(other))
+        return _Vector2Multiply(self, Vector2(other[0], other[1]))
+
+    def __imul__(self, other):
+        if isinstance(other, (int, float)):
+            self.xy = _Vector2Scale(self, float(other))
+        elif isinstance(other, Matrix):
+            self.xy = _Vector2Transform(self, other)
+        else:
+            self.xy = _Vector2Multiply(self, Vector2(other[0], other[1]))
+        return self
+
+    def __truediv__(self, other):
+        if isinstance(other, (int, float)):
+            return _Vector2Divide(self, Vector2(other, other))
+        return _Vector2Divide(self, Vector2(other[0], other[1]))
+
+    def __rtruediv__(self, other):
+        if isinstance(other, (int, float)):
+            return Vector2(other / self.x, other / self.y)
+        return _Vector2Divide(Vector2(other[0], other[1]), self)
+
+    def __itruediv__(self, other):
+        if isinstance(other, (int, float)):
+            self.xy = _Vector2Divide(self, Vector2(other, other))
+        else:
+            self.xy = _Vector2Divide(self, Vector2(other[0], other[1]))
+        return self
+"""
+
+TPL_VECTOR3_MATH = """
+
+    def __eq__(self, other):
+        return rl.Vector3Equals(self, other)
+
+    def __ne__(self, other):
+        return not rl.Vector3Equals(self, other)
+
+    def __pos__(self):
+        return rl.Vector3(+self.x, +self.y, +self.z)
+
+    def __neg__(self):
+        return rl.Vector3(-self.x, -self.y, -self.z)
+
+    def __abs__(self):
+        return rl.Vector3(abs(self.x), abs(self.y), abs(self.z))
+
+    def __add__(self, other):
+        if isinstance(other, (int, float)):
+            return _Vector3AddValue(self, float(other))
+        return _Vector3Add(self, Vector3(other[0], other[1], other[2]))
+
+    def __radd__(self, other):
+        if isinstance(other, (int, float)):
+            return _Vector3AddValue(self, float(other))
+        return _Vector3Add(self, Vector3(other[0], other[1], other[2]))
+
+    def __iadd__(self, other):
+        if isinstance(other, (int, float)):
+            self.xy = _Vector3AddValue(self, float(other))
+        else:
+            self.xy = _Vector3Add(self, Vector3(other[0], other[1], other[2]))
+        return self
+
+    def __sub__(self, other):
+        if isinstance(other, (int, float)):
+            return _Vector3SubtractValue(self, float(other))
+        return _Vector3Subtract(self, Vector3(other[0], other[1], other[2]))
+
+    def __rsub__(self, other):
+        if isinstance(other, (int, float)):
+            return Vector3(other - self.x, other - self.y, other - self.z)
+        return _Vector3Subtract(Vector3(other[0], other[1], other[2]), self)
+
+    def __isub__(self, other):
+        if isinstance(other, (int, float)):
+            self.xy = _Vector3SubtractValue(self, float(other))
+        else:
+            self.xy = _Vector3Subtract(self, Vector3(other[0], other[1], other[2]))
+        return self
+
+    def __mul__(self, other):
+        if isinstance(other, (int, float)):
+            return _Vector3Scale(self, float(other))
+        elif isinstance(other, Matrix):
+            return _Vector3Transform(self, other)
+        return _Vector3Multiply(self, Vector3(other[0], other[1], other[2]))
+
+    def __rmul__(self, other):
+        if isinstance(other, (int, float)):
+            return _Vector3Scale(self, float(other))
+        return _Vector3Multiply(self, Vector3(other[0], other[1], other[2]))
+
+    def __imul__(self, other):
+        if isinstance(other, (int, float)):
+            self.xy = _Vector3Scale(self, float(other))
+        elif isinstance(other, Matrix):
+            self.xy = _Vector3Transform(self, other)
+        else:
+            self.xy = _Vector3Multiply(self, Vector3(other[0], other[1], other[2]))
+        return self
+
+    def __truediv__(self, other):
+        if isinstance(other, (int, float)):
+            return _Vector3Divide(self, Vector3(other, other))
+        return _Vector3Divide(self, Vector3(other[0], other[1]))
+
+    def __rtruediv__(self, other):
+        if isinstance(other, (int, float)):
+            return Vector3(other / self.x, other / self.y, other, / self.z)
+        return _Vector3Divide(Vector3(other[0], other[1], other[2]), self)
+
+    def __itruediv__(self, other):
+        if isinstance(other, (int, float)):
+            self.xy = _Vector3Divide(self, Vector3(other, other))
+        else:
+            self.xy = _Vector3Divide(self, Vector3(other[0], other[1], other[2]))
+        return self
+"""
+
 
 TPL_VECTOR2_SWIZZLING = """
     def __len__(self):
@@ -530,7 +711,7 @@ TPL_RECTANGLE_SWIZZLING = """
         m = _RECT_GET_SWZL.match(attr)
         if not m:
             raise AttributeError("Rectangle object does not have attribute '{}'.".format(attr))
-        cls = {1: float, 4: Rectangle}.get(len(attr))
+        cls = {1: float, 2: Vector2, 3: Vector3, 4: Rectangle}.get(len(attr))
         v = self.todict()
         return cls(*(v[ch] for ch in attr))
 
@@ -541,12 +722,25 @@ TPL_RECTANGLE_SWIZZLING = """
         if attr in ('width', 'height') or len(attr) == 1:
             super(Rectangle, self).__setattr__(attr, float(value))
         else:
+            w = self.width
+            h = self.height
             for i, ch in enumerate(attr):
-                super(Rectangle, self).__setattr__(ch, float(value[i]))
+                if ch in (xywh):
+                    super(Rectangle, self).__setattr__(ch, float(value[i]))
+                elif ch == 'c':
+                    super(Rectangle, self).__setattr__('x', float(value[i] - w * 0.5))
+                elif ch == 'r':
+                    super(Rectangle, self).__setattr__('x', float(value[i] - w))
+                elif ch == 'm':
+                    super(Rectangle, self).__setattr__('y', float(value[i] - h * 0.5))
+                elif ch == 'b':
+                    super(Rectangle, self).__setattr__('y', float(value[i] - h))
 
     def todict(self):
         '''Returns a dict mapping this Rectangle's components'''
-        return {'x': self.x, 'y': self.y, 'w': self.width, 'h': self.height}
+        return {'x': self.x, 'y': self.y, 'w': self.width, 'h': self.height,
+                'c': self.x + self.width * 0.5, 'm': self.y + self.height * 0.5,
+                'r': self.x + self.width, 'b': self.y + self.height}
 
     def fromdict(self, d):
         '''Apply the mapping `d` to this Rectangle's components'''
@@ -556,6 +750,7 @@ TPL_RECTANGLE_SWIZZLING = """
         self.height = float(d.get('h', self.height))
 
 """
+
 TPL_COLOR_SWIZZLING = """
     def __len__(self):
         return 4
