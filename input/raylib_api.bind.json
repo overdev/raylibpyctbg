@@ -14,8 +14,11 @@
     "typeHint": false,
     "typeAnnotate": false,
     "addVectorAttribSwizzling": true,
+    "addVectorMath": true,
     "addColorAttribSwizzling": true,
     "addRectangleAttribSwizzling": true,
+    "rmathIncluded": false,
+    "rlglIncluded": false,
     "win32LibFilename": "raylib.dll",
     "linuxLibFilename": "libraylib.so.4.2.0",
     "darwinLibFilename": "libraylib.4.2.0.dylib"
