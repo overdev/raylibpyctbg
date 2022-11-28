@@ -256,7 +256,7 @@
         {"api": "UnloadImagePalette", "renameAs": "UnloadPalette"}
       ]
     },
-    "Texture2D": {
+    "Texture": {
       "bindApiAsMethod": [
         {"api": "UnloadTexture", "renameAs": "Unload"},
         {"api": "GenTextureMipmaps", "renameAs": "GenMipMaps", "byref": true},
