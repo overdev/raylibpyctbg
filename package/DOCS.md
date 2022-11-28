@@ -456,6 +456,21 @@ Name | API
 Bound as | Name | API
 ---------|------|----
 *classmethod* | `.array_of(cls, texture_sequence)` | *n/a*
+*classmethod* | `.load(cls, file_name)` | <a href="#LoadTexture"><code>load_texture</code></a>
+*classmethod* | `.load_from_image(cls, image)` | <a href="#LoadTextureFromImage"><code>load_texture_from_image</code></a>
+*method* | `.unload(self)` | <a href="#UnloadTexture"><code>unload_texture</code></a>
+*method* | `.gen_mip_maps(self)` | <a href="#GenTextureMipmaps"><code>gen_texture_mipmaps</code></a>
+*method* | `.set_filter(self, filter)` | <a href="#SetTextureFilter"><code>set_texture_filter</code></a>
+*method* | `.set_wrap(self, wrap)` | <a href="#SetTextureWrap"><code>set_texture_wrap</code></a>
+*method* | `.draw(self, pos_x, pos_y, tint)` | <a href="#DrawTexture"><code>draw_texture</code></a>
+*method* | `.draw_v(self, position, tint)` | <a href="#DrawTextureV"><code>draw_texture_v</code></a>
+*method* | `.draw_ex(self, position, rotation, scale, tint)` | <a href="#DrawTextureEx"><code>draw_texture_ex</code></a>
+*method* | `.draw_rec(self, source, position, tint)` | <a href="#DrawTextureRec"><code>draw_texture_rec</code></a>
+*method* | `.draw_quad(self, tiling, offset, quad, tint)` | <a href="#DrawTextureQuad"><code>draw_texture_quad</code></a>
+*method* | `.draw_tiled(self, source, dest, origin, rotation, scale, tint)` | <a href="#DrawTextureTiled"><code>draw_texture_tiled</code></a>
+*method* | `.draw_pro(self, source, dest, origin, rotation, tint)` | <a href="#DrawTexturePro"><code>draw_texture_pro</code></a>
+*method* | `.draw_npatch(self, n_patch_info, dest, origin, rotation, tint)` | <a href="#DrawTextureNPatch"><code>draw_texture_npatch</code></a>
+*method* | `.draw_poly(self, center, points, texcoords, tint)` | <a href="#DrawTexturePoly"><code>draw_texture_poly</code></a>
 
 
 

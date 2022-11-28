@@ -3115,6 +3115,20 @@ class Texture(Structure):
         arr = cls * len(texture_sequence)
         return arr(*texture_sequence)
 
+    @classmethod
+    def load(cls, file_name):
+        # type: (Union[str, CharPtr]) -> Texture2D
+        """Load texture from file into GPU memory (VRAM)"""
+        result = _LoadTexture(_str_in(file_name))
+        return result
+
+    @classmethod
+    def load_from_image(cls, image):
+        # type: (Image) -> Texture2D
+        """Load texture from image data"""
+        result = _LoadTextureFromImage(image)
+        return result
+
 
     def __init__(self, id=None,
                  width=None,
@@ -3137,6 +3151,77 @@ class Texture(Structure):
         '''Gets a reference to this Texture instance'''
         return byref(self)
 
+
+    def __str__(self):
+        return "[{} at {}]".format(self.__class__.__name__, id(self))
+
+    def __repr__(self):
+        return self.__str__()
+
+    def unload(self):
+        # type: (Texture2D) -> None
+        """Unload texture from GPU memory (VRAM)"""
+        _UnloadTexture(self)
+
+    def gen_mip_maps(self):
+        # type: (Texture2DPtr) -> None
+        """Generate GPU mipmaps for a texture"""
+        _GenTextureMipmaps(self.byref)
+
+    def set_filter(self, filter):
+        # type: (Texture2D, int) -> None
+        """Set texture scaling filter mode"""
+        _SetTextureFilter(self, int(filter))
+
+    def set_wrap(self, wrap):
+        # type: (Texture2D, int) -> None
+        """Set texture wrapping mode"""
+        _SetTextureWrap(self, int(wrap))
+
+    def draw(self, pos_x, pos_y, tint):
+        # type: (Texture2D, int, int, Color) -> None
+        """Draw a Texture2D"""
+        _DrawTexture(self, int(pos_x), int(pos_y), _color(tint))
+
+    def draw_v(self, position, tint):
+        # type: (Texture2D, Vector2, Color) -> None
+        """Draw a Texture2D with position defined as Vector2"""
+        _DrawTextureV(self, _vec2(position), _color(tint))
+
+    def draw_ex(self, position, rotation, scale, tint):
+        # type: (Texture2D, Vector2, float, float, Color) -> None
+        """Draw a Texture2D with extended parameters"""
+        _DrawTextureEx(self, _vec2(position), float(rotation), float(scale), _color(tint))
+
+    def draw_rec(self, source, position, tint):
+        # type: (Texture2D, Rectangle, Vector2, Color) -> None
+        """Draw a part of a texture defined by a rectangle"""
+        _DrawTextureRec(self, _rect(source), _vec2(position), _color(tint))
+
+    def draw_quad(self, tiling, offset, quad, tint):
+        # type: (Texture2D, Vector2, Vector2, Rectangle, Color) -> None
+        """Draw texture quad with tiling and offset parameters"""
+        _DrawTextureQuad(self, _vec2(tiling), _vec2(offset), _rect(quad), _color(tint))
+
+    def draw_tiled(self, source, dest, origin, rotation, scale, tint):
+        # type: (Texture2D, Rectangle, Rectangle, Vector2, float, float, Color) -> None
+        """Draw part of a texture (defined by a rectangle) with rotation and scale tiled into dest."""
+        _DrawTextureTiled(self, _rect(source), _rect(dest), _vec2(origin), float(rotation), float(scale), _color(tint))
+
+    def draw_pro(self, source, dest, origin, rotation, tint):
+        # type: (Texture2D, Rectangle, Rectangle, Vector2, float, Color) -> None
+        """Draw a part of a texture defined by a rectangle with 'pro' parameters"""
+        _DrawTexturePro(self, _rect(source), _rect(dest), _vec2(origin), float(rotation), _color(tint))
+
+    def draw_npatch(self, n_patch_info, dest, origin, rotation, tint):
+        # type: (Texture2D, NPatchInfo, Rectangle, Vector2, float, Color) -> None
+        """Draws a texture (or part of it) that stretches or shrinks nicely"""
+        _DrawTextureNPatch(self, n_patch_info, _rect(dest), _vec2(origin), float(rotation), _color(tint))
+
+    def draw_poly(self, center, points, texcoords, tint):
+        # type: (Texture2D, Vector2, Vector2Ptr, Vector2Ptr, Color) -> None
+        """Draw a textured polygon"""
+        _DrawTexturePoly(self, _vec2(center), _arr_in(Vector2, points), _vec2(texcoords), len(points), _color(tint))
 
 
 # Pointer type to Textures
