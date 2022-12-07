@@ -1,99 +1,197 @@
-# Raylib Package Template
 
-This package template allows you to build wheel files for local installation.
 
-## Getting your package build-ready
+<img align="left" src="https://github.com/overdev/raylib-py/blob/master/logo/raylib-py_256x256.png" width=256>
 
-As a template this package is missing the important stuff, like path configurations, the generated binding code and the binary files.
+# raylib-py
 
-To get this done, please, follow the steps below.
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/raylib-py?style=plastic)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/overdev/raylib-py?style=plastic)
+![GitHub Release Date](https://img.shields.io/github/release-date/overdev/raylib-py?style=plastic)
 
-### 1. Generate the binding code with your options and the right paths.
+![PyPI - Wheel](https://img.shields.io/pypi/wheel/raylib-py?style=plastic)
+![PyPI - License](https://img.shields.io/pypi/l/raylib-py?style=plastic)
+![PyPI - Downloads](https://img.shields.io/pypi/dd/raylib-py?label=PyPI%20Downloads&style=plastic)
 
-The first thing we need to set right is the path for the lib binaries.
+![GitHub all releases](https://img.shields.io/github/downloads/overdev/raylib-py/total?style=plastic)
+![GitHub release (by tag)](https://img.shields.io/github/downloads/overdev/raylib-py/v4.2.0.post2/total?style=plastic)
+![GitHub forks](https://img.shields.io/github/forks/overdev/raylib-py?style=social)
 
-The package is configured to allow 32 and 64 bit binaries to be loaded according to the system's architecture.
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/overdev/raylib-py?style=plastic)
+![GitHub commits since tagged version](https://img.shields.io/github/commits-since/overdev/raylib-py/v4.2.0.post2?style=plastic)
 
-Looking to the package folder structure, you see the following disposition:
+A python binding for the great _C_ library **[raylib](https://github.com/raysan5/raylib)**.
 
-```
-package/
-    src/
-        raylibpy/
-            bin/
-                32bit/
-                64bit/
-            __init__.py
-    LICENCE
-    pyproject.toml
-    README.md
-```
 
-To set the path, make sure your Python binding is generated via CLI with the following congif:
+# WARNING: Do not fork this project.
 
-```
---libBase "os.path.dirname(__file__), 'bin'"
-```
+Please, read this [issue](https://github.com/overdev/raylib-py/issues/45) for more information.
 
-Alternatively, you can change the `input/raylib_api.bind.json` file to set this value directly:
+The repository for this project exists only to make new package releases.
+No specific changes in the source will be made.
 
-```json
-{
-  "CONFIG": {
-    "libBasedir": "os.path.dirname(__file__), 'bin'",
-    // other options..
-  }
-  // other stuff...
-}
-```
+## Release Information:
 
-This will ensure the correct library to be loaded regardless of the platform and architecture.
+The current release was made as output of another project, as mentioned in #45.
 
-Having the binding code generated, put a copy of the file in the `package/src` folder and
-rename it to `__init__.py`
+## Features:
+- PEP8 naming convention only:
 
-### 2. Copying the binary files
+    Structure attributes are in `snake_case`, classes and other types in `PascalCase`.
 
-This repository does not hold any raylib binary, so you're expected to grab them in the
-C [Raylib](https://github.com/raysan5/raylib)'s reposity.
+- Type hinting (not type annotation):
 
-With the binaries in _hand_, just put them in the `package/src/bin/*` folder respective to the
-system architecture.
+    ```python
+    def get_ray_collision_mesh(ray, mesh, transform):
+        # type: (Ray, Mesh, Matrix) -> RayCollision
+    ```
 
-### 3. Building the python wheel file
+- structures with functions as methods and properties:
 
-To be able to build without troubles, is might be necessary to get Pip up to date.
+    ```python
+    sound = Sound.load('my/resorces/sound.wav')     # same as load_sound(...)
+    position = Vector(4.0, 10.0)
 
-First, let's upgrade Pip:
+    # later...
+    sound.play()                                    # same as play_sound(sound)
+    length = position.length                        # same as vector2length(position); uses raymath.h functions
+    ```
+    
+- Vector{2,3,4}, Rectangle and Color have attribute swizzling;
 
-```
-py -m pip install --upgrade pip
-```
+    ```python
+    vec3 = Vector3(2.0, 5.0, 3.0)
+    vec2 = vec3.zxy                 # vec2 is a Vector2, not a sequence type
+    other_vec3 = vec2.xxy           # same thing: other_vec3 is a Vector3
+    vec2.xy = vec3.y, other_vec3.z  # sequences can be set as values
 
-then:
+    c_red = Color(255, 0, 0)
+    c_yellow = c_red.rrb
 
-```
-py -m pip install --upgrade build
-```
+    # Rectangles have aliases for width and height: w and h respectively
+    rect = Rectangle(10.0, 10.0, 320.0, 240.0)
+    other_rect = rect.whxy
+    # Also, r and b for right and bottom; c and m for center (x axis) and middle (y axis)
+    bottomright = rect.br
+    rect.cm = 32.0, 40.0
+    ```
 
-then, in the terminal, change to the `package/` where `pyproject.toml` is located and:
+- Pretty printing: most structures implement `__str__()` and `__repr__()`;
 
-```
-py -m build
-```
+- Custom library loading: load a custom lib binary when importing raylib-py:
 
-When the build in done, you see a new foder, _dist/_, under `package/src`.
+    You may add a *.raylib* file to specify custom binaries to be loaded. How it works:
 
-Inside this folder there are 2 files, a _*.tar.gz_ and a _*.whl_.
+    - Create a *.raylib* file with the following contents:
 
-### 4. Installing the package
+        ```json
+        {
+            "win32": {
+                "64bit": "path/to/my/custom/win32/binary/filename.ext"
+            },
+            "linux": {
+                "64bit": "path/to/my/custom/linux/binary/filename.ext",
+                "32bit": "path/to/my/custom/linux/binary/filename.ext"
+            },
+            "darwin": {
+                "64bit": "path/to/my/custom/macos/binary/filename.ext"
+            }
+        }
+        ```
 
-With the wheel package in _hands_, you're ready to install it with Pip:
+        Ommit platforms or architectures you don't want/have a custom binary; the default binaries will be loaded instead. The file is not inspected for any extra content.
 
-```
-py -m pip install path/to/the/wheel-file.whl
-```
+    - Before importing raylib, make sure the current working directory points to where *.raylib* is located in your project.
 
-That's it! I hope you enjoy making games and whatnot with _raylibpy_!
+        If *.raylib* is found, it will use the binary path for the system and try to load it.
 
-You can learn more on creating python packages in the [Python Packaging site](https://packaging.python.org/en/latest/tutorials/packaging-projects/).
+        If the *.raylib* is invalid JSON, it will fallback to the default binary.
+
+        If the binary is not found, **it won't fallback** to the default binary.
+
+        > No path manipulations like `os.path.join(...)` is made.
+
+- Context managers: begin_* and end_* functions can be called as context managers:
+
+    Without context managers:
+
+    ```python
+    # this example shows a rendering step
+
+    begin_drawing()
+
+    begin_texture_mode(minimap_texture)
+    # render the "minimap"
+    draw_line(2, 2, 5, 5, RED)
+    end_texture_mode(minimap_texture)
+
+    begin_mode2d(main_camera)
+    # 2d drawing logic...
+    draw_texture(minimap_texture, 10, 10, WHITE)
+    end_mode2d()
+
+    end_drawing()
+    ```
+
+    With context managers:
+
+    ```python
+    # this example shows a rendering step
+
+    with drawing():
+
+        with texture_mode(minimap_texture):
+            # render the minimap
+            draw_line(2, 2, 5, 5, RED)
+
+        with mode2d(main_camera):
+            # 2d drawing logic...
+            draw_texture(minimap_texture, 10, 10, WHITE)
+    ```
+
+- Context managers for some structures: Camera{2,3}D, Shader and others;
+
+    Folowing the example above:
+    ```python
+    # this example shows a rendering step
+
+    with drawing():
+
+        with minimap_texture:
+            # render the minimap
+            draw_line(2, 2, 5, 5, RED)
+
+        with main_camera:
+            # 2d drawing logic...
+            draw_texture(minimap_texture, 10, 10, WHITE)
+    ```
+
+- RLGL and RayMath functions exposed
+
+    Includes all symbols in raymath.h and rlgl.h
+
+
+## Issues:
+- Callback for logging will not work
+
+    I've no good workaround for wrapping C functions with variable number of arguments.
+    If you know how to solve this issue, your help would be appreciated.
+
+- Functions with `vararg` will not work
+
+    For the reason above.
+
+- Avoid string manipulation functions
+
+    For the reason above, also because some functions involve memory allocation and manual freeing of resources. Python string methods can provide you with same and more functionality.
+
+- Some examples are broken due to API changes
+
+    There was some function renaming, some changes in the examples to update to newer releases.
+
+## Would you like to have a more customized binding for raylib?
+
+Again, in issue 45 I explain the actual state of this project in more detail.
+
+It my seems like bad news but actually it is the contrary.
+
+Please, take a look at this project: [raylibpyctbg](https://github.com/overdev/raylibpyctbg)
