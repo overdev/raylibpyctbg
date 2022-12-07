@@ -1412,6 +1412,42 @@ if sys.platform == 'win32':
 
 # endregion (cdllex)
 
+# check for .raylib file in CWD
+
+#
+# example of .raylib file contents:
+# ```json
+# { 
+#     "win32": {
+#         "32bit": "path/to/raylib/filename.dll",
+#         "64bit": "path/to/raylib/filename.dll",
+#     },
+#     "linux": {
+#         "32bit": "path/to/raylib/filename.so",
+#         "64bit": "path/to/raylib/filename.so",
+#     },
+#     "darwin": {
+#         "64bit": "path/to/raylib/filename.dylib",
+#     },
+# }
+# ```
+#
+
+_dotraylib_used = False
+_dotraylib_loadinfo = None
+_dotraylib = os.path.join(os.getcwd(), '.raylib')
+_dotraylib_config = {}
+if os.path.exists(_dotraylib) and os.path.isfile(_dotraylib):
+    _dotraylib_used = True
+    import json
+    with open(_dotraylib, 'r', encoding='utf8') as fp:
+        try:
+            _dotraylib_config = json.load(fp)
+        except json.JSONDecodeError:
+            _dotraylib_loadinfo = "Could not decode .raylib file"
+            _dotraylib_used = False
+
+    del json
 
 _lib_fname = {
     'win32': 'raylib.dll',
@@ -1423,23 +1459,40 @@ _lib_platform = sys.platform
 
 if _lib_platform == 'win32':
     _bitness = platform.architecture()[0]
+elif _lib_platform == 'darwin':
+    _bitness = '64bit'
 else:
     _bitness = '64bit' if sys.maxsize > 2 ** 32 else '32bit'
 
-_lib_fname_abspath = os.path.join(os.path.dirname(__file__), 'bin', _bitness, _lib_fname[_lib_platform])
-_lib_fname_abspath = os.path.normcase(os.path.normpath(_lib_fname_abspath))
+_lib_default = os.path.join(os.path.dirname(__file__), 'bin', _bitness, _lib_fname[_lib_platform])
+
+if _dotraylib_used:
+    try:
+        _lib_default = os.path.abspath(_dotraylib_config[_lib_platform][_bitness])
+
+    except (KeyError, ValueError):
+        _dotraylib_loadinfo = "Platform ({}) and bitness ({}) not specified in .raylib file".format(_lib_platform, _bitness)
+
+_lib_fname_abspath = os.path.normcase(os.path.normpath(_lib_default))
+
+_cwd_info = "\n    current working dir: {}".format(os.getcwd()) if _dotraylib_used else ""
+_load_info = "\n    .raylib load info: {}".format(_dotraylib_loadinfo) if _dotraylib_loadinfo else ""
 
 print(
     """Library loading info:
     platform: {}
-    bitness: {}
+    bitness: {}{}{}
     absolute path: {}
+    using .raylib file: {}
     exists: {}
     is file: {}
     """.format(
         _lib_platform,
         _bitness,
+        _cwd_info,
+        _load_info,
         _lib_fname_abspath,
+        'yes' if _dotraylib_used else 'no',
         'yes' if os.path.exists(_lib_fname_abspath) else 'no',
         'yes' if os.path.isfile(_lib_fname_abspath) else 'no'
     )
@@ -1505,13 +1558,13 @@ _VEC2_GET_SWZL = re.compile(r'[xy]{,4}')
 _VEC3_GET_SWZL = re.compile(r'[xyz]{,4}')
 _VEC4_GET_SWZL = re.compile(r'[xyzw]{,4}')
 _RGBA_GET_SWZL = re.compile(r'[rgba]{1,4}')
-_RECT_GET_SWZL = re.compile(r'(width|height|[xywhcmrb]{1,2,3,4})')
+_RECT_GET_SWZL = re.compile(r'(width|height|[xywhcmrb]{,4})')
 
 _VEC2_SET_SWZL = re.compile(r'[xy]{,2}')
 _VEC3_SET_SWZL = re.compile(r'[xyz]{,3}')
 _VEC4_SET_SWZL = re.compile(r'[xyzw]{,4}')
 _RGBA_SET_SWZL = re.compile(r'[rgba]{1,4}')
-_RECT_SET_SWZL = re.compile(r'(width|height|[xywhcmrb]{1,2,4})')
+_RECT_SET_SWZL = re.compile(r'(width|height|[xywhcmrb]{,4})')
 
 # region FUNCTIONS
 
@@ -1676,7 +1729,7 @@ class Vector2(Structure):
         return (self.x, self.y).__getitem__(key)
 
     def __getattr__(self, attr):
-        m = _VEC2_GET_SWZL.match(attr)
+        m = _VEC2_GET_SWZL.fullmatch(attr)
         if not m:
             raise AttributeError("Vector2 object does not have attribute '{}'.".format(attr))
         cls = {1: float, 2: Vector2, 3: Vector3, 4: Vector4}.get(len(attr))
@@ -1684,7 +1737,7 @@ class Vector2(Structure):
         return cls(*(v[ch] for ch in attr))
 
     def __setattr__(self, attr, value):
-        m = _VEC2_SET_SWZL.match(attr)
+        m = _VEC2_SET_SWZL.fullmatch(attr)
         if not m:
             raise AttributeError("Vector2 object does not have attribute '{}'.".format(attr))
         if len(attr) == 1:
@@ -1935,7 +1988,7 @@ class Vector3(Structure):
         return (self.x, self.y, self.z).__getitem__(key)
 
     def __getattr__(self, attr):
-        m = _VEC3_GET_SWZL.match(attr)
+        m = _VEC3_GET_SWZL.fullmatch(attr)
         if not m:
             raise AttributeError("Vector3 object does not have attribute '{}'.".format(attr))
         cls = {1: float, 2: Vector2, 3: Vector3, 4: Vector4}.get(len(attr))
@@ -1943,7 +1996,7 @@ class Vector3(Structure):
         return cls(*(v[ch] for ch in attr))
 
     def __setattr__(self, attr, value):
-        m = _VEC3_SET_SWZL.match(attr)
+        m = _VEC3_SET_SWZL.fullmatch(attr)
         if not m:
             raise AttributeError("Vector3 object does not have attribute '{}'.".format(attr))
         if len(attr) == 1:
@@ -2243,7 +2296,7 @@ class Vector4(Structure):
         return (self.x, self.y. self.z, self.w).__getitem__(key)
 
     def __getattr__(self, attr):
-        m = _VEC4_GET_SWZL.match(attr)
+        m = _VEC4_GET_SWZL.fullmatch(attr)
         if not m:
             raise AttributeError("Vector4 object does not have attribute '{}'.".format(attr))
         cls = {1: float, 2: Vector2, 3: Vector3, 4: Vector4}.get(len(attr))
@@ -2251,7 +2304,7 @@ class Vector4(Structure):
         return cls(*(v[ch] for ch in attr))
 
     def __setattr__(self, attr, value):
-        m = _VEC4_SET_SWZL.match(attr)
+        m = _VEC4_SET_SWZL.fullmatch(attr)
         if not m:
             raise AttributeError("Vector4 object does not have attribute '{}'.".format(attr))
         if len(attr) == 1:
@@ -2528,7 +2581,7 @@ class Color(Structure):
         return (self.r, self.g, self.b, self.a).__getitem__(key)
 
     def __getattr__(self, attr):
-        m = _RGBA_GET_SWZL.match(attr)
+        m = _RGBA_GET_SWZL.fullmatch(attr)
         if not m:
             raise AttributeError("Color object does not have attribute '{}'.".format(attr))
         cls = {1: int, 4: Color}.get(len(attr))
@@ -2536,7 +2589,7 @@ class Color(Structure):
         return cls(*(v[ch] for ch in attr))
 
     def __setattr__(self, attr, value):
-        m = _RGBA_SET_SWZL.match(attr)
+        m = _RGBA_SET_SWZL.fullmatch(attr)
         if not m:
             raise AttributeError("Color object does not have attribute '{}'.".format(attr))
         if len(attr) == 1:
@@ -2646,7 +2699,7 @@ class Rectangle(Structure):
         return (self.x, self.y. self.width, self.height).__getitem__(key)
 
     def __getattr__(self, attr):
-        m = _RECT_GET_SWZL.match(attr)
+        m = _RECT_GET_SWZL.fullmatch(attr)
         if not m:
             raise AttributeError("Rectangle object does not have attribute '{}'.".format(attr))
         cls = {1: float, 2: Vector2, 3: Vector3, 4: Rectangle}.get(len(attr))
@@ -2654,14 +2707,23 @@ class Rectangle(Structure):
         return cls(*(v[ch] for ch in attr))
 
     def __setattr__(self, attr, value):
-        m = _RECT_SET_SWZL.match(attr)
+        m = _RECT_SET_SWZL.fullmatch(attr)
         if not m:
             raise AttributeError("Rectangle object does not have attribute '{}'.".format(attr))
+        w = self.width
+        h = self.height
         if attr in ('width', 'height') or len(attr) == 1:
-            super(Rectangle, self).__setattr__(attr, float(value))
+            if attr == 'c':
+                super(Rectangle, self).__setattr__('x', float(value - w * 0.5))
+            elif attr == 'r':
+                super(Rectangle, self).__setattr__('x', float(value - w))
+            elif attr == 'm':
+                super(Rectangle, self).__setattr__('y', float(value - h * 0.5))
+            elif attr == 'b':
+                super(Rectangle, self).__setattr__('y', float(value - h))
+            else:
+                super(Rectangle, self).__setattr__(attr, float(value))
         else:
-            w = self.width
-            h = self.height
             for i, ch in enumerate(attr):
                 if ch in 'xywh':
                     super(Rectangle, self).__setattr__(ch, float(value[i]))

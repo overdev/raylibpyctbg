@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "raylib-py"
-version = "4.2.0.post1"
+version = "4.2.0.post2"
 authors = [
   { name="Jorge A. Gomes", email="jorgegomes83@protonmail.com" },
 ]
