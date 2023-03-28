@@ -20,8 +20,8 @@
     "rmathIncluded": false,
     "rlglIncluded": false,
     "win32LibFilename": "raylib.dll",
-    "linuxLibFilename": "libraylib.so.4.2.0",
-    "darwinLibFilename": "libraylib.4.2.0.dylib"
+    "linuxLibFilename": "libraylib.so.4.5.0",
+    "darwinLibFilename": "libraylib.4.5.0.dylib"
   },
   "structs": {
     "*": {
@@ -151,7 +151,9 @@
         {"api": "LoadShader",           "renameAs": "Load"},
         {"api": "LoadShaderFromMemory", "renameAs": "LoadFromMemory"}
       ],
-      "bindApiAsProperty": [],
+      "bindApiAsProperty": [
+        { "api": "IsShaderReady", "renameAs": "IsReady" }
+      ],
       "bindApiAsContextManager": {
           "enter": "BeginShaderMode",
           "leave": "EndShaderMode"
@@ -160,6 +162,9 @@
       "dunderReprExpression": "return self.__str__()"
     },
     "RenderTexture2D": {
+      "bindApiAsProperty": [
+        {"api": "IsRenderTextureReady", "renameAs": "IsReady"}
+      ],
       "bindApiAsContextManager": {
         "enter": "BeginTextureMode",
         "leave": "EndTextureMode"
@@ -187,6 +192,9 @@
       }
     },
     "Image": {
+      "bindApiAsProperty": [
+        { "api": "IsImageReady", "renameAs": "IsReady" }
+      ],
       "bindApiAsMethod": [
         {"api": "UnloadImage", "renameAs": "Unload"},
         {"api": "ExportImage", "renameAs": "Export"},
@@ -246,7 +254,9 @@
         {"api": "GenImageGradientRadial", "renameAs": "GenGradientRadial"},
         {"api": "GenImageChecked", "renameAs": "GenChecked"},
         {"api": "GenImageWhiteNoise", "renameAs": "GenWhiteNoise"},
+        {"api": "GenImagePerlinNoise", "renameAs": "GenPerlinNoise"},
         {"api": "GenImageCellular", "renameAs": "GenCellular"},
+        {"api": "GenImageText", "renameAs": "GenText"},
         {"api": "ImageFromImage", "renameAs": "FromImage"},
         {"api": "ImageText", "renameAs": "Text"},
         {"api": "ImageTextEx", "renameAs": "TextEx"}
@@ -257,6 +267,9 @@
       ]
     },
     "Texture": {
+      "bindApiAsProperty": [
+        {"api": "IsTextureReady", "renameAs": "IsReady"}
+      ],
       "bindApiAsMethod": [
         {"api": "UnloadTexture", "renameAs": "Unload"},
         {"api": "GenTextureMipmaps", "renameAs": "GenMipMaps", "byref": true},
@@ -286,6 +299,9 @@
         {"api": "ColorToInt", "renameAs": "ToInt"},
         {"api": "ColorToHSV", "renameAs": "ToHSV"},
         {"api": "ColorFromHSV", "renameAs": "FromHSV"},
+        {"api": "ColorTint", "renameAs": "Tint"},
+        {"api": "ColorBrightness", "renameAs": "Brightness"},
+        {"api": "ColorContrast", "renameAs": "Contrast"},
         {"api": "ColorAlpha", "renameAs": "Alpha"},
         {"api": "ColorAlphaBlend", "renameAs": "AlphaBlend"}
       ],
@@ -314,7 +330,9 @@
         {"api": "LoadFontFromImage", "renameAs": "LoadFromImage"},
         {"api": "LoadFontFromMemory", "renameAs": "LoadFromMemory"}
       ],
-      "bindApiAsProperty": [],
+      "bindApiAsProperty": [
+        {"api": "IsFontReady", "renameAs": "IsReady"}
+      ],
       "dunderStrExpression": "return \"[{} at {}]\".format(self.__class__.__name__, id(self))",
       "dunderReprExpression": "return self.__str__()"
     },
@@ -366,6 +384,9 @@
       "dunderReprExpression": "return self.__str__()"
     },
     "Material": {
+      "bindApiAsProperty": [
+        {"api": "IsMaterialReady", "renameAs": "IsReady"}
+      ],
       "bindApiAsMethod": [
         {"api": "UnloadMaterial", "renameAs": "Unload"},
         {"api": "SetMaterialTexture", "renameAs": "SetTexture"}
@@ -378,6 +399,9 @@
       "dunderReprExpression": "return self.__str__()"
     },
     "Wave": {
+      "bindApiAsProperty": [
+        {"api": "IsWaveReady", "renameAs": "IsReady"}
+      ],
       "bindApiAsMethod": [
         {"api": "WaveCopy", "renameAs": "Copy"},
         {"api": "WaveCrop", "renameAs": "Crop", "byref": true},
@@ -396,6 +420,9 @@
       "dunderReprExpression": "return self.__str__()"
     },
     "Sound": {
+      "bindApiAsProperty": [
+        {"api": "IsSoundReady", "renameAs": "IsReady"}
+      ],
       "bindApiAsMethod": [
         {"api": "PlaySound", "renameAs": "Play"},
         {"api": "StopSound", "renameAs": "Stop"},
@@ -421,6 +448,9 @@
       "dunderReprExpression": "return self.__str__()"
     },
     "Music": {
+      "bindApiAsProperty": [
+        {"api": "IsMusicReady", "renameAs": "IsReady"}
+      ],
       "bindApiAsMethod": [
         {"api": "PlayMusicStream", "renameAs": "Play"},
         {"api": "IsMusicStreamPlaying", "renameAs": "IsPlaying"},
@@ -440,11 +470,13 @@
         {"api": "LoadMusicStreamFromMemory", "renameAs": "LoadFromMemory"}
       ],
       "bindApiAsClassmethod": [],
-      "bindApiAsProperty": [],
       "dunderStrExpression": "return \"[{} at {}]\".format(self.__class__.__name__, id(self))",
       "dunderReprExpression": "return self.__str__()"
     },
     "AudioStream": {
+      "bindApiAsProperty": [
+        {"api": "IsAudioStreamReady", "renameAs": "IsReady"}
+      ],
       "bindApiAsMethod": [
         {"api": "UnloadAudioStream", "renameAs": "Unload"},
         {"api": "UpdateAudioStream", "renameAs": "Update"},
