@@ -1,0 +1,601 @@
+{
+  "CONFIG": {
+    "libBasedir": "'../lib', 'bin'",
+    "libName": "rlapi",
+    "snakecaseFunctions": false,
+    "snakecaseParameters": false,
+    "snakecaseFields": false,
+    "bindApiAsClassmethod": false,
+    "bindApiAsStaticmethod": false,
+    "bindApiAsMethod": false,
+    "bindApiAsProperty": false,
+    "bindApiAsContextManager": false,
+    "addContextManager": false,
+    "typeHint": false,
+    "typeAnnotate": false,
+    "addVectorAttribSwizzling": true,
+    "addVectorMath": true,
+    "addColorAttribSwizzling": true,
+    "addRectangleAttribSwizzling": true,
+    "rmathIncluded": false,
+    "rlglIncluded": false,
+    "win32LibFilename": "raylib.dll",
+    "linuxLibFilename": "libraylib.so.4.2.0",
+    "darwinLibFilename": "libraylib.4.2.0.dylib"
+  },
+  "structs": {
+    "*": {
+      "bindApiAsMethod": [],
+      "bindApiAsStaticmethod": [],
+      "bindApiAsClassmethod": [],
+      "bindApiAsProperty": [],
+      "dunderStrExpression": "return \"[{} at {}]\".format(self.__class__.__name__, id(self))",
+      "dunderReprExpression": "return self.__str__()"
+    },
+    "Vector2": {
+      "func": "_vec2({})",
+      "bindApiAsMethod": [
+        {"api": "Vector2DotProduct", "renameAs": "DotProduct"},
+        {"api": "Vector2Distance", "renameAs": "Distance"},
+        {"api": "Vector2DistanceSqr", "renameAs": "DistanceSqr"},
+        {"api": "Vector2Angle", "renameAs": "Angle"},
+        {"api": "Vector2Normalize", "renameAs": "Normalize", "inplace": true, "attr": "xy"},
+        {"api": "Vector2Transform", "renameAs": "Transform", "inplace": true, "attr": "xy"},
+        {"api": "Vector2Lerp", "renameAs": "Lerp", "inplace": true, "attr": "xy"},
+        {"api": "Vector2Reflect", "renameAs": "Reflect", "inplace": true, "attr": "xy"},
+        {"api": "Vector2Rotate", "renameAs": "Rotate", "inplace": true, "attr": "xy"},
+        {"api": "Vector2MoveTowards", "renameAs": "MoveTowards", "inplace": true, "attr": "xy"},
+        {"api": "Vector2Clamp", "renameAs": "Clamp", "inplace": true, "attr": "xy"},
+        {"api": "Vector2ClampValue", "renameAs": "ClampValue", "inplace": true, "attr": "xy"}
+      ],
+      "bindApiAsStaticmethod": [],
+      "bindApiAsClassmethod": [
+        {"api": "Vector2One", "renameAs": "One"}
+      ],
+      "bindApiAsProperty": [
+        {"api": "Vector2Length", "renameAs": "Length"},
+        {"api": "Vector2LengthSqr", "renameAs": "LengthSqr"}
+      ],
+      "dunderStrExpression": "return \"({}, {})\".format(self.x, self.y)",
+      "dunderReprExpression": "return \"Vector2{}\".format(self.__str__())"
+    },
+    "Vector3": {
+      "func": "_vec3({})",
+      "bindApiAsMethod": [
+        {"api": "Vector3CrossProduct", "renameAs": "CrossProduct"},
+        {"api": "Vector3Perpendicular", "renameAs": "Perpendicular", "inplace": true, "attr": "xyz"},
+        {"api": "Vector3DotProduct", "renameAs": "DotProduct"},
+        {"api": "Vector3Distance", "renameAs": "Distance"},
+        {"api": "Vector3DistanceSqr", "renameAs": "DistanceSqr"},
+        {"api": "Vector3Angle", "renameAs": "Angle"},
+        {"api": "Vector3Normalize", "renameAs": "Normalize", "inplace": true, "attr": "xyz"},
+        {"api": "Vector3OrthoNormalize", "renameAs": "OrthoNormalize", "inplace": true, "attr": "xyz"},
+        {"api": "Vector3Transform", "renameAs": "Transform", "inplace": true, "attr": "xyz"},
+        {"api": "Vector3RotateByQuaternion", "renameAs": "RotateByQuaternion", "inplace": true, "attr": "xyz"},
+        {"api": "Vector3RotateByAxisAngle", "renameAs": "RotateByAxisAngle", "inplace": true, "attr": "xyz"},
+        {"api": "Vector3Lerp", "renameAs": "Lerp", "inplace": true, "attr": "xyz"},
+        {"api": "Vector3Reflect", "renameAs": "Reflect", "inplace": true, "attr": "xyz"},
+        {"api": "Vector3Min", "renameAs": "Min", "inplace": true, "attr": "xyz"},
+        {"api": "Vector3Max", "renameAs": "Max", "inplace": true, "attr": "xyz"},
+        {"api": "Vector3Barycenter", "renameAs": "Barycenter", "inplace": true, "attr": "xyz"},
+        {"api": "Vector3Unproject", "renameAs": "Unproject", "inplace": true, "attr": "xyz"},
+        {"api": "Vector3ToFloatV", "renameAs": "ToFloatV"},
+        {"api": "Vector3Clamp", "renameAs": "Clamp", "inplace": true, "attr": "xyz"},
+        {"api": "Vector3ClampValue", "renameAs": "ClampValue", "inplace": true, "attr": "xyz"},
+        {"api": "Vector3Refract", "renameAs": "Refract"}
+      ],
+      "bindApiAsStaticmethod": [],
+      "bindApiAsClassmethod": [
+        {"api": "Vector3One", "renameAs": "One"}
+      ],
+      "bindApiAsProperty": [
+        {"api": "Vector3Length", "renameAs": "Length"},
+        {"api": "Vector3LengthSqr", "renameAs": "LengthSqr"}
+      ],
+      "dunderStrExpression": "return \"({}, {}, {})\".format(self.x, self.y, self.z)",
+      "dunderReprExpression": "return \"Vector3{}\".format(self.__str__())"
+    },
+    "Vector4": {
+      "func": "_vec4({})",
+      "bindApiAsMethod": [],
+      "bindApiAsStaticmethod": [],
+      "bindApiAsClassmethod": [],
+      "bindApiAsProperty": [],
+      "dunderStrExpression": "return \"({}, {}, {}, {})\".format(self.x, self.y, self.z, self.w)",
+      "dunderReprExpression": "return \"Vector4{}\".format(self.__str__())"
+    },
+    "Rectangle": {
+      "func": "_rect({})",
+      "dunderStrExpression": "return \"({}, {}, {}, {})\".format(self.x, self.y, self.width, self.height)",
+      "dunderReprExpression": "return \"Rectangle{}\".format(self.__str__())"
+    },
+    "Matrix": {
+      "bindApiAsMethod": [
+        {"api": "MatrixDeterminant", "renameAs": "Determinant"},
+        {"api": "MatrixTrace", "renameAs": "Trace"},
+        {"api": "MatrixTranspose", "renameAs": "Transpose"},
+        {"api": "MatrixInvert", "renameAs": "Invert"}
+      ],
+      "bindApiAsStaticmethod": [],
+      "bindApiAsClassmethod": [
+        {"api": "MatrixIdentity", "renameAs": "Identity"},
+        {"api": "MatrixTranslate", "renameAs": "Translate"},
+        {"api": "MatrixRotate", "renameAs": "Rotate"},
+        {"api": "MatrixRotateX", "renameAs": "RotateX"},
+        {"api": "MatrixRotateY", "renameAs": "RotateY"},
+        {"api": "MatrixRotateZ", "renameAs": "RotateZ"},
+        {"api": "MatrixRotateXYZ", "renameAs": "RotateXYZ"},
+        {"api": "MatrixRotateZYX", "renameAs": "RotateZYX"},
+        {"api": "MatrixScale", "renameAs": "Scale"},
+        {"api": "MatrixFrustum", "renameAs": "Frustum"},
+        {"api": "MatrixPerspective", "renameAs": "Perspective"},
+        {"api": "MatrixOrtho", "renameAs": "Ortho"},
+        {"api": "MatrixLookAt", "renameAs": "LookAt"}
+      ],
+      "bindApiAsProperty": [],
+      "dunderStrExpression": "return \"[{} at {}]\".format(self.__class__.__name__, id(self))",
+      "dunderReprExpression": "return self.__str__()"
+    },
+    "Shader": {
+      "bindApiAsMethod": [
+        {"api": "GetShaderLocation",       "renameAs": "GetLocation"},
+        {"api": "GetShaderLocationAttrib", "renameAs": "GetLocationAttrib"},
+        {"api": "SetShaderValue",          "renameAs": "SetValue"},
+        {"api": "SetShaderValueV",         "renameAs": "SetValueV"},
+        {"api": "SetShaderValueMatrix",    "renameAs": "SetValueMatrix"},
+        {"api": "SetShaderValueTexture",   "renameAs": "SetValueTexture"},
+        {"api": "UnloadShader",            "renameAs": "Unload"}
+      ],
+      "bindApiAsStaticmethod": [],
+      "bindApiAsClassmethod": [
+        {"api": "LoadShader",           "renameAs": "Load"},
+        {"api": "LoadShaderFromMemory", "renameAs": "LoadFromMemory"}
+      ],
+      "bindApiAsProperty": [],
+      "bindApiAsContextManager": {
+          "enter": "BeginShaderMode",
+          "leave": "EndShaderMode"
+      },
+      "dunderStrExpression": "return \"[{} at {}]\".format(self.__class__.__name__, id(self))",
+      "dunderReprExpression": "return self.__str__()"
+    },
+    "RenderTexture2D": {
+      "bindApiAsContextManager": {
+        "enter": "BeginTextureMode",
+        "leave": "EndTextureMode"
+      }
+    },
+    "VrStereoConfig": {
+      "bindApiAsContextManager": {
+        "enter": "BeginVrStereoMode",
+        "leave": "EndVrStereoMode"
+      }
+    },
+    "Camera2D": {
+      "bindApiAsContextManager": {
+        "enter": "BeginMode2D",
+        "leave": "EndMode2D"
+      }
+    },
+    "Camera3D": {
+      "bindApiAsMethod": [
+        {"api": "SetCameraMode", "renameAs": "SetMode"}
+      ],
+      "bindApiAsContextManager": {
+        "enter": "BeginMode3D",
+        "leave": "EndMode3D"
+      }
+    },
+    "Image": {
+      "bindApiAsMethod": [
+        {"api": "UnloadImage", "renameAs": "Unload"},
+        {"api": "ExportImage", "renameAs": "Export"},
+        {"api": "ExportImageAsCode", "renameAs": "ExportAsCode"},
+        {"api": "ImageCopy", "renameAs": "Copy"},
+        {"api": "ImageFormat", "renameAs": "Format", "byref": true},
+        {"api": "ImageToPOT", "renameAs": "ToPOT", "byref": true},
+        {"api": "ImageCrop", "renameAs": "Crop", "byref": true},
+        {"api": "ImageAlphaCrop", "renameAs": "AlphaCrop", "byref": true},
+        {"api": "ImageAlphaClear", "renameAs": "AlphaClear", "byref": true},
+        {"api": "ImageAlphaMask", "renameAs": "AlphaMask", "byref": true},
+        {"api": "ImageAlphaPremultiply", "renameAs": "AlphaPremultiply", "byref": true},
+        {"api": "ImageResize", "renameAs": "Resize", "byref": true},
+        {"api": "ImageResizeNN", "renameAs": "ResizeNN", "byref": true},
+        {"api": "ImageResizeCanvas", "renameAs": "ResizeCanvas", "byref": true},
+        {"api": "ImageMipmaps", "renameAs": "Mipmaps", "byref": true},
+        {"api": "ImageDither", "renameAs": "Dither", "byref": true},
+        {"api": "ImageFlipVertical", "renameAs": "FlipVertical", "byref": true},
+        {"api": "ImageFlipHorizontal", "renameAs": "FlipHorizontal", "byref": true},
+        {"api": "ImageRotateCW", "renameAs": "RotateCW", "byref": true},
+        {"api": "ImageRotateCCW", "renameAs": "RotateCCW", "byref": true},
+        {"api": "ImageColorTint", "renameAs": "ColorTint", "byref": true},
+        {"api": "ImageColorInvert", "renameAs": "ColorInvert", "byref": true},
+        {"api": "ImageColorGrayscale", "renameAs": "ColorGrayscale", "byref": true},
+        {"api": "ImageColorContrast", "renameAs": "ColorContrast", "byref": true},
+        {"api": "ImageColorBrightness", "renameAs": "ColorBrightness", "byref": true},
+        {"api": "ImageColorReplace", "renameAs": "ColorReplace", "byref": true},
+        {"api": "ImageClearBackground", "renameAs": "ClearBackground", "byref": true},
+        {"api": "ImageDrawPixel", "renameAs": "DrawPixel", "byref": true},
+        {"api": "ImageDrawPixelV", "renameAs": "DrawPixelV", "byref": true},
+        {"api": "ImageDrawLine", "renameAs": "DrawLine", "byref": true},
+        {"api": "ImageDrawLineV", "renameAs": "DrawLineV", "byref": true},
+        {"api": "ImageDrawCircle", "renameAs": "DrawCircle", "byref": true},
+        {"api": "ImageDrawCircleV", "renameAs": "DrawCircleV", "byref": true},
+        {"api": "ImageDrawRectangle", "renameAs": "DrawRectangle", "byref": true},
+        {"api": "ImageDrawRectangleV", "renameAs": "DrawRectangleV", "byref": true},
+        {"api": "ImageDrawRectangleRec", "renameAs": "DrawRectangleRec", "byref": true},
+        {"api": "ImageDrawRectangleLines", "renameAs": "DrawRectangleLines", "byref": true},
+        {"api": "ImageDraw", "renameAs": "Draw", "byref": true},
+        {"api": "ImageDrawText", "renameAs": "DrawText", "byref": true},
+        {"api": "ImageDrawTextEx", "renameAs": "DrawTextEx", "byref": true},
+        {"api": "LoadImageColors", "renameAs": "LoadColors"},
+        {"api": "LoadImagePalette", "renameAs": "LoadPalette"},
+        {"api": "GetImageAlphaBorder", "renameAs": "GetAlphaBorder"},
+        {"api": "GetImageColor", "renameAs": "GetColor"}
+      ],
+      "bindApiAsClassmethod": [
+        {"api": "LoadImage", "renameAs": "Load"},
+        {"api": "LoadImageRaw", "renameAs": "LoadRaw"},
+        {"api": "LoadImageAnim", "renameAs": "LoadAnim"},
+        {"api": "LoadImageFromMemory", "renameAs": "LoadFromMemory"},
+        {"api": "LoadImageFromTexture", "renameAs": "LoadFromTexture"},
+        {"api": "LoadImageFromScreen", "renameAs": "LoadFromScreen"},
+        {"api": "GenImageColor", "renameAs": "GenColor"},
+        {"api": "GenImageGradientH", "renameAs": "GenGradientH"},
+        {"api": "GenImageGradientV", "renameAs": "GenGradientV"},
+        {"api": "GenImageGradientRadial", "renameAs": "GenGradientRadial"},
+        {"api": "GenImageChecked", "renameAs": "GenChecked"},
+        {"api": "GenImageWhiteNoise", "renameAs": "GenWhiteNoise"},
+        {"api": "GenImageCellular", "renameAs": "GenCellular"},
+        {"api": "ImageFromImage", "renameAs": "FromImage"},
+        {"api": "ImageText", "renameAs": "Text"},
+        {"api": "ImageTextEx", "renameAs": "TextEx"}
+      ],
+      "bindApiAsStaticmethod": [
+        {"api": "UnloadImageColors", "renameAs": "UnloadColors"},
+        {"api": "UnloadImagePalette", "renameAs": "UnloadPalette"}
+      ]
+    },
+    "Texture": {
+      "bindApiAsMethod": [
+        {"api": "UnloadTexture", "renameAs": "Unload"},
+        {"api": "GenTextureMipmaps", "renameAs": "GenMipMaps", "byref": true},
+        {"api": "SetTextureFilter", "renameAs": "SetFilter"},
+        {"api": "SetTextureWrap", "renameAs": "SetWrap"},
+        {"api": "DrawTexture", "renameAs": "Draw"},
+        {"api": "DrawTextureV", "renameAs": "DrawV"},
+        {"api": "DrawTextureEx", "renameAs": "DrawEx"},
+        {"api": "DrawTextureRec", "renameAs": "DrawRec"},
+        {"api": "DrawTextureQuad", "renameAs": "DrawQuad"},
+        {"api": "DrawTextureTiled", "renameAs": "DrawTiled"},
+        {"api": "DrawTexturePro", "renameAs": "DrawPro"},
+        {"api": "DrawTextureNPatch", "renameAs": "DrawNPatch"},
+        {"api": "DrawTexturePoly", "renameAs": "DrawPoly"}
+      ],
+      "bindApiAsClassmethod": [
+        {"api": "LoadTexture", "renameAs": "Load"},
+        {"api": "LoadTextureFromImage", "renameAs": "LoadFromImage"}
+      ],
+      "dunderStrExpression": "return \"[{} at {}]\".format(self.__class__.__name__, id(self))",
+      "dunderReprExpression": "return self.__str__()"
+    },
+    "Color": {
+      "func": "_color({})",
+      "bindApiAsMethod": [
+        {"api": "Fade", "renameAs": "Fade"},
+        {"api": "ColorToInt", "renameAs": "ToInt"},
+        {"api": "ColorToHSV", "renameAs": "ToHSV"},
+        {"api": "ColorFromHSV", "renameAs": "FromHSV"},
+        {"api": "ColorAlpha", "renameAs": "Alpha"},
+        {"api": "ColorAlphaBlend", "renameAs": "AlphaBlend"}
+      ],
+      "dunderStrExpression": "return \"({: 3}, {: 3}, {: 3}, {: 3})\".format(self.r, self.g, self.b, self.a)",
+      "dunderReprExpression": "return \"Color{}\".format(self.__str__())"
+    },
+    "Font": {
+      "bindApiAsMethod": [
+        {"api": "UnloadFont", "renameAs": "Unload"},
+        {"api": "DrawTextEx", "renameAs": "DrawTextEx"},
+        {"api": "DrawTextPro", "renameAs": "DrawTextPro"},
+        {"api": "DrawTextCodepoint", "renameAs": "DrawTextCodepoint"},
+        {"api": "DrawTextCodepoints", "renameAs": "DrawTextCodepoints"},
+        {"api": "MeasureTextEx", "renameAs": "MeasureTextEx"},
+        {"api": "GetGlyphIndex", "renameAs": "GetGlyphIndex"},
+        {"api": "GetGlyphInfo", "renameAs": "GetGlyphInfo"},
+        {"api": "GetGlyphAtlasRec", "renameAs": "GetGlyphAtlasRec"}
+      ],
+      "bindApiAsStaticmethod": [
+        {"api": "LoadFontData", "renameAs": "LoadData"},
+        {"api": "UnloadFontData", "renameAs": "UnloadData"}
+      ],
+      "bindApiAsClassmethod": [
+        {"api": "LoadFont", "renameAs": "Load"},
+        {"api": "LoadFontEx", "renameAs": "LoadEx"},
+        {"api": "LoadFontFromImage", "renameAs": "LoadFromImage"},
+        {"api": "LoadFontFromMemory", "renameAs": "LoadFromMemory"}
+      ],
+      "bindApiAsProperty": [],
+      "dunderStrExpression": "return \"[{} at {}]\".format(self.__class__.__name__, id(self))",
+      "dunderReprExpression": "return self.__str__()"
+    },
+    "Model": {
+      "bindApiAsMethod": [
+        {"api": "IsModelAnimationValid", "renameAs": "IsAnimationValid"},
+        {"api": "UpdateModelAnimation", "renameAs": "UpdateAnimation"},
+        {"api": "SetModelMeshMaterial", "renameAs": "SetMeshMaterial", "byref": true},
+        {"api": "UnloadModel", "renameAs": "Unload"},
+        {"api": "UnloadModelKeepMeshes", "renameAs": "UnloadKeepMeshes"},
+        {"api": "GetModelBoundingBox", "renameAs": "GetBoundingBox"},
+        {"api": "DrawModel", "renameAs": "Draw"},
+        {"api": "DrawModelEx", "renameAs": "DrawEx"},
+        {"api": "DrawModelWires", "renameAs": "DrawWires"},
+        {"api": "DrawModelWiresEx", "renameAs": "DrawWiresEx"}
+      ],
+      "bindApiAsClassmethod": [
+        {"api": "LoadModel", "renameAs": "Load"},
+        {"api": "LoadModelFromMesh", "renameAs": "LoadFromMesh"}
+      ],
+      "dunderStrExpression": "return \"[{} at {}]\".format(self.__class__.__name__, id(self))",
+      "dunderReprExpression": "return self.__str__()"
+    },
+    "Mesh": {
+      "bindApiAsMethod": [
+        {"api": "UploadMesh", "renameAs": "Upload", "byref": true},
+        {"api": "UpdateMeshBuffer", "renameAs": "UpdateBuffer"},
+        {"api": "UnloadMesh", "renameAs": "Unload"},
+        {"api": "DrawMesh", "renameAs": "Draw"},
+        {"api": "DrawMeshInstanced", "renameAs": "DrawInstanced"},
+        {"api": "ExportMesh", "renameAs": "Export"},
+        {"api": "GetMeshBoundingBox", "renameAs": "GetBoundingBox"},
+        {"api": "GenMeshTangents", "renameAs": "GenTangents", "byref": true}
+      ],
+      "bindApiAsClassmethod": [
+        {"api": "GenMeshPoly", "renameAs": "GenPoly"},
+        {"api": "GenMeshPlane", "renameAs": "GenPlane"},
+        {"api": "GenMeshCube", "renameAs": "GenCube"},
+        {"api": "GenMeshSphere", "renameAs": "GenSphere"},
+        {"api": "GenMeshHemiSphere", "renameAs": "GenHemiSphere"},
+        {"api": "GenMeshCylinder", "renameAs": "GenCylinder"},
+        {"api": "GenMeshCone", "renameAs": "GenCone"},
+        {"api": "GenMeshTorus", "renameAs": "GenTorus"},
+        {"api": "GenMeshKnot", "renameAs": "GenKnot"},
+        {"api": "GenMeshHeightmap", "renameAs": "GenHeightmap"},
+        {"api": "GenMeshCubicmap", "renameAs": "GenCubicmap"}
+      ],
+      "dunderStrExpression": "return \"[{} at {}]\".format(self.__class__.__name__, id(self))",
+      "dunderReprExpression": "return self.__str__()"
+    },
+    "Material": {
+      "bindApiAsMethod": [
+        {"api": "UnloadMaterial", "renameAs": "Unload"},
+        {"api": "SetMaterialTexture", "renameAs": "SetTexture"}
+      ],
+      "bindApiAsClassmethod": [
+        {"api": "LoadMaterials", "renameAs": "LoadMaterials"},
+        {"api": "LoadMaterialDefault", "renameAs": "LoadDefault"}
+      ],
+      "dunderStrExpression": "return \"[{} at {}]\".format(self.__class__.__name__, id(self))",
+      "dunderReprExpression": "return self.__str__()"
+    },
+    "Wave": {
+      "bindApiAsMethod": [
+        {"api": "WaveCopy", "renameAs": "Copy"},
+        {"api": "WaveCrop", "renameAs": "Crop", "byref": true},
+        {"api": "WaveFormat", "renameAs": "Format", "byref": true},
+        {"api": "LoadWaveSamples", "renameAs": "Format", "byref": true},
+        {"api": "ExportWave", "renameAs": "Export"},
+        {"api": "ExportWaveAsCode", "renameAs": "ExportAsCode"},
+        {"api": "UnloadWave", "renameAs": "Unload"},
+        {"api": "UnloadWaveSamples", "renameAs": "UnloadSamples"}
+      ],
+      "bindApiAsClassmethod": [
+        {"api": "LoadWave", "renameAs": "Load"},
+        {"api": "LoadWaveFromMemory", "renameAs": "LoadFromMemory"}
+      ],
+      "dunderStrExpression": "return \"[{} at {}]\".format(self.__class__.__name__, id(self))",
+      "dunderReprExpression": "return self.__str__()"
+    },
+    "Sound": {
+      "bindApiAsMethod": [
+        {"api": "PlaySound", "renameAs": "Play"},
+        {"api": "StopSound", "renameAs": "Stop"},
+        {"api": "PauseSound", "renameAs": "Pause"},
+        {"api": "ResumeSound", "renameAs": "Resume"},
+        {"api": "PlaySoundMulti", "renameAs": "PlayMulti"},
+        {"api": "IsSoundPlaying", "renameAs": "IsPlaying"},
+        {"api": "SetSoundVolume", "renameAs": "SetVolume"},
+        {"api": "SetSoundPitch", "renameAs": "SetPitch"},
+        {"api": "SetSoundPan", "renameAs": "SetPan"},
+        {"api": "UnloadSound", "renameAs": "Unload"},
+        {"api": "UpdateSound", "renameAs": "Update"}
+      ],
+      "bindApiAsStaticmethod": [
+        {"api": "GetSoundsPlaying", "renameAs": "GetSoundsPlaying"},
+        {"api": "StopSoundMulti", "renameAs": "StopMulti"}
+      ],
+      "bindApiAsClassmethod": [
+        {"api": "LoadSound", "renameAs": "Load"},
+        {"api": "LoadSoundFromWave", "renameAs": "LoadFromWave"}
+      ],
+      "dunderStrExpression": "return \"[{} Playing: {}]\".format(self.__class__.__name__, _IsSoundPlaying(self))",
+      "dunderReprExpression": "return self.__str__()"
+    },
+    "Music": {
+      "bindApiAsMethod": [
+        {"api": "PlayMusicStream", "renameAs": "Play"},
+        {"api": "IsMusicStreamPlaying", "renameAs": "IsPlaying"},
+        {"api": "UpdateMusicStream", "renameAs": "Update"},
+        {"api": "StopMusicStream", "renameAs": "Stop"},
+        {"api": "PauseMusicStream", "renameAs": "Pause"},
+        {"api": "ResumeMusicStream", "renameAs": "Resume"},
+        {"api": "SeekMusicStream", "renameAs": "Seek"},
+        {"api": "SetMusicVolume", "renameAs": "SetVolume"},
+        {"api": "SetMusicPitch", "renameAs": "SetPitch"},
+        {"api": "SetMusicPan", "renameAs": "SetPan"},
+        {"api": "GetMusicTimeLength", "renameAs": "GetTimeLength"},
+        {"api": "GetMusicTimePlayed", "renameAs": "GetTimePlayed"}
+      ],
+      "bindApiAsStaticmethod": [
+        {"api": "LoadMusicStream", "renameAs": "Load"},
+        {"api": "LoadMusicStreamFromMemory", "renameAs": "LoadFromMemory"}
+      ],
+      "bindApiAsClassmethod": [],
+      "bindApiAsProperty": [],
+      "dunderStrExpression": "return \"[{} at {}]\".format(self.__class__.__name__, id(self))",
+      "dunderReprExpression": "return self.__str__()"
+    },
+    "AudioStream": {
+      "bindApiAsMethod": [
+        {"api": "UnloadAudioStream", "renameAs": "Unload"},
+        {"api": "UpdateAudioStream", "renameAs": "Update"},
+        {"api": "IsAudioStreamProcessed", "renameAs": "IsProcessed"},
+        {"api": "PlayAudioStream", "renameAs": "Play"},
+        {"api": "PauseAudioStream", "renameAs": "Pause"},
+        {"api": "ResumeAudioStream", "renameAs": "Resume"},
+        {"api": "IsAudioStreamPlaying", "renameAs": "IsPlaying"},
+        {"api": "StopAudioStream", "renameAs": "Stop"},
+        {"api": "SetAudioStreamVolume", "renameAs": "SetVolume"},
+        {"api": "SetAudioStreamPitch", "renameAs": "SetPitch"},
+        {"api": "SetAudioStreamPan", "renameAs": "SetPan"},
+        {"api": "SetAudioStreamBufferSizeDefault", "renameAs": "SetBufferSizeDefault"},
+        {"api": "SetAudioStreamCallback", "renameAs": "SetCallback"},
+        {"api": "AttachAudioStreamProcessor", "renameAs": "AttachProcessor"},
+        {"api": "DetachAudioStreamProcessor", "renameAs": "DetachProcessor"}
+      ],
+      "bindApiAsClassmethod": [
+        {"api": "LoadAudioStream", "renameAs": "Load"}
+      ],
+      "dunderStrExpression": "return \"[{} Playing: {}]\".format(self.__class__.__name__, _IsAudioStreamPlaying(self))",
+      "dunderReprExpression": "return self.__str__()"
+    }
+  },
+  "functions": {
+    "*": {
+      "ignore": [
+        "rlEnableStatePointer",
+        "rlDisableStatePointer"
+      ],
+      "contextManager": [
+        { "api": "Drawing", "enter": "BeginDrawing", "leave": "EndDrawing"},
+        { "api": "ScissorMode", "enter": "BeginScissorMode", "leave": "EndScissorMode"},
+        { "api": "BlendMode", "enter": "BeginBlendMode", "leave": "EndBlendMode"},
+        { "api": "Mode2D", "enter": "BeginMode2D", "leave": "EndMode2D"},
+        { "api": "Mode3D", "enter": "BeginMode3D", "leave": "EndMode3D"},
+        { "api": "ShaderMode", "enter": "BeginShaderMode", "leave": "EndShaderMode"},
+        { "api": "TextureMode", "enter": "BeginTextureMode", "leave": "EndTextureMode"},
+        { "api": "VrStereoMode", "enter": "BeginVrStereoMode", "leave": "EndVrStereoMode"}
+      ]
+    },
+    "LoadMaterials": {
+      "callInstead": "",
+      "params": {
+        "materialCount": {
+          "defaultsTo": "None",
+          "outParam": true,
+          "varArgs": false,
+          "ommit": true,
+          "useAsLength": true
+        }
+      }
+    },
+    "LoadModelAnimations": {
+      "callInstead": "",
+      "params": {
+        "animCount": {
+          "defaultsTo": "None",
+          "outParam": true,
+          "varArgs": false,
+          "ommit": true,
+          "useAsLength": true
+        }
+      }
+    },
+    "LoadImagePalette": {
+      "callInstead": "",
+      "params": {
+        "colorCount": {
+          "defaultsTo": "None",
+          "outParam": true,
+          "ommit": true,
+          "useAsLength": true
+        }
+      }
+    },
+    "DrawLineStrip": {
+      "callInstead": "",
+      "params": {
+        "points": {
+          "func": "_arr_in(Vector2, {})"
+        },
+        "pointCount": {
+          "defaultsTo": "None",
+          "outParam": false,
+          "varArgs": false,
+          "ommit": true,
+          "useAsLength": false,
+          "lenOfParam": "points"
+        }
+      }
+    },
+    "DrawTriangleFan": {
+      "callInstead": "",
+      "params": {
+        "points": {
+          "func": "_arr_in(Vector2, {})"
+        },
+        "pointCount": {
+          "ommit": true,
+          "lenOfParam": "points"
+        }
+      }
+    },
+    "DrawTriangleStrip": {
+      "callInstead": "",
+      "params": {
+        "points": {
+          "func": "_arr_in(Vector2, {})"
+        },
+        "pointCount": {
+          "ommit": true,
+          "lenOfParam": "points"
+        }
+      }
+    },
+    "DrawTriangleStrip3D": {
+      "callInstead": "",
+      "params": {
+        "points": {
+          "func": "_arr_in(Vector3, {})"
+        },
+        "pointCount": {
+          "ommit": true,
+          "lenOfParam": "points"
+        }
+      }
+    },
+    "DrawTexturePoly": {
+      "callInstead": "",
+      "params": {
+        "points": {
+          "func": "_arr_in(Vector2, {})"
+        },
+        "pointCount": {
+          "ommit": true,
+          "lenOfParam": "points"
+        }
+      }
+    },
+    "DrawTextCodepoints": {
+      "callInstead": "",
+      "params": {
+        "codepoints": {
+          "func": "_str_in({})"
+        },
+        "count": {
+          "ommit": true,
+          "lenOfParam": "codepoints"
+        }
+      }
+    }
+  }
+}
