@@ -1,6 +1,6 @@
 # Raylib-py API reference
 
-This is an API reference documentation generated for Raylib 4.2.
+This is an API reference documentation generated for Raylib 4.5.
 
 <h2 id="toc">Table of Contents</h2>
 
@@ -215,7 +215,7 @@ Bound as | Name | API
 ---
 <h2 id="Matrix"><code>Matrix</code> structure</h2>
 
-Matrix, 4x4 components, column major, OpenGL style, right handed
+Matrix, 4x4 components, column major, OpenGL style, right-handed
 
 **Fields**
 
@@ -300,6 +300,9 @@ Bound as | Name | API
 *method* | `.to_int(self)` | <a href="#ColorToInt"><code>color_to_int</code></a>
 *method* | `.to_hsv(self)` | <a href="#ColorToHSV"><code>color_to_hsv</code></a>
 *method* | `.from_hsv(self, saturation, value)` | <a href="#ColorFromHSV"><code>color_from_hsv</code></a>
+*method* | `.tint(self, tint)` | <a href="#ColorTint"><code>color_tint</code></a>
+*method* | `.brightness(self, factor)` | <a href="#ColorBrightness"><code>color_brightness</code></a>
+*method* | `.contrast(self, contrast)` | <a href="#ColorContrast"><code>color_contrast</code></a>
 *method* | `.alpha(self, alpha)` | <a href="#ColorAlpha"><code>color_alpha</code></a>
 *method* | `.alpha_blend(self, src, tint)` | <a href="#ColorAlphaBlend"><code>color_alpha_blend</code></a>
 
@@ -357,6 +360,7 @@ Name | Type (Python) | Type (Ctypes) | Type (C) | Description
 Name | API
 -----|----
 `.byref` | *n/a*
+`.is_ready` | <a href="#IsImageReady"><code>is_image_ready</code></a>
 
 ### Methods
 
@@ -377,7 +381,9 @@ Bound as | Name | API
 *classmethod* | `.gen_gradient_radial(cls, width, height, density, inner, outer)` | <a href="#GenImageGradientRadial"><code>gen_image_gradient_radial</code></a>
 *classmethod* | `.gen_checked(cls, width, height, checks_x, checks_y, col1, col2)` | <a href="#GenImageChecked"><code>gen_image_checked</code></a>
 *classmethod* | `.gen_white_noise(cls, width, height, factor)` | <a href="#GenImageWhiteNoise"><code>gen_image_white_noise</code></a>
+*classmethod* | `.gen_perlin_noise(cls, width, height, offset_x, offset_y, scale)` | <a href="#GenImagePerlinNoise"><code>gen_image_perlin_noise</code></a>
 *classmethod* | `.gen_cellular(cls, width, height, tile_size)` | <a href="#GenImageCellular"><code>gen_image_cellular</code></a>
+*classmethod* | `.gen_text(cls, width, height, text)` | <a href="#GenImageText"><code>gen_image_text</code></a>
 *classmethod* | `.from_image(cls, image, rec)` | <a href="#ImageFromImage"><code>image_from_image</code></a>
 *classmethod* | `.text(cls, text, font_size, color)` | <a href="#ImageText"><code>image_text</code></a>
 *classmethod* | `.text_ex(cls, font, text, font_size, spacing, tint)` | <a href="#ImageTextEx"><code>image_text_ex</code></a>
@@ -450,6 +456,7 @@ Name | Type (Python) | Type (Ctypes) | Type (C) | Description
 Name | API
 -----|----
 `.byref` | *n/a*
+`.is_ready` | <a href="#IsTextureReady"><code>is_texture_ready</code></a>
 
 ### Methods
 
@@ -466,11 +473,8 @@ Bound as | Name | API
 *method* | `.draw_v(self, position, tint)` | <a href="#DrawTextureV"><code>draw_texture_v</code></a>
 *method* | `.draw_ex(self, position, rotation, scale, tint)` | <a href="#DrawTextureEx"><code>draw_texture_ex</code></a>
 *method* | `.draw_rec(self, source, position, tint)` | <a href="#DrawTextureRec"><code>draw_texture_rec</code></a>
-*method* | `.draw_quad(self, tiling, offset, quad, tint)` | <a href="#DrawTextureQuad"><code>draw_texture_quad</code></a>
-*method* | `.draw_tiled(self, source, dest, origin, rotation, scale, tint)` | <a href="#DrawTextureTiled"><code>draw_texture_tiled</code></a>
 *method* | `.draw_pro(self, source, dest, origin, rotation, tint)` | <a href="#DrawTexturePro"><code>draw_texture_pro</code></a>
 *method* | `.draw_npatch(self, n_patch_info, dest, origin, rotation, tint)` | <a href="#DrawTextureNPatch"><code>draw_texture_npatch</code></a>
-*method* | `.draw_poly(self, center, points, texcoords, tint)` | <a href="#DrawTexturePoly"><code>draw_texture_poly</code></a>
 
 
 
@@ -589,6 +593,7 @@ Name | Type (Python) | Type (Ctypes) | Type (C) | Description
 Name | API
 -----|----
 `.byref` | *n/a*
+`.is_ready` | <a href="#IsFontReady"><code>is_font_ready</code></a>
 
 ### Methods
 
@@ -627,7 +632,7 @@ Name | Type (Python) | Type (Ctypes) | Type (C) | Description
 `position` | `Vector3` | `Vector3` | `Vector3` | Camera position
 `target` | `Vector3` | `Vector3` | `Vector3` | Camera target it looks-at
 `up` | `Vector3` | `Vector3` | `Vector3` | Camera up vector (rotation over its axis)
-`fovy` | `float` | `Float` | `float` | Camera field-of-view apperture in Y (degrees) in perspective, used as near plane width in orthographic
+`fovy` | `float` | `Float` | `float` | Camera field-of-view aperture in Y (degrees) in perspective, used as near plane width in orthographic
 `projection` | `int` | `Int` | `int` | Camera projection: CAMERA_PERSPECTIVE or CAMERA_ORTHOGRAPHIC
 
 ### Properties
@@ -641,7 +646,6 @@ Name | API
 Bound as | Name | API
 ---------|------|----
 *classmethod* | `.array_of(cls, camera3d_sequence)` | *n/a*
-*method* | `.set_mode(self, mode)` | <a href="#SetCameraMode"><code>set_camera_mode</code></a>
 
 ### Context Manager
 
@@ -768,6 +772,7 @@ Name | Type (Python) | Type (Ctypes) | Type (C) | Description
 Name | API
 -----|----
 `.byref` | *n/a*
+`.is_ready` | <a href="#IsShaderReady"><code>is_shader_ready</code></a>
 
 ### Methods
 
@@ -842,6 +847,7 @@ Name | Type (Python) | Type (Ctypes) | Type (C) | Description
 Name | API
 -----|----
 `.byref` | *n/a*
+`.is_ready` | <a href="#IsMaterialReady"><code>is_material_ready</code></a>
 
 ### Methods
 
@@ -860,7 +866,7 @@ Bound as | Name | API
 ---
 <h2 id="Transform"><code>Transform</code> structure</h2>
 
-Transform, vectex transformation data
+Transform, vertex transformation data
 
 **Fields**
 
@@ -950,7 +956,6 @@ Bound as | Name | API
 *method* | `.update_animation(self, anim, frame)` | <a href="#UpdateModelAnimation"><code>update_model_animation</code></a>
 *method* | `.set_mesh_material(self, mesh_id, material_id)` | <a href="#SetModelMeshMaterial"><code>set_model_mesh_material</code></a>
 *method* | `.unload(self)` | <a href="#UnloadModel"><code>unload_model</code></a>
-*method* | `.unload_keep_meshes(self)` | <a href="#UnloadModelKeepMeshes"><code>unload_model_keep_meshes</code></a>
 *method* | `.get_bounding_box(self)` | <a href="#GetModelBoundingBox"><code>get_model_bounding_box</code></a>
 *method* | `.draw(self, position, scale, tint)` | <a href="#DrawModel"><code>draw_model</code></a>
 *method* | `.draw_ex(self, position, rotation_axis, rotation_angle, scale, tint)` | <a href="#DrawModelEx"><code>draw_model_ex</code></a>
@@ -1029,8 +1034,8 @@ RayCollision, ray hit information
 Name | Type (Python) | Type (Ctypes) | Type (C) | Description
 -----|---------------|---------------|----------|------------
 `hit` | `bool` | `Bool` | `bool` | Did the ray hit something?
-`distance` | `float` | `Float` | `float` | Distance to nearest hit
-`point` | `Vector3` | `Vector3` | `Vector3` | Point of nearest hit
+`distance` | `float` | `Float` | `float` | Distance to the nearest hit
+`point` | `Vector3` | `Vector3` | `Vector3` | Point of the nearest hit
 `normal` | `Vector3` | `Vector3` | `Vector3` | Surface normal of hit
 
 ### Properties
@@ -1097,6 +1102,7 @@ Name | Type (Python) | Type (Ctypes) | Type (C) | Description
 Name | API
 -----|----
 `.byref` | *n/a*
+`.is_ready` | <a href="#IsWaveReady"><code>is_wave_ready</code></a>
 
 ### Methods
 
@@ -1138,6 +1144,7 @@ Name | Type (Python) | Type (Ctypes) | Type (C) | Description
 Name | API
 -----|----
 `.byref` | *n/a*
+`.is_ready` | <a href="#IsAudioStreamReady"><code>is_audio_stream_ready</code></a>
 
 ### Methods
 
@@ -1182,13 +1189,12 @@ Name | Type (Python) | Type (Ctypes) | Type (C) | Description
 Name | API
 -----|----
 `.byref` | *n/a*
+`.is_ready` | <a href="#IsSoundReady"><code>is_sound_ready</code></a>
 
 ### Methods
 
 Bound as | Name | API
 ---------|------|----
-*staticmethod* | `.get_sounds_playing()` | <a href="#GetSoundsPlaying"><code>get_sounds_playing</code></a>
-*staticmethod* | `.stop_multi()` | <a href="#StopSoundMulti"><code>stop_sound_multi</code></a>
 *classmethod* | `.array_of(cls, sound_sequence)` | *n/a*
 *classmethod* | `.load(cls, file_name)` | <a href="#LoadSound"><code>load_sound</code></a>
 *classmethod* | `.load_from_wave(cls, wave)` | <a href="#LoadSoundFromWave"><code>load_sound_from_wave</code></a>
@@ -1196,7 +1202,6 @@ Bound as | Name | API
 *method* | `.stop(self)` | <a href="#StopSound"><code>stop_sound</code></a>
 *method* | `.pause(self)` | <a href="#PauseSound"><code>pause_sound</code></a>
 *method* | `.resume(self)` | <a href="#ResumeSound"><code>resume_sound</code></a>
-*method* | `.play_multi(self)` | <a href="#PlaySoundMulti"><code>play_sound_multi</code></a>
 *method* | `.is_playing(self)` | <a href="#IsSoundPlaying"><code>is_sound_playing</code></a>
 *method* | `.set_volume(self, volume)` | <a href="#SetSoundVolume"><code>set_sound_volume</code></a>
 *method* | `.set_pitch(self, pitch)` | <a href="#SetSoundPitch"><code>set_sound_pitch</code></a>
@@ -1228,6 +1233,7 @@ Name | Type (Python) | Type (Ctypes) | Type (C) | Description
 Name | API
 -----|----
 `.byref` | *n/a*
+`.is_ready` | <a href="#IsMusicReady"><code>is_music_ready</code></a>
 
 ### Methods
 
@@ -1714,7 +1720,7 @@ Name | Value | Description
 `MOUSE_BUTTON_MIDDLE` | `2` | Mouse button middle (pressed wheel)
 `MOUSE_BUTTON_SIDE` | `3` | Mouse button side (advanced mouse device)
 `MOUSE_BUTTON_EXTRA` | `4` | Mouse button extra (advanced mouse device)
-`MOUSE_BUTTON_FORWARD` | `5` | Mouse button fordward (advanced mouse device)
+`MOUSE_BUTTON_FORWARD` | `5` | Mouse button forward (advanced mouse device)
 `MOUSE_BUTTON_BACK` | `6` | Mouse button back (advanced mouse device)
 
 [ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
@@ -1735,7 +1741,7 @@ Name | Value | Description
 `MOUSE_CURSOR_RESIZE_NS` | `6` | Vertical resize/move arrow shape
 `MOUSE_CURSOR_RESIZE_NWSE` | `7` | Top-left to bottom-right diagonal resize/move arrow shape
 `MOUSE_CURSOR_RESIZE_NESW` | `8` | The top-right to bottom-left diagonal resize/move arrow shape
-`MOUSE_CURSOR_RESIZE_ALL` | `9` | The omni-directional resize/move cursor shape
+`MOUSE_CURSOR_RESIZE_ALL` | `9` | The omnidirectional resize/move cursor shape
 `MOUSE_CURSOR_NOT_ALLOWED` | `10` | The operation-not-allowed shape
 
 [ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
@@ -1944,10 +1950,10 @@ Name | Value | Description
 -----|-------|------------
 `CUBEMAP_LAYOUT_AUTO_DETECT` | `0` | Automatically detect layout type
 `CUBEMAP_LAYOUT_LINE_VERTICAL` | `1` | Layout is defined by a vertical line with faces
-`CUBEMAP_LAYOUT_LINE_HORIZONTAL` | `2` | Layout is defined by an horizontal line with faces
+`CUBEMAP_LAYOUT_LINE_HORIZONTAL` | `2` | Layout is defined by a horizontal line with faces
 `CUBEMAP_LAYOUT_CROSS_THREE_BY_FOUR` | `3` | Layout is defined by a 3x4 cross with cubemap faces
 `CUBEMAP_LAYOUT_CROSS_FOUR_BY_THREE` | `4` | Layout is defined by a 4x3 cross with cubemap faces
-`CUBEMAP_LAYOUT_PANORAMA` | `5` | Layout is defined by a panorama image (equirectangular map)
+`CUBEMAP_LAYOUT_PANORAMA` | `5` | Layout is defined by a panorama image (equirrectangular map)
 
 [ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
 
@@ -1977,7 +1983,8 @@ Name | Value | Description
 `BLEND_ADD_COLORS` | `3` | Blend textures adding colors (alternative)
 `BLEND_SUBTRACT_COLORS` | `4` | Blend textures subtracting colors (alternative)
 `BLEND_ALPHA_PREMULTIPLY` | `5` | Blend premultiplied textures considering alpha
-`BLEND_CUSTOM` | `6` | Blend textures using custom src/dst factors (use rlSetBlendMode())
+`BLEND_CUSTOM` | `6` | Blend textures using custom src/dst factors (use rlSetBlendFactors())
+`BLEND_CUSTOM_SEPARATE` | `7` | Blend textures using custom rgb/alpha separate src/dst factors (use rlSetBlendFactorsSeparate())
 
 [ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
 
@@ -2251,7 +2258,10 @@ Name | Value | Description
 
 Name | Value | Description
 -----|-------|------------
-`RAYLIB_VERSION` | `'4.2'` | *n/a*
+`RAYLIB_VERSION_MAJOR` | `4` | *n/a*
+`RAYLIB_VERSION_MINOR` | `5` | *n/a*
+`RAYLIB_VERSION_PATCH` | `0` | *n/a*
+`RAYLIB_VERSION` | `'4.5'` | *n/a*
 `PI` | `3.141592653589793` | *n/a*
 `DEG2RAD` | `(PI / 180.0)` | *n/a*
 `RAD2DEG` | `(180.0 / PI)` | *n/a*
@@ -2359,70 +2369,74 @@ Name | Signature | Description
 
 Item|Item|Item|Item|Item
 --------|--------|--------|--------|--------
-<a href="#AttachAudioStreamProcessor">AttachAudioStreamProcessor</a> | <a href="#BeginBlendMode">BeginBlendMode</a> | <a href="#BeginDrawing">BeginDrawing</a> | <a href="#BeginMode2D">BeginMode2D</a> | <a href="#BeginMode3D">BeginMode3D</a>
-<a href="#BeginScissorMode">BeginScissorMode</a> | <a href="#BeginShaderMode">BeginShaderMode</a> | <a href="#BeginTextureMode">BeginTextureMode</a> | <a href="#BeginVrStereoMode">BeginVrStereoMode</a> | <a href="#ChangeDirectory">ChangeDirectory</a>
-<a href="#CheckCollisionBoxSphere">CheckCollisionBoxSphere</a> | <a href="#CheckCollisionBoxes">CheckCollisionBoxes</a> | <a href="#CheckCollisionCircleRec">CheckCollisionCircleRec</a> | <a href="#CheckCollisionCircles">CheckCollisionCircles</a> | <a href="#CheckCollisionLines">CheckCollisionLines</a>
-<a href="#CheckCollisionPointCircle">CheckCollisionPointCircle</a> | <a href="#CheckCollisionPointLine">CheckCollisionPointLine</a> | <a href="#CheckCollisionPointRec">CheckCollisionPointRec</a> | <a href="#CheckCollisionPointTriangle">CheckCollisionPointTriangle</a> | <a href="#CheckCollisionRecs">CheckCollisionRecs</a>
-<a href="#CheckCollisionSpheres">CheckCollisionSpheres</a> | <a href="#Clamp">Clamp</a> | <a href="#ClearBackground">ClearBackground</a> | <a href="#ClearWindowState">ClearWindowState</a> | <a href="#CloseAudioDevice">CloseAudioDevice</a>
-<a href="#CloseWindow">CloseWindow</a> | <a href="#CodepointToUTF8">CodepointToUTF8</a> | <a href="#ColorAlpha">ColorAlpha</a> | <a href="#ColorAlphaBlend">ColorAlphaBlend</a> | <a href="#ColorFromHSV">ColorFromHSV</a>
-<a href="#ColorFromNormalized">ColorFromNormalized</a> | <a href="#ColorNormalize">ColorNormalize</a> | <a href="#ColorToHSV">ColorToHSV</a> | <a href="#ColorToInt">ColorToInt</a> | <a href="#CompressData">CompressData</a>
-<a href="#DecodeDataBase64">DecodeDataBase64</a> | <a href="#DecompressData">DecompressData</a> | <a href="#DetachAudioStreamProcessor">DetachAudioStreamProcessor</a> | <a href="#DirectoryExists">DirectoryExists</a> | <a href="#DisableCursor">DisableCursor</a>
-<a href="#DisableEventWaiting">DisableEventWaiting</a> | <a href="#DrawBillboard">DrawBillboard</a> | <a href="#DrawBillboardPro">DrawBillboardPro</a> | <a href="#DrawBillboardRec">DrawBillboardRec</a> | <a href="#DrawBoundingBox">DrawBoundingBox</a>
-<a href="#DrawCircle">DrawCircle</a> | <a href="#DrawCircle3D">DrawCircle3D</a> | <a href="#DrawCircleGradient">DrawCircleGradient</a> | <a href="#DrawCircleLines">DrawCircleLines</a> | <a href="#DrawCircleSector">DrawCircleSector</a>
-<a href="#DrawCircleSectorLines">DrawCircleSectorLines</a> | <a href="#DrawCircleV">DrawCircleV</a> | <a href="#DrawCube">DrawCube</a> | <a href="#DrawCubeTexture">DrawCubeTexture</a> | <a href="#DrawCubeTextureRec">DrawCubeTextureRec</a>
-<a href="#DrawCubeV">DrawCubeV</a> | <a href="#DrawCubeWires">DrawCubeWires</a> | <a href="#DrawCubeWiresV">DrawCubeWiresV</a> | <a href="#DrawCylinder">DrawCylinder</a> | <a href="#DrawCylinderEx">DrawCylinderEx</a>
-<a href="#DrawCylinderWires">DrawCylinderWires</a> | <a href="#DrawCylinderWiresEx">DrawCylinderWiresEx</a> | <a href="#DrawEllipse">DrawEllipse</a> | <a href="#DrawEllipseLines">DrawEllipseLines</a> | <a href="#DrawFPS">DrawFPS</a>
-<a href="#DrawGrid">DrawGrid</a> | <a href="#DrawLine">DrawLine</a> | <a href="#DrawLine3D">DrawLine3D</a> | <a href="#DrawLineBezier">DrawLineBezier</a> | <a href="#DrawLineBezierCubic">DrawLineBezierCubic</a>
-<a href="#DrawLineBezierQuad">DrawLineBezierQuad</a> | <a href="#DrawLineEx">DrawLineEx</a> | <a href="#DrawLineStrip">DrawLineStrip</a> | <a href="#DrawLineV">DrawLineV</a> | <a href="#DrawMesh">DrawMesh</a>
-<a href="#DrawMeshInstanced">DrawMeshInstanced</a> | <a href="#DrawModel">DrawModel</a> | <a href="#DrawModelEx">DrawModelEx</a> | <a href="#DrawModelWires">DrawModelWires</a> | <a href="#DrawModelWiresEx">DrawModelWiresEx</a>
-<a href="#DrawPixel">DrawPixel</a> | <a href="#DrawPixelV">DrawPixelV</a> | <a href="#DrawPlane">DrawPlane</a> | <a href="#DrawPoint3D">DrawPoint3D</a> | <a href="#DrawPoly">DrawPoly</a>
-<a href="#DrawPolyLines">DrawPolyLines</a> | <a href="#DrawPolyLinesEx">DrawPolyLinesEx</a> | <a href="#DrawRay">DrawRay</a> | <a href="#DrawRectangle">DrawRectangle</a> | <a href="#DrawRectangleGradientEx">DrawRectangleGradientEx</a>
-<a href="#DrawRectangleGradientH">DrawRectangleGradientH</a> | <a href="#DrawRectangleGradientV">DrawRectangleGradientV</a> | <a href="#DrawRectangleLines">DrawRectangleLines</a> | <a href="#DrawRectangleLinesEx">DrawRectangleLinesEx</a> | <a href="#DrawRectanglePro">DrawRectanglePro</a>
-<a href="#DrawRectangleRec">DrawRectangleRec</a> | <a href="#DrawRectangleRounded">DrawRectangleRounded</a> | <a href="#DrawRectangleRoundedLines">DrawRectangleRoundedLines</a> | <a href="#DrawRectangleV">DrawRectangleV</a> | <a href="#DrawRing">DrawRing</a>
-<a href="#DrawRingLines">DrawRingLines</a> | <a href="#DrawSphere">DrawSphere</a> | <a href="#DrawSphereEx">DrawSphereEx</a> | <a href="#DrawSphereWires">DrawSphereWires</a> | <a href="#DrawText">DrawText</a>
-<a href="#DrawTextCodepoint">DrawTextCodepoint</a> | <a href="#DrawTextCodepoints">DrawTextCodepoints</a> | <a href="#DrawTextEx">DrawTextEx</a> | <a href="#DrawTextPro">DrawTextPro</a> | <a href="#DrawTexture">DrawTexture</a>
-<a href="#DrawTextureEx">DrawTextureEx</a> | <a href="#DrawTextureNPatch">DrawTextureNPatch</a> | <a href="#DrawTexturePoly">DrawTexturePoly</a> | <a href="#DrawTexturePro">DrawTexturePro</a> | <a href="#DrawTextureQuad">DrawTextureQuad</a>
-<a href="#DrawTextureRec">DrawTextureRec</a> | <a href="#DrawTextureTiled">DrawTextureTiled</a> | <a href="#DrawTextureV">DrawTextureV</a> | <a href="#DrawTriangle">DrawTriangle</a> | <a href="#DrawTriangle3D">DrawTriangle3D</a>
-<a href="#DrawTriangleFan">DrawTriangleFan</a> | <a href="#DrawTriangleLines">DrawTriangleLines</a> | <a href="#DrawTriangleStrip">DrawTriangleStrip</a> | <a href="#DrawTriangleStrip3D">DrawTriangleStrip3D</a> | <a href="#EnableCursor">EnableCursor</a>
-<a href="#EnableEventWaiting">EnableEventWaiting</a> | <a href="#EncodeDataBase64">EncodeDataBase64</a> | <a href="#EndBlendMode">EndBlendMode</a> | <a href="#EndDrawing">EndDrawing</a> | <a href="#EndMode2D">EndMode2D</a>
-<a href="#EndMode3D">EndMode3D</a> | <a href="#EndScissorMode">EndScissorMode</a> | <a href="#EndShaderMode">EndShaderMode</a> | <a href="#EndTextureMode">EndTextureMode</a> | <a href="#EndVrStereoMode">EndVrStereoMode</a>
-<a href="#ExportDataAsCode">ExportDataAsCode</a> | <a href="#ExportFontAsCode">ExportFontAsCode</a> | <a href="#ExportImage">ExportImage</a> | <a href="#ExportImageAsCode">ExportImageAsCode</a> | <a href="#ExportMesh">ExportMesh</a>
-<a href="#ExportWave">ExportWave</a> | <a href="#ExportWaveAsCode">ExportWaveAsCode</a> | <a href="#Fade">Fade</a> | <a href="#FileExists">FileExists</a> | <a href="#FloatEquals">FloatEquals</a>
-<a href="#GenImageCellular">GenImageCellular</a> | <a href="#GenImageChecked">GenImageChecked</a> | <a href="#GenImageColor">GenImageColor</a> | <a href="#GenImageFontAtlas">GenImageFontAtlas</a> | <a href="#GenImageGradientH">GenImageGradientH</a>
-<a href="#GenImageGradientRadial">GenImageGradientRadial</a> | <a href="#GenImageGradientV">GenImageGradientV</a> | <a href="#GenImageWhiteNoise">GenImageWhiteNoise</a> | <a href="#GenMeshCone">GenMeshCone</a> | <a href="#GenMeshCube">GenMeshCube</a>
+<a href="#AttachAudioMixedProcessor">AttachAudioMixedProcessor</a> | <a href="#AttachAudioStreamProcessor">AttachAudioStreamProcessor</a> | <a href="#BeginBlendMode">BeginBlendMode</a> | <a href="#BeginDrawing">BeginDrawing</a> | <a href="#BeginMode2D">BeginMode2D</a>
+<a href="#BeginMode3D">BeginMode3D</a> | <a href="#BeginScissorMode">BeginScissorMode</a> | <a href="#BeginShaderMode">BeginShaderMode</a> | <a href="#BeginTextureMode">BeginTextureMode</a> | <a href="#BeginVrStereoMode">BeginVrStereoMode</a>
+<a href="#ChangeDirectory">ChangeDirectory</a> | <a href="#CheckCollisionBoxSphere">CheckCollisionBoxSphere</a> | <a href="#CheckCollisionBoxes">CheckCollisionBoxes</a> | <a href="#CheckCollisionCircleRec">CheckCollisionCircleRec</a> | <a href="#CheckCollisionCircles">CheckCollisionCircles</a>
+<a href="#CheckCollisionLines">CheckCollisionLines</a> | <a href="#CheckCollisionPointCircle">CheckCollisionPointCircle</a> | <a href="#CheckCollisionPointLine">CheckCollisionPointLine</a> | <a href="#CheckCollisionPointPoly">CheckCollisionPointPoly</a> | <a href="#CheckCollisionPointRec">CheckCollisionPointRec</a>
+<a href="#CheckCollisionPointTriangle">CheckCollisionPointTriangle</a> | <a href="#CheckCollisionRecs">CheckCollisionRecs</a> | <a href="#CheckCollisionSpheres">CheckCollisionSpheres</a> | <a href="#Clamp">Clamp</a> | <a href="#ClearBackground">ClearBackground</a>
+<a href="#ClearWindowState">ClearWindowState</a> | <a href="#CloseAudioDevice">CloseAudioDevice</a> | <a href="#CloseWindow">CloseWindow</a> | <a href="#CodepointToUTF8">CodepointToUTF8</a> | <a href="#ColorAlpha">ColorAlpha</a>
+<a href="#ColorAlphaBlend">ColorAlphaBlend</a> | <a href="#ColorBrightness">ColorBrightness</a> | <a href="#ColorContrast">ColorContrast</a> | <a href="#ColorFromHSV">ColorFromHSV</a> | <a href="#ColorFromNormalized">ColorFromNormalized</a>
+<a href="#ColorNormalize">ColorNormalize</a> | <a href="#ColorTint">ColorTint</a> | <a href="#ColorToHSV">ColorToHSV</a> | <a href="#ColorToInt">ColorToInt</a> | <a href="#CompressData">CompressData</a>
+<a href="#DecodeDataBase64">DecodeDataBase64</a> | <a href="#DecompressData">DecompressData</a> | <a href="#DetachAudioMixedProcessor">DetachAudioMixedProcessor</a> | <a href="#DetachAudioStreamProcessor">DetachAudioStreamProcessor</a> | <a href="#DirectoryExists">DirectoryExists</a>
+<a href="#DisableCursor">DisableCursor</a> | <a href="#DisableEventWaiting">DisableEventWaiting</a> | <a href="#DrawBillboard">DrawBillboard</a> | <a href="#DrawBillboardPro">DrawBillboardPro</a> | <a href="#DrawBillboardRec">DrawBillboardRec</a>
+<a href="#DrawBoundingBox">DrawBoundingBox</a> | <a href="#DrawCapsule">DrawCapsule</a> | <a href="#DrawCapsuleWires">DrawCapsuleWires</a> | <a href="#DrawCircle">DrawCircle</a> | <a href="#DrawCircle3D">DrawCircle3D</a>
+<a href="#DrawCircleGradient">DrawCircleGradient</a> | <a href="#DrawCircleLines">DrawCircleLines</a> | <a href="#DrawCircleSector">DrawCircleSector</a> | <a href="#DrawCircleSectorLines">DrawCircleSectorLines</a> | <a href="#DrawCircleV">DrawCircleV</a>
+<a href="#DrawCube">DrawCube</a> | <a href="#DrawCubeV">DrawCubeV</a> | <a href="#DrawCubeWires">DrawCubeWires</a> | <a href="#DrawCubeWiresV">DrawCubeWiresV</a> | <a href="#DrawCylinder">DrawCylinder</a>
+<a href="#DrawCylinderEx">DrawCylinderEx</a> | <a href="#DrawCylinderWires">DrawCylinderWires</a> | <a href="#DrawCylinderWiresEx">DrawCylinderWiresEx</a> | <a href="#DrawEllipse">DrawEllipse</a> | <a href="#DrawEllipseLines">DrawEllipseLines</a>
+<a href="#DrawFPS">DrawFPS</a> | <a href="#DrawGrid">DrawGrid</a> | <a href="#DrawLine">DrawLine</a> | <a href="#DrawLine3D">DrawLine3D</a> | <a href="#DrawLineBezier">DrawLineBezier</a>
+<a href="#DrawLineBezierCubic">DrawLineBezierCubic</a> | <a href="#DrawLineBezierQuad">DrawLineBezierQuad</a> | <a href="#DrawLineEx">DrawLineEx</a> | <a href="#DrawLineStrip">DrawLineStrip</a> | <a href="#DrawLineV">DrawLineV</a>
+<a href="#DrawMesh">DrawMesh</a> | <a href="#DrawMeshInstanced">DrawMeshInstanced</a> | <a href="#DrawModel">DrawModel</a> | <a href="#DrawModelEx">DrawModelEx</a> | <a href="#DrawModelWires">DrawModelWires</a>
+<a href="#DrawModelWiresEx">DrawModelWiresEx</a> | <a href="#DrawPixel">DrawPixel</a> | <a href="#DrawPixelV">DrawPixelV</a> | <a href="#DrawPlane">DrawPlane</a> | <a href="#DrawPoint3D">DrawPoint3D</a>
+<a href="#DrawPoly">DrawPoly</a> | <a href="#DrawPolyLines">DrawPolyLines</a> | <a href="#DrawPolyLinesEx">DrawPolyLinesEx</a> | <a href="#DrawRay">DrawRay</a> | <a href="#DrawRectangle">DrawRectangle</a>
+<a href="#DrawRectangleGradientEx">DrawRectangleGradientEx</a> | <a href="#DrawRectangleGradientH">DrawRectangleGradientH</a> | <a href="#DrawRectangleGradientV">DrawRectangleGradientV</a> | <a href="#DrawRectangleLines">DrawRectangleLines</a> | <a href="#DrawRectangleLinesEx">DrawRectangleLinesEx</a>
+<a href="#DrawRectanglePro">DrawRectanglePro</a> | <a href="#DrawRectangleRec">DrawRectangleRec</a> | <a href="#DrawRectangleRounded">DrawRectangleRounded</a> | <a href="#DrawRectangleRoundedLines">DrawRectangleRoundedLines</a> | <a href="#DrawRectangleV">DrawRectangleV</a>
+<a href="#DrawRing">DrawRing</a> | <a href="#DrawRingLines">DrawRingLines</a> | <a href="#DrawSphere">DrawSphere</a> | <a href="#DrawSphereEx">DrawSphereEx</a> | <a href="#DrawSphereWires">DrawSphereWires</a>
+<a href="#DrawText">DrawText</a> | <a href="#DrawTextCodepoint">DrawTextCodepoint</a> | <a href="#DrawTextCodepoints">DrawTextCodepoints</a> | <a href="#DrawTextEx">DrawTextEx</a> | <a href="#DrawTextPro">DrawTextPro</a>
+<a href="#DrawTexture">DrawTexture</a> | <a href="#DrawTextureEx">DrawTextureEx</a> | <a href="#DrawTextureNPatch">DrawTextureNPatch</a> | <a href="#DrawTexturePro">DrawTexturePro</a> | <a href="#DrawTextureRec">DrawTextureRec</a>
+<a href="#DrawTextureV">DrawTextureV</a> | <a href="#DrawTriangle">DrawTriangle</a> | <a href="#DrawTriangle3D">DrawTriangle3D</a> | <a href="#DrawTriangleFan">DrawTriangleFan</a> | <a href="#DrawTriangleLines">DrawTriangleLines</a>
+<a href="#DrawTriangleStrip">DrawTriangleStrip</a> | <a href="#DrawTriangleStrip3D">DrawTriangleStrip3D</a> | <a href="#EnableCursor">EnableCursor</a> | <a href="#EnableEventWaiting">EnableEventWaiting</a> | <a href="#EncodeDataBase64">EncodeDataBase64</a>
+<a href="#EndBlendMode">EndBlendMode</a> | <a href="#EndDrawing">EndDrawing</a> | <a href="#EndMode2D">EndMode2D</a> | <a href="#EndMode3D">EndMode3D</a> | <a href="#EndScissorMode">EndScissorMode</a>
+<a href="#EndShaderMode">EndShaderMode</a> | <a href="#EndTextureMode">EndTextureMode</a> | <a href="#EndVrStereoMode">EndVrStereoMode</a> | <a href="#ExportDataAsCode">ExportDataAsCode</a> | <a href="#ExportFontAsCode">ExportFontAsCode</a>
+<a href="#ExportImage">ExportImage</a> | <a href="#ExportImageAsCode">ExportImageAsCode</a> | <a href="#ExportMesh">ExportMesh</a> | <a href="#ExportWave">ExportWave</a> | <a href="#ExportWaveAsCode">ExportWaveAsCode</a>
+<a href="#Fade">Fade</a> | <a href="#FileExists">FileExists</a> | <a href="#FloatEquals">FloatEquals</a> | <a href="#GenImageCellular">GenImageCellular</a> | <a href="#GenImageChecked">GenImageChecked</a>
+<a href="#GenImageColor">GenImageColor</a> | <a href="#GenImageFontAtlas">GenImageFontAtlas</a> | <a href="#GenImageGradientH">GenImageGradientH</a> | <a href="#GenImageGradientRadial">GenImageGradientRadial</a> | <a href="#GenImageGradientV">GenImageGradientV</a>
+<a href="#GenImagePerlinNoise">GenImagePerlinNoise</a> | <a href="#GenImageText">GenImageText</a> | <a href="#GenImageWhiteNoise">GenImageWhiteNoise</a> | <a href="#GenMeshCone">GenMeshCone</a> | <a href="#GenMeshCube">GenMeshCube</a>
 <a href="#GenMeshCubicmap">GenMeshCubicmap</a> | <a href="#GenMeshCylinder">GenMeshCylinder</a> | <a href="#GenMeshHeightmap">GenMeshHeightmap</a> | <a href="#GenMeshHemiSphere">GenMeshHemiSphere</a> | <a href="#GenMeshKnot">GenMeshKnot</a>
 <a href="#GenMeshPlane">GenMeshPlane</a> | <a href="#GenMeshPoly">GenMeshPoly</a> | <a href="#GenMeshSphere">GenMeshSphere</a> | <a href="#GenMeshTangents">GenMeshTangents</a> | <a href="#GenMeshTorus">GenMeshTorus</a>
 <a href="#GenTextureMipmaps">GenTextureMipmaps</a> | <a href="#GetApplicationDirectory">GetApplicationDirectory</a> | <a href="#GetCameraMatrix">GetCameraMatrix</a> | <a href="#GetCameraMatrix2D">GetCameraMatrix2D</a> | <a href="#GetCharPressed">GetCharPressed</a>
-<a href="#GetClipboardText">GetClipboardText</a> | <a href="#GetCodepoint">GetCodepoint</a> | <a href="#GetCodepointCount">GetCodepointCount</a> | <a href="#GetCollisionRec">GetCollisionRec</a> | <a href="#GetColor">GetColor</a>
-<a href="#GetCurrentMonitor">GetCurrentMonitor</a> | <a href="#GetDirectoryPath">GetDirectoryPath</a> | <a href="#GetFPS">GetFPS</a> | <a href="#GetFileExtension">GetFileExtension</a> | <a href="#GetFileLength">GetFileLength</a>
-<a href="#GetFileModTime">GetFileModTime</a> | <a href="#GetFileName">GetFileName</a> | <a href="#GetFileNameWithoutExt">GetFileNameWithoutExt</a> | <a href="#GetFontDefault">GetFontDefault</a> | <a href="#GetFrameTime">GetFrameTime</a>
-<a href="#GetGamepadAxisCount">GetGamepadAxisCount</a> | <a href="#GetGamepadAxisMovement">GetGamepadAxisMovement</a> | <a href="#GetGamepadButtonPressed">GetGamepadButtonPressed</a> | <a href="#GetGamepadName">GetGamepadName</a> | <a href="#GetGestureDetected">GetGestureDetected</a>
-<a href="#GetGestureDragAngle">GetGestureDragAngle</a> | <a href="#GetGestureDragVector">GetGestureDragVector</a> | <a href="#GetGestureHoldDuration">GetGestureHoldDuration</a> | <a href="#GetGesturePinchAngle">GetGesturePinchAngle</a> | <a href="#GetGesturePinchVector">GetGesturePinchVector</a>
-<a href="#GetGlyphAtlasRec">GetGlyphAtlasRec</a> | <a href="#GetGlyphIndex">GetGlyphIndex</a> | <a href="#GetGlyphInfo">GetGlyphInfo</a> | <a href="#GetImageAlphaBorder">GetImageAlphaBorder</a> | <a href="#GetImageColor">GetImageColor</a>
-<a href="#GetKeyPressed">GetKeyPressed</a> | <a href="#GetMeshBoundingBox">GetMeshBoundingBox</a> | <a href="#GetModelBoundingBox">GetModelBoundingBox</a> | <a href="#GetMonitorCount">GetMonitorCount</a> | <a href="#GetMonitorHeight">GetMonitorHeight</a>
-<a href="#GetMonitorName">GetMonitorName</a> | <a href="#GetMonitorPhysicalHeight">GetMonitorPhysicalHeight</a> | <a href="#GetMonitorPhysicalWidth">GetMonitorPhysicalWidth</a> | <a href="#GetMonitorPosition">GetMonitorPosition</a> | <a href="#GetMonitorRefreshRate">GetMonitorRefreshRate</a>
-<a href="#GetMonitorWidth">GetMonitorWidth</a> | <a href="#GetMouseDelta">GetMouseDelta</a> | <a href="#GetMousePosition">GetMousePosition</a> | <a href="#GetMouseRay">GetMouseRay</a> | <a href="#GetMouseWheelMove">GetMouseWheelMove</a>
-<a href="#GetMouseWheelMoveV">GetMouseWheelMoveV</a> | <a href="#GetMouseX">GetMouseX</a> | <a href="#GetMouseY">GetMouseY</a> | <a href="#GetMusicTimeLength">GetMusicTimeLength</a> | <a href="#GetMusicTimePlayed">GetMusicTimePlayed</a>
-<a href="#GetPixelColor">GetPixelColor</a> | <a href="#GetPixelDataSize">GetPixelDataSize</a> | <a href="#GetPrevDirectoryPath">GetPrevDirectoryPath</a> | <a href="#GetRandomValue">GetRandomValue</a> | <a href="#GetRayCollisionBox">GetRayCollisionBox</a>
-<a href="#GetRayCollisionMesh">GetRayCollisionMesh</a> | <a href="#GetRayCollisionQuad">GetRayCollisionQuad</a> | <a href="#GetRayCollisionSphere">GetRayCollisionSphere</a> | <a href="#GetRayCollisionTriangle">GetRayCollisionTriangle</a> | <a href="#GetRenderHeight">GetRenderHeight</a>
-<a href="#GetRenderWidth">GetRenderWidth</a> | <a href="#GetScreenHeight">GetScreenHeight</a> | <a href="#GetScreenToWorld2D">GetScreenToWorld2D</a> | <a href="#GetScreenWidth">GetScreenWidth</a> | <a href="#GetShaderLocation">GetShaderLocation</a>
-<a href="#GetShaderLocationAttrib">GetShaderLocationAttrib</a> | <a href="#GetSoundsPlaying">GetSoundsPlaying</a> | <a href="#GetTime">GetTime</a> | <a href="#GetTouchPointCount">GetTouchPointCount</a> | <a href="#GetTouchPointId">GetTouchPointId</a>
-<a href="#GetTouchPosition">GetTouchPosition</a> | <a href="#GetTouchX">GetTouchX</a> | <a href="#GetTouchY">GetTouchY</a> | <a href="#GetWindowHandle">GetWindowHandle</a> | <a href="#GetWindowPosition">GetWindowPosition</a>
-<a href="#GetWindowScaleDPI">GetWindowScaleDPI</a> | <a href="#GetWorkingDirectory">GetWorkingDirectory</a> | <a href="#GetWorldToScreen">GetWorldToScreen</a> | <a href="#GetWorldToScreen2D">GetWorldToScreen2D</a> | <a href="#GetWorldToScreenEx">GetWorldToScreenEx</a>
-<a href="#HideCursor">HideCursor</a> | <a href="#ImageAlphaClear">ImageAlphaClear</a> | <a href="#ImageAlphaCrop">ImageAlphaCrop</a> | <a href="#ImageAlphaMask">ImageAlphaMask</a> | <a href="#ImageAlphaPremultiply">ImageAlphaPremultiply</a>
-<a href="#ImageClearBackground">ImageClearBackground</a> | <a href="#ImageColorBrightness">ImageColorBrightness</a> | <a href="#ImageColorContrast">ImageColorContrast</a> | <a href="#ImageColorGrayscale">ImageColorGrayscale</a> | <a href="#ImageColorInvert">ImageColorInvert</a>
-<a href="#ImageColorReplace">ImageColorReplace</a> | <a href="#ImageColorTint">ImageColorTint</a> | <a href="#ImageCopy">ImageCopy</a> | <a href="#ImageCrop">ImageCrop</a> | <a href="#ImageDither">ImageDither</a>
-<a href="#ImageDraw">ImageDraw</a> | <a href="#ImageDrawCircle">ImageDrawCircle</a> | <a href="#ImageDrawCircleV">ImageDrawCircleV</a> | <a href="#ImageDrawLine">ImageDrawLine</a> | <a href="#ImageDrawLineV">ImageDrawLineV</a>
-<a href="#ImageDrawPixel">ImageDrawPixel</a> | <a href="#ImageDrawPixelV">ImageDrawPixelV</a> | <a href="#ImageDrawRectangle">ImageDrawRectangle</a> | <a href="#ImageDrawRectangleLines">ImageDrawRectangleLines</a> | <a href="#ImageDrawRectangleRec">ImageDrawRectangleRec</a>
-<a href="#ImageDrawRectangleV">ImageDrawRectangleV</a> | <a href="#ImageDrawText">ImageDrawText</a> | <a href="#ImageDrawTextEx">ImageDrawTextEx</a> | <a href="#ImageFlipHorizontal">ImageFlipHorizontal</a> | <a href="#ImageFlipVertical">ImageFlipVertical</a>
-<a href="#ImageFormat">ImageFormat</a> | <a href="#ImageFromImage">ImageFromImage</a> | <a href="#ImageMipmaps">ImageMipmaps</a> | <a href="#ImageResize">ImageResize</a> | <a href="#ImageResizeCanvas">ImageResizeCanvas</a>
-<a href="#ImageResizeNN">ImageResizeNN</a> | <a href="#ImageRotateCCW">ImageRotateCCW</a> | <a href="#ImageRotateCW">ImageRotateCW</a> | <a href="#ImageText">ImageText</a> | <a href="#ImageTextEx">ImageTextEx</a>
-<a href="#ImageToPOT">ImageToPOT</a> | <a href="#InitAudioDevice">InitAudioDevice</a> | <a href="#InitWindow">InitWindow</a> | <a href="#IsAudioDeviceReady">IsAudioDeviceReady</a> | <a href="#IsAudioStreamPlaying">IsAudioStreamPlaying</a>
-<a href="#IsAudioStreamProcessed">IsAudioStreamProcessed</a> | <a href="#IsCursorHidden">IsCursorHidden</a> | <a href="#IsCursorOnScreen">IsCursorOnScreen</a> | <a href="#IsFileDropped">IsFileDropped</a> | <a href="#IsFileExtension">IsFileExtension</a>
-<a href="#IsGamepadAvailable">IsGamepadAvailable</a> | <a href="#IsGamepadButtonDown">IsGamepadButtonDown</a> | <a href="#IsGamepadButtonPressed">IsGamepadButtonPressed</a> | <a href="#IsGamepadButtonReleased">IsGamepadButtonReleased</a> | <a href="#IsGamepadButtonUp">IsGamepadButtonUp</a>
-<a href="#IsGestureDetected">IsGestureDetected</a> | <a href="#IsKeyDown">IsKeyDown</a> | <a href="#IsKeyPressed">IsKeyPressed</a> | <a href="#IsKeyReleased">IsKeyReleased</a> | <a href="#IsKeyUp">IsKeyUp</a>
-<a href="#IsModelAnimationValid">IsModelAnimationValid</a> | <a href="#IsMouseButtonDown">IsMouseButtonDown</a> | <a href="#IsMouseButtonPressed">IsMouseButtonPressed</a> | <a href="#IsMouseButtonReleased">IsMouseButtonReleased</a> | <a href="#IsMouseButtonUp">IsMouseButtonUp</a>
-<a href="#IsMusicStreamPlaying">IsMusicStreamPlaying</a> | <a href="#IsPathFile">IsPathFile</a> | <a href="#IsSoundPlaying">IsSoundPlaying</a> | <a href="#IsWindowFocused">IsWindowFocused</a> | <a href="#IsWindowFullscreen">IsWindowFullscreen</a>
+<a href="#GetClipboardText">GetClipboardText</a> | <a href="#GetCodepoint">GetCodepoint</a> | <a href="#GetCodepointCount">GetCodepointCount</a> | <a href="#GetCodepointNext">GetCodepointNext</a> | <a href="#GetCodepointPrevious">GetCodepointPrevious</a>
+<a href="#GetCollisionRec">GetCollisionRec</a> | <a href="#GetColor">GetColor</a> | <a href="#GetCurrentMonitor">GetCurrentMonitor</a> | <a href="#GetDirectoryPath">GetDirectoryPath</a> | <a href="#GetFPS">GetFPS</a>
+<a href="#GetFileExtension">GetFileExtension</a> | <a href="#GetFileLength">GetFileLength</a> | <a href="#GetFileModTime">GetFileModTime</a> | <a href="#GetFileName">GetFileName</a> | <a href="#GetFileNameWithoutExt">GetFileNameWithoutExt</a>
+<a href="#GetFontDefault">GetFontDefault</a> | <a href="#GetFrameTime">GetFrameTime</a> | <a href="#GetGamepadAxisCount">GetGamepadAxisCount</a> | <a href="#GetGamepadAxisMovement">GetGamepadAxisMovement</a> | <a href="#GetGamepadButtonPressed">GetGamepadButtonPressed</a>
+<a href="#GetGamepadName">GetGamepadName</a> | <a href="#GetGestureDetected">GetGestureDetected</a> | <a href="#GetGestureDragAngle">GetGestureDragAngle</a> | <a href="#GetGestureDragVector">GetGestureDragVector</a> | <a href="#GetGestureHoldDuration">GetGestureHoldDuration</a>
+<a href="#GetGesturePinchAngle">GetGesturePinchAngle</a> | <a href="#GetGesturePinchVector">GetGesturePinchVector</a> | <a href="#GetGlyphAtlasRec">GetGlyphAtlasRec</a> | <a href="#GetGlyphIndex">GetGlyphIndex</a> | <a href="#GetGlyphInfo">GetGlyphInfo</a>
+<a href="#GetImageAlphaBorder">GetImageAlphaBorder</a> | <a href="#GetImageColor">GetImageColor</a> | <a href="#GetKeyPressed">GetKeyPressed</a> | <a href="#GetMeshBoundingBox">GetMeshBoundingBox</a> | <a href="#GetModelBoundingBox">GetModelBoundingBox</a>
+<a href="#GetMonitorCount">GetMonitorCount</a> | <a href="#GetMonitorHeight">GetMonitorHeight</a> | <a href="#GetMonitorName">GetMonitorName</a> | <a href="#GetMonitorPhysicalHeight">GetMonitorPhysicalHeight</a> | <a href="#GetMonitorPhysicalWidth">GetMonitorPhysicalWidth</a>
+<a href="#GetMonitorPosition">GetMonitorPosition</a> | <a href="#GetMonitorRefreshRate">GetMonitorRefreshRate</a> | <a href="#GetMonitorWidth">GetMonitorWidth</a> | <a href="#GetMouseDelta">GetMouseDelta</a> | <a href="#GetMousePosition">GetMousePosition</a>
+<a href="#GetMouseRay">GetMouseRay</a> | <a href="#GetMouseWheelMove">GetMouseWheelMove</a> | <a href="#GetMouseWheelMoveV">GetMouseWheelMoveV</a> | <a href="#GetMouseX">GetMouseX</a> | <a href="#GetMouseY">GetMouseY</a>
+<a href="#GetMusicTimeLength">GetMusicTimeLength</a> | <a href="#GetMusicTimePlayed">GetMusicTimePlayed</a> | <a href="#GetPixelColor">GetPixelColor</a> | <a href="#GetPixelDataSize">GetPixelDataSize</a> | <a href="#GetPrevDirectoryPath">GetPrevDirectoryPath</a>
+<a href="#GetRandomValue">GetRandomValue</a> | <a href="#GetRayCollisionBox">GetRayCollisionBox</a> | <a href="#GetRayCollisionMesh">GetRayCollisionMesh</a> | <a href="#GetRayCollisionQuad">GetRayCollisionQuad</a> | <a href="#GetRayCollisionSphere">GetRayCollisionSphere</a>
+<a href="#GetRayCollisionTriangle">GetRayCollisionTriangle</a> | <a href="#GetRenderHeight">GetRenderHeight</a> | <a href="#GetRenderWidth">GetRenderWidth</a> | <a href="#GetScreenHeight">GetScreenHeight</a> | <a href="#GetScreenToWorld2D">GetScreenToWorld2D</a>
+<a href="#GetScreenWidth">GetScreenWidth</a> | <a href="#GetShaderLocation">GetShaderLocation</a> | <a href="#GetShaderLocationAttrib">GetShaderLocationAttrib</a> | <a href="#GetTime">GetTime</a> | <a href="#GetTouchPointCount">GetTouchPointCount</a>
+<a href="#GetTouchPointId">GetTouchPointId</a> | <a href="#GetTouchPosition">GetTouchPosition</a> | <a href="#GetTouchX">GetTouchX</a> | <a href="#GetTouchY">GetTouchY</a> | <a href="#GetWindowHandle">GetWindowHandle</a>
+<a href="#GetWindowPosition">GetWindowPosition</a> | <a href="#GetWindowScaleDPI">GetWindowScaleDPI</a> | <a href="#GetWorkingDirectory">GetWorkingDirectory</a> | <a href="#GetWorldToScreen">GetWorldToScreen</a> | <a href="#GetWorldToScreen2D">GetWorldToScreen2D</a>
+<a href="#GetWorldToScreenEx">GetWorldToScreenEx</a> | <a href="#HideCursor">HideCursor</a> | <a href="#ImageAlphaClear">ImageAlphaClear</a> | <a href="#ImageAlphaCrop">ImageAlphaCrop</a> | <a href="#ImageAlphaMask">ImageAlphaMask</a>
+<a href="#ImageAlphaPremultiply">ImageAlphaPremultiply</a> | <a href="#ImageBlurGaussian">ImageBlurGaussian</a> | <a href="#ImageClearBackground">ImageClearBackground</a> | <a href="#ImageColorBrightness">ImageColorBrightness</a> | <a href="#ImageColorContrast">ImageColorContrast</a>
+<a href="#ImageColorGrayscale">ImageColorGrayscale</a> | <a href="#ImageColorInvert">ImageColorInvert</a> | <a href="#ImageColorReplace">ImageColorReplace</a> | <a href="#ImageColorTint">ImageColorTint</a> | <a href="#ImageCopy">ImageCopy</a>
+<a href="#ImageCrop">ImageCrop</a> | <a href="#ImageDither">ImageDither</a> | <a href="#ImageDraw">ImageDraw</a> | <a href="#ImageDrawCircle">ImageDrawCircle</a> | <a href="#ImageDrawCircleLines">ImageDrawCircleLines</a>
+<a href="#ImageDrawCircleLinesV">ImageDrawCircleLinesV</a> | <a href="#ImageDrawCircleV">ImageDrawCircleV</a> | <a href="#ImageDrawLine">ImageDrawLine</a> | <a href="#ImageDrawLineV">ImageDrawLineV</a> | <a href="#ImageDrawPixel">ImageDrawPixel</a>
+<a href="#ImageDrawPixelV">ImageDrawPixelV</a> | <a href="#ImageDrawRectangle">ImageDrawRectangle</a> | <a href="#ImageDrawRectangleLines">ImageDrawRectangleLines</a> | <a href="#ImageDrawRectangleRec">ImageDrawRectangleRec</a> | <a href="#ImageDrawRectangleV">ImageDrawRectangleV</a>
+<a href="#ImageDrawText">ImageDrawText</a> | <a href="#ImageDrawTextEx">ImageDrawTextEx</a> | <a href="#ImageFlipHorizontal">ImageFlipHorizontal</a> | <a href="#ImageFlipVertical">ImageFlipVertical</a> | <a href="#ImageFormat">ImageFormat</a>
+<a href="#ImageFromImage">ImageFromImage</a> | <a href="#ImageMipmaps">ImageMipmaps</a> | <a href="#ImageResize">ImageResize</a> | <a href="#ImageResizeCanvas">ImageResizeCanvas</a> | <a href="#ImageResizeNN">ImageResizeNN</a>
+<a href="#ImageRotateCCW">ImageRotateCCW</a> | <a href="#ImageRotateCW">ImageRotateCW</a> | <a href="#ImageText">ImageText</a> | <a href="#ImageTextEx">ImageTextEx</a> | <a href="#ImageToPOT">ImageToPOT</a>
+<a href="#InitAudioDevice">InitAudioDevice</a> | <a href="#InitWindow">InitWindow</a> | <a href="#IsAudioDeviceReady">IsAudioDeviceReady</a> | <a href="#IsAudioStreamPlaying">IsAudioStreamPlaying</a> | <a href="#IsAudioStreamProcessed">IsAudioStreamProcessed</a>
+<a href="#IsAudioStreamReady">IsAudioStreamReady</a> | <a href="#IsCursorHidden">IsCursorHidden</a> | <a href="#IsCursorOnScreen">IsCursorOnScreen</a> | <a href="#IsFileDropped">IsFileDropped</a> | <a href="#IsFileExtension">IsFileExtension</a>
+<a href="#IsFontReady">IsFontReady</a> | <a href="#IsGamepadAvailable">IsGamepadAvailable</a> | <a href="#IsGamepadButtonDown">IsGamepadButtonDown</a> | <a href="#IsGamepadButtonPressed">IsGamepadButtonPressed</a> | <a href="#IsGamepadButtonReleased">IsGamepadButtonReleased</a>
+<a href="#IsGamepadButtonUp">IsGamepadButtonUp</a> | <a href="#IsGestureDetected">IsGestureDetected</a> | <a href="#IsImageReady">IsImageReady</a> | <a href="#IsKeyDown">IsKeyDown</a> | <a href="#IsKeyPressed">IsKeyPressed</a>
+<a href="#IsKeyReleased">IsKeyReleased</a> | <a href="#IsKeyUp">IsKeyUp</a> | <a href="#IsMaterialReady">IsMaterialReady</a> | <a href="#IsModelAnimationValid">IsModelAnimationValid</a> | <a href="#IsModelReady">IsModelReady</a>
+<a href="#IsMouseButtonDown">IsMouseButtonDown</a> | <a href="#IsMouseButtonPressed">IsMouseButtonPressed</a> | <a href="#IsMouseButtonReleased">IsMouseButtonReleased</a> | <a href="#IsMouseButtonUp">IsMouseButtonUp</a> | <a href="#IsMusicReady">IsMusicReady</a>
+<a href="#IsMusicStreamPlaying">IsMusicStreamPlaying</a> | <a href="#IsPathFile">IsPathFile</a> | <a href="#IsRenderTextureReady">IsRenderTextureReady</a> | <a href="#IsShaderReady">IsShaderReady</a> | <a href="#IsSoundPlaying">IsSoundPlaying</a>
+<a href="#IsSoundReady">IsSoundReady</a> | <a href="#IsTextureReady">IsTextureReady</a> | <a href="#IsWaveReady">IsWaveReady</a> | <a href="#IsWindowFocused">IsWindowFocused</a> | <a href="#IsWindowFullscreen">IsWindowFullscreen</a>
 <a href="#IsWindowHidden">IsWindowHidden</a> | <a href="#IsWindowMaximized">IsWindowMaximized</a> | <a href="#IsWindowMinimized">IsWindowMinimized</a> | <a href="#IsWindowReady">IsWindowReady</a> | <a href="#IsWindowResized">IsWindowResized</a>
 <a href="#IsWindowState">IsWindowState</a> | <a href="#Lerp">Lerp</a> | <a href="#LoadAudioStream">LoadAudioStream</a> | <a href="#LoadCodepoints">LoadCodepoints</a> | <a href="#LoadDirectoryFiles">LoadDirectoryFiles</a>
 <a href="#LoadDirectoryFilesEx">LoadDirectoryFilesEx</a> | <a href="#LoadDroppedFiles">LoadDroppedFiles</a> | <a href="#LoadFileData">LoadFileData</a> | <a href="#LoadFileText">LoadFileText</a> | <a href="#LoadFont">LoadFont</a>
@@ -2431,42 +2445,41 @@ Item|Item|Item|Item|Item
 <a href="#LoadImagePalette">LoadImagePalette</a> | <a href="#LoadImageRaw">LoadImageRaw</a> | <a href="#LoadMaterialDefault">LoadMaterialDefault</a> | <a href="#LoadMaterials">LoadMaterials</a> | <a href="#LoadModel">LoadModel</a>
 <a href="#LoadModelAnimations">LoadModelAnimations</a> | <a href="#LoadModelFromMesh">LoadModelFromMesh</a> | <a href="#LoadMusicStream">LoadMusicStream</a> | <a href="#LoadMusicStreamFromMemory">LoadMusicStreamFromMemory</a> | <a href="#LoadRenderTexture">LoadRenderTexture</a>
 <a href="#LoadShader">LoadShader</a> | <a href="#LoadShaderFromMemory">LoadShaderFromMemory</a> | <a href="#LoadSound">LoadSound</a> | <a href="#LoadSoundFromWave">LoadSoundFromWave</a> | <a href="#LoadTexture">LoadTexture</a>
-<a href="#LoadTextureCubemap">LoadTextureCubemap</a> | <a href="#LoadTextureFromImage">LoadTextureFromImage</a> | <a href="#LoadVrStereoConfig">LoadVrStereoConfig</a> | <a href="#LoadWave">LoadWave</a> | <a href="#LoadWaveFromMemory">LoadWaveFromMemory</a>
-<a href="#LoadWaveSamples">LoadWaveSamples</a> | <a href="#MatrixAdd">MatrixAdd</a> | <a href="#MatrixDeterminant">MatrixDeterminant</a> | <a href="#MatrixFrustum">MatrixFrustum</a> | <a href="#MatrixIdentity">MatrixIdentity</a>
-<a href="#MatrixInvert">MatrixInvert</a> | <a href="#MatrixLookAt">MatrixLookAt</a> | <a href="#MatrixMultiply">MatrixMultiply</a> | <a href="#MatrixOrtho">MatrixOrtho</a> | <a href="#MatrixPerspective">MatrixPerspective</a>
-<a href="#MatrixRotate">MatrixRotate</a> | <a href="#MatrixRotateX">MatrixRotateX</a> | <a href="#MatrixRotateXYZ">MatrixRotateXYZ</a> | <a href="#MatrixRotateY">MatrixRotateY</a> | <a href="#MatrixRotateZ">MatrixRotateZ</a>
-<a href="#MatrixRotateZYX">MatrixRotateZYX</a> | <a href="#MatrixScale">MatrixScale</a> | <a href="#MatrixSubtract">MatrixSubtract</a> | <a href="#MatrixToFloatV">MatrixToFloatV</a> | <a href="#MatrixTrace">MatrixTrace</a>
-<a href="#MatrixTranslate">MatrixTranslate</a> | <a href="#MatrixTranspose">MatrixTranspose</a> | <a href="#MaximizeWindow">MaximizeWindow</a> | <a href="#MeasureText">MeasureText</a> | <a href="#MeasureTextEx">MeasureTextEx</a>
-<a href="#MemAlloc">MemAlloc</a> | <a href="#MemFree">MemFree</a> | <a href="#MemRealloc">MemRealloc</a> | <a href="#MinimizeWindow">MinimizeWindow</a> | <a href="#Normalize">Normalize</a>
-<a href="#OpenURL">OpenURL</a> | <a href="#PauseAudioStream">PauseAudioStream</a> | <a href="#PauseMusicStream">PauseMusicStream</a> | <a href="#PauseSound">PauseSound</a> | <a href="#PlayAudioStream">PlayAudioStream</a>
-<a href="#PlayMusicStream">PlayMusicStream</a> | <a href="#PlaySound">PlaySound</a> | <a href="#PlaySoundMulti">PlaySoundMulti</a> | <a href="#PollInputEvents">PollInputEvents</a> | <a href="#QuaternionAdd">QuaternionAdd</a>
+<a href="#LoadTextureCubemap">LoadTextureCubemap</a> | <a href="#LoadTextureFromImage">LoadTextureFromImage</a> | <a href="#LoadUTF8">LoadUTF8</a> | <a href="#LoadVrStereoConfig">LoadVrStereoConfig</a> | <a href="#LoadWave">LoadWave</a>
+<a href="#LoadWaveFromMemory">LoadWaveFromMemory</a> | <a href="#LoadWaveSamples">LoadWaveSamples</a> | <a href="#MatrixAdd">MatrixAdd</a> | <a href="#MatrixDeterminant">MatrixDeterminant</a> | <a href="#MatrixFrustum">MatrixFrustum</a>
+<a href="#MatrixIdentity">MatrixIdentity</a> | <a href="#MatrixInvert">MatrixInvert</a> | <a href="#MatrixLookAt">MatrixLookAt</a> | <a href="#MatrixMultiply">MatrixMultiply</a> | <a href="#MatrixOrtho">MatrixOrtho</a>
+<a href="#MatrixPerspective">MatrixPerspective</a> | <a href="#MatrixRotate">MatrixRotate</a> | <a href="#MatrixRotateX">MatrixRotateX</a> | <a href="#MatrixRotateXYZ">MatrixRotateXYZ</a> | <a href="#MatrixRotateY">MatrixRotateY</a>
+<a href="#MatrixRotateZ">MatrixRotateZ</a> | <a href="#MatrixRotateZYX">MatrixRotateZYX</a> | <a href="#MatrixScale">MatrixScale</a> | <a href="#MatrixSubtract">MatrixSubtract</a> | <a href="#MatrixToFloatV">MatrixToFloatV</a>
+<a href="#MatrixTrace">MatrixTrace</a> | <a href="#MatrixTranslate">MatrixTranslate</a> | <a href="#MatrixTranspose">MatrixTranspose</a> | <a href="#MaximizeWindow">MaximizeWindow</a> | <a href="#MeasureText">MeasureText</a>
+<a href="#MeasureTextEx">MeasureTextEx</a> | <a href="#MemAlloc">MemAlloc</a> | <a href="#MemFree">MemFree</a> | <a href="#MemRealloc">MemRealloc</a> | <a href="#MinimizeWindow">MinimizeWindow</a>
+<a href="#Normalize">Normalize</a> | <a href="#OpenURL">OpenURL</a> | <a href="#PauseAudioStream">PauseAudioStream</a> | <a href="#PauseMusicStream">PauseMusicStream</a> | <a href="#PauseSound">PauseSound</a>
+<a href="#PlayAudioStream">PlayAudioStream</a> | <a href="#PlayMusicStream">PlayMusicStream</a> | <a href="#PlaySound">PlaySound</a> | <a href="#PollInputEvents">PollInputEvents</a> | <a href="#QuaternionAdd">QuaternionAdd</a>
 <a href="#QuaternionAddValue">QuaternionAddValue</a> | <a href="#QuaternionDivide">QuaternionDivide</a> | <a href="#QuaternionEquals">QuaternionEquals</a> | <a href="#QuaternionFromAxisAngle">QuaternionFromAxisAngle</a> | <a href="#QuaternionFromEuler">QuaternionFromEuler</a>
 <a href="#QuaternionFromMatrix">QuaternionFromMatrix</a> | <a href="#QuaternionFromVector3ToVector3">QuaternionFromVector3ToVector3</a> | <a href="#QuaternionIdentity">QuaternionIdentity</a> | <a href="#QuaternionInvert">QuaternionInvert</a> | <a href="#QuaternionLength">QuaternionLength</a>
 <a href="#QuaternionMultiply">QuaternionMultiply</a> | <a href="#QuaternionNlerp">QuaternionNlerp</a> | <a href="#QuaternionNormalize">QuaternionNormalize</a> | <a href="#QuaternionScale">QuaternionScale</a> | <a href="#QuaternionSlerp">QuaternionSlerp</a>
 <a href="#QuaternionSubtract">QuaternionSubtract</a> | <a href="#QuaternionSubtractValue">QuaternionSubtractValue</a> | <a href="#QuaternionToAxisAngle">QuaternionToAxisAngle</a> | <a href="#QuaternionToEuler">QuaternionToEuler</a> | <a href="#QuaternionToMatrix">QuaternionToMatrix</a>
 <a href="#QuaternionTransform">QuaternionTransform</a> | <a href="#Remap">Remap</a> | <a href="#RestoreWindow">RestoreWindow</a> | <a href="#ResumeAudioStream">ResumeAudioStream</a> | <a href="#ResumeMusicStream">ResumeMusicStream</a>
 <a href="#ResumeSound">ResumeSound</a> | <a href="#SaveFileData">SaveFileData</a> | <a href="#SaveFileText">SaveFileText</a> | <a href="#SeekMusicStream">SeekMusicStream</a> | <a href="#SetAudioStreamBufferSizeDefault">SetAudioStreamBufferSizeDefault</a>
-<a href="#SetAudioStreamCallback">SetAudioStreamCallback</a> | <a href="#SetAudioStreamPan">SetAudioStreamPan</a> | <a href="#SetAudioStreamPitch">SetAudioStreamPitch</a> | <a href="#SetAudioStreamVolume">SetAudioStreamVolume</a> | <a href="#SetCameraAltControl">SetCameraAltControl</a>
-<a href="#SetCameraMode">SetCameraMode</a> | <a href="#SetCameraMoveControls">SetCameraMoveControls</a> | <a href="#SetCameraPanControl">SetCameraPanControl</a> | <a href="#SetCameraSmoothZoomControl">SetCameraSmoothZoomControl</a> | <a href="#SetClipboardText">SetClipboardText</a>
+<a href="#SetAudioStreamCallback">SetAudioStreamCallback</a> | <a href="#SetAudioStreamPan">SetAudioStreamPan</a> | <a href="#SetAudioStreamPitch">SetAudioStreamPitch</a> | <a href="#SetAudioStreamVolume">SetAudioStreamVolume</a> | <a href="#SetClipboardText">SetClipboardText</a>
 <a href="#SetConfigFlags">SetConfigFlags</a> | <a href="#SetExitKey">SetExitKey</a> | <a href="#SetGamepadMappings">SetGamepadMappings</a> | <a href="#SetGesturesEnabled">SetGesturesEnabled</a> | <a href="#SetLoadFileDataCallback">SetLoadFileDataCallback</a>
 <a href="#SetLoadFileTextCallback">SetLoadFileTextCallback</a> | <a href="#SetMasterVolume">SetMasterVolume</a> | <a href="#SetMaterialTexture">SetMaterialTexture</a> | <a href="#SetModelMeshMaterial">SetModelMeshMaterial</a> | <a href="#SetMouseCursor">SetMouseCursor</a>
 <a href="#SetMouseOffset">SetMouseOffset</a> | <a href="#SetMousePosition">SetMousePosition</a> | <a href="#SetMouseScale">SetMouseScale</a> | <a href="#SetMusicPan">SetMusicPan</a> | <a href="#SetMusicPitch">SetMusicPitch</a>
 <a href="#SetMusicVolume">SetMusicVolume</a> | <a href="#SetPixelColor">SetPixelColor</a> | <a href="#SetRandomSeed">SetRandomSeed</a> | <a href="#SetSaveFileDataCallback">SetSaveFileDataCallback</a> | <a href="#SetSaveFileTextCallback">SetSaveFileTextCallback</a>
 <a href="#SetShaderValue">SetShaderValue</a> | <a href="#SetShaderValueMatrix">SetShaderValueMatrix</a> | <a href="#SetShaderValueTexture">SetShaderValueTexture</a> | <a href="#SetShaderValueV">SetShaderValueV</a> | <a href="#SetShapesTexture">SetShapesTexture</a>
 <a href="#SetSoundPan">SetSoundPan</a> | <a href="#SetSoundPitch">SetSoundPitch</a> | <a href="#SetSoundVolume">SetSoundVolume</a> | <a href="#SetTargetFPS">SetTargetFPS</a> | <a href="#SetTextureFilter">SetTextureFilter</a>
-<a href="#SetTextureWrap">SetTextureWrap</a> | <a href="#SetTraceLogCallback">SetTraceLogCallback</a> | <a href="#SetTraceLogLevel">SetTraceLogLevel</a> | <a href="#SetWindowIcon">SetWindowIcon</a> | <a href="#SetWindowMinSize">SetWindowMinSize</a>
-<a href="#SetWindowMonitor">SetWindowMonitor</a> | <a href="#SetWindowOpacity">SetWindowOpacity</a> | <a href="#SetWindowPosition">SetWindowPosition</a> | <a href="#SetWindowSize">SetWindowSize</a> | <a href="#SetWindowState">SetWindowState</a>
-<a href="#SetWindowTitle">SetWindowTitle</a> | <a href="#ShowCursor">ShowCursor</a> | <a href="#StopAudioStream">StopAudioStream</a> | <a href="#StopMusicStream">StopMusicStream</a> | <a href="#StopSound">StopSound</a>
-<a href="#StopSoundMulti">StopSoundMulti</a> | <a href="#SwapScreenBuffer">SwapScreenBuffer</a> | <a href="#TakeScreenshot">TakeScreenshot</a> | <a href="#TextAppend">TextAppend</a> | <a href="#TextCodepointsToUTF8">TextCodepointsToUTF8</a>
-<a href="#TextCopy">TextCopy</a> | <a href="#TextFindIndex">TextFindIndex</a> | <a href="#TextFormat">TextFormat</a> | <a href="#TextInsert">TextInsert</a> | <a href="#TextIsEqual">TextIsEqual</a>
-<a href="#TextJoin">TextJoin</a> | <a href="#TextLength">TextLength</a> | <a href="#TextReplace">TextReplace</a> | <a href="#TextSplit">TextSplit</a> | <a href="#TextSubtext">TextSubtext</a>
-<a href="#TextToInteger">TextToInteger</a> | <a href="#TextToLower">TextToLower</a> | <a href="#TextToPascal">TextToPascal</a> | <a href="#TextToUpper">TextToUpper</a> | <a href="#ToggleFullscreen">ToggleFullscreen</a>
-<a href="#TraceLog">TraceLog</a> | <a href="#UnloadAudioStream">UnloadAudioStream</a> | <a href="#UnloadCodepoints">UnloadCodepoints</a> | <a href="#UnloadDirectoryFiles">UnloadDirectoryFiles</a> | <a href="#UnloadDroppedFiles">UnloadDroppedFiles</a>
-<a href="#UnloadFileData">UnloadFileData</a> | <a href="#UnloadFileText">UnloadFileText</a> | <a href="#UnloadFont">UnloadFont</a> | <a href="#UnloadFontData">UnloadFontData</a> | <a href="#UnloadImage">UnloadImage</a>
-<a href="#UnloadImageColors">UnloadImageColors</a> | <a href="#UnloadImagePalette">UnloadImagePalette</a> | <a href="#UnloadMaterial">UnloadMaterial</a> | <a href="#UnloadMesh">UnloadMesh</a> | <a href="#UnloadModel">UnloadModel</a>
-<a href="#UnloadModelAnimation">UnloadModelAnimation</a> | <a href="#UnloadModelAnimations">UnloadModelAnimations</a> | <a href="#UnloadModelKeepMeshes">UnloadModelKeepMeshes</a> | <a href="#UnloadMusicStream">UnloadMusicStream</a> | <a href="#UnloadRenderTexture">UnloadRenderTexture</a>
-<a href="#UnloadShader">UnloadShader</a> | <a href="#UnloadSound">UnloadSound</a> | <a href="#UnloadTexture">UnloadTexture</a> | <a href="#UnloadVrStereoConfig">UnloadVrStereoConfig</a> | <a href="#UnloadWave">UnloadWave</a>
-<a href="#UnloadWaveSamples">UnloadWaveSamples</a> | <a href="#UpdateAudioStream">UpdateAudioStream</a> | <a href="#UpdateCamera">UpdateCamera</a> | <a href="#UpdateMeshBuffer">UpdateMeshBuffer</a> | <a href="#UpdateModelAnimation">UpdateModelAnimation</a>
+<a href="#SetTextureWrap">SetTextureWrap</a> | <a href="#SetTraceLogCallback">SetTraceLogCallback</a> | <a href="#SetTraceLogLevel">SetTraceLogLevel</a> | <a href="#SetWindowIcon">SetWindowIcon</a> | <a href="#SetWindowIcons">SetWindowIcons</a>
+<a href="#SetWindowMinSize">SetWindowMinSize</a> | <a href="#SetWindowMonitor">SetWindowMonitor</a> | <a href="#SetWindowOpacity">SetWindowOpacity</a> | <a href="#SetWindowPosition">SetWindowPosition</a> | <a href="#SetWindowSize">SetWindowSize</a>
+<a href="#SetWindowState">SetWindowState</a> | <a href="#SetWindowTitle">SetWindowTitle</a> | <a href="#ShowCursor">ShowCursor</a> | <a href="#StopAudioStream">StopAudioStream</a> | <a href="#StopMusicStream">StopMusicStream</a>
+<a href="#StopSound">StopSound</a> | <a href="#SwapScreenBuffer">SwapScreenBuffer</a> | <a href="#TakeScreenshot">TakeScreenshot</a> | <a href="#TextAppend">TextAppend</a> | <a href="#TextCopy">TextCopy</a>
+<a href="#TextFindIndex">TextFindIndex</a> | <a href="#TextFormat">TextFormat</a> | <a href="#TextInsert">TextInsert</a> | <a href="#TextIsEqual">TextIsEqual</a> | <a href="#TextJoin">TextJoin</a>
+<a href="#TextLength">TextLength</a> | <a href="#TextReplace">TextReplace</a> | <a href="#TextSplit">TextSplit</a> | <a href="#TextSubtext">TextSubtext</a> | <a href="#TextToInteger">TextToInteger</a>
+<a href="#TextToLower">TextToLower</a> | <a href="#TextToPascal">TextToPascal</a> | <a href="#TextToUpper">TextToUpper</a> | <a href="#ToggleFullscreen">ToggleFullscreen</a> | <a href="#TraceLog">TraceLog</a>
+<a href="#UnloadAudioStream">UnloadAudioStream</a> | <a href="#UnloadCodepoints">UnloadCodepoints</a> | <a href="#UnloadDirectoryFiles">UnloadDirectoryFiles</a> | <a href="#UnloadDroppedFiles">UnloadDroppedFiles</a> | <a href="#UnloadFileData">UnloadFileData</a>
+<a href="#UnloadFileText">UnloadFileText</a> | <a href="#UnloadFont">UnloadFont</a> | <a href="#UnloadFontData">UnloadFontData</a> | <a href="#UnloadImage">UnloadImage</a> | <a href="#UnloadImageColors">UnloadImageColors</a>
+<a href="#UnloadImagePalette">UnloadImagePalette</a> | <a href="#UnloadMaterial">UnloadMaterial</a> | <a href="#UnloadMesh">UnloadMesh</a> | <a href="#UnloadModel">UnloadModel</a> | <a href="#UnloadModelAnimation">UnloadModelAnimation</a>
+<a href="#UnloadModelAnimations">UnloadModelAnimations</a> | <a href="#UnloadMusicStream">UnloadMusicStream</a> | <a href="#UnloadRenderTexture">UnloadRenderTexture</a> | <a href="#UnloadShader">UnloadShader</a> | <a href="#UnloadSound">UnloadSound</a>
+<a href="#UnloadTexture">UnloadTexture</a> | <a href="#UnloadUTF8">UnloadUTF8</a> | <a href="#UnloadVrStereoConfig">UnloadVrStereoConfig</a> | <a href="#UnloadWave">UnloadWave</a> | <a href="#UnloadWaveSamples">UnloadWaveSamples</a>
+<a href="#UpdateAudioStream">UpdateAudioStream</a> | <a href="#UpdateCamera">UpdateCamera</a> | <a href="#UpdateCameraPro">UpdateCameraPro</a> | <a href="#UpdateMeshBuffer">UpdateMeshBuffer</a> | <a href="#UpdateModelAnimation">UpdateModelAnimation</a>
 <a href="#UpdateMusicStream">UpdateMusicStream</a> | <a href="#UpdateSound">UpdateSound</a> | <a href="#UpdateTexture">UpdateTexture</a> | <a href="#UpdateTextureRec">UpdateTextureRec</a> | <a href="#UploadMesh">UploadMesh</a>
 <a href="#Vector2Add">Vector2Add</a> | <a href="#Vector2AddValue">Vector2AddValue</a> | <a href="#Vector2Angle">Vector2Angle</a> | <a href="#Vector2Clamp">Vector2Clamp</a> | <a href="#Vector2ClampValue">Vector2ClampValue</a>
 <a href="#Vector2Distance">Vector2Distance</a> | <a href="#Vector2DistanceSqr">Vector2DistanceSqr</a> | <a href="#Vector2Divide">Vector2Divide</a> | <a href="#Vector2DotProduct">Vector2DotProduct</a> | <a href="#Vector2Equals">Vector2Equals</a>
@@ -2838,7 +2851,7 @@ def restore_window() -> None
 ---
 <h2 id="SetWindowIcon"><code>set_window_icon</code> function</h2>
 
-> Set icon for window (only PLATFORM_DESKTOP)
+> Set icon for window (single image, RGBA 32bit, only PLATFORM_DESKTOP)
 
 Defined in raylib.h:
 
@@ -2850,6 +2863,28 @@ Python wrapper:
 
 ```python
 def set_window_icon(image: Image) -> None
+```
+
+See also:
+<a href="#Image">Image</a>
+
+[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="SetWindowIcons"><code>set_window_icons</code> function</h2>
+
+> Set icon for window (multiple images, RGBA 32bit, only PLATFORM_DESKTOP)
+
+Defined in raylib.h:
+
+```c
+void SetWindowIcons(Image * images, int count) 
+```
+
+Python wrapper:
+
+```python
+def set_window_icons(images: ImagePtr, count: int) -> None
 ```
 
 See also:
@@ -3958,6 +3993,28 @@ See also:
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
+<h2 id="IsShaderReady"><code>is_shader_ready</code> function</h2>
+
+> Check if a shader is ready
+
+Defined in raylib.h:
+
+```c
+bool IsShaderReady(Shader shader) 
+```
+
+Python wrapper:
+
+```python
+def is_shader_ready(shader: Shader) -> bool
+```
+
+See also:
+<a href="#Shader">Shader</a>
+
+[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
+
+---
 <h2 id="GetShaderLocation"><code>get_shader_location</code> function</h2>
 
 > Get shader uniform location
@@ -4463,7 +4520,7 @@ def set_trace_log_level(log_level: int) -> None
 Defined in raylib.h:
 
 ```c
-void MemAlloc(int size) 
+void MemAlloc(unsigned int size) 
 ```
 
 Python wrapper:
@@ -4482,7 +4539,7 @@ def mem_alloc(size: int) -> bytes
 Defined in raylib.h:
 
 ```c
-void MemRealloc(void ptr, int size) 
+void MemRealloc(void ptr, unsigned int size) 
 ```
 
 Python wrapper:
@@ -4691,13 +4748,13 @@ def save_file_data(file_name: Union[str, CharPtr], data: bytes, bytes_to_write: 
 Defined in raylib.h:
 
 ```c
-bool ExportDataAsCode(char * data, unsigned int size, char * file_name) 
+bool ExportDataAsCode(unsigned char * data, unsigned int size, char * file_name) 
 ```
 
 Python wrapper:
 
 ```python
-def export_data_as_code(data: Union[str, CharPtr], size: int, file_name: Union[str, CharPtr]) -> bool
+def export_data_as_code(data: Union[Seq[int], UCharPtr], size: int, file_name: Union[str, CharPtr]) -> bool
 ```
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
@@ -6085,25 +6142,6 @@ def get_gesture_pinch_angle() -> float
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
-<h2 id="SetCameraMode"><code>set_camera_mode</code> function</h2>
-
-> Set camera mode (multiple camera modes available)
-
-Defined in raylib.h:
-
-```c
-void SetCameraMode(Camera camera, int mode) 
-```
-
-Python wrapper:
-
-```python
-def set_camera_mode(camera: Camera, mode: int) -> None
-```
-
-[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
-
----
 <h2 id="UpdateCamera"><code>update_camera</code> function</h2>
 
 > Update camera position for selected mode
@@ -6111,90 +6149,36 @@ def set_camera_mode(camera: Camera, mode: int) -> None
 Defined in raylib.h:
 
 ```c
-void UpdateCamera(Camera * camera) 
+void UpdateCamera(Camera * camera, int mode) 
 ```
 
 Python wrapper:
 
 ```python
-def update_camera(camera: CameraPtr) -> None
+def update_camera(camera: CameraPtr, mode: int) -> None
 ```
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
-<h2 id="SetCameraPanControl"><code>set_camera_pan_control</code> function</h2>
+<h2 id="UpdateCameraPro"><code>update_camera_pro</code> function</h2>
 
-> Set camera pan key to combine with mouse movement (free camera)
+> Update camera movement/rotation
 
 Defined in raylib.h:
 
 ```c
-void SetCameraPanControl(int key_pan) 
+void UpdateCameraPro(Camera * camera, Vector3 movement, Vector3 rotation, float zoom) 
 ```
 
 Python wrapper:
 
 ```python
-def set_camera_pan_control(key_pan: int) -> None
+def update_camera_pro(camera: CameraPtr, movement: Vector3, rotation: Vector3, zoom: float) -> None
 ```
 
-[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
-
----
-<h2 id="SetCameraAltControl"><code>set_camera_alt_control</code> function</h2>
-
-> Set camera alt key to combine with mouse movement (free camera)
-
-Defined in raylib.h:
-
-```c
-void SetCameraAltControl(int key_alt) 
-```
-
-Python wrapper:
-
-```python
-def set_camera_alt_control(key_alt: int) -> None
-```
-
-[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
-
----
-<h2 id="SetCameraSmoothZoomControl"><code>set_camera_smooth_zoom_control</code> function</h2>
-
-> Set camera smooth zoom key to combine with mouse (free camera)
-
-Defined in raylib.h:
-
-```c
-void SetCameraSmoothZoomControl(int key_smooth_zoom) 
-```
-
-Python wrapper:
-
-```python
-def set_camera_smooth_zoom_control(key_smooth_zoom: int) -> None
-```
-
-[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
-
----
-<h2 id="SetCameraMoveControls"><code>set_camera_move_controls</code> function</h2>
-
-> Set camera move controls (1st person and 3rd person cameras)
-
-Defined in raylib.h:
-
-```c
-void SetCameraMoveControls(int key_front, int key_back, int key_right, int key_left, int key_up, int key_down) 
-```
-
-Python wrapper:
-
-```python
-def set_camera_move_controls(key_front: int, key_back: int, key_right: int, key_left: int, key_up: int, key_down: int) -> None
-```
+See also:
+<a href="#Vector3">Vector3</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -7167,6 +7151,28 @@ See also:
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
+<h2 id="CheckCollisionPointPoly"><code>check_collision_point_poly</code> function</h2>
+
+> Check if point is within a polygon described by array of vertices
+
+Defined in raylib.h:
+
+```c
+bool CheckCollisionPointPoly(Vector2 point, Vector2 * points, int point_count) 
+```
+
+Python wrapper:
+
+```python
+def check_collision_point_poly(point: Vector2, points: Vector2Ptr, point_count: int) -> bool
+```
+
+See also:
+<a href="#Vector2">Vector2</a>
+
+[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
+
+---
 <h2 id="CheckCollisionLines"><code>check_collision_lines</code> function</h2>
 
 > Check the collision between two lines defined by two points each, returns collision point by reference
@@ -7357,6 +7363,28 @@ Python wrapper:
 
 ```python
 def load_image_from_screen() -> Image
+```
+
+See also:
+<a href="#Image">Image</a>
+
+[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="IsImageReady"><code>is_image_ready</code> function</h2>
+
+> Check if an image is ready
+
+Defined in raylib.h:
+
+```c
+bool IsImageReady(Image image) 
+```
+
+Python wrapper:
+
+```python
+def is_image_ready(image: Image) -> bool
 ```
 
 See also:
@@ -7563,6 +7591,28 @@ See also:
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
+<h2 id="GenImagePerlinNoise"><code>gen_image_perlin_noise</code> function</h2>
+
+> Generate image: perlin noise
+
+Defined in raylib.h:
+
+```c
+Image GenImagePerlinNoise(int width, int height, int offset_x, int offset_y, float scale) 
+```
+
+Python wrapper:
+
+```python
+def gen_image_perlin_noise(width: int, height: int, offset_x: int, offset_y: int, scale: float) -> Image
+```
+
+See also:
+<a href="#Image">Image</a>
+
+[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
+
+---
 <h2 id="GenImageCellular"><code>gen_image_cellular</code> function</h2>
 
 > Generate image: cellular algorithm, bigger tileSize means bigger cells
@@ -7577,6 +7627,28 @@ Python wrapper:
 
 ```python
 def gen_image_cellular(width: int, height: int, tile_size: int) -> Image
+```
+
+See also:
+<a href="#Image">Image</a>
+
+[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="GenImageText"><code>gen_image_text</code> function</h2>
+
+> Generate image: grayscale image from text data
+
+Defined in raylib.h:
+
+```c
+Image GenImageText(int width, int height, char * text) 
+```
+
+Python wrapper:
+
+```python
+def gen_image_text(width: int, height: int, text: Union[str, CharPtr]) -> Image
 ```
 
 See also:
@@ -7819,6 +7891,28 @@ Python wrapper:
 
 ```python
 def image_alpha_premultiply(image: ImagePtr) -> None
+```
+
+See also:
+<a href="#Image">Image</a>
+
+[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="ImageBlurGaussian"><code>image_blur_gaussian</code> function</h2>
+
+> Apply Gaussian blur using a box blur approximation
+
+Defined in raylib.h:
+
+```c
+void ImageBlurGaussian(Image * image, int blur_size) 
+```
+
+Python wrapper:
+
+```python
+def image_blur_gaussian(image: ImagePtr, blur_size: int) -> None
 ```
 
 See also:
@@ -8401,7 +8495,7 @@ See also:
 ---
 <h2 id="ImageDrawCircle"><code>image_draw_circle</code> function</h2>
 
-> Draw circle within an image
+> Draw a filled circle within an image
 
 Defined in raylib.h:
 
@@ -8423,7 +8517,7 @@ See also:
 ---
 <h2 id="ImageDrawCircleV"><code>image_draw_circle_v</code> function</h2>
 
-> Draw circle within an image (Vector version)
+> Draw a filled circle within an image (Vector version)
 
 Defined in raylib.h:
 
@@ -8435,6 +8529,50 @@ Python wrapper:
 
 ```python
 def image_draw_circle_v(dst: ImagePtr, center: Vector2, radius: int, color: Color) -> None
+```
+
+See also:
+<a href="#Image">Image</a>, <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
+
+[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="ImageDrawCircleLines"><code>image_draw_circle_lines</code> function</h2>
+
+> Draw circle outline within an image
+
+Defined in raylib.h:
+
+```c
+void ImageDrawCircleLines(Image * dst, int center_x, int center_y, int radius, Color color) 
+```
+
+Python wrapper:
+
+```python
+def image_draw_circle_lines(dst: ImagePtr, center_x: int, center_y: int, radius: int, color: Color) -> None
+```
+
+See also:
+<a href="#Image">Image</a>, <a href="#Color">Color</a>
+
+[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="ImageDrawCircleLinesV"><code>image_draw_circle_lines_v</code> function</h2>
+
+> Draw circle outline within an image (Vector version)
+
+Defined in raylib.h:
+
+```c
+void ImageDrawCircleLinesV(Image * dst, Vector2 center, int radius, Color color) 
+```
+
+Python wrapper:
+
+```python
+def image_draw_circle_lines_v(dst: ImagePtr, center: Vector2, radius: int, color: Color) -> None
 ```
 
 See also:
@@ -8679,6 +8817,25 @@ def load_render_texture(width: int, height: int) -> RenderTexture2D
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
+<h2 id="IsTextureReady"><code>is_texture_ready</code> function</h2>
+
+> Check if a texture is ready
+
+Defined in raylib.h:
+
+```c
+bool IsTextureReady(Texture2D texture) 
+```
+
+Python wrapper:
+
+```python
+def is_texture_ready(texture: Texture2D) -> bool
+```
+
+[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
+
+---
 <h2 id="UnloadTexture"><code>unload_texture</code> function</h2>
 
 > Unload texture from GPU memory (VRAM)
@@ -8693,6 +8850,25 @@ Python wrapper:
 
 ```python
 def unload_texture(texture: Texture2D) -> None
+```
+
+[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="IsRenderTextureReady"><code>is_render_texture_ready</code> function</h2>
+
+> Check if a render texture is ready
+
+Defined in raylib.h:
+
+```c
+bool IsRenderTextureReady(RenderTexture2D target) 
+```
+
+Python wrapper:
+
+```python
+def is_render_texture_ready(target: RenderTexture2D) -> bool
 ```
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
@@ -8903,50 +9079,6 @@ See also:
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
-<h2 id="DrawTextureQuad"><code>draw_texture_quad</code> function</h2>
-
-> Draw texture quad with tiling and offset parameters
-
-Defined in raylib.h:
-
-```c
-void DrawTextureQuad(Texture2D texture, Vector2 tiling, Vector2 offset, Rectangle quad, Color tint) 
-```
-
-Python wrapper:
-
-```python
-def draw_texture_quad(texture: Texture2D, tiling: Vector2, offset: Vector2, quad: Rectangle, tint: Color) -> None
-```
-
-See also:
-<a href="#Vector2">Vector2</a>, <a href="#Rectangle">Rectangle</a>, <a href="#Color">Color</a>
-
-[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
-
----
-<h2 id="DrawTextureTiled"><code>draw_texture_tiled</code> function</h2>
-
-> Draw part of a texture (defined by a rectangle) with rotation and scale tiled into dest.
-
-Defined in raylib.h:
-
-```c
-void DrawTextureTiled(Texture2D texture, Rectangle source, Rectangle dest, Vector2 origin, float rotation, float scale, Color tint) 
-```
-
-Python wrapper:
-
-```python
-def draw_texture_tiled(texture: Texture2D, source: Rectangle, dest: Rectangle, origin: Vector2, rotation: float, scale: float, tint: Color) -> None
-```
-
-See also:
-<a href="#Rectangle">Rectangle</a>, <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
-
-[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
-
----
 <h2 id="DrawTexturePro"><code>draw_texture_pro</code> function</h2>
 
 > Draw a part of a texture defined by a rectangle with 'pro' parameters
@@ -8987,28 +9119,6 @@ def draw_texture_npatch(texture: Texture2D, n_patch_info: NPatchInfo, dest: Rect
 
 See also:
 <a href="#NPatchInfo">NPatchInfo</a>, <a href="#Rectangle">Rectangle</a>, <a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
-
-[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
-
----
-<h2 id="DrawTexturePoly"><code>draw_texture_poly</code> function</h2>
-
-> Draw a textured polygon
-
-Defined in raylib.h:
-
-```c
-void DrawTexturePoly(Texture2D texture, Vector2 center, Vector2 * points, Vector2 * texcoords, int point_count, Color tint) 
-```
-
-Python wrapper:
-
-```python
-def draw_texture_poly(texture: Texture2D, center: Vector2, points: Vector2Ptr, texcoords: Vector2Ptr, point_count: int, tint: Color) -> None
-```
-
-See also:
-<a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -9137,6 +9247,72 @@ Python wrapper:
 
 ```python
 def color_from_hsv(hue: float, saturation: float, value: float) -> Color
+```
+
+See also:
+<a href="#Color">Color</a>
+
+[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="ColorTint"><code>color_tint</code> function</h2>
+
+> Get color multiplied with another color
+
+Defined in raylib.h:
+
+```c
+Color ColorTint(Color color, Color tint) 
+```
+
+Python wrapper:
+
+```python
+def color_tint(color: Color, tint: Color) -> Color
+```
+
+See also:
+<a href="#Color">Color</a>
+
+[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="ColorBrightness"><code>color_brightness</code> function</h2>
+
+> Get color with brightness correction, brightness factor goes from -1.0f to 1.0f
+
+Defined in raylib.h:
+
+```c
+Color ColorBrightness(Color color, float factor) 
+```
+
+Python wrapper:
+
+```python
+def color_brightness(color: Color, factor: float) -> Color
+```
+
+See also:
+<a href="#Color">Color</a>
+
+[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="ColorContrast"><code>color_contrast</code> function</h2>
+
+> Get color with contrast correction, contrast values between -1.0f and 1.0f
+
+Defined in raylib.h:
+
+```c
+Color ColorContrast(Color color, float contrast) 
+```
+
+Python wrapper:
+
+```python
+def color_contrast(color: Color, contrast: float) -> Color
 ```
 
 See also:
@@ -9376,6 +9552,28 @@ Python wrapper:
 
 ```python
 def load_font_from_memory(file_type: Union[str, CharPtr], file_data: Union[Seq[int], UCharPtr], data_size: int, font_size: int, font_chars: Union[Seq[int], IntPtr], glyph_count: int) -> Font
+```
+
+See also:
+<a href="#Font">Font</a>
+
+[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="IsFontReady"><code>is_font_ready</code> function</h2>
+
+> Check if a font is ready
+
+Defined in raylib.h:
+
+```c
+bool IsFontReady(Font font) 
+```
+
+Python wrapper:
+
+```python
+def is_font_ready(font: Font) -> bool
 ```
 
 See also:
@@ -9730,6 +9928,44 @@ See also:
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
+<h2 id="LoadUTF8"><code>load_utf8</code> function</h2>
+
+> Load UTF-8 text encoded from codepoints array
+
+Defined in raylib.h:
+
+```c
+char * LoadUTF8(int codepoints, int length) 
+```
+
+Python wrapper:
+
+```python
+def load_utf8(codepoints: Union[Seq[int], IntPtr], length: int) -> Union[str, CharPtr]
+```
+
+[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="UnloadUTF8"><code>unload_utf8</code> function</h2>
+
+> Unload UTF-8 text encoded from codepoints array
+
+Defined in raylib.h:
+
+```c
+void UnloadUTF8(char * text) 
+```
+
+Python wrapper:
+
+```python
+def unload_utf8(text: Union[str, CharPtr]) -> None
+```
+
+[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
+
+---
 <h2 id="LoadCodepoints"><code>load_codepoints</code> function</h2>
 
 > Load all codepoints from a UTF-8 text string, codepoints count returned by parameter
@@ -9794,13 +10030,51 @@ def get_codepoint_count(text: Union[str, CharPtr]) -> int
 Defined in raylib.h:
 
 ```c
-int GetCodepoint(char * text, int bytes_processed) 
+int GetCodepoint(char * text, int codepoint_size) 
 ```
 
 Python wrapper:
 
 ```python
-def get_codepoint(text: Union[str, CharPtr], bytes_processed: Union[Seq[int], IntPtr]) -> int
+def get_codepoint(text: Union[str, CharPtr], codepoint_size: Union[Seq[int], IntPtr]) -> int
+```
+
+[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="GetCodepointNext"><code>get_codepoint_next</code> function</h2>
+
+> Get next codepoint in a UTF-8 encoded string, 0x3f('?') is returned on failure
+
+Defined in raylib.h:
+
+```c
+int GetCodepointNext(char * text, int codepoint_size) 
+```
+
+Python wrapper:
+
+```python
+def get_codepoint_next(text: Union[str, CharPtr], codepoint_size: Union[Seq[int], IntPtr]) -> int
+```
+
+[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="GetCodepointPrevious"><code>get_codepoint_previous</code> function</h2>
+
+> Get previous codepoint in a UTF-8 encoded string, 0x3f('?') is returned on failure
+
+Defined in raylib.h:
+
+```c
+int GetCodepointPrevious(char * text, int codepoint_size) 
+```
+
+Python wrapper:
+
+```python
+def get_codepoint_previous(text: Union[str, CharPtr], codepoint_size: Union[Seq[int], IntPtr]) -> int
 ```
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
@@ -9813,32 +10087,13 @@ def get_codepoint(text: Union[str, CharPtr], bytes_processed: Union[Seq[int], In
 Defined in raylib.h:
 
 ```c
-char * CodepointToUTF8(int codepoint, int byte_size) 
+char * CodepointToUTF8(int codepoint, int utf8size) 
 ```
 
 Python wrapper:
 
 ```python
-def codepoint_to_utf8(codepoint: int, byte_size: Union[Seq[int], IntPtr]) -> Union[str, CharPtr]
-```
-
-[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
-
----
-<h2 id="TextCodepointsToUTF8"><code>text_codepoints_to_utf8</code> function</h2>
-
-> Encode text as codepoints array into UTF-8 text string (WARNING: memory must be freed!)
-
-Defined in raylib.h:
-
-```c
-char * TextCodepointsToUTF8(int codepoints, int length) 
-```
-
-Python wrapper:
-
-```python
-def text_codepoints_to_utf8(codepoints: Union[Seq[int], IntPtr], length: int) -> Union[str, CharPtr]
+def codepoint_to_utf8(codepoint: int, utf8size: Union[Seq[int], IntPtr]) -> Union[str, CharPtr]
 ```
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
@@ -10327,50 +10582,6 @@ See also:
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
-<h2 id="DrawCubeTexture"><code>draw_cube_texture</code> function</h2>
-
-> Draw cube textured
-
-Defined in raylib.h:
-
-```c
-void DrawCubeTexture(Texture2D texture, Vector3 position, float width, float height, float length, Color color) 
-```
-
-Python wrapper:
-
-```python
-def draw_cube_texture(texture: Texture2D, position: Vector3, width: float, height: float, length: float, color: Color) -> None
-```
-
-See also:
-<a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
-
-[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
-
----
-<h2 id="DrawCubeTextureRec"><code>draw_cube_texture_rec</code> function</h2>
-
-> Draw cube with a region of a texture
-
-Defined in raylib.h:
-
-```c
-void DrawCubeTextureRec(Texture2D texture, Rectangle source, Vector3 position, float width, float height, float length, Color color) 
-```
-
-Python wrapper:
-
-```python
-def draw_cube_texture_rec(texture: Texture2D, source: Rectangle, position: Vector3, width: float, height: float, length: float, color: Color) -> None
-```
-
-See also:
-<a href="#Rectangle">Rectangle</a>, <a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
-
-[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
-
----
 <h2 id="DrawSphere"><code>draw_sphere</code> function</h2>
 
 > Draw sphere
@@ -10525,6 +10736,50 @@ See also:
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
+<h2 id="DrawCapsule"><code>draw_capsule</code> function</h2>
+
+> Draw a capsule with the center of its sphere caps at startPos and endPos
+
+Defined in raylib.h:
+
+```c
+void DrawCapsule(Vector3 start_pos, Vector3 end_pos, float radius, int slices, int rings, Color color) 
+```
+
+Python wrapper:
+
+```python
+def draw_capsule(start_pos: Vector3, end_pos: Vector3, radius: float, slices: int, rings: int, color: Color) -> None
+```
+
+See also:
+<a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
+
+[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="DrawCapsuleWires"><code>draw_capsule_wires</code> function</h2>
+
+> Draw capsule wireframe with the center of its sphere caps at startPos and endPos
+
+Defined in raylib.h:
+
+```c
+void DrawCapsuleWires(Vector3 start_pos, Vector3 end_pos, float radius, int slices, int rings, Color color) 
+```
+
+Python wrapper:
+
+```python
+def draw_capsule_wires(start_pos: Vector3, end_pos: Vector3, radius: float, slices: int, rings: int, color: Color) -> None
+```
+
+See also:
+<a href="#Vector3">Vector3</a>, <a href="#Color">Color</a>
+
+[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
+
+---
 <h2 id="DrawPlane"><code>draw_plane</code> function</h2>
 
 > Draw a plane XZ
@@ -10632,6 +10887,28 @@ See also:
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
+<h2 id="IsModelReady"><code>is_model_ready</code> function</h2>
+
+> Check if a model is ready
+
+Defined in raylib.h:
+
+```c
+bool IsModelReady(Model model) 
+```
+
+Python wrapper:
+
+```python
+def is_model_ready(model: Model) -> bool
+```
+
+See also:
+<a href="#Model">Model</a>
+
+[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
+
+---
 <h2 id="UnloadModel"><code>unload_model</code> function</h2>
 
 > Unload model (including meshes) from memory (RAM and/or VRAM)
@@ -10646,28 +10923,6 @@ Python wrapper:
 
 ```python
 def unload_model(model: Model) -> None
-```
-
-See also:
-<a href="#Model">Model</a>
-
-[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
-
----
-<h2 id="UnloadModelKeepMeshes"><code>unload_model_keep_meshes</code> function</h2>
-
-> Unload model (but not meshes) from memory (RAM and/or VRAM)
-
-Defined in raylib.h:
-
-```c
-void UnloadModelKeepMeshes(Model model) 
-```
-
-Python wrapper:
-
-```python
-def unload_model_keep_meshes(model: Model) -> None
 ```
 
 See also:
@@ -11336,6 +11591,28 @@ See also:
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
+<h2 id="IsMaterialReady"><code>is_material_ready</code> function</h2>
+
+> Check if a material is ready
+
+Defined in raylib.h:
+
+```c
+bool IsMaterialReady(Material material) 
+```
+
+Python wrapper:
+
+```python
+def is_material_ready(material: Material) -> bool
+```
+
+See also:
+<a href="#Material">Material</a>
+
+[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
+
+---
 <h2 id="UnloadMaterial"><code>unload_material</code> function</h2>
 
 > Unload material from GPU memory (VRAM)
@@ -11808,6 +12085,28 @@ See also:
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
+<h2 id="IsWaveReady"><code>is_wave_ready</code> function</h2>
+
+> Checks if wave data is ready
+
+Defined in raylib.h:
+
+```c
+bool IsWaveReady(Wave wave) 
+```
+
+Python wrapper:
+
+```python
+def is_wave_ready(wave: Wave) -> bool
+```
+
+See also:
+<a href="#Wave">Wave</a>
+
+[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
+
+---
 <h2 id="LoadSound"><code>load_sound</code> function</h2>
 
 > Load sound from file
@@ -11848,6 +12147,28 @@ def load_sound_from_wave(wave: Wave) -> Sound
 
 See also:
 <a href="#Wave">Wave</a>, <a href="#Sound">Sound</a>
+
+[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="IsSoundReady"><code>is_sound_ready</code> function</h2>
+
+> Checks if a sound is ready
+
+Defined in raylib.h:
+
+```c
+bool IsSoundReady(Sound sound) 
+```
+
+Python wrapper:
+
+```python
+def is_sound_ready(sound: Sound) -> bool
+```
+
+See also:
+<a href="#Sound">Sound</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -12046,66 +12367,6 @@ def resume_sound(sound: Sound) -> None
 
 See also:
 <a href="#Sound">Sound</a>
-
-[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
-
----
-<h2 id="PlaySoundMulti"><code>play_sound_multi</code> function</h2>
-
-> Play a sound (using multichannel buffer pool)
-
-Defined in raylib.h:
-
-```c
-void PlaySoundMulti(Sound sound) 
-```
-
-Python wrapper:
-
-```python
-def play_sound_multi(sound: Sound) -> None
-```
-
-See also:
-<a href="#Sound">Sound</a>
-
-[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
-
----
-<h2 id="StopSoundMulti"><code>stop_sound_multi</code> function</h2>
-
-> Stop any sound playing (using multichannel buffer pool)
-
-Defined in raylib.h:
-
-```c
-void StopSoundMulti() 
-```
-
-Python wrapper:
-
-```python
-def stop_sound_multi() -> None
-```
-
-[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
-
----
-<h2 id="GetSoundsPlaying"><code>get_sounds_playing</code> function</h2>
-
-> Get number of sounds playing in the multichannel
-
-Defined in raylib.h:
-
-```c
-int GetSoundsPlaying() 
-```
-
-Python wrapper:
-
-```python
-def get_sounds_playing() -> int
-```
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
@@ -12341,6 +12602,28 @@ Python wrapper:
 
 ```python
 def load_music_stream_from_memory(file_type: Union[str, CharPtr], data: Union[Seq[int], UCharPtr], data_size: int) -> Music
+```
+
+See also:
+<a href="#Music">Music</a>
+
+[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="IsMusicReady"><code>is_music_ready</code> function</h2>
+
+> Checks if a music stream is ready
+
+Defined in raylib.h:
+
+```c
+bool IsMusicReady(Music music) 
+```
+
+Python wrapper:
+
+```python
+def is_music_ready(music: Music) -> bool
 ```
 
 See also:
@@ -12657,6 +12940,28 @@ See also:
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
+<h2 id="IsAudioStreamReady"><code>is_audio_stream_ready</code> function</h2>
+
+> Checks if an audio stream is ready
+
+Defined in raylib.h:
+
+```c
+bool IsAudioStreamReady(AudioStream stream) 
+```
+
+Python wrapper:
+
+```python
+def is_audio_stream_ready(stream: AudioStream) -> bool
+```
+
+See also:
+<a href="#AudioStream">AudioStream</a>
+
+[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
+
+---
 <h2 id="UnloadAudioStream"><code>unload_audio_stream</code> function</h2>
 
 > Unload audio stream and free memory
@@ -12942,7 +13247,7 @@ See also:
 ---
 <h2 id="AttachAudioStreamProcessor"><code>attach_audio_stream_processor</code> function</h2>
 
-> 
+> Attach audio stream processor to stream
 
 Defined in raylib.h:
 
@@ -12964,7 +13269,7 @@ See also:
 ---
 <h2 id="DetachAudioStreamProcessor"><code>detach_audio_stream_processor</code> function</h2>
 
-> 
+> Detach audio stream processor from stream
 
 Defined in raylib.h:
 
@@ -12980,6 +13285,44 @@ def detach_audio_stream_processor(stream: AudioStream, processor: AudioCallback)
 
 See also:
 <a href="#AudioStream">AudioStream</a>
+
+[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="AttachAudioMixedProcessor"><code>attach_audio_mixed_processor</code> function</h2>
+
+> Attach audio stream processor to the entire audio pipeline
+
+Defined in raylib.h:
+
+```c
+void AttachAudioMixedProcessor(AudioCallback processor) 
+```
+
+Python wrapper:
+
+```python
+def attach_audio_mixed_processor(processor: AudioCallback) -> None
+```
+
+[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="DetachAudioMixedProcessor"><code>detach_audio_mixed_processor</code> function</h2>
+
+> Detach audio stream processor from the entire audio pipeline
+
+Defined in raylib.h:
+
+```c
+void DetachAudioMixedProcessor(AudioCallback processor) 
+```
+
+Python wrapper:
+
+```python
+def detach_audio_mixed_processor(processor: AudioCallback) -> None
+```
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 

@@ -75,6 +75,9 @@ __all__ = [
     'VrDeviceInfo',
     'VrStereoConfig',
     'FilePathList',
+    'RAYLIB_VERSION_MAJOR',
+    'RAYLIB_VERSION_MINOR',
+    'RAYLIB_VERSION_PATCH',
     'RAYLIB_VERSION',
     'PI',
     'DEG2RAD',
@@ -399,6 +402,7 @@ __all__ = [
     'BLEND_SUBTRACT_COLORS',
     'BLEND_ALPHA_PREMULTIPLY',
     'BLEND_CUSTOM',
+    'BLEND_CUSTOM_SEPARATE',
     'Gesture',
     'GESTURE_NONE',
     'GESTURE_TAP',
@@ -448,6 +452,7 @@ __all__ = [
     'minimize_window',
     'restore_window',
     'set_window_icon',
+    'set_window_icons',
     'set_window_title',
     'set_window_position',
     'set_window_monitor',
@@ -504,6 +509,7 @@ __all__ = [
     'unload_vr_stereo_config',
     'load_shader',
     'load_shader_from_memory',
+    'is_shader_ready',
     'get_shader_location',
     'get_shader_location_attrib',
     'set_shader_value',
@@ -612,12 +618,8 @@ __all__ = [
     'get_gesture_drag_angle',
     'get_gesture_pinch_vector',
     'get_gesture_pinch_angle',
-    'set_camera_mode',
     'update_camera',
-    'set_camera_pan_control',
-    'set_camera_alt_control',
-    'set_camera_smooth_zoom_control',
-    'set_camera_move_controls',
+    'update_camera_pro',
     'set_shapes_texture',
     'draw_pixel',
     'draw_pixel_v',
@@ -662,6 +664,7 @@ __all__ = [
     'check_collision_point_rec',
     'check_collision_point_circle',
     'check_collision_point_triangle',
+    'check_collision_point_poly',
     'check_collision_lines',
     'check_collision_point_line',
     'get_collision_rec',
@@ -671,6 +674,7 @@ __all__ = [
     'load_image_from_memory',
     'load_image_from_texture',
     'load_image_from_screen',
+    'is_image_ready',
     'unload_image',
     'export_image',
     'export_image_as_code',
@@ -680,7 +684,9 @@ __all__ = [
     'gen_image_gradient_radial',
     'gen_image_checked',
     'gen_image_white_noise',
+    'gen_image_perlin_noise',
     'gen_image_cellular',
+    'gen_image_text',
     'image_copy',
     'image_from_image',
     'image_text',
@@ -692,6 +698,7 @@ __all__ = [
     'image_alpha_clear',
     'image_alpha_mask',
     'image_alpha_premultiply',
+    'image_blur_gaussian',
     'image_resize',
     'image_resize_nn',
     'image_resize_canvas',
@@ -720,6 +727,8 @@ __all__ = [
     'image_draw_line_v',
     'image_draw_circle',
     'image_draw_circle_v',
+    'image_draw_circle_lines',
+    'image_draw_circle_lines_v',
     'image_draw_rectangle',
     'image_draw_rectangle_v',
     'image_draw_rectangle_rec',
@@ -731,7 +740,9 @@ __all__ = [
     'load_texture_from_image',
     'load_texture_cubemap',
     'load_render_texture',
+    'is_texture_ready',
     'unload_texture',
+    'is_render_texture_ready',
     'unload_render_texture',
     'update_texture',
     'update_texture_rec',
@@ -742,17 +753,17 @@ __all__ = [
     'draw_texture_v',
     'draw_texture_ex',
     'draw_texture_rec',
-    'draw_texture_quad',
-    'draw_texture_tiled',
     'draw_texture_pro',
     'draw_texture_npatch',
-    'draw_texture_poly',
     'fade',
     'color_to_int',
     'color_normalize',
     'color_from_normalized',
     'color_to_hsv',
     'color_from_hsv',
+    'color_tint',
+    'color_brightness',
+    'color_contrast',
     'color_alpha',
     'color_alpha_blend',
     'get_color',
@@ -764,6 +775,7 @@ __all__ = [
     'load_font_ex',
     'load_font_from_image',
     'load_font_from_memory',
+    'is_font_ready',
     'load_font_data',
     'gen_image_font_atlas',
     'unload_font_data',
@@ -780,12 +792,15 @@ __all__ = [
     'get_glyph_index',
     'get_glyph_info',
     'get_glyph_atlas_rec',
+    'load_utf8',
+    'unload_utf8',
     'load_codepoints',
     'unload_codepoints',
     'get_codepoint_count',
     'get_codepoint',
+    'get_codepoint_next',
+    'get_codepoint_previous',
     'codepoint_to_utf8',
-    'text_codepoints_to_utf8',
     'text_copy',
     'text_is_equal',
     'text_length',
@@ -810,8 +825,6 @@ __all__ = [
     'draw_cube_v',
     'draw_cube_wires',
     'draw_cube_wires_v',
-    'draw_cube_texture',
-    'draw_cube_texture_rec',
     'draw_sphere',
     'draw_sphere_ex',
     'draw_sphere_wires',
@@ -819,13 +832,15 @@ __all__ = [
     'draw_cylinder_ex',
     'draw_cylinder_wires',
     'draw_cylinder_wires_ex',
+    'draw_capsule',
+    'draw_capsule_wires',
     'draw_plane',
     'draw_ray',
     'draw_grid',
     'load_model',
     'load_model_from_mesh',
+    'is_model_ready',
     'unload_model',
-    'unload_model_keep_meshes',
     'get_model_bounding_box',
     'draw_model',
     'draw_model_ex',
@@ -856,6 +871,7 @@ __all__ = [
     'gen_mesh_cubicmap',
     'load_materials',
     'load_material_default',
+    'is_material_ready',
     'unload_material',
     'set_material_texture',
     'set_model_mesh_material',
@@ -878,8 +894,10 @@ __all__ = [
     'set_master_volume',
     'load_wave',
     'load_wave_from_memory',
+    'is_wave_ready',
     'load_sound',
     'load_sound_from_wave',
+    'is_sound_ready',
     'update_sound',
     'unload_wave',
     'unload_sound',
@@ -889,9 +907,6 @@ __all__ = [
     'stop_sound',
     'pause_sound',
     'resume_sound',
-    'play_sound_multi',
-    'stop_sound_multi',
-    'get_sounds_playing',
     'is_sound_playing',
     'set_sound_volume',
     'set_sound_pitch',
@@ -903,6 +918,7 @@ __all__ = [
     'unload_wave_samples',
     'load_music_stream',
     'load_music_stream_from_memory',
+    'is_music_ready',
     'unload_music_stream',
     'play_music_stream',
     'is_music_stream_playing',
@@ -917,6 +933,7 @@ __all__ = [
     'get_music_time_length',
     'get_music_time_played',
     'load_audio_stream',
+    'is_audio_stream_ready',
     'unload_audio_stream',
     'update_audio_stream',
     'is_audio_stream_processed',
@@ -932,6 +949,8 @@ __all__ = [
     'set_audio_stream_callback',
     'attach_audio_stream_processor',
     'detach_audio_stream_processor',
+    'attach_audio_mixed_processor',
+    'detach_audio_mixed_processor',
     'drawing',
     'scissor_mode',
     'blend_mode',
@@ -1451,8 +1470,8 @@ if os.path.exists(_dotraylib) and os.path.isfile(_dotraylib):
 
 _lib_fname = {
     'win32': 'raylib.dll',
-    'linux': 'libraylib.so.4.2.0',
-    'darwin': 'libraylib.4.2.0.dylib'
+    'linux': 'libraylib.so.4.5.0',
+    'darwin': 'libraylib.4.5.0.dylib'
 }
 
 _lib_platform = sys.platform
@@ -2341,7 +2360,7 @@ Quaternion = Vector4
 QuaternionPtr = Vector4Ptr
 
 class Matrix(Structure):
-    '''Matrix, 4x4 components, column major, OpenGL style, right handed'''
+    '''Matrix, 4x4 components, column major, OpenGL style, right-handed'''
     _fields_ = [
         ('m0', Float),
         ('m4', Float),
@@ -2640,6 +2659,24 @@ class Color(Structure):
         result = _ColorFromHSV(self, float(saturation), float(value))
         return result
 
+    def tint(self, tint):
+        # type: (Color, Color) -> Color
+        """Get color multiplied with another color"""
+        result = _ColorTint(self, _color(tint))
+        return result
+
+    def brightness(self, factor):
+        # type: (Color, float) -> Color
+        """Get color with brightness correction, brightness factor goes from -1.0f to 1.0f"""
+        result = _ColorBrightness(self, float(factor))
+        return result
+
+    def contrast(self, contrast):
+        # type: (Color, float) -> Color
+        """Get color with contrast correction, contrast values between -1.0f and 1.0f"""
+        result = _ColorContrast(self, float(contrast))
+        return result
+
     def alpha(self, alpha):
         # type: (Color, float) -> Color
         """Get color with alpha applied, alpha goes from 0.0f to 1.0f"""
@@ -2864,10 +2901,24 @@ class Image(Structure):
         return result
 
     @classmethod
+    def gen_perlin_noise(cls, width, height, offset_x, offset_y, scale):
+        # type: (int, int, int, int, float) -> Image
+        """Generate image: perlin noise"""
+        result = _GenImagePerlinNoise(int(width), int(height), int(offset_x), int(offset_y), float(scale))
+        return result
+
+    @classmethod
     def gen_cellular(cls, width, height, tile_size):
         # type: (int, int, int) -> Image
         """Generate image: cellular algorithm, bigger tileSize means bigger cells"""
         result = _GenImageCellular(int(width), int(height), int(tile_size))
+        return result
+
+    @classmethod
+    def gen_text(cls, width, height, text):
+        # type: (int, int, Union[str, CharPtr]) -> Image
+        """Generate image: grayscale image from text data"""
+        result = _GenImageText(int(width), int(height), _str_in(text))
         return result
 
     @classmethod
@@ -2913,6 +2964,13 @@ class Image(Structure):
         '''Gets a reference to this Image instance'''
         return byref(self)
 
+
+    @property
+    def is_ready(self):
+        # type: (Image) -> bool
+        """Check if an image is ready"""
+        result = _IsImageReady(self)
+        return result
 
     def unload(self):
         # type: (Image) -> None
@@ -3074,12 +3132,12 @@ class Image(Structure):
 
     def draw_circle(self, center_x, center_y, radius, color):
         # type: (ImagePtr, int, int, int, Color) -> None
-        """Draw circle within an image"""
+        """Draw a filled circle within an image"""
         _ImageDrawCircle(self.byref, int(center_x), int(center_y), int(radius), _color(color))
 
     def draw_circle_v(self, center, radius, color):
         # type: (ImagePtr, Vector2, int, Color) -> None
-        """Draw circle within an image (Vector version)"""
+        """Draw a filled circle within an image (Vector version)"""
         _ImageDrawCircleV(self.byref, _vec2(center), int(radius), _color(color))
 
     def draw_rectangle(self, pos_x, pos_y, width, height, color):
@@ -3220,6 +3278,13 @@ class Texture(Structure):
     def __repr__(self):
         return self.__str__()
 
+    @property
+    def is_ready(self):
+        # type: (Texture2D) -> bool
+        """Check if a texture is ready"""
+        result = _IsTextureReady(self)
+        return result
+
     def unload(self):
         # type: (Texture2D) -> None
         """Unload texture from GPU memory (VRAM)"""
@@ -3260,16 +3325,6 @@ class Texture(Structure):
         """Draw a part of a texture defined by a rectangle"""
         _DrawTextureRec(self, _rect(source), _vec2(position), _color(tint))
 
-    def draw_quad(self, tiling, offset, quad, tint):
-        # type: (Texture2D, Vector2, Vector2, Rectangle, Color) -> None
-        """Draw texture quad with tiling and offset parameters"""
-        _DrawTextureQuad(self, _vec2(tiling), _vec2(offset), _rect(quad), _color(tint))
-
-    def draw_tiled(self, source, dest, origin, rotation, scale, tint):
-        # type: (Texture2D, Rectangle, Rectangle, Vector2, float, float, Color) -> None
-        """Draw part of a texture (defined by a rectangle) with rotation and scale tiled into dest."""
-        _DrawTextureTiled(self, _rect(source), _rect(dest), _vec2(origin), float(rotation), float(scale), _color(tint))
-
     def draw_pro(self, source, dest, origin, rotation, tint):
         # type: (Texture2D, Rectangle, Rectangle, Vector2, float, Color) -> None
         """Draw a part of a texture defined by a rectangle with 'pro' parameters"""
@@ -3279,11 +3334,6 @@ class Texture(Structure):
         # type: (Texture2D, NPatchInfo, Rectangle, Vector2, float, Color) -> None
         """Draws a texture (or part of it) that stretches or shrinks nicely"""
         _DrawTextureNPatch(self, n_patch_info, _rect(dest), _vec2(origin), float(rotation), _color(tint))
-
-    def draw_poly(self, center, points, texcoords, tint):
-        # type: (Texture2D, Vector2, Vector2Ptr, Vector2Ptr, Color) -> None
-        """Draw a textured polygon"""
-        _DrawTexturePoly(self, _vec2(center), _arr_in(Vector2, points), _vec2(texcoords), len(points), _color(tint))
 
 
 # Pointer type to Textures
@@ -3510,6 +3560,13 @@ class Font(Structure):
     def __repr__(self):
         return self.__str__()
 
+    @property
+    def is_ready(self):
+        # type: (Font) -> bool
+        """Check if a font is ready"""
+        result = _IsFontReady(self)
+        return result
+
     def unload(self):
         # type: (Font) -> None
         """Unload font from GPU memory (VRAM)"""
@@ -3623,11 +3680,6 @@ class Camera3D(Structure):
 
     def __leave__(self, exc_type, exc_value, traceback):
         _EndMode3D()
-
-    def set_mode(self, mode):
-        # type: (Camera, int) -> None
-        """Set camera mode (multiple camera modes available)"""
-        _SetCameraMode(self, int(mode))
 
 
 # Pointer type to Camera3Ds
@@ -3941,6 +3993,13 @@ class Shader(Structure):
     def __leave__(self, exc_type, exc_value, traceback):
         _EndShaderMode()
 
+    @property
+    def is_ready(self):
+        # type: (Shader) -> bool
+        """Check if a shader is ready"""
+        result = _IsShaderReady(self)
+        return result
+
     def get_location(self, uniform_name):
         # type: (Shader, Union[str, CharPtr]) -> int
         """Get shader uniform location"""
@@ -4075,6 +4134,13 @@ class Material(Structure):
     def __repr__(self):
         return self.__str__()
 
+    @property
+    def is_ready(self):
+        # type: (Material) -> bool
+        """Check if a material is ready"""
+        result = _IsMaterialReady(self)
+        return result
+
     def unload(self):
         # type: (Material) -> None
         """Unload material from GPU memory (VRAM)"""
@@ -4092,7 +4158,7 @@ MaterialPtr = POINTER(Material)
 
 
 class Transform(Structure):
-    '''Transform, vectex transformation data'''
+    '''Transform, vertex transformation data'''
     _fields_ = [
         ('translation', Vector3),
         ('rotation', Quaternion),
@@ -4257,11 +4323,6 @@ class Model(Structure):
         # type: (Model) -> None
         """Unload model (including meshes) from memory (RAM and/or VRAM)"""
         _UnloadModel(self)
-
-    def unload_keep_meshes(self):
-        # type: (Model) -> None
-        """Unload model (but not meshes) from memory (RAM and/or VRAM)"""
-        _UnloadModelKeepMeshes(self)
 
     def get_bounding_box(self):
         # type: (Model) -> BoundingBox
@@ -4507,6 +4568,13 @@ class Wave(Structure):
     def __repr__(self):
         return self.__str__()
 
+    @property
+    def is_ready(self):
+        # type: (Wave) -> bool
+        """Checks if wave data is ready"""
+        result = _IsWaveReady(self)
+        return result
+
     def copy(self):
         # type: (Wave) -> Wave
         """Copy a wave to a new wave"""
@@ -4610,6 +4678,13 @@ class AudioStream(Structure):
     def __repr__(self):
         return self.__str__()
 
+    @property
+    def is_ready(self):
+        # type: (AudioStream) -> bool
+        """Checks if an audio stream is ready"""
+        result = _IsAudioStreamReady(self)
+        return result
+
     def unload(self):
         # type: (AudioStream) -> None
         """Unload audio stream and free memory"""
@@ -4679,12 +4754,12 @@ class AudioStream(Structure):
 
     def attach_processor(self, processor):
         # type: (AudioStream, AudioCallback) -> None
-        """"""
+        """Attach audio stream processor to stream"""
         _AttachAudioStreamProcessor(self, processor)
 
     def detach_processor(self, processor):
         # type: (AudioStream, AudioCallback) -> None
-        """"""
+        """Detach audio stream processor from stream"""
         _DetachAudioStreamProcessor(self, processor)
 
 
@@ -4743,6 +4818,13 @@ class Sound(Structure):
     def __repr__(self):
         return self.__str__()
 
+    @property
+    def is_ready(self):
+        # type: (Sound) -> bool
+        """Checks if a sound is ready"""
+        result = _IsSoundReady(self)
+        return result
+
     def play(self):
         # type: (Sound) -> None
         """Play a sound"""
@@ -4762,11 +4844,6 @@ class Sound(Structure):
         # type: (Sound) -> None
         """Resume a paused sound"""
         _ResumeSound(self)
-
-    def play_multi(self):
-        # type: (Sound) -> None
-        """Play a sound (using multichannel buffer pool)"""
-        _PlaySoundMulti(self)
 
     def is_playing(self):
         # type: (Sound) -> bool
@@ -4798,19 +4875,6 @@ class Sound(Structure):
         # type: (Sound, bytes, int) -> None
         """Update sound buffer with new data"""
         _UpdateSound(self, data, int(sample_count))
-
-    @staticmethod
-    def get_sounds_playing():
-        # type: () -> int
-        """Get number of sounds playing in the multichannel"""
-        result = _GetSoundsPlaying()
-        return result
-
-    @staticmethod
-    def stop_multi():
-        # type: () -> None
-        """Stop any sound playing (using multichannel buffer pool)"""
-        _StopSoundMulti()
 
 
 # Pointer type to Sounds
@@ -4863,6 +4927,13 @@ class Music(Structure):
 
     def __repr__(self):
         return self.__str__()
+
+    @property
+    def is_ready(self):
+        # type: (Music) -> bool
+        """Checks if a music stream is ready"""
+        result = _IsMusicReady(self)
+        return result
 
     def play(self):
         # type: (Music) -> None
@@ -6019,7 +6090,7 @@ class MouseButton(IntEnum):
     """Mouse button extra (advanced mouse device)"""
 
     MOUSE_BUTTON_FORWARD = 5
-    """Mouse button fordward (advanced mouse device)"""
+    """Mouse button forward (advanced mouse device)"""
 
     MOUSE_BUTTON_BACK = 6
     """Mouse button back (advanced mouse device)"""
@@ -6066,7 +6137,7 @@ class MouseCursor(IntEnum):
     """The top-right to bottom-left diagonal resize/move arrow shape"""
 
     MOUSE_CURSOR_RESIZE_ALL = 9
-    """The omni-directional resize/move cursor shape"""
+    """The omnidirectional resize/move cursor shape"""
 
     MOUSE_CURSOR_NOT_ALLOWED = 10
     """The operation-not-allowed shape"""
@@ -6579,7 +6650,7 @@ class CubemapLayout(IntEnum):
     """Layout is defined by a vertical line with faces"""
 
     CUBEMAP_LAYOUT_LINE_HORIZONTAL = 2
-    """Layout is defined by an horizontal line with faces"""
+    """Layout is defined by a horizontal line with faces"""
 
     CUBEMAP_LAYOUT_CROSS_THREE_BY_FOUR = 3
     """Layout is defined by a 3x4 cross with cubemap faces"""
@@ -6588,7 +6659,7 @@ class CubemapLayout(IntEnum):
     """Layout is defined by a 4x3 cross with cubemap faces"""
 
     CUBEMAP_LAYOUT_PANORAMA = 5
-    """Layout is defined by a panorama image (equirectangular map)"""
+    """Layout is defined by a panorama image (equirrectangular map)"""
 
 
 
@@ -6641,7 +6712,10 @@ class BlendMode(IntEnum):
     """Blend premultiplied textures considering alpha"""
 
     BLEND_CUSTOM = 6
-    """Blend textures using custom src/dst factors (use rlSetBlendMode())"""
+    """Blend textures using custom src/dst factors (use rlSetBlendFactors())"""
+
+    BLEND_CUSTOM_SEPARATE = 7
+    """Blend textures using custom rgb/alpha separate src/dst factors (use rlSetBlendFactorsSeparate())"""
 
 
 
@@ -6652,6 +6726,7 @@ BLEND_ADD_COLORS = BlendMode.BLEND_ADD_COLORS
 BLEND_SUBTRACT_COLORS = BlendMode.BLEND_SUBTRACT_COLORS
 BLEND_ALPHA_PREMULTIPLY = BlendMode.BLEND_ALPHA_PREMULTIPLY
 BLEND_CUSTOM = BlendMode.BLEND_CUSTOM
+BLEND_CUSTOM_SEPARATE = BlendMode.BLEND_CUSTOM_SEPARATE
 
 
 class Gesture(IntEnum):
@@ -7253,7 +7328,13 @@ RL_SHADER_ATTRIB_VEC4 = rlShaderAttributeDataType.RL_SHADER_ATTRIB_VEC4
 
 
 
-RAYLIB_VERSION = '4.2'
+RAYLIB_VERSION_MAJOR = 4
+
+RAYLIB_VERSION_MINOR = 5
+
+RAYLIB_VERSION_PATCH = 0
+
+RAYLIB_VERSION = '4.5'
 
 PI = 3.141592653589793
 
@@ -7436,6 +7517,7 @@ _MaximizeWindow = _wrap(rlapi.MaximizeWindow, [], None)
 _MinimizeWindow = _wrap(rlapi.MinimizeWindow, [], None)
 _RestoreWindow = _wrap(rlapi.RestoreWindow, [], None)
 _SetWindowIcon = _wrap(rlapi.SetWindowIcon, [Image], None)
+_SetWindowIcons = _wrap(rlapi.SetWindowIcons, [ImagePtr, Int], None)
 _SetWindowTitle = _wrap(rlapi.SetWindowTitle, [CharPtr], None)
 _SetWindowPosition = _wrap(rlapi.SetWindowPosition, [Int, Int], None)
 _SetWindowMonitor = _wrap(rlapi.SetWindowMonitor, [Int], None)
@@ -7492,6 +7574,7 @@ _LoadVrStereoConfig = _wrap(rlapi.LoadVrStereoConfig, [VrDeviceInfo], VrStereoCo
 _UnloadVrStereoConfig = _wrap(rlapi.UnloadVrStereoConfig, [VrStereoConfig], None)
 _LoadShader = _wrap(rlapi.LoadShader, [CharPtr, CharPtr], Shader)
 _LoadShaderFromMemory = _wrap(rlapi.LoadShaderFromMemory, [CharPtr, CharPtr], Shader)
+_IsShaderReady = _wrap(rlapi.IsShaderReady, [Shader], Bool)
 _GetShaderLocation = _wrap(rlapi.GetShaderLocation, [Shader, CharPtr], Int)
 _GetShaderLocationAttrib = _wrap(rlapi.GetShaderLocationAttrib, [Shader, CharPtr], Int)
 _SetShaderValue = _wrap(rlapi.SetShaderValue, [Shader, Int, VoidPtr, Int], None)
@@ -7516,8 +7599,8 @@ _TakeScreenshot = _wrap(rlapi.TakeScreenshot, [CharPtr], None)
 _SetConfigFlags = _wrap(rlapi.SetConfigFlags, [UInt], None)
 _TraceLog = _wrap(rlapi.TraceLog, [Int, CharPtr, VoidPtr], None)
 _SetTraceLogLevel = _wrap(rlapi.SetTraceLogLevel, [Int], None)
-_MemAlloc = _wrap(rlapi.MemAlloc, [Int], VoidPtr)
-_MemRealloc = _wrap(rlapi.MemRealloc, [VoidPtr, Int], VoidPtr)
+_MemAlloc = _wrap(rlapi.MemAlloc, [UInt], VoidPtr)
+_MemRealloc = _wrap(rlapi.MemRealloc, [VoidPtr, UInt], VoidPtr)
 _MemFree = _wrap(rlapi.MemFree, [VoidPtr], None)
 _OpenURL = _wrap(rlapi.OpenURL, [CharPtr], None)
 _SetTraceLogCallback = _wrap(rlapi.SetTraceLogCallback, [TraceLogCallback], None)
@@ -7528,7 +7611,7 @@ _SetSaveFileTextCallback = _wrap(rlapi.SetSaveFileTextCallback, [SaveFileTextCal
 _LoadFileData = _wrap(rlapi.LoadFileData, [CharPtr, UIntPtr], UCharPtr)
 _UnloadFileData = _wrap(rlapi.UnloadFileData, [UCharPtr], None)
 _SaveFileData = _wrap(rlapi.SaveFileData, [CharPtr, VoidPtr, UInt], Bool)
-_ExportDataAsCode = _wrap(rlapi.ExportDataAsCode, [CharPtr, UInt, CharPtr], Bool)
+_ExportDataAsCode = _wrap(rlapi.ExportDataAsCode, [UCharPtr, UInt, CharPtr], Bool)
 _LoadFileText = _wrap(rlapi.LoadFileText, [CharPtr], CharPtr)
 _UnloadFileText = _wrap(rlapi.UnloadFileText, [CharPtr], None)
 _SaveFileText = _wrap(rlapi.SaveFileText, [CharPtr, CharPtr], Bool)
@@ -7600,12 +7683,8 @@ _GetGestureDragVector = _wrap(rlapi.GetGestureDragVector, [], Vector2)
 _GetGestureDragAngle = _wrap(rlapi.GetGestureDragAngle, [], Float)
 _GetGesturePinchVector = _wrap(rlapi.GetGesturePinchVector, [], Vector2)
 _GetGesturePinchAngle = _wrap(rlapi.GetGesturePinchAngle, [], Float)
-_SetCameraMode = _wrap(rlapi.SetCameraMode, [Camera, Int], None)
-_UpdateCamera = _wrap(rlapi.UpdateCamera, [CameraPtr], None)
-_SetCameraPanControl = _wrap(rlapi.SetCameraPanControl, [Int], None)
-_SetCameraAltControl = _wrap(rlapi.SetCameraAltControl, [Int], None)
-_SetCameraSmoothZoomControl = _wrap(rlapi.SetCameraSmoothZoomControl, [Int], None)
-_SetCameraMoveControls = _wrap(rlapi.SetCameraMoveControls, [Int, Int, Int, Int, Int, Int], None)
+_UpdateCamera = _wrap(rlapi.UpdateCamera, [CameraPtr, Int], None)
+_UpdateCameraPro = _wrap(rlapi.UpdateCameraPro, [CameraPtr, Vector3, Vector3, Float], None)
 _SetShapesTexture = _wrap(rlapi.SetShapesTexture, [Texture2D, Rectangle], None)
 _DrawPixel = _wrap(rlapi.DrawPixel, [Int, Int, Color], None)
 _DrawPixelV = _wrap(rlapi.DrawPixelV, [Vector2, Color], None)
@@ -7650,6 +7729,7 @@ _CheckCollisionCircleRec = _wrap(rlapi.CheckCollisionCircleRec, [Vector2, Float,
 _CheckCollisionPointRec = _wrap(rlapi.CheckCollisionPointRec, [Vector2, Rectangle], Bool)
 _CheckCollisionPointCircle = _wrap(rlapi.CheckCollisionPointCircle, [Vector2, Vector2, Float], Bool)
 _CheckCollisionPointTriangle = _wrap(rlapi.CheckCollisionPointTriangle, [Vector2, Vector2, Vector2, Vector2], Bool)
+_CheckCollisionPointPoly = _wrap(rlapi.CheckCollisionPointPoly, [Vector2, Vector2Ptr, Int], Bool)
 _CheckCollisionLines = _wrap(rlapi.CheckCollisionLines, [Vector2, Vector2, Vector2, Vector2, Vector2Ptr], Bool)
 _CheckCollisionPointLine = _wrap(rlapi.CheckCollisionPointLine, [Vector2, Vector2, Vector2, Int], Bool)
 _GetCollisionRec = _wrap(rlapi.GetCollisionRec, [Rectangle, Rectangle], Rectangle)
@@ -7659,6 +7739,7 @@ _LoadImageAnim = _wrap(rlapi.LoadImageAnim, [CharPtr, IntPtr], Image)
 _LoadImageFromMemory = _wrap(rlapi.LoadImageFromMemory, [CharPtr, UCharPtr, Int], Image)
 _LoadImageFromTexture = _wrap(rlapi.LoadImageFromTexture, [Texture2D], Image)
 _LoadImageFromScreen = _wrap(rlapi.LoadImageFromScreen, [], Image)
+_IsImageReady = _wrap(rlapi.IsImageReady, [Image], Bool)
 _UnloadImage = _wrap(rlapi.UnloadImage, [Image], None)
 _ExportImage = _wrap(rlapi.ExportImage, [Image, CharPtr], Bool)
 _ExportImageAsCode = _wrap(rlapi.ExportImageAsCode, [Image, CharPtr], Bool)
@@ -7668,7 +7749,9 @@ _GenImageGradientH = _wrap(rlapi.GenImageGradientH, [Int, Int, Color, Color], Im
 _GenImageGradientRadial = _wrap(rlapi.GenImageGradientRadial, [Int, Int, Float, Color, Color], Image)
 _GenImageChecked = _wrap(rlapi.GenImageChecked, [Int, Int, Int, Int, Color, Color], Image)
 _GenImageWhiteNoise = _wrap(rlapi.GenImageWhiteNoise, [Int, Int, Float], Image)
+_GenImagePerlinNoise = _wrap(rlapi.GenImagePerlinNoise, [Int, Int, Int, Int, Float], Image)
 _GenImageCellular = _wrap(rlapi.GenImageCellular, [Int, Int, Int], Image)
+_GenImageText = _wrap(rlapi.GenImageText, [Int, Int, CharPtr], Image)
 _ImageCopy = _wrap(rlapi.ImageCopy, [Image], Image)
 _ImageFromImage = _wrap(rlapi.ImageFromImage, [Image, Rectangle], Image)
 _ImageText = _wrap(rlapi.ImageText, [CharPtr, Int, Color], Image)
@@ -7680,6 +7763,7 @@ _ImageAlphaCrop = _wrap(rlapi.ImageAlphaCrop, [ImagePtr, Float], None)
 _ImageAlphaClear = _wrap(rlapi.ImageAlphaClear, [ImagePtr, Color, Float], None)
 _ImageAlphaMask = _wrap(rlapi.ImageAlphaMask, [ImagePtr, Image], None)
 _ImageAlphaPremultiply = _wrap(rlapi.ImageAlphaPremultiply, [ImagePtr], None)
+_ImageBlurGaussian = _wrap(rlapi.ImageBlurGaussian, [ImagePtr, Int], None)
 _ImageResize = _wrap(rlapi.ImageResize, [ImagePtr, Int, Int], None)
 _ImageResizeNN = _wrap(rlapi.ImageResizeNN, [ImagePtr, Int, Int], None)
 _ImageResizeCanvas = _wrap(rlapi.ImageResizeCanvas, [ImagePtr, Int, Int, Int, Int, Color], None)
@@ -7708,6 +7792,8 @@ _ImageDrawLine = _wrap(rlapi.ImageDrawLine, [ImagePtr, Int, Int, Int, Int, Color
 _ImageDrawLineV = _wrap(rlapi.ImageDrawLineV, [ImagePtr, Vector2, Vector2, Color], None)
 _ImageDrawCircle = _wrap(rlapi.ImageDrawCircle, [ImagePtr, Int, Int, Int, Color], None)
 _ImageDrawCircleV = _wrap(rlapi.ImageDrawCircleV, [ImagePtr, Vector2, Int, Color], None)
+_ImageDrawCircleLines = _wrap(rlapi.ImageDrawCircleLines, [ImagePtr, Int, Int, Int, Color], None)
+_ImageDrawCircleLinesV = _wrap(rlapi.ImageDrawCircleLinesV, [ImagePtr, Vector2, Int, Color], None)
 _ImageDrawRectangle = _wrap(rlapi.ImageDrawRectangle, [ImagePtr, Int, Int, Int, Int, Color], None)
 _ImageDrawRectangleV = _wrap(rlapi.ImageDrawRectangleV, [ImagePtr, Vector2, Vector2, Color], None)
 _ImageDrawRectangleRec = _wrap(rlapi.ImageDrawRectangleRec, [ImagePtr, Rectangle, Color], None)
@@ -7719,7 +7805,9 @@ _LoadTexture = _wrap(rlapi.LoadTexture, [CharPtr], Texture2D)
 _LoadTextureFromImage = _wrap(rlapi.LoadTextureFromImage, [Image], Texture2D)
 _LoadTextureCubemap = _wrap(rlapi.LoadTextureCubemap, [Image, Int], TextureCubemap)
 _LoadRenderTexture = _wrap(rlapi.LoadRenderTexture, [Int, Int], RenderTexture2D)
+_IsTextureReady = _wrap(rlapi.IsTextureReady, [Texture2D], Bool)
 _UnloadTexture = _wrap(rlapi.UnloadTexture, [Texture2D], None)
+_IsRenderTextureReady = _wrap(rlapi.IsRenderTextureReady, [RenderTexture2D], Bool)
 _UnloadRenderTexture = _wrap(rlapi.UnloadRenderTexture, [RenderTexture2D], None)
 _UpdateTexture = _wrap(rlapi.UpdateTexture, [Texture2D, VoidPtr], None)
 _UpdateTextureRec = _wrap(rlapi.UpdateTextureRec, [Texture2D, Rectangle, VoidPtr], None)
@@ -7730,17 +7818,17 @@ _DrawTexture = _wrap(rlapi.DrawTexture, [Texture2D, Int, Int, Color], None)
 _DrawTextureV = _wrap(rlapi.DrawTextureV, [Texture2D, Vector2, Color], None)
 _DrawTextureEx = _wrap(rlapi.DrawTextureEx, [Texture2D, Vector2, Float, Float, Color], None)
 _DrawTextureRec = _wrap(rlapi.DrawTextureRec, [Texture2D, Rectangle, Vector2, Color], None)
-_DrawTextureQuad = _wrap(rlapi.DrawTextureQuad, [Texture2D, Vector2, Vector2, Rectangle, Color], None)
-_DrawTextureTiled = _wrap(rlapi.DrawTextureTiled, [Texture2D, Rectangle, Rectangle, Vector2, Float, Float, Color], None)
 _DrawTexturePro = _wrap(rlapi.DrawTexturePro, [Texture2D, Rectangle, Rectangle, Vector2, Float, Color], None)
 _DrawTextureNPatch = _wrap(rlapi.DrawTextureNPatch, [Texture2D, NPatchInfo, Rectangle, Vector2, Float, Color], None)
-_DrawTexturePoly = _wrap(rlapi.DrawTexturePoly, [Texture2D, Vector2, Vector2Ptr, Vector2Ptr, Int, Color], None)
 _Fade = _wrap(rlapi.Fade, [Color, Float], Color)
 _ColorToInt = _wrap(rlapi.ColorToInt, [Color], Int)
 _ColorNormalize = _wrap(rlapi.ColorNormalize, [Color], Vector4)
 _ColorFromNormalized = _wrap(rlapi.ColorFromNormalized, [Vector4], Color)
 _ColorToHSV = _wrap(rlapi.ColorToHSV, [Color], Vector3)
 _ColorFromHSV = _wrap(rlapi.ColorFromHSV, [Float, Float, Float], Color)
+_ColorTint = _wrap(rlapi.ColorTint, [Color, Color], Color)
+_ColorBrightness = _wrap(rlapi.ColorBrightness, [Color, Float], Color)
+_ColorContrast = _wrap(rlapi.ColorContrast, [Color, Float], Color)
 _ColorAlpha = _wrap(rlapi.ColorAlpha, [Color, Float], Color)
 _ColorAlphaBlend = _wrap(rlapi.ColorAlphaBlend, [Color, Color, Color], Color)
 _GetColor = _wrap(rlapi.GetColor, [UInt], Color)
@@ -7752,6 +7840,7 @@ _LoadFont = _wrap(rlapi.LoadFont, [CharPtr], Font)
 _LoadFontEx = _wrap(rlapi.LoadFontEx, [CharPtr, Int, IntPtr, Int], Font)
 _LoadFontFromImage = _wrap(rlapi.LoadFontFromImage, [Image, Color, Int], Font)
 _LoadFontFromMemory = _wrap(rlapi.LoadFontFromMemory, [CharPtr, UCharPtr, Int, Int, IntPtr, Int], Font)
+_IsFontReady = _wrap(rlapi.IsFontReady, [Font], Bool)
 _LoadFontData = _wrap(rlapi.LoadFontData, [UCharPtr, Int, Int, IntPtr, Int, Int], GlyphInfoPtr)
 _GenImageFontAtlas = _wrap(rlapi.GenImageFontAtlas, [GlyphInfoPtr, RectanglePtr, Int, Int, Int, Int], Image)
 _UnloadFontData = _wrap(rlapi.UnloadFontData, [GlyphInfoPtr, Int], None)
@@ -7768,12 +7857,15 @@ _MeasureTextEx = _wrap(rlapi.MeasureTextEx, [Font, CharPtr, Float, Float], Vecto
 _GetGlyphIndex = _wrap(rlapi.GetGlyphIndex, [Font, Int], Int)
 _GetGlyphInfo = _wrap(rlapi.GetGlyphInfo, [Font, Int], GlyphInfo)
 _GetGlyphAtlasRec = _wrap(rlapi.GetGlyphAtlasRec, [Font, Int], Rectangle)
+_LoadUTF8 = _wrap(rlapi.LoadUTF8, [IntPtr, Int], CharPtr)
+_UnloadUTF8 = _wrap(rlapi.UnloadUTF8, [CharPtr], None)
 _LoadCodepoints = _wrap(rlapi.LoadCodepoints, [CharPtr, IntPtr], IntPtr)
 _UnloadCodepoints = _wrap(rlapi.UnloadCodepoints, [IntPtr], None)
 _GetCodepointCount = _wrap(rlapi.GetCodepointCount, [CharPtr], Int)
 _GetCodepoint = _wrap(rlapi.GetCodepoint, [CharPtr, IntPtr], Int)
+_GetCodepointNext = _wrap(rlapi.GetCodepointNext, [CharPtr, IntPtr], Int)
+_GetCodepointPrevious = _wrap(rlapi.GetCodepointPrevious, [CharPtr, IntPtr], Int)
 _CodepointToUTF8 = _wrap(rlapi.CodepointToUTF8, [Int, IntPtr], CharPtr)
-_TextCodepointsToUTF8 = _wrap(rlapi.TextCodepointsToUTF8, [IntPtr, Int], CharPtr)
 _TextCopy = _wrap(rlapi.TextCopy, [CharPtr, CharPtr], Int)
 _TextIsEqual = _wrap(rlapi.TextIsEqual, [CharPtr, CharPtr], Bool)
 _TextLength = _wrap(rlapi.TextLength, [CharPtr], UInt)
@@ -7798,8 +7890,6 @@ _DrawCube = _wrap(rlapi.DrawCube, [Vector3, Float, Float, Float, Color], None)
 _DrawCubeV = _wrap(rlapi.DrawCubeV, [Vector3, Vector3, Color], None)
 _DrawCubeWires = _wrap(rlapi.DrawCubeWires, [Vector3, Float, Float, Float, Color], None)
 _DrawCubeWiresV = _wrap(rlapi.DrawCubeWiresV, [Vector3, Vector3, Color], None)
-_DrawCubeTexture = _wrap(rlapi.DrawCubeTexture, [Texture2D, Vector3, Float, Float, Float, Color], None)
-_DrawCubeTextureRec = _wrap(rlapi.DrawCubeTextureRec, [Texture2D, Rectangle, Vector3, Float, Float, Float, Color], None)
 _DrawSphere = _wrap(rlapi.DrawSphere, [Vector3, Float, Color], None)
 _DrawSphereEx = _wrap(rlapi.DrawSphereEx, [Vector3, Float, Int, Int, Color], None)
 _DrawSphereWires = _wrap(rlapi.DrawSphereWires, [Vector3, Float, Int, Int, Color], None)
@@ -7807,13 +7897,15 @@ _DrawCylinder = _wrap(rlapi.DrawCylinder, [Vector3, Float, Float, Float, Int, Co
 _DrawCylinderEx = _wrap(rlapi.DrawCylinderEx, [Vector3, Vector3, Float, Float, Int, Color], None)
 _DrawCylinderWires = _wrap(rlapi.DrawCylinderWires, [Vector3, Float, Float, Float, Int, Color], None)
 _DrawCylinderWiresEx = _wrap(rlapi.DrawCylinderWiresEx, [Vector3, Vector3, Float, Float, Int, Color], None)
+_DrawCapsule = _wrap(rlapi.DrawCapsule, [Vector3, Vector3, Float, Int, Int, Color], None)
+_DrawCapsuleWires = _wrap(rlapi.DrawCapsuleWires, [Vector3, Vector3, Float, Int, Int, Color], None)
 _DrawPlane = _wrap(rlapi.DrawPlane, [Vector3, Vector2, Color], None)
 _DrawRay = _wrap(rlapi.DrawRay, [Ray, Color], None)
 _DrawGrid = _wrap(rlapi.DrawGrid, [Int, Float], None)
 _LoadModel = _wrap(rlapi.LoadModel, [CharPtr], Model)
 _LoadModelFromMesh = _wrap(rlapi.LoadModelFromMesh, [Mesh], Model)
+_IsModelReady = _wrap(rlapi.IsModelReady, [Model], Bool)
 _UnloadModel = _wrap(rlapi.UnloadModel, [Model], None)
-_UnloadModelKeepMeshes = _wrap(rlapi.UnloadModelKeepMeshes, [Model], None)
 _GetModelBoundingBox = _wrap(rlapi.GetModelBoundingBox, [Model], BoundingBox)
 _DrawModel = _wrap(rlapi.DrawModel, [Model, Vector3, Float, Color], None)
 _DrawModelEx = _wrap(rlapi.DrawModelEx, [Model, Vector3, Vector3, Float, Vector3, Color], None)
@@ -7844,6 +7936,7 @@ _GenMeshHeightmap = _wrap(rlapi.GenMeshHeightmap, [Image, Vector3], Mesh)
 _GenMeshCubicmap = _wrap(rlapi.GenMeshCubicmap, [Image, Vector3], Mesh)
 _LoadMaterials = _wrap(rlapi.LoadMaterials, [CharPtr, IntPtr], MaterialPtr)
 _LoadMaterialDefault = _wrap(rlapi.LoadMaterialDefault, [], Material)
+_IsMaterialReady = _wrap(rlapi.IsMaterialReady, [Material], Bool)
 _UnloadMaterial = _wrap(rlapi.UnloadMaterial, [Material], None)
 _SetMaterialTexture = _wrap(rlapi.SetMaterialTexture, [MaterialPtr, Int, Texture2D], None)
 _SetModelMeshMaterial = _wrap(rlapi.SetModelMeshMaterial, [ModelPtr, Int, Int], None)
@@ -7866,8 +7959,10 @@ _IsAudioDeviceReady = _wrap(rlapi.IsAudioDeviceReady, [], Bool)
 _SetMasterVolume = _wrap(rlapi.SetMasterVolume, [Float], None)
 _LoadWave = _wrap(rlapi.LoadWave, [CharPtr], Wave)
 _LoadWaveFromMemory = _wrap(rlapi.LoadWaveFromMemory, [CharPtr, UCharPtr, Int], Wave)
+_IsWaveReady = _wrap(rlapi.IsWaveReady, [Wave], Bool)
 _LoadSound = _wrap(rlapi.LoadSound, [CharPtr], Sound)
 _LoadSoundFromWave = _wrap(rlapi.LoadSoundFromWave, [Wave], Sound)
+_IsSoundReady = _wrap(rlapi.IsSoundReady, [Sound], Bool)
 _UpdateSound = _wrap(rlapi.UpdateSound, [Sound, VoidPtr, Int], None)
 _UnloadWave = _wrap(rlapi.UnloadWave, [Wave], None)
 _UnloadSound = _wrap(rlapi.UnloadSound, [Sound], None)
@@ -7877,9 +7972,6 @@ _PlaySound = _wrap(rlapi.PlaySound, [Sound], None)
 _StopSound = _wrap(rlapi.StopSound, [Sound], None)
 _PauseSound = _wrap(rlapi.PauseSound, [Sound], None)
 _ResumeSound = _wrap(rlapi.ResumeSound, [Sound], None)
-_PlaySoundMulti = _wrap(rlapi.PlaySoundMulti, [Sound], None)
-_StopSoundMulti = _wrap(rlapi.StopSoundMulti, [], None)
-_GetSoundsPlaying = _wrap(rlapi.GetSoundsPlaying, [], Int)
 _IsSoundPlaying = _wrap(rlapi.IsSoundPlaying, [Sound], Bool)
 _SetSoundVolume = _wrap(rlapi.SetSoundVolume, [Sound, Float], None)
 _SetSoundPitch = _wrap(rlapi.SetSoundPitch, [Sound, Float], None)
@@ -7891,6 +7983,7 @@ _LoadWaveSamples = _wrap(rlapi.LoadWaveSamples, [Wave], FloatPtr)
 _UnloadWaveSamples = _wrap(rlapi.UnloadWaveSamples, [FloatPtr], None)
 _LoadMusicStream = _wrap(rlapi.LoadMusicStream, [CharPtr], Music)
 _LoadMusicStreamFromMemory = _wrap(rlapi.LoadMusicStreamFromMemory, [CharPtr, UCharPtr, Int], Music)
+_IsMusicReady = _wrap(rlapi.IsMusicReady, [Music], Bool)
 _UnloadMusicStream = _wrap(rlapi.UnloadMusicStream, [Music], None)
 _PlayMusicStream = _wrap(rlapi.PlayMusicStream, [Music], None)
 _IsMusicStreamPlaying = _wrap(rlapi.IsMusicStreamPlaying, [Music], Bool)
@@ -7905,6 +7998,7 @@ _SetMusicPan = _wrap(rlapi.SetMusicPan, [Music, Float], None)
 _GetMusicTimeLength = _wrap(rlapi.GetMusicTimeLength, [Music], Float)
 _GetMusicTimePlayed = _wrap(rlapi.GetMusicTimePlayed, [Music], Float)
 _LoadAudioStream = _wrap(rlapi.LoadAudioStream, [UInt, UInt, UInt], AudioStream)
+_IsAudioStreamReady = _wrap(rlapi.IsAudioStreamReady, [AudioStream], Bool)
 _UnloadAudioStream = _wrap(rlapi.UnloadAudioStream, [AudioStream], None)
 _UpdateAudioStream = _wrap(rlapi.UpdateAudioStream, [AudioStream, VoidPtr, Int], None)
 _IsAudioStreamProcessed = _wrap(rlapi.IsAudioStreamProcessed, [AudioStream], Bool)
@@ -7920,6 +8014,8 @@ _SetAudioStreamBufferSizeDefault = _wrap(rlapi.SetAudioStreamBufferSizeDefault, 
 _SetAudioStreamCallback = _wrap(rlapi.SetAudioStreamCallback, [AudioStream, AudioCallback], None)
 _AttachAudioStreamProcessor = _wrap(rlapi.AttachAudioStreamProcessor, [AudioStream, AudioCallback], None)
 _DetachAudioStreamProcessor = _wrap(rlapi.DetachAudioStreamProcessor, [AudioStream, AudioCallback], None)
+_AttachAudioMixedProcessor = _wrap(rlapi.AttachAudioMixedProcessor, [AudioCallback], None)
+_DetachAudioMixedProcessor = _wrap(rlapi.DetachAudioMixedProcessor, [AudioCallback], None)
 _Clamp = _wrap(rlapi.Clamp, [Float, Float, Float], Float)
 _Lerp = _wrap(rlapi.Lerp, [Float, Float, Float], Float)
 _Normalize = _wrap(rlapi.Normalize, [Float, Float, Float], Float)
@@ -8287,8 +8383,14 @@ def restore_window():
 
 def set_window_icon(image):
     # type: (Image) -> None
-    """Set icon for window (only PLATFORM_DESKTOP)"""
+    """Set icon for window (single image, RGBA 32bit, only PLATFORM_DESKTOP)"""
     _SetWindowIcon(image)
+
+
+def set_window_icons(images, count):
+    # type: (ImagePtr, int) -> None
+    """Set icon for window (multiple images, RGBA 32bit, only PLATFORM_DESKTOP)"""
+    _SetWindowIcons(images, int(count))
 
 
 def set_window_title(title):
@@ -8648,6 +8750,13 @@ def load_shader_from_memory(vs_code, fs_code):
     return result
 
 
+def is_shader_ready(shader):
+    # type: (Shader) -> bool
+    """Check if a shader is ready"""
+    result = _IsShaderReady(shader)
+    return result
+
+
 def get_shader_location(shader, uniform_name):
     # type: (Shader, Union[str, CharPtr]) -> int
     """Get shader uniform location"""
@@ -8808,13 +8917,13 @@ def set_trace_log_level(log_level):
 def mem_alloc(size):
     # type: (int) -> bytes
     """Internal memory allocator"""
-    _MemAlloc(int(size))
+    _MemAlloc(size)
 
 
 def mem_realloc(ptr, size):
     # type: (bytes, int) -> bytes
     """Internal memory reallocator"""
-    _MemRealloc(ptr, int(size))
+    _MemRealloc(ptr, size)
 
 
 def mem_free(ptr):
@@ -8880,7 +8989,7 @@ def save_file_data(file_name, data, bytes_to_write):
 
 
 def export_data_as_code(data, size, file_name):
-    # type: (Union[str, CharPtr], int, Union[str, CharPtr]) -> bool
+    # type: (Union[Seq[int], UCharPtr], int, Union[str, CharPtr]) -> bool
     """Export data to code (.h), returns true on success"""
     result = _ExportDataAsCode(_str_in(data), size, _str_in(file_name))
     return result
@@ -9374,40 +9483,16 @@ def get_gesture_pinch_angle():
     return result
 
 
-def set_camera_mode(camera, mode):
-    # type: (Camera, int) -> None
-    """Set camera mode (multiple camera modes available)"""
-    _SetCameraMode(camera, int(mode))
-
-
-def update_camera(camera):
-    # type: (CameraPtr) -> None
+def update_camera(camera, mode):
+    # type: (CameraPtr, int) -> None
     """Update camera position for selected mode"""
-    _UpdateCamera(camera)
+    _UpdateCamera(camera, int(mode))
 
 
-def set_camera_pan_control(key_pan):
-    # type: (int) -> None
-    """Set camera pan key to combine with mouse movement (free camera)"""
-    _SetCameraPanControl(int(key_pan))
-
-
-def set_camera_alt_control(key_alt):
-    # type: (int) -> None
-    """Set camera alt key to combine with mouse movement (free camera)"""
-    _SetCameraAltControl(int(key_alt))
-
-
-def set_camera_smooth_zoom_control(key_smooth_zoom):
-    # type: (int) -> None
-    """Set camera smooth zoom key to combine with mouse (free camera)"""
-    _SetCameraSmoothZoomControl(int(key_smooth_zoom))
-
-
-def set_camera_move_controls(key_front, key_back, key_right, key_left, key_up, key_down):
-    # type: (int, int, int, int, int, int) -> None
-    """Set camera move controls (1st person and 3rd person cameras)"""
-    _SetCameraMoveControls(int(key_front), int(key_back), int(key_right), int(key_left), int(key_up), int(key_down))
+def update_camera_pro(camera, movement, rotation, zoom):
+    # type: (CameraPtr, Vector3, Vector3, float) -> None
+    """Update camera movement/rotation"""
+    _UpdateCameraPro(camera, _vec3(movement), _vec3(rotation), float(zoom))
 
 
 def set_shapes_texture(texture, source):
@@ -9680,6 +9765,13 @@ def check_collision_point_triangle(point, p1, p2, p3):
     return result
 
 
+def check_collision_point_poly(point, points, point_count):
+    # type: (Vector2, Vector2Ptr, int) -> bool
+    """Check if point is within a polygon described by array of vertices"""
+    result = _CheckCollisionPointPoly(_vec2(point), _vec2(points), int(point_count))
+    return result
+
+
 def check_collision_lines(start_pos1, end_pos1, start_pos2, end_pos2, collision_point):
     # type: (Vector2, Vector2, Vector2, Vector2, Vector2Ptr) -> bool
     """Check the collision between two lines defined by two points each, returns collision point by reference"""
@@ -9740,6 +9832,13 @@ def load_image_from_screen():
     # type: () -> Image
     """Load image from screen buffer and (screenshot)"""
     result = _LoadImageFromScreen()
+    return result
+
+
+def is_image_ready(image):
+    # type: (Image) -> bool
+    """Check if an image is ready"""
+    result = _IsImageReady(image)
     return result
 
 
@@ -9805,10 +9904,24 @@ def gen_image_white_noise(width, height, factor):
     return result
 
 
+def gen_image_perlin_noise(width, height, offset_x, offset_y, scale):
+    # type: (int, int, int, int, float) -> Image
+    """Generate image: perlin noise"""
+    result = _GenImagePerlinNoise(int(width), int(height), int(offset_x), int(offset_y), float(scale))
+    return result
+
+
 def gen_image_cellular(width, height, tile_size):
     # type: (int, int, int) -> Image
     """Generate image: cellular algorithm, bigger tileSize means bigger cells"""
     result = _GenImageCellular(int(width), int(height), int(tile_size))
+    return result
+
+
+def gen_image_text(width, height, text):
+    # type: (int, int, Union[str, CharPtr]) -> Image
+    """Generate image: grayscale image from text data"""
+    result = _GenImageText(int(width), int(height), _str_in(text))
     return result
 
 
@@ -9880,6 +9993,12 @@ def image_alpha_premultiply(image):
     # type: (ImagePtr) -> None
     """Premultiply alpha channel"""
     _ImageAlphaPremultiply(image)
+
+
+def image_blur_gaussian(image, blur_size):
+    # type: (ImagePtr, int) -> None
+    """Apply Gaussian blur using a box blur approximation"""
+    _ImageBlurGaussian(image, int(blur_size))
 
 
 def image_resize(image, new_width, new_height):
@@ -10045,14 +10164,26 @@ def image_draw_line_v(dst, start, end, color):
 
 def image_draw_circle(dst, center_x, center_y, radius, color):
     # type: (ImagePtr, int, int, int, Color) -> None
-    """Draw circle within an image"""
+    """Draw a filled circle within an image"""
     _ImageDrawCircle(dst, int(center_x), int(center_y), int(radius), _color(color))
 
 
 def image_draw_circle_v(dst, center, radius, color):
     # type: (ImagePtr, Vector2, int, Color) -> None
-    """Draw circle within an image (Vector version)"""
+    """Draw a filled circle within an image (Vector version)"""
     _ImageDrawCircleV(dst, _vec2(center), int(radius), _color(color))
+
+
+def image_draw_circle_lines(dst, center_x, center_y, radius, color):
+    # type: (ImagePtr, int, int, int, Color) -> None
+    """Draw circle outline within an image"""
+    _ImageDrawCircleLines(dst, int(center_x), int(center_y), int(radius), _color(color))
+
+
+def image_draw_circle_lines_v(dst, center, radius, color):
+    # type: (ImagePtr, Vector2, int, Color) -> None
+    """Draw circle outline within an image (Vector version)"""
+    _ImageDrawCircleLinesV(dst, _vec2(center), int(radius), _color(color))
 
 
 def image_draw_rectangle(dst, pos_x, pos_y, width, height, color):
@@ -10125,10 +10256,24 @@ def load_render_texture(width, height):
     return result
 
 
+def is_texture_ready(texture):
+    # type: (Texture2D) -> bool
+    """Check if a texture is ready"""
+    result = _IsTextureReady(texture)
+    return result
+
+
 def unload_texture(texture):
     # type: (Texture2D) -> None
     """Unload texture from GPU memory (VRAM)"""
     _UnloadTexture(texture)
+
+
+def is_render_texture_ready(target):
+    # type: (RenderTexture2D) -> bool
+    """Check if a render texture is ready"""
+    result = _IsRenderTextureReady(target)
+    return result
 
 
 def unload_render_texture(target):
@@ -10191,18 +10336,6 @@ def draw_texture_rec(texture, source, position, tint):
     _DrawTextureRec(texture, _rect(source), _vec2(position), _color(tint))
 
 
-def draw_texture_quad(texture, tiling, offset, quad, tint):
-    # type: (Texture2D, Vector2, Vector2, Rectangle, Color) -> None
-    """Draw texture quad with tiling and offset parameters"""
-    _DrawTextureQuad(texture, _vec2(tiling), _vec2(offset), _rect(quad), _color(tint))
-
-
-def draw_texture_tiled(texture, source, dest, origin, rotation, scale, tint):
-    # type: (Texture2D, Rectangle, Rectangle, Vector2, float, float, Color) -> None
-    """Draw part of a texture (defined by a rectangle) with rotation and scale tiled into dest."""
-    _DrawTextureTiled(texture, _rect(source), _rect(dest), _vec2(origin), float(rotation), float(scale), _color(tint))
-
-
 def draw_texture_pro(texture, source, dest, origin, rotation, tint):
     # type: (Texture2D, Rectangle, Rectangle, Vector2, float, Color) -> None
     """Draw a part of a texture defined by a rectangle with 'pro' parameters"""
@@ -10213,12 +10346,6 @@ def draw_texture_npatch(texture, n_patch_info, dest, origin, rotation, tint):
     # type: (Texture2D, NPatchInfo, Rectangle, Vector2, float, Color) -> None
     """Draws a texture (or part of it) that stretches or shrinks nicely"""
     _DrawTextureNPatch(texture, n_patch_info, _rect(dest), _vec2(origin), float(rotation), _color(tint))
-
-
-def draw_texture_poly(texture, center, points, texcoords, tint):
-    # type: (Texture2D, Vector2, Vector2Ptr, Vector2Ptr, Color) -> None
-    """Draw a textured polygon"""
-    _DrawTexturePoly(texture, _vec2(center), _arr_in(Vector2, points), _vec2(texcoords), len(points), _color(tint))
 
 
 def fade(color, alpha):
@@ -10260,6 +10387,27 @@ def color_from_hsv(hue, saturation, value):
     # type: (float, float, float) -> Color
     """Get a Color from HSV values, hue [0..360], saturation/value [0..1]"""
     result = _ColorFromHSV(float(hue), float(saturation), float(value))
+    return result
+
+
+def color_tint(color, tint):
+    # type: (Color, Color) -> Color
+    """Get color multiplied with another color"""
+    result = _ColorTint(_color(color), _color(tint))
+    return result
+
+
+def color_brightness(color, factor):
+    # type: (Color, float) -> Color
+    """Get color with brightness correction, brightness factor goes from -1.0f to 1.0f"""
+    result = _ColorBrightness(_color(color), float(factor))
+    return result
+
+
+def color_contrast(color, contrast):
+    # type: (Color, float) -> Color
+    """Get color with contrast correction, contrast values between -1.0f and 1.0f"""
+    result = _ColorContrast(_color(color), float(contrast))
     return result
 
 
@@ -10336,6 +10484,13 @@ def load_font_from_memory(file_type, file_data, data_size, font_size, font_chars
     # type: (Union[str, CharPtr], Union[Seq[int], UCharPtr], int, int, Union[Seq[int], IntPtr], int) -> Font
     """Load font from memory buffer, fileType refers to extension: i.e. '.ttf'"""
     result = _LoadFontFromMemory(_str_in(file_type), _str_in(file_data), int(data_size), int(font_size), font_chars, int(glyph_count))
+    return result
+
+
+def is_font_ready(font):
+    # type: (Font) -> bool
+    """Check if a font is ready"""
+    result = _IsFontReady(font)
     return result
 
 
@@ -10443,6 +10598,19 @@ def get_glyph_atlas_rec(font, codepoint):
     return result
 
 
+def load_utf8(codepoints, length):
+    # type: (Union[Seq[int], IntPtr], int) -> Union[str, CharPtr]
+    """Load UTF-8 text encoded from codepoints array"""
+    result = _ptr_out(_LoadUTF8(codepoints, int(length)))
+    return result
+
+
+def unload_utf8(text):
+    # type: (Union[str, CharPtr]) -> None
+    """Unload UTF-8 text encoded from codepoints array"""
+    _UnloadUTF8(_str_in(text))
+
+
 def load_codepoints(text, count):
     # type: (Union[str, CharPtr], Union[Seq[int], IntPtr]) -> Union[Seq[int], IntPtr]
     """Load all codepoints from a UTF-8 text string, codepoints count returned by parameter"""
@@ -10463,24 +10631,31 @@ def get_codepoint_count(text):
     return result
 
 
-def get_codepoint(text, bytes_processed):
+def get_codepoint(text, codepoint_size):
     # type: (Union[str, CharPtr], Union[Seq[int], IntPtr]) -> int
     """Get next codepoint in a UTF-8 encoded string, 0x3f('?') is returned on failure"""
-    result = _GetCodepoint(_str_in(text), bytes_processed)
+    result = _GetCodepoint(_str_in(text), codepoint_size)
     return result
 
 
-def codepoint_to_utf8(codepoint, byte_size):
+def get_codepoint_next(text, codepoint_size):
+    # type: (Union[str, CharPtr], Union[Seq[int], IntPtr]) -> int
+    """Get next codepoint in a UTF-8 encoded string, 0x3f('?') is returned on failure"""
+    result = _GetCodepointNext(_str_in(text), codepoint_size)
+    return result
+
+
+def get_codepoint_previous(text, codepoint_size):
+    # type: (Union[str, CharPtr], Union[Seq[int], IntPtr]) -> int
+    """Get previous codepoint in a UTF-8 encoded string, 0x3f('?') is returned on failure"""
+    result = _GetCodepointPrevious(_str_in(text), codepoint_size)
+    return result
+
+
+def codepoint_to_utf8(codepoint, utf8size):
     # type: (int, Union[Seq[int], IntPtr]) -> Union[str, CharPtr]
     """Encode one codepoint into UTF-8 byte array (array length returned as parameter)"""
-    result = _ptr_out(_CodepointToUTF8(int(codepoint), byte_size))
-    return result
-
-
-def text_codepoints_to_utf8(codepoints, length):
-    # type: (Union[Seq[int], IntPtr], int) -> Union[str, CharPtr]
-    """Encode text as codepoints array into UTF-8 text string (WARNING: memory must be freed!)"""
-    result = _ptr_out(_TextCodepointsToUTF8(codepoints, int(length)))
+    result = _ptr_out(_CodepointToUTF8(int(codepoint), utf8size))
     return result
 
 
@@ -10642,18 +10817,6 @@ def draw_cube_wires_v(position, size, color):
     _DrawCubeWiresV(_vec3(position), _vec3(size), _color(color))
 
 
-def draw_cube_texture(texture, position, width, height, length, color):
-    # type: (Texture2D, Vector3, float, float, float, Color) -> None
-    """Draw cube textured"""
-    _DrawCubeTexture(texture, _vec3(position), float(width), float(height), float(length), _color(color))
-
-
-def draw_cube_texture_rec(texture, source, position, width, height, length, color):
-    # type: (Texture2D, Rectangle, Vector3, float, float, float, Color) -> None
-    """Draw cube with a region of a texture"""
-    _DrawCubeTextureRec(texture, _rect(source), _vec3(position), float(width), float(height), float(length), _color(color))
-
-
 def draw_sphere(center_pos, radius, color):
     # type: (Vector3, float, Color) -> None
     """Draw sphere"""
@@ -10696,6 +10859,18 @@ def draw_cylinder_wires_ex(start_pos, end_pos, start_radius, end_radius, sides, 
     _DrawCylinderWiresEx(_vec3(start_pos), _vec3(end_pos), float(start_radius), float(end_radius), int(sides), _color(color))
 
 
+def draw_capsule(start_pos, end_pos, radius, slices, rings, color):
+    # type: (Vector3, Vector3, float, int, int, Color) -> None
+    """Draw a capsule with the center of its sphere caps at startPos and endPos"""
+    _DrawCapsule(_vec3(start_pos), _vec3(end_pos), float(radius), int(slices), int(rings), _color(color))
+
+
+def draw_capsule_wires(start_pos, end_pos, radius, slices, rings, color):
+    # type: (Vector3, Vector3, float, int, int, Color) -> None
+    """Draw capsule wireframe with the center of its sphere caps at startPos and endPos"""
+    _DrawCapsuleWires(_vec3(start_pos), _vec3(end_pos), float(radius), int(slices), int(rings), _color(color))
+
+
 def draw_plane(center_pos, size, color):
     # type: (Vector3, Vector2, Color) -> None
     """Draw a plane XZ"""
@@ -10728,16 +10903,17 @@ def load_model_from_mesh(mesh):
     return result
 
 
+def is_model_ready(model):
+    # type: (Model) -> bool
+    """Check if a model is ready"""
+    result = _IsModelReady(model)
+    return result
+
+
 def unload_model(model):
     # type: (Model) -> None
     """Unload model (including meshes) from memory (RAM and/or VRAM)"""
     _UnloadModel(model)
-
-
-def unload_model_keep_meshes(model):
-    # type: (Model) -> None
-    """Unload model (but not meshes) from memory (RAM and/or VRAM)"""
-    _UnloadModelKeepMeshes(model)
 
 
 def get_model_bounding_box(model):
@@ -10937,6 +11113,13 @@ def load_material_default():
     return result
 
 
+def is_material_ready(material):
+    # type: (Material) -> bool
+    """Check if a material is ready"""
+    result = _IsMaterialReady(material)
+    return result
+
+
 def unload_material(material):
     # type: (Material) -> None
     """Unload material from GPU memory (VRAM)"""
@@ -11083,6 +11266,13 @@ def load_wave_from_memory(file_type, file_data, data_size):
     return result
 
 
+def is_wave_ready(wave):
+    # type: (Wave) -> bool
+    """Checks if wave data is ready"""
+    result = _IsWaveReady(wave)
+    return result
+
+
 def load_sound(file_name):
     # type: (Union[str, CharPtr]) -> Sound
     """Load sound from file"""
@@ -11094,6 +11284,13 @@ def load_sound_from_wave(wave):
     # type: (Wave) -> Sound
     """Load sound from wave data"""
     result = _LoadSoundFromWave(wave)
+    return result
+
+
+def is_sound_ready(sound):
+    # type: (Sound) -> bool
+    """Checks if a sound is ready"""
+    result = _IsSoundReady(sound)
     return result
 
 
@@ -11151,25 +11348,6 @@ def resume_sound(sound):
     # type: (Sound) -> None
     """Resume a paused sound"""
     _ResumeSound(sound)
-
-
-def play_sound_multi(sound):
-    # type: (Sound) -> None
-    """Play a sound (using multichannel buffer pool)"""
-    _PlaySoundMulti(sound)
-
-
-def stop_sound_multi():
-    # type: () -> None
-    """Stop any sound playing (using multichannel buffer pool)"""
-    _StopSoundMulti()
-
-
-def get_sounds_playing():
-    # type: () -> int
-    """Get number of sounds playing in the multichannel"""
-    result = _GetSoundsPlaying()
-    return result
 
 
 def is_sound_playing(sound):
@@ -11240,6 +11418,13 @@ def load_music_stream_from_memory(file_type, data, data_size):
     # type: (Union[str, CharPtr], Union[Seq[int], UCharPtr], int) -> Music
     """Load music stream from data"""
     result = _LoadMusicStreamFromMemory(_str_in(file_type), _str_in(data), int(data_size))
+    return result
+
+
+def is_music_ready(music):
+    # type: (Music) -> bool
+    """Checks if a music stream is ready"""
+    result = _IsMusicReady(music)
     return result
 
 
@@ -11331,6 +11516,13 @@ def load_audio_stream(sample_rate, sample_size, channels):
     return result
 
 
+def is_audio_stream_ready(stream):
+    # type: (AudioStream) -> bool
+    """Checks if an audio stream is ready"""
+    result = _IsAudioStreamReady(stream)
+    return result
+
+
 def unload_audio_stream(stream):
     # type: (AudioStream) -> None
     """Unload audio stream and free memory"""
@@ -11413,14 +11605,26 @@ def set_audio_stream_callback(stream, callback):
 
 def attach_audio_stream_processor(stream, processor):
     # type: (AudioStream, AudioCallback) -> None
-    """"""
+    """Attach audio stream processor to stream"""
     _AttachAudioStreamProcessor(stream, processor)
 
 
 def detach_audio_stream_processor(stream, processor):
     # type: (AudioStream, AudioCallback) -> None
-    """"""
+    """Detach audio stream processor from stream"""
     _DetachAudioStreamProcessor(stream, processor)
+
+
+def attach_audio_mixed_processor(processor):
+    # type: (AudioCallback) -> None
+    """Attach audio stream processor to the entire audio pipeline"""
+    _AttachAudioMixedProcessor(processor)
+
+
+def detach_audio_mixed_processor(processor):
+    # type: (AudioCallback) -> None
+    """Detach audio stream processor from the entire audio pipeline"""
+    _DetachAudioMixedProcessor(processor)
 
 
 def clamp(value, min_, max_):
