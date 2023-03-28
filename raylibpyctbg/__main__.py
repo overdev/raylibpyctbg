@@ -30,6 +30,7 @@
 # region IMPORTS
 
 import sys, os
+import traceback
 
 from rlapi2 import main as gen_wrapper
 
@@ -259,6 +260,7 @@ def main(*args) -> int:
         gen_wrapper(include, out_file, in_bind_info, doc_out_fname, **config)
     except Exception as e:
         print("Unable to generate the python binding due to an error:\n {}{}".format(e.__class__.__name__, e.args))
+        traceback.print_exception(e)
         return 1
 
     return 0

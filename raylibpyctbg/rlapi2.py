@@ -1019,12 +1019,15 @@ class StructureInfo(InfoBase):
                 rename = bind_data.get('renameAs', api)
                 # byref = bind_data.get('byref', False)
                 info = self.bind_generator.functions_by_name.get(api)
-                if self.config.snakefy_functions:
-                    rename = snakefy(rename)
-                params = info.gen_param_list('staticmethod')
-                link = '<a href="#{}"><code>{}</code></a>'.format(info.name, info.py_name)
+                if info:
+                    if self.config.snakefy_functions:
+                        rename = snakefy(rename)
+                    params = info.gen_param_list('staticmethod')
+                    link = '<a href="#{}"><code>{}</code></a>'.format(info.name, info.py_name)
 
-                method_list.append("*staticmethod* | `.{}({})` | {}".format(rename, params, link))
+                    method_list.append("*staticmethod* | `.{}({})` | {}".format(rename, params, link))
+                else:
+                    print("no docs for `{}`".format(api))
 
         if self.config.bind_classmethods:
             method_list.append("*classmethod* | `.array_of(cls, {}_sequence)` | *n/a*".format(self.py_name))
@@ -1034,12 +1037,15 @@ class StructureInfo(InfoBase):
                 rename = bind_data.get('renameAs', api)
                 # byref = bind_data.get('byref', False)
                 info = self.bind_generator.functions_by_name.get(api)
-                if self.config.snakefy_functions:
-                    rename = snakefy(rename)
-                params = info.gen_param_list('classmethod')
-                link = '<a href="#{}"><code>{}</code></a>'.format(info.name, info.py_name)
+                if info:
+                    if self.config.snakefy_functions:
+                        rename = snakefy(rename)
+                    params = info.gen_param_list('classmethod')
+                    link = '<a href="#{}"><code>{}</code></a>'.format(info.name, info.py_name)
 
-                method_list.append("*classmethod* | `.{}({})` | {}".format(rename, params, link))
+                    method_list.append("*classmethod* | `.{}({})` | {}".format(rename, params, link))
+                else:
+                    print("no docs for `{}`".format(api))
 
         if self.config.bind_methods:
             methods = self.meta_info.get('bindApiAsMethod', [])
@@ -1048,12 +1054,15 @@ class StructureInfo(InfoBase):
                 rename = bind_data.get('renameAs', api)
                 # byref = bind_data.get('byref', False)
                 info = self.bind_generator.functions_by_name.get(api)
-                if self.config.snakefy_functions:
-                    rename = snakefy(rename)
-                params = info.gen_param_list('method')
-                link = '<a href="#{}"><code>{}</code></a>'.format(info.name, info.py_name)
+                if info:
+                    if self.config.snakefy_functions:
+                        rename = snakefy(rename)
+                    params = info.gen_param_list('method')
+                    link = '<a href="#{}"><code>{}</code></a>'.format(info.name, info.py_name)
 
-                method_list.append("*method* | `.{}({})` | {}".format(rename, params, link))
+                    method_list.append("*method* | `.{}({})` | {}".format(rename, params, link))
+                else:
+                    print("no docs for `{}`".format(api))
 
         return TPL_DOC_METHODS.format(
             method_list='\n'.join(method_list)
