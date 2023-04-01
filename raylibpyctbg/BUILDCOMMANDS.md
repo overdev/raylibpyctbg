@@ -24,5 +24,5 @@ cd package/dist
 then
 
 ```
-py -3.10 -m pip install raylib_py-4.2.0-py3-none-any.whl --force-reinstall
+py -3.10 -m pip install raylib_py-4.5.0-py3-none-any.whl --force-reinstall
 ```

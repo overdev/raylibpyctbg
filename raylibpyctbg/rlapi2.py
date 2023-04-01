@@ -32,6 +32,7 @@ from enum import IntEnum
 import json
 import re
 import os
+import keyword
 
 from raylib_formatting import *
 from raylib_docs import *
@@ -137,7 +138,8 @@ class TypeInfo(InfoBase):
         super().__init__(header_name, {}, meta_info, config, bind_generator)
         self.info['mapped'] = None
         self.info['is_struct'] = is_struct
-        self._parse(spec)
+        if not self._parse(spec):
+            print(header_name, '-->', spec)
 
     @property
     def const(self):
@@ -235,6 +237,13 @@ class TypeInfo(InfoBase):
 
         return typ.ctypes_type
 
+    @staticmethod
+    def can_parse(spec):
+        if spec != '...':
+            match = REGEX_TYPE_RULE.fullmatch(spec)
+            return match is not None
+        return True
+
     def _parse(self, spec):
         if spec == '...':
             self.info['const'] = False
@@ -253,7 +262,9 @@ class TypeInfo(InfoBase):
                 self.info['arr_length'] = int(pointer, 10) if pointer and str(length).startswith('[') else 0
 
             else:
-                raise ValueError("Spec: '{}' couldn't be parsed".format(spec))
+                # raise ValueError("Spec: '{}' couldn't be parsed".format(spec))
+                print("Spec: '{}' couldn't be parsed".format(spec))
+                return False
 
         typ = self.bind_generator.get_type(self.get_c_type(), None)
         if not typ:
@@ -269,6 +280,7 @@ class TypeInfo(InfoBase):
             self.bind_generator.map_type(typ.c_type, typ)
 
         self.info['mapped'] = typ
+        return True
 
 
 class DefineInfo(InfoBase):
@@ -859,7 +871,19 @@ class StructureInfo(InfoBase):
 
     def __init__(self, header_name, info, meta_info, config, bind_generator):
         super().__init__(header_name, info, meta_info, config, bind_generator)
-        self.fields = [FieldInfo(header_name, f, meta_info, config, bind_generator) for f in info.get('fields', [])]
+        self.fields = [FieldInfo(header_name, f, meta_info, config, bind_generator) for f in info.get('fields', []) if TypeInfo.can_parse(f.get('type'))]
+
+        print("::", self.name, len(self.fields))
+        i = 0
+        before = ''
+        while i < len(self.fields):
+            name = self.fields[i].name
+            if name == before:
+                print("REMOVED REPEATED FIELD NAME:", name)
+                del self.fields[i]
+            else:
+                before = name
+                i += 1
 
     @property
     def name(self):
@@ -1155,8 +1179,8 @@ class BindGenerator:
     def find(self, name, default=None):
         return self.name_table.get(name, default)
 
-    def load_info(self, header_name, info, meta_info, config):
-        loaded_structs = []
+    def load_info(self, header_name, loaded_structs, info, meta_info, config):
+        # loaded_structs = []
         self.type_meta = meta_info.get('types', {})
 
         for struct_info in info.get('structs', []):
@@ -1509,6 +1533,9 @@ def snakefy(name):
             result += char.lower()
         lastchar = char
 
+    if keyword.iskeyword(result):
+        return "{}_".format(result)
+
     return result
 
 
@@ -1541,9 +1568,10 @@ def main(in_fnames, out_fname, in_meta=None, doc_out_fname=None, **config):
 
     config = Config(default_config)
 
+    loaded_struct_names = []
     for fname in in_fnames:
         with open(fname, 'r', encoding='utf8') as info:
-            generator.load_info(os.path.basename, json.load(info), meta_info, config)
+            generator.load_info(os.path.basename, loaded_struct_names, json.load(info), meta_info, config)
 
     generator.gen_wrapper(out_fname, config, doc_out_fname)
 
