@@ -959,6 +959,13 @@ __all__ = [
     'shader_mode',
     'texture_mode',
     'vr_stereo_mode',
+    'float3',
+    'float16',
+    'PI',
+    'EPSILON',
+    'DEG2RAD',
+    'RAD2DEG',
+    'Quaternion',
     'clamp',
     'lerp',
     'normalize',
@@ -977,6 +984,7 @@ __all__ = [
     'vector2distance',
     'vector2distance_sqr',
     'vector2angle',
+    'vector2line_angle',
     'vector2scale',
     'vector2multiply',
     'vector2negate',
@@ -1058,11 +1066,12 @@ __all__ = [
     'quaternion_multiply',
     'quaternion_scale',
     'quaternion_divide',
+    'quaternion_lerp',
     'quaternion_nlerp',
     'quaternion_slerp',
     'quaternion_from_vector3to_vector3',
-    'quaternion_to_matrix',
     'quaternion_from_matrix',
+    'quaternion_to_matrix',
     'quaternion_from_axis_angle',
     'quaternion_to_axis_angle',
     'quaternion_from_euler',
@@ -1072,7 +1081,6 @@ __all__ = [
     'rlVertexBuffer',
     'rlDrawCall',
     'rlRenderBatch',
-    'Matrix',
     'RLGL_VERSION',
     'RL_DEFAULT_BATCH_BUFFER_ELEMENTS',
     'RL_DEFAULT_BATCH_BUFFERS',
@@ -1093,6 +1101,7 @@ __all__ = [
     'RL_TEXTURE_FILTER_LINEAR_MIP_NEAREST',
     'RL_TEXTURE_FILTER_MIP_LINEAR',
     'RL_TEXTURE_FILTER_ANISOTROPIC',
+    'RL_TEXTURE_MIPMAP_BIAS_RATIO',
     'RL_TEXTURE_WRAP_REPEAT',
     'RL_TEXTURE_WRAP_CLAMP',
     'RL_TEXTURE_WRAP_MIRROR_REPEAT',
@@ -1117,32 +1126,40 @@ __all__ = [
     'RL_FRAGMENT_SHADER',
     'RL_VERTEX_SHADER',
     'RL_COMPUTE_SHADER',
+    'RL_ZERO',
+    'RL_ONE',
+    'RL_SRC_COLOR',
+    'RL_ONE_MINUS_SRC_COLOR',
+    'RL_SRC_ALPHA',
+    'RL_ONE_MINUS_SRC_ALPHA',
+    'RL_DST_ALPHA',
+    'RL_ONE_MINUS_DST_ALPHA',
+    'RL_DST_COLOR',
+    'RL_ONE_MINUS_DST_COLOR',
+    'RL_SRC_ALPHA_SATURATE',
+    'RL_CONSTANT_COLOR',
+    'RL_ONE_MINUS_CONSTANT_COLOR',
+    'RL_CONSTANT_ALPHA',
+    'RL_ONE_MINUS_CONSTANT_ALPHA',
+    'RL_FUNC_ADD',
+    'RL_MIN',
+    'RL_MAX',
+    'RL_FUNC_SUBTRACT',
+    'RL_FUNC_REVERSE_SUBTRACT',
+    'RL_BLEND_EQUATION',
+    'RL_BLEND_EQUATION_RGB',
+    'RL_BLEND_EQUATION_ALPHA',
+    'RL_BLEND_DST_RGB',
+    'RL_BLEND_SRC_RGB',
+    'RL_BLEND_DST_ALPHA',
+    'RL_BLEND_SRC_ALPHA',
+    'RL_BLEND_COLOR',
     'rlGlVersion',
-    'OPENGL_11',
-    'OPENGL_21',
-    'OPENGL_33',
-    'OPENGL_43',
-    'OPENGL_ES_20',
-    'rlFramebufferAttachType',
-    'RL_ATTACHMENT_COLOR_CHANNEL0',
-    'RL_ATTACHMENT_COLOR_CHANNEL1',
-    'RL_ATTACHMENT_COLOR_CHANNEL2',
-    'RL_ATTACHMENT_COLOR_CHANNEL3',
-    'RL_ATTACHMENT_COLOR_CHANNEL4',
-    'RL_ATTACHMENT_COLOR_CHANNEL5',
-    'RL_ATTACHMENT_COLOR_CHANNEL6',
-    'RL_ATTACHMENT_COLOR_CHANNEL7',
-    'RL_ATTACHMENT_DEPTH',
-    'RL_ATTACHMENT_STENCIL',
-    'rlFramebufferAttachTextureType',
-    'RL_ATTACHMENT_CUBEMAP_POSITIVE_X',
-    'RL_ATTACHMENT_CUBEMAP_NEGATIVE_X',
-    'RL_ATTACHMENT_CUBEMAP_POSITIVE_Y',
-    'RL_ATTACHMENT_CUBEMAP_NEGATIVE_Y',
-    'RL_ATTACHMENT_CUBEMAP_POSITIVE_Z',
-    'RL_ATTACHMENT_CUBEMAP_NEGATIVE_Z',
-    'RL_ATTACHMENT_TEXTURE2D',
-    'RL_ATTACHMENT_RENDERBUFFER',
+    'RL_OPENGL_11',
+    'RL_OPENGL_21',
+    'RL_OPENGL_33',
+    'RL_OPENGL_43',
+    'RL_OPENGL_ES_20',
     'rlTraceLogLevel',
     'RL_LOG_ALL',
     'RL_LOG_TRACE',
@@ -1189,6 +1206,7 @@ __all__ = [
     'RL_BLEND_SUBTRACT_COLORS',
     'RL_BLEND_ALPHA_PREMULTIPLY',
     'RL_BLEND_CUSTOM',
+    'RL_BLEND_CUSTOM_SEPARATE',
     'rlShaderLocationIndex',
     'RL_SHADER_LOC_VERTEX_POSITION',
     'RL_SHADER_LOC_VERTEX_TEXCOORD01',
@@ -1231,6 +1249,29 @@ __all__ = [
     'RL_SHADER_ATTRIB_VEC2',
     'RL_SHADER_ATTRIB_VEC3',
     'RL_SHADER_ATTRIB_VEC4',
+    'rlFramebufferAttachType',
+    'RL_ATTACHMENT_COLOR_CHANNEL0',
+    'RL_ATTACHMENT_COLOR_CHANNEL1',
+    'RL_ATTACHMENT_COLOR_CHANNEL2',
+    'RL_ATTACHMENT_COLOR_CHANNEL3',
+    'RL_ATTACHMENT_COLOR_CHANNEL4',
+    'RL_ATTACHMENT_COLOR_CHANNEL5',
+    'RL_ATTACHMENT_COLOR_CHANNEL6',
+    'RL_ATTACHMENT_COLOR_CHANNEL7',
+    'RL_ATTACHMENT_DEPTH',
+    'RL_ATTACHMENT_STENCIL',
+    'rlFramebufferAttachTextureType',
+    'RL_ATTACHMENT_CUBEMAP_POSITIVE_X',
+    'RL_ATTACHMENT_CUBEMAP_NEGATIVE_X',
+    'RL_ATTACHMENT_CUBEMAP_POSITIVE_Y',
+    'RL_ATTACHMENT_CUBEMAP_NEGATIVE_Y',
+    'RL_ATTACHMENT_CUBEMAP_POSITIVE_Z',
+    'RL_ATTACHMENT_CUBEMAP_NEGATIVE_Z',
+    'RL_ATTACHMENT_TEXTURE2D',
+    'RL_ATTACHMENT_RENDERBUFFER',
+    'rlCullMode',
+    'RL_CULL_FACE_FRONT',
+    'RL_CULL_FACE_BACK',
     'rl_matrix_mode',
     'rl_push_matrix',
     'rl_pop_matrix',
@@ -1266,6 +1307,7 @@ __all__ = [
     'rl_enable_texture_cubemap',
     'rl_disable_texture_cubemap',
     'rl_texture_parameters',
+    'rl_cubemap_parameters',
     'rl_enable_shader',
     'rl_disable_shader',
     'rl_enable_framebuffer',
@@ -1279,6 +1321,7 @@ __all__ = [
     'rl_disable_depth_mask',
     'rl_enable_backface_culling',
     'rl_disable_backface_culling',
+    'rl_set_cull_face',
     'rl_enable_scissor_test',
     'rl_disable_scissor_test',
     'rl_scissor',
@@ -1296,6 +1339,7 @@ __all__ = [
     'rl_check_errors',
     'rl_set_blend_mode',
     'rl_set_blend_factors',
+    'rl_set_blend_factors_separate',
     'rlgl_init',
     'rlgl_close',
     'rl_load_extensions',
@@ -1356,11 +1400,11 @@ __all__ = [
     'rl_compute_shader_dispatch',
     'rl_load_shader_buffer',
     'rl_unload_shader_buffer',
-    'rl_update_shader_buffer_elements',
-    'rl_get_shader_buffer_size',
-    'rl_read_shader_buffer_elements',
+    'rl_update_shader_buffer',
     'rl_bind_shader_buffer',
-    'rl_copy_buffers_elements',
+    'rl_read_shader_buffer',
+    'rl_copy_shader_buffer',
+    'rl_get_shader_buffer_size',
     'rl_bind_image_texture',
     'rl_get_matrix_modelview',
     'rl_get_matrix_projection',
@@ -1721,7 +1765,7 @@ class Vector2(Structure):
     @classmethod
     def one():
         # type: () -> Vector2
-        """Vector with components value 1.0f"""
+        """"""
         result = _Vector2One()
         return result
 
@@ -1872,87 +1916,87 @@ class Vector2(Structure):
     @property
     def length(self):
         # type: (Vector2) -> float
-        """Calculate vector length"""
+        """"""
         result = _Vector2Length(self)
         return result
 
     @property
     def length_sqr(self):
         # type: (Vector2) -> float
-        """Calculate vector square length"""
+        """"""
         result = _Vector2LengthSqr(self)
         return result
 
     def dot_product(self, v2):
         # type: (Vector2, Vector2) -> float
-        """Calculate two vectors dot product"""
+        """"""
         result = _Vector2DotProduct(self, _vec2(v2))
         return result
 
     def distance(self, v2):
         # type: (Vector2, Vector2) -> float
-        """Calculate distance between two vectors"""
+        """"""
         result = _Vector2Distance(self, _vec2(v2))
         return result
 
     def distance_sqr(self, v2):
         # type: (Vector2, Vector2) -> float
-        """Calculate square distance between two vectors"""
+        """"""
         result = _Vector2DistanceSqr(self, _vec2(v2))
         return result
 
     def angle(self, v2):
         # type: (Vector2, Vector2) -> float
-        """Calculate angle from two vectors"""
+        """"""
         result = _Vector2Angle(self, _vec2(v2))
         return result
 
     def normalize(self):
         # type: (Vector2) -> Vector2
-        """Normalize provided vector"""
+        """"""
         self.xy = _Vector2Normalize(self)
         return self
 
     def transform(self, mat):
         # type: (Vector2, Matrix) -> Vector2
-        """Transforms a Vector2 by a given Matrix"""
+        """"""
         self.xy = _Vector2Transform(self, mat)
         return self
 
     def lerp(self, v2, amount):
         # type: (Vector2, Vector2, float) -> Vector2
-        """Calculate linear interpolation between two vectors"""
+        """"""
         self.xy = _Vector2Lerp(self, _vec2(v2), float(amount))
         return self
 
     def reflect(self, normal):
         # type: (Vector2, Vector2) -> Vector2
-        """Calculate reflected vector to normal"""
+        """"""
         self.xy = _Vector2Reflect(self, _vec2(normal))
         return self
 
     def rotate(self, angle):
         # type: (Vector2, float) -> Vector2
-        """Rotate vector by angle"""
+        """"""
         self.xy = _Vector2Rotate(self, float(angle))
         return self
 
     def move_towards(self, target, max_distance):
         # type: (Vector2, Vector2, float) -> Vector2
-        """Move Vector towards target"""
+        """"""
         self.xy = _Vector2MoveTowards(self, _vec2(target), float(max_distance))
         return self
 
-    def clamp(self, min_, max_):
+    def clamp(self, min, max):
         # type: (Vector2, Vector2, Vector2) -> Vector2
-        """Clamp the components of the vector between min and max values specified by the given vectors"""
-        self.xy = _Vector2Clamp(self, _vec2(min_), _vec2(max_))
+        """"""
+        self.xy = _Vector2Clamp(self, _vec2(min), _vec2(max))
         return self
 
-    def clamp_value(self, min_, max_):
+    def clamp_value(self, min, max):
         # type: (Vector2, float, float) -> Vector2
-        """Clamp the magnitude of the vector between two min and max values"""
-        self.xy = _Vector2ClampValue(self, float(min_), float(max_))
+        """"""
+        self.xy = _Vector2ClampValue(self, float(min), float(max))
         return self
 
 
@@ -1979,7 +2023,7 @@ class Vector3(Structure):
     @classmethod
     def one():
         # type: () -> Vector3
-        """Vector with components value 1.0f"""
+        """"""
         result = _Vector3One()
         return result
 
@@ -2131,140 +2175,139 @@ class Vector3(Structure):
     @property
     def length(self):
         # type: (Vector3) -> float
-        """Calculate vector length"""
+        """"""
         result = _Vector3Length(self)
         return result
 
     @property
     def length_sqr(self):
         # type: (Vector3) -> float
-        """Calculate vector square length"""
+        """"""
         result = _Vector3LengthSqr(self)
         return result
 
     def cross_product(self, v2):
-        # type: (Vector3, Vector3) -> float
-        """Calculate two vectors cross product"""
+        # type: (Vector3, Vector3) -> Vector3
+        """"""
         result = _Vector3CrossProduct(self, _vec3(v2))
         return result
 
     def perpendicular(self):
         # type: (Vector3) -> Vector3
-        """Calculate one vector perpendicular vector"""
+        """"""
         self.xyz = _Vector3Perpendicular(self)
         return self
 
     def dot_product(self, v2):
         # type: (Vector3, Vector3) -> float
-        """Calculate two vectors dot product"""
+        """"""
         result = _Vector3DotProduct(self, _vec3(v2))
         return result
 
     def distance(self, v2):
         # type: (Vector3, Vector3) -> float
-        """Calculate distance between two vectors"""
+        """"""
         result = _Vector3Distance(self, _vec3(v2))
         return result
 
     def distance_sqr(self, v2):
         # type: (Vector3, Vector3) -> float
-        """Calculate square distance between two vectors"""
+        """"""
         result = _Vector3DistanceSqr(self, _vec3(v2))
         return result
 
     def angle(self, v2):
         # type: (Vector3, Vector3) -> float
-        """Calculate angle between two vectors"""
+        """"""
         result = _Vector3Angle(self, _vec3(v2))
         return result
 
     def normalize(self):
         # type: (Vector3) -> Vector3
-        """Normalize provided vector"""
+        """"""
         self.xyz = _Vector3Normalize(self)
         return self
 
     def ortho_normalize(self, v2):
-        # type: (Vector3Ptr, Vector3Ptr) -> Vector3
-        """Makes vectors normalized and orthogonal to each other"""
-        self.xyz = _Vector3OrthoNormalize(self, _vec3(v2))
-        return self
+        # type: (Vector3Ptr, Vector3Ptr) -> None
+        """"""
+        _Vector3OrthoNormalize(self, _vec3(v2))
 
     def transform(self, mat):
         # type: (Vector3, Matrix) -> Vector3
-        """Transforms a Vector3 by a given Matrix"""
+        """"""
         self.xyz = _Vector3Transform(self, mat)
         return self
 
     def rotate_by_quaternion(self, q):
         # type: (Vector3, Quaternion) -> Vector3
-        """Transform a vector by quaternion rotation"""
+        """"""
         self.xyz = _Vector3RotateByQuaternion(self, q)
         return self
 
     def rotate_by_axis_angle(self, axis, angle):
         # type: (Vector3, Vector3, float) -> Vector3
-        """Rotates a vector around an axis"""
+        """"""
         self.xyz = _Vector3RotateByAxisAngle(self, _vec3(axis), float(angle))
         return self
 
     def lerp(self, v2, amount):
         # type: (Vector3, Vector3, float) -> Vector3
-        """Calculate linear interpolation between two vectors"""
+        """"""
         self.xyz = _Vector3Lerp(self, _vec3(v2), float(amount))
         return self
 
     def reflect(self, normal):
         # type: (Vector3, Vector3) -> Vector3
-        """Calculate reflected vector to normal"""
+        """"""
         self.xyz = _Vector3Reflect(self, _vec3(normal))
         return self
 
     def min(self, v2):
         # type: (Vector3, Vector3) -> Vector3
-        """Get min value for each pair of components"""
+        """"""
         self.xyz = _Vector3Min(self, _vec3(v2))
         return self
 
     def max(self, v2):
         # type: (Vector3, Vector3) -> Vector3
-        """Get max value for each pair of components"""
+        """"""
         self.xyz = _Vector3Max(self, _vec3(v2))
         return self
 
     def barycenter(self, a, b, c):
         # type: (Vector3, Vector3, Vector3, Vector3) -> Vector3
-        """Compute barycenter coordinates (u, v, w) for point p with respect to triangle (a, b, c). Assumes P is on the plane of the triangle"""
+        """"""
         self.xyz = _Vector3Barycenter(self, _vec3(a), _vec3(b), _vec3(c))
         return self
 
     def unproject(self, projection, view):
         # type: (Vector3, Matrix, Matrix) -> Vector3
-        """Projects a Vector3 from screen space into object space"""
+        """"""
         self.xyz = _Vector3Unproject(self, projection, view)
         return self
 
     def to_float_v(self):
-        # type: (Vector3) -> Seq[float]
-        """Get Vector3 as float array"""
+        # type: (Vector3) -> float3
+        """"""
         result = _Vector3ToFloatV(self)
         return result
 
-    def clamp(self, min_, max_):
+    def clamp(self, min, max):
         # type: (Vector3, Vector3, Vector3) -> Vector3
-        """Clamp the components of the vector between min and max values specified by the given vectors"""
-        self.xyz = _Vector3Clamp(self, _vec3(min_), _vec3(max_))
+        """"""
+        self.xyz = _Vector3Clamp(self, _vec3(min), _vec3(max))
         return self
 
-    def clamp_value(self, min_, max_):
+    def clamp_value(self, min, max):
         # type: (Vector3, float, float) -> Vector3
-        """Clamp the magnitude of the vector between two values"""
-        self.xyz = _Vector3ClampValue(self, float(min_), float(max_))
+        """"""
+        self.xyz = _Vector3ClampValue(self, float(min), float(max))
         return self
 
     def refract(self, n, r):
-        # type: (Vector3, Vector3, float) -> int
-        """Compute the direction of a refracted ray where v specifies the normalized direction of the incoming ray, n specifies the normalized normal vector of the interface of two optical media, and r specifies the ratio of the refractive index of the medium from where the ray comes to the refractive index of the medium on the other side of the surface"""
+        # type: (Vector3, Vector3, float) -> Vector3
+        """"""
         result = _Vector3Refract(self, _vec3(n), float(r))
         return result
 
@@ -2358,6 +2401,9 @@ Vector4Ptr = POINTER(Vector4)
 # Quaternion, 4 components (Vector4 alias)
 Quaternion = Vector4
 QuaternionPtr = Vector4Ptr
+# Quaternion type
+Quaternion = Vector4
+QuaternionPtr = Vector4Ptr
 
 class Matrix(Structure):
     '''Matrix, 4x4 components, column major, OpenGL style, right-handed'''
@@ -2390,91 +2436,91 @@ class Matrix(Structure):
     @classmethod
     def identity():
         # type: () -> Matrix
-        """Get identity matrix"""
+        """"""
         result = _MatrixIdentity()
         return result
 
     @classmethod
     def translate(cls, x, y, z):
         # type: (float, float, float) -> Matrix
-        """Get translation matrix"""
+        """"""
         result = _MatrixTranslate(float(x), float(y), float(z))
         return result
 
     @classmethod
     def rotate(cls, axis, angle):
         # type: (Vector3, float) -> Matrix
-        """Create rotation matrix from axis and angle. Angle should be provided in radians"""
+        """"""
         result = _MatrixRotate(_vec3(axis), float(angle))
         return result
 
     @classmethod
     def rotate_x(cls, angle):
         # type: (float) -> Matrix
-        """Get x-rotation matrix. Angle must be provided in radians"""
+        """"""
         result = _MatrixRotateX(float(angle))
         return result
 
     @classmethod
     def rotate_y(cls, angle):
         # type: (float) -> Matrix
-        """Get y-rotation matrix. Angle must be provided in radians"""
+        """"""
         result = _MatrixRotateY(float(angle))
         return result
 
     @classmethod
     def rotate_z(cls, angle):
         # type: (float) -> Matrix
-        """Get z-rotation matrix. Angle must be provided in radians"""
+        """"""
         result = _MatrixRotateZ(float(angle))
         return result
 
     @classmethod
     def rotate_xyz(cls, angle):
         # type: (Vector3) -> Matrix
-        """Get xyz-rotation matrix. Angle must be provided in radians"""
+        """"""
         result = _MatrixRotateXYZ(_vec3(angle))
         return result
 
     @classmethod
     def rotate_zyx(cls, angle):
         # type: (Vector3) -> Matrix
-        """Get zyx-rotation matrix. Angle must be provided in radians"""
+        """"""
         result = _MatrixRotateZYX(_vec3(angle))
         return result
 
     @classmethod
     def scale(cls, x, y, z):
         # type: (float, float, float) -> Matrix
-        """Get scaling matrix"""
+        """"""
         result = _MatrixScale(float(x), float(y), float(z))
         return result
 
     @classmethod
     def frustum(cls, left, right, bottom, top, near, far):
         # type: (float, float, float, float, float, float) -> Matrix
-        """Get perspective projection matrix"""
+        """"""
         result = _MatrixFrustum(float(left), float(right), float(bottom), float(top), float(near), float(far))
         return result
 
     @classmethod
     def perspective(cls, fovy, aspect, near, far):
         # type: (float, float, float, float) -> Matrix
-        """Get perspective projection matrix. Fovy angle must be provided in radians"""
+        """"""
         result = _MatrixPerspective(float(fovy), float(aspect), float(near), float(far))
         return result
 
     @classmethod
     def ortho(cls, left, right, bottom, top, near, far):
         # type: (float, float, float, float, float, float) -> Matrix
-        """Get orthographic projection matrix"""
+        """"""
         result = _MatrixOrtho(float(left), float(right), float(bottom), float(top), float(near), float(far))
         return result
 
     @classmethod
     def look_at(cls, eye, target, up):
         # type: (Vector3, Vector3, Vector3) -> Matrix
-        """Get camera look-at matrix (view matrix)"""
+        """"""
         result = _MatrixLookAt(_vec3(eye), _vec3(target), _vec3(up))
         return result
 
@@ -2531,25 +2577,25 @@ class Matrix(Structure):
 
     def determinant(self):
         # type: (Matrix) -> float
-        """Compute matrix determinant"""
+        """"""
         result = _MatrixDeterminant(self)
         return result
 
     def trace(self):
         # type: (Matrix) -> float
-        """Get the trace of the matrix (sum of the values along the diagonal)"""
+        """"""
         result = _MatrixTrace(self)
         return result
 
     def transpose(self):
         # type: (Matrix) -> Matrix
-        """Get the trace of the matrix (sum of the values along the diagonal)"""
+        """"""
         result = _MatrixTranspose(self)
         return result
 
     def invert(self):
         # type: (Matrix) -> Matrix
-        """Invert provided matrix"""
+        """"""
         result = _MatrixInvert(self)
         return result
 
@@ -5178,6 +5224,74 @@ FilePathListPtr = POINTER(FilePathList)
 
 
 
+class float3(Structure):
+    '''NOTE: Helper types to be used instead of array return types for *ToFloat functions'''
+    _fields_ = [
+        ('v', Float * 3),
+    ]
+
+
+    @classmethod
+    def array_of(cls, float3_sequence):
+        '''Creates and returns an array of float3s'''
+        arr = cls * len(float3_sequence)
+        return arr(*float3_sequence)
+
+
+    def __init__(self, v=None):
+        # type: (Seq[float]) -> None
+        '''Initializes this float3 struct'''
+        super(float3, self).__init__(
+            v
+        )
+
+
+    @property
+    def byref(self):
+        '''Gets a reference to this float3 instance'''
+        return byref(self)
+
+
+
+# Pointer type to float3s
+float3Ptr = POINTER(float3)
+
+
+
+class float16(Structure):
+    ''''''
+    _fields_ = [
+        ('v', Float * 16),
+    ]
+
+
+    @classmethod
+    def array_of(cls, float16_sequence):
+        '''Creates and returns an array of float16s'''
+        arr = cls * len(float16_sequence)
+        return arr(*float16_sequence)
+
+
+    def __init__(self, v=None):
+        # type: (Seq[float]) -> None
+        '''Initializes this float16 struct'''
+        super(float16, self).__init__(
+            v
+        )
+
+
+    @property
+    def byref(self):
+        '''Gets a reference to this float16 instance'''
+        return byref(self)
+
+
+
+# Pointer type to float16s
+float16Ptr = POINTER(float16)
+
+
+
 class rlVertexBuffer(Structure):
     '''Dynamic vertex buffers (position + texcoords + colors + indices arrays)'''
     _fields_ = [
@@ -5316,206 +5430,6 @@ class rlRenderBatch(Structure):
 
 # Pointer type to rlRenderBatchs
 rlRenderBatchPtr = POINTER(rlRenderBatch)
-
-
-
-class Matrix(Structure):
-    '''Matrix, 4x4 components, column major, OpenGL style, right handed'''
-    _fields_ = [
-        ('m0', Float),
-        ('m4', Float),
-        ('m8', Float),
-        ('m12', Float),
-        ('m1', Float),
-        ('m5', Float),
-        ('m9', Float),
-        ('m13', Float),
-        ('m2', Float),
-        ('m6', Float),
-        ('m10', Float),
-        ('m14', Float),
-        ('m3', Float),
-        ('m7', Float),
-        ('m11', Float),
-        ('m15', Float),
-    ]
-
-
-    @classmethod
-    def array_of(cls, matrix_sequence):
-        '''Creates and returns an array of Matrixs'''
-        arr = cls * len(matrix_sequence)
-        return arr(*matrix_sequence)
-
-    @classmethod
-    def identity():
-        # type: () -> Matrix
-        """Get identity matrix"""
-        result = _MatrixIdentity()
-        return result
-
-    @classmethod
-    def translate(cls, x, y, z):
-        # type: (float, float, float) -> Matrix
-        """Get translation matrix"""
-        result = _MatrixTranslate(float(x), float(y), float(z))
-        return result
-
-    @classmethod
-    def rotate(cls, axis, angle):
-        # type: (Vector3, float) -> Matrix
-        """Create rotation matrix from axis and angle. Angle should be provided in radians"""
-        result = _MatrixRotate(_vec3(axis), float(angle))
-        return result
-
-    @classmethod
-    def rotate_x(cls, angle):
-        # type: (float) -> Matrix
-        """Get x-rotation matrix. Angle must be provided in radians"""
-        result = _MatrixRotateX(float(angle))
-        return result
-
-    @classmethod
-    def rotate_y(cls, angle):
-        # type: (float) -> Matrix
-        """Get y-rotation matrix. Angle must be provided in radians"""
-        result = _MatrixRotateY(float(angle))
-        return result
-
-    @classmethod
-    def rotate_z(cls, angle):
-        # type: (float) -> Matrix
-        """Get z-rotation matrix. Angle must be provided in radians"""
-        result = _MatrixRotateZ(float(angle))
-        return result
-
-    @classmethod
-    def rotate_xyz(cls, angle):
-        # type: (Vector3) -> Matrix
-        """Get xyz-rotation matrix. Angle must be provided in radians"""
-        result = _MatrixRotateXYZ(_vec3(angle))
-        return result
-
-    @classmethod
-    def rotate_zyx(cls, angle):
-        # type: (Vector3) -> Matrix
-        """Get zyx-rotation matrix. Angle must be provided in radians"""
-        result = _MatrixRotateZYX(_vec3(angle))
-        return result
-
-    @classmethod
-    def scale(cls, x, y, z):
-        # type: (float, float, float) -> Matrix
-        """Get scaling matrix"""
-        result = _MatrixScale(float(x), float(y), float(z))
-        return result
-
-    @classmethod
-    def frustum(cls, left, right, bottom, top, near, far):
-        # type: (float, float, float, float, float, float) -> Matrix
-        """Get perspective projection matrix"""
-        result = _MatrixFrustum(float(left), float(right), float(bottom), float(top), float(near), float(far))
-        return result
-
-    @classmethod
-    def perspective(cls, fovy, aspect, near, far):
-        # type: (float, float, float, float) -> Matrix
-        """Get perspective projection matrix. Fovy angle must be provided in radians"""
-        result = _MatrixPerspective(float(fovy), float(aspect), float(near), float(far))
-        return result
-
-    @classmethod
-    def ortho(cls, left, right, bottom, top, near, far):
-        # type: (float, float, float, float, float, float) -> Matrix
-        """Get orthographic projection matrix"""
-        result = _MatrixOrtho(float(left), float(right), float(bottom), float(top), float(near), float(far))
-        return result
-
-    @classmethod
-    def look_at(cls, eye, target, up):
-        # type: (Vector3, Vector3, Vector3) -> Matrix
-        """Get camera look-at matrix (view matrix)"""
-        result = _MatrixLookAt(_vec3(eye), _vec3(target), _vec3(up))
-        return result
-
-
-    def __init__(self, m0=None,
-                 m4=None,
-                 m8=None,
-                 m12=None,
-                 m1=None,
-                 m5=None,
-                 m9=None,
-                 m13=None,
-                 m2=None,
-                 m6=None,
-                 m10=None,
-                 m14=None,
-                 m3=None,
-                 m7=None,
-                 m11=None,
-                 m15=None):
-        # type: (float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float) -> None
-        '''Initializes this Matrix struct'''
-        super(Matrix, self).__init__(
-            m0 or 0.0,
-            m4 or 0.0,
-            m8 or 0.0,
-            m12 or 0.0,
-            m1 or 0.0,
-            m5 or 0.0,
-            m9 or 0.0,
-            m13 or 0.0,
-            m2 or 0.0,
-            m6 or 0.0,
-            m10 or 0.0,
-            m14 or 0.0,
-            m3 or 0.0,
-            m7 or 0.0,
-            m11 or 0.0,
-            m15 or 0.0
-        )
-
-
-    @property
-    def byref(self):
-        '''Gets a reference to this Matrix instance'''
-        return byref(self)
-
-
-    def __str__(self):
-        return "[{} at {}]".format(self.__class__.__name__, id(self))
-
-    def __repr__(self):
-        return self.__str__()
-
-    def determinant(self):
-        # type: (Matrix) -> float
-        """Compute matrix determinant"""
-        result = _MatrixDeterminant(self)
-        return result
-
-    def trace(self):
-        # type: (Matrix) -> float
-        """Get the trace of the matrix (sum of the values along the diagonal)"""
-        result = _MatrixTrace(self)
-        return result
-
-    def transpose(self):
-        # type: (Matrix) -> Matrix
-        """Get the trace of the matrix (sum of the values along the diagonal)"""
-        result = _MatrixTranspose(self)
-        return result
-
-    def invert(self):
-        # type: (Matrix) -> Matrix
-        """Invert provided matrix"""
-        result = _MatrixInvert(self)
-        return result
-
-
-# Pointer type to Matrixs
-MatrixPtr = POINTER(Matrix)
 
 
 class ConfigFlags(IntEnum):
@@ -6842,116 +6756,30 @@ NPATCH_THREE_PATCH_HORIZONTAL = NPatchLayout.NPATCH_THREE_PATCH_HORIZONTAL
 
 
 class rlGlVersion(IntEnum):
-    """"""
+    """OpenGL version"""
 
-    OPENGL_11 = 1
-    """"""
+    RL_OPENGL_11 = 1
+    """OpenGL 1.1"""
 
-    OPENGL_21 = 2
-    """"""
+    RL_OPENGL_21 = 2
+    """OpenGL 2.1 (GLSL 120)"""
 
-    OPENGL_33 = 3
-    """"""
+    RL_OPENGL_33 = 3
+    """OpenGL 3.3 (GLSL 330)"""
 
-    OPENGL_43 = 4
-    """"""
+    RL_OPENGL_43 = 4
+    """OpenGL 4.3 (using GLSL 330)"""
 
-    OPENGL_ES_20 = 5
-    """"""
-
-
-
-OPENGL_11 = rlGlVersion.OPENGL_11
-OPENGL_21 = rlGlVersion.OPENGL_21
-OPENGL_33 = rlGlVersion.OPENGL_33
-OPENGL_43 = rlGlVersion.OPENGL_43
-OPENGL_ES_20 = rlGlVersion.OPENGL_ES_20
-
-
-class rlFramebufferAttachType(IntEnum):
-    """"""
-
-    RL_ATTACHMENT_COLOR_CHANNEL0 = 0
-    """"""
-
-    RL_ATTACHMENT_COLOR_CHANNEL1 = 1
-    """"""
-
-    RL_ATTACHMENT_COLOR_CHANNEL2 = 2
-    """"""
-
-    RL_ATTACHMENT_COLOR_CHANNEL3 = 3
-    """"""
-
-    RL_ATTACHMENT_COLOR_CHANNEL4 = 4
-    """"""
-
-    RL_ATTACHMENT_COLOR_CHANNEL5 = 5
-    """"""
-
-    RL_ATTACHMENT_COLOR_CHANNEL6 = 6
-    """"""
-
-    RL_ATTACHMENT_COLOR_CHANNEL7 = 7
-    """"""
-
-    RL_ATTACHMENT_DEPTH = 100
-    """"""
-
-    RL_ATTACHMENT_STENCIL = 200
-    """"""
+    RL_OPENGL_ES_20 = 5
+    """OpenGL ES 2.0 (GLSL 100)"""
 
 
 
-RL_ATTACHMENT_COLOR_CHANNEL0 = rlFramebufferAttachType.RL_ATTACHMENT_COLOR_CHANNEL0
-RL_ATTACHMENT_COLOR_CHANNEL1 = rlFramebufferAttachType.RL_ATTACHMENT_COLOR_CHANNEL1
-RL_ATTACHMENT_COLOR_CHANNEL2 = rlFramebufferAttachType.RL_ATTACHMENT_COLOR_CHANNEL2
-RL_ATTACHMENT_COLOR_CHANNEL3 = rlFramebufferAttachType.RL_ATTACHMENT_COLOR_CHANNEL3
-RL_ATTACHMENT_COLOR_CHANNEL4 = rlFramebufferAttachType.RL_ATTACHMENT_COLOR_CHANNEL4
-RL_ATTACHMENT_COLOR_CHANNEL5 = rlFramebufferAttachType.RL_ATTACHMENT_COLOR_CHANNEL5
-RL_ATTACHMENT_COLOR_CHANNEL6 = rlFramebufferAttachType.RL_ATTACHMENT_COLOR_CHANNEL6
-RL_ATTACHMENT_COLOR_CHANNEL7 = rlFramebufferAttachType.RL_ATTACHMENT_COLOR_CHANNEL7
-RL_ATTACHMENT_DEPTH = rlFramebufferAttachType.RL_ATTACHMENT_DEPTH
-RL_ATTACHMENT_STENCIL = rlFramebufferAttachType.RL_ATTACHMENT_STENCIL
-
-
-class rlFramebufferAttachTextureType(IntEnum):
-    """"""
-
-    RL_ATTACHMENT_CUBEMAP_POSITIVE_X = 0
-    """"""
-
-    RL_ATTACHMENT_CUBEMAP_NEGATIVE_X = 1
-    """"""
-
-    RL_ATTACHMENT_CUBEMAP_POSITIVE_Y = 2
-    """"""
-
-    RL_ATTACHMENT_CUBEMAP_NEGATIVE_Y = 3
-    """"""
-
-    RL_ATTACHMENT_CUBEMAP_POSITIVE_Z = 4
-    """"""
-
-    RL_ATTACHMENT_CUBEMAP_NEGATIVE_Z = 5
-    """"""
-
-    RL_ATTACHMENT_TEXTURE2D = 100
-    """"""
-
-    RL_ATTACHMENT_RENDERBUFFER = 200
-    """"""
-
-
-
-RL_ATTACHMENT_CUBEMAP_POSITIVE_X = rlFramebufferAttachTextureType.RL_ATTACHMENT_CUBEMAP_POSITIVE_X
-RL_ATTACHMENT_CUBEMAP_NEGATIVE_X = rlFramebufferAttachTextureType.RL_ATTACHMENT_CUBEMAP_NEGATIVE_X
-RL_ATTACHMENT_CUBEMAP_POSITIVE_Y = rlFramebufferAttachTextureType.RL_ATTACHMENT_CUBEMAP_POSITIVE_Y
-RL_ATTACHMENT_CUBEMAP_NEGATIVE_Y = rlFramebufferAttachTextureType.RL_ATTACHMENT_CUBEMAP_NEGATIVE_Y
-RL_ATTACHMENT_CUBEMAP_POSITIVE_Z = rlFramebufferAttachTextureType.RL_ATTACHMENT_CUBEMAP_POSITIVE_Z
-RL_ATTACHMENT_CUBEMAP_NEGATIVE_Z = rlFramebufferAttachTextureType.RL_ATTACHMENT_CUBEMAP_NEGATIVE_Z
-RL_ATTACHMENT_TEXTURE2D = rlFramebufferAttachTextureType.RL_ATTACHMENT_TEXTURE2D
-RL_ATTACHMENT_RENDERBUFFER = rlFramebufferAttachTextureType.RL_ATTACHMENT_RENDERBUFFER
+RL_OPENGL_11 = rlGlVersion.RL_OPENGL_11
+RL_OPENGL_21 = rlGlVersion.RL_OPENGL_21
+RL_OPENGL_33 = rlGlVersion.RL_OPENGL_33
+RL_OPENGL_43 = rlGlVersion.RL_OPENGL_43
+RL_OPENGL_ES_20 = rlGlVersion.RL_OPENGL_ES_20
 
 
 class rlTraceLogLevel(IntEnum):
@@ -6994,7 +6822,7 @@ RL_LOG_NONE = rlTraceLogLevel.RL_LOG_NONE
 
 
 class rlPixelFormat(IntEnum):
-    """Texture formats (support depends on OpenGL version)"""
+    """Texture pixel formats"""
 
     RL_PIXELFORMAT_UNCOMPRESSED_GRAYSCALE = 1
     """8 bit per pixel (no alpha)"""
@@ -7139,6 +6967,9 @@ class rlBlendMode(IntEnum):
     RL_BLEND_CUSTOM = 6
     """Blend textures using custom src/dst factors (use rlSetBlendFactors())"""
 
+    RL_BLEND_CUSTOM_SEPARATE = 7
+    """Blend textures using custom src/dst factors (use rlSetBlendFactorsSeparate())"""
+
 
 
 RL_BLEND_ALPHA = rlBlendMode.RL_BLEND_ALPHA
@@ -7148,6 +6979,7 @@ RL_BLEND_ADD_COLORS = rlBlendMode.RL_BLEND_ADD_COLORS
 RL_BLEND_SUBTRACT_COLORS = rlBlendMode.RL_BLEND_SUBTRACT_COLORS
 RL_BLEND_ALPHA_PREMULTIPLY = rlBlendMode.RL_BLEND_ALPHA_PREMULTIPLY
 RL_BLEND_CUSTOM = rlBlendMode.RL_BLEND_CUSTOM
+RL_BLEND_CUSTOM_SEPARATE = rlBlendMode.RL_BLEND_CUSTOM_SEPARATE
 
 
 class rlShaderLocationIndex(IntEnum):
@@ -7327,6 +7159,107 @@ RL_SHADER_ATTRIB_VEC3 = rlShaderAttributeDataType.RL_SHADER_ATTRIB_VEC3
 RL_SHADER_ATTRIB_VEC4 = rlShaderAttributeDataType.RL_SHADER_ATTRIB_VEC4
 
 
+class rlFramebufferAttachType(IntEnum):
+    """Framebuffer attachment type"""
+
+    RL_ATTACHMENT_COLOR_CHANNEL0 = 0
+    """Framebuffer attachment type: color 0"""
+
+    RL_ATTACHMENT_COLOR_CHANNEL1 = 1
+    """Framebuffer attachment type: color 1"""
+
+    RL_ATTACHMENT_COLOR_CHANNEL2 = 2
+    """Framebuffer attachment type: color 2"""
+
+    RL_ATTACHMENT_COLOR_CHANNEL3 = 3
+    """Framebuffer attachment type: color 3"""
+
+    RL_ATTACHMENT_COLOR_CHANNEL4 = 4
+    """Framebuffer attachment type: color 4"""
+
+    RL_ATTACHMENT_COLOR_CHANNEL5 = 5
+    """Framebuffer attachment type: color 5"""
+
+    RL_ATTACHMENT_COLOR_CHANNEL6 = 6
+    """Framebuffer attachment type: color 6"""
+
+    RL_ATTACHMENT_COLOR_CHANNEL7 = 7
+    """Framebuffer attachment type: color 7"""
+
+    RL_ATTACHMENT_DEPTH = 100
+    """Framebuffer attachment type: depth"""
+
+    RL_ATTACHMENT_STENCIL = 200
+    """Framebuffer attachment type: stencil"""
+
+
+
+RL_ATTACHMENT_COLOR_CHANNEL0 = rlFramebufferAttachType.RL_ATTACHMENT_COLOR_CHANNEL0
+RL_ATTACHMENT_COLOR_CHANNEL1 = rlFramebufferAttachType.RL_ATTACHMENT_COLOR_CHANNEL1
+RL_ATTACHMENT_COLOR_CHANNEL2 = rlFramebufferAttachType.RL_ATTACHMENT_COLOR_CHANNEL2
+RL_ATTACHMENT_COLOR_CHANNEL3 = rlFramebufferAttachType.RL_ATTACHMENT_COLOR_CHANNEL3
+RL_ATTACHMENT_COLOR_CHANNEL4 = rlFramebufferAttachType.RL_ATTACHMENT_COLOR_CHANNEL4
+RL_ATTACHMENT_COLOR_CHANNEL5 = rlFramebufferAttachType.RL_ATTACHMENT_COLOR_CHANNEL5
+RL_ATTACHMENT_COLOR_CHANNEL6 = rlFramebufferAttachType.RL_ATTACHMENT_COLOR_CHANNEL6
+RL_ATTACHMENT_COLOR_CHANNEL7 = rlFramebufferAttachType.RL_ATTACHMENT_COLOR_CHANNEL7
+RL_ATTACHMENT_DEPTH = rlFramebufferAttachType.RL_ATTACHMENT_DEPTH
+RL_ATTACHMENT_STENCIL = rlFramebufferAttachType.RL_ATTACHMENT_STENCIL
+
+
+class rlFramebufferAttachTextureType(IntEnum):
+    """Framebuffer texture attachment type"""
+
+    RL_ATTACHMENT_CUBEMAP_POSITIVE_X = 0
+    """Framebuffer texture attachment type: cubemap, +X side"""
+
+    RL_ATTACHMENT_CUBEMAP_NEGATIVE_X = 1
+    """Framebuffer texture attachment type: cubemap, -X side"""
+
+    RL_ATTACHMENT_CUBEMAP_POSITIVE_Y = 2
+    """Framebuffer texture attachment type: cubemap, +Y side"""
+
+    RL_ATTACHMENT_CUBEMAP_NEGATIVE_Y = 3
+    """Framebuffer texture attachment type: cubemap, -Y side"""
+
+    RL_ATTACHMENT_CUBEMAP_POSITIVE_Z = 4
+    """Framebuffer texture attachment type: cubemap, +Z side"""
+
+    RL_ATTACHMENT_CUBEMAP_NEGATIVE_Z = 5
+    """Framebuffer texture attachment type: cubemap, -Z side"""
+
+    RL_ATTACHMENT_TEXTURE2D = 100
+    """Framebuffer texture attachment type: texture2d"""
+
+    RL_ATTACHMENT_RENDERBUFFER = 200
+    """Framebuffer texture attachment type: renderbuffer"""
+
+
+
+RL_ATTACHMENT_CUBEMAP_POSITIVE_X = rlFramebufferAttachTextureType.RL_ATTACHMENT_CUBEMAP_POSITIVE_X
+RL_ATTACHMENT_CUBEMAP_NEGATIVE_X = rlFramebufferAttachTextureType.RL_ATTACHMENT_CUBEMAP_NEGATIVE_X
+RL_ATTACHMENT_CUBEMAP_POSITIVE_Y = rlFramebufferAttachTextureType.RL_ATTACHMENT_CUBEMAP_POSITIVE_Y
+RL_ATTACHMENT_CUBEMAP_NEGATIVE_Y = rlFramebufferAttachTextureType.RL_ATTACHMENT_CUBEMAP_NEGATIVE_Y
+RL_ATTACHMENT_CUBEMAP_POSITIVE_Z = rlFramebufferAttachTextureType.RL_ATTACHMENT_CUBEMAP_POSITIVE_Z
+RL_ATTACHMENT_CUBEMAP_NEGATIVE_Z = rlFramebufferAttachTextureType.RL_ATTACHMENT_CUBEMAP_NEGATIVE_Z
+RL_ATTACHMENT_TEXTURE2D = rlFramebufferAttachTextureType.RL_ATTACHMENT_TEXTURE2D
+RL_ATTACHMENT_RENDERBUFFER = rlFramebufferAttachTextureType.RL_ATTACHMENT_RENDERBUFFER
+
+
+class rlCullMode(IntEnum):
+    """Face culling mode"""
+
+    RL_CULL_FACE_FRONT = 0
+    """"""
+
+    RL_CULL_FACE_BACK = 1
+    """"""
+
+
+
+RL_CULL_FACE_FRONT = rlCullMode.RL_CULL_FACE_FRONT
+RL_CULL_FACE_BACK = rlCullMode.RL_CULL_FACE_BACK
+
+
 
 RAYLIB_VERSION_MAJOR = 4
 
@@ -7394,7 +7327,15 @@ MAGENTA = Color( 255, 0, 255, 255 )
 # My own White (raylib logo)
 RAYWHITE = Color( 245, 245, 245, 255 )
 
-RLGL_VERSION = '4.0'
+PI = 3.141592653589793
+
+EPSILON = 1e-06
+
+DEG2RAD = (PI / 180.0)
+
+RAD2DEG = (180.0 / PI)
+
+RLGL_VERSION = '4.5'
 
 RL_DEFAULT_BATCH_BUFFER_ELEMENTS = 8192
 
@@ -7433,6 +7374,8 @@ RL_TEXTURE_FILTER_LINEAR_MIP_NEAREST = 9985
 RL_TEXTURE_FILTER_MIP_LINEAR = 9987
 
 RL_TEXTURE_FILTER_ANISOTROPIC = 12288
+
+RL_TEXTURE_MIPMAP_BIAS_RATIO = 16384
 
 RL_TEXTURE_WRAP_REPEAT = 10497
 
@@ -7481,6 +7424,62 @@ RL_FRAGMENT_SHADER = 35632
 RL_VERTEX_SHADER = 35633
 
 RL_COMPUTE_SHADER = 37305
+
+RL_ZERO = 0
+
+RL_ONE = 1
+
+RL_SRC_COLOR = 768
+
+RL_ONE_MINUS_SRC_COLOR = 769
+
+RL_SRC_ALPHA = 770
+
+RL_ONE_MINUS_SRC_ALPHA = 771
+
+RL_DST_ALPHA = 772
+
+RL_ONE_MINUS_DST_ALPHA = 773
+
+RL_DST_COLOR = 774
+
+RL_ONE_MINUS_DST_COLOR = 775
+
+RL_SRC_ALPHA_SATURATE = 776
+
+RL_CONSTANT_COLOR = 32769
+
+RL_ONE_MINUS_CONSTANT_COLOR = 32770
+
+RL_CONSTANT_ALPHA = 32771
+
+RL_ONE_MINUS_CONSTANT_ALPHA = 32772
+
+RL_FUNC_ADD = 32774
+
+RL_MIN = 32775
+
+RL_MAX = 32776
+
+RL_FUNC_SUBTRACT = 32778
+
+RL_FUNC_REVERSE_SUBTRACT = 32779
+
+RL_BLEND_EQUATION = 32777
+
+RL_BLEND_EQUATION_RGB = 32777
+
+RL_BLEND_EQUATION_ALPHA = 34877
+
+RL_BLEND_DST_RGB = 32968
+
+RL_BLEND_SRC_RGB = 32969
+
+RL_BLEND_DST_ALPHA = 32970
+
+RL_BLEND_SRC_ALPHA = 32971
+
+RL_BLEND_COLOR = 32773
 
 # Logging: Redirect trace log messages
 TraceLogCallback = CFUNCTYPE(None, Int, CharPtr, VoidPtr)
@@ -8034,6 +8033,7 @@ _Vector2DotProduct = _wrap(rlapi.Vector2DotProduct, [Vector2, Vector2], Float)
 _Vector2Distance = _wrap(rlapi.Vector2Distance, [Vector2, Vector2], Float)
 _Vector2DistanceSqr = _wrap(rlapi.Vector2DistanceSqr, [Vector2, Vector2], Float)
 _Vector2Angle = _wrap(rlapi.Vector2Angle, [Vector2, Vector2], Float)
+_Vector2LineAngle = _wrap(rlapi.Vector2LineAngle, [Vector2, Vector2], Float)
 _Vector2Scale = _wrap(rlapi.Vector2Scale, [Vector2, Float], Vector2)
 _Vector2Multiply = _wrap(rlapi.Vector2Multiply, [Vector2, Vector2], Vector2)
 _Vector2Negate = _wrap(rlapi.Vector2Negate, [Vector2], Vector2)
@@ -8056,7 +8056,7 @@ _Vector3Subtract = _wrap(rlapi.Vector3Subtract, [Vector3, Vector3], Vector3)
 _Vector3SubtractValue = _wrap(rlapi.Vector3SubtractValue, [Vector3, Float], Vector3)
 _Vector3Scale = _wrap(rlapi.Vector3Scale, [Vector3, Float], Vector3)
 _Vector3Multiply = _wrap(rlapi.Vector3Multiply, [Vector3, Vector3], Vector3)
-_Vector3CrossProduct = _wrap(rlapi.Vector3CrossProduct, [Vector3, Vector3], Float)
+_Vector3CrossProduct = _wrap(rlapi.Vector3CrossProduct, [Vector3, Vector3], Vector3)
 _Vector3Perpendicular = _wrap(rlapi.Vector3Perpendicular, [Vector3], Vector3)
 _Vector3Length = _wrap(rlapi.Vector3Length, [Vector3], Float)
 _Vector3LengthSqr = _wrap(rlapi.Vector3LengthSqr, [Vector3], Float)
@@ -8065,9 +8065,9 @@ _Vector3Distance = _wrap(rlapi.Vector3Distance, [Vector3, Vector3], Float)
 _Vector3DistanceSqr = _wrap(rlapi.Vector3DistanceSqr, [Vector3, Vector3], Float)
 _Vector3Angle = _wrap(rlapi.Vector3Angle, [Vector3, Vector3], Float)
 _Vector3Negate = _wrap(rlapi.Vector3Negate, [Vector3], Vector3)
-_Vector3Divide = _wrap(rlapi.Vector3Divide, [Vector3, Vector3], Float)
+_Vector3Divide = _wrap(rlapi.Vector3Divide, [Vector3, Vector3], Vector3)
 _Vector3Normalize = _wrap(rlapi.Vector3Normalize, [Vector3], Vector3)
-_Vector3OrthoNormalize = _wrap(rlapi.Vector3OrthoNormalize, [Vector3Ptr, Vector3Ptr], Vector3)
+_Vector3OrthoNormalize = _wrap(rlapi.Vector3OrthoNormalize, [Vector3Ptr, Vector3Ptr], None)
 _Vector3Transform = _wrap(rlapi.Vector3Transform, [Vector3, Matrix], Vector3)
 _Vector3RotateByQuaternion = _wrap(rlapi.Vector3RotateByQuaternion, [Vector3, Quaternion], Vector3)
 _Vector3RotateByAxisAngle = _wrap(rlapi.Vector3RotateByAxisAngle, [Vector3, Vector3, Float], Vector3)
@@ -8077,12 +8077,12 @@ _Vector3Min = _wrap(rlapi.Vector3Min, [Vector3, Vector3], Vector3)
 _Vector3Max = _wrap(rlapi.Vector3Max, [Vector3, Vector3], Vector3)
 _Vector3Barycenter = _wrap(rlapi.Vector3Barycenter, [Vector3, Vector3, Vector3, Vector3], Vector3)
 _Vector3Unproject = _wrap(rlapi.Vector3Unproject, [Vector3, Matrix, Matrix], Vector3)
-_Vector3ToFloatV = _wrap(rlapi.Vector3ToFloatV, [Vector3], Float * 3)
+_Vector3ToFloatV = _wrap(rlapi.Vector3ToFloatV, [Vector3], float3)
 _Vector3Invert = _wrap(rlapi.Vector3Invert, [Vector3], Vector3)
 _Vector3Clamp = _wrap(rlapi.Vector3Clamp, [Vector3, Vector3, Vector3], Vector3)
 _Vector3ClampValue = _wrap(rlapi.Vector3ClampValue, [Vector3, Float, Float], Vector3)
-_Vector3Equals = _wrap(rlapi.Vector3Equals, [Vector3, Float, Float], Int)
-_Vector3Refract = _wrap(rlapi.Vector3Refract, [Vector3, Vector3, Float], Int)
+_Vector3Equals = _wrap(rlapi.Vector3Equals, [Vector3, Vector3], Int)
+_Vector3Refract = _wrap(rlapi.Vector3Refract, [Vector3, Vector3, Float], Vector3)
 _MatrixDeterminant = _wrap(rlapi.MatrixDeterminant, [Matrix], Float)
 _MatrixTrace = _wrap(rlapi.MatrixTrace, [Matrix], Float)
 _MatrixTranspose = _wrap(rlapi.MatrixTranspose, [Matrix], Matrix)
@@ -8099,27 +8099,28 @@ _MatrixRotateZ = _wrap(rlapi.MatrixRotateZ, [Float], Matrix)
 _MatrixRotateXYZ = _wrap(rlapi.MatrixRotateXYZ, [Vector3], Matrix)
 _MatrixRotateZYX = _wrap(rlapi.MatrixRotateZYX, [Vector3], Matrix)
 _MatrixScale = _wrap(rlapi.MatrixScale, [Float, Float, Float], Matrix)
-_MatrixFrustum = _wrap(rlapi.MatrixFrustum, [Float, Float, Float, Float, Float, Float], Matrix)
-_MatrixPerspective = _wrap(rlapi.MatrixPerspective, [Float, Float, Float, Float], Matrix)
-_MatrixOrtho = _wrap(rlapi.MatrixOrtho, [Float, Float, Float, Float, Float, Float], Matrix)
+_MatrixFrustum = _wrap(rlapi.MatrixFrustum, [Double, Double, Double, Double, Double, Double], Matrix)
+_MatrixPerspective = _wrap(rlapi.MatrixPerspective, [Double, Double, Double, Double], Matrix)
+_MatrixOrtho = _wrap(rlapi.MatrixOrtho, [Double, Double, Double, Double, Double, Double], Matrix)
 _MatrixLookAt = _wrap(rlapi.MatrixLookAt, [Vector3, Vector3, Vector3], Matrix)
-_MatrixToFloatV = _wrap(rlapi.MatrixToFloatV, [Matrix], Float * 16)
+_MatrixToFloatV = _wrap(rlapi.MatrixToFloatV, [Matrix], float16)
 _QuaternionAdd = _wrap(rlapi.QuaternionAdd, [Quaternion, Quaternion], Quaternion)
 _QuaternionAddValue = _wrap(rlapi.QuaternionAddValue, [Quaternion, Float], Quaternion)
 _QuaternionSubtract = _wrap(rlapi.QuaternionSubtract, [Quaternion, Quaternion], Quaternion)
 _QuaternionSubtractValue = _wrap(rlapi.QuaternionSubtractValue, [Quaternion, Float], Quaternion)
 _QuaternionIdentity = _wrap(rlapi.QuaternionIdentity, [], Quaternion)
-_QuaternionLength = _wrap(rlapi.QuaternionLength, [Quaternion], Quaternion)
+_QuaternionLength = _wrap(rlapi.QuaternionLength, [Quaternion], Float)
 _QuaternionNormalize = _wrap(rlapi.QuaternionNormalize, [Quaternion], Quaternion)
 _QuaternionInvert = _wrap(rlapi.QuaternionInvert, [Quaternion], Quaternion)
 _QuaternionMultiply = _wrap(rlapi.QuaternionMultiply, [Quaternion, Quaternion], Quaternion)
 _QuaternionScale = _wrap(rlapi.QuaternionScale, [Quaternion, Float], Quaternion)
 _QuaternionDivide = _wrap(rlapi.QuaternionDivide, [Quaternion, Quaternion], Quaternion)
+_QuaternionLerp = _wrap(rlapi.QuaternionLerp, [Quaternion, Quaternion, Float], Quaternion)
 _QuaternionNlerp = _wrap(rlapi.QuaternionNlerp, [Quaternion, Quaternion, Float], Quaternion)
 _QuaternionSlerp = _wrap(rlapi.QuaternionSlerp, [Quaternion, Quaternion, Float], Quaternion)
 _QuaternionFromVector3ToVector3 = _wrap(rlapi.QuaternionFromVector3ToVector3, [Vector3, Vector3], Quaternion)
-_QuaternionToMatrix = _wrap(rlapi.QuaternionToMatrix, [Quaternion], Matrix)
 _QuaternionFromMatrix = _wrap(rlapi.QuaternionFromMatrix, [Matrix], Quaternion)
+_QuaternionToMatrix = _wrap(rlapi.QuaternionToMatrix, [Quaternion], Matrix)
 _QuaternionFromAxisAngle = _wrap(rlapi.QuaternionFromAxisAngle, [Vector3, Float], Quaternion)
 _QuaternionToAxisAngle = _wrap(rlapi.QuaternionToAxisAngle, [Quaternion, Vector3Ptr, FloatPtr], None)
 _QuaternionFromEuler = _wrap(rlapi.QuaternionFromEuler, [Float, Float, Float], Quaternion)
@@ -8161,6 +8162,7 @@ _rlDisableTexture = _wrap(rlapi.rlDisableTexture, [], None)
 _rlEnableTextureCubemap = _wrap(rlapi.rlEnableTextureCubemap, [UInt], None)
 _rlDisableTextureCubemap = _wrap(rlapi.rlDisableTextureCubemap, [], None)
 _rlTextureParameters = _wrap(rlapi.rlTextureParameters, [UInt, Int, Int], None)
+_rlCubemapParameters = _wrap(rlapi.rlCubemapParameters, [UInt, Int, Int], None)
 _rlEnableShader = _wrap(rlapi.rlEnableShader, [UInt], None)
 _rlDisableShader = _wrap(rlapi.rlDisableShader, [], None)
 _rlEnableFramebuffer = _wrap(rlapi.rlEnableFramebuffer, [UInt], None)
@@ -8174,6 +8176,7 @@ _rlEnableDepthMask = _wrap(rlapi.rlEnableDepthMask, [], None)
 _rlDisableDepthMask = _wrap(rlapi.rlDisableDepthMask, [], None)
 _rlEnableBackfaceCulling = _wrap(rlapi.rlEnableBackfaceCulling, [], None)
 _rlDisableBackfaceCulling = _wrap(rlapi.rlDisableBackfaceCulling, [], None)
+_rlSetCullFace = _wrap(rlapi.rlSetCullFace, [Int], None)
 _rlEnableScissorTest = _wrap(rlapi.rlEnableScissorTest, [], None)
 _rlDisableScissorTest = _wrap(rlapi.rlDisableScissorTest, [], None)
 _rlScissor = _wrap(rlapi.rlScissor, [Int, Int, Int, Int], None)
@@ -8191,6 +8194,7 @@ _rlClearScreenBuffers = _wrap(rlapi.rlClearScreenBuffers, [], None)
 _rlCheckErrors = _wrap(rlapi.rlCheckErrors, [], None)
 _rlSetBlendMode = _wrap(rlapi.rlSetBlendMode, [Int], None)
 _rlSetBlendFactors = _wrap(rlapi.rlSetBlendFactors, [Int, Int, Int], None)
+_rlSetBlendFactorsSeparate = _wrap(rlapi.rlSetBlendFactorsSeparate, [Int, Int, Int, Int, Int, Int], None)
 _rlglInit = _wrap(rlapi.rlglInit, [Int, Int], None)
 _rlglClose = _wrap(rlapi.rlglClose, [], None)
 _rlLoadExtensions = _wrap(rlapi.rlLoadExtensions, [VoidPtr], None)
@@ -8249,14 +8253,14 @@ _rlSetUniformSampler = _wrap(rlapi.rlSetUniformSampler, [Int, UInt], None)
 _rlSetShader = _wrap(rlapi.rlSetShader, [UInt, IntPtr], None)
 _rlLoadComputeShaderProgram = _wrap(rlapi.rlLoadComputeShaderProgram, [UInt], UInt)
 _rlComputeShaderDispatch = _wrap(rlapi.rlComputeShaderDispatch, [UInt, UInt, UInt], None)
-_rlLoadShaderBuffer = _wrap(rlapi.rlLoadShaderBuffer, [ULongLongPtr, VoidPtr, Int], UInt)
+_rlLoadShaderBuffer = _wrap(rlapi.rlLoadShaderBuffer, [UInt, VoidPtr, Int], UInt)
 _rlUnloadShaderBuffer = _wrap(rlapi.rlUnloadShaderBuffer, [UInt], None)
-_rlUpdateShaderBufferElements = _wrap(rlapi.rlUpdateShaderBufferElements, [UInt, VoidPtr, ULongLongPtr, ULongLongPtr], None)
-_rlGetShaderBufferSize = _wrap(rlapi.rlGetShaderBufferSize, [UInt], ULongLongPtr)
-_rlReadShaderBufferElements = _wrap(rlapi.rlReadShaderBufferElements, [UInt, VoidPtr, ULongLongPtr, ULongLongPtr], None)
+_rlUpdateShaderBuffer = _wrap(rlapi.rlUpdateShaderBuffer, [UInt, VoidPtr, UInt, UInt], None)
 _rlBindShaderBuffer = _wrap(rlapi.rlBindShaderBuffer, [UInt, UInt], None)
-_rlCopyBuffersElements = _wrap(rlapi.rlCopyBuffersElements, [UInt, UInt, ULongLongPtr, ULongLongPtr, ULongLongPtr], None)
-_rlBindImageTexture = _wrap(rlapi.rlBindImageTexture, [UInt, UInt, UInt, Int], None)
+_rlReadShaderBuffer = _wrap(rlapi.rlReadShaderBuffer, [UInt, VoidPtr, UInt, UInt], None)
+_rlCopyShaderBuffer = _wrap(rlapi.rlCopyShaderBuffer, [UInt, UInt, UInt, UInt, UInt], None)
+_rlGetShaderBufferSize = _wrap(rlapi.rlGetShaderBufferSize, [UInt], UInt)
+_rlBindImageTexture = _wrap(rlapi.rlBindImageTexture, [UInt, UInt, Int, Bool], None)
 _rlGetMatrixModelview = _wrap(rlapi.rlGetMatrixModelview, [], Matrix)
 _rlGetMatrixProjection = _wrap(rlapi.rlGetMatrixProjection, [], Matrix)
 _rlGetMatrixTransform = _wrap(rlapi.rlGetMatrixTransform, [], Matrix)
@@ -11627,771 +11631,784 @@ def detach_audio_mixed_processor(processor):
     _DetachAudioMixedProcessor(processor)
 
 
-def clamp(value, min_, max_):
+def clamp(value, min, max):
     # type: (float, float, float) -> float
-    """Clamp float value"""
-    result = _Clamp(float(value), float(min_), float(max_))
+    """"""
+    result = _Clamp(float(value), float(min), float(max))
     return result
 
 
 def lerp(start, end, amount):
     # type: (float, float, float) -> float
-    """Calculate linear interpolation between two floats"""
+    """"""
     result = _Lerp(float(start), float(end), float(amount))
     return result
 
 
 def normalize(value, start, end):
     # type: (float, float, float) -> float
-    """Calculate linear interpolation between two floats"""
+    """"""
     result = _Normalize(float(value), float(start), float(end))
     return result
 
 
 def remap(value, input_start, input_end, output_start, output_end):
     # type: (float, float, float, float, float) -> float
-    """Remap input value within input range to output range"""
+    """"""
     result = _Remap(float(value), float(input_start), float(input_end), float(output_start), float(output_end))
     return result
 
 
-def wrap(value, min_, max_):
+def wrap(value, min, max):
     # type: (float, float, float) -> float
-    """Wrap input value from min to max"""
-    result = _Wrap(float(value), float(min_), float(max_))
+    """"""
+    result = _Wrap(float(value), float(min), float(max))
     return result
 
 
 def float_equals(x, y):
     # type: (float, float) -> int
-    """Check whether two given floats are almost equal"""
+    """"""
     result = _FloatEquals(float(x), float(y))
     return result
 
 
 def vector2zero():
     # type: () -> Vector2
-    """Vector with components value 0.0f"""
+    """"""
     result = _Vector2Zero()
     return result
 
 
 def vector2one():
     # type: () -> Vector2
-    """Vector with components value 1.0f"""
+    """"""
     result = _Vector2One()
     return result
 
 
 def vector2add(v1, v2):
     # type: (Vector2, Vector2) -> Vector2
-    """Add two vectors (v1 + v2)"""
+    """"""
     result = _Vector2Add(_vec2(v1), _vec2(v2))
     return result
 
 
 def vector2add_value(v, add):
     # type: (Vector2, float) -> Vector2
-    """Add vector and float value"""
+    """"""
     result = _Vector2AddValue(_vec2(v), float(add))
     return result
 
 
 def vector2subtract(v1, v2):
     # type: (Vector2, Vector2) -> Vector2
-    """Subtract two vectors (v1 - v2)"""
+    """"""
     result = _Vector2Subtract(_vec2(v1), _vec2(v2))
     return result
 
 
 def vector2subtract_value(v, sub):
     # type: (Vector2, float) -> Vector2
-    """Subtract vector by float value"""
+    """"""
     result = _Vector2SubtractValue(_vec2(v), float(sub))
     return result
 
 
 def vector2length(v):
     # type: (Vector2) -> float
-    """Calculate vector length"""
+    """"""
     result = _Vector2Length(_vec2(v))
     return result
 
 
 def vector2length_sqr(v):
     # type: (Vector2) -> float
-    """Calculate vector square length"""
+    """"""
     result = _Vector2LengthSqr(_vec2(v))
     return result
 
 
 def vector2dot_product(v1, v2):
     # type: (Vector2, Vector2) -> float
-    """Calculate two vectors dot product"""
+    """"""
     result = _Vector2DotProduct(_vec2(v1), _vec2(v2))
     return result
 
 
 def vector2distance(v1, v2):
     # type: (Vector2, Vector2) -> float
-    """Calculate distance between two vectors"""
+    """"""
     result = _Vector2Distance(_vec2(v1), _vec2(v2))
     return result
 
 
 def vector2distance_sqr(v1, v2):
     # type: (Vector2, Vector2) -> float
-    """Calculate square distance between two vectors"""
+    """"""
     result = _Vector2DistanceSqr(_vec2(v1), _vec2(v2))
     return result
 
 
 def vector2angle(v1, v2):
     # type: (Vector2, Vector2) -> float
-    """Calculate angle from two vectors"""
+    """"""
     result = _Vector2Angle(_vec2(v1), _vec2(v2))
+    return result
+
+
+def vector2line_angle(start, end):
+    # type: (Vector2, Vector2) -> float
+    """"""
+    result = _Vector2LineAngle(_vec2(start), _vec2(end))
     return result
 
 
 def vector2scale(v, scale):
     # type: (Vector2, float) -> Vector2
-    """Scale vector (multiply by value)"""
+    """"""
     result = _Vector2Scale(_vec2(v), float(scale))
     return result
 
 
 def vector2multiply(v1, v2):
     # type: (Vector2, Vector2) -> Vector2
-    """Multiply vector by vector"""
+    """"""
     result = _Vector2Multiply(_vec2(v1), _vec2(v2))
     return result
 
 
 def vector2negate(v):
     # type: (Vector2) -> Vector2
-    """Negate vector"""
+    """"""
     result = _Vector2Negate(_vec2(v))
     return result
 
 
 def vector2divide(v1, v2):
     # type: (Vector2, Vector2) -> Vector2
-    """Divide vector by vector"""
+    """"""
     result = _Vector2Divide(_vec2(v1), _vec2(v2))
     return result
 
 
 def vector2normalize(v):
     # type: (Vector2) -> Vector2
-    """Normalize provided vector"""
+    """"""
     result = _Vector2Normalize(_vec2(v))
     return result
 
 
 def vector2transform(v, mat):
     # type: (Vector2, Matrix) -> Vector2
-    """Transforms a Vector2 by a given Matrix"""
+    """"""
     result = _Vector2Transform(_vec2(v), mat)
     return result
 
 
 def vector2lerp(v1, v2, amount):
     # type: (Vector2, Vector2, float) -> Vector2
-    """Calculate linear interpolation between two vectors"""
+    """"""
     result = _Vector2Lerp(_vec2(v1), _vec2(v2), float(amount))
     return result
 
 
-def vector2reflect(v1, normal):
+def vector2reflect(v, normal):
     # type: (Vector2, Vector2) -> Vector2
-    """Calculate reflected vector to normal"""
-    result = _Vector2Reflect(_vec2(v1), _vec2(normal))
+    """"""
+    result = _Vector2Reflect(_vec2(v), _vec2(normal))
     return result
 
 
-def vector2rotate(v1, angle):
+def vector2rotate(v, angle):
     # type: (Vector2, float) -> Vector2
-    """Rotate vector by angle"""
-    result = _Vector2Rotate(_vec2(v1), float(angle))
+    """"""
+    result = _Vector2Rotate(_vec2(v), float(angle))
     return result
 
 
-def vector2move_towards(v1, target, max_distance):
+def vector2move_towards(v, target, max_distance):
     # type: (Vector2, Vector2, float) -> Vector2
-    """Move Vector towards target"""
-    result = _Vector2MoveTowards(_vec2(v1), _vec2(target), float(max_distance))
+    """"""
+    result = _Vector2MoveTowards(_vec2(v), _vec2(target), float(max_distance))
     return result
 
 
 def vector2invert(v):
     # type: (Vector2) -> Vector2
-    """Invert the given vector"""
+    """"""
     result = _Vector2Invert(_vec2(v))
     return result
 
 
-def vector2clamp(v, min_, max_):
+def vector2clamp(v, min, max):
     # type: (Vector2, Vector2, Vector2) -> Vector2
-    """Clamp the components of the vector between min and max values specified by the given vectors"""
-    result = _Vector2Clamp(_vec2(v), _vec2(min_), _vec2(max_))
+    """"""
+    result = _Vector2Clamp(_vec2(v), _vec2(min), _vec2(max))
     return result
 
 
-def vector2clamp_value(v, min_, max_):
+def vector2clamp_value(v, min, max):
     # type: (Vector2, float, float) -> Vector2
-    """Clamp the magnitude of the vector between two min and max values"""
-    result = _Vector2ClampValue(_vec2(v), float(min_), float(max_))
+    """"""
+    result = _Vector2ClampValue(_vec2(v), float(min), float(max))
     return result
 
 
 def vector2equals(p, q):
     # type: (Vector2, Vector2) -> int
-    """Check whether two given vectors are almost equal"""
+    """"""
     result = _Vector2Equals(_vec2(p), _vec2(q))
     return result
 
 
 def vector3zero():
     # type: () -> Vector3
-    """Vector with components value 0.0f"""
+    """"""
     result = _Vector3Zero()
     return result
 
 
 def vector3one():
     # type: () -> Vector3
-    """Vector with components value 1.0f"""
+    """"""
     result = _Vector3One()
     return result
 
 
 def vector3add(v1, v2):
     # type: (Vector3, Vector3) -> Vector3
-    """Add two vectors"""
+    """"""
     result = _Vector3Add(_vec3(v1), _vec3(v2))
     return result
 
 
 def vector3add_value(v, add):
     # type: (Vector3, float) -> Vector3
-    """Add vector and float value"""
+    """"""
     result = _Vector3AddValue(_vec3(v), float(add))
     return result
 
 
 def vector3subtract(v1, v2):
     # type: (Vector3, Vector3) -> Vector3
-    """Subtract two vectors"""
+    """"""
     result = _Vector3Subtract(_vec3(v1), _vec3(v2))
     return result
 
 
 def vector3subtract_value(v, sub):
     # type: (Vector3, float) -> Vector3
-    """Subtract vector and float value"""
+    """"""
     result = _Vector3SubtractValue(_vec3(v), float(sub))
     return result
 
 
 def vector3scale(v, scalar):
     # type: (Vector3, float) -> Vector3
-    """Multiply vector by scalar"""
+    """"""
     result = _Vector3Scale(_vec3(v), float(scalar))
     return result
 
 
 def vector3multiply(v1, v2):
     # type: (Vector3, Vector3) -> Vector3
-    """Multiply vector by vector"""
+    """"""
     result = _Vector3Multiply(_vec3(v1), _vec3(v2))
     return result
 
 
 def vector3cross_product(v1, v2):
-    # type: (Vector3, Vector3) -> float
-    """Calculate two vectors cross product"""
+    # type: (Vector3, Vector3) -> Vector3
+    """"""
     result = _Vector3CrossProduct(_vec3(v1), _vec3(v2))
     return result
 
 
-def vector3perpendicular(v1):
+def vector3perpendicular(v):
     # type: (Vector3) -> Vector3
-    """Calculate one vector perpendicular vector"""
-    result = _Vector3Perpendicular(_vec3(v1))
+    """"""
+    result = _Vector3Perpendicular(_vec3(v))
     return result
 
 
-def vector3length(v1):
+def vector3length(v):
     # type: (Vector3) -> float
-    """Calculate vector length"""
-    result = _Vector3Length(_vec3(v1))
+    """"""
+    result = _Vector3Length(_vec3(v))
     return result
 
 
-def vector3length_sqr(v1):
+def vector3length_sqr(v):
     # type: (Vector3) -> float
-    """Calculate vector square length"""
-    result = _Vector3LengthSqr(_vec3(v1))
+    """"""
+    result = _Vector3LengthSqr(_vec3(v))
     return result
 
 
 def vector3dot_product(v1, v2):
     # type: (Vector3, Vector3) -> float
-    """Calculate two vectors dot product"""
+    """"""
     result = _Vector3DotProduct(_vec3(v1), _vec3(v2))
     return result
 
 
 def vector3distance(v1, v2):
     # type: (Vector3, Vector3) -> float
-    """Calculate distance between two vectors"""
+    """"""
     result = _Vector3Distance(_vec3(v1), _vec3(v2))
     return result
 
 
 def vector3distance_sqr(v1, v2):
     # type: (Vector3, Vector3) -> float
-    """Calculate square distance between two vectors"""
+    """"""
     result = _Vector3DistanceSqr(_vec3(v1), _vec3(v2))
     return result
 
 
 def vector3angle(v1, v2):
     # type: (Vector3, Vector3) -> float
-    """Calculate angle between two vectors"""
+    """"""
     result = _Vector3Angle(_vec3(v1), _vec3(v2))
     return result
 
 
 def vector3negate(v):
     # type: (Vector3) -> Vector3
-    """Negate provided vector (invert direction)"""
+    """"""
     result = _Vector3Negate(_vec3(v))
     return result
 
 
 def vector3divide(v1, v2):
-    # type: (Vector3, Vector3) -> float
-    """Divide vector by vector"""
+    # type: (Vector3, Vector3) -> Vector3
+    """"""
     result = _Vector3Divide(_vec3(v1), _vec3(v2))
     return result
 
 
 def vector3normalize(v):
     # type: (Vector3) -> Vector3
-    """Normalize provided vector"""
+    """"""
     result = _Vector3Normalize(_vec3(v))
     return result
 
 
 def vector3ortho_normalize(v1, v2):
-    # type: (Vector3Ptr, Vector3Ptr) -> Vector3
-    """Makes vectors normalized and orthogonal to each other"""
-    result = _Vector3OrthoNormalize(_vec3(v1), _vec3(v2))
-    return result
+    # type: (Vector3Ptr, Vector3Ptr) -> None
+    """"""
+    _Vector3OrthoNormalize(_vec3(v1), _vec3(v2))
 
 
 def vector3transform(v, mat):
     # type: (Vector3, Matrix) -> Vector3
-    """Transforms a Vector3 by a given Matrix"""
+    """"""
     result = _Vector3Transform(_vec3(v), mat)
     return result
 
 
 def vector3rotate_by_quaternion(v, q):
     # type: (Vector3, Quaternion) -> Vector3
-    """Transform a vector by quaternion rotation"""
+    """"""
     result = _Vector3RotateByQuaternion(_vec3(v), q)
     return result
 
 
 def vector3rotate_by_axis_angle(v, axis, angle):
     # type: (Vector3, Vector3, float) -> Vector3
-    """Rotates a vector around an axis"""
+    """"""
     result = _Vector3RotateByAxisAngle(_vec3(v), _vec3(axis), float(angle))
     return result
 
 
 def vector3lerp(v1, v2, amount):
     # type: (Vector3, Vector3, float) -> Vector3
-    """Calculate linear interpolation between two vectors"""
+    """"""
     result = _Vector3Lerp(_vec3(v1), _vec3(v2), float(amount))
     return result
 
 
 def vector3reflect(v, normal):
     # type: (Vector3, Vector3) -> Vector3
-    """Calculate reflected vector to normal"""
+    """"""
     result = _Vector3Reflect(_vec3(v), _vec3(normal))
     return result
 
 
 def vector3min(v1, v2):
     # type: (Vector3, Vector3) -> Vector3
-    """Get min value for each pair of components"""
+    """"""
     result = _Vector3Min(_vec3(v1), _vec3(v2))
     return result
 
 
 def vector3max(v1, v2):
     # type: (Vector3, Vector3) -> Vector3
-    """Get max value for each pair of components"""
+    """"""
     result = _Vector3Max(_vec3(v1), _vec3(v2))
     return result
 
 
 def vector3barycenter(p, a, b, c):
     # type: (Vector3, Vector3, Vector3, Vector3) -> Vector3
-    """Compute barycenter coordinates (u, v, w) for point p with respect to triangle (a, b, c). Assumes P is on the plane of the triangle"""
+    """"""
     result = _Vector3Barycenter(_vec3(p), _vec3(a), _vec3(b), _vec3(c))
     return result
 
 
 def vector3unproject(source, projection, view):
     # type: (Vector3, Matrix, Matrix) -> Vector3
-    """Projects a Vector3 from screen space into object space"""
+    """"""
     result = _Vector3Unproject(_vec3(source), projection, view)
     return result
 
 
 def vector3to_float_v(v):
-    # type: (Vector3) -> Seq[float]
-    """Get Vector3 as float array"""
+    # type: (Vector3) -> float3
+    """"""
     result = _Vector3ToFloatV(_vec3(v))
     return result
 
 
 def vector3invert(v):
     # type: (Vector3) -> Vector3
-    """Invert the given vector"""
+    """"""
     result = _Vector3Invert(_vec3(v))
     return result
 
 
-def vector3clamp(v, min_, max_):
+def vector3clamp(v, min, max):
     # type: (Vector3, Vector3, Vector3) -> Vector3
-    """Clamp the components of the vector between min and max values specified by the given vectors"""
-    result = _Vector3Clamp(_vec3(v), _vec3(min_), _vec3(max_))
+    """"""
+    result = _Vector3Clamp(_vec3(v), _vec3(min), _vec3(max))
     return result
 
 
-def vector3clamp_value(v, min_, max_):
+def vector3clamp_value(v, min, max):
     # type: (Vector3, float, float) -> Vector3
-    """Clamp the magnitude of the vector between two values"""
-    result = _Vector3ClampValue(_vec3(v), float(min_), float(max_))
+    """"""
+    result = _Vector3ClampValue(_vec3(v), float(min), float(max))
     return result
 
 
-def vector3equals(v, min_, max_):
-    # type: (Vector3, float, float) -> int
-    """Check whether two given vectors are almost equal"""
-    result = _Vector3Equals(_vec3(v), float(min_), float(max_))
+def vector3equals(p, q):
+    # type: (Vector3, Vector3) -> int
+    """"""
+    result = _Vector3Equals(_vec3(p), _vec3(q))
     return result
 
 
 def vector3refract(v, n, r):
-    # type: (Vector3, Vector3, float) -> int
-    """Compute the direction of a refracted ray where v specifies the normalized direction of the incoming ray, n specifies the normalized normal vector of the interface of two optical media, and r specifies the ratio of the refractive index of the medium from where the ray comes to the refractive index of the medium on the other side of the surface"""
+    # type: (Vector3, Vector3, float) -> Vector3
+    """"""
     result = _Vector3Refract(_vec3(v), _vec3(n), float(r))
     return result
 
 
 def matrix_determinant(mat):
     # type: (Matrix) -> float
-    """Compute matrix determinant"""
+    """"""
     result = _MatrixDeterminant(mat)
     return result
 
 
 def matrix_trace(mat):
     # type: (Matrix) -> float
-    """Get the trace of the matrix (sum of the values along the diagonal)"""
+    """"""
     result = _MatrixTrace(mat)
     return result
 
 
 def matrix_transpose(mat):
     # type: (Matrix) -> Matrix
-    """Get the trace of the matrix (sum of the values along the diagonal)"""
+    """"""
     result = _MatrixTranspose(mat)
     return result
 
 
 def matrix_invert(mat):
     # type: (Matrix) -> Matrix
-    """Invert provided matrix"""
+    """"""
     result = _MatrixInvert(mat)
     return result
 
 
 def matrix_identity():
     # type: () -> Matrix
-    """Get identity matrix"""
+    """"""
     result = _MatrixIdentity()
     return result
 
 
 def matrix_add(left, right):
     # type: (Matrix, Matrix) -> Matrix
-    """Add two matrices"""
+    """"""
     result = _MatrixAdd(left, right)
     return result
 
 
 def matrix_subtract(left, right):
     # type: (Matrix, Matrix) -> Matrix
-    """Subtract two matrices (left - right)"""
+    """"""
     result = _MatrixSubtract(left, right)
     return result
 
 
 def matrix_multiply(left, right):
     # type: (Matrix, Matrix) -> Matrix
-    """Get two matrix multiplication. When multiplying matrices... the order matters!"""
+    """"""
     result = _MatrixMultiply(left, right)
     return result
 
 
 def matrix_translate(x, y, z):
     # type: (float, float, float) -> Matrix
-    """Get translation matrix"""
+    """"""
     result = _MatrixTranslate(float(x), float(y), float(z))
     return result
 
 
 def matrix_rotate(axis, angle):
     # type: (Vector3, float) -> Matrix
-    """Create rotation matrix from axis and angle. Angle should be provided in radians"""
+    """"""
     result = _MatrixRotate(_vec3(axis), float(angle))
     return result
 
 
 def matrix_rotate_x(angle):
     # type: (float) -> Matrix
-    """Get x-rotation matrix. Angle must be provided in radians"""
+    """"""
     result = _MatrixRotateX(float(angle))
     return result
 
 
 def matrix_rotate_y(angle):
     # type: (float) -> Matrix
-    """Get y-rotation matrix. Angle must be provided in radians"""
+    """"""
     result = _MatrixRotateY(float(angle))
     return result
 
 
 def matrix_rotate_z(angle):
     # type: (float) -> Matrix
-    """Get z-rotation matrix. Angle must be provided in radians"""
+    """"""
     result = _MatrixRotateZ(float(angle))
     return result
 
 
 def matrix_rotate_xyz(angle):
     # type: (Vector3) -> Matrix
-    """Get xyz-rotation matrix. Angle must be provided in radians"""
+    """"""
     result = _MatrixRotateXYZ(_vec3(angle))
     return result
 
 
 def matrix_rotate_zyx(angle):
     # type: (Vector3) -> Matrix
-    """Get zyx-rotation matrix. Angle must be provided in radians"""
+    """"""
     result = _MatrixRotateZYX(_vec3(angle))
     return result
 
 
 def matrix_scale(x, y, z):
     # type: (float, float, float) -> Matrix
-    """Get scaling matrix"""
+    """"""
     result = _MatrixScale(float(x), float(y), float(z))
     return result
 
 
 def matrix_frustum(left, right, bottom, top, near, far):
     # type: (float, float, float, float, float, float) -> Matrix
-    """Get perspective projection matrix"""
+    """"""
     result = _MatrixFrustum(float(left), float(right), float(bottom), float(top), float(near), float(far))
     return result
 
 
 def matrix_perspective(fovy, aspect, near, far):
     # type: (float, float, float, float) -> Matrix
-    """Get perspective projection matrix. Fovy angle must be provided in radians"""
+    """"""
     result = _MatrixPerspective(float(fovy), float(aspect), float(near), float(far))
     return result
 
 
 def matrix_ortho(left, right, bottom, top, near, far):
     # type: (float, float, float, float, float, float) -> Matrix
-    """Get orthographic projection matrix"""
+    """"""
     result = _MatrixOrtho(float(left), float(right), float(bottom), float(top), float(near), float(far))
     return result
 
 
 def matrix_look_at(eye, target, up):
     # type: (Vector3, Vector3, Vector3) -> Matrix
-    """Get camera look-at matrix (view matrix)"""
+    """"""
     result = _MatrixLookAt(_vec3(eye), _vec3(target), _vec3(up))
     return result
 
 
 def matrix_to_float_v(mat):
-    # type: (Matrix) -> Seq[float]
-    """Get float array of matrix data"""
+    # type: (Matrix) -> float16
+    """"""
     result = _MatrixToFloatV(mat)
     return result
 
 
 def quaternion_add(q1, q2):
     # type: (Quaternion, Quaternion) -> Quaternion
-    """Add two quaternions"""
+    """"""
     result = _QuaternionAdd(q1, q2)
     return result
 
 
 def quaternion_add_value(q, add):
     # type: (Quaternion, float) -> Quaternion
-    """Add quaternion and float value"""
+    """"""
     result = _QuaternionAddValue(q, float(add))
     return result
 
 
 def quaternion_subtract(q1, q2):
     # type: (Quaternion, Quaternion) -> Quaternion
-    """Subtract two quaternions"""
+    """"""
     result = _QuaternionSubtract(q1, q2)
     return result
 
 
 def quaternion_subtract_value(q, sub):
     # type: (Quaternion, float) -> Quaternion
-    """Subtract quaternion and float value"""
+    """"""
     result = _QuaternionSubtractValue(q, float(sub))
     return result
 
 
 def quaternion_identity():
     # type: () -> Quaternion
-    """Get identity quaternion"""
+    """"""
     result = _QuaternionIdentity()
     return result
 
 
 def quaternion_length(q):
-    # type: (Quaternion) -> Quaternion
-    """Computes the length of a quaternion"""
+    # type: (Quaternion) -> float
+    """"""
     result = _QuaternionLength(q)
     return result
 
 
 def quaternion_normalize(q):
     # type: (Quaternion) -> Quaternion
-    """Normalize provided quaternion"""
+    """"""
     result = _QuaternionNormalize(q)
     return result
 
 
 def quaternion_invert(q):
     # type: (Quaternion) -> Quaternion
-    """Invert provided quaternion"""
+    """"""
     result = _QuaternionInvert(q)
     return result
 
 
 def quaternion_multiply(q1, q2):
     # type: (Quaternion, Quaternion) -> Quaternion
-    """Calculate two quaternion multiplication"""
+    """"""
     result = _QuaternionMultiply(q1, q2)
     return result
 
 
-def quaternion_scale(q1, mul):
+def quaternion_scale(q, mul):
     # type: (Quaternion, float) -> Quaternion
-    """Scale quaternion by float value"""
-    result = _QuaternionScale(q1, float(mul))
+    """"""
+    result = _QuaternionScale(q, float(mul))
     return result
 
 
 def quaternion_divide(q1, q2):
     # type: (Quaternion, Quaternion) -> Quaternion
-    """Divide two quaternions"""
+    """"""
     result = _QuaternionDivide(q1, q2)
+    return result
+
+
+def quaternion_lerp(q1, q2, amount):
+    # type: (Quaternion, Quaternion, float) -> Quaternion
+    """"""
+    result = _QuaternionLerp(q1, q2, float(amount))
     return result
 
 
 def quaternion_nlerp(q1, q2, amount):
     # type: (Quaternion, Quaternion, float) -> Quaternion
-    """Calculate slerp-optimized interpolation between two quaternions"""
+    """"""
     result = _QuaternionNlerp(q1, q2, float(amount))
     return result
 
 
 def quaternion_slerp(q1, q2, amount):
     # type: (Quaternion, Quaternion, float) -> Quaternion
-    """Calculates spherical linear interpolation between two quaternions"""
+    """"""
     result = _QuaternionSlerp(q1, q2, float(amount))
     return result
 
 
 def quaternion_from_vector3to_vector3(from_, to):
     # type: (Vector3, Vector3) -> Quaternion
-    """Calculate quaternion based on the rotation from one vector to another"""
+    """"""
     result = _QuaternionFromVector3ToVector3(_vec3(from_), _vec3(to))
-    return result
-
-
-def quaternion_to_matrix(q):
-    # type: (Quaternion) -> Matrix
-    """Get a quaternion for a given rotation matrix"""
-    result = _QuaternionToMatrix(q)
     return result
 
 
 def quaternion_from_matrix(mat):
     # type: (Matrix) -> Quaternion
-    """Get a quaternion for a given rotation matrix"""
+    """"""
     result = _QuaternionFromMatrix(mat)
     return result
 
 
-def quaternion_from_axis_angle(mat, angle):
+def quaternion_to_matrix(q):
+    # type: (Quaternion) -> Matrix
+    """"""
+    result = _QuaternionToMatrix(q)
+    return result
+
+
+def quaternion_from_axis_angle(axis, angle):
     # type: (Vector3, float) -> Quaternion
-    """Get rotation quaternion for an angle and axis. Angle must be provided in radians"""
-    result = _QuaternionFromAxisAngle(_vec3(mat), float(angle))
+    """"""
+    result = _QuaternionFromAxisAngle(_vec3(axis), float(angle))
     return result
 
 
 def quaternion_to_axis_angle(q, out_axis, out_angle):
     # type: (Quaternion, Vector3Ptr, Union[Seq[float], FloatPtr]) -> None
-    """Get the rotation angle and axis for a given quaternion"""
+    """"""
     _QuaternionToAxisAngle(q, _vec3(out_axis), out_angle)
 
 
 def quaternion_from_euler(pitch, yaw, roll):
     # type: (float, float, float) -> Quaternion
-    """Get the quaternion equivalent to Euler angles. Rotation order is ZYX"""
+    """"""
     result = _QuaternionFromEuler(float(pitch), float(yaw), float(roll))
     return result
 
 
 def quaternion_to_euler(q):
     # type: (Quaternion) -> Vector3
-    """Get the quaternion equivalent to Euler angles. Rotation order is ZYX"""
+    """"""
     result = _QuaternionToEuler(q)
     return result
 
 
 def quaternion_transform(q, mat):
     # type: (Quaternion, Matrix) -> Quaternion
-    """Transform a quaternion given a transformation matrix"""
+    """"""
     result = _QuaternionTransform(q, mat)
     return result
 
 
 def quaternion_equals(p, q):
     # type: (Quaternion, Quaternion) -> int
-    """Check whether two given quaternions are almost equal"""
+    """"""
     result = _QuaternionEquals(p, q)
     return result
 
@@ -12410,7 +12427,7 @@ def rl_push_matrix():
 
 def rl_pop_matrix():
     # type: () -> None
-    """Pop lattest inserted matrix from stack"""
+    """Pop latest inserted matrix from stack"""
     _rlPopMatrix()
 
 
@@ -12607,6 +12624,12 @@ def rl_texture_parameters(id, param, value):
     _rlTextureParameters(id, int(param), int(value))
 
 
+def rl_cubemap_parameters(id, param, value):
+    # type: (int, int, int) -> None
+    """Set cubemap parameters (filter, wrap)"""
+    _rlCubemapParameters(id, int(param), int(value))
+
+
 def rl_enable_shader(id):
     # type: (int) -> None
     """Enable shader program"""
@@ -12683,6 +12706,12 @@ def rl_disable_backface_culling():
     # type: () -> None
     """Disable backface culling"""
     _rlDisableBackfaceCulling()
+
+
+def rl_set_cull_face(mode):
+    # type: (int) -> None
+    """Set face culling mode"""
+    _rlSetCullFace(int(mode))
 
 
 def rl_enable_scissor_test():
@@ -12789,6 +12818,12 @@ def rl_set_blend_factors(gl_src_factor, gl_dst_factor, gl_equation):
     _rlSetBlendFactors(int(gl_src_factor), int(gl_dst_factor), int(gl_equation))
 
 
+def rl_set_blend_factors_separate(gl_src_rgb, gl_dst_rgb, gl_src_alpha, gl_dst_alpha, gl_eq_rgb, gl_eq_alpha):
+    # type: (int, int, int, int, int, int) -> None
+    """Set blending mode factors and equations separately (using OpenGL factors)"""
+    _rlSetBlendFactorsSeparate(int(gl_src_rgb), int(gl_dst_rgb), int(gl_src_alpha), int(gl_dst_alpha), int(gl_eq_rgb), int(gl_eq_alpha))
+
+
 def rlgl_init(width, height):
     # type: (int, int) -> None
     """Initialize rlgl (buffers, shaders, textures, states)"""
@@ -12797,7 +12832,7 @@ def rlgl_init(width, height):
 
 def rlgl_close():
     # type: () -> None
-    """De-inititialize rlgl (buffers, shaders, textures)"""
+    """De-initialize rlgl (buffers, shaders, textures)"""
     _rlglClose()
 
 
@@ -13157,14 +13192,14 @@ def rl_load_compute_shader_program(shader_id):
 
 def rl_compute_shader_dispatch(group_x, group_y, group_z):
     # type: (int, int, int) -> None
-    """Dispatch compute shader (equivalent to *draw* for graphics pilepine)"""
+    """Dispatch compute shader (equivalent to *draw* for graphics pipeline)"""
     _rlComputeShaderDispatch(group_x, group_y, group_z)
 
 
 def rl_load_shader_buffer(size, data, usage_hint):
     # type: (int, bytes, int) -> int
     """Load shader storage buffer object (SSBO)"""
-    result = _rlLoadShaderBuffer(int(size), data, int(usage_hint))
+    result = _rlLoadShaderBuffer(size, data, int(usage_hint))
     return result
 
 
@@ -13174,10 +13209,28 @@ def rl_unload_shader_buffer(ssbo_id):
     _rlUnloadShaderBuffer(ssbo_id)
 
 
-def rl_update_shader_buffer_elements(id, data, data_size, offset):
+def rl_update_shader_buffer(id, data, data_size, offset):
     # type: (int, bytes, int, int) -> None
     """Update SSBO buffer data"""
-    _rlUpdateShaderBufferElements(id, data, int(data_size), int(offset))
+    _rlUpdateShaderBuffer(id, data, data_size, offset)
+
+
+def rl_bind_shader_buffer(id, index):
+    # type: (int, int) -> None
+    """Bind SSBO buffer"""
+    _rlBindShaderBuffer(id, index)
+
+
+def rl_read_shader_buffer(id, dest, count, offset):
+    # type: (int, bytes, int, int) -> None
+    """Read SSBO buffer data (GPU->CPU)"""
+    _rlReadShaderBuffer(id, dest, count, offset)
+
+
+def rl_copy_shader_buffer(dest_id, src_id, dest_offset, src_offset, count):
+    # type: (int, int, int, int, int) -> None
+    """Copy SSBO data between buffers"""
+    _rlCopyShaderBuffer(dest_id, src_id, dest_offset, src_offset, count)
 
 
 def rl_get_shader_buffer_size(id):
@@ -13187,28 +13240,10 @@ def rl_get_shader_buffer_size(id):
     return result
 
 
-def rl_read_shader_buffer_elements(id, dest, count, offset):
-    # type: (int, bytes, int, int) -> None
-    """Bind SSBO buffer"""
-    _rlReadShaderBufferElements(id, dest, int(count), int(offset))
-
-
-def rl_bind_shader_buffer(id, index):
-    # type: (int, int) -> None
-    """Copy SSBO buffer data"""
-    _rlBindShaderBuffer(id, index)
-
-
-def rl_copy_buffers_elements(dest_id, src_id, dest_offset, src_offset, count):
-    # type: (int, int, int, int, int) -> None
-    """Copy SSBO buffer data"""
-    _rlCopyBuffersElements(dest_id, src_id, int(dest_offset), int(src_offset), int(count))
-
-
 def rl_bind_image_texture(id, index, format, readonly):
-    # type: (int, int, int, int) -> None
+    # type: (int, int, int, bool) -> None
     """Bind image texture"""
-    _rlBindImageTexture(id, index, format, int(readonly))
+    _rlBindImageTexture(id, index, int(format), bool(readonly))
 
 
 def rl_get_matrix_modelview():

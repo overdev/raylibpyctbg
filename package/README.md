@@ -22,16 +22,52 @@
 A python binding for the great _C_ library **[raylib](https://github.com/raysan5/raylib)**.
 
 
-# WARNING: Do not fork this project.
-
-Please, read this [issue](https://github.com/overdev/raylib-py/issues/45) for more information.
-
-The repository for this project exists only to make new package releases.
-No specific changes in the source will be made.
-
 ## Release Information:
 
-The current release was made as output of another project, as mentioned in #45.
+This release was generated from another project, as mentioned in #45.
+
+## How to install:
+
+From PyPI, in the CLI:
+
+```
+$ pip install raylib-py
+```
+
+You can also download the wheel from the [releases](https://github.com/overdev/raylib-py/releases) page and install it with pip locally:
+
+```
+$ pip install path/to/raylib_py-4.5.0-py3-none-any.whl
+```
+
+## How to use:
+
+Try this (after installed raylib-py, create a new python file, save the code below into it, then run it):
+
+```python
+
+from raylibpy import *
+
+
+def main():
+
+    init_window(800, 450, "raylib [core] example - basic window")
+
+    set_target_fps(60)
+
+    while not window_should_close():
+
+        begin_drawing()
+        clear_background(RAYWHITE)
+        draw_text("Congrats! You created your first window!", 190, 200, 20, LIGHTGRAY)
+        end_drawing()
+
+    close_window()
+
+
+if __name__ == '__main__':
+    main()
+```
 
 ## Features:
 - PEP8 naming convention only:
@@ -67,49 +103,12 @@ The current release was made as output of another project, as mentioned in #45.
     c_red = Color(255, 0, 0)
     c_yellow = c_red.rrb
 
-    # Rectangles have aliases for width and height: w and h respectively
+    # Rectangles have aliases for width and height: w and h respectively:
     rect = Rectangle(10.0, 10.0, 320.0, 240.0)
-    other_rect = rect.whxy
-    # Also, r and b for right and bottom; c and m for center (x axis) and middle (y axis)
-    bottomright = rect.br
-    rect.cm = 32.0, 40.0
+    other_rect = rect.whxy          # swizzling is only allowed when using four attributes, not 3 nor 2
     ```
 
-- Pretty printing: most structures implement `__str__()` and `__repr__()`;
-
-- Custom library loading: load a custom lib binary when importing raylib-py:
-
-    You may add a *.raylib* file to specify custom binaries to be loaded. How it works:
-
-    - Create a *.raylib* file with the following contents:
-
-        ```json
-        {
-            "win32": {
-                "64bit": "path/to/my/custom/win32/binary/filename.ext"
-            },
-            "linux": {
-                "64bit": "path/to/my/custom/linux/binary/filename.ext",
-                "32bit": "path/to/my/custom/linux/binary/filename.ext"
-            },
-            "darwin": {
-                "64bit": "path/to/my/custom/macos/binary/filename.ext"
-            }
-        }
-        ```
-
-        Ommit platforms or architectures you don't want/have a custom binary; the default binaries will be loaded instead. The file is not inspected for any extra content.
-
-    - Before importing raylib, make sure the current working directory points to where *.raylib* is located in your project.
-
-        If *.raylib* is found, it will use the binary path for the system and try to load it.
-
-        If the *.raylib* is invalid JSON, it will fallback to the default binary.
-
-        If the binary is not found, **it won't fallback** to the default binary.
-
-        > No path manipulations like `os.path.join(...)` is made.
-
+- Pretty printing: most structures implement `__str__()` and `__repr__()` in a friendly way;
 - Context managers: begin_* and end_* functions can be called as context managers:
 
     Without context managers:

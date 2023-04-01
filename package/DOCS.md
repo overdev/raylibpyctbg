@@ -79,12 +79,12 @@ Item|Item|Item|Item|Item
 --------|--------|--------|--------|--------
 <a href="#AudioStream">AudioStream</a> | <a href="#BoneInfo">BoneInfo</a> | <a href="#BoundingBox">BoundingBox</a> | <a href="#Camera2D">Camera2D</a> | <a href="#Camera3D">Camera3D</a>
 <a href="#Color">Color</a> | <a href="#FilePathList">FilePathList</a> | <a href="#Font">Font</a> | <a href="#GlyphInfo">GlyphInfo</a> | <a href="#Image">Image</a>
-<a href="#Material">Material</a> | <a href="#MaterialMap">MaterialMap</a> | <a href="#Matrix">Matrix</a> | <a href="#Matrix">Matrix</a> | <a href="#Mesh">Mesh</a>
-<a href="#Model">Model</a> | <a href="#ModelAnimation">ModelAnimation</a> | <a href="#Music">Music</a> | <a href="#NPatchInfo">NPatchInfo</a> | <a href="#Ray">Ray</a>
-<a href="#RayCollision">RayCollision</a> | <a href="#Rectangle">Rectangle</a> | <a href="#RenderTexture">RenderTexture</a> | <a href="#Shader">Shader</a> | <a href="#Sound">Sound</a>
-<a href="#Texture">Texture</a> | <a href="#Transform">Transform</a> | <a href="#Vector2">Vector2</a> | <a href="#Vector3">Vector3</a> | <a href="#Vector4">Vector4</a>
-<a href="#VrDeviceInfo">VrDeviceInfo</a> | <a href="#VrStereoConfig">VrStereoConfig</a> | <a href="#Wave">Wave</a> | <a href="#rlDrawCall">rlDrawCall</a> | <a href="#rlRenderBatch">rlRenderBatch</a>
-<a href="#rlVertexBuffer">rlVertexBuffer</a>
+<a href="#Material">Material</a> | <a href="#MaterialMap">MaterialMap</a> | <a href="#Matrix">Matrix</a> | <a href="#Mesh">Mesh</a> | <a href="#Model">Model</a>
+<a href="#ModelAnimation">ModelAnimation</a> | <a href="#Music">Music</a> | <a href="#NPatchInfo">NPatchInfo</a> | <a href="#Ray">Ray</a> | <a href="#RayCollision">RayCollision</a>
+<a href="#Rectangle">Rectangle</a> | <a href="#RenderTexture">RenderTexture</a> | <a href="#Shader">Shader</a> | <a href="#Sound">Sound</a> | <a href="#Texture">Texture</a>
+<a href="#Transform">Transform</a> | <a href="#Vector2">Vector2</a> | <a href="#Vector3">Vector3</a> | <a href="#Vector4">Vector4</a> | <a href="#VrDeviceInfo">VrDeviceInfo</a>
+<a href="#VrStereoConfig">VrStereoConfig</a> | <a href="#Wave">Wave</a> | <a href="#float16">float16</a> | <a href="#float3">float3</a> | <a href="#rlDrawCall">rlDrawCall</a>
+<a href="#rlRenderBatch">rlRenderBatch</a> | <a href="#rlVertexBuffer">rlVertexBuffer</a>
 
 [ <a href="#toc">ToC</a> ]
 <h2 id="Vector2"><code>Vector2</code> structure</h2>
@@ -122,8 +122,8 @@ Bound as | Name | API
 *method* | `.reflect(self, normal)` | <a href="#Vector2Reflect"><code>vector2reflect</code></a>
 *method* | `.rotate(self, angle)` | <a href="#Vector2Rotate"><code>vector2rotate</code></a>
 *method* | `.move_towards(self, target, max_distance)` | <a href="#Vector2MoveTowards"><code>vector2move_towards</code></a>
-*method* | `.clamp(self, min_, max_)` | <a href="#Vector2Clamp"><code>vector2clamp</code></a>
-*method* | `.clamp_value(self, min_, max_)` | <a href="#Vector2ClampValue"><code>vector2clamp_value</code></a>
+*method* | `.clamp(self, min, max)` | <a href="#Vector2Clamp"><code>vector2clamp</code></a>
+*method* | `.clamp_value(self, min, max)` | <a href="#Vector2ClampValue"><code>vector2clamp_value</code></a>
 
 
 
@@ -174,8 +174,8 @@ Bound as | Name | API
 *method* | `.barycenter(self, a, b, c)` | <a href="#Vector3Barycenter"><code>vector3barycenter</code></a>
 *method* | `.unproject(self, projection, view)` | <a href="#Vector3Unproject"><code>vector3unproject</code></a>
 *method* | `.to_float_v(self)` | <a href="#Vector3ToFloatV"><code>vector3to_float_v</code></a>
-*method* | `.clamp(self, min_, max_)` | <a href="#Vector3Clamp"><code>vector3clamp</code></a>
-*method* | `.clamp_value(self, min_, max_)` | <a href="#Vector3ClampValue"><code>vector3clamp_value</code></a>
+*method* | `.clamp(self, min, max)` | <a href="#Vector3Clamp"><code>vector3clamp</code></a>
+*method* | `.clamp_value(self, min, max)` | <a href="#Vector3ClampValue"><code>vector3clamp_value</code></a>
 *method* | `.refract(self, n, r)` | <a href="#Vector3Refract"><code>vector3refract</code></a>
 
 
@@ -1366,6 +1366,60 @@ Bound as | Name | API
 [ <a href="#structs">Structs</a> | <a href="#toc">ToC</a> ]
 
 ---
+<h2 id="float3"><code>float3</code> structure</h2>
+
+NOTE: Helper types to be used instead of array return types for *ToFloat functions
+
+**Fields**
+
+Name | Type (Python) | Type (Ctypes) | Type (C) | Description
+-----|---------------|---------------|----------|------------
+`v` | `Seq[float]` | `Float * 3` | `float[3]` | 
+
+### Properties
+
+Name | API
+-----|----
+`.byref` | *n/a*
+
+### Methods
+
+Bound as | Name | API
+---------|------|----
+*classmethod* | `.array_of(cls, float3_sequence)` | *n/a*
+
+
+
+[ <a href="#structs">Structs</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="float16"><code>float16</code> structure</h2>
+
+
+
+**Fields**
+
+Name | Type (Python) | Type (Ctypes) | Type (C) | Description
+-----|---------------|---------------|----------|------------
+`v` | `Seq[float]` | `Float * 16` | `float[16]` | 
+
+### Properties
+
+Name | API
+-----|----
+`.byref` | *n/a*
+
+### Methods
+
+Bound as | Name | API
+---------|------|----
+*classmethod* | `.array_of(cls, float16_sequence)` | *n/a*
+
+
+
+[ <a href="#structs">Structs</a> | <a href="#toc">ToC</a> ]
+
+---
 <h2 id="rlVertexBuffer"><code>rlVertexBuffer</code> structure</h2>
 
 Dynamic vertex buffers (position + texcoords + colors + indices arrays)
@@ -1461,65 +1515,6 @@ Bound as | Name | API
 [ <a href="#structs">Structs</a> | <a href="#toc">ToC</a> ]
 
 ---
-<h2 id="Matrix"><code>Matrix</code> structure</h2>
-
-Matrix, 4x4 components, column major, OpenGL style, right handed
-
-**Fields**
-
-Name | Type (Python) | Type (Ctypes) | Type (C) | Description
------|---------------|---------------|----------|------------
-`m0` | `float` | `Float` | `float` | Matrix first row (4 components)
-`m4` | `float` | `Float` | `float` | Matrix first row (4 components)
-`m8` | `float` | `Float` | `float` | Matrix first row (4 components)
-`m12` | `float` | `Float` | `float` | Matrix first row (4 components)
-`m1` | `float` | `Float` | `float` | Matrix second row (4 components)
-`m5` | `float` | `Float` | `float` | Matrix second row (4 components)
-`m9` | `float` | `Float` | `float` | Matrix second row (4 components)
-`m13` | `float` | `Float` | `float` | Matrix second row (4 components)
-`m2` | `float` | `Float` | `float` | Matrix third row (4 components)
-`m6` | `float` | `Float` | `float` | Matrix third row (4 components)
-`m10` | `float` | `Float` | `float` | Matrix third row (4 components)
-`m14` | `float` | `Float` | `float` | Matrix third row (4 components)
-`m3` | `float` | `Float` | `float` | Matrix fourth row (4 components)
-`m7` | `float` | `Float` | `float` | Matrix fourth row (4 components)
-`m11` | `float` | `Float` | `float` | Matrix fourth row (4 components)
-`m15` | `float` | `Float` | `float` | Matrix fourth row (4 components)
-
-### Properties
-
-Name | API
------|----
-`.byref` | *n/a*
-
-### Methods
-
-Bound as | Name | API
----------|------|----
-*classmethod* | `.array_of(cls, matrix_sequence)` | *n/a*
-*classmethod* | `.identity()` | <a href="#MatrixIdentity"><code>matrix_identity</code></a>
-*classmethod* | `.translate(cls, x, y, z)` | <a href="#MatrixTranslate"><code>matrix_translate</code></a>
-*classmethod* | `.rotate(cls, axis, angle)` | <a href="#MatrixRotate"><code>matrix_rotate</code></a>
-*classmethod* | `.rotate_x(cls, angle)` | <a href="#MatrixRotateX"><code>matrix_rotate_x</code></a>
-*classmethod* | `.rotate_y(cls, angle)` | <a href="#MatrixRotateY"><code>matrix_rotate_y</code></a>
-*classmethod* | `.rotate_z(cls, angle)` | <a href="#MatrixRotateZ"><code>matrix_rotate_z</code></a>
-*classmethod* | `.rotate_xyz(cls, angle)` | <a href="#MatrixRotateXYZ"><code>matrix_rotate_xyz</code></a>
-*classmethod* | `.rotate_zyx(cls, angle)` | <a href="#MatrixRotateZYX"><code>matrix_rotate_zyx</code></a>
-*classmethod* | `.scale(cls, x, y, z)` | <a href="#MatrixScale"><code>matrix_scale</code></a>
-*classmethod* | `.frustum(cls, left, right, bottom, top, near, far)` | <a href="#MatrixFrustum"><code>matrix_frustum</code></a>
-*classmethod* | `.perspective(cls, fovy, aspect, near, far)` | <a href="#MatrixPerspective"><code>matrix_perspective</code></a>
-*classmethod* | `.ortho(cls, left, right, bottom, top, near, far)` | <a href="#MatrixOrtho"><code>matrix_ortho</code></a>
-*classmethod* | `.look_at(cls, eye, target, up)` | <a href="#MatrixLookAt"><code>matrix_look_at</code></a>
-*method* | `.determinant(self)` | <a href="#MatrixDeterminant"><code>matrix_determinant</code></a>
-*method* | `.trace(self)` | <a href="#MatrixTrace"><code>matrix_trace</code></a>
-*method* | `.transpose(self)` | <a href="#MatrixTranspose"><code>matrix_transpose</code></a>
-*method* | `.invert(self)` | <a href="#MatrixInvert"><code>matrix_invert</code></a>
-
-
-
-[ <a href="#structs">Structs</a> | <a href="#toc">ToC</a> ]
-
----
 <h2 id="aliases">Aliases</h2>
 
 Alias Name | Type | Description
@@ -1529,6 +1524,7 @@ Alias Name | Type | Description
 `TextureCubemap` | `<a href="#Texture">Texture</a>` | TextureCubemap, same as Texture
 `RenderTexture2D` | `<a href="#RenderTexture">RenderTexture</a>` | RenderTexture2D, same as RenderTexture
 `Camera` | `<a href="#Camera3D">Camera3D</a>` | Camera type fallback, defaults to Camera3D
+`Quaternion` | `<a href="#Vector4">Vector4</a>` | Quaternion type
 
 [ <a href="#toc">ToC</a> ]
 
@@ -1540,9 +1536,9 @@ Item|Item|Item|Item|Item
 <a href="#FontType">FontType</a> | <a href="#GamepadAxis">GamepadAxis</a> | <a href="#GamepadButton">GamepadButton</a> | <a href="#Gesture">Gesture</a> | <a href="#KeyboardKey">KeyboardKey</a>
 <a href="#MaterialMapIndex">MaterialMapIndex</a> | <a href="#MouseButton">MouseButton</a> | <a href="#MouseCursor">MouseCursor</a> | <a href="#NPatchLayout">NPatchLayout</a> | <a href="#PixelFormat">PixelFormat</a>
 <a href="#ShaderAttributeDataType">ShaderAttributeDataType</a> | <a href="#ShaderLocationIndex">ShaderLocationIndex</a> | <a href="#ShaderUniformDataType">ShaderUniformDataType</a> | <a href="#TextureFilter">TextureFilter</a> | <a href="#TextureWrap">TextureWrap</a>
-<a href="#TraceLogLevel">TraceLogLevel</a> | <a href="#rlBlendMode">rlBlendMode</a> | <a href="#rlFramebufferAttachTextureType">rlFramebufferAttachTextureType</a> | <a href="#rlFramebufferAttachType">rlFramebufferAttachType</a> | <a href="#rlGlVersion">rlGlVersion</a>
-<a href="#rlPixelFormat">rlPixelFormat</a> | <a href="#rlShaderAttributeDataType">rlShaderAttributeDataType</a> | <a href="#rlShaderLocationIndex">rlShaderLocationIndex</a> | <a href="#rlShaderUniformDataType">rlShaderUniformDataType</a> | <a href="#rlTextureFilter">rlTextureFilter</a>
-<a href="#rlTraceLogLevel">rlTraceLogLevel</a>
+<a href="#TraceLogLevel">TraceLogLevel</a> | <a href="#rlBlendMode">rlBlendMode</a> | <a href="#rlCullMode">rlCullMode</a> | <a href="#rlFramebufferAttachTextureType">rlFramebufferAttachTextureType</a> | <a href="#rlFramebufferAttachType">rlFramebufferAttachType</a>
+<a href="#rlGlVersion">rlGlVersion</a> | <a href="#rlPixelFormat">rlPixelFormat</a> | <a href="#rlShaderAttributeDataType">rlShaderAttributeDataType</a> | <a href="#rlShaderLocationIndex">rlShaderLocationIndex</a> | <a href="#rlShaderUniformDataType">rlShaderUniformDataType</a>
+<a href="#rlTextureFilter">rlTextureFilter</a> | <a href="#rlTraceLogLevel">rlTraceLogLevel</a>
 
 [ <a href="#toc">ToC</a> ]
 
@@ -2056,49 +2052,11 @@ Name | Value | Description
 
 Name | Value | Description
 -----|-------|------------
-`OPENGL_11` | `1` | 
-`OPENGL_21` | `2` | 
-`OPENGL_33` | `3` | 
-`OPENGL_43` | `4` | 
-`OPENGL_ES_20` | `5` | 
-
-[ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
-
----
-<h2 id="rlFramebufferAttachType"><code>rlFramebufferAttachType</code> enum</h2>
-
-**Members**
-
-Name | Value | Description
------|-------|------------
-`RL_ATTACHMENT_COLOR_CHANNEL0` | `0` | 
-`RL_ATTACHMENT_COLOR_CHANNEL1` | `1` | 
-`RL_ATTACHMENT_COLOR_CHANNEL2` | `2` | 
-`RL_ATTACHMENT_COLOR_CHANNEL3` | `3` | 
-`RL_ATTACHMENT_COLOR_CHANNEL4` | `4` | 
-`RL_ATTACHMENT_COLOR_CHANNEL5` | `5` | 
-`RL_ATTACHMENT_COLOR_CHANNEL6` | `6` | 
-`RL_ATTACHMENT_COLOR_CHANNEL7` | `7` | 
-`RL_ATTACHMENT_DEPTH` | `100` | 
-`RL_ATTACHMENT_STENCIL` | `200` | 
-
-[ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
-
----
-<h2 id="rlFramebufferAttachTextureType"><code>rlFramebufferAttachTextureType</code> enum</h2>
-
-**Members**
-
-Name | Value | Description
------|-------|------------
-`RL_ATTACHMENT_CUBEMAP_POSITIVE_X` | `0` | 
-`RL_ATTACHMENT_CUBEMAP_NEGATIVE_X` | `1` | 
-`RL_ATTACHMENT_CUBEMAP_POSITIVE_Y` | `2` | 
-`RL_ATTACHMENT_CUBEMAP_NEGATIVE_Y` | `3` | 
-`RL_ATTACHMENT_CUBEMAP_POSITIVE_Z` | `4` | 
-`RL_ATTACHMENT_CUBEMAP_NEGATIVE_Z` | `5` | 
-`RL_ATTACHMENT_TEXTURE2D` | `100` | 
-`RL_ATTACHMENT_RENDERBUFFER` | `200` | 
+`RL_OPENGL_11` | `1` | OpenGL 1.1
+`RL_OPENGL_21` | `2` | OpenGL 2.1 (GLSL 120)
+`RL_OPENGL_33` | `3` | OpenGL 3.3 (GLSL 330)
+`RL_OPENGL_43` | `4` | OpenGL 4.3 (using GLSL 330)
+`RL_OPENGL_ES_20` | `5` | OpenGL ES 2.0 (GLSL 100)
 
 [ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
 
@@ -2181,6 +2139,7 @@ Name | Value | Description
 `RL_BLEND_SUBTRACT_COLORS` | `4` | Blend textures subtracting colors (alternative)
 `RL_BLEND_ALPHA_PREMULTIPLY` | `5` | Blend premultiplied textures considering alpha
 `RL_BLEND_CUSTOM` | `6` | Blend textures using custom src/dst factors (use rlSetBlendFactors())
+`RL_BLEND_CUSTOM_SEPARATE` | `7` | Blend textures using custom src/dst factors (use rlSetBlendFactorsSeparate())
 
 [ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
 
@@ -2254,6 +2213,56 @@ Name | Value | Description
 [ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
 
 ---
+<h2 id="rlFramebufferAttachType"><code>rlFramebufferAttachType</code> enum</h2>
+
+**Members**
+
+Name | Value | Description
+-----|-------|------------
+`RL_ATTACHMENT_COLOR_CHANNEL0` | `0` | Framebuffer attachment type: color 0
+`RL_ATTACHMENT_COLOR_CHANNEL1` | `1` | Framebuffer attachment type: color 1
+`RL_ATTACHMENT_COLOR_CHANNEL2` | `2` | Framebuffer attachment type: color 2
+`RL_ATTACHMENT_COLOR_CHANNEL3` | `3` | Framebuffer attachment type: color 3
+`RL_ATTACHMENT_COLOR_CHANNEL4` | `4` | Framebuffer attachment type: color 4
+`RL_ATTACHMENT_COLOR_CHANNEL5` | `5` | Framebuffer attachment type: color 5
+`RL_ATTACHMENT_COLOR_CHANNEL6` | `6` | Framebuffer attachment type: color 6
+`RL_ATTACHMENT_COLOR_CHANNEL7` | `7` | Framebuffer attachment type: color 7
+`RL_ATTACHMENT_DEPTH` | `100` | Framebuffer attachment type: depth
+`RL_ATTACHMENT_STENCIL` | `200` | Framebuffer attachment type: stencil
+
+[ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="rlFramebufferAttachTextureType"><code>rlFramebufferAttachTextureType</code> enum</h2>
+
+**Members**
+
+Name | Value | Description
+-----|-------|------------
+`RL_ATTACHMENT_CUBEMAP_POSITIVE_X` | `0` | Framebuffer texture attachment type: cubemap, +X side
+`RL_ATTACHMENT_CUBEMAP_NEGATIVE_X` | `1` | Framebuffer texture attachment type: cubemap, -X side
+`RL_ATTACHMENT_CUBEMAP_POSITIVE_Y` | `2` | Framebuffer texture attachment type: cubemap, +Y side
+`RL_ATTACHMENT_CUBEMAP_NEGATIVE_Y` | `3` | Framebuffer texture attachment type: cubemap, -Y side
+`RL_ATTACHMENT_CUBEMAP_POSITIVE_Z` | `4` | Framebuffer texture attachment type: cubemap, +Z side
+`RL_ATTACHMENT_CUBEMAP_NEGATIVE_Z` | `5` | Framebuffer texture attachment type: cubemap, -Z side
+`RL_ATTACHMENT_TEXTURE2D` | `100` | Framebuffer texture attachment type: texture2d
+`RL_ATTACHMENT_RENDERBUFFER` | `200` | Framebuffer texture attachment type: renderbuffer
+
+[ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="rlCullMode"><code>rlCullMode</code> enum</h2>
+
+**Members**
+
+Name | Value | Description
+-----|-------|------------
+`RL_CULL_FACE_FRONT` | `0` | 
+`RL_CULL_FACE_BACK` | `1` | 
+
+[ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
+
+---
 <h2 id="defines">Constants</h2>
 
 Name | Value | Description
@@ -2291,7 +2300,11 @@ Name | Value | Description
 `BLANK` | `Color(0, 0, 0, 0)` |  <span style="color:rgba(0, 0, 0, 0);">█████</span> Blank (Transparent)
 `MAGENTA` | `Color(255, 0, 255, 255)` |  <span style="color:rgba(255, 0, 255, 255);">█████</span> Magenta
 `RAYWHITE` | `Color(245, 245, 245, 255)` |  <span style="color:rgba(245, 245, 245, 255);">█████</span> My own White (raylib logo)
-`RLGL_VERSION` | `'4.0'` | *n/a*
+`PI` | `3.141592653589793` | *n/a*
+`EPSILON` | `1e-06` | *n/a*
+`DEG2RAD` | `(PI / 180.0)` | *n/a*
+`RAD2DEG` | `(180.0 / PI)` | *n/a*
+`RLGL_VERSION` | `'4.5'` | *n/a*
 `RL_DEFAULT_BATCH_BUFFER_ELEMENTS` | `8192` | *n/a*
 `RL_DEFAULT_BATCH_BUFFERS` | `1` | Default number of batch buffers (multi-buffering)
 `RL_DEFAULT_BATCH_DRAWCALLS` | `256` | Default number of batch draw calls (by state changes: mode, texture)
@@ -2311,6 +2324,7 @@ Name | Value | Description
 `RL_TEXTURE_FILTER_LINEAR_MIP_NEAREST` | `9985` | GL_LINEAR_MIPMAP_NEAREST
 `RL_TEXTURE_FILTER_MIP_LINEAR` | `9987` | GL_LINEAR_MIPMAP_LINEAR
 `RL_TEXTURE_FILTER_ANISOTROPIC` | `12288` | Anisotropic filter (custom identifier)
+`RL_TEXTURE_MIPMAP_BIAS_RATIO` | `16384` | Texture mipmap bias, percentage ratio (custom identifier)
 `RL_TEXTURE_WRAP_REPEAT` | `10497` | GL_REPEAT
 `RL_TEXTURE_WRAP_CLAMP` | `33071` | GL_CLAMP_TO_EDGE
 `RL_TEXTURE_WRAP_MIRROR_REPEAT` | `33648` | GL_MIRRORED_REPEAT
@@ -2335,6 +2349,34 @@ Name | Value | Description
 `RL_FRAGMENT_SHADER` | `35632` | GL_FRAGMENT_SHADER
 `RL_VERTEX_SHADER` | `35633` | GL_VERTEX_SHADER
 `RL_COMPUTE_SHADER` | `37305` | GL_COMPUTE_SHADER
+`RL_ZERO` | `0` | GL_ZERO
+`RL_ONE` | `1` | GL_ONE
+`RL_SRC_COLOR` | `768` | GL_SRC_COLOR
+`RL_ONE_MINUS_SRC_COLOR` | `769` | GL_ONE_MINUS_SRC_COLOR
+`RL_SRC_ALPHA` | `770` | GL_SRC_ALPHA
+`RL_ONE_MINUS_SRC_ALPHA` | `771` | GL_ONE_MINUS_SRC_ALPHA
+`RL_DST_ALPHA` | `772` | GL_DST_ALPHA
+`RL_ONE_MINUS_DST_ALPHA` | `773` | GL_ONE_MINUS_DST_ALPHA
+`RL_DST_COLOR` | `774` | GL_DST_COLOR
+`RL_ONE_MINUS_DST_COLOR` | `775` | GL_ONE_MINUS_DST_COLOR
+`RL_SRC_ALPHA_SATURATE` | `776` | GL_SRC_ALPHA_SATURATE
+`RL_CONSTANT_COLOR` | `32769` | GL_CONSTANT_COLOR
+`RL_ONE_MINUS_CONSTANT_COLOR` | `32770` | GL_ONE_MINUS_CONSTANT_COLOR
+`RL_CONSTANT_ALPHA` | `32771` | GL_CONSTANT_ALPHA
+`RL_ONE_MINUS_CONSTANT_ALPHA` | `32772` | GL_ONE_MINUS_CONSTANT_ALPHA
+`RL_FUNC_ADD` | `32774` | GL_FUNC_ADD
+`RL_MIN` | `32775` | GL_MIN
+`RL_MAX` | `32776` | GL_MAX
+`RL_FUNC_SUBTRACT` | `32778` | GL_FUNC_SUBTRACT
+`RL_FUNC_REVERSE_SUBTRACT` | `32779` | GL_FUNC_REVERSE_SUBTRACT
+`RL_BLEND_EQUATION` | `32777` | GL_BLEND_EQUATION
+`RL_BLEND_EQUATION_RGB` | `32777` | GL_BLEND_EQUATION_RGB   // (Same as BLEND_EQUATION)
+`RL_BLEND_EQUATION_ALPHA` | `34877` | GL_BLEND_EQUATION_ALPHA
+`RL_BLEND_DST_RGB` | `32968` | GL_BLEND_DST_RGB
+`RL_BLEND_SRC_RGB` | `32969` | GL_BLEND_SRC_RGB
+`RL_BLEND_DST_ALPHA` | `32970` | GL_BLEND_DST_ALPHA
+`RL_BLEND_SRC_ALPHA` | `32971` | GL_BLEND_SRC_ALPHA
+`RL_BLEND_COLOR` | `32773` | GL_BLEND_COLOR
 
 [ <a href="#toc">ToC</a> ]
 
@@ -2456,71 +2498,72 @@ Item|Item|Item|Item|Item
 <a href="#PlayAudioStream">PlayAudioStream</a> | <a href="#PlayMusicStream">PlayMusicStream</a> | <a href="#PlaySound">PlaySound</a> | <a href="#PollInputEvents">PollInputEvents</a> | <a href="#QuaternionAdd">QuaternionAdd</a>
 <a href="#QuaternionAddValue">QuaternionAddValue</a> | <a href="#QuaternionDivide">QuaternionDivide</a> | <a href="#QuaternionEquals">QuaternionEquals</a> | <a href="#QuaternionFromAxisAngle">QuaternionFromAxisAngle</a> | <a href="#QuaternionFromEuler">QuaternionFromEuler</a>
 <a href="#QuaternionFromMatrix">QuaternionFromMatrix</a> | <a href="#QuaternionFromVector3ToVector3">QuaternionFromVector3ToVector3</a> | <a href="#QuaternionIdentity">QuaternionIdentity</a> | <a href="#QuaternionInvert">QuaternionInvert</a> | <a href="#QuaternionLength">QuaternionLength</a>
-<a href="#QuaternionMultiply">QuaternionMultiply</a> | <a href="#QuaternionNlerp">QuaternionNlerp</a> | <a href="#QuaternionNormalize">QuaternionNormalize</a> | <a href="#QuaternionScale">QuaternionScale</a> | <a href="#QuaternionSlerp">QuaternionSlerp</a>
-<a href="#QuaternionSubtract">QuaternionSubtract</a> | <a href="#QuaternionSubtractValue">QuaternionSubtractValue</a> | <a href="#QuaternionToAxisAngle">QuaternionToAxisAngle</a> | <a href="#QuaternionToEuler">QuaternionToEuler</a> | <a href="#QuaternionToMatrix">QuaternionToMatrix</a>
-<a href="#QuaternionTransform">QuaternionTransform</a> | <a href="#Remap">Remap</a> | <a href="#RestoreWindow">RestoreWindow</a> | <a href="#ResumeAudioStream">ResumeAudioStream</a> | <a href="#ResumeMusicStream">ResumeMusicStream</a>
-<a href="#ResumeSound">ResumeSound</a> | <a href="#SaveFileData">SaveFileData</a> | <a href="#SaveFileText">SaveFileText</a> | <a href="#SeekMusicStream">SeekMusicStream</a> | <a href="#SetAudioStreamBufferSizeDefault">SetAudioStreamBufferSizeDefault</a>
-<a href="#SetAudioStreamCallback">SetAudioStreamCallback</a> | <a href="#SetAudioStreamPan">SetAudioStreamPan</a> | <a href="#SetAudioStreamPitch">SetAudioStreamPitch</a> | <a href="#SetAudioStreamVolume">SetAudioStreamVolume</a> | <a href="#SetClipboardText">SetClipboardText</a>
-<a href="#SetConfigFlags">SetConfigFlags</a> | <a href="#SetExitKey">SetExitKey</a> | <a href="#SetGamepadMappings">SetGamepadMappings</a> | <a href="#SetGesturesEnabled">SetGesturesEnabled</a> | <a href="#SetLoadFileDataCallback">SetLoadFileDataCallback</a>
-<a href="#SetLoadFileTextCallback">SetLoadFileTextCallback</a> | <a href="#SetMasterVolume">SetMasterVolume</a> | <a href="#SetMaterialTexture">SetMaterialTexture</a> | <a href="#SetModelMeshMaterial">SetModelMeshMaterial</a> | <a href="#SetMouseCursor">SetMouseCursor</a>
-<a href="#SetMouseOffset">SetMouseOffset</a> | <a href="#SetMousePosition">SetMousePosition</a> | <a href="#SetMouseScale">SetMouseScale</a> | <a href="#SetMusicPan">SetMusicPan</a> | <a href="#SetMusicPitch">SetMusicPitch</a>
-<a href="#SetMusicVolume">SetMusicVolume</a> | <a href="#SetPixelColor">SetPixelColor</a> | <a href="#SetRandomSeed">SetRandomSeed</a> | <a href="#SetSaveFileDataCallback">SetSaveFileDataCallback</a> | <a href="#SetSaveFileTextCallback">SetSaveFileTextCallback</a>
-<a href="#SetShaderValue">SetShaderValue</a> | <a href="#SetShaderValueMatrix">SetShaderValueMatrix</a> | <a href="#SetShaderValueTexture">SetShaderValueTexture</a> | <a href="#SetShaderValueV">SetShaderValueV</a> | <a href="#SetShapesTexture">SetShapesTexture</a>
-<a href="#SetSoundPan">SetSoundPan</a> | <a href="#SetSoundPitch">SetSoundPitch</a> | <a href="#SetSoundVolume">SetSoundVolume</a> | <a href="#SetTargetFPS">SetTargetFPS</a> | <a href="#SetTextureFilter">SetTextureFilter</a>
-<a href="#SetTextureWrap">SetTextureWrap</a> | <a href="#SetTraceLogCallback">SetTraceLogCallback</a> | <a href="#SetTraceLogLevel">SetTraceLogLevel</a> | <a href="#SetWindowIcon">SetWindowIcon</a> | <a href="#SetWindowIcons">SetWindowIcons</a>
-<a href="#SetWindowMinSize">SetWindowMinSize</a> | <a href="#SetWindowMonitor">SetWindowMonitor</a> | <a href="#SetWindowOpacity">SetWindowOpacity</a> | <a href="#SetWindowPosition">SetWindowPosition</a> | <a href="#SetWindowSize">SetWindowSize</a>
-<a href="#SetWindowState">SetWindowState</a> | <a href="#SetWindowTitle">SetWindowTitle</a> | <a href="#ShowCursor">ShowCursor</a> | <a href="#StopAudioStream">StopAudioStream</a> | <a href="#StopMusicStream">StopMusicStream</a>
-<a href="#StopSound">StopSound</a> | <a href="#SwapScreenBuffer">SwapScreenBuffer</a> | <a href="#TakeScreenshot">TakeScreenshot</a> | <a href="#TextAppend">TextAppend</a> | <a href="#TextCopy">TextCopy</a>
-<a href="#TextFindIndex">TextFindIndex</a> | <a href="#TextFormat">TextFormat</a> | <a href="#TextInsert">TextInsert</a> | <a href="#TextIsEqual">TextIsEqual</a> | <a href="#TextJoin">TextJoin</a>
-<a href="#TextLength">TextLength</a> | <a href="#TextReplace">TextReplace</a> | <a href="#TextSplit">TextSplit</a> | <a href="#TextSubtext">TextSubtext</a> | <a href="#TextToInteger">TextToInteger</a>
-<a href="#TextToLower">TextToLower</a> | <a href="#TextToPascal">TextToPascal</a> | <a href="#TextToUpper">TextToUpper</a> | <a href="#ToggleFullscreen">ToggleFullscreen</a> | <a href="#TraceLog">TraceLog</a>
-<a href="#UnloadAudioStream">UnloadAudioStream</a> | <a href="#UnloadCodepoints">UnloadCodepoints</a> | <a href="#UnloadDirectoryFiles">UnloadDirectoryFiles</a> | <a href="#UnloadDroppedFiles">UnloadDroppedFiles</a> | <a href="#UnloadFileData">UnloadFileData</a>
-<a href="#UnloadFileText">UnloadFileText</a> | <a href="#UnloadFont">UnloadFont</a> | <a href="#UnloadFontData">UnloadFontData</a> | <a href="#UnloadImage">UnloadImage</a> | <a href="#UnloadImageColors">UnloadImageColors</a>
-<a href="#UnloadImagePalette">UnloadImagePalette</a> | <a href="#UnloadMaterial">UnloadMaterial</a> | <a href="#UnloadMesh">UnloadMesh</a> | <a href="#UnloadModel">UnloadModel</a> | <a href="#UnloadModelAnimation">UnloadModelAnimation</a>
-<a href="#UnloadModelAnimations">UnloadModelAnimations</a> | <a href="#UnloadMusicStream">UnloadMusicStream</a> | <a href="#UnloadRenderTexture">UnloadRenderTexture</a> | <a href="#UnloadShader">UnloadShader</a> | <a href="#UnloadSound">UnloadSound</a>
-<a href="#UnloadTexture">UnloadTexture</a> | <a href="#UnloadUTF8">UnloadUTF8</a> | <a href="#UnloadVrStereoConfig">UnloadVrStereoConfig</a> | <a href="#UnloadWave">UnloadWave</a> | <a href="#UnloadWaveSamples">UnloadWaveSamples</a>
-<a href="#UpdateAudioStream">UpdateAudioStream</a> | <a href="#UpdateCamera">UpdateCamera</a> | <a href="#UpdateCameraPro">UpdateCameraPro</a> | <a href="#UpdateMeshBuffer">UpdateMeshBuffer</a> | <a href="#UpdateModelAnimation">UpdateModelAnimation</a>
-<a href="#UpdateMusicStream">UpdateMusicStream</a> | <a href="#UpdateSound">UpdateSound</a> | <a href="#UpdateTexture">UpdateTexture</a> | <a href="#UpdateTextureRec">UpdateTextureRec</a> | <a href="#UploadMesh">UploadMesh</a>
-<a href="#Vector2Add">Vector2Add</a> | <a href="#Vector2AddValue">Vector2AddValue</a> | <a href="#Vector2Angle">Vector2Angle</a> | <a href="#Vector2Clamp">Vector2Clamp</a> | <a href="#Vector2ClampValue">Vector2ClampValue</a>
-<a href="#Vector2Distance">Vector2Distance</a> | <a href="#Vector2DistanceSqr">Vector2DistanceSqr</a> | <a href="#Vector2Divide">Vector2Divide</a> | <a href="#Vector2DotProduct">Vector2DotProduct</a> | <a href="#Vector2Equals">Vector2Equals</a>
-<a href="#Vector2Invert">Vector2Invert</a> | <a href="#Vector2Length">Vector2Length</a> | <a href="#Vector2LengthSqr">Vector2LengthSqr</a> | <a href="#Vector2Lerp">Vector2Lerp</a> | <a href="#Vector2MoveTowards">Vector2MoveTowards</a>
-<a href="#Vector2Multiply">Vector2Multiply</a> | <a href="#Vector2Negate">Vector2Negate</a> | <a href="#Vector2Normalize">Vector2Normalize</a> | <a href="#Vector2One">Vector2One</a> | <a href="#Vector2Reflect">Vector2Reflect</a>
-<a href="#Vector2Rotate">Vector2Rotate</a> | <a href="#Vector2Scale">Vector2Scale</a> | <a href="#Vector2Subtract">Vector2Subtract</a> | <a href="#Vector2SubtractValue">Vector2SubtractValue</a> | <a href="#Vector2Transform">Vector2Transform</a>
-<a href="#Vector2Zero">Vector2Zero</a> | <a href="#Vector3Add">Vector3Add</a> | <a href="#Vector3AddValue">Vector3AddValue</a> | <a href="#Vector3Angle">Vector3Angle</a> | <a href="#Vector3Barycenter">Vector3Barycenter</a>
-<a href="#Vector3Clamp">Vector3Clamp</a> | <a href="#Vector3ClampValue">Vector3ClampValue</a> | <a href="#Vector3CrossProduct">Vector3CrossProduct</a> | <a href="#Vector3Distance">Vector3Distance</a> | <a href="#Vector3DistanceSqr">Vector3DistanceSqr</a>
-<a href="#Vector3Divide">Vector3Divide</a> | <a href="#Vector3DotProduct">Vector3DotProduct</a> | <a href="#Vector3Equals">Vector3Equals</a> | <a href="#Vector3Invert">Vector3Invert</a> | <a href="#Vector3Length">Vector3Length</a>
-<a href="#Vector3LengthSqr">Vector3LengthSqr</a> | <a href="#Vector3Lerp">Vector3Lerp</a> | <a href="#Vector3Max">Vector3Max</a> | <a href="#Vector3Min">Vector3Min</a> | <a href="#Vector3Multiply">Vector3Multiply</a>
-<a href="#Vector3Negate">Vector3Negate</a> | <a href="#Vector3Normalize">Vector3Normalize</a> | <a href="#Vector3One">Vector3One</a> | <a href="#Vector3OrthoNormalize">Vector3OrthoNormalize</a> | <a href="#Vector3Perpendicular">Vector3Perpendicular</a>
-<a href="#Vector3Reflect">Vector3Reflect</a> | <a href="#Vector3Refract">Vector3Refract</a> | <a href="#Vector3RotateByAxisAngle">Vector3RotateByAxisAngle</a> | <a href="#Vector3RotateByQuaternion">Vector3RotateByQuaternion</a> | <a href="#Vector3Scale">Vector3Scale</a>
-<a href="#Vector3Subtract">Vector3Subtract</a> | <a href="#Vector3SubtractValue">Vector3SubtractValue</a> | <a href="#Vector3ToFloatV">Vector3ToFloatV</a> | <a href="#Vector3Transform">Vector3Transform</a> | <a href="#Vector3Unproject">Vector3Unproject</a>
-<a href="#Vector3Zero">Vector3Zero</a> | <a href="#WaitTime">WaitTime</a> | <a href="#WaveCopy">WaveCopy</a> | <a href="#WaveCrop">WaveCrop</a> | <a href="#WaveFormat">WaveFormat</a>
-<a href="#WindowShouldClose">WindowShouldClose</a> | <a href="#Wrap">Wrap</a> | <a href="#rlActiveDrawBuffers">rlActiveDrawBuffers</a> | <a href="#rlActiveTextureSlot">rlActiveTextureSlot</a> | <a href="#rlBegin">rlBegin</a>
-<a href="#rlBindImageTexture">rlBindImageTexture</a> | <a href="#rlBindShaderBuffer">rlBindShaderBuffer</a> | <a href="#rlCheckErrors">rlCheckErrors</a> | <a href="#rlCheckRenderBatchLimit">rlCheckRenderBatchLimit</a> | <a href="#rlClearColor">rlClearColor</a>
-<a href="#rlClearScreenBuffers">rlClearScreenBuffers</a> | <a href="#rlColor3f">rlColor3f</a> | <a href="#rlColor4f">rlColor4f</a> | <a href="#rlColor4ub">rlColor4ub</a> | <a href="#rlCompileShader">rlCompileShader</a>
-<a href="#rlComputeShaderDispatch">rlComputeShaderDispatch</a> | <a href="#rlCopyBuffersElements">rlCopyBuffersElements</a> | <a href="#rlDisableBackfaceCulling">rlDisableBackfaceCulling</a> | <a href="#rlDisableColorBlend">rlDisableColorBlend</a> | <a href="#rlDisableDepthMask">rlDisableDepthMask</a>
-<a href="#rlDisableDepthTest">rlDisableDepthTest</a> | <a href="#rlDisableFramebuffer">rlDisableFramebuffer</a> | <a href="#rlDisableScissorTest">rlDisableScissorTest</a> | <a href="#rlDisableShader">rlDisableShader</a> | <a href="#rlDisableSmoothLines">rlDisableSmoothLines</a>
-<a href="#rlDisableStereoRender">rlDisableStereoRender</a> | <a href="#rlDisableTexture">rlDisableTexture</a> | <a href="#rlDisableTextureCubemap">rlDisableTextureCubemap</a> | <a href="#rlDisableVertexArray">rlDisableVertexArray</a> | <a href="#rlDisableVertexAttribute">rlDisableVertexAttribute</a>
-<a href="#rlDisableVertexBuffer">rlDisableVertexBuffer</a> | <a href="#rlDisableVertexBufferElement">rlDisableVertexBufferElement</a> | <a href="#rlDisableWireMode">rlDisableWireMode</a> | <a href="#rlDrawRenderBatch">rlDrawRenderBatch</a> | <a href="#rlDrawRenderBatchActive">rlDrawRenderBatchActive</a>
-<a href="#rlDrawVertexArray">rlDrawVertexArray</a> | <a href="#rlDrawVertexArrayElements">rlDrawVertexArrayElements</a> | <a href="#rlDrawVertexArrayElementsInstanced">rlDrawVertexArrayElementsInstanced</a> | <a href="#rlDrawVertexArrayInstanced">rlDrawVertexArrayInstanced</a> | <a href="#rlEnableBackfaceCulling">rlEnableBackfaceCulling</a>
-<a href="#rlEnableColorBlend">rlEnableColorBlend</a> | <a href="#rlEnableDepthMask">rlEnableDepthMask</a> | <a href="#rlEnableDepthTest">rlEnableDepthTest</a> | <a href="#rlEnableFramebuffer">rlEnableFramebuffer</a> | <a href="#rlEnableScissorTest">rlEnableScissorTest</a>
-<a href="#rlEnableShader">rlEnableShader</a> | <a href="#rlEnableSmoothLines">rlEnableSmoothLines</a> | <a href="#rlEnableStereoRender">rlEnableStereoRender</a> | <a href="#rlEnableTexture">rlEnableTexture</a> | <a href="#rlEnableTextureCubemap">rlEnableTextureCubemap</a>
-<a href="#rlEnableVertexArray">rlEnableVertexArray</a> | <a href="#rlEnableVertexAttribute">rlEnableVertexAttribute</a> | <a href="#rlEnableVertexBuffer">rlEnableVertexBuffer</a> | <a href="#rlEnableVertexBufferElement">rlEnableVertexBufferElement</a> | <a href="#rlEnableWireMode">rlEnableWireMode</a>
-<a href="#rlEnd">rlEnd</a> | <a href="#rlFramebufferAttach">rlFramebufferAttach</a> | <a href="#rlFramebufferComplete">rlFramebufferComplete</a> | <a href="#rlFrustum">rlFrustum</a> | <a href="#rlGenTextureMipmaps">rlGenTextureMipmaps</a>
-<a href="#rlGetFramebufferHeight">rlGetFramebufferHeight</a> | <a href="#rlGetFramebufferWidth">rlGetFramebufferWidth</a> | <a href="#rlGetGlTextureFormats">rlGetGlTextureFormats</a> | <a href="#rlGetLineWidth">rlGetLineWidth</a> | <a href="#rlGetLocationAttrib">rlGetLocationAttrib</a>
-<a href="#rlGetLocationUniform">rlGetLocationUniform</a> | <a href="#rlGetMatrixModelview">rlGetMatrixModelview</a> | <a href="#rlGetMatrixProjection">rlGetMatrixProjection</a> | <a href="#rlGetMatrixProjectionStereo">rlGetMatrixProjectionStereo</a> | <a href="#rlGetMatrixTransform">rlGetMatrixTransform</a>
-<a href="#rlGetMatrixViewOffsetStereo">rlGetMatrixViewOffsetStereo</a> | <a href="#rlGetPixelFormatName">rlGetPixelFormatName</a> | <a href="#rlGetShaderBufferSize">rlGetShaderBufferSize</a> | <a href="#rlGetShaderIdDefault">rlGetShaderIdDefault</a> | <a href="#rlGetShaderLocsDefault">rlGetShaderLocsDefault</a>
-<a href="#rlGetTextureIdDefault">rlGetTextureIdDefault</a> | <a href="#rlGetVersion">rlGetVersion</a> | <a href="#rlIsStereoRenderEnabled">rlIsStereoRenderEnabled</a> | <a href="#rlLoadComputeShaderProgram">rlLoadComputeShaderProgram</a> | <a href="#rlLoadDrawCube">rlLoadDrawCube</a>
-<a href="#rlLoadDrawQuad">rlLoadDrawQuad</a> | <a href="#rlLoadExtensions">rlLoadExtensions</a> | <a href="#rlLoadFramebuffer">rlLoadFramebuffer</a> | <a href="#rlLoadIdentity">rlLoadIdentity</a> | <a href="#rlLoadRenderBatch">rlLoadRenderBatch</a>
-<a href="#rlLoadShaderBuffer">rlLoadShaderBuffer</a> | <a href="#rlLoadShaderCode">rlLoadShaderCode</a> | <a href="#rlLoadShaderProgram">rlLoadShaderProgram</a> | <a href="#rlLoadTexture">rlLoadTexture</a> | <a href="#rlLoadTextureCubemap">rlLoadTextureCubemap</a>
-<a href="#rlLoadTextureDepth">rlLoadTextureDepth</a> | <a href="#rlLoadVertexArray">rlLoadVertexArray</a> | <a href="#rlLoadVertexBuffer">rlLoadVertexBuffer</a> | <a href="#rlLoadVertexBufferElement">rlLoadVertexBufferElement</a> | <a href="#rlMatrixMode">rlMatrixMode</a>
-<a href="#rlMultMatrixf">rlMultMatrixf</a> | <a href="#rlNormal3f">rlNormal3f</a> | <a href="#rlOrtho">rlOrtho</a> | <a href="#rlPopMatrix">rlPopMatrix</a> | <a href="#rlPushMatrix">rlPushMatrix</a>
-<a href="#rlReadScreenPixels">rlReadScreenPixels</a> | <a href="#rlReadShaderBufferElements">rlReadShaderBufferElements</a> | <a href="#rlReadTexturePixels">rlReadTexturePixels</a> | <a href="#rlRotatef">rlRotatef</a> | <a href="#rlScalef">rlScalef</a>
-<a href="#rlScissor">rlScissor</a> | <a href="#rlSetBlendFactors">rlSetBlendFactors</a> | <a href="#rlSetBlendMode">rlSetBlendMode</a> | <a href="#rlSetFramebufferHeight">rlSetFramebufferHeight</a> | <a href="#rlSetFramebufferWidth">rlSetFramebufferWidth</a>
+<a href="#QuaternionLerp">QuaternionLerp</a> | <a href="#QuaternionMultiply">QuaternionMultiply</a> | <a href="#QuaternionNlerp">QuaternionNlerp</a> | <a href="#QuaternionNormalize">QuaternionNormalize</a> | <a href="#QuaternionScale">QuaternionScale</a>
+<a href="#QuaternionSlerp">QuaternionSlerp</a> | <a href="#QuaternionSubtract">QuaternionSubtract</a> | <a href="#QuaternionSubtractValue">QuaternionSubtractValue</a> | <a href="#QuaternionToAxisAngle">QuaternionToAxisAngle</a> | <a href="#QuaternionToEuler">QuaternionToEuler</a>
+<a href="#QuaternionToMatrix">QuaternionToMatrix</a> | <a href="#QuaternionTransform">QuaternionTransform</a> | <a href="#Remap">Remap</a> | <a href="#RestoreWindow">RestoreWindow</a> | <a href="#ResumeAudioStream">ResumeAudioStream</a>
+<a href="#ResumeMusicStream">ResumeMusicStream</a> | <a href="#ResumeSound">ResumeSound</a> | <a href="#SaveFileData">SaveFileData</a> | <a href="#SaveFileText">SaveFileText</a> | <a href="#SeekMusicStream">SeekMusicStream</a>
+<a href="#SetAudioStreamBufferSizeDefault">SetAudioStreamBufferSizeDefault</a> | <a href="#SetAudioStreamCallback">SetAudioStreamCallback</a> | <a href="#SetAudioStreamPan">SetAudioStreamPan</a> | <a href="#SetAudioStreamPitch">SetAudioStreamPitch</a> | <a href="#SetAudioStreamVolume">SetAudioStreamVolume</a>
+<a href="#SetClipboardText">SetClipboardText</a> | <a href="#SetConfigFlags">SetConfigFlags</a> | <a href="#SetExitKey">SetExitKey</a> | <a href="#SetGamepadMappings">SetGamepadMappings</a> | <a href="#SetGesturesEnabled">SetGesturesEnabled</a>
+<a href="#SetLoadFileDataCallback">SetLoadFileDataCallback</a> | <a href="#SetLoadFileTextCallback">SetLoadFileTextCallback</a> | <a href="#SetMasterVolume">SetMasterVolume</a> | <a href="#SetMaterialTexture">SetMaterialTexture</a> | <a href="#SetModelMeshMaterial">SetModelMeshMaterial</a>
+<a href="#SetMouseCursor">SetMouseCursor</a> | <a href="#SetMouseOffset">SetMouseOffset</a> | <a href="#SetMousePosition">SetMousePosition</a> | <a href="#SetMouseScale">SetMouseScale</a> | <a href="#SetMusicPan">SetMusicPan</a>
+<a href="#SetMusicPitch">SetMusicPitch</a> | <a href="#SetMusicVolume">SetMusicVolume</a> | <a href="#SetPixelColor">SetPixelColor</a> | <a href="#SetRandomSeed">SetRandomSeed</a> | <a href="#SetSaveFileDataCallback">SetSaveFileDataCallback</a>
+<a href="#SetSaveFileTextCallback">SetSaveFileTextCallback</a> | <a href="#SetShaderValue">SetShaderValue</a> | <a href="#SetShaderValueMatrix">SetShaderValueMatrix</a> | <a href="#SetShaderValueTexture">SetShaderValueTexture</a> | <a href="#SetShaderValueV">SetShaderValueV</a>
+<a href="#SetShapesTexture">SetShapesTexture</a> | <a href="#SetSoundPan">SetSoundPan</a> | <a href="#SetSoundPitch">SetSoundPitch</a> | <a href="#SetSoundVolume">SetSoundVolume</a> | <a href="#SetTargetFPS">SetTargetFPS</a>
+<a href="#SetTextureFilter">SetTextureFilter</a> | <a href="#SetTextureWrap">SetTextureWrap</a> | <a href="#SetTraceLogCallback">SetTraceLogCallback</a> | <a href="#SetTraceLogLevel">SetTraceLogLevel</a> | <a href="#SetWindowIcon">SetWindowIcon</a>
+<a href="#SetWindowIcons">SetWindowIcons</a> | <a href="#SetWindowMinSize">SetWindowMinSize</a> | <a href="#SetWindowMonitor">SetWindowMonitor</a> | <a href="#SetWindowOpacity">SetWindowOpacity</a> | <a href="#SetWindowPosition">SetWindowPosition</a>
+<a href="#SetWindowSize">SetWindowSize</a> | <a href="#SetWindowState">SetWindowState</a> | <a href="#SetWindowTitle">SetWindowTitle</a> | <a href="#ShowCursor">ShowCursor</a> | <a href="#StopAudioStream">StopAudioStream</a>
+<a href="#StopMusicStream">StopMusicStream</a> | <a href="#StopSound">StopSound</a> | <a href="#SwapScreenBuffer">SwapScreenBuffer</a> | <a href="#TakeScreenshot">TakeScreenshot</a> | <a href="#TextAppend">TextAppend</a>
+<a href="#TextCopy">TextCopy</a> | <a href="#TextFindIndex">TextFindIndex</a> | <a href="#TextFormat">TextFormat</a> | <a href="#TextInsert">TextInsert</a> | <a href="#TextIsEqual">TextIsEqual</a>
+<a href="#TextJoin">TextJoin</a> | <a href="#TextLength">TextLength</a> | <a href="#TextReplace">TextReplace</a> | <a href="#TextSplit">TextSplit</a> | <a href="#TextSubtext">TextSubtext</a>
+<a href="#TextToInteger">TextToInteger</a> | <a href="#TextToLower">TextToLower</a> | <a href="#TextToPascal">TextToPascal</a> | <a href="#TextToUpper">TextToUpper</a> | <a href="#ToggleFullscreen">ToggleFullscreen</a>
+<a href="#TraceLog">TraceLog</a> | <a href="#UnloadAudioStream">UnloadAudioStream</a> | <a href="#UnloadCodepoints">UnloadCodepoints</a> | <a href="#UnloadDirectoryFiles">UnloadDirectoryFiles</a> | <a href="#UnloadDroppedFiles">UnloadDroppedFiles</a>
+<a href="#UnloadFileData">UnloadFileData</a> | <a href="#UnloadFileText">UnloadFileText</a> | <a href="#UnloadFont">UnloadFont</a> | <a href="#UnloadFontData">UnloadFontData</a> | <a href="#UnloadImage">UnloadImage</a>
+<a href="#UnloadImageColors">UnloadImageColors</a> | <a href="#UnloadImagePalette">UnloadImagePalette</a> | <a href="#UnloadMaterial">UnloadMaterial</a> | <a href="#UnloadMesh">UnloadMesh</a> | <a href="#UnloadModel">UnloadModel</a>
+<a href="#UnloadModelAnimation">UnloadModelAnimation</a> | <a href="#UnloadModelAnimations">UnloadModelAnimations</a> | <a href="#UnloadMusicStream">UnloadMusicStream</a> | <a href="#UnloadRenderTexture">UnloadRenderTexture</a> | <a href="#UnloadShader">UnloadShader</a>
+<a href="#UnloadSound">UnloadSound</a> | <a href="#UnloadTexture">UnloadTexture</a> | <a href="#UnloadUTF8">UnloadUTF8</a> | <a href="#UnloadVrStereoConfig">UnloadVrStereoConfig</a> | <a href="#UnloadWave">UnloadWave</a>
+<a href="#UnloadWaveSamples">UnloadWaveSamples</a> | <a href="#UpdateAudioStream">UpdateAudioStream</a> | <a href="#UpdateCamera">UpdateCamera</a> | <a href="#UpdateCameraPro">UpdateCameraPro</a> | <a href="#UpdateMeshBuffer">UpdateMeshBuffer</a>
+<a href="#UpdateModelAnimation">UpdateModelAnimation</a> | <a href="#UpdateMusicStream">UpdateMusicStream</a> | <a href="#UpdateSound">UpdateSound</a> | <a href="#UpdateTexture">UpdateTexture</a> | <a href="#UpdateTextureRec">UpdateTextureRec</a>
+<a href="#UploadMesh">UploadMesh</a> | <a href="#Vector2Add">Vector2Add</a> | <a href="#Vector2AddValue">Vector2AddValue</a> | <a href="#Vector2Angle">Vector2Angle</a> | <a href="#Vector2Clamp">Vector2Clamp</a>
+<a href="#Vector2ClampValue">Vector2ClampValue</a> | <a href="#Vector2Distance">Vector2Distance</a> | <a href="#Vector2DistanceSqr">Vector2DistanceSqr</a> | <a href="#Vector2Divide">Vector2Divide</a> | <a href="#Vector2DotProduct">Vector2DotProduct</a>
+<a href="#Vector2Equals">Vector2Equals</a> | <a href="#Vector2Invert">Vector2Invert</a> | <a href="#Vector2Length">Vector2Length</a> | <a href="#Vector2LengthSqr">Vector2LengthSqr</a> | <a href="#Vector2Lerp">Vector2Lerp</a>
+<a href="#Vector2LineAngle">Vector2LineAngle</a> | <a href="#Vector2MoveTowards">Vector2MoveTowards</a> | <a href="#Vector2Multiply">Vector2Multiply</a> | <a href="#Vector2Negate">Vector2Negate</a> | <a href="#Vector2Normalize">Vector2Normalize</a>
+<a href="#Vector2One">Vector2One</a> | <a href="#Vector2Reflect">Vector2Reflect</a> | <a href="#Vector2Rotate">Vector2Rotate</a> | <a href="#Vector2Scale">Vector2Scale</a> | <a href="#Vector2Subtract">Vector2Subtract</a>
+<a href="#Vector2SubtractValue">Vector2SubtractValue</a> | <a href="#Vector2Transform">Vector2Transform</a> | <a href="#Vector2Zero">Vector2Zero</a> | <a href="#Vector3Add">Vector3Add</a> | <a href="#Vector3AddValue">Vector3AddValue</a>
+<a href="#Vector3Angle">Vector3Angle</a> | <a href="#Vector3Barycenter">Vector3Barycenter</a> | <a href="#Vector3Clamp">Vector3Clamp</a> | <a href="#Vector3ClampValue">Vector3ClampValue</a> | <a href="#Vector3CrossProduct">Vector3CrossProduct</a>
+<a href="#Vector3Distance">Vector3Distance</a> | <a href="#Vector3DistanceSqr">Vector3DistanceSqr</a> | <a href="#Vector3Divide">Vector3Divide</a> | <a href="#Vector3DotProduct">Vector3DotProduct</a> | <a href="#Vector3Equals">Vector3Equals</a>
+<a href="#Vector3Invert">Vector3Invert</a> | <a href="#Vector3Length">Vector3Length</a> | <a href="#Vector3LengthSqr">Vector3LengthSqr</a> | <a href="#Vector3Lerp">Vector3Lerp</a> | <a href="#Vector3Max">Vector3Max</a>
+<a href="#Vector3Min">Vector3Min</a> | <a href="#Vector3Multiply">Vector3Multiply</a> | <a href="#Vector3Negate">Vector3Negate</a> | <a href="#Vector3Normalize">Vector3Normalize</a> | <a href="#Vector3One">Vector3One</a>
+<a href="#Vector3OrthoNormalize">Vector3OrthoNormalize</a> | <a href="#Vector3Perpendicular">Vector3Perpendicular</a> | <a href="#Vector3Reflect">Vector3Reflect</a> | <a href="#Vector3Refract">Vector3Refract</a> | <a href="#Vector3RotateByAxisAngle">Vector3RotateByAxisAngle</a>
+<a href="#Vector3RotateByQuaternion">Vector3RotateByQuaternion</a> | <a href="#Vector3Scale">Vector3Scale</a> | <a href="#Vector3Subtract">Vector3Subtract</a> | <a href="#Vector3SubtractValue">Vector3SubtractValue</a> | <a href="#Vector3ToFloatV">Vector3ToFloatV</a>
+<a href="#Vector3Transform">Vector3Transform</a> | <a href="#Vector3Unproject">Vector3Unproject</a> | <a href="#Vector3Zero">Vector3Zero</a> | <a href="#WaitTime">WaitTime</a> | <a href="#WaveCopy">WaveCopy</a>
+<a href="#WaveCrop">WaveCrop</a> | <a href="#WaveFormat">WaveFormat</a> | <a href="#WindowShouldClose">WindowShouldClose</a> | <a href="#Wrap">Wrap</a> | <a href="#rlActiveDrawBuffers">rlActiveDrawBuffers</a>
+<a href="#rlActiveTextureSlot">rlActiveTextureSlot</a> | <a href="#rlBegin">rlBegin</a> | <a href="#rlBindImageTexture">rlBindImageTexture</a> | <a href="#rlBindShaderBuffer">rlBindShaderBuffer</a> | <a href="#rlCheckErrors">rlCheckErrors</a>
+<a href="#rlCheckRenderBatchLimit">rlCheckRenderBatchLimit</a> | <a href="#rlClearColor">rlClearColor</a> | <a href="#rlClearScreenBuffers">rlClearScreenBuffers</a> | <a href="#rlColor3f">rlColor3f</a> | <a href="#rlColor4f">rlColor4f</a>
+<a href="#rlColor4ub">rlColor4ub</a> | <a href="#rlCompileShader">rlCompileShader</a> | <a href="#rlComputeShaderDispatch">rlComputeShaderDispatch</a> | <a href="#rlCopyShaderBuffer">rlCopyShaderBuffer</a> | <a href="#rlCubemapParameters">rlCubemapParameters</a>
+<a href="#rlDisableBackfaceCulling">rlDisableBackfaceCulling</a> | <a href="#rlDisableColorBlend">rlDisableColorBlend</a> | <a href="#rlDisableDepthMask">rlDisableDepthMask</a> | <a href="#rlDisableDepthTest">rlDisableDepthTest</a> | <a href="#rlDisableFramebuffer">rlDisableFramebuffer</a>
+<a href="#rlDisableScissorTest">rlDisableScissorTest</a> | <a href="#rlDisableShader">rlDisableShader</a> | <a href="#rlDisableSmoothLines">rlDisableSmoothLines</a> | <a href="#rlDisableStereoRender">rlDisableStereoRender</a> | <a href="#rlDisableTexture">rlDisableTexture</a>
+<a href="#rlDisableTextureCubemap">rlDisableTextureCubemap</a> | <a href="#rlDisableVertexArray">rlDisableVertexArray</a> | <a href="#rlDisableVertexAttribute">rlDisableVertexAttribute</a> | <a href="#rlDisableVertexBuffer">rlDisableVertexBuffer</a> | <a href="#rlDisableVertexBufferElement">rlDisableVertexBufferElement</a>
+<a href="#rlDisableWireMode">rlDisableWireMode</a> | <a href="#rlDrawRenderBatch">rlDrawRenderBatch</a> | <a href="#rlDrawRenderBatchActive">rlDrawRenderBatchActive</a> | <a href="#rlDrawVertexArray">rlDrawVertexArray</a> | <a href="#rlDrawVertexArrayElements">rlDrawVertexArrayElements</a>
+<a href="#rlDrawVertexArrayElementsInstanced">rlDrawVertexArrayElementsInstanced</a> | <a href="#rlDrawVertexArrayInstanced">rlDrawVertexArrayInstanced</a> | <a href="#rlEnableBackfaceCulling">rlEnableBackfaceCulling</a> | <a href="#rlEnableColorBlend">rlEnableColorBlend</a> | <a href="#rlEnableDepthMask">rlEnableDepthMask</a>
+<a href="#rlEnableDepthTest">rlEnableDepthTest</a> | <a href="#rlEnableFramebuffer">rlEnableFramebuffer</a> | <a href="#rlEnableScissorTest">rlEnableScissorTest</a> | <a href="#rlEnableShader">rlEnableShader</a> | <a href="#rlEnableSmoothLines">rlEnableSmoothLines</a>
+<a href="#rlEnableStereoRender">rlEnableStereoRender</a> | <a href="#rlEnableTexture">rlEnableTexture</a> | <a href="#rlEnableTextureCubemap">rlEnableTextureCubemap</a> | <a href="#rlEnableVertexArray">rlEnableVertexArray</a> | <a href="#rlEnableVertexAttribute">rlEnableVertexAttribute</a>
+<a href="#rlEnableVertexBuffer">rlEnableVertexBuffer</a> | <a href="#rlEnableVertexBufferElement">rlEnableVertexBufferElement</a> | <a href="#rlEnableWireMode">rlEnableWireMode</a> | <a href="#rlEnd">rlEnd</a> | <a href="#rlFramebufferAttach">rlFramebufferAttach</a>
+<a href="#rlFramebufferComplete">rlFramebufferComplete</a> | <a href="#rlFrustum">rlFrustum</a> | <a href="#rlGenTextureMipmaps">rlGenTextureMipmaps</a> | <a href="#rlGetFramebufferHeight">rlGetFramebufferHeight</a> | <a href="#rlGetFramebufferWidth">rlGetFramebufferWidth</a>
+<a href="#rlGetGlTextureFormats">rlGetGlTextureFormats</a> | <a href="#rlGetLineWidth">rlGetLineWidth</a> | <a href="#rlGetLocationAttrib">rlGetLocationAttrib</a> | <a href="#rlGetLocationUniform">rlGetLocationUniform</a> | <a href="#rlGetMatrixModelview">rlGetMatrixModelview</a>
+<a href="#rlGetMatrixProjection">rlGetMatrixProjection</a> | <a href="#rlGetMatrixProjectionStereo">rlGetMatrixProjectionStereo</a> | <a href="#rlGetMatrixTransform">rlGetMatrixTransform</a> | <a href="#rlGetMatrixViewOffsetStereo">rlGetMatrixViewOffsetStereo</a> | <a href="#rlGetPixelFormatName">rlGetPixelFormatName</a>
+<a href="#rlGetShaderBufferSize">rlGetShaderBufferSize</a> | <a href="#rlGetShaderIdDefault">rlGetShaderIdDefault</a> | <a href="#rlGetShaderLocsDefault">rlGetShaderLocsDefault</a> | <a href="#rlGetTextureIdDefault">rlGetTextureIdDefault</a> | <a href="#rlGetVersion">rlGetVersion</a>
+<a href="#rlIsStereoRenderEnabled">rlIsStereoRenderEnabled</a> | <a href="#rlLoadComputeShaderProgram">rlLoadComputeShaderProgram</a> | <a href="#rlLoadDrawCube">rlLoadDrawCube</a> | <a href="#rlLoadDrawQuad">rlLoadDrawQuad</a> | <a href="#rlLoadExtensions">rlLoadExtensions</a>
+<a href="#rlLoadFramebuffer">rlLoadFramebuffer</a> | <a href="#rlLoadIdentity">rlLoadIdentity</a> | <a href="#rlLoadRenderBatch">rlLoadRenderBatch</a> | <a href="#rlLoadShaderBuffer">rlLoadShaderBuffer</a> | <a href="#rlLoadShaderCode">rlLoadShaderCode</a>
+<a href="#rlLoadShaderProgram">rlLoadShaderProgram</a> | <a href="#rlLoadTexture">rlLoadTexture</a> | <a href="#rlLoadTextureCubemap">rlLoadTextureCubemap</a> | <a href="#rlLoadTextureDepth">rlLoadTextureDepth</a> | <a href="#rlLoadVertexArray">rlLoadVertexArray</a>
+<a href="#rlLoadVertexBuffer">rlLoadVertexBuffer</a> | <a href="#rlLoadVertexBufferElement">rlLoadVertexBufferElement</a> | <a href="#rlMatrixMode">rlMatrixMode</a> | <a href="#rlMultMatrixf">rlMultMatrixf</a> | <a href="#rlNormal3f">rlNormal3f</a>
+<a href="#rlOrtho">rlOrtho</a> | <a href="#rlPopMatrix">rlPopMatrix</a> | <a href="#rlPushMatrix">rlPushMatrix</a> | <a href="#rlReadScreenPixels">rlReadScreenPixels</a> | <a href="#rlReadShaderBuffer">rlReadShaderBuffer</a>
+<a href="#rlReadTexturePixels">rlReadTexturePixels</a> | <a href="#rlRotatef">rlRotatef</a> | <a href="#rlScalef">rlScalef</a> | <a href="#rlScissor">rlScissor</a> | <a href="#rlSetBlendFactors">rlSetBlendFactors</a>
+<a href="#rlSetBlendFactorsSeparate">rlSetBlendFactorsSeparate</a> | <a href="#rlSetBlendMode">rlSetBlendMode</a> | <a href="#rlSetCullFace">rlSetCullFace</a> | <a href="#rlSetFramebufferHeight">rlSetFramebufferHeight</a> | <a href="#rlSetFramebufferWidth">rlSetFramebufferWidth</a>
 <a href="#rlSetLineWidth">rlSetLineWidth</a> | <a href="#rlSetMatrixModelview">rlSetMatrixModelview</a> | <a href="#rlSetMatrixProjection">rlSetMatrixProjection</a> | <a href="#rlSetMatrixProjectionStereo">rlSetMatrixProjectionStereo</a> | <a href="#rlSetMatrixViewOffsetStereo">rlSetMatrixViewOffsetStereo</a>
 <a href="#rlSetRenderBatchActive">rlSetRenderBatchActive</a> | <a href="#rlSetShader">rlSetShader</a> | <a href="#rlSetTexture">rlSetTexture</a> | <a href="#rlSetUniform">rlSetUniform</a> | <a href="#rlSetUniformMatrix">rlSetUniformMatrix</a>
 <a href="#rlSetUniformSampler">rlSetUniformSampler</a> | <a href="#rlSetVertexAttribute">rlSetVertexAttribute</a> | <a href="#rlSetVertexAttributeDefault">rlSetVertexAttributeDefault</a> | <a href="#rlSetVertexAttributeDivisor">rlSetVertexAttributeDivisor</a> | <a href="#rlTexCoord2f">rlTexCoord2f</a>
 <a href="#rlTextureParameters">rlTextureParameters</a> | <a href="#rlTranslatef">rlTranslatef</a> | <a href="#rlUnloadFramebuffer">rlUnloadFramebuffer</a> | <a href="#rlUnloadRenderBatch">rlUnloadRenderBatch</a> | <a href="#rlUnloadShaderBuffer">rlUnloadShaderBuffer</a>
-<a href="#rlUnloadShaderProgram">rlUnloadShaderProgram</a> | <a href="#rlUnloadTexture">rlUnloadTexture</a> | <a href="#rlUnloadVertexArray">rlUnloadVertexArray</a> | <a href="#rlUnloadVertexBuffer">rlUnloadVertexBuffer</a> | <a href="#rlUpdateShaderBufferElements">rlUpdateShaderBufferElements</a>
+<a href="#rlUnloadShaderProgram">rlUnloadShaderProgram</a> | <a href="#rlUnloadTexture">rlUnloadTexture</a> | <a href="#rlUnloadVertexArray">rlUnloadVertexArray</a> | <a href="#rlUnloadVertexBuffer">rlUnloadVertexBuffer</a> | <a href="#rlUpdateShaderBuffer">rlUpdateShaderBuffer</a>
 <a href="#rlUpdateTexture">rlUpdateTexture</a> | <a href="#rlUpdateVertexBuffer">rlUpdateVertexBuffer</a> | <a href="#rlUpdateVertexBufferElements">rlUpdateVertexBufferElements</a> | <a href="#rlVertex2f">rlVertex2f</a> | <a href="#rlVertex2i">rlVertex2i</a>
 <a href="#rlVertex3f">rlVertex3f</a> | <a href="#rlViewport">rlViewport</a> | <a href="#rlglClose">rlglClose</a> | <a href="#rlglInit">rlglInit</a>
 
@@ -13329,18 +13372,18 @@ def detach_audio_mixed_processor(processor: AudioCallback) -> None
 ---
 <h2 id="Clamp"><code>clamp</code> function</h2>
 
-> Clamp float value
+> 
 
 Defined in raylib.h:
 
 ```c
-float Clamp(float value, float min_, float max_) 
+float Clamp(float value, float min, float max) 
 ```
 
 Python wrapper:
 
 ```python
-def clamp(value: float, min_: float, max_: float) -> float
+def clamp(value: float, min: float, max: float) -> float
 ```
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
@@ -13348,7 +13391,7 @@ def clamp(value: float, min_: float, max_: float) -> float
 ---
 <h2 id="Lerp"><code>lerp</code> function</h2>
 
-> Calculate linear interpolation between two floats
+> 
 
 Defined in raylib.h:
 
@@ -13367,7 +13410,7 @@ def lerp(start: float, end: float, amount: float) -> float
 ---
 <h2 id="Normalize"><code>normalize</code> function</h2>
 
-> Calculate linear interpolation between two floats
+> 
 
 Defined in raylib.h:
 
@@ -13386,7 +13429,7 @@ def normalize(value: float, start: float, end: float) -> float
 ---
 <h2 id="Remap"><code>remap</code> function</h2>
 
-> Remap input value within input range to output range
+> 
 
 Defined in raylib.h:
 
@@ -13405,18 +13448,18 @@ def remap(value: float, input_start: float, input_end: float, output_start: floa
 ---
 <h2 id="Wrap"><code>wrap</code> function</h2>
 
-> Wrap input value from min to max
+> 
 
 Defined in raylib.h:
 
 ```c
-float Wrap(float value, float min_, float max_) 
+float Wrap(float value, float min, float max) 
 ```
 
 Python wrapper:
 
 ```python
-def wrap(value: float, min_: float, max_: float) -> float
+def wrap(value: float, min: float, max: float) -> float
 ```
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
@@ -13424,7 +13467,7 @@ def wrap(value: float, min_: float, max_: float) -> float
 ---
 <h2 id="FloatEquals"><code>float_equals</code> function</h2>
 
-> Check whether two given floats are almost equal
+> 
 
 Defined in raylib.h:
 
@@ -13443,7 +13486,7 @@ def float_equals(x: float, y: float) -> int
 ---
 <h2 id="Vector2Zero"><code>vector2zero</code> function</h2>
 
-> Vector with components value 0.0f
+> 
 
 Defined in raylib.h:
 
@@ -13465,7 +13508,7 @@ See also:
 ---
 <h2 id="Vector2One"><code>vector2one</code> function</h2>
 
-> Vector with components value 1.0f
+> 
 
 Defined in raylib.h:
 
@@ -13487,7 +13530,7 @@ See also:
 ---
 <h2 id="Vector2Add"><code>vector2add</code> function</h2>
 
-> Add two vectors (v1 + v2)
+> 
 
 Defined in raylib.h:
 
@@ -13509,7 +13552,7 @@ See also:
 ---
 <h2 id="Vector2AddValue"><code>vector2add_value</code> function</h2>
 
-> Add vector and float value
+> 
 
 Defined in raylib.h:
 
@@ -13531,7 +13574,7 @@ See also:
 ---
 <h2 id="Vector2Subtract"><code>vector2subtract</code> function</h2>
 
-> Subtract two vectors (v1 - v2)
+> 
 
 Defined in raylib.h:
 
@@ -13553,7 +13596,7 @@ See also:
 ---
 <h2 id="Vector2SubtractValue"><code>vector2subtract_value</code> function</h2>
 
-> Subtract vector by float value
+> 
 
 Defined in raylib.h:
 
@@ -13575,7 +13618,7 @@ See also:
 ---
 <h2 id="Vector2Length"><code>vector2length</code> function</h2>
 
-> Calculate vector length
+> 
 
 Defined in raylib.h:
 
@@ -13597,7 +13640,7 @@ See also:
 ---
 <h2 id="Vector2LengthSqr"><code>vector2length_sqr</code> function</h2>
 
-> Calculate vector square length
+> 
 
 Defined in raylib.h:
 
@@ -13619,7 +13662,7 @@ See also:
 ---
 <h2 id="Vector2DotProduct"><code>vector2dot_product</code> function</h2>
 
-> Calculate two vectors dot product
+> 
 
 Defined in raylib.h:
 
@@ -13641,7 +13684,7 @@ See also:
 ---
 <h2 id="Vector2Distance"><code>vector2distance</code> function</h2>
 
-> Calculate distance between two vectors
+> 
 
 Defined in raylib.h:
 
@@ -13663,7 +13706,7 @@ See also:
 ---
 <h2 id="Vector2DistanceSqr"><code>vector2distance_sqr</code> function</h2>
 
-> Calculate square distance between two vectors
+> 
 
 Defined in raylib.h:
 
@@ -13685,7 +13728,7 @@ See also:
 ---
 <h2 id="Vector2Angle"><code>vector2angle</code> function</h2>
 
-> Calculate angle from two vectors
+> 
 
 Defined in raylib.h:
 
@@ -13705,9 +13748,31 @@ See also:
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
+<h2 id="Vector2LineAngle"><code>vector2line_angle</code> function</h2>
+
+> 
+
+Defined in raylib.h:
+
+```c
+float Vector2LineAngle(Vector2 start, Vector2 end) 
+```
+
+Python wrapper:
+
+```python
+def vector2line_angle(start: Vector2, end: Vector2) -> float
+```
+
+See also:
+<a href="#Vector2">Vector2</a>
+
+[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
+
+---
 <h2 id="Vector2Scale"><code>vector2scale</code> function</h2>
 
-> Scale vector (multiply by value)
+> 
 
 Defined in raylib.h:
 
@@ -13729,7 +13794,7 @@ See also:
 ---
 <h2 id="Vector2Multiply"><code>vector2multiply</code> function</h2>
 
-> Multiply vector by vector
+> 
 
 Defined in raylib.h:
 
@@ -13751,7 +13816,7 @@ See also:
 ---
 <h2 id="Vector2Negate"><code>vector2negate</code> function</h2>
 
-> Negate vector
+> 
 
 Defined in raylib.h:
 
@@ -13773,7 +13838,7 @@ See also:
 ---
 <h2 id="Vector2Divide"><code>vector2divide</code> function</h2>
 
-> Divide vector by vector
+> 
 
 Defined in raylib.h:
 
@@ -13795,7 +13860,7 @@ See also:
 ---
 <h2 id="Vector2Normalize"><code>vector2normalize</code> function</h2>
 
-> Normalize provided vector
+> 
 
 Defined in raylib.h:
 
@@ -13817,7 +13882,7 @@ See also:
 ---
 <h2 id="Vector2Transform"><code>vector2transform</code> function</h2>
 
-> Transforms a Vector2 by a given Matrix
+> 
 
 Defined in raylib.h:
 
@@ -13839,7 +13904,7 @@ See also:
 ---
 <h2 id="Vector2Lerp"><code>vector2lerp</code> function</h2>
 
-> Calculate linear interpolation between two vectors
+> 
 
 Defined in raylib.h:
 
@@ -13861,18 +13926,18 @@ See also:
 ---
 <h2 id="Vector2Reflect"><code>vector2reflect</code> function</h2>
 
-> Calculate reflected vector to normal
+> 
 
 Defined in raylib.h:
 
 ```c
-Vector2 Vector2Reflect(Vector2 v1, Vector2 normal) 
+Vector2 Vector2Reflect(Vector2 v, Vector2 normal) 
 ```
 
 Python wrapper:
 
 ```python
-def vector2reflect(v1: Vector2, normal: Vector2) -> Vector2
+def vector2reflect(v: Vector2, normal: Vector2) -> Vector2
 ```
 
 See also:
@@ -13883,18 +13948,18 @@ See also:
 ---
 <h2 id="Vector2Rotate"><code>vector2rotate</code> function</h2>
 
-> Rotate vector by angle
+> 
 
 Defined in raylib.h:
 
 ```c
-Vector2 Vector2Rotate(Vector2 v1, float angle) 
+Vector2 Vector2Rotate(Vector2 v, float angle) 
 ```
 
 Python wrapper:
 
 ```python
-def vector2rotate(v1: Vector2, angle: float) -> Vector2
+def vector2rotate(v: Vector2, angle: float) -> Vector2
 ```
 
 See also:
@@ -13905,18 +13970,18 @@ See also:
 ---
 <h2 id="Vector2MoveTowards"><code>vector2move_towards</code> function</h2>
 
-> Move Vector towards target
+> 
 
 Defined in raylib.h:
 
 ```c
-Vector2 Vector2MoveTowards(Vector2 v1, Vector2 target, float max_distance) 
+Vector2 Vector2MoveTowards(Vector2 v, Vector2 target, float max_distance) 
 ```
 
 Python wrapper:
 
 ```python
-def vector2move_towards(v1: Vector2, target: Vector2, max_distance: float) -> Vector2
+def vector2move_towards(v: Vector2, target: Vector2, max_distance: float) -> Vector2
 ```
 
 See also:
@@ -13927,7 +13992,7 @@ See also:
 ---
 <h2 id="Vector2Invert"><code>vector2invert</code> function</h2>
 
-> Invert the given vector
+> 
 
 Defined in raylib.h:
 
@@ -13949,18 +14014,18 @@ See also:
 ---
 <h2 id="Vector2Clamp"><code>vector2clamp</code> function</h2>
 
-> Clamp the components of the vector between min and max values specified by the given vectors
+> 
 
 Defined in raylib.h:
 
 ```c
-Vector2 Vector2Clamp(Vector2 v, Vector2 min_, Vector2 max_) 
+Vector2 Vector2Clamp(Vector2 v, Vector2 min, Vector2 max) 
 ```
 
 Python wrapper:
 
 ```python
-def vector2clamp(v: Vector2, min_: Vector2, max_: Vector2) -> Vector2
+def vector2clamp(v: Vector2, min: Vector2, max: Vector2) -> Vector2
 ```
 
 See also:
@@ -13971,18 +14036,18 @@ See also:
 ---
 <h2 id="Vector2ClampValue"><code>vector2clamp_value</code> function</h2>
 
-> Clamp the magnitude of the vector between two min and max values
+> 
 
 Defined in raylib.h:
 
 ```c
-Vector2 Vector2ClampValue(Vector2 v, float min_, float max_) 
+Vector2 Vector2ClampValue(Vector2 v, float min, float max) 
 ```
 
 Python wrapper:
 
 ```python
-def vector2clamp_value(v: Vector2, min_: float, max_: float) -> Vector2
+def vector2clamp_value(v: Vector2, min: float, max: float) -> Vector2
 ```
 
 See also:
@@ -13993,7 +14058,7 @@ See also:
 ---
 <h2 id="Vector2Equals"><code>vector2equals</code> function</h2>
 
-> Check whether two given vectors are almost equal
+> 
 
 Defined in raylib.h:
 
@@ -14015,7 +14080,7 @@ See also:
 ---
 <h2 id="Vector3Zero"><code>vector3zero</code> function</h2>
 
-> Vector with components value 0.0f
+> 
 
 Defined in raylib.h:
 
@@ -14037,7 +14102,7 @@ See also:
 ---
 <h2 id="Vector3One"><code>vector3one</code> function</h2>
 
-> Vector with components value 1.0f
+> 
 
 Defined in raylib.h:
 
@@ -14059,7 +14124,7 @@ See also:
 ---
 <h2 id="Vector3Add"><code>vector3add</code> function</h2>
 
-> Add two vectors
+> 
 
 Defined in raylib.h:
 
@@ -14081,7 +14146,7 @@ See also:
 ---
 <h2 id="Vector3AddValue"><code>vector3add_value</code> function</h2>
 
-> Add vector and float value
+> 
 
 Defined in raylib.h:
 
@@ -14103,7 +14168,7 @@ See also:
 ---
 <h2 id="Vector3Subtract"><code>vector3subtract</code> function</h2>
 
-> Subtract two vectors
+> 
 
 Defined in raylib.h:
 
@@ -14125,7 +14190,7 @@ See also:
 ---
 <h2 id="Vector3SubtractValue"><code>vector3subtract_value</code> function</h2>
 
-> Subtract vector and float value
+> 
 
 Defined in raylib.h:
 
@@ -14147,7 +14212,7 @@ See also:
 ---
 <h2 id="Vector3Scale"><code>vector3scale</code> function</h2>
 
-> Multiply vector by scalar
+> 
 
 Defined in raylib.h:
 
@@ -14169,7 +14234,7 @@ See also:
 ---
 <h2 id="Vector3Multiply"><code>vector3multiply</code> function</h2>
 
-> Multiply vector by vector
+> 
 
 Defined in raylib.h:
 
@@ -14191,18 +14256,18 @@ See also:
 ---
 <h2 id="Vector3CrossProduct"><code>vector3cross_product</code> function</h2>
 
-> Calculate two vectors cross product
+> 
 
 Defined in raylib.h:
 
 ```c
-float Vector3CrossProduct(Vector3 v1, Vector3 v2) 
+Vector3 Vector3CrossProduct(Vector3 v1, Vector3 v2) 
 ```
 
 Python wrapper:
 
 ```python
-def vector3cross_product(v1: Vector3, v2: Vector3) -> float
+def vector3cross_product(v1: Vector3, v2: Vector3) -> Vector3
 ```
 
 See also:
@@ -14213,18 +14278,18 @@ See also:
 ---
 <h2 id="Vector3Perpendicular"><code>vector3perpendicular</code> function</h2>
 
-> Calculate one vector perpendicular vector
+> 
 
 Defined in raylib.h:
 
 ```c
-Vector3 Vector3Perpendicular(Vector3 v1) 
+Vector3 Vector3Perpendicular(Vector3 v) 
 ```
 
 Python wrapper:
 
 ```python
-def vector3perpendicular(v1: Vector3) -> Vector3
+def vector3perpendicular(v: Vector3) -> Vector3
 ```
 
 See also:
@@ -14235,18 +14300,18 @@ See also:
 ---
 <h2 id="Vector3Length"><code>vector3length</code> function</h2>
 
-> Calculate vector length
+> 
 
 Defined in raylib.h:
 
 ```c
-float Vector3Length(Vector3 v1) 
+float Vector3Length(Vector3 v) 
 ```
 
 Python wrapper:
 
 ```python
-def vector3length(v1: Vector3) -> float
+def vector3length(v: Vector3) -> float
 ```
 
 See also:
@@ -14257,18 +14322,18 @@ See also:
 ---
 <h2 id="Vector3LengthSqr"><code>vector3length_sqr</code> function</h2>
 
-> Calculate vector square length
+> 
 
 Defined in raylib.h:
 
 ```c
-float Vector3LengthSqr(Vector3 v1) 
+float Vector3LengthSqr(Vector3 v) 
 ```
 
 Python wrapper:
 
 ```python
-def vector3length_sqr(v1: Vector3) -> float
+def vector3length_sqr(v: Vector3) -> float
 ```
 
 See also:
@@ -14279,7 +14344,7 @@ See also:
 ---
 <h2 id="Vector3DotProduct"><code>vector3dot_product</code> function</h2>
 
-> Calculate two vectors dot product
+> 
 
 Defined in raylib.h:
 
@@ -14301,7 +14366,7 @@ See also:
 ---
 <h2 id="Vector3Distance"><code>vector3distance</code> function</h2>
 
-> Calculate distance between two vectors
+> 
 
 Defined in raylib.h:
 
@@ -14323,7 +14388,7 @@ See also:
 ---
 <h2 id="Vector3DistanceSqr"><code>vector3distance_sqr</code> function</h2>
 
-> Calculate square distance between two vectors
+> 
 
 Defined in raylib.h:
 
@@ -14345,7 +14410,7 @@ See also:
 ---
 <h2 id="Vector3Angle"><code>vector3angle</code> function</h2>
 
-> Calculate angle between two vectors
+> 
 
 Defined in raylib.h:
 
@@ -14367,7 +14432,7 @@ See also:
 ---
 <h2 id="Vector3Negate"><code>vector3negate</code> function</h2>
 
-> Negate provided vector (invert direction)
+> 
 
 Defined in raylib.h:
 
@@ -14389,18 +14454,18 @@ See also:
 ---
 <h2 id="Vector3Divide"><code>vector3divide</code> function</h2>
 
-> Divide vector by vector
+> 
 
 Defined in raylib.h:
 
 ```c
-float Vector3Divide(Vector3 v1, Vector3 v2) 
+Vector3 Vector3Divide(Vector3 v1, Vector3 v2) 
 ```
 
 Python wrapper:
 
 ```python
-def vector3divide(v1: Vector3, v2: Vector3) -> float
+def vector3divide(v1: Vector3, v2: Vector3) -> Vector3
 ```
 
 See also:
@@ -14411,7 +14476,7 @@ See also:
 ---
 <h2 id="Vector3Normalize"><code>vector3normalize</code> function</h2>
 
-> Normalize provided vector
+> 
 
 Defined in raylib.h:
 
@@ -14433,18 +14498,18 @@ See also:
 ---
 <h2 id="Vector3OrthoNormalize"><code>vector3ortho_normalize</code> function</h2>
 
-> Makes vectors normalized and orthogonal to each other
+> 
 
 Defined in raylib.h:
 
 ```c
-Vector3 Vector3OrthoNormalize(Vector3 * v1, Vector3 * v2) 
+void Vector3OrthoNormalize(Vector3 * v1, Vector3 * v2) 
 ```
 
 Python wrapper:
 
 ```python
-def vector3ortho_normalize(v1: Vector3Ptr, v2: Vector3Ptr) -> Vector3
+def vector3ortho_normalize(v1: Vector3Ptr, v2: Vector3Ptr) -> None
 ```
 
 See also:
@@ -14455,7 +14520,7 @@ See also:
 ---
 <h2 id="Vector3Transform"><code>vector3transform</code> function</h2>
 
-> Transforms a Vector3 by a given Matrix
+> 
 
 Defined in raylib.h:
 
@@ -14477,7 +14542,7 @@ See also:
 ---
 <h2 id="Vector3RotateByQuaternion"><code>vector3rotate_by_quaternion</code> function</h2>
 
-> Transform a vector by quaternion rotation
+> 
 
 Defined in raylib.h:
 
@@ -14499,7 +14564,7 @@ See also:
 ---
 <h2 id="Vector3RotateByAxisAngle"><code>vector3rotate_by_axis_angle</code> function</h2>
 
-> Rotates a vector around an axis
+> 
 
 Defined in raylib.h:
 
@@ -14521,7 +14586,7 @@ See also:
 ---
 <h2 id="Vector3Lerp"><code>vector3lerp</code> function</h2>
 
-> Calculate linear interpolation between two vectors
+> 
 
 Defined in raylib.h:
 
@@ -14543,7 +14608,7 @@ See also:
 ---
 <h2 id="Vector3Reflect"><code>vector3reflect</code> function</h2>
 
-> Calculate reflected vector to normal
+> 
 
 Defined in raylib.h:
 
@@ -14565,7 +14630,7 @@ See also:
 ---
 <h2 id="Vector3Min"><code>vector3min</code> function</h2>
 
-> Get min value for each pair of components
+> 
 
 Defined in raylib.h:
 
@@ -14587,7 +14652,7 @@ See also:
 ---
 <h2 id="Vector3Max"><code>vector3max</code> function</h2>
 
-> Get max value for each pair of components
+> 
 
 Defined in raylib.h:
 
@@ -14609,7 +14674,7 @@ See also:
 ---
 <h2 id="Vector3Barycenter"><code>vector3barycenter</code> function</h2>
 
-> Compute barycenter coordinates (u, v, w) for point p with respect to triangle (a, b, c). Assumes P is on the plane of the triangle
+> 
 
 Defined in raylib.h:
 
@@ -14631,7 +14696,7 @@ See also:
 ---
 <h2 id="Vector3Unproject"><code>vector3unproject</code> function</h2>
 
-> Projects a Vector3 from screen space into object space
+> 
 
 Defined in raylib.h:
 
@@ -14653,29 +14718,29 @@ See also:
 ---
 <h2 id="Vector3ToFloatV"><code>vector3to_float_v</code> function</h2>
 
-> Get Vector3 as float array
+> 
 
 Defined in raylib.h:
 
 ```c
-float[3] Vector3ToFloatV(Vector3 v) 
+float3 Vector3ToFloatV(Vector3 v) 
 ```
 
 Python wrapper:
 
 ```python
-def vector3to_float_v(v: Vector3) -> Seq[float]
+def vector3to_float_v(v: Vector3) -> float3
 ```
 
 See also:
-<a href="#Vector3">Vector3</a>
+<a href="#Vector3">Vector3</a>, <a href="#float3">float3</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
 <h2 id="Vector3Invert"><code>vector3invert</code> function</h2>
 
-> Invert the given vector
+> 
 
 Defined in raylib.h:
 
@@ -14697,18 +14762,18 @@ See also:
 ---
 <h2 id="Vector3Clamp"><code>vector3clamp</code> function</h2>
 
-> Clamp the components of the vector between min and max values specified by the given vectors
+> 
 
 Defined in raylib.h:
 
 ```c
-Vector3 Vector3Clamp(Vector3 v, Vector3 min_, Vector3 max_) 
+Vector3 Vector3Clamp(Vector3 v, Vector3 min, Vector3 max) 
 ```
 
 Python wrapper:
 
 ```python
-def vector3clamp(v: Vector3, min_: Vector3, max_: Vector3) -> Vector3
+def vector3clamp(v: Vector3, min: Vector3, max: Vector3) -> Vector3
 ```
 
 See also:
@@ -14719,18 +14784,18 @@ See also:
 ---
 <h2 id="Vector3ClampValue"><code>vector3clamp_value</code> function</h2>
 
-> Clamp the magnitude of the vector between two values
+> 
 
 Defined in raylib.h:
 
 ```c
-Vector3 Vector3ClampValue(Vector3 v, float min_, float max_) 
+Vector3 Vector3ClampValue(Vector3 v, float min, float max) 
 ```
 
 Python wrapper:
 
 ```python
-def vector3clamp_value(v: Vector3, min_: float, max_: float) -> Vector3
+def vector3clamp_value(v: Vector3, min: float, max: float) -> Vector3
 ```
 
 See also:
@@ -14741,18 +14806,18 @@ See also:
 ---
 <h2 id="Vector3Equals"><code>vector3equals</code> function</h2>
 
-> Check whether two given vectors are almost equal
+> 
 
 Defined in raylib.h:
 
 ```c
-int Vector3Equals(Vector3 v, float min_, float max_) 
+int Vector3Equals(Vector3 p, Vector3 q) 
 ```
 
 Python wrapper:
 
 ```python
-def vector3equals(v: Vector3, min_: float, max_: float) -> int
+def vector3equals(p: Vector3, q: Vector3) -> int
 ```
 
 See also:
@@ -14763,18 +14828,18 @@ See also:
 ---
 <h2 id="Vector3Refract"><code>vector3refract</code> function</h2>
 
-> Compute the direction of a refracted ray where v specifies the normalized direction of the incoming ray, n specifies the normalized normal vector of the interface of two optical media, and r specifies the ratio of the refractive index of the medium from where the ray comes to the refractive index of the medium on the other side of the surface
+> 
 
 Defined in raylib.h:
 
 ```c
-int Vector3Refract(Vector3 v, Vector3 n, float r) 
+Vector3 Vector3Refract(Vector3 v, Vector3 n, float r) 
 ```
 
 Python wrapper:
 
 ```python
-def vector3refract(v: Vector3, n: Vector3, r: float) -> int
+def vector3refract(v: Vector3, n: Vector3, r: float) -> Vector3
 ```
 
 See also:
@@ -14785,7 +14850,7 @@ See also:
 ---
 <h2 id="MatrixDeterminant"><code>matrix_determinant</code> function</h2>
 
-> Compute matrix determinant
+> 
 
 Defined in raylib.h:
 
@@ -14807,7 +14872,7 @@ See also:
 ---
 <h2 id="MatrixTrace"><code>matrix_trace</code> function</h2>
 
-> Get the trace of the matrix (sum of the values along the diagonal)
+> 
 
 Defined in raylib.h:
 
@@ -14829,7 +14894,7 @@ See also:
 ---
 <h2 id="MatrixTranspose"><code>matrix_transpose</code> function</h2>
 
-> Get the trace of the matrix (sum of the values along the diagonal)
+> 
 
 Defined in raylib.h:
 
@@ -14851,7 +14916,7 @@ See also:
 ---
 <h2 id="MatrixInvert"><code>matrix_invert</code> function</h2>
 
-> Invert provided matrix
+> 
 
 Defined in raylib.h:
 
@@ -14873,7 +14938,7 @@ See also:
 ---
 <h2 id="MatrixIdentity"><code>matrix_identity</code> function</h2>
 
-> Get identity matrix
+> 
 
 Defined in raylib.h:
 
@@ -14895,7 +14960,7 @@ See also:
 ---
 <h2 id="MatrixAdd"><code>matrix_add</code> function</h2>
 
-> Add two matrices
+> 
 
 Defined in raylib.h:
 
@@ -14917,7 +14982,7 @@ See also:
 ---
 <h2 id="MatrixSubtract"><code>matrix_subtract</code> function</h2>
 
-> Subtract two matrices (left - right)
+> 
 
 Defined in raylib.h:
 
@@ -14939,7 +15004,7 @@ See also:
 ---
 <h2 id="MatrixMultiply"><code>matrix_multiply</code> function</h2>
 
-> Get two matrix multiplication. When multiplying matrices... the order matters!
+> 
 
 Defined in raylib.h:
 
@@ -14961,7 +15026,7 @@ See also:
 ---
 <h2 id="MatrixTranslate"><code>matrix_translate</code> function</h2>
 
-> Get translation matrix
+> 
 
 Defined in raylib.h:
 
@@ -14983,7 +15048,7 @@ See also:
 ---
 <h2 id="MatrixRotate"><code>matrix_rotate</code> function</h2>
 
-> Create rotation matrix from axis and angle. Angle should be provided in radians
+> 
 
 Defined in raylib.h:
 
@@ -15005,7 +15070,7 @@ See also:
 ---
 <h2 id="MatrixRotateX"><code>matrix_rotate_x</code> function</h2>
 
-> Get x-rotation matrix. Angle must be provided in radians
+> 
 
 Defined in raylib.h:
 
@@ -15027,7 +15092,7 @@ See also:
 ---
 <h2 id="MatrixRotateY"><code>matrix_rotate_y</code> function</h2>
 
-> Get y-rotation matrix. Angle must be provided in radians
+> 
 
 Defined in raylib.h:
 
@@ -15049,7 +15114,7 @@ See also:
 ---
 <h2 id="MatrixRotateZ"><code>matrix_rotate_z</code> function</h2>
 
-> Get z-rotation matrix. Angle must be provided in radians
+> 
 
 Defined in raylib.h:
 
@@ -15071,7 +15136,7 @@ See also:
 ---
 <h2 id="MatrixRotateXYZ"><code>matrix_rotate_xyz</code> function</h2>
 
-> Get xyz-rotation matrix. Angle must be provided in radians
+> 
 
 Defined in raylib.h:
 
@@ -15093,7 +15158,7 @@ See also:
 ---
 <h2 id="MatrixRotateZYX"><code>matrix_rotate_zyx</code> function</h2>
 
-> Get zyx-rotation matrix. Angle must be provided in radians
+> 
 
 Defined in raylib.h:
 
@@ -15115,7 +15180,7 @@ See also:
 ---
 <h2 id="MatrixScale"><code>matrix_scale</code> function</h2>
 
-> Get scaling matrix
+> 
 
 Defined in raylib.h:
 
@@ -15137,12 +15202,12 @@ See also:
 ---
 <h2 id="MatrixFrustum"><code>matrix_frustum</code> function</h2>
 
-> Get perspective projection matrix
+> 
 
 Defined in raylib.h:
 
 ```c
-Matrix MatrixFrustum(float left, float right, float bottom, float top, float near, float far) 
+Matrix MatrixFrustum(double left, double right, double bottom, double top, double near, double far) 
 ```
 
 Python wrapper:
@@ -15159,12 +15224,12 @@ See also:
 ---
 <h2 id="MatrixPerspective"><code>matrix_perspective</code> function</h2>
 
-> Get perspective projection matrix. Fovy angle must be provided in radians
+> 
 
 Defined in raylib.h:
 
 ```c
-Matrix MatrixPerspective(float fovy, float aspect, float near, float far) 
+Matrix MatrixPerspective(double fovy, double aspect, double near, double far) 
 ```
 
 Python wrapper:
@@ -15181,12 +15246,12 @@ See also:
 ---
 <h2 id="MatrixOrtho"><code>matrix_ortho</code> function</h2>
 
-> Get orthographic projection matrix
+> 
 
 Defined in raylib.h:
 
 ```c
-Matrix MatrixOrtho(float left, float right, float bottom, float top, float near, float far) 
+Matrix MatrixOrtho(double left, double right, double bottom, double top, double near, double far) 
 ```
 
 Python wrapper:
@@ -15203,7 +15268,7 @@ See also:
 ---
 <h2 id="MatrixLookAt"><code>matrix_look_at</code> function</h2>
 
-> Get camera look-at matrix (view matrix)
+> 
 
 Defined in raylib.h:
 
@@ -15225,29 +15290,29 @@ See also:
 ---
 <h2 id="MatrixToFloatV"><code>matrix_to_float_v</code> function</h2>
 
-> Get float array of matrix data
+> 
 
 Defined in raylib.h:
 
 ```c
-float[16] MatrixToFloatV(Matrix mat) 
+float16 MatrixToFloatV(Matrix mat) 
 ```
 
 Python wrapper:
 
 ```python
-def matrix_to_float_v(mat: Matrix) -> Seq[float]
+def matrix_to_float_v(mat: Matrix) -> float16
 ```
 
 See also:
-<a href="#Matrix">Matrix</a>
+<a href="#Matrix">Matrix</a>, <a href="#float16">float16</a>
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
 <h2 id="QuaternionAdd"><code>quaternion_add</code> function</h2>
 
-> Add two quaternions
+> 
 
 Defined in raylib.h:
 
@@ -15266,7 +15331,7 @@ def quaternion_add(q1: Quaternion, q2: Quaternion) -> Quaternion
 ---
 <h2 id="QuaternionAddValue"><code>quaternion_add_value</code> function</h2>
 
-> Add quaternion and float value
+> 
 
 Defined in raylib.h:
 
@@ -15285,7 +15350,7 @@ def quaternion_add_value(q: Quaternion, add: float) -> Quaternion
 ---
 <h2 id="QuaternionSubtract"><code>quaternion_subtract</code> function</h2>
 
-> Subtract two quaternions
+> 
 
 Defined in raylib.h:
 
@@ -15304,7 +15369,7 @@ def quaternion_subtract(q1: Quaternion, q2: Quaternion) -> Quaternion
 ---
 <h2 id="QuaternionSubtractValue"><code>quaternion_subtract_value</code> function</h2>
 
-> Subtract quaternion and float value
+> 
 
 Defined in raylib.h:
 
@@ -15323,7 +15388,7 @@ def quaternion_subtract_value(q: Quaternion, sub: float) -> Quaternion
 ---
 <h2 id="QuaternionIdentity"><code>quaternion_identity</code> function</h2>
 
-> Get identity quaternion
+> 
 
 Defined in raylib.h:
 
@@ -15342,18 +15407,18 @@ def quaternion_identity() -> Quaternion
 ---
 <h2 id="QuaternionLength"><code>quaternion_length</code> function</h2>
 
-> Computes the length of a quaternion
+> 
 
 Defined in raylib.h:
 
 ```c
-Quaternion QuaternionLength(Quaternion q) 
+float QuaternionLength(Quaternion q) 
 ```
 
 Python wrapper:
 
 ```python
-def quaternion_length(q: Quaternion) -> Quaternion
+def quaternion_length(q: Quaternion) -> float
 ```
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
@@ -15361,7 +15426,7 @@ def quaternion_length(q: Quaternion) -> Quaternion
 ---
 <h2 id="QuaternionNormalize"><code>quaternion_normalize</code> function</h2>
 
-> Normalize provided quaternion
+> 
 
 Defined in raylib.h:
 
@@ -15380,7 +15445,7 @@ def quaternion_normalize(q: Quaternion) -> Quaternion
 ---
 <h2 id="QuaternionInvert"><code>quaternion_invert</code> function</h2>
 
-> Invert provided quaternion
+> 
 
 Defined in raylib.h:
 
@@ -15399,7 +15464,7 @@ def quaternion_invert(q: Quaternion) -> Quaternion
 ---
 <h2 id="QuaternionMultiply"><code>quaternion_multiply</code> function</h2>
 
-> Calculate two quaternion multiplication
+> 
 
 Defined in raylib.h:
 
@@ -15418,18 +15483,18 @@ def quaternion_multiply(q1: Quaternion, q2: Quaternion) -> Quaternion
 ---
 <h2 id="QuaternionScale"><code>quaternion_scale</code> function</h2>
 
-> Scale quaternion by float value
+> 
 
 Defined in raylib.h:
 
 ```c
-Quaternion QuaternionScale(Quaternion q1, float mul) 
+Quaternion QuaternionScale(Quaternion q, float mul) 
 ```
 
 Python wrapper:
 
 ```python
-def quaternion_scale(q1: Quaternion, mul: float) -> Quaternion
+def quaternion_scale(q: Quaternion, mul: float) -> Quaternion
 ```
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
@@ -15437,7 +15502,7 @@ def quaternion_scale(q1: Quaternion, mul: float) -> Quaternion
 ---
 <h2 id="QuaternionDivide"><code>quaternion_divide</code> function</h2>
 
-> Divide two quaternions
+> 
 
 Defined in raylib.h:
 
@@ -15454,9 +15519,28 @@ def quaternion_divide(q1: Quaternion, q2: Quaternion) -> Quaternion
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
+<h2 id="QuaternionLerp"><code>quaternion_lerp</code> function</h2>
+
+> 
+
+Defined in raylib.h:
+
+```c
+Quaternion QuaternionLerp(Quaternion q1, Quaternion q2, float amount) 
+```
+
+Python wrapper:
+
+```python
+def quaternion_lerp(q1: Quaternion, q2: Quaternion, amount: float) -> Quaternion
+```
+
+[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
+
+---
 <h2 id="QuaternionNlerp"><code>quaternion_nlerp</code> function</h2>
 
-> Calculate slerp-optimized interpolation between two quaternions
+> 
 
 Defined in raylib.h:
 
@@ -15475,7 +15559,7 @@ def quaternion_nlerp(q1: Quaternion, q2: Quaternion, amount: float) -> Quaternio
 ---
 <h2 id="QuaternionSlerp"><code>quaternion_slerp</code> function</h2>
 
-> Calculates spherical linear interpolation between two quaternions
+> 
 
 Defined in raylib.h:
 
@@ -15494,7 +15578,7 @@ def quaternion_slerp(q1: Quaternion, q2: Quaternion, amount: float) -> Quaternio
 ---
 <h2 id="QuaternionFromVector3ToVector3"><code>quaternion_from_vector3to_vector3</code> function</h2>
 
-> Calculate quaternion based on the rotation from one vector to another
+> 
 
 Defined in raylib.h:
 
@@ -15514,31 +15598,9 @@ See also:
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
-<h2 id="QuaternionToMatrix"><code>quaternion_to_matrix</code> function</h2>
-
-> Get a quaternion for a given rotation matrix
-
-Defined in raylib.h:
-
-```c
-Matrix QuaternionToMatrix(Quaternion q) 
-```
-
-Python wrapper:
-
-```python
-def quaternion_to_matrix(q: Quaternion) -> Matrix
-```
-
-See also:
-<a href="#Matrix">Matrix</a>
-
-[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
-
----
 <h2 id="QuaternionFromMatrix"><code>quaternion_from_matrix</code> function</h2>
 
-> Get a quaternion for a given rotation matrix
+> 
 
 Defined in raylib.h:
 
@@ -15558,20 +15620,42 @@ See also:
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
-<h2 id="QuaternionFromAxisAngle"><code>quaternion_from_axis_angle</code> function</h2>
+<h2 id="QuaternionToMatrix"><code>quaternion_to_matrix</code> function</h2>
 
-> Get rotation quaternion for an angle and axis. Angle must be provided in radians
+> 
 
 Defined in raylib.h:
 
 ```c
-Quaternion QuaternionFromAxisAngle(Vector3 mat, float angle) 
+Matrix QuaternionToMatrix(Quaternion q) 
 ```
 
 Python wrapper:
 
 ```python
-def quaternion_from_axis_angle(mat: Vector3, angle: float) -> Quaternion
+def quaternion_to_matrix(q: Quaternion) -> Matrix
+```
+
+See also:
+<a href="#Matrix">Matrix</a>
+
+[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="QuaternionFromAxisAngle"><code>quaternion_from_axis_angle</code> function</h2>
+
+> 
+
+Defined in raylib.h:
+
+```c
+Quaternion QuaternionFromAxisAngle(Vector3 axis, float angle) 
+```
+
+Python wrapper:
+
+```python
+def quaternion_from_axis_angle(axis: Vector3, angle: float) -> Quaternion
 ```
 
 See also:
@@ -15582,7 +15666,7 @@ See also:
 ---
 <h2 id="QuaternionToAxisAngle"><code>quaternion_to_axis_angle</code> function</h2>
 
-> Get the rotation angle and axis for a given quaternion
+> 
 
 Defined in raylib.h:
 
@@ -15604,7 +15688,7 @@ See also:
 ---
 <h2 id="QuaternionFromEuler"><code>quaternion_from_euler</code> function</h2>
 
-> Get the quaternion equivalent to Euler angles. Rotation order is ZYX
+> 
 
 Defined in raylib.h:
 
@@ -15623,7 +15707,7 @@ def quaternion_from_euler(pitch: float, yaw: float, roll: float) -> Quaternion
 ---
 <h2 id="QuaternionToEuler"><code>quaternion_to_euler</code> function</h2>
 
-> Get the quaternion equivalent to Euler angles. Rotation order is ZYX
+> 
 
 Defined in raylib.h:
 
@@ -15645,7 +15729,7 @@ See also:
 ---
 <h2 id="QuaternionTransform"><code>quaternion_transform</code> function</h2>
 
-> Transform a quaternion given a transformation matrix
+> 
 
 Defined in raylib.h:
 
@@ -15667,7 +15751,7 @@ See also:
 ---
 <h2 id="QuaternionEquals"><code>quaternion_equals</code> function</h2>
 
-> Check whether two given quaternions are almost equal
+> 
 
 Defined in raylib.h:
 
@@ -15724,7 +15808,7 @@ def rl_push_matrix() -> None
 ---
 <h2 id="rlPopMatrix"><code>rl_pop_matrix</code> function</h2>
 
-> Pop lattest inserted matrix from stack
+> Pop latest inserted matrix from stack
 
 Defined in raylib.h:
 
@@ -16349,6 +16433,25 @@ def rl_texture_parameters(id: int, param: int, value: int) -> None
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
+<h2 id="rlCubemapParameters"><code>rl_cubemap_parameters</code> function</h2>
+
+> Set cubemap parameters (filter, wrap)
+
+Defined in raylib.h:
+
+```c
+void rlCubemapParameters(unsigned int id, int param, int value) 
+```
+
+Python wrapper:
+
+```python
+def rl_cubemap_parameters(id: int, param: int, value: int) -> None
+```
+
+[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
+
+---
 <h2 id="rlEnableShader"><code>rl_enable_shader</code> function</h2>
 
 > Enable shader program
@@ -16591,6 +16694,25 @@ Python wrapper:
 
 ```python
 def rl_disable_backface_culling() -> None
+```
+
+[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="rlSetCullFace"><code>rl_set_cull_face</code> function</h2>
+
+> Set face culling mode
+
+Defined in raylib.h:
+
+```c
+void rlSetCullFace(int mode) 
+```
+
+Python wrapper:
+
+```python
+def rl_set_cull_face(mode: int) -> None
 ```
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
@@ -16919,6 +17041,25 @@ def rl_set_blend_factors(gl_src_factor: int, gl_dst_factor: int, gl_equation: in
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
+<h2 id="rlSetBlendFactorsSeparate"><code>rl_set_blend_factors_separate</code> function</h2>
+
+> Set blending mode factors and equations separately (using OpenGL factors)
+
+Defined in raylib.h:
+
+```c
+void rlSetBlendFactorsSeparate(int gl_src_rgb, int gl_dst_rgb, int gl_src_alpha, int gl_dst_alpha, int gl_eq_rgb, int gl_eq_alpha) 
+```
+
+Python wrapper:
+
+```python
+def rl_set_blend_factors_separate(gl_src_rgb: int, gl_dst_rgb: int, gl_src_alpha: int, gl_dst_alpha: int, gl_eq_rgb: int, gl_eq_alpha: int) -> None
+```
+
+[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
+
+---
 <h2 id="rlglInit"><code>rlgl_init</code> function</h2>
 
 > Initialize rlgl (buffers, shaders, textures, states)
@@ -16940,7 +17081,7 @@ def rlgl_init(width: int, height: int) -> None
 ---
 <h2 id="rlglClose"><code>rlgl_close</code> function</h2>
 
-> De-inititialize rlgl (buffers, shaders, textures)
+> De-initialize rlgl (buffers, shaders, textures)
 
 Defined in raylib.h:
 
@@ -18019,7 +18160,7 @@ def rl_load_compute_shader_program(shader_id: int) -> int
 ---
 <h2 id="rlComputeShaderDispatch"><code>rl_compute_shader_dispatch</code> function</h2>
 
-> Dispatch compute shader (equivalent to *draw* for graphics pilepine)
+> Dispatch compute shader (equivalent to *draw* for graphics pipeline)
 
 Defined in raylib.h:
 
@@ -18043,7 +18184,7 @@ def rl_compute_shader_dispatch(group_x: int, group_y: int, group_z: int) -> None
 Defined in raylib.h:
 
 ```c
-unsigned int rlLoadShaderBuffer(unsigned long long * size, void data, int usage_hint) 
+unsigned int rlLoadShaderBuffer(unsigned int size, void data, int usage_hint) 
 ```
 
 Python wrapper:
@@ -18074,58 +18215,20 @@ def rl_unload_shader_buffer(ssbo_id: int) -> None
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
-<h2 id="rlUpdateShaderBufferElements"><code>rl_update_shader_buffer_elements</code> function</h2>
+<h2 id="rlUpdateShaderBuffer"><code>rl_update_shader_buffer</code> function</h2>
 
 > Update SSBO buffer data
 
 Defined in raylib.h:
 
 ```c
-void rlUpdateShaderBufferElements(unsigned int id, void data, unsigned long long * data_size, unsigned long long * offset) 
+void rlUpdateShaderBuffer(unsigned int id, void data, unsigned int data_size, unsigned int offset) 
 ```
 
 Python wrapper:
 
 ```python
-def rl_update_shader_buffer_elements(id: int, data: bytes, data_size: int, offset: int) -> None
-```
-
-[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
-
----
-<h2 id="rlGetShaderBufferSize"><code>rl_get_shader_buffer_size</code> function</h2>
-
-> Get SSBO buffer size
-
-Defined in raylib.h:
-
-```c
-unsigned long long * rlGetShaderBufferSize(unsigned int id) 
-```
-
-Python wrapper:
-
-```python
-def rl_get_shader_buffer_size(id: int) -> int
-```
-
-[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
-
----
-<h2 id="rlReadShaderBufferElements"><code>rl_read_shader_buffer_elements</code> function</h2>
-
-> Bind SSBO buffer
-
-Defined in raylib.h:
-
-```c
-void rlReadShaderBufferElements(unsigned int id, void dest, unsigned long long * count, unsigned long long * offset) 
-```
-
-Python wrapper:
-
-```python
-def rl_read_shader_buffer_elements(id: int, dest: bytes, count: int, offset: int) -> None
+def rl_update_shader_buffer(id: int, data: bytes, data_size: int, offset: int) -> None
 ```
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
@@ -18133,7 +18236,7 @@ def rl_read_shader_buffer_elements(id: int, dest: bytes, count: int, offset: int
 ---
 <h2 id="rlBindShaderBuffer"><code>rl_bind_shader_buffer</code> function</h2>
 
-> Copy SSBO buffer data
+> Bind SSBO buffer
 
 Defined in raylib.h:
 
@@ -18150,20 +18253,58 @@ def rl_bind_shader_buffer(id: int, index: int) -> None
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
-<h2 id="rlCopyBuffersElements"><code>rl_copy_buffers_elements</code> function</h2>
+<h2 id="rlReadShaderBuffer"><code>rl_read_shader_buffer</code> function</h2>
 
-> Copy SSBO buffer data
+> Read SSBO buffer data (GPU->CPU)
 
 Defined in raylib.h:
 
 ```c
-void rlCopyBuffersElements(unsigned int dest_id, unsigned int src_id, unsigned long long * dest_offset, unsigned long long * src_offset, unsigned long long * count) 
+void rlReadShaderBuffer(unsigned int id, void dest, unsigned int count, unsigned int offset) 
 ```
 
 Python wrapper:
 
 ```python
-def rl_copy_buffers_elements(dest_id: int, src_id: int, dest_offset: int, src_offset: int, count: int) -> None
+def rl_read_shader_buffer(id: int, dest: bytes, count: int, offset: int) -> None
+```
+
+[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="rlCopyShaderBuffer"><code>rl_copy_shader_buffer</code> function</h2>
+
+> Copy SSBO data between buffers
+
+Defined in raylib.h:
+
+```c
+void rlCopyShaderBuffer(unsigned int dest_id, unsigned int src_id, unsigned int dest_offset, unsigned int src_offset, unsigned int count) 
+```
+
+Python wrapper:
+
+```python
+def rl_copy_shader_buffer(dest_id: int, src_id: int, dest_offset: int, src_offset: int, count: int) -> None
+```
+
+[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="rlGetShaderBufferSize"><code>rl_get_shader_buffer_size</code> function</h2>
+
+> Get SSBO buffer size
+
+Defined in raylib.h:
+
+```c
+unsigned int rlGetShaderBufferSize(unsigned int id) 
+```
+
+Python wrapper:
+
+```python
+def rl_get_shader_buffer_size(id: int) -> int
 ```
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
@@ -18176,13 +18317,13 @@ def rl_copy_buffers_elements(dest_id: int, src_id: int, dest_offset: int, src_of
 Defined in raylib.h:
 
 ```c
-void rlBindImageTexture(unsigned int id, unsigned int index, unsigned int format, int readonly) 
+void rlBindImageTexture(unsigned int id, unsigned int index, int format, bool readonly) 
 ```
 
 Python wrapper:
 
 ```python
-def rl_bind_image_texture(id: int, index: int, format: int, readonly: int) -> None
+def rl_bind_image_texture(id: int, index: int, format: int, readonly: bool) -> None
 ```
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
