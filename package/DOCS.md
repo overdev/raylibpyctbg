@@ -1,6 +1,6 @@
 # Raylib-py API reference
 
-This is an API reference documentation generated for Raylib 4.5.
+This is an API reference documentation generated for Raylib 5.0.
 
 <h2 id="toc">Table of Contents</h2>
 
@@ -73,18 +73,761 @@ Alias | Ctypes type
 `CharPtr` | `c_char_p`
 `CharPtrPtr` | `POINTER(c_char_p)`
 
+<h2 id="enums">Enumerations</h2>
+
+Item|Item|Item|Item|Item
+--------|--------|--------|--------|--------
+<a href="#BlendMode">BlendMode</a> | <a href="#CameraMode">CameraMode</a> | <a href="#CameraProjection">CameraProjection</a> | <a href="#ConfigFlags">ConfigFlags</a> | <a href="#CubemapLayout">CubemapLayout</a>
+<a href="#FontType">FontType</a> | <a href="#GamepadAxis">GamepadAxis</a> | <a href="#GamepadButton">GamepadButton</a> | <a href="#Gesture">Gesture</a> | <a href="#KeyboardKey">KeyboardKey</a>
+<a href="#MaterialMapIndex">MaterialMapIndex</a> | <a href="#MouseButton">MouseButton</a> | <a href="#MouseCursor">MouseCursor</a> | <a href="#NPatchLayout">NPatchLayout</a> | <a href="#PixelFormat">PixelFormat</a>
+<a href="#ShaderAttributeDataType">ShaderAttributeDataType</a> | <a href="#ShaderLocationIndex">ShaderLocationIndex</a> | <a href="#ShaderUniformDataType">ShaderUniformDataType</a> | <a href="#TextureFilter">TextureFilter</a> | <a href="#TextureWrap">TextureWrap</a>
+<a href="#TraceLogLevel">TraceLogLevel</a> | <a href="#rlBlendMode">rlBlendMode</a> | <a href="#rlCullMode">rlCullMode</a> | <a href="#rlFramebufferAttachTextureType">rlFramebufferAttachTextureType</a> | <a href="#rlFramebufferAttachType">rlFramebufferAttachType</a>
+<a href="#rlGlVersion">rlGlVersion</a> | <a href="#rlPixelFormat">rlPixelFormat</a> | <a href="#rlShaderAttributeDataType">rlShaderAttributeDataType</a> | <a href="#rlShaderLocationIndex">rlShaderLocationIndex</a> | <a href="#rlShaderUniformDataType">rlShaderUniformDataType</a>
+<a href="#rlTextureFilter">rlTextureFilter</a> | <a href="#rlTraceLogLevel">rlTraceLogLevel</a>
+
+[ <a href="#toc">ToC</a> ]
+
+<h2 id="ConfigFlags"><code>ConfigFlags</code> enum</h2>
+
+**Members**
+
+Name | Value | Description
+-----|-------|------------
+`FLAG_VSYNC_HINT` | `64` | Set to try enabling V-Sync on GPU
+`FLAG_FULLSCREEN_MODE` | `2` | Set to run program in fullscreen
+`FLAG_WINDOW_RESIZABLE` | `4` | Set to allow resizable window
+`FLAG_WINDOW_UNDECORATED` | `8` | Set to disable window decoration (frame and buttons)
+`FLAG_WINDOW_HIDDEN` | `128` | Set to hide window
+`FLAG_WINDOW_MINIMIZED` | `512` | Set to minimize window (iconify)
+`FLAG_WINDOW_MAXIMIZED` | `1024` | Set to maximize window (expanded to monitor)
+`FLAG_WINDOW_UNFOCUSED` | `2048` | Set to window non focused
+`FLAG_WINDOW_TOPMOST` | `4096` | Set to window always on top
+`FLAG_WINDOW_ALWAYS_RUN` | `256` | Set to allow windows running while minimized
+`FLAG_WINDOW_TRANSPARENT` | `16` | Set to allow transparent framebuffer
+`FLAG_WINDOW_HIGHDPI` | `8192` | Set to support HighDPI
+`FLAG_WINDOW_MOUSE_PASSTHROUGH` | `16384` | Set to support mouse passthrough, only supported when FLAG_WINDOW_UNDECORATED
+`FLAG_BORDERLESS_WINDOWED_MODE` | `32768` | Set to run program in borderless windowed mode
+`FLAG_MSAA_4X_HINT` | `32` | Set to try enabling MSAA 4X
+`FLAG_INTERLACED_HINT` | `65536` | Set to try enabling interlaced video format (for V3D)
+
+[ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="TraceLogLevel"><code>TraceLogLevel</code> enum</h2>
+
+**Members**
+
+Name | Value | Description
+-----|-------|------------
+`LOG_ALL` | `0` | Display all logs
+`LOG_TRACE` | `1` | Trace logging, intended for internal use only
+`LOG_DEBUG` | `2` | Debug logging, used for internal debugging, it should be disabled on release builds
+`LOG_INFO` | `3` | Info logging, used for program execution info
+`LOG_WARNING` | `4` | Warning logging, used on recoverable failures
+`LOG_ERROR` | `5` | Error logging, used on unrecoverable failures
+`LOG_FATAL` | `6` | Fatal logging, used to abort program: exit(EXIT_FAILURE)
+`LOG_NONE` | `7` | Disable logging
+
+[ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="KeyboardKey"><code>KeyboardKey</code> enum</h2>
+
+**Members**
+
+Name | Value | Description
+-----|-------|------------
+`KEY_NULL` | `0` | Key: NULL, used for no key pressed
+`KEY_APOSTROPHE` | `39` | Key: '
+`KEY_COMMA` | `44` | Key: ,
+`KEY_MINUS` | `45` | Key: -
+`KEY_PERIOD` | `46` | Key: .
+`KEY_SLASH` | `47` | Key: /
+`KEY_ZERO` | `48` | Key: 0
+`KEY_ONE` | `49` | Key: 1
+`KEY_TWO` | `50` | Key: 2
+`KEY_THREE` | `51` | Key: 3
+`KEY_FOUR` | `52` | Key: 4
+`KEY_FIVE` | `53` | Key: 5
+`KEY_SIX` | `54` | Key: 6
+`KEY_SEVEN` | `55` | Key: 7
+`KEY_EIGHT` | `56` | Key: 8
+`KEY_NINE` | `57` | Key: 9
+`KEY_SEMICOLON` | `59` | Key: ;
+`KEY_EQUAL` | `61` | Key: =
+`KEY_A` | `65` | Key: A | a
+`KEY_B` | `66` | Key: B | b
+`KEY_C` | `67` | Key: C | c
+`KEY_D` | `68` | Key: D | d
+`KEY_E` | `69` | Key: E | e
+`KEY_F` | `70` | Key: F | f
+`KEY_G` | `71` | Key: G | g
+`KEY_H` | `72` | Key: H | h
+`KEY_I` | `73` | Key: I | i
+`KEY_J` | `74` | Key: J | j
+`KEY_K` | `75` | Key: K | k
+`KEY_L` | `76` | Key: L | l
+`KEY_M` | `77` | Key: M | m
+`KEY_N` | `78` | Key: N | n
+`KEY_O` | `79` | Key: O | o
+`KEY_P` | `80` | Key: P | p
+`KEY_Q` | `81` | Key: Q | q
+`KEY_R` | `82` | Key: R | r
+`KEY_S` | `83` | Key: S | s
+`KEY_T` | `84` | Key: T | t
+`KEY_U` | `85` | Key: U | u
+`KEY_V` | `86` | Key: V | v
+`KEY_W` | `87` | Key: W | w
+`KEY_X` | `88` | Key: X | x
+`KEY_Y` | `89` | Key: Y | y
+`KEY_Z` | `90` | Key: Z | z
+`KEY_LEFT_BRACKET` | `91` | Key: [
+`KEY_BACKSLASH` | `92` | Key: '\'
+`KEY_RIGHT_BRACKET` | `93` | Key: ]
+`KEY_GRAVE` | `96` | Key: `
+`KEY_SPACE` | `32` | Key: Space
+`KEY_ESCAPE` | `256` | Key: Esc
+`KEY_ENTER` | `257` | Key: Enter
+`KEY_TAB` | `258` | Key: Tab
+`KEY_BACKSPACE` | `259` | Key: Backspace
+`KEY_INSERT` | `260` | Key: Ins
+`KEY_DELETE` | `261` | Key: Del
+`KEY_RIGHT` | `262` | Key: Cursor right
+`KEY_LEFT` | `263` | Key: Cursor left
+`KEY_DOWN` | `264` | Key: Cursor down
+`KEY_UP` | `265` | Key: Cursor up
+`KEY_PAGE_UP` | `266` | Key: Page up
+`KEY_PAGE_DOWN` | `267` | Key: Page down
+`KEY_HOME` | `268` | Key: Home
+`KEY_END` | `269` | Key: End
+`KEY_CAPS_LOCK` | `280` | Key: Caps lock
+`KEY_SCROLL_LOCK` | `281` | Key: Scroll down
+`KEY_NUM_LOCK` | `282` | Key: Num lock
+`KEY_PRINT_SCREEN` | `283` | Key: Print screen
+`KEY_PAUSE` | `284` | Key: Pause
+`KEY_F1` | `290` | Key: F1
+`KEY_F2` | `291` | Key: F2
+`KEY_F3` | `292` | Key: F3
+`KEY_F4` | `293` | Key: F4
+`KEY_F5` | `294` | Key: F5
+`KEY_F6` | `295` | Key: F6
+`KEY_F7` | `296` | Key: F7
+`KEY_F8` | `297` | Key: F8
+`KEY_F9` | `298` | Key: F9
+`KEY_F10` | `299` | Key: F10
+`KEY_F11` | `300` | Key: F11
+`KEY_F12` | `301` | Key: F12
+`KEY_LEFT_SHIFT` | `340` | Key: Shift left
+`KEY_LEFT_CONTROL` | `341` | Key: Control left
+`KEY_LEFT_ALT` | `342` | Key: Alt left
+`KEY_LEFT_SUPER` | `343` | Key: Super left
+`KEY_RIGHT_SHIFT` | `344` | Key: Shift right
+`KEY_RIGHT_CONTROL` | `345` | Key: Control right
+`KEY_RIGHT_ALT` | `346` | Key: Alt right
+`KEY_RIGHT_SUPER` | `347` | Key: Super right
+`KEY_KB_MENU` | `348` | Key: KB menu
+`KEY_KP_0` | `320` | Key: Keypad 0
+`KEY_KP_1` | `321` | Key: Keypad 1
+`KEY_KP_2` | `322` | Key: Keypad 2
+`KEY_KP_3` | `323` | Key: Keypad 3
+`KEY_KP_4` | `324` | Key: Keypad 4
+`KEY_KP_5` | `325` | Key: Keypad 5
+`KEY_KP_6` | `326` | Key: Keypad 6
+`KEY_KP_7` | `327` | Key: Keypad 7
+`KEY_KP_8` | `328` | Key: Keypad 8
+`KEY_KP_9` | `329` | Key: Keypad 9
+`KEY_KP_DECIMAL` | `330` | Key: Keypad .
+`KEY_KP_DIVIDE` | `331` | Key: Keypad /
+`KEY_KP_MULTIPLY` | `332` | Key: Keypad *
+`KEY_KP_SUBTRACT` | `333` | Key: Keypad -
+`KEY_KP_ADD` | `334` | Key: Keypad +
+`KEY_KP_ENTER` | `335` | Key: Keypad Enter
+`KEY_KP_EQUAL` | `336` | Key: Keypad =
+`KEY_BACK` | `4` | Key: Android back button
+`KEY_MENU` | `82` | Key: Android menu button
+`KEY_VOLUME_UP` | `24` | Key: Android volume up button
+`KEY_VOLUME_DOWN` | `25` | Key: Android volume down button
+
+[ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="MouseButton"><code>MouseButton</code> enum</h2>
+
+**Members**
+
+Name | Value | Description
+-----|-------|------------
+`MOUSE_BUTTON_LEFT` | `0` | Mouse button left
+`MOUSE_BUTTON_RIGHT` | `1` | Mouse button right
+`MOUSE_BUTTON_MIDDLE` | `2` | Mouse button middle (pressed wheel)
+`MOUSE_BUTTON_SIDE` | `3` | Mouse button side (advanced mouse device)
+`MOUSE_BUTTON_EXTRA` | `4` | Mouse button extra (advanced mouse device)
+`MOUSE_BUTTON_FORWARD` | `5` | Mouse button forward (advanced mouse device)
+`MOUSE_BUTTON_BACK` | `6` | Mouse button back (advanced mouse device)
+
+[ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="MouseCursor"><code>MouseCursor</code> enum</h2>
+
+**Members**
+
+Name | Value | Description
+-----|-------|------------
+`MOUSE_CURSOR_DEFAULT` | `0` | Default pointer shape
+`MOUSE_CURSOR_ARROW` | `1` | Arrow shape
+`MOUSE_CURSOR_IBEAM` | `2` | Text writing cursor shape
+`MOUSE_CURSOR_CROSSHAIR` | `3` | Cross shape
+`MOUSE_CURSOR_POINTING_HAND` | `4` | Pointing hand cursor
+`MOUSE_CURSOR_RESIZE_EW` | `5` | Horizontal resize/move arrow shape
+`MOUSE_CURSOR_RESIZE_NS` | `6` | Vertical resize/move arrow shape
+`MOUSE_CURSOR_RESIZE_NWSE` | `7` | Top-left to bottom-right diagonal resize/move arrow shape
+`MOUSE_CURSOR_RESIZE_NESW` | `8` | The top-right to bottom-left diagonal resize/move arrow shape
+`MOUSE_CURSOR_RESIZE_ALL` | `9` | The omnidirectional resize/move cursor shape
+`MOUSE_CURSOR_NOT_ALLOWED` | `10` | The operation-not-allowed shape
+
+[ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="GamepadButton"><code>GamepadButton</code> enum</h2>
+
+**Members**
+
+Name | Value | Description
+-----|-------|------------
+`GAMEPAD_BUTTON_UNKNOWN` | `0` | Unknown button, just for error checking
+`GAMEPAD_BUTTON_LEFT_FACE_UP` | `1` | Gamepad left DPAD up button
+`GAMEPAD_BUTTON_LEFT_FACE_RIGHT` | `2` | Gamepad left DPAD right button
+`GAMEPAD_BUTTON_LEFT_FACE_DOWN` | `3` | Gamepad left DPAD down button
+`GAMEPAD_BUTTON_LEFT_FACE_LEFT` | `4` | Gamepad left DPAD left button
+`GAMEPAD_BUTTON_RIGHT_FACE_UP` | `5` | Gamepad right button up (i.e. PS3: Triangle, Xbox: Y)
+`GAMEPAD_BUTTON_RIGHT_FACE_RIGHT` | `6` | Gamepad right button right (i.e. PS3: Square, Xbox: X)
+`GAMEPAD_BUTTON_RIGHT_FACE_DOWN` | `7` | Gamepad right button down (i.e. PS3: Cross, Xbox: A)
+`GAMEPAD_BUTTON_RIGHT_FACE_LEFT` | `8` | Gamepad right button left (i.e. PS3: Circle, Xbox: B)
+`GAMEPAD_BUTTON_LEFT_TRIGGER_1` | `9` | Gamepad top/back trigger left (first), it could be a trailing button
+`GAMEPAD_BUTTON_LEFT_TRIGGER_2` | `10` | Gamepad top/back trigger left (second), it could be a trailing button
+`GAMEPAD_BUTTON_RIGHT_TRIGGER_1` | `11` | Gamepad top/back trigger right (one), it could be a trailing button
+`GAMEPAD_BUTTON_RIGHT_TRIGGER_2` | `12` | Gamepad top/back trigger right (second), it could be a trailing button
+`GAMEPAD_BUTTON_MIDDLE_LEFT` | `13` | Gamepad center buttons, left one (i.e. PS3: Select)
+`GAMEPAD_BUTTON_MIDDLE` | `14` | Gamepad center buttons, middle one (i.e. PS3: PS, Xbox: XBOX)
+`GAMEPAD_BUTTON_MIDDLE_RIGHT` | `15` | Gamepad center buttons, right one (i.e. PS3: Start)
+`GAMEPAD_BUTTON_LEFT_THUMB` | `16` | Gamepad joystick pressed button left
+`GAMEPAD_BUTTON_RIGHT_THUMB` | `17` | Gamepad joystick pressed button right
+
+[ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="GamepadAxis"><code>GamepadAxis</code> enum</h2>
+
+**Members**
+
+Name | Value | Description
+-----|-------|------------
+`GAMEPAD_AXIS_LEFT_X` | `0` | Gamepad left stick X axis
+`GAMEPAD_AXIS_LEFT_Y` | `1` | Gamepad left stick Y axis
+`GAMEPAD_AXIS_RIGHT_X` | `2` | Gamepad right stick X axis
+`GAMEPAD_AXIS_RIGHT_Y` | `3` | Gamepad right stick Y axis
+`GAMEPAD_AXIS_LEFT_TRIGGER` | `4` | Gamepad back trigger left, pressure level: [1..-1]
+`GAMEPAD_AXIS_RIGHT_TRIGGER` | `5` | Gamepad back trigger right, pressure level: [1..-1]
+
+[ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="MaterialMapIndex"><code>MaterialMapIndex</code> enum</h2>
+
+**Members**
+
+Name | Value | Description
+-----|-------|------------
+`MATERIAL_MAP_ALBEDO` | `0` | Albedo material (same as: MATERIAL_MAP_DIFFUSE)
+`MATERIAL_MAP_METALNESS` | `1` | Metalness material (same as: MATERIAL_MAP_SPECULAR)
+`MATERIAL_MAP_NORMAL` | `2` | Normal material
+`MATERIAL_MAP_ROUGHNESS` | `3` | Roughness material
+`MATERIAL_MAP_OCCLUSION` | `4` | Ambient occlusion material
+`MATERIAL_MAP_EMISSION` | `5` | Emission material
+`MATERIAL_MAP_HEIGHT` | `6` | Heightmap material
+`MATERIAL_MAP_CUBEMAP` | `7` | Cubemap material (NOTE: Uses GL_TEXTURE_CUBE_MAP)
+`MATERIAL_MAP_IRRADIANCE` | `8` | Irradiance material (NOTE: Uses GL_TEXTURE_CUBE_MAP)
+`MATERIAL_MAP_PREFILTER` | `9` | Prefilter material (NOTE: Uses GL_TEXTURE_CUBE_MAP)
+`MATERIAL_MAP_BRDF` | `10` | Brdf material
+
+[ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="ShaderLocationIndex"><code>ShaderLocationIndex</code> enum</h2>
+
+**Members**
+
+Name | Value | Description
+-----|-------|------------
+`SHADER_LOC_VERTEX_POSITION` | `0` | Shader location: vertex attribute: position
+`SHADER_LOC_VERTEX_TEXCOORD01` | `1` | Shader location: vertex attribute: texcoord01
+`SHADER_LOC_VERTEX_TEXCOORD02` | `2` | Shader location: vertex attribute: texcoord02
+`SHADER_LOC_VERTEX_NORMAL` | `3` | Shader location: vertex attribute: normal
+`SHADER_LOC_VERTEX_TANGENT` | `4` | Shader location: vertex attribute: tangent
+`SHADER_LOC_VERTEX_COLOR` | `5` | Shader location: vertex attribute: color
+`SHADER_LOC_MATRIX_MVP` | `6` | Shader location: matrix uniform: model-view-projection
+`SHADER_LOC_MATRIX_VIEW` | `7` | Shader location: matrix uniform: view (camera transform)
+`SHADER_LOC_MATRIX_PROJECTION` | `8` | Shader location: matrix uniform: projection
+`SHADER_LOC_MATRIX_MODEL` | `9` | Shader location: matrix uniform: model (transform)
+`SHADER_LOC_MATRIX_NORMAL` | `10` | Shader location: matrix uniform: normal
+`SHADER_LOC_VECTOR_VIEW` | `11` | Shader location: vector uniform: view
+`SHADER_LOC_COLOR_DIFFUSE` | `12` | Shader location: vector uniform: diffuse color
+`SHADER_LOC_COLOR_SPECULAR` | `13` | Shader location: vector uniform: specular color
+`SHADER_LOC_COLOR_AMBIENT` | `14` | Shader location: vector uniform: ambient color
+`SHADER_LOC_MAP_ALBEDO` | `15` | Shader location: sampler2d texture: albedo (same as: SHADER_LOC_MAP_DIFFUSE)
+`SHADER_LOC_MAP_METALNESS` | `16` | Shader location: sampler2d texture: metalness (same as: SHADER_LOC_MAP_SPECULAR)
+`SHADER_LOC_MAP_NORMAL` | `17` | Shader location: sampler2d texture: normal
+`SHADER_LOC_MAP_ROUGHNESS` | `18` | Shader location: sampler2d texture: roughness
+`SHADER_LOC_MAP_OCCLUSION` | `19` | Shader location: sampler2d texture: occlusion
+`SHADER_LOC_MAP_EMISSION` | `20` | Shader location: sampler2d texture: emission
+`SHADER_LOC_MAP_HEIGHT` | `21` | Shader location: sampler2d texture: height
+`SHADER_LOC_MAP_CUBEMAP` | `22` | Shader location: samplerCube texture: cubemap
+`SHADER_LOC_MAP_IRRADIANCE` | `23` | Shader location: samplerCube texture: irradiance
+`SHADER_LOC_MAP_PREFILTER` | `24` | Shader location: samplerCube texture: prefilter
+`SHADER_LOC_MAP_BRDF` | `25` | Shader location: sampler2d texture: brdf
+
+[ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="ShaderUniformDataType"><code>ShaderUniformDataType</code> enum</h2>
+
+**Members**
+
+Name | Value | Description
+-----|-------|------------
+`SHADER_UNIFORM_FLOAT` | `0` | Shader uniform type: float
+`SHADER_UNIFORM_VEC2` | `1` | Shader uniform type: vec2 (2 float)
+`SHADER_UNIFORM_VEC3` | `2` | Shader uniform type: vec3 (3 float)
+`SHADER_UNIFORM_VEC4` | `3` | Shader uniform type: vec4 (4 float)
+`SHADER_UNIFORM_INT` | `4` | Shader uniform type: int
+`SHADER_UNIFORM_IVEC2` | `5` | Shader uniform type: ivec2 (2 int)
+`SHADER_UNIFORM_IVEC3` | `6` | Shader uniform type: ivec3 (3 int)
+`SHADER_UNIFORM_IVEC4` | `7` | Shader uniform type: ivec4 (4 int)
+`SHADER_UNIFORM_SAMPLER2D` | `8` | Shader uniform type: sampler2d
+
+[ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="ShaderAttributeDataType"><code>ShaderAttributeDataType</code> enum</h2>
+
+**Members**
+
+Name | Value | Description
+-----|-------|------------
+`SHADER_ATTRIB_FLOAT` | `0` | Shader attribute type: float
+`SHADER_ATTRIB_VEC2` | `1` | Shader attribute type: vec2 (2 float)
+`SHADER_ATTRIB_VEC3` | `2` | Shader attribute type: vec3 (3 float)
+`SHADER_ATTRIB_VEC4` | `3` | Shader attribute type: vec4 (4 float)
+
+[ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="PixelFormat"><code>PixelFormat</code> enum</h2>
+
+**Members**
+
+Name | Value | Description
+-----|-------|------------
+`PIXELFORMAT_UNCOMPRESSED_GRAYSCALE` | `1` | 8 bit per pixel (no alpha)
+`PIXELFORMAT_UNCOMPRESSED_GRAY_ALPHA` | `2` | 8*2 bpp (2 channels)
+`PIXELFORMAT_UNCOMPRESSED_R5G6B5` | `3` | 16 bpp
+`PIXELFORMAT_UNCOMPRESSED_R8G8B8` | `4` | 24 bpp
+`PIXELFORMAT_UNCOMPRESSED_R5G5B5A1` | `5` | 16 bpp (1 bit alpha)
+`PIXELFORMAT_UNCOMPRESSED_R4G4B4A4` | `6` | 16 bpp (4 bit alpha)
+`PIXELFORMAT_UNCOMPRESSED_R8G8B8A8` | `7` | 32 bpp
+`PIXELFORMAT_UNCOMPRESSED_R32` | `8` | 32 bpp (1 channel - float)
+`PIXELFORMAT_UNCOMPRESSED_R32G32B32` | `9` | 32*3 bpp (3 channels - float)
+`PIXELFORMAT_UNCOMPRESSED_R32G32B32A32` | `10` | 32*4 bpp (4 channels - float)
+`PIXELFORMAT_UNCOMPRESSED_R16` | `11` | 16 bpp (1 channel - half float)
+`PIXELFORMAT_UNCOMPRESSED_R16G16B16` | `12` | 16*3 bpp (3 channels - half float)
+`PIXELFORMAT_UNCOMPRESSED_R16G16B16A16` | `13` | 16*4 bpp (4 channels - half float)
+`PIXELFORMAT_COMPRESSED_DXT1_RGB` | `14` | 4 bpp (no alpha)
+`PIXELFORMAT_COMPRESSED_DXT1_RGBA` | `15` | 4 bpp (1 bit alpha)
+`PIXELFORMAT_COMPRESSED_DXT3_RGBA` | `16` | 8 bpp
+`PIXELFORMAT_COMPRESSED_DXT5_RGBA` | `17` | 8 bpp
+`PIXELFORMAT_COMPRESSED_ETC1_RGB` | `18` | 4 bpp
+`PIXELFORMAT_COMPRESSED_ETC2_RGB` | `19` | 4 bpp
+`PIXELFORMAT_COMPRESSED_ETC2_EAC_RGBA` | `20` | 8 bpp
+`PIXELFORMAT_COMPRESSED_PVRT_RGB` | `21` | 4 bpp
+`PIXELFORMAT_COMPRESSED_PVRT_RGBA` | `22` | 4 bpp
+`PIXELFORMAT_COMPRESSED_ASTC_4x4_RGBA` | `23` | 8 bpp
+`PIXELFORMAT_COMPRESSED_ASTC_8x8_RGBA` | `24` | 2 bpp
+
+[ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="TextureFilter"><code>TextureFilter</code> enum</h2>
+
+**Members**
+
+Name | Value | Description
+-----|-------|------------
+`TEXTURE_FILTER_POINT` | `0` | No filter, just pixel approximation
+`TEXTURE_FILTER_BILINEAR` | `1` | Linear filtering
+`TEXTURE_FILTER_TRILINEAR` | `2` | Trilinear filtering (linear with mipmaps)
+`TEXTURE_FILTER_ANISOTROPIC_4X` | `3` | Anisotropic filtering 4x
+`TEXTURE_FILTER_ANISOTROPIC_8X` | `4` | Anisotropic filtering 8x
+`TEXTURE_FILTER_ANISOTROPIC_16X` | `5` | Anisotropic filtering 16x
+
+[ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="TextureWrap"><code>TextureWrap</code> enum</h2>
+
+**Members**
+
+Name | Value | Description
+-----|-------|------------
+`TEXTURE_WRAP_REPEAT` | `0` | Repeats texture in tiled mode
+`TEXTURE_WRAP_CLAMP` | `1` | Clamps texture to edge pixel in tiled mode
+`TEXTURE_WRAP_MIRROR_REPEAT` | `2` | Mirrors and repeats the texture in tiled mode
+`TEXTURE_WRAP_MIRROR_CLAMP` | `3` | Mirrors and clamps to border the texture in tiled mode
+
+[ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="CubemapLayout"><code>CubemapLayout</code> enum</h2>
+
+**Members**
+
+Name | Value | Description
+-----|-------|------------
+`CUBEMAP_LAYOUT_AUTO_DETECT` | `0` | Automatically detect layout type
+`CUBEMAP_LAYOUT_LINE_VERTICAL` | `1` | Layout is defined by a vertical line with faces
+`CUBEMAP_LAYOUT_LINE_HORIZONTAL` | `2` | Layout is defined by a horizontal line with faces
+`CUBEMAP_LAYOUT_CROSS_THREE_BY_FOUR` | `3` | Layout is defined by a 3x4 cross with cubemap faces
+`CUBEMAP_LAYOUT_CROSS_FOUR_BY_THREE` | `4` | Layout is defined by a 4x3 cross with cubemap faces
+`CUBEMAP_LAYOUT_PANORAMA` | `5` | Layout is defined by a panorama image (equirrectangular map)
+
+[ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="FontType"><code>FontType</code> enum</h2>
+
+**Members**
+
+Name | Value | Description
+-----|-------|------------
+`FONT_DEFAULT` | `0` | Default font generation, anti-aliased
+`FONT_BITMAP` | `1` | Bitmap font generation, no anti-aliasing
+`FONT_SDF` | `2` | SDF font generation, requires external shader
+
+[ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="BlendMode"><code>BlendMode</code> enum</h2>
+
+**Members**
+
+Name | Value | Description
+-----|-------|------------
+`BLEND_ALPHA` | `0` | Blend textures considering alpha (default)
+`BLEND_ADDITIVE` | `1` | Blend textures adding colors
+`BLEND_MULTIPLIED` | `2` | Blend textures multiplying colors
+`BLEND_ADD_COLORS` | `3` | Blend textures adding colors (alternative)
+`BLEND_SUBTRACT_COLORS` | `4` | Blend textures subtracting colors (alternative)
+`BLEND_ALPHA_PREMULTIPLY` | `5` | Blend premultiplied textures considering alpha
+`BLEND_CUSTOM` | `6` | Blend textures using custom src/dst factors (use rlSetBlendFactors())
+`BLEND_CUSTOM_SEPARATE` | `7` | Blend textures using custom rgb/alpha separate src/dst factors (use rlSetBlendFactorsSeparate())
+
+[ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="Gesture"><code>Gesture</code> enum</h2>
+
+**Members**
+
+Name | Value | Description
+-----|-------|------------
+`GESTURE_NONE` | `0` | No gesture
+`GESTURE_TAP` | `1` | Tap gesture
+`GESTURE_DOUBLETAP` | `2` | Double tap gesture
+`GESTURE_HOLD` | `4` | Hold gesture
+`GESTURE_DRAG` | `8` | Drag gesture
+`GESTURE_SWIPE_RIGHT` | `16` | Swipe right gesture
+`GESTURE_SWIPE_LEFT` | `32` | Swipe left gesture
+`GESTURE_SWIPE_UP` | `64` | Swipe up gesture
+`GESTURE_SWIPE_DOWN` | `128` | Swipe down gesture
+`GESTURE_PINCH_IN` | `256` | Pinch in gesture
+`GESTURE_PINCH_OUT` | `512` | Pinch out gesture
+
+[ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="CameraMode"><code>CameraMode</code> enum</h2>
+
+**Members**
+
+Name | Value | Description
+-----|-------|------------
+`CAMERA_CUSTOM` | `0` | Custom camera
+`CAMERA_FREE` | `1` | Free camera
+`CAMERA_ORBITAL` | `2` | Orbital camera
+`CAMERA_FIRST_PERSON` | `3` | First person camera
+`CAMERA_THIRD_PERSON` | `4` | Third person camera
+
+[ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="CameraProjection"><code>CameraProjection</code> enum</h2>
+
+**Members**
+
+Name | Value | Description
+-----|-------|------------
+`CAMERA_PERSPECTIVE` | `0` | Perspective projection
+`CAMERA_ORTHOGRAPHIC` | `1` | Orthographic projection
+
+[ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="NPatchLayout"><code>NPatchLayout</code> enum</h2>
+
+**Members**
+
+Name | Value | Description
+-----|-------|------------
+`NPATCH_NINE_PATCH` | `0` | Npatch layout: 3x3 tiles
+`NPATCH_THREE_PATCH_VERTICAL` | `1` | Npatch layout: 1x3 tiles
+`NPATCH_THREE_PATCH_HORIZONTAL` | `2` | Npatch layout: 3x1 tiles
+
+[ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="rlGlVersion"><code>rlGlVersion</code> enum</h2>
+
+**Members**
+
+Name | Value | Description
+-----|-------|------------
+`RL_OPENGL_11` | `1` | OpenGL 1.1
+`RL_OPENGL_21` | `2` | OpenGL 2.1 (GLSL 120)
+`RL_OPENGL_33` | `3` | OpenGL 3.3 (GLSL 330)
+`RL_OPENGL_43` | `4` | OpenGL 4.3 (using GLSL 330)
+`RL_OPENGL_ES_20` | `5` | OpenGL ES 2.0 (GLSL 100)
+`RL_OPENGL_ES_30` | `6` | OpenGL ES 3.0 (GLSL 300 es)
+
+[ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="rlTraceLogLevel"><code>rlTraceLogLevel</code> enum</h2>
+
+**Members**
+
+Name | Value | Description
+-----|-------|------------
+`RL_LOG_ALL` | `0` | Display all logs
+`RL_LOG_TRACE` | `1` | Trace logging, intended for internal use only
+`RL_LOG_DEBUG` | `2` | Debug logging, used for internal debugging, it should be disabled on release builds
+`RL_LOG_INFO` | `3` | Info logging, used for program execution info
+`RL_LOG_WARNING` | `4` | Warning logging, used on recoverable failures
+`RL_LOG_ERROR` | `5` | Error logging, used on unrecoverable failures
+`RL_LOG_FATAL` | `6` | Fatal logging, used to abort program: exit(EXIT_FAILURE)
+`RL_LOG_NONE` | `7` | Disable logging
+
+[ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="rlPixelFormat"><code>rlPixelFormat</code> enum</h2>
+
+**Members**
+
+Name | Value | Description
+-----|-------|------------
+`RL_PIXELFORMAT_UNCOMPRESSED_GRAYSCALE` | `1` | 8 bit per pixel (no alpha)
+`RL_PIXELFORMAT_UNCOMPRESSED_GRAY_ALPHA` | `2` | 8*2 bpp (2 channels)
+`RL_PIXELFORMAT_UNCOMPRESSED_R5G6B5` | `3` | 16 bpp
+`RL_PIXELFORMAT_UNCOMPRESSED_R8G8B8` | `4` | 24 bpp
+`RL_PIXELFORMAT_UNCOMPRESSED_R5G5B5A1` | `5` | 16 bpp (1 bit alpha)
+`RL_PIXELFORMAT_UNCOMPRESSED_R4G4B4A4` | `6` | 16 bpp (4 bit alpha)
+`RL_PIXELFORMAT_UNCOMPRESSED_R8G8B8A8` | `7` | 32 bpp
+`RL_PIXELFORMAT_UNCOMPRESSED_R32` | `8` | 32 bpp (1 channel - float)
+`RL_PIXELFORMAT_UNCOMPRESSED_R32G32B32` | `9` | 32*3 bpp (3 channels - float)
+`RL_PIXELFORMAT_UNCOMPRESSED_R32G32B32A32` | `10` | 32*4 bpp (4 channels - float)
+`RL_PIXELFORMAT_UNCOMPRESSED_R16` | `11` | 16 bpp (1 channel - half float)
+`RL_PIXELFORMAT_UNCOMPRESSED_R16G16B16` | `12` | 16*3 bpp (3 channels - half float)
+`RL_PIXELFORMAT_UNCOMPRESSED_R16G16B16A16` | `13` | 16*4 bpp (4 channels - half float)
+`RL_PIXELFORMAT_COMPRESSED_DXT1_RGB` | `14` | 4 bpp (no alpha)
+`RL_PIXELFORMAT_COMPRESSED_DXT1_RGBA` | `15` | 4 bpp (1 bit alpha)
+`RL_PIXELFORMAT_COMPRESSED_DXT3_RGBA` | `16` | 8 bpp
+`RL_PIXELFORMAT_COMPRESSED_DXT5_RGBA` | `17` | 8 bpp
+`RL_PIXELFORMAT_COMPRESSED_ETC1_RGB` | `18` | 4 bpp
+`RL_PIXELFORMAT_COMPRESSED_ETC2_RGB` | `19` | 4 bpp
+`RL_PIXELFORMAT_COMPRESSED_ETC2_EAC_RGBA` | `20` | 8 bpp
+`RL_PIXELFORMAT_COMPRESSED_PVRT_RGB` | `21` | 4 bpp
+`RL_PIXELFORMAT_COMPRESSED_PVRT_RGBA` | `22` | 4 bpp
+`RL_PIXELFORMAT_COMPRESSED_ASTC_4x4_RGBA` | `23` | 8 bpp
+`RL_PIXELFORMAT_COMPRESSED_ASTC_8x8_RGBA` | `24` | 2 bpp
+
+[ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="rlTextureFilter"><code>rlTextureFilter</code> enum</h2>
+
+**Members**
+
+Name | Value | Description
+-----|-------|------------
+`RL_TEXTURE_FILTER_POINT` | `0` | No filter, just pixel approximation
+`RL_TEXTURE_FILTER_BILINEAR` | `1` | Linear filtering
+`RL_TEXTURE_FILTER_TRILINEAR` | `2` | Trilinear filtering (linear with mipmaps)
+`RL_TEXTURE_FILTER_ANISOTROPIC_4X` | `3` | Anisotropic filtering 4x
+`RL_TEXTURE_FILTER_ANISOTROPIC_8X` | `4` | Anisotropic filtering 8x
+`RL_TEXTURE_FILTER_ANISOTROPIC_16X` | `5` | Anisotropic filtering 16x
+
+[ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="rlBlendMode"><code>rlBlendMode</code> enum</h2>
+
+**Members**
+
+Name | Value | Description
+-----|-------|------------
+`RL_BLEND_ALPHA` | `0` | Blend textures considering alpha (default)
+`RL_BLEND_ADDITIVE` | `1` | Blend textures adding colors
+`RL_BLEND_MULTIPLIED` | `2` | Blend textures multiplying colors
+`RL_BLEND_ADD_COLORS` | `3` | Blend textures adding colors (alternative)
+`RL_BLEND_SUBTRACT_COLORS` | `4` | Blend textures subtracting colors (alternative)
+`RL_BLEND_ALPHA_PREMULTIPLY` | `5` | Blend premultiplied textures considering alpha
+`RL_BLEND_CUSTOM` | `6` | Blend textures using custom src/dst factors (use rlSetBlendFactors())
+`RL_BLEND_CUSTOM_SEPARATE` | `7` | Blend textures using custom src/dst factors (use rlSetBlendFactorsSeparate())
+
+[ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="rlShaderLocationIndex"><code>rlShaderLocationIndex</code> enum</h2>
+
+**Members**
+
+Name | Value | Description
+-----|-------|------------
+`RL_SHADER_LOC_VERTEX_POSITION` | `0` | Shader location: vertex attribute: position
+`RL_SHADER_LOC_VERTEX_TEXCOORD01` | `1` | Shader location: vertex attribute: texcoord01
+`RL_SHADER_LOC_VERTEX_TEXCOORD02` | `2` | Shader location: vertex attribute: texcoord02
+`RL_SHADER_LOC_VERTEX_NORMAL` | `3` | Shader location: vertex attribute: normal
+`RL_SHADER_LOC_VERTEX_TANGENT` | `4` | Shader location: vertex attribute: tangent
+`RL_SHADER_LOC_VERTEX_COLOR` | `5` | Shader location: vertex attribute: color
+`RL_SHADER_LOC_MATRIX_MVP` | `6` | Shader location: matrix uniform: model-view-projection
+`RL_SHADER_LOC_MATRIX_VIEW` | `7` | Shader location: matrix uniform: view (camera transform)
+`RL_SHADER_LOC_MATRIX_PROJECTION` | `8` | Shader location: matrix uniform: projection
+`RL_SHADER_LOC_MATRIX_MODEL` | `9` | Shader location: matrix uniform: model (transform)
+`RL_SHADER_LOC_MATRIX_NORMAL` | `10` | Shader location: matrix uniform: normal
+`RL_SHADER_LOC_VECTOR_VIEW` | `11` | Shader location: vector uniform: view
+`RL_SHADER_LOC_COLOR_DIFFUSE` | `12` | Shader location: vector uniform: diffuse color
+`RL_SHADER_LOC_COLOR_SPECULAR` | `13` | Shader location: vector uniform: specular color
+`RL_SHADER_LOC_COLOR_AMBIENT` | `14` | Shader location: vector uniform: ambient color
+`RL_SHADER_LOC_MAP_ALBEDO` | `15` | Shader location: sampler2d texture: albedo (same as: RL_SHADER_LOC_MAP_DIFFUSE)
+`RL_SHADER_LOC_MAP_METALNESS` | `16` | Shader location: sampler2d texture: metalness (same as: RL_SHADER_LOC_MAP_SPECULAR)
+`RL_SHADER_LOC_MAP_NORMAL` | `17` | Shader location: sampler2d texture: normal
+`RL_SHADER_LOC_MAP_ROUGHNESS` | `18` | Shader location: sampler2d texture: roughness
+`RL_SHADER_LOC_MAP_OCCLUSION` | `19` | Shader location: sampler2d texture: occlusion
+`RL_SHADER_LOC_MAP_EMISSION` | `20` | Shader location: sampler2d texture: emission
+`RL_SHADER_LOC_MAP_HEIGHT` | `21` | Shader location: sampler2d texture: height
+`RL_SHADER_LOC_MAP_CUBEMAP` | `22` | Shader location: samplerCube texture: cubemap
+`RL_SHADER_LOC_MAP_IRRADIANCE` | `23` | Shader location: samplerCube texture: irradiance
+`RL_SHADER_LOC_MAP_PREFILTER` | `24` | Shader location: samplerCube texture: prefilter
+`RL_SHADER_LOC_MAP_BRDF` | `25` | Shader location: sampler2d texture: brdf
+
+[ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="rlShaderUniformDataType"><code>rlShaderUniformDataType</code> enum</h2>
+
+**Members**
+
+Name | Value | Description
+-----|-------|------------
+`RL_SHADER_UNIFORM_FLOAT` | `0` | Shader uniform type: float
+`RL_SHADER_UNIFORM_VEC2` | `1` | Shader uniform type: vec2 (2 float)
+`RL_SHADER_UNIFORM_VEC3` | `2` | Shader uniform type: vec3 (3 float)
+`RL_SHADER_UNIFORM_VEC4` | `3` | Shader uniform type: vec4 (4 float)
+`RL_SHADER_UNIFORM_INT` | `4` | Shader uniform type: int
+`RL_SHADER_UNIFORM_IVEC2` | `5` | Shader uniform type: ivec2 (2 int)
+`RL_SHADER_UNIFORM_IVEC3` | `6` | Shader uniform type: ivec3 (3 int)
+`RL_SHADER_UNIFORM_IVEC4` | `7` | Shader uniform type: ivec4 (4 int)
+`RL_SHADER_UNIFORM_SAMPLER2D` | `8` | Shader uniform type: sampler2d
+
+[ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="rlShaderAttributeDataType"><code>rlShaderAttributeDataType</code> enum</h2>
+
+**Members**
+
+Name | Value | Description
+-----|-------|------------
+`RL_SHADER_ATTRIB_FLOAT` | `0` | Shader attribute type: float
+`RL_SHADER_ATTRIB_VEC2` | `1` | Shader attribute type: vec2 (2 float)
+`RL_SHADER_ATTRIB_VEC3` | `2` | Shader attribute type: vec3 (3 float)
+`RL_SHADER_ATTRIB_VEC4` | `3` | Shader attribute type: vec4 (4 float)
+
+[ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="rlFramebufferAttachType"><code>rlFramebufferAttachType</code> enum</h2>
+
+**Members**
+
+Name | Value | Description
+-----|-------|------------
+`RL_ATTACHMENT_COLOR_CHANNEL0` | `0` | Framebuffer attachment type: color 0
+`RL_ATTACHMENT_COLOR_CHANNEL1` | `1` | Framebuffer attachment type: color 1
+`RL_ATTACHMENT_COLOR_CHANNEL2` | `2` | Framebuffer attachment type: color 2
+`RL_ATTACHMENT_COLOR_CHANNEL3` | `3` | Framebuffer attachment type: color 3
+`RL_ATTACHMENT_COLOR_CHANNEL4` | `4` | Framebuffer attachment type: color 4
+`RL_ATTACHMENT_COLOR_CHANNEL5` | `5` | Framebuffer attachment type: color 5
+`RL_ATTACHMENT_COLOR_CHANNEL6` | `6` | Framebuffer attachment type: color 6
+`RL_ATTACHMENT_COLOR_CHANNEL7` | `7` | Framebuffer attachment type: color 7
+`RL_ATTACHMENT_DEPTH` | `100` | Framebuffer attachment type: depth
+`RL_ATTACHMENT_STENCIL` | `200` | Framebuffer attachment type: stencil
+
+[ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="rlFramebufferAttachTextureType"><code>rlFramebufferAttachTextureType</code> enum</h2>
+
+**Members**
+
+Name | Value | Description
+-----|-------|------------
+`RL_ATTACHMENT_CUBEMAP_POSITIVE_X` | `0` | Framebuffer texture attachment type: cubemap, +X side
+`RL_ATTACHMENT_CUBEMAP_NEGATIVE_X` | `1` | Framebuffer texture attachment type: cubemap, -X side
+`RL_ATTACHMENT_CUBEMAP_POSITIVE_Y` | `2` | Framebuffer texture attachment type: cubemap, +Y side
+`RL_ATTACHMENT_CUBEMAP_NEGATIVE_Y` | `3` | Framebuffer texture attachment type: cubemap, -Y side
+`RL_ATTACHMENT_CUBEMAP_POSITIVE_Z` | `4` | Framebuffer texture attachment type: cubemap, +Z side
+`RL_ATTACHMENT_CUBEMAP_NEGATIVE_Z` | `5` | Framebuffer texture attachment type: cubemap, -Z side
+`RL_ATTACHMENT_TEXTURE2D` | `100` | Framebuffer texture attachment type: texture2d
+`RL_ATTACHMENT_RENDERBUFFER` | `200` | Framebuffer texture attachment type: renderbuffer
+
+[ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="rlCullMode"><code>rlCullMode</code> enum</h2>
+
+**Members**
+
+Name | Value | Description
+-----|-------|------------
+`RL_CULL_FACE_FRONT` | `0` | 
+`RL_CULL_FACE_BACK` | `1` | 
+
+[ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
+
+---
 <h2 id="structs">Structures</h2>
 
 Item|Item|Item|Item|Item
 --------|--------|--------|--------|--------
-<a href="#AudioStream">AudioStream</a> | <a href="#BoneInfo">BoneInfo</a> | <a href="#BoundingBox">BoundingBox</a> | <a href="#Camera2D">Camera2D</a> | <a href="#Camera3D">Camera3D</a>
-<a href="#Color">Color</a> | <a href="#FilePathList">FilePathList</a> | <a href="#Font">Font</a> | <a href="#GlyphInfo">GlyphInfo</a> | <a href="#Image">Image</a>
-<a href="#Material">Material</a> | <a href="#MaterialMap">MaterialMap</a> | <a href="#Matrix">Matrix</a> | <a href="#Mesh">Mesh</a> | <a href="#Model">Model</a>
-<a href="#ModelAnimation">ModelAnimation</a> | <a href="#Music">Music</a> | <a href="#NPatchInfo">NPatchInfo</a> | <a href="#Ray">Ray</a> | <a href="#RayCollision">RayCollision</a>
-<a href="#Rectangle">Rectangle</a> | <a href="#RenderTexture">RenderTexture</a> | <a href="#Shader">Shader</a> | <a href="#Sound">Sound</a> | <a href="#Texture">Texture</a>
-<a href="#Transform">Transform</a> | <a href="#Vector2">Vector2</a> | <a href="#Vector3">Vector3</a> | <a href="#Vector4">Vector4</a> | <a href="#VrDeviceInfo">VrDeviceInfo</a>
-<a href="#VrStereoConfig">VrStereoConfig</a> | <a href="#Wave">Wave</a> | <a href="#float16">float16</a> | <a href="#float3">float3</a> | <a href="#rlDrawCall">rlDrawCall</a>
-<a href="#rlRenderBatch">rlRenderBatch</a> | <a href="#rlVertexBuffer">rlVertexBuffer</a>
+<a href="#AudioStream">AudioStream</a> | <a href="#AutomationEvent">AutomationEvent</a> | <a href="#AutomationEventList">AutomationEventList</a> | <a href="#BoneInfo">BoneInfo</a> | <a href="#BoundingBox">BoundingBox</a>
+<a href="#Camera2D">Camera2D</a> | <a href="#Camera3D">Camera3D</a> | <a href="#Color">Color</a> | <a href="#FilePathList">FilePathList</a> | <a href="#Font">Font</a>
+<a href="#GlyphInfo">GlyphInfo</a> | <a href="#Image">Image</a> | <a href="#Material">Material</a> | <a href="#MaterialMap">MaterialMap</a> | <a href="#Matrix">Matrix</a>
+<a href="#Mesh">Mesh</a> | <a href="#Model">Model</a> | <a href="#ModelAnimation">ModelAnimation</a> | <a href="#Music">Music</a> | <a href="#NPatchInfo">NPatchInfo</a>
+<a href="#Ray">Ray</a> | <a href="#RayCollision">RayCollision</a> | <a href="#Rectangle">Rectangle</a> | <a href="#RenderTexture">RenderTexture</a> | <a href="#Shader">Shader</a>
+<a href="#Sound">Sound</a> | <a href="#Texture">Texture</a> | <a href="#Transform">Transform</a> | <a href="#Vector2">Vector2</a> | <a href="#Vector3">Vector3</a>
+<a href="#Vector4">Vector4</a> | <a href="#VrDeviceInfo">VrDeviceInfo</a> | <a href="#VrStereoConfig">VrStereoConfig</a> | <a href="#Wave">Wave</a> | <a href="#float16">float16</a>
+<a href="#float3">float3</a> | <a href="#rlDrawCall">rlDrawCall</a> | <a href="#rlRenderBatch">rlRenderBatch</a> | <a href="#rlVertexBuffer">rlVertexBuffer</a>
 
 [ <a href="#toc">ToC</a> ]
 <h2 id="Vector2"><code>Vector2</code> structure</h2>
@@ -259,8 +1002,8 @@ Bound as | Name | API
 *classmethod* | `.rotate_zyx(cls, angle)` | <a href="#MatrixRotateZYX"><code>matrix_rotate_zyx</code></a>
 *classmethod* | `.scale(cls, x, y, z)` | <a href="#MatrixScale"><code>matrix_scale</code></a>
 *classmethod* | `.frustum(cls, left, right, bottom, top, near, far)` | <a href="#MatrixFrustum"><code>matrix_frustum</code></a>
-*classmethod* | `.perspective(cls, fovy, aspect, near, far)` | <a href="#MatrixPerspective"><code>matrix_perspective</code></a>
-*classmethod* | `.ortho(cls, left, right, bottom, top, near, far)` | <a href="#MatrixOrtho"><code>matrix_ortho</code></a>
+*classmethod* | `.perspective(cls, fov_y, aspect, near_plane, far_plane)` | <a href="#MatrixPerspective"><code>matrix_perspective</code></a>
+*classmethod* | `.ortho(cls, left, right, bottom, top, near_plane, far_plane)` | <a href="#MatrixOrtho"><code>matrix_ortho</code></a>
 *classmethod* | `.look_at(cls, eye, target, up)` | <a href="#MatrixLookAt"><code>matrix_look_at</code></a>
 *method* | `.determinant(self)` | <a href="#MatrixDeterminant"><code>matrix_determinant</code></a>
 *method* | `.trace(self)` | <a href="#MatrixTrace"><code>matrix_trace</code></a>
@@ -376,8 +1119,6 @@ Bound as | Name | API
 *classmethod* | `.load_from_texture(cls, texture)` | <a href="#LoadImageFromTexture"><code>load_image_from_texture</code></a>
 *classmethod* | `.load_from_screen()` | <a href="#LoadImageFromScreen"><code>load_image_from_screen</code></a>
 *classmethod* | `.gen_color(cls, width, height, color)` | <a href="#GenImageColor"><code>gen_image_color</code></a>
-*classmethod* | `.gen_gradient_h(cls, width, height, left, right)` | <a href="#GenImageGradientH"><code>gen_image_gradient_h</code></a>
-*classmethod* | `.gen_gradient_v(cls, width, height, top, bottom)` | <a href="#GenImageGradientV"><code>gen_image_gradient_v</code></a>
 *classmethod* | `.gen_gradient_radial(cls, width, height, density, inner, outer)` | <a href="#GenImageGradientRadial"><code>gen_image_gradient_radial</code></a>
 *classmethod* | `.gen_checked(cls, width, height, checks_x, checks_y, col1, col2)` | <a href="#GenImageChecked"><code>gen_image_checked</code></a>
 *classmethod* | `.gen_white_noise(cls, width, height, factor)` | <a href="#GenImageWhiteNoise"><code>gen_image_white_noise</code></a>
@@ -599,18 +1340,18 @@ Name | API
 
 Bound as | Name | API
 ---------|------|----
-*staticmethod* | `.load_data(file_data, data_size, font_size, font_chars, glyph_count, type)` | <a href="#LoadFontData"><code>load_font_data</code></a>
-*staticmethod* | `.unload_data(chars, glyph_count)` | <a href="#UnloadFontData"><code>unload_font_data</code></a>
+*staticmethod* | `.load_data(file_data, data_size, font_size, codepoints, codepoint_count, type)` | <a href="#LoadFontData"><code>load_font_data</code></a>
+*staticmethod* | `.unload_data(glyphs, glyph_count)` | <a href="#UnloadFontData"><code>unload_font_data</code></a>
 *classmethod* | `.array_of(cls, font_sequence)` | *n/a*
 *classmethod* | `.load(cls, file_name)` | <a href="#LoadFont"><code>load_font</code></a>
-*classmethod* | `.load_ex(cls, file_name, font_size, font_chars, glyph_count)` | <a href="#LoadFontEx"><code>load_font_ex</code></a>
+*classmethod* | `.load_ex(cls, file_name, font_size, codepoints, codepoint_count)` | <a href="#LoadFontEx"><code>load_font_ex</code></a>
 *classmethod* | `.load_from_image(cls, image, key, first_char)` | <a href="#LoadFontFromImage"><code>load_font_from_image</code></a>
-*classmethod* | `.load_from_memory(cls, file_type, file_data, data_size, font_size, font_chars, glyph_count)` | <a href="#LoadFontFromMemory"><code>load_font_from_memory</code></a>
+*classmethod* | `.load_from_memory(cls, file_type, file_data, data_size, font_size, codepoints, codepoint_count)` | <a href="#LoadFontFromMemory"><code>load_font_from_memory</code></a>
 *method* | `.unload(self)` | <a href="#UnloadFont"><code>unload_font</code></a>
 *method* | `.draw_text_ex(self, text, position, font_size, spacing, tint)` | <a href="#DrawTextEx"><code>draw_text_ex</code></a>
 *method* | `.draw_text_pro(self, text, position, origin, rotation, font_size, spacing, tint)` | <a href="#DrawTextPro"><code>draw_text_pro</code></a>
 *method* | `.draw_text_codepoint(self, codepoint, position, font_size, tint)` | <a href="#DrawTextCodepoint"><code>draw_text_codepoint</code></a>
-*method* | `.draw_text_codepoints(self, codepoints, position, font_size, spacing, tint)` | <a href="#DrawTextCodepoints"><code>draw_text_codepoints</code></a>
+*method* | `.draw_text_codepoints(self, codepoints, codepoint_count, position, font_size, spacing, tint)` | <a href="#DrawTextCodepoints"><code>draw_text_codepoints</code></a>
 *method* | `.measure_text_ex(self, text, font_size, spacing)` | <a href="#MeasureTextEx"><code>measure_text_ex</code></a>
 *method* | `.get_glyph_index(self, codepoint)` | <a href="#GetGlyphIndex"><code>get_glyph_index</code></a>
 *method* | `.get_glyph_info(self, codepoint)` | <a href="#GetGlyphInfo"><code>get_glyph_info</code></a>
@@ -979,6 +1720,7 @@ Name | Type (Python) | Type (Ctypes) | Type (C) | Description
 `frame_count` | `int` | `Int` | `int` | Number of animation frames
 `bones` | `BoneInfoPtr` | `BoneInfoPtr` | `BoneInfo *` | Bones information (skeleton)
 `frame_poses` | `TransformPtr` | `TransformPtr` | `Transform **` | Poses array by frame
+`name` | `str` | `CharPtr` | `char[32]` | Animation name
 
 ### Properties
 
@@ -1366,6 +2108,64 @@ Bound as | Name | API
 [ <a href="#structs">Structs</a> | <a href="#toc">ToC</a> ]
 
 ---
+<h2 id="AutomationEvent"><code>AutomationEvent</code> structure</h2>
+
+Automation event
+
+**Fields**
+
+Name | Type (Python) | Type (Ctypes) | Type (C) | Description
+-----|---------------|---------------|----------|------------
+`frame` | `int` | `UInt` | `unsigned int` | Event frame
+`type` | `int` | `UInt` | `unsigned int` | Event type (AutomationEventType)
+`params` | `Seq[int]` | `Int * 4` | `int[4]` | Event parameters (if required)
+
+### Properties
+
+Name | API
+-----|----
+`.byref` | *n/a*
+
+### Methods
+
+Bound as | Name | API
+---------|------|----
+*classmethod* | `.array_of(cls, automation_event_sequence)` | *n/a*
+
+
+
+[ <a href="#structs">Structs</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="AutomationEventList"><code>AutomationEventList</code> structure</h2>
+
+Automation event list
+
+**Fields**
+
+Name | Type (Python) | Type (Ctypes) | Type (C) | Description
+-----|---------------|---------------|----------|------------
+`capacity` | `int` | `UInt` | `unsigned int` | Events max entries (MAX_AUTOMATION_EVENTS)
+`count` | `int` | `UInt` | `unsigned int` | Events entries count
+`events` | `AutomationEventPtr` | `AutomationEventPtr` | `AutomationEvent *` | Events entries
+
+### Properties
+
+Name | API
+-----|----
+`.byref` | *n/a*
+
+### Methods
+
+Bound as | Name | API
+---------|------|----
+*classmethod* | `.array_of(cls, automation_event_list_sequence)` | *n/a*
+
+
+
+[ <a href="#structs">Structs</a> | <a href="#toc">ToC</a> ]
+
+---
 <h2 id="float3"><code>float3</code> structure</h2>
 
 NOTE: Helper types to be used instead of array return types for *ToFloat functions
@@ -1528,749 +2328,14 @@ Alias Name | Type | Description
 
 [ <a href="#toc">ToC</a> ]
 
-<h2 id="enums">Enumerations</h2>
-
-Item|Item|Item|Item|Item
---------|--------|--------|--------|--------
-<a href="#BlendMode">BlendMode</a> | <a href="#CameraMode">CameraMode</a> | <a href="#CameraProjection">CameraProjection</a> | <a href="#ConfigFlags">ConfigFlags</a> | <a href="#CubemapLayout">CubemapLayout</a>
-<a href="#FontType">FontType</a> | <a href="#GamepadAxis">GamepadAxis</a> | <a href="#GamepadButton">GamepadButton</a> | <a href="#Gesture">Gesture</a> | <a href="#KeyboardKey">KeyboardKey</a>
-<a href="#MaterialMapIndex">MaterialMapIndex</a> | <a href="#MouseButton">MouseButton</a> | <a href="#MouseCursor">MouseCursor</a> | <a href="#NPatchLayout">NPatchLayout</a> | <a href="#PixelFormat">PixelFormat</a>
-<a href="#ShaderAttributeDataType">ShaderAttributeDataType</a> | <a href="#ShaderLocationIndex">ShaderLocationIndex</a> | <a href="#ShaderUniformDataType">ShaderUniformDataType</a> | <a href="#TextureFilter">TextureFilter</a> | <a href="#TextureWrap">TextureWrap</a>
-<a href="#TraceLogLevel">TraceLogLevel</a> | <a href="#rlBlendMode">rlBlendMode</a> | <a href="#rlCullMode">rlCullMode</a> | <a href="#rlFramebufferAttachTextureType">rlFramebufferAttachTextureType</a> | <a href="#rlFramebufferAttachType">rlFramebufferAttachType</a>
-<a href="#rlGlVersion">rlGlVersion</a> | <a href="#rlPixelFormat">rlPixelFormat</a> | <a href="#rlShaderAttributeDataType">rlShaderAttributeDataType</a> | <a href="#rlShaderLocationIndex">rlShaderLocationIndex</a> | <a href="#rlShaderUniformDataType">rlShaderUniformDataType</a>
-<a href="#rlTextureFilter">rlTextureFilter</a> | <a href="#rlTraceLogLevel">rlTraceLogLevel</a>
-
-[ <a href="#toc">ToC</a> ]
-
-<h2 id="ConfigFlags"><code>ConfigFlags</code> enum</h2>
-
-**Members**
-
-Name | Value | Description
------|-------|------------
-`FLAG_VSYNC_HINT` | `64` | Set to try enabling V-Sync on GPU
-`FLAG_FULLSCREEN_MODE` | `2` | Set to run program in fullscreen
-`FLAG_WINDOW_RESIZABLE` | `4` | Set to allow resizable window
-`FLAG_WINDOW_UNDECORATED` | `8` | Set to disable window decoration (frame and buttons)
-`FLAG_WINDOW_HIDDEN` | `128` | Set to hide window
-`FLAG_WINDOW_MINIMIZED` | `512` | Set to minimize window (iconify)
-`FLAG_WINDOW_MAXIMIZED` | `1024` | Set to maximize window (expanded to monitor)
-`FLAG_WINDOW_UNFOCUSED` | `2048` | Set to window non focused
-`FLAG_WINDOW_TOPMOST` | `4096` | Set to window always on top
-`FLAG_WINDOW_ALWAYS_RUN` | `256` | Set to allow windows running while minimized
-`FLAG_WINDOW_TRANSPARENT` | `16` | Set to allow transparent framebuffer
-`FLAG_WINDOW_HIGHDPI` | `8192` | Set to support HighDPI
-`FLAG_WINDOW_MOUSE_PASSTHROUGH` | `16384` | Set to support mouse passthrough, only supported when FLAG_WINDOW_UNDECORATED
-`FLAG_MSAA_4X_HINT` | `32` | Set to try enabling MSAA 4X
-`FLAG_INTERLACED_HINT` | `65536` | Set to try enabling interlaced video format (for V3D)
-
-[ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
-
----
-<h2 id="TraceLogLevel"><code>TraceLogLevel</code> enum</h2>
-
-**Members**
-
-Name | Value | Description
------|-------|------------
-`LOG_ALL` | `0` | Display all logs
-`LOG_TRACE` | `1` | Trace logging, intended for internal use only
-`LOG_DEBUG` | `2` | Debug logging, used for internal debugging, it should be disabled on release builds
-`LOG_INFO` | `3` | Info logging, used for program execution info
-`LOG_WARNING` | `4` | Warning logging, used on recoverable failures
-`LOG_ERROR` | `5` | Error logging, used on unrecoverable failures
-`LOG_FATAL` | `6` | Fatal logging, used to abort program: exit(EXIT_FAILURE)
-`LOG_NONE` | `7` | Disable logging
-
-[ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
-
----
-<h2 id="KeyboardKey"><code>KeyboardKey</code> enum</h2>
-
-**Members**
-
-Name | Value | Description
------|-------|------------
-`KEY_NULL` | `0` | Key: NULL, used for no key pressed
-`KEY_APOSTROPHE` | `39` | Key: '
-`KEY_COMMA` | `44` | Key: ,
-`KEY_MINUS` | `45` | Key: -
-`KEY_PERIOD` | `46` | Key: .
-`KEY_SLASH` | `47` | Key: /
-`KEY_ZERO` | `48` | Key: 0
-`KEY_ONE` | `49` | Key: 1
-`KEY_TWO` | `50` | Key: 2
-`KEY_THREE` | `51` | Key: 3
-`KEY_FOUR` | `52` | Key: 4
-`KEY_FIVE` | `53` | Key: 5
-`KEY_SIX` | `54` | Key: 6
-`KEY_SEVEN` | `55` | Key: 7
-`KEY_EIGHT` | `56` | Key: 8
-`KEY_NINE` | `57` | Key: 9
-`KEY_SEMICOLON` | `59` | Key: ;
-`KEY_EQUAL` | `61` | Key: =
-`KEY_A` | `65` | Key: A | a
-`KEY_B` | `66` | Key: B | b
-`KEY_C` | `67` | Key: C | c
-`KEY_D` | `68` | Key: D | d
-`KEY_E` | `69` | Key: E | e
-`KEY_F` | `70` | Key: F | f
-`KEY_G` | `71` | Key: G | g
-`KEY_H` | `72` | Key: H | h
-`KEY_I` | `73` | Key: I | i
-`KEY_J` | `74` | Key: J | j
-`KEY_K` | `75` | Key: K | k
-`KEY_L` | `76` | Key: L | l
-`KEY_M` | `77` | Key: M | m
-`KEY_N` | `78` | Key: N | n
-`KEY_O` | `79` | Key: O | o
-`KEY_P` | `80` | Key: P | p
-`KEY_Q` | `81` | Key: Q | q
-`KEY_R` | `82` | Key: R | r
-`KEY_S` | `83` | Key: S | s
-`KEY_T` | `84` | Key: T | t
-`KEY_U` | `85` | Key: U | u
-`KEY_V` | `86` | Key: V | v
-`KEY_W` | `87` | Key: W | w
-`KEY_X` | `88` | Key: X | x
-`KEY_Y` | `89` | Key: Y | y
-`KEY_Z` | `90` | Key: Z | z
-`KEY_LEFT_BRACKET` | `91` | Key: [
-`KEY_BACKSLASH` | `92` | Key: '\'
-`KEY_RIGHT_BRACKET` | `93` | Key: ]
-`KEY_GRAVE` | `96` | Key: `
-`KEY_SPACE` | `32` | Key: Space
-`KEY_ESCAPE` | `256` | Key: Esc
-`KEY_ENTER` | `257` | Key: Enter
-`KEY_TAB` | `258` | Key: Tab
-`KEY_BACKSPACE` | `259` | Key: Backspace
-`KEY_INSERT` | `260` | Key: Ins
-`KEY_DELETE` | `261` | Key: Del
-`KEY_RIGHT` | `262` | Key: Cursor right
-`KEY_LEFT` | `263` | Key: Cursor left
-`KEY_DOWN` | `264` | Key: Cursor down
-`KEY_UP` | `265` | Key: Cursor up
-`KEY_PAGE_UP` | `266` | Key: Page up
-`KEY_PAGE_DOWN` | `267` | Key: Page down
-`KEY_HOME` | `268` | Key: Home
-`KEY_END` | `269` | Key: End
-`KEY_CAPS_LOCK` | `280` | Key: Caps lock
-`KEY_SCROLL_LOCK` | `281` | Key: Scroll down
-`KEY_NUM_LOCK` | `282` | Key: Num lock
-`KEY_PRINT_SCREEN` | `283` | Key: Print screen
-`KEY_PAUSE` | `284` | Key: Pause
-`KEY_F1` | `290` | Key: F1
-`KEY_F2` | `291` | Key: F2
-`KEY_F3` | `292` | Key: F3
-`KEY_F4` | `293` | Key: F4
-`KEY_F5` | `294` | Key: F5
-`KEY_F6` | `295` | Key: F6
-`KEY_F7` | `296` | Key: F7
-`KEY_F8` | `297` | Key: F8
-`KEY_F9` | `298` | Key: F9
-`KEY_F10` | `299` | Key: F10
-`KEY_F11` | `300` | Key: F11
-`KEY_F12` | `301` | Key: F12
-`KEY_LEFT_SHIFT` | `340` | Key: Shift left
-`KEY_LEFT_CONTROL` | `341` | Key: Control left
-`KEY_LEFT_ALT` | `342` | Key: Alt left
-`KEY_LEFT_SUPER` | `343` | Key: Super left
-`KEY_RIGHT_SHIFT` | `344` | Key: Shift right
-`KEY_RIGHT_CONTROL` | `345` | Key: Control right
-`KEY_RIGHT_ALT` | `346` | Key: Alt right
-`KEY_RIGHT_SUPER` | `347` | Key: Super right
-`KEY_KB_MENU` | `348` | Key: KB menu
-`KEY_KP_0` | `320` | Key: Keypad 0
-`KEY_KP_1` | `321` | Key: Keypad 1
-`KEY_KP_2` | `322` | Key: Keypad 2
-`KEY_KP_3` | `323` | Key: Keypad 3
-`KEY_KP_4` | `324` | Key: Keypad 4
-`KEY_KP_5` | `325` | Key: Keypad 5
-`KEY_KP_6` | `326` | Key: Keypad 6
-`KEY_KP_7` | `327` | Key: Keypad 7
-`KEY_KP_8` | `328` | Key: Keypad 8
-`KEY_KP_9` | `329` | Key: Keypad 9
-`KEY_KP_DECIMAL` | `330` | Key: Keypad .
-`KEY_KP_DIVIDE` | `331` | Key: Keypad /
-`KEY_KP_MULTIPLY` | `332` | Key: Keypad *
-`KEY_KP_SUBTRACT` | `333` | Key: Keypad -
-`KEY_KP_ADD` | `334` | Key: Keypad +
-`KEY_KP_ENTER` | `335` | Key: Keypad Enter
-`KEY_KP_EQUAL` | `336` | Key: Keypad =
-`KEY_BACK` | `4` | Key: Android back button
-`KEY_MENU` | `82` | Key: Android menu button
-`KEY_VOLUME_UP` | `24` | Key: Android volume up button
-`KEY_VOLUME_DOWN` | `25` | Key: Android volume down button
-
-[ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
-
----
-<h2 id="MouseButton"><code>MouseButton</code> enum</h2>
-
-**Members**
-
-Name | Value | Description
------|-------|------------
-`MOUSE_BUTTON_LEFT` | `0` | Mouse button left
-`MOUSE_BUTTON_RIGHT` | `1` | Mouse button right
-`MOUSE_BUTTON_MIDDLE` | `2` | Mouse button middle (pressed wheel)
-`MOUSE_BUTTON_SIDE` | `3` | Mouse button side (advanced mouse device)
-`MOUSE_BUTTON_EXTRA` | `4` | Mouse button extra (advanced mouse device)
-`MOUSE_BUTTON_FORWARD` | `5` | Mouse button forward (advanced mouse device)
-`MOUSE_BUTTON_BACK` | `6` | Mouse button back (advanced mouse device)
-
-[ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
-
----
-<h2 id="MouseCursor"><code>MouseCursor</code> enum</h2>
-
-**Members**
-
-Name | Value | Description
------|-------|------------
-`MOUSE_CURSOR_DEFAULT` | `0` | Default pointer shape
-`MOUSE_CURSOR_ARROW` | `1` | Arrow shape
-`MOUSE_CURSOR_IBEAM` | `2` | Text writing cursor shape
-`MOUSE_CURSOR_CROSSHAIR` | `3` | Cross shape
-`MOUSE_CURSOR_POINTING_HAND` | `4` | Pointing hand cursor
-`MOUSE_CURSOR_RESIZE_EW` | `5` | Horizontal resize/move arrow shape
-`MOUSE_CURSOR_RESIZE_NS` | `6` | Vertical resize/move arrow shape
-`MOUSE_CURSOR_RESIZE_NWSE` | `7` | Top-left to bottom-right diagonal resize/move arrow shape
-`MOUSE_CURSOR_RESIZE_NESW` | `8` | The top-right to bottom-left diagonal resize/move arrow shape
-`MOUSE_CURSOR_RESIZE_ALL` | `9` | The omnidirectional resize/move cursor shape
-`MOUSE_CURSOR_NOT_ALLOWED` | `10` | The operation-not-allowed shape
-
-[ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
-
----
-<h2 id="GamepadButton"><code>GamepadButton</code> enum</h2>
-
-**Members**
-
-Name | Value | Description
------|-------|------------
-`GAMEPAD_BUTTON_UNKNOWN` | `0` | Unknown button, just for error checking
-`GAMEPAD_BUTTON_LEFT_FACE_UP` | `1` | Gamepad left DPAD up button
-`GAMEPAD_BUTTON_LEFT_FACE_RIGHT` | `2` | Gamepad left DPAD right button
-`GAMEPAD_BUTTON_LEFT_FACE_DOWN` | `3` | Gamepad left DPAD down button
-`GAMEPAD_BUTTON_LEFT_FACE_LEFT` | `4` | Gamepad left DPAD left button
-`GAMEPAD_BUTTON_RIGHT_FACE_UP` | `5` | Gamepad right button up (i.e. PS3: Triangle, Xbox: Y)
-`GAMEPAD_BUTTON_RIGHT_FACE_RIGHT` | `6` | Gamepad right button right (i.e. PS3: Square, Xbox: X)
-`GAMEPAD_BUTTON_RIGHT_FACE_DOWN` | `7` | Gamepad right button down (i.e. PS3: Cross, Xbox: A)
-`GAMEPAD_BUTTON_RIGHT_FACE_LEFT` | `8` | Gamepad right button left (i.e. PS3: Circle, Xbox: B)
-`GAMEPAD_BUTTON_LEFT_TRIGGER_1` | `9` | Gamepad top/back trigger left (first), it could be a trailing button
-`GAMEPAD_BUTTON_LEFT_TRIGGER_2` | `10` | Gamepad top/back trigger left (second), it could be a trailing button
-`GAMEPAD_BUTTON_RIGHT_TRIGGER_1` | `11` | Gamepad top/back trigger right (one), it could be a trailing button
-`GAMEPAD_BUTTON_RIGHT_TRIGGER_2` | `12` | Gamepad top/back trigger right (second), it could be a trailing button
-`GAMEPAD_BUTTON_MIDDLE_LEFT` | `13` | Gamepad center buttons, left one (i.e. PS3: Select)
-`GAMEPAD_BUTTON_MIDDLE` | `14` | Gamepad center buttons, middle one (i.e. PS3: PS, Xbox: XBOX)
-`GAMEPAD_BUTTON_MIDDLE_RIGHT` | `15` | Gamepad center buttons, right one (i.e. PS3: Start)
-`GAMEPAD_BUTTON_LEFT_THUMB` | `16` | Gamepad joystick pressed button left
-`GAMEPAD_BUTTON_RIGHT_THUMB` | `17` | Gamepad joystick pressed button right
-
-[ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
-
----
-<h2 id="GamepadAxis"><code>GamepadAxis</code> enum</h2>
-
-**Members**
-
-Name | Value | Description
------|-------|------------
-`GAMEPAD_AXIS_LEFT_X` | `0` | Gamepad left stick X axis
-`GAMEPAD_AXIS_LEFT_Y` | `1` | Gamepad left stick Y axis
-`GAMEPAD_AXIS_RIGHT_X` | `2` | Gamepad right stick X axis
-`GAMEPAD_AXIS_RIGHT_Y` | `3` | Gamepad right stick Y axis
-`GAMEPAD_AXIS_LEFT_TRIGGER` | `4` | Gamepad back trigger left, pressure level: [1..-1]
-`GAMEPAD_AXIS_RIGHT_TRIGGER` | `5` | Gamepad back trigger right, pressure level: [1..-1]
-
-[ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
-
----
-<h2 id="MaterialMapIndex"><code>MaterialMapIndex</code> enum</h2>
-
-**Members**
-
-Name | Value | Description
------|-------|------------
-`MATERIAL_MAP_ALBEDO` | `0` | Albedo material (same as: MATERIAL_MAP_DIFFUSE)
-`MATERIAL_MAP_METALNESS` | `1` | Metalness material (same as: MATERIAL_MAP_SPECULAR)
-`MATERIAL_MAP_NORMAL` | `2` | Normal material
-`MATERIAL_MAP_ROUGHNESS` | `3` | Roughness material
-`MATERIAL_MAP_OCCLUSION` | `4` | Ambient occlusion material
-`MATERIAL_MAP_EMISSION` | `5` | Emission material
-`MATERIAL_MAP_HEIGHT` | `6` | Heightmap material
-`MATERIAL_MAP_CUBEMAP` | `7` | Cubemap material (NOTE: Uses GL_TEXTURE_CUBE_MAP)
-`MATERIAL_MAP_IRRADIANCE` | `8` | Irradiance material (NOTE: Uses GL_TEXTURE_CUBE_MAP)
-`MATERIAL_MAP_PREFILTER` | `9` | Prefilter material (NOTE: Uses GL_TEXTURE_CUBE_MAP)
-`MATERIAL_MAP_BRDF` | `10` | Brdf material
-
-[ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
-
----
-<h2 id="ShaderLocationIndex"><code>ShaderLocationIndex</code> enum</h2>
-
-**Members**
-
-Name | Value | Description
------|-------|------------
-`SHADER_LOC_VERTEX_POSITION` | `0` | Shader location: vertex attribute: position
-`SHADER_LOC_VERTEX_TEXCOORD01` | `1` | Shader location: vertex attribute: texcoord01
-`SHADER_LOC_VERTEX_TEXCOORD02` | `2` | Shader location: vertex attribute: texcoord02
-`SHADER_LOC_VERTEX_NORMAL` | `3` | Shader location: vertex attribute: normal
-`SHADER_LOC_VERTEX_TANGENT` | `4` | Shader location: vertex attribute: tangent
-`SHADER_LOC_VERTEX_COLOR` | `5` | Shader location: vertex attribute: color
-`SHADER_LOC_MATRIX_MVP` | `6` | Shader location: matrix uniform: model-view-projection
-`SHADER_LOC_MATRIX_VIEW` | `7` | Shader location: matrix uniform: view (camera transform)
-`SHADER_LOC_MATRIX_PROJECTION` | `8` | Shader location: matrix uniform: projection
-`SHADER_LOC_MATRIX_MODEL` | `9` | Shader location: matrix uniform: model (transform)
-`SHADER_LOC_MATRIX_NORMAL` | `10` | Shader location: matrix uniform: normal
-`SHADER_LOC_VECTOR_VIEW` | `11` | Shader location: vector uniform: view
-`SHADER_LOC_COLOR_DIFFUSE` | `12` | Shader location: vector uniform: diffuse color
-`SHADER_LOC_COLOR_SPECULAR` | `13` | Shader location: vector uniform: specular color
-`SHADER_LOC_COLOR_AMBIENT` | `14` | Shader location: vector uniform: ambient color
-`SHADER_LOC_MAP_ALBEDO` | `15` | Shader location: sampler2d texture: albedo (same as: SHADER_LOC_MAP_DIFFUSE)
-`SHADER_LOC_MAP_METALNESS` | `16` | Shader location: sampler2d texture: metalness (same as: SHADER_LOC_MAP_SPECULAR)
-`SHADER_LOC_MAP_NORMAL` | `17` | Shader location: sampler2d texture: normal
-`SHADER_LOC_MAP_ROUGHNESS` | `18` | Shader location: sampler2d texture: roughness
-`SHADER_LOC_MAP_OCCLUSION` | `19` | Shader location: sampler2d texture: occlusion
-`SHADER_LOC_MAP_EMISSION` | `20` | Shader location: sampler2d texture: emission
-`SHADER_LOC_MAP_HEIGHT` | `21` | Shader location: sampler2d texture: height
-`SHADER_LOC_MAP_CUBEMAP` | `22` | Shader location: samplerCube texture: cubemap
-`SHADER_LOC_MAP_IRRADIANCE` | `23` | Shader location: samplerCube texture: irradiance
-`SHADER_LOC_MAP_PREFILTER` | `24` | Shader location: samplerCube texture: prefilter
-`SHADER_LOC_MAP_BRDF` | `25` | Shader location: sampler2d texture: brdf
-
-[ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
-
----
-<h2 id="ShaderUniformDataType"><code>ShaderUniformDataType</code> enum</h2>
-
-**Members**
-
-Name | Value | Description
------|-------|------------
-`SHADER_UNIFORM_FLOAT` | `0` | Shader uniform type: float
-`SHADER_UNIFORM_VEC2` | `1` | Shader uniform type: vec2 (2 float)
-`SHADER_UNIFORM_VEC3` | `2` | Shader uniform type: vec3 (3 float)
-`SHADER_UNIFORM_VEC4` | `3` | Shader uniform type: vec4 (4 float)
-`SHADER_UNIFORM_INT` | `4` | Shader uniform type: int
-`SHADER_UNIFORM_IVEC2` | `5` | Shader uniform type: ivec2 (2 int)
-`SHADER_UNIFORM_IVEC3` | `6` | Shader uniform type: ivec3 (3 int)
-`SHADER_UNIFORM_IVEC4` | `7` | Shader uniform type: ivec4 (4 int)
-`SHADER_UNIFORM_SAMPLER2D` | `8` | Shader uniform type: sampler2d
-
-[ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
-
----
-<h2 id="ShaderAttributeDataType"><code>ShaderAttributeDataType</code> enum</h2>
-
-**Members**
-
-Name | Value | Description
------|-------|------------
-`SHADER_ATTRIB_FLOAT` | `0` | Shader attribute type: float
-`SHADER_ATTRIB_VEC2` | `1` | Shader attribute type: vec2 (2 float)
-`SHADER_ATTRIB_VEC3` | `2` | Shader attribute type: vec3 (3 float)
-`SHADER_ATTRIB_VEC4` | `3` | Shader attribute type: vec4 (4 float)
-
-[ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
-
----
-<h2 id="PixelFormat"><code>PixelFormat</code> enum</h2>
-
-**Members**
-
-Name | Value | Description
------|-------|------------
-`PIXELFORMAT_UNCOMPRESSED_GRAYSCALE` | `1` | 8 bit per pixel (no alpha)
-`PIXELFORMAT_UNCOMPRESSED_GRAY_ALPHA` | `2` | 8*2 bpp (2 channels)
-`PIXELFORMAT_UNCOMPRESSED_R5G6B5` | `3` | 16 bpp
-`PIXELFORMAT_UNCOMPRESSED_R8G8B8` | `4` | 24 bpp
-`PIXELFORMAT_UNCOMPRESSED_R5G5B5A1` | `5` | 16 bpp (1 bit alpha)
-`PIXELFORMAT_UNCOMPRESSED_R4G4B4A4` | `6` | 16 bpp (4 bit alpha)
-`PIXELFORMAT_UNCOMPRESSED_R8G8B8A8` | `7` | 32 bpp
-`PIXELFORMAT_UNCOMPRESSED_R32` | `8` | 32 bpp (1 channel - float)
-`PIXELFORMAT_UNCOMPRESSED_R32G32B32` | `9` | 32*3 bpp (3 channels - float)
-`PIXELFORMAT_UNCOMPRESSED_R32G32B32A32` | `10` | 32*4 bpp (4 channels - float)
-`PIXELFORMAT_COMPRESSED_DXT1_RGB` | `11` | 4 bpp (no alpha)
-`PIXELFORMAT_COMPRESSED_DXT1_RGBA` | `12` | 4 bpp (1 bit alpha)
-`PIXELFORMAT_COMPRESSED_DXT3_RGBA` | `13` | 8 bpp
-`PIXELFORMAT_COMPRESSED_DXT5_RGBA` | `14` | 8 bpp
-`PIXELFORMAT_COMPRESSED_ETC1_RGB` | `15` | 4 bpp
-`PIXELFORMAT_COMPRESSED_ETC2_RGB` | `16` | 4 bpp
-`PIXELFORMAT_COMPRESSED_ETC2_EAC_RGBA` | `17` | 8 bpp
-`PIXELFORMAT_COMPRESSED_PVRT_RGB` | `18` | 4 bpp
-`PIXELFORMAT_COMPRESSED_PVRT_RGBA` | `19` | 4 bpp
-`PIXELFORMAT_COMPRESSED_ASTC_4x4_RGBA` | `20` | 8 bpp
-`PIXELFORMAT_COMPRESSED_ASTC_8x8_RGBA` | `21` | 2 bpp
-
-[ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
-
----
-<h2 id="TextureFilter"><code>TextureFilter</code> enum</h2>
-
-**Members**
-
-Name | Value | Description
------|-------|------------
-`TEXTURE_FILTER_POINT` | `0` | No filter, just pixel approximation
-`TEXTURE_FILTER_BILINEAR` | `1` | Linear filtering
-`TEXTURE_FILTER_TRILINEAR` | `2` | Trilinear filtering (linear with mipmaps)
-`TEXTURE_FILTER_ANISOTROPIC_4X` | `3` | Anisotropic filtering 4x
-`TEXTURE_FILTER_ANISOTROPIC_8X` | `4` | Anisotropic filtering 8x
-`TEXTURE_FILTER_ANISOTROPIC_16X` | `5` | Anisotropic filtering 16x
-
-[ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
-
----
-<h2 id="TextureWrap"><code>TextureWrap</code> enum</h2>
-
-**Members**
-
-Name | Value | Description
------|-------|------------
-`TEXTURE_WRAP_REPEAT` | `0` | Repeats texture in tiled mode
-`TEXTURE_WRAP_CLAMP` | `1` | Clamps texture to edge pixel in tiled mode
-`TEXTURE_WRAP_MIRROR_REPEAT` | `2` | Mirrors and repeats the texture in tiled mode
-`TEXTURE_WRAP_MIRROR_CLAMP` | `3` | Mirrors and clamps to border the texture in tiled mode
-
-[ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
-
----
-<h2 id="CubemapLayout"><code>CubemapLayout</code> enum</h2>
-
-**Members**
-
-Name | Value | Description
------|-------|------------
-`CUBEMAP_LAYOUT_AUTO_DETECT` | `0` | Automatically detect layout type
-`CUBEMAP_LAYOUT_LINE_VERTICAL` | `1` | Layout is defined by a vertical line with faces
-`CUBEMAP_LAYOUT_LINE_HORIZONTAL` | `2` | Layout is defined by a horizontal line with faces
-`CUBEMAP_LAYOUT_CROSS_THREE_BY_FOUR` | `3` | Layout is defined by a 3x4 cross with cubemap faces
-`CUBEMAP_LAYOUT_CROSS_FOUR_BY_THREE` | `4` | Layout is defined by a 4x3 cross with cubemap faces
-`CUBEMAP_LAYOUT_PANORAMA` | `5` | Layout is defined by a panorama image (equirrectangular map)
-
-[ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
-
----
-<h2 id="FontType"><code>FontType</code> enum</h2>
-
-**Members**
-
-Name | Value | Description
------|-------|------------
-`FONT_DEFAULT` | `0` | Default font generation, anti-aliased
-`FONT_BITMAP` | `1` | Bitmap font generation, no anti-aliasing
-`FONT_SDF` | `2` | SDF font generation, requires external shader
-
-[ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
-
----
-<h2 id="BlendMode"><code>BlendMode</code> enum</h2>
-
-**Members**
-
-Name | Value | Description
------|-------|------------
-`BLEND_ALPHA` | `0` | Blend textures considering alpha (default)
-`BLEND_ADDITIVE` | `1` | Blend textures adding colors
-`BLEND_MULTIPLIED` | `2` | Blend textures multiplying colors
-`BLEND_ADD_COLORS` | `3` | Blend textures adding colors (alternative)
-`BLEND_SUBTRACT_COLORS` | `4` | Blend textures subtracting colors (alternative)
-`BLEND_ALPHA_PREMULTIPLY` | `5` | Blend premultiplied textures considering alpha
-`BLEND_CUSTOM` | `6` | Blend textures using custom src/dst factors (use rlSetBlendFactors())
-`BLEND_CUSTOM_SEPARATE` | `7` | Blend textures using custom rgb/alpha separate src/dst factors (use rlSetBlendFactorsSeparate())
-
-[ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
-
----
-<h2 id="Gesture"><code>Gesture</code> enum</h2>
-
-**Members**
-
-Name | Value | Description
------|-------|------------
-`GESTURE_NONE` | `0` | No gesture
-`GESTURE_TAP` | `1` | Tap gesture
-`GESTURE_DOUBLETAP` | `2` | Double tap gesture
-`GESTURE_HOLD` | `4` | Hold gesture
-`GESTURE_DRAG` | `8` | Drag gesture
-`GESTURE_SWIPE_RIGHT` | `16` | Swipe right gesture
-`GESTURE_SWIPE_LEFT` | `32` | Swipe left gesture
-`GESTURE_SWIPE_UP` | `64` | Swipe up gesture
-`GESTURE_SWIPE_DOWN` | `128` | Swipe down gesture
-`GESTURE_PINCH_IN` | `256` | Pinch in gesture
-`GESTURE_PINCH_OUT` | `512` | Pinch out gesture
-
-[ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
-
----
-<h2 id="CameraMode"><code>CameraMode</code> enum</h2>
-
-**Members**
-
-Name | Value | Description
------|-------|------------
-`CAMERA_CUSTOM` | `0` | Custom camera
-`CAMERA_FREE` | `1` | Free camera
-`CAMERA_ORBITAL` | `2` | Orbital camera
-`CAMERA_FIRST_PERSON` | `3` | First person camera
-`CAMERA_THIRD_PERSON` | `4` | Third person camera
-
-[ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
-
----
-<h2 id="CameraProjection"><code>CameraProjection</code> enum</h2>
-
-**Members**
-
-Name | Value | Description
------|-------|------------
-`CAMERA_PERSPECTIVE` | `0` | Perspective projection
-`CAMERA_ORTHOGRAPHIC` | `1` | Orthographic projection
-
-[ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
-
----
-<h2 id="NPatchLayout"><code>NPatchLayout</code> enum</h2>
-
-**Members**
-
-Name | Value | Description
------|-------|------------
-`NPATCH_NINE_PATCH` | `0` | Npatch layout: 3x3 tiles
-`NPATCH_THREE_PATCH_VERTICAL` | `1` | Npatch layout: 1x3 tiles
-`NPATCH_THREE_PATCH_HORIZONTAL` | `2` | Npatch layout: 3x1 tiles
-
-[ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
-
----
-<h2 id="rlGlVersion"><code>rlGlVersion</code> enum</h2>
-
-**Members**
-
-Name | Value | Description
------|-------|------------
-`RL_OPENGL_11` | `1` | OpenGL 1.1
-`RL_OPENGL_21` | `2` | OpenGL 2.1 (GLSL 120)
-`RL_OPENGL_33` | `3` | OpenGL 3.3 (GLSL 330)
-`RL_OPENGL_43` | `4` | OpenGL 4.3 (using GLSL 330)
-`RL_OPENGL_ES_20` | `5` | OpenGL ES 2.0 (GLSL 100)
-
-[ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
-
----
-<h2 id="rlTraceLogLevel"><code>rlTraceLogLevel</code> enum</h2>
-
-**Members**
-
-Name | Value | Description
------|-------|------------
-`RL_LOG_ALL` | `0` | Display all logs
-`RL_LOG_TRACE` | `1` | Trace logging, intended for internal use only
-`RL_LOG_DEBUG` | `2` | Debug logging, used for internal debugging, it should be disabled on release builds
-`RL_LOG_INFO` | `3` | Info logging, used for program execution info
-`RL_LOG_WARNING` | `4` | Warning logging, used on recoverable failures
-`RL_LOG_ERROR` | `5` | Error logging, used on unrecoverable failures
-`RL_LOG_FATAL` | `6` | Fatal logging, used to abort program: exit(EXIT_FAILURE)
-`RL_LOG_NONE` | `7` | Disable logging
-
-[ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
-
----
-<h2 id="rlPixelFormat"><code>rlPixelFormat</code> enum</h2>
-
-**Members**
-
-Name | Value | Description
------|-------|------------
-`RL_PIXELFORMAT_UNCOMPRESSED_GRAYSCALE` | `1` | 8 bit per pixel (no alpha)
-`RL_PIXELFORMAT_UNCOMPRESSED_GRAY_ALPHA` | `2` | 8*2 bpp (2 channels)
-`RL_PIXELFORMAT_UNCOMPRESSED_R5G6B5` | `3` | 16 bpp
-`RL_PIXELFORMAT_UNCOMPRESSED_R8G8B8` | `4` | 24 bpp
-`RL_PIXELFORMAT_UNCOMPRESSED_R5G5B5A1` | `5` | 16 bpp (1 bit alpha)
-`RL_PIXELFORMAT_UNCOMPRESSED_R4G4B4A4` | `6` | 16 bpp (4 bit alpha)
-`RL_PIXELFORMAT_UNCOMPRESSED_R8G8B8A8` | `7` | 32 bpp
-`RL_PIXELFORMAT_UNCOMPRESSED_R32` | `8` | 32 bpp (1 channel - float)
-`RL_PIXELFORMAT_UNCOMPRESSED_R32G32B32` | `9` | 32*3 bpp (3 channels - float)
-`RL_PIXELFORMAT_UNCOMPRESSED_R32G32B32A32` | `10` | 32*4 bpp (4 channels - float)
-`RL_PIXELFORMAT_COMPRESSED_DXT1_RGB` | `11` | 4 bpp (no alpha)
-`RL_PIXELFORMAT_COMPRESSED_DXT1_RGBA` | `12` | 4 bpp (1 bit alpha)
-`RL_PIXELFORMAT_COMPRESSED_DXT3_RGBA` | `13` | 8 bpp
-`RL_PIXELFORMAT_COMPRESSED_DXT5_RGBA` | `14` | 8 bpp
-`RL_PIXELFORMAT_COMPRESSED_ETC1_RGB` | `15` | 4 bpp
-`RL_PIXELFORMAT_COMPRESSED_ETC2_RGB` | `16` | 4 bpp
-`RL_PIXELFORMAT_COMPRESSED_ETC2_EAC_RGBA` | `17` | 8 bpp
-`RL_PIXELFORMAT_COMPRESSED_PVRT_RGB` | `18` | 4 bpp
-`RL_PIXELFORMAT_COMPRESSED_PVRT_RGBA` | `19` | 4 bpp
-`RL_PIXELFORMAT_COMPRESSED_ASTC_4x4_RGBA` | `20` | 8 bpp
-`RL_PIXELFORMAT_COMPRESSED_ASTC_8x8_RGBA` | `21` | 2 bpp
-
-[ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
-
----
-<h2 id="rlTextureFilter"><code>rlTextureFilter</code> enum</h2>
-
-**Members**
-
-Name | Value | Description
------|-------|------------
-`RL_TEXTURE_FILTER_POINT` | `0` | No filter, just pixel approximation
-`RL_TEXTURE_FILTER_BILINEAR` | `1` | Linear filtering
-`RL_TEXTURE_FILTER_TRILINEAR` | `2` | Trilinear filtering (linear with mipmaps)
-`RL_TEXTURE_FILTER_ANISOTROPIC_4X` | `3` | Anisotropic filtering 4x
-`RL_TEXTURE_FILTER_ANISOTROPIC_8X` | `4` | Anisotropic filtering 8x
-`RL_TEXTURE_FILTER_ANISOTROPIC_16X` | `5` | Anisotropic filtering 16x
-
-[ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
-
----
-<h2 id="rlBlendMode"><code>rlBlendMode</code> enum</h2>
-
-**Members**
-
-Name | Value | Description
------|-------|------------
-`RL_BLEND_ALPHA` | `0` | Blend textures considering alpha (default)
-`RL_BLEND_ADDITIVE` | `1` | Blend textures adding colors
-`RL_BLEND_MULTIPLIED` | `2` | Blend textures multiplying colors
-`RL_BLEND_ADD_COLORS` | `3` | Blend textures adding colors (alternative)
-`RL_BLEND_SUBTRACT_COLORS` | `4` | Blend textures subtracting colors (alternative)
-`RL_BLEND_ALPHA_PREMULTIPLY` | `5` | Blend premultiplied textures considering alpha
-`RL_BLEND_CUSTOM` | `6` | Blend textures using custom src/dst factors (use rlSetBlendFactors())
-`RL_BLEND_CUSTOM_SEPARATE` | `7` | Blend textures using custom src/dst factors (use rlSetBlendFactorsSeparate())
-
-[ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
-
----
-<h2 id="rlShaderLocationIndex"><code>rlShaderLocationIndex</code> enum</h2>
-
-**Members**
-
-Name | Value | Description
------|-------|------------
-`RL_SHADER_LOC_VERTEX_POSITION` | `0` | Shader location: vertex attribute: position
-`RL_SHADER_LOC_VERTEX_TEXCOORD01` | `1` | Shader location: vertex attribute: texcoord01
-`RL_SHADER_LOC_VERTEX_TEXCOORD02` | `2` | Shader location: vertex attribute: texcoord02
-`RL_SHADER_LOC_VERTEX_NORMAL` | `3` | Shader location: vertex attribute: normal
-`RL_SHADER_LOC_VERTEX_TANGENT` | `4` | Shader location: vertex attribute: tangent
-`RL_SHADER_LOC_VERTEX_COLOR` | `5` | Shader location: vertex attribute: color
-`RL_SHADER_LOC_MATRIX_MVP` | `6` | Shader location: matrix uniform: model-view-projection
-`RL_SHADER_LOC_MATRIX_VIEW` | `7` | Shader location: matrix uniform: view (camera transform)
-`RL_SHADER_LOC_MATRIX_PROJECTION` | `8` | Shader location: matrix uniform: projection
-`RL_SHADER_LOC_MATRIX_MODEL` | `9` | Shader location: matrix uniform: model (transform)
-`RL_SHADER_LOC_MATRIX_NORMAL` | `10` | Shader location: matrix uniform: normal
-`RL_SHADER_LOC_VECTOR_VIEW` | `11` | Shader location: vector uniform: view
-`RL_SHADER_LOC_COLOR_DIFFUSE` | `12` | Shader location: vector uniform: diffuse color
-`RL_SHADER_LOC_COLOR_SPECULAR` | `13` | Shader location: vector uniform: specular color
-`RL_SHADER_LOC_COLOR_AMBIENT` | `14` | Shader location: vector uniform: ambient color
-`RL_SHADER_LOC_MAP_ALBEDO` | `15` | Shader location: sampler2d texture: albedo (same as: RL_SHADER_LOC_MAP_DIFFUSE)
-`RL_SHADER_LOC_MAP_METALNESS` | `16` | Shader location: sampler2d texture: metalness (same as: RL_SHADER_LOC_MAP_SPECULAR)
-`RL_SHADER_LOC_MAP_NORMAL` | `17` | Shader location: sampler2d texture: normal
-`RL_SHADER_LOC_MAP_ROUGHNESS` | `18` | Shader location: sampler2d texture: roughness
-`RL_SHADER_LOC_MAP_OCCLUSION` | `19` | Shader location: sampler2d texture: occlusion
-`RL_SHADER_LOC_MAP_EMISSION` | `20` | Shader location: sampler2d texture: emission
-`RL_SHADER_LOC_MAP_HEIGHT` | `21` | Shader location: sampler2d texture: height
-`RL_SHADER_LOC_MAP_CUBEMAP` | `22` | Shader location: samplerCube texture: cubemap
-`RL_SHADER_LOC_MAP_IRRADIANCE` | `23` | Shader location: samplerCube texture: irradiance
-`RL_SHADER_LOC_MAP_PREFILTER` | `24` | Shader location: samplerCube texture: prefilter
-`RL_SHADER_LOC_MAP_BRDF` | `25` | Shader location: sampler2d texture: brdf
-
-[ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
-
----
-<h2 id="rlShaderUniformDataType"><code>rlShaderUniformDataType</code> enum</h2>
-
-**Members**
-
-Name | Value | Description
------|-------|------------
-`RL_SHADER_UNIFORM_FLOAT` | `0` | Shader uniform type: float
-`RL_SHADER_UNIFORM_VEC2` | `1` | Shader uniform type: vec2 (2 float)
-`RL_SHADER_UNIFORM_VEC3` | `2` | Shader uniform type: vec3 (3 float)
-`RL_SHADER_UNIFORM_VEC4` | `3` | Shader uniform type: vec4 (4 float)
-`RL_SHADER_UNIFORM_INT` | `4` | Shader uniform type: int
-`RL_SHADER_UNIFORM_IVEC2` | `5` | Shader uniform type: ivec2 (2 int)
-`RL_SHADER_UNIFORM_IVEC3` | `6` | Shader uniform type: ivec3 (3 int)
-`RL_SHADER_UNIFORM_IVEC4` | `7` | Shader uniform type: ivec4 (4 int)
-`RL_SHADER_UNIFORM_SAMPLER2D` | `8` | Shader uniform type: sampler2d
-
-[ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
-
----
-<h2 id="rlShaderAttributeDataType"><code>rlShaderAttributeDataType</code> enum</h2>
-
-**Members**
-
-Name | Value | Description
------|-------|------------
-`RL_SHADER_ATTRIB_FLOAT` | `0` | Shader attribute type: float
-`RL_SHADER_ATTRIB_VEC2` | `1` | Shader attribute type: vec2 (2 float)
-`RL_SHADER_ATTRIB_VEC3` | `2` | Shader attribute type: vec3 (3 float)
-`RL_SHADER_ATTRIB_VEC4` | `3` | Shader attribute type: vec4 (4 float)
-
-[ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
-
----
-<h2 id="rlFramebufferAttachType"><code>rlFramebufferAttachType</code> enum</h2>
-
-**Members**
-
-Name | Value | Description
------|-------|------------
-`RL_ATTACHMENT_COLOR_CHANNEL0` | `0` | Framebuffer attachment type: color 0
-`RL_ATTACHMENT_COLOR_CHANNEL1` | `1` | Framebuffer attachment type: color 1
-`RL_ATTACHMENT_COLOR_CHANNEL2` | `2` | Framebuffer attachment type: color 2
-`RL_ATTACHMENT_COLOR_CHANNEL3` | `3` | Framebuffer attachment type: color 3
-`RL_ATTACHMENT_COLOR_CHANNEL4` | `4` | Framebuffer attachment type: color 4
-`RL_ATTACHMENT_COLOR_CHANNEL5` | `5` | Framebuffer attachment type: color 5
-`RL_ATTACHMENT_COLOR_CHANNEL6` | `6` | Framebuffer attachment type: color 6
-`RL_ATTACHMENT_COLOR_CHANNEL7` | `7` | Framebuffer attachment type: color 7
-`RL_ATTACHMENT_DEPTH` | `100` | Framebuffer attachment type: depth
-`RL_ATTACHMENT_STENCIL` | `200` | Framebuffer attachment type: stencil
-
-[ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
-
----
-<h2 id="rlFramebufferAttachTextureType"><code>rlFramebufferAttachTextureType</code> enum</h2>
-
-**Members**
-
-Name | Value | Description
------|-------|------------
-`RL_ATTACHMENT_CUBEMAP_POSITIVE_X` | `0` | Framebuffer texture attachment type: cubemap, +X side
-`RL_ATTACHMENT_CUBEMAP_NEGATIVE_X` | `1` | Framebuffer texture attachment type: cubemap, -X side
-`RL_ATTACHMENT_CUBEMAP_POSITIVE_Y` | `2` | Framebuffer texture attachment type: cubemap, +Y side
-`RL_ATTACHMENT_CUBEMAP_NEGATIVE_Y` | `3` | Framebuffer texture attachment type: cubemap, -Y side
-`RL_ATTACHMENT_CUBEMAP_POSITIVE_Z` | `4` | Framebuffer texture attachment type: cubemap, +Z side
-`RL_ATTACHMENT_CUBEMAP_NEGATIVE_Z` | `5` | Framebuffer texture attachment type: cubemap, -Z side
-`RL_ATTACHMENT_TEXTURE2D` | `100` | Framebuffer texture attachment type: texture2d
-`RL_ATTACHMENT_RENDERBUFFER` | `200` | Framebuffer texture attachment type: renderbuffer
-
-[ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
-
----
-<h2 id="rlCullMode"><code>rlCullMode</code> enum</h2>
-
-**Members**
-
-Name | Value | Description
------|-------|------------
-`RL_CULL_FACE_FRONT` | `0` | 
-`RL_CULL_FACE_BACK` | `1` | 
-
-[ <a href="#enums">Enums</a> | <a href="#toc">ToC</a> ]
-
----
 <h2 id="defines">Constants</h2>
 
 Name | Value | Description
 -----|-------|------------
-`RAYLIB_VERSION_MAJOR` | `4` | *n/a*
-`RAYLIB_VERSION_MINOR` | `5` | *n/a*
+`RAYLIB_VERSION_MAJOR` | `5` | *n/a*
+`RAYLIB_VERSION_MINOR` | `0` | *n/a*
 `RAYLIB_VERSION_PATCH` | `0` | *n/a*
-`RAYLIB_VERSION` | `'4.5'` | *n/a*
+`RAYLIB_VERSION` | `'5.0'` | *n/a*
 `PI` | `3.141592653589793` | *n/a*
 `DEG2RAD` | `(PI / 180.0)` | *n/a*
 `RAD2DEG` | `(180.0 / PI)` | *n/a*
@@ -2399,8 +2464,8 @@ set_audio_stream_callback(some_stream, my_callback)
 Name | Signature | Description
 -----|-----------|------------
 `TraceLogCallback` | `(log_level, text, args) -> None` | Logging: Redirect trace log messages
-`LoadFileDataCallback` | `(file_name, bytes_read) -> Union[Seq[int], UCharPtr]` | FileIO: Load binary data
-`SaveFileDataCallback` | `(file_name, data, bytes_to_write) -> bool` | FileIO: Save binary data
+`LoadFileDataCallback` | `(file_name, data_size) -> Union[Seq[int], UCharPtr]` | FileIO: Load binary data
+`SaveFileDataCallback` | `(file_name, data, data_size) -> bool` | FileIO: Save binary data
 `LoadFileTextCallback` | `(file_name) -> Union[str, CharPtr]` | FileIO: Load text data
 `SaveFileTextCallback` | `(file_name, text) -> bool` | FileIO: Save text data
 `AudioCallback` | `(buffer_data, frames) -> None` | *n/a*
@@ -2422,105 +2487,112 @@ Item|Item|Item|Item|Item
 <a href="#DecodeDataBase64">DecodeDataBase64</a> | <a href="#DecompressData">DecompressData</a> | <a href="#DetachAudioMixedProcessor">DetachAudioMixedProcessor</a> | <a href="#DetachAudioStreamProcessor">DetachAudioStreamProcessor</a> | <a href="#DirectoryExists">DirectoryExists</a>
 <a href="#DisableCursor">DisableCursor</a> | <a href="#DisableEventWaiting">DisableEventWaiting</a> | <a href="#DrawBillboard">DrawBillboard</a> | <a href="#DrawBillboardPro">DrawBillboardPro</a> | <a href="#DrawBillboardRec">DrawBillboardRec</a>
 <a href="#DrawBoundingBox">DrawBoundingBox</a> | <a href="#DrawCapsule">DrawCapsule</a> | <a href="#DrawCapsuleWires">DrawCapsuleWires</a> | <a href="#DrawCircle">DrawCircle</a> | <a href="#DrawCircle3D">DrawCircle3D</a>
-<a href="#DrawCircleGradient">DrawCircleGradient</a> | <a href="#DrawCircleLines">DrawCircleLines</a> | <a href="#DrawCircleSector">DrawCircleSector</a> | <a href="#DrawCircleSectorLines">DrawCircleSectorLines</a> | <a href="#DrawCircleV">DrawCircleV</a>
-<a href="#DrawCube">DrawCube</a> | <a href="#DrawCubeV">DrawCubeV</a> | <a href="#DrawCubeWires">DrawCubeWires</a> | <a href="#DrawCubeWiresV">DrawCubeWiresV</a> | <a href="#DrawCylinder">DrawCylinder</a>
-<a href="#DrawCylinderEx">DrawCylinderEx</a> | <a href="#DrawCylinderWires">DrawCylinderWires</a> | <a href="#DrawCylinderWiresEx">DrawCylinderWiresEx</a> | <a href="#DrawEllipse">DrawEllipse</a> | <a href="#DrawEllipseLines">DrawEllipseLines</a>
-<a href="#DrawFPS">DrawFPS</a> | <a href="#DrawGrid">DrawGrid</a> | <a href="#DrawLine">DrawLine</a> | <a href="#DrawLine3D">DrawLine3D</a> | <a href="#DrawLineBezier">DrawLineBezier</a>
-<a href="#DrawLineBezierCubic">DrawLineBezierCubic</a> | <a href="#DrawLineBezierQuad">DrawLineBezierQuad</a> | <a href="#DrawLineEx">DrawLineEx</a> | <a href="#DrawLineStrip">DrawLineStrip</a> | <a href="#DrawLineV">DrawLineV</a>
-<a href="#DrawMesh">DrawMesh</a> | <a href="#DrawMeshInstanced">DrawMeshInstanced</a> | <a href="#DrawModel">DrawModel</a> | <a href="#DrawModelEx">DrawModelEx</a> | <a href="#DrawModelWires">DrawModelWires</a>
-<a href="#DrawModelWiresEx">DrawModelWiresEx</a> | <a href="#DrawPixel">DrawPixel</a> | <a href="#DrawPixelV">DrawPixelV</a> | <a href="#DrawPlane">DrawPlane</a> | <a href="#DrawPoint3D">DrawPoint3D</a>
-<a href="#DrawPoly">DrawPoly</a> | <a href="#DrawPolyLines">DrawPolyLines</a> | <a href="#DrawPolyLinesEx">DrawPolyLinesEx</a> | <a href="#DrawRay">DrawRay</a> | <a href="#DrawRectangle">DrawRectangle</a>
-<a href="#DrawRectangleGradientEx">DrawRectangleGradientEx</a> | <a href="#DrawRectangleGradientH">DrawRectangleGradientH</a> | <a href="#DrawRectangleGradientV">DrawRectangleGradientV</a> | <a href="#DrawRectangleLines">DrawRectangleLines</a> | <a href="#DrawRectangleLinesEx">DrawRectangleLinesEx</a>
-<a href="#DrawRectanglePro">DrawRectanglePro</a> | <a href="#DrawRectangleRec">DrawRectangleRec</a> | <a href="#DrawRectangleRounded">DrawRectangleRounded</a> | <a href="#DrawRectangleRoundedLines">DrawRectangleRoundedLines</a> | <a href="#DrawRectangleV">DrawRectangleV</a>
-<a href="#DrawRing">DrawRing</a> | <a href="#DrawRingLines">DrawRingLines</a> | <a href="#DrawSphere">DrawSphere</a> | <a href="#DrawSphereEx">DrawSphereEx</a> | <a href="#DrawSphereWires">DrawSphereWires</a>
-<a href="#DrawText">DrawText</a> | <a href="#DrawTextCodepoint">DrawTextCodepoint</a> | <a href="#DrawTextCodepoints">DrawTextCodepoints</a> | <a href="#DrawTextEx">DrawTextEx</a> | <a href="#DrawTextPro">DrawTextPro</a>
-<a href="#DrawTexture">DrawTexture</a> | <a href="#DrawTextureEx">DrawTextureEx</a> | <a href="#DrawTextureNPatch">DrawTextureNPatch</a> | <a href="#DrawTexturePro">DrawTexturePro</a> | <a href="#DrawTextureRec">DrawTextureRec</a>
-<a href="#DrawTextureV">DrawTextureV</a> | <a href="#DrawTriangle">DrawTriangle</a> | <a href="#DrawTriangle3D">DrawTriangle3D</a> | <a href="#DrawTriangleFan">DrawTriangleFan</a> | <a href="#DrawTriangleLines">DrawTriangleLines</a>
-<a href="#DrawTriangleStrip">DrawTriangleStrip</a> | <a href="#DrawTriangleStrip3D">DrawTriangleStrip3D</a> | <a href="#EnableCursor">EnableCursor</a> | <a href="#EnableEventWaiting">EnableEventWaiting</a> | <a href="#EncodeDataBase64">EncodeDataBase64</a>
-<a href="#EndBlendMode">EndBlendMode</a> | <a href="#EndDrawing">EndDrawing</a> | <a href="#EndMode2D">EndMode2D</a> | <a href="#EndMode3D">EndMode3D</a> | <a href="#EndScissorMode">EndScissorMode</a>
-<a href="#EndShaderMode">EndShaderMode</a> | <a href="#EndTextureMode">EndTextureMode</a> | <a href="#EndVrStereoMode">EndVrStereoMode</a> | <a href="#ExportDataAsCode">ExportDataAsCode</a> | <a href="#ExportFontAsCode">ExportFontAsCode</a>
-<a href="#ExportImage">ExportImage</a> | <a href="#ExportImageAsCode">ExportImageAsCode</a> | <a href="#ExportMesh">ExportMesh</a> | <a href="#ExportWave">ExportWave</a> | <a href="#ExportWaveAsCode">ExportWaveAsCode</a>
-<a href="#Fade">Fade</a> | <a href="#FileExists">FileExists</a> | <a href="#FloatEquals">FloatEquals</a> | <a href="#GenImageCellular">GenImageCellular</a> | <a href="#GenImageChecked">GenImageChecked</a>
-<a href="#GenImageColor">GenImageColor</a> | <a href="#GenImageFontAtlas">GenImageFontAtlas</a> | <a href="#GenImageGradientH">GenImageGradientH</a> | <a href="#GenImageGradientRadial">GenImageGradientRadial</a> | <a href="#GenImageGradientV">GenImageGradientV</a>
-<a href="#GenImagePerlinNoise">GenImagePerlinNoise</a> | <a href="#GenImageText">GenImageText</a> | <a href="#GenImageWhiteNoise">GenImageWhiteNoise</a> | <a href="#GenMeshCone">GenMeshCone</a> | <a href="#GenMeshCube">GenMeshCube</a>
-<a href="#GenMeshCubicmap">GenMeshCubicmap</a> | <a href="#GenMeshCylinder">GenMeshCylinder</a> | <a href="#GenMeshHeightmap">GenMeshHeightmap</a> | <a href="#GenMeshHemiSphere">GenMeshHemiSphere</a> | <a href="#GenMeshKnot">GenMeshKnot</a>
-<a href="#GenMeshPlane">GenMeshPlane</a> | <a href="#GenMeshPoly">GenMeshPoly</a> | <a href="#GenMeshSphere">GenMeshSphere</a> | <a href="#GenMeshTangents">GenMeshTangents</a> | <a href="#GenMeshTorus">GenMeshTorus</a>
-<a href="#GenTextureMipmaps">GenTextureMipmaps</a> | <a href="#GetApplicationDirectory">GetApplicationDirectory</a> | <a href="#GetCameraMatrix">GetCameraMatrix</a> | <a href="#GetCameraMatrix2D">GetCameraMatrix2D</a> | <a href="#GetCharPressed">GetCharPressed</a>
-<a href="#GetClipboardText">GetClipboardText</a> | <a href="#GetCodepoint">GetCodepoint</a> | <a href="#GetCodepointCount">GetCodepointCount</a> | <a href="#GetCodepointNext">GetCodepointNext</a> | <a href="#GetCodepointPrevious">GetCodepointPrevious</a>
-<a href="#GetCollisionRec">GetCollisionRec</a> | <a href="#GetColor">GetColor</a> | <a href="#GetCurrentMonitor">GetCurrentMonitor</a> | <a href="#GetDirectoryPath">GetDirectoryPath</a> | <a href="#GetFPS">GetFPS</a>
-<a href="#GetFileExtension">GetFileExtension</a> | <a href="#GetFileLength">GetFileLength</a> | <a href="#GetFileModTime">GetFileModTime</a> | <a href="#GetFileName">GetFileName</a> | <a href="#GetFileNameWithoutExt">GetFileNameWithoutExt</a>
-<a href="#GetFontDefault">GetFontDefault</a> | <a href="#GetFrameTime">GetFrameTime</a> | <a href="#GetGamepadAxisCount">GetGamepadAxisCount</a> | <a href="#GetGamepadAxisMovement">GetGamepadAxisMovement</a> | <a href="#GetGamepadButtonPressed">GetGamepadButtonPressed</a>
-<a href="#GetGamepadName">GetGamepadName</a> | <a href="#GetGestureDetected">GetGestureDetected</a> | <a href="#GetGestureDragAngle">GetGestureDragAngle</a> | <a href="#GetGestureDragVector">GetGestureDragVector</a> | <a href="#GetGestureHoldDuration">GetGestureHoldDuration</a>
-<a href="#GetGesturePinchAngle">GetGesturePinchAngle</a> | <a href="#GetGesturePinchVector">GetGesturePinchVector</a> | <a href="#GetGlyphAtlasRec">GetGlyphAtlasRec</a> | <a href="#GetGlyphIndex">GetGlyphIndex</a> | <a href="#GetGlyphInfo">GetGlyphInfo</a>
-<a href="#GetImageAlphaBorder">GetImageAlphaBorder</a> | <a href="#GetImageColor">GetImageColor</a> | <a href="#GetKeyPressed">GetKeyPressed</a> | <a href="#GetMeshBoundingBox">GetMeshBoundingBox</a> | <a href="#GetModelBoundingBox">GetModelBoundingBox</a>
-<a href="#GetMonitorCount">GetMonitorCount</a> | <a href="#GetMonitorHeight">GetMonitorHeight</a> | <a href="#GetMonitorName">GetMonitorName</a> | <a href="#GetMonitorPhysicalHeight">GetMonitorPhysicalHeight</a> | <a href="#GetMonitorPhysicalWidth">GetMonitorPhysicalWidth</a>
-<a href="#GetMonitorPosition">GetMonitorPosition</a> | <a href="#GetMonitorRefreshRate">GetMonitorRefreshRate</a> | <a href="#GetMonitorWidth">GetMonitorWidth</a> | <a href="#GetMouseDelta">GetMouseDelta</a> | <a href="#GetMousePosition">GetMousePosition</a>
-<a href="#GetMouseRay">GetMouseRay</a> | <a href="#GetMouseWheelMove">GetMouseWheelMove</a> | <a href="#GetMouseWheelMoveV">GetMouseWheelMoveV</a> | <a href="#GetMouseX">GetMouseX</a> | <a href="#GetMouseY">GetMouseY</a>
-<a href="#GetMusicTimeLength">GetMusicTimeLength</a> | <a href="#GetMusicTimePlayed">GetMusicTimePlayed</a> | <a href="#GetPixelColor">GetPixelColor</a> | <a href="#GetPixelDataSize">GetPixelDataSize</a> | <a href="#GetPrevDirectoryPath">GetPrevDirectoryPath</a>
-<a href="#GetRandomValue">GetRandomValue</a> | <a href="#GetRayCollisionBox">GetRayCollisionBox</a> | <a href="#GetRayCollisionMesh">GetRayCollisionMesh</a> | <a href="#GetRayCollisionQuad">GetRayCollisionQuad</a> | <a href="#GetRayCollisionSphere">GetRayCollisionSphere</a>
-<a href="#GetRayCollisionTriangle">GetRayCollisionTriangle</a> | <a href="#GetRenderHeight">GetRenderHeight</a> | <a href="#GetRenderWidth">GetRenderWidth</a> | <a href="#GetScreenHeight">GetScreenHeight</a> | <a href="#GetScreenToWorld2D">GetScreenToWorld2D</a>
-<a href="#GetScreenWidth">GetScreenWidth</a> | <a href="#GetShaderLocation">GetShaderLocation</a> | <a href="#GetShaderLocationAttrib">GetShaderLocationAttrib</a> | <a href="#GetTime">GetTime</a> | <a href="#GetTouchPointCount">GetTouchPointCount</a>
-<a href="#GetTouchPointId">GetTouchPointId</a> | <a href="#GetTouchPosition">GetTouchPosition</a> | <a href="#GetTouchX">GetTouchX</a> | <a href="#GetTouchY">GetTouchY</a> | <a href="#GetWindowHandle">GetWindowHandle</a>
-<a href="#GetWindowPosition">GetWindowPosition</a> | <a href="#GetWindowScaleDPI">GetWindowScaleDPI</a> | <a href="#GetWorkingDirectory">GetWorkingDirectory</a> | <a href="#GetWorldToScreen">GetWorldToScreen</a> | <a href="#GetWorldToScreen2D">GetWorldToScreen2D</a>
-<a href="#GetWorldToScreenEx">GetWorldToScreenEx</a> | <a href="#HideCursor">HideCursor</a> | <a href="#ImageAlphaClear">ImageAlphaClear</a> | <a href="#ImageAlphaCrop">ImageAlphaCrop</a> | <a href="#ImageAlphaMask">ImageAlphaMask</a>
-<a href="#ImageAlphaPremultiply">ImageAlphaPremultiply</a> | <a href="#ImageBlurGaussian">ImageBlurGaussian</a> | <a href="#ImageClearBackground">ImageClearBackground</a> | <a href="#ImageColorBrightness">ImageColorBrightness</a> | <a href="#ImageColorContrast">ImageColorContrast</a>
-<a href="#ImageColorGrayscale">ImageColorGrayscale</a> | <a href="#ImageColorInvert">ImageColorInvert</a> | <a href="#ImageColorReplace">ImageColorReplace</a> | <a href="#ImageColorTint">ImageColorTint</a> | <a href="#ImageCopy">ImageCopy</a>
-<a href="#ImageCrop">ImageCrop</a> | <a href="#ImageDither">ImageDither</a> | <a href="#ImageDraw">ImageDraw</a> | <a href="#ImageDrawCircle">ImageDrawCircle</a> | <a href="#ImageDrawCircleLines">ImageDrawCircleLines</a>
-<a href="#ImageDrawCircleLinesV">ImageDrawCircleLinesV</a> | <a href="#ImageDrawCircleV">ImageDrawCircleV</a> | <a href="#ImageDrawLine">ImageDrawLine</a> | <a href="#ImageDrawLineV">ImageDrawLineV</a> | <a href="#ImageDrawPixel">ImageDrawPixel</a>
-<a href="#ImageDrawPixelV">ImageDrawPixelV</a> | <a href="#ImageDrawRectangle">ImageDrawRectangle</a> | <a href="#ImageDrawRectangleLines">ImageDrawRectangleLines</a> | <a href="#ImageDrawRectangleRec">ImageDrawRectangleRec</a> | <a href="#ImageDrawRectangleV">ImageDrawRectangleV</a>
-<a href="#ImageDrawText">ImageDrawText</a> | <a href="#ImageDrawTextEx">ImageDrawTextEx</a> | <a href="#ImageFlipHorizontal">ImageFlipHorizontal</a> | <a href="#ImageFlipVertical">ImageFlipVertical</a> | <a href="#ImageFormat">ImageFormat</a>
-<a href="#ImageFromImage">ImageFromImage</a> | <a href="#ImageMipmaps">ImageMipmaps</a> | <a href="#ImageResize">ImageResize</a> | <a href="#ImageResizeCanvas">ImageResizeCanvas</a> | <a href="#ImageResizeNN">ImageResizeNN</a>
-<a href="#ImageRotateCCW">ImageRotateCCW</a> | <a href="#ImageRotateCW">ImageRotateCW</a> | <a href="#ImageText">ImageText</a> | <a href="#ImageTextEx">ImageTextEx</a> | <a href="#ImageToPOT">ImageToPOT</a>
-<a href="#InitAudioDevice">InitAudioDevice</a> | <a href="#InitWindow">InitWindow</a> | <a href="#IsAudioDeviceReady">IsAudioDeviceReady</a> | <a href="#IsAudioStreamPlaying">IsAudioStreamPlaying</a> | <a href="#IsAudioStreamProcessed">IsAudioStreamProcessed</a>
-<a href="#IsAudioStreamReady">IsAudioStreamReady</a> | <a href="#IsCursorHidden">IsCursorHidden</a> | <a href="#IsCursorOnScreen">IsCursorOnScreen</a> | <a href="#IsFileDropped">IsFileDropped</a> | <a href="#IsFileExtension">IsFileExtension</a>
-<a href="#IsFontReady">IsFontReady</a> | <a href="#IsGamepadAvailable">IsGamepadAvailable</a> | <a href="#IsGamepadButtonDown">IsGamepadButtonDown</a> | <a href="#IsGamepadButtonPressed">IsGamepadButtonPressed</a> | <a href="#IsGamepadButtonReleased">IsGamepadButtonReleased</a>
-<a href="#IsGamepadButtonUp">IsGamepadButtonUp</a> | <a href="#IsGestureDetected">IsGestureDetected</a> | <a href="#IsImageReady">IsImageReady</a> | <a href="#IsKeyDown">IsKeyDown</a> | <a href="#IsKeyPressed">IsKeyPressed</a>
-<a href="#IsKeyReleased">IsKeyReleased</a> | <a href="#IsKeyUp">IsKeyUp</a> | <a href="#IsMaterialReady">IsMaterialReady</a> | <a href="#IsModelAnimationValid">IsModelAnimationValid</a> | <a href="#IsModelReady">IsModelReady</a>
-<a href="#IsMouseButtonDown">IsMouseButtonDown</a> | <a href="#IsMouseButtonPressed">IsMouseButtonPressed</a> | <a href="#IsMouseButtonReleased">IsMouseButtonReleased</a> | <a href="#IsMouseButtonUp">IsMouseButtonUp</a> | <a href="#IsMusicReady">IsMusicReady</a>
-<a href="#IsMusicStreamPlaying">IsMusicStreamPlaying</a> | <a href="#IsPathFile">IsPathFile</a> | <a href="#IsRenderTextureReady">IsRenderTextureReady</a> | <a href="#IsShaderReady">IsShaderReady</a> | <a href="#IsSoundPlaying">IsSoundPlaying</a>
-<a href="#IsSoundReady">IsSoundReady</a> | <a href="#IsTextureReady">IsTextureReady</a> | <a href="#IsWaveReady">IsWaveReady</a> | <a href="#IsWindowFocused">IsWindowFocused</a> | <a href="#IsWindowFullscreen">IsWindowFullscreen</a>
-<a href="#IsWindowHidden">IsWindowHidden</a> | <a href="#IsWindowMaximized">IsWindowMaximized</a> | <a href="#IsWindowMinimized">IsWindowMinimized</a> | <a href="#IsWindowReady">IsWindowReady</a> | <a href="#IsWindowResized">IsWindowResized</a>
-<a href="#IsWindowState">IsWindowState</a> | <a href="#Lerp">Lerp</a> | <a href="#LoadAudioStream">LoadAudioStream</a> | <a href="#LoadCodepoints">LoadCodepoints</a> | <a href="#LoadDirectoryFiles">LoadDirectoryFiles</a>
+<a href="#DrawCircleGradient">DrawCircleGradient</a> | <a href="#DrawCircleLines">DrawCircleLines</a> | <a href="#DrawCircleLinesV">DrawCircleLinesV</a> | <a href="#DrawCircleSector">DrawCircleSector</a> | <a href="#DrawCircleSectorLines">DrawCircleSectorLines</a>
+<a href="#DrawCircleV">DrawCircleV</a> | <a href="#DrawCube">DrawCube</a> | <a href="#DrawCubeV">DrawCubeV</a> | <a href="#DrawCubeWires">DrawCubeWires</a> | <a href="#DrawCubeWiresV">DrawCubeWiresV</a>
+<a href="#DrawCylinder">DrawCylinder</a> | <a href="#DrawCylinderEx">DrawCylinderEx</a> | <a href="#DrawCylinderWires">DrawCylinderWires</a> | <a href="#DrawCylinderWiresEx">DrawCylinderWiresEx</a> | <a href="#DrawEllipse">DrawEllipse</a>
+<a href="#DrawEllipseLines">DrawEllipseLines</a> | <a href="#DrawFPS">DrawFPS</a> | <a href="#DrawGrid">DrawGrid</a> | <a href="#DrawLine">DrawLine</a> | <a href="#DrawLine3D">DrawLine3D</a>
+<a href="#DrawLineBezier">DrawLineBezier</a> | <a href="#DrawLineEx">DrawLineEx</a> | <a href="#DrawLineStrip">DrawLineStrip</a> | <a href="#DrawLineV">DrawLineV</a> | <a href="#DrawMesh">DrawMesh</a>
+<a href="#DrawMeshInstanced">DrawMeshInstanced</a> | <a href="#DrawModel">DrawModel</a> | <a href="#DrawModelEx">DrawModelEx</a> | <a href="#DrawModelWires">DrawModelWires</a> | <a href="#DrawModelWiresEx">DrawModelWiresEx</a>
+<a href="#DrawPixel">DrawPixel</a> | <a href="#DrawPixelV">DrawPixelV</a> | <a href="#DrawPlane">DrawPlane</a> | <a href="#DrawPoint3D">DrawPoint3D</a> | <a href="#DrawPoly">DrawPoly</a>
+<a href="#DrawPolyLines">DrawPolyLines</a> | <a href="#DrawPolyLinesEx">DrawPolyLinesEx</a> | <a href="#DrawRay">DrawRay</a> | <a href="#DrawRectangle">DrawRectangle</a> | <a href="#DrawRectangleGradientEx">DrawRectangleGradientEx</a>
+<a href="#DrawRectangleGradientH">DrawRectangleGradientH</a> | <a href="#DrawRectangleGradientV">DrawRectangleGradientV</a> | <a href="#DrawRectangleLines">DrawRectangleLines</a> | <a href="#DrawRectangleLinesEx">DrawRectangleLinesEx</a> | <a href="#DrawRectanglePro">DrawRectanglePro</a>
+<a href="#DrawRectangleRec">DrawRectangleRec</a> | <a href="#DrawRectangleRounded">DrawRectangleRounded</a> | <a href="#DrawRectangleRoundedLines">DrawRectangleRoundedLines</a> | <a href="#DrawRectangleV">DrawRectangleV</a> | <a href="#DrawRing">DrawRing</a>
+<a href="#DrawRingLines">DrawRingLines</a> | <a href="#DrawSphere">DrawSphere</a> | <a href="#DrawSphereEx">DrawSphereEx</a> | <a href="#DrawSphereWires">DrawSphereWires</a> | <a href="#DrawSplineBasis">DrawSplineBasis</a>
+<a href="#DrawSplineBezierCubic">DrawSplineBezierCubic</a> | <a href="#DrawSplineBezierQuadratic">DrawSplineBezierQuadratic</a> | <a href="#DrawSplineCatmullRom">DrawSplineCatmullRom</a> | <a href="#DrawSplineLinear">DrawSplineLinear</a> | <a href="#DrawSplineSegmentBasis">DrawSplineSegmentBasis</a>
+<a href="#DrawSplineSegmentBezierCubic">DrawSplineSegmentBezierCubic</a> | <a href="#DrawSplineSegmentBezierQuadratic">DrawSplineSegmentBezierQuadratic</a> | <a href="#DrawSplineSegmentCatmullRom">DrawSplineSegmentCatmullRom</a> | <a href="#DrawSplineSegmentLinear">DrawSplineSegmentLinear</a> | <a href="#DrawText">DrawText</a>
+<a href="#DrawTextCodepoint">DrawTextCodepoint</a> | <a href="#DrawTextCodepoints">DrawTextCodepoints</a> | <a href="#DrawTextEx">DrawTextEx</a> | <a href="#DrawTextPro">DrawTextPro</a> | <a href="#DrawTexture">DrawTexture</a>
+<a href="#DrawTextureEx">DrawTextureEx</a> | <a href="#DrawTextureNPatch">DrawTextureNPatch</a> | <a href="#DrawTexturePro">DrawTexturePro</a> | <a href="#DrawTextureRec">DrawTextureRec</a> | <a href="#DrawTextureV">DrawTextureV</a>
+<a href="#DrawTriangle">DrawTriangle</a> | <a href="#DrawTriangle3D">DrawTriangle3D</a> | <a href="#DrawTriangleFan">DrawTriangleFan</a> | <a href="#DrawTriangleLines">DrawTriangleLines</a> | <a href="#DrawTriangleStrip">DrawTriangleStrip</a>
+<a href="#DrawTriangleStrip3D">DrawTriangleStrip3D</a> | <a href="#EnableCursor">EnableCursor</a> | <a href="#EnableEventWaiting">EnableEventWaiting</a> | <a href="#EncodeDataBase64">EncodeDataBase64</a> | <a href="#EndBlendMode">EndBlendMode</a>
+<a href="#EndDrawing">EndDrawing</a> | <a href="#EndMode2D">EndMode2D</a> | <a href="#EndMode3D">EndMode3D</a> | <a href="#EndScissorMode">EndScissorMode</a> | <a href="#EndShaderMode">EndShaderMode</a>
+<a href="#EndTextureMode">EndTextureMode</a> | <a href="#EndVrStereoMode">EndVrStereoMode</a> | <a href="#ExportAutomationEventList">ExportAutomationEventList</a> | <a href="#ExportDataAsCode">ExportDataAsCode</a> | <a href="#ExportFontAsCode">ExportFontAsCode</a>
+<a href="#ExportImage">ExportImage</a> | <a href="#ExportImageAsCode">ExportImageAsCode</a> | <a href="#ExportImageToMemory">ExportImageToMemory</a> | <a href="#ExportMesh">ExportMesh</a> | <a href="#ExportWave">ExportWave</a>
+<a href="#ExportWaveAsCode">ExportWaveAsCode</a> | <a href="#Fade">Fade</a> | <a href="#FileExists">FileExists</a> | <a href="#FloatEquals">FloatEquals</a> | <a href="#GenImageCellular">GenImageCellular</a>
+<a href="#GenImageChecked">GenImageChecked</a> | <a href="#GenImageColor">GenImageColor</a> | <a href="#GenImageFontAtlas">GenImageFontAtlas</a> | <a href="#GenImageGradientLinear">GenImageGradientLinear</a> | <a href="#GenImageGradientRadial">GenImageGradientRadial</a>
+<a href="#GenImageGradientSquare">GenImageGradientSquare</a> | <a href="#GenImagePerlinNoise">GenImagePerlinNoise</a> | <a href="#GenImageText">GenImageText</a> | <a href="#GenImageWhiteNoise">GenImageWhiteNoise</a> | <a href="#GenMeshCone">GenMeshCone</a>
+<a href="#GenMeshCube">GenMeshCube</a> | <a href="#GenMeshCubicmap">GenMeshCubicmap</a> | <a href="#GenMeshCylinder">GenMeshCylinder</a> | <a href="#GenMeshHeightmap">GenMeshHeightmap</a> | <a href="#GenMeshHemiSphere">GenMeshHemiSphere</a>
+<a href="#GenMeshKnot">GenMeshKnot</a> | <a href="#GenMeshPlane">GenMeshPlane</a> | <a href="#GenMeshPoly">GenMeshPoly</a> | <a href="#GenMeshSphere">GenMeshSphere</a> | <a href="#GenMeshTangents">GenMeshTangents</a>
+<a href="#GenMeshTorus">GenMeshTorus</a> | <a href="#GenTextureMipmaps">GenTextureMipmaps</a> | <a href="#GetApplicationDirectory">GetApplicationDirectory</a> | <a href="#GetCameraMatrix">GetCameraMatrix</a> | <a href="#GetCameraMatrix2D">GetCameraMatrix2D</a>
+<a href="#GetCharPressed">GetCharPressed</a> | <a href="#GetClipboardText">GetClipboardText</a> | <a href="#GetCodepoint">GetCodepoint</a> | <a href="#GetCodepointCount">GetCodepointCount</a> | <a href="#GetCodepointNext">GetCodepointNext</a>
+<a href="#GetCodepointPrevious">GetCodepointPrevious</a> | <a href="#GetCollisionRec">GetCollisionRec</a> | <a href="#GetColor">GetColor</a> | <a href="#GetCurrentMonitor">GetCurrentMonitor</a> | <a href="#GetDirectoryPath">GetDirectoryPath</a>
+<a href="#GetFPS">GetFPS</a> | <a href="#GetFileExtension">GetFileExtension</a> | <a href="#GetFileLength">GetFileLength</a> | <a href="#GetFileModTime">GetFileModTime</a> | <a href="#GetFileName">GetFileName</a>
+<a href="#GetFileNameWithoutExt">GetFileNameWithoutExt</a> | <a href="#GetFontDefault">GetFontDefault</a> | <a href="#GetFrameTime">GetFrameTime</a> | <a href="#GetGamepadAxisCount">GetGamepadAxisCount</a> | <a href="#GetGamepadAxisMovement">GetGamepadAxisMovement</a>
+<a href="#GetGamepadButtonPressed">GetGamepadButtonPressed</a> | <a href="#GetGamepadName">GetGamepadName</a> | <a href="#GetGestureDetected">GetGestureDetected</a> | <a href="#GetGestureDragAngle">GetGestureDragAngle</a> | <a href="#GetGestureDragVector">GetGestureDragVector</a>
+<a href="#GetGestureHoldDuration">GetGestureHoldDuration</a> | <a href="#GetGesturePinchAngle">GetGesturePinchAngle</a> | <a href="#GetGesturePinchVector">GetGesturePinchVector</a> | <a href="#GetGlyphAtlasRec">GetGlyphAtlasRec</a> | <a href="#GetGlyphIndex">GetGlyphIndex</a>
+<a href="#GetGlyphInfo">GetGlyphInfo</a> | <a href="#GetImageAlphaBorder">GetImageAlphaBorder</a> | <a href="#GetImageColor">GetImageColor</a> | <a href="#GetKeyPressed">GetKeyPressed</a> | <a href="#GetMasterVolume">GetMasterVolume</a>
+<a href="#GetMeshBoundingBox">GetMeshBoundingBox</a> | <a href="#GetModelBoundingBox">GetModelBoundingBox</a> | <a href="#GetMonitorCount">GetMonitorCount</a> | <a href="#GetMonitorHeight">GetMonitorHeight</a> | <a href="#GetMonitorName">GetMonitorName</a>
+<a href="#GetMonitorPhysicalHeight">GetMonitorPhysicalHeight</a> | <a href="#GetMonitorPhysicalWidth">GetMonitorPhysicalWidth</a> | <a href="#GetMonitorPosition">GetMonitorPosition</a> | <a href="#GetMonitorRefreshRate">GetMonitorRefreshRate</a> | <a href="#GetMonitorWidth">GetMonitorWidth</a>
+<a href="#GetMouseDelta">GetMouseDelta</a> | <a href="#GetMousePosition">GetMousePosition</a> | <a href="#GetMouseRay">GetMouseRay</a> | <a href="#GetMouseWheelMove">GetMouseWheelMove</a> | <a href="#GetMouseWheelMoveV">GetMouseWheelMoveV</a>
+<a href="#GetMouseX">GetMouseX</a> | <a href="#GetMouseY">GetMouseY</a> | <a href="#GetMusicTimeLength">GetMusicTimeLength</a> | <a href="#GetMusicTimePlayed">GetMusicTimePlayed</a> | <a href="#GetPixelColor">GetPixelColor</a>
+<a href="#GetPixelDataSize">GetPixelDataSize</a> | <a href="#GetPrevDirectoryPath">GetPrevDirectoryPath</a> | <a href="#GetRandomValue">GetRandomValue</a> | <a href="#GetRayCollisionBox">GetRayCollisionBox</a> | <a href="#GetRayCollisionMesh">GetRayCollisionMesh</a>
+<a href="#GetRayCollisionQuad">GetRayCollisionQuad</a> | <a href="#GetRayCollisionSphere">GetRayCollisionSphere</a> | <a href="#GetRayCollisionTriangle">GetRayCollisionTriangle</a> | <a href="#GetRenderHeight">GetRenderHeight</a> | <a href="#GetRenderWidth">GetRenderWidth</a>
+<a href="#GetScreenHeight">GetScreenHeight</a> | <a href="#GetScreenToWorld2D">GetScreenToWorld2D</a> | <a href="#GetScreenWidth">GetScreenWidth</a> | <a href="#GetShaderLocation">GetShaderLocation</a> | <a href="#GetShaderLocationAttrib">GetShaderLocationAttrib</a>
+<a href="#GetSplinePointBasis">GetSplinePointBasis</a> | <a href="#GetSplinePointBezierCubic">GetSplinePointBezierCubic</a> | <a href="#GetSplinePointBezierQuad">GetSplinePointBezierQuad</a> | <a href="#GetSplinePointCatmullRom">GetSplinePointCatmullRom</a> | <a href="#GetSplinePointLinear">GetSplinePointLinear</a>
+<a href="#GetTime">GetTime</a> | <a href="#GetTouchPointCount">GetTouchPointCount</a> | <a href="#GetTouchPointId">GetTouchPointId</a> | <a href="#GetTouchPosition">GetTouchPosition</a> | <a href="#GetTouchX">GetTouchX</a>
+<a href="#GetTouchY">GetTouchY</a> | <a href="#GetWindowHandle">GetWindowHandle</a> | <a href="#GetWindowPosition">GetWindowPosition</a> | <a href="#GetWindowScaleDPI">GetWindowScaleDPI</a> | <a href="#GetWorkingDirectory">GetWorkingDirectory</a>
+<a href="#GetWorldToScreen">GetWorldToScreen</a> | <a href="#GetWorldToScreen2D">GetWorldToScreen2D</a> | <a href="#GetWorldToScreenEx">GetWorldToScreenEx</a> | <a href="#HideCursor">HideCursor</a> | <a href="#ImageAlphaClear">ImageAlphaClear</a>
+<a href="#ImageAlphaCrop">ImageAlphaCrop</a> | <a href="#ImageAlphaMask">ImageAlphaMask</a> | <a href="#ImageAlphaPremultiply">ImageAlphaPremultiply</a> | <a href="#ImageBlurGaussian">ImageBlurGaussian</a> | <a href="#ImageClearBackground">ImageClearBackground</a>
+<a href="#ImageColorBrightness">ImageColorBrightness</a> | <a href="#ImageColorContrast">ImageColorContrast</a> | <a href="#ImageColorGrayscale">ImageColorGrayscale</a> | <a href="#ImageColorInvert">ImageColorInvert</a> | <a href="#ImageColorReplace">ImageColorReplace</a>
+<a href="#ImageColorTint">ImageColorTint</a> | <a href="#ImageCopy">ImageCopy</a> | <a href="#ImageCrop">ImageCrop</a> | <a href="#ImageDither">ImageDither</a> | <a href="#ImageDraw">ImageDraw</a>
+<a href="#ImageDrawCircle">ImageDrawCircle</a> | <a href="#ImageDrawCircleLines">ImageDrawCircleLines</a> | <a href="#ImageDrawCircleLinesV">ImageDrawCircleLinesV</a> | <a href="#ImageDrawCircleV">ImageDrawCircleV</a> | <a href="#ImageDrawLine">ImageDrawLine</a>
+<a href="#ImageDrawLineV">ImageDrawLineV</a> | <a href="#ImageDrawPixel">ImageDrawPixel</a> | <a href="#ImageDrawPixelV">ImageDrawPixelV</a> | <a href="#ImageDrawRectangle">ImageDrawRectangle</a> | <a href="#ImageDrawRectangleLines">ImageDrawRectangleLines</a>
+<a href="#ImageDrawRectangleRec">ImageDrawRectangleRec</a> | <a href="#ImageDrawRectangleV">ImageDrawRectangleV</a> | <a href="#ImageDrawText">ImageDrawText</a> | <a href="#ImageDrawTextEx">ImageDrawTextEx</a> | <a href="#ImageFlipHorizontal">ImageFlipHorizontal</a>
+<a href="#ImageFlipVertical">ImageFlipVertical</a> | <a href="#ImageFormat">ImageFormat</a> | <a href="#ImageFromImage">ImageFromImage</a> | <a href="#ImageMipmaps">ImageMipmaps</a> | <a href="#ImageResize">ImageResize</a>
+<a href="#ImageResizeCanvas">ImageResizeCanvas</a> | <a href="#ImageResizeNN">ImageResizeNN</a> | <a href="#ImageRotate">ImageRotate</a> | <a href="#ImageRotateCCW">ImageRotateCCW</a> | <a href="#ImageRotateCW">ImageRotateCW</a>
+<a href="#ImageText">ImageText</a> | <a href="#ImageTextEx">ImageTextEx</a> | <a href="#ImageToPOT">ImageToPOT</a> | <a href="#InitAudioDevice">InitAudioDevice</a> | <a href="#InitWindow">InitWindow</a>
+<a href="#IsAudioDeviceReady">IsAudioDeviceReady</a> | <a href="#IsAudioStreamPlaying">IsAudioStreamPlaying</a> | <a href="#IsAudioStreamProcessed">IsAudioStreamProcessed</a> | <a href="#IsAudioStreamReady">IsAudioStreamReady</a> | <a href="#IsCursorHidden">IsCursorHidden</a>
+<a href="#IsCursorOnScreen">IsCursorOnScreen</a> | <a href="#IsFileDropped">IsFileDropped</a> | <a href="#IsFileExtension">IsFileExtension</a> | <a href="#IsFontReady">IsFontReady</a> | <a href="#IsGamepadAvailable">IsGamepadAvailable</a>
+<a href="#IsGamepadButtonDown">IsGamepadButtonDown</a> | <a href="#IsGamepadButtonPressed">IsGamepadButtonPressed</a> | <a href="#IsGamepadButtonReleased">IsGamepadButtonReleased</a> | <a href="#IsGamepadButtonUp">IsGamepadButtonUp</a> | <a href="#IsGestureDetected">IsGestureDetected</a>
+<a href="#IsImageReady">IsImageReady</a> | <a href="#IsKeyDown">IsKeyDown</a> | <a href="#IsKeyPressed">IsKeyPressed</a> | <a href="#IsKeyPressedRepeat">IsKeyPressedRepeat</a> | <a href="#IsKeyReleased">IsKeyReleased</a>
+<a href="#IsKeyUp">IsKeyUp</a> | <a href="#IsMaterialReady">IsMaterialReady</a> | <a href="#IsModelAnimationValid">IsModelAnimationValid</a> | <a href="#IsModelReady">IsModelReady</a> | <a href="#IsMouseButtonDown">IsMouseButtonDown</a>
+<a href="#IsMouseButtonPressed">IsMouseButtonPressed</a> | <a href="#IsMouseButtonReleased">IsMouseButtonReleased</a> | <a href="#IsMouseButtonUp">IsMouseButtonUp</a> | <a href="#IsMusicReady">IsMusicReady</a> | <a href="#IsMusicStreamPlaying">IsMusicStreamPlaying</a>
+<a href="#IsPathFile">IsPathFile</a> | <a href="#IsRenderTextureReady">IsRenderTextureReady</a> | <a href="#IsShaderReady">IsShaderReady</a> | <a href="#IsSoundPlaying">IsSoundPlaying</a> | <a href="#IsSoundReady">IsSoundReady</a>
+<a href="#IsTextureReady">IsTextureReady</a> | <a href="#IsWaveReady">IsWaveReady</a> | <a href="#IsWindowFocused">IsWindowFocused</a> | <a href="#IsWindowFullscreen">IsWindowFullscreen</a> | <a href="#IsWindowHidden">IsWindowHidden</a>
+<a href="#IsWindowMaximized">IsWindowMaximized</a> | <a href="#IsWindowMinimized">IsWindowMinimized</a> | <a href="#IsWindowReady">IsWindowReady</a> | <a href="#IsWindowResized">IsWindowResized</a> | <a href="#IsWindowState">IsWindowState</a>
+<a href="#Lerp">Lerp</a> | <a href="#LoadAudioStream">LoadAudioStream</a> | <a href="#LoadAutomationEventList">LoadAutomationEventList</a> | <a href="#LoadCodepoints">LoadCodepoints</a> | <a href="#LoadDirectoryFiles">LoadDirectoryFiles</a>
 <a href="#LoadDirectoryFilesEx">LoadDirectoryFilesEx</a> | <a href="#LoadDroppedFiles">LoadDroppedFiles</a> | <a href="#LoadFileData">LoadFileData</a> | <a href="#LoadFileText">LoadFileText</a> | <a href="#LoadFont">LoadFont</a>
 <a href="#LoadFontData">LoadFontData</a> | <a href="#LoadFontEx">LoadFontEx</a> | <a href="#LoadFontFromImage">LoadFontFromImage</a> | <a href="#LoadFontFromMemory">LoadFontFromMemory</a> | <a href="#LoadImage">LoadImage</a>
 <a href="#LoadImageAnim">LoadImageAnim</a> | <a href="#LoadImageColors">LoadImageColors</a> | <a href="#LoadImageFromMemory">LoadImageFromMemory</a> | <a href="#LoadImageFromScreen">LoadImageFromScreen</a> | <a href="#LoadImageFromTexture">LoadImageFromTexture</a>
-<a href="#LoadImagePalette">LoadImagePalette</a> | <a href="#LoadImageRaw">LoadImageRaw</a> | <a href="#LoadMaterialDefault">LoadMaterialDefault</a> | <a href="#LoadMaterials">LoadMaterials</a> | <a href="#LoadModel">LoadModel</a>
-<a href="#LoadModelAnimations">LoadModelAnimations</a> | <a href="#LoadModelFromMesh">LoadModelFromMesh</a> | <a href="#LoadMusicStream">LoadMusicStream</a> | <a href="#LoadMusicStreamFromMemory">LoadMusicStreamFromMemory</a> | <a href="#LoadRenderTexture">LoadRenderTexture</a>
-<a href="#LoadShader">LoadShader</a> | <a href="#LoadShaderFromMemory">LoadShaderFromMemory</a> | <a href="#LoadSound">LoadSound</a> | <a href="#LoadSoundFromWave">LoadSoundFromWave</a> | <a href="#LoadTexture">LoadTexture</a>
-<a href="#LoadTextureCubemap">LoadTextureCubemap</a> | <a href="#LoadTextureFromImage">LoadTextureFromImage</a> | <a href="#LoadUTF8">LoadUTF8</a> | <a href="#LoadVrStereoConfig">LoadVrStereoConfig</a> | <a href="#LoadWave">LoadWave</a>
-<a href="#LoadWaveFromMemory">LoadWaveFromMemory</a> | <a href="#LoadWaveSamples">LoadWaveSamples</a> | <a href="#MatrixAdd">MatrixAdd</a> | <a href="#MatrixDeterminant">MatrixDeterminant</a> | <a href="#MatrixFrustum">MatrixFrustum</a>
-<a href="#MatrixIdentity">MatrixIdentity</a> | <a href="#MatrixInvert">MatrixInvert</a> | <a href="#MatrixLookAt">MatrixLookAt</a> | <a href="#MatrixMultiply">MatrixMultiply</a> | <a href="#MatrixOrtho">MatrixOrtho</a>
-<a href="#MatrixPerspective">MatrixPerspective</a> | <a href="#MatrixRotate">MatrixRotate</a> | <a href="#MatrixRotateX">MatrixRotateX</a> | <a href="#MatrixRotateXYZ">MatrixRotateXYZ</a> | <a href="#MatrixRotateY">MatrixRotateY</a>
-<a href="#MatrixRotateZ">MatrixRotateZ</a> | <a href="#MatrixRotateZYX">MatrixRotateZYX</a> | <a href="#MatrixScale">MatrixScale</a> | <a href="#MatrixSubtract">MatrixSubtract</a> | <a href="#MatrixToFloatV">MatrixToFloatV</a>
-<a href="#MatrixTrace">MatrixTrace</a> | <a href="#MatrixTranslate">MatrixTranslate</a> | <a href="#MatrixTranspose">MatrixTranspose</a> | <a href="#MaximizeWindow">MaximizeWindow</a> | <a href="#MeasureText">MeasureText</a>
-<a href="#MeasureTextEx">MeasureTextEx</a> | <a href="#MemAlloc">MemAlloc</a> | <a href="#MemFree">MemFree</a> | <a href="#MemRealloc">MemRealloc</a> | <a href="#MinimizeWindow">MinimizeWindow</a>
-<a href="#Normalize">Normalize</a> | <a href="#OpenURL">OpenURL</a> | <a href="#PauseAudioStream">PauseAudioStream</a> | <a href="#PauseMusicStream">PauseMusicStream</a> | <a href="#PauseSound">PauseSound</a>
-<a href="#PlayAudioStream">PlayAudioStream</a> | <a href="#PlayMusicStream">PlayMusicStream</a> | <a href="#PlaySound">PlaySound</a> | <a href="#PollInputEvents">PollInputEvents</a> | <a href="#QuaternionAdd">QuaternionAdd</a>
-<a href="#QuaternionAddValue">QuaternionAddValue</a> | <a href="#QuaternionDivide">QuaternionDivide</a> | <a href="#QuaternionEquals">QuaternionEquals</a> | <a href="#QuaternionFromAxisAngle">QuaternionFromAxisAngle</a> | <a href="#QuaternionFromEuler">QuaternionFromEuler</a>
-<a href="#QuaternionFromMatrix">QuaternionFromMatrix</a> | <a href="#QuaternionFromVector3ToVector3">QuaternionFromVector3ToVector3</a> | <a href="#QuaternionIdentity">QuaternionIdentity</a> | <a href="#QuaternionInvert">QuaternionInvert</a> | <a href="#QuaternionLength">QuaternionLength</a>
-<a href="#QuaternionLerp">QuaternionLerp</a> | <a href="#QuaternionMultiply">QuaternionMultiply</a> | <a href="#QuaternionNlerp">QuaternionNlerp</a> | <a href="#QuaternionNormalize">QuaternionNormalize</a> | <a href="#QuaternionScale">QuaternionScale</a>
-<a href="#QuaternionSlerp">QuaternionSlerp</a> | <a href="#QuaternionSubtract">QuaternionSubtract</a> | <a href="#QuaternionSubtractValue">QuaternionSubtractValue</a> | <a href="#QuaternionToAxisAngle">QuaternionToAxisAngle</a> | <a href="#QuaternionToEuler">QuaternionToEuler</a>
-<a href="#QuaternionToMatrix">QuaternionToMatrix</a> | <a href="#QuaternionTransform">QuaternionTransform</a> | <a href="#Remap">Remap</a> | <a href="#RestoreWindow">RestoreWindow</a> | <a href="#ResumeAudioStream">ResumeAudioStream</a>
-<a href="#ResumeMusicStream">ResumeMusicStream</a> | <a href="#ResumeSound">ResumeSound</a> | <a href="#SaveFileData">SaveFileData</a> | <a href="#SaveFileText">SaveFileText</a> | <a href="#SeekMusicStream">SeekMusicStream</a>
-<a href="#SetAudioStreamBufferSizeDefault">SetAudioStreamBufferSizeDefault</a> | <a href="#SetAudioStreamCallback">SetAudioStreamCallback</a> | <a href="#SetAudioStreamPan">SetAudioStreamPan</a> | <a href="#SetAudioStreamPitch">SetAudioStreamPitch</a> | <a href="#SetAudioStreamVolume">SetAudioStreamVolume</a>
-<a href="#SetClipboardText">SetClipboardText</a> | <a href="#SetConfigFlags">SetConfigFlags</a> | <a href="#SetExitKey">SetExitKey</a> | <a href="#SetGamepadMappings">SetGamepadMappings</a> | <a href="#SetGesturesEnabled">SetGesturesEnabled</a>
-<a href="#SetLoadFileDataCallback">SetLoadFileDataCallback</a> | <a href="#SetLoadFileTextCallback">SetLoadFileTextCallback</a> | <a href="#SetMasterVolume">SetMasterVolume</a> | <a href="#SetMaterialTexture">SetMaterialTexture</a> | <a href="#SetModelMeshMaterial">SetModelMeshMaterial</a>
-<a href="#SetMouseCursor">SetMouseCursor</a> | <a href="#SetMouseOffset">SetMouseOffset</a> | <a href="#SetMousePosition">SetMousePosition</a> | <a href="#SetMouseScale">SetMouseScale</a> | <a href="#SetMusicPan">SetMusicPan</a>
-<a href="#SetMusicPitch">SetMusicPitch</a> | <a href="#SetMusicVolume">SetMusicVolume</a> | <a href="#SetPixelColor">SetPixelColor</a> | <a href="#SetRandomSeed">SetRandomSeed</a> | <a href="#SetSaveFileDataCallback">SetSaveFileDataCallback</a>
-<a href="#SetSaveFileTextCallback">SetSaveFileTextCallback</a> | <a href="#SetShaderValue">SetShaderValue</a> | <a href="#SetShaderValueMatrix">SetShaderValueMatrix</a> | <a href="#SetShaderValueTexture">SetShaderValueTexture</a> | <a href="#SetShaderValueV">SetShaderValueV</a>
-<a href="#SetShapesTexture">SetShapesTexture</a> | <a href="#SetSoundPan">SetSoundPan</a> | <a href="#SetSoundPitch">SetSoundPitch</a> | <a href="#SetSoundVolume">SetSoundVolume</a> | <a href="#SetTargetFPS">SetTargetFPS</a>
-<a href="#SetTextureFilter">SetTextureFilter</a> | <a href="#SetTextureWrap">SetTextureWrap</a> | <a href="#SetTraceLogCallback">SetTraceLogCallback</a> | <a href="#SetTraceLogLevel">SetTraceLogLevel</a> | <a href="#SetWindowIcon">SetWindowIcon</a>
-<a href="#SetWindowIcons">SetWindowIcons</a> | <a href="#SetWindowMinSize">SetWindowMinSize</a> | <a href="#SetWindowMonitor">SetWindowMonitor</a> | <a href="#SetWindowOpacity">SetWindowOpacity</a> | <a href="#SetWindowPosition">SetWindowPosition</a>
-<a href="#SetWindowSize">SetWindowSize</a> | <a href="#SetWindowState">SetWindowState</a> | <a href="#SetWindowTitle">SetWindowTitle</a> | <a href="#ShowCursor">ShowCursor</a> | <a href="#StopAudioStream">StopAudioStream</a>
-<a href="#StopMusicStream">StopMusicStream</a> | <a href="#StopSound">StopSound</a> | <a href="#SwapScreenBuffer">SwapScreenBuffer</a> | <a href="#TakeScreenshot">TakeScreenshot</a> | <a href="#TextAppend">TextAppend</a>
-<a href="#TextCopy">TextCopy</a> | <a href="#TextFindIndex">TextFindIndex</a> | <a href="#TextFormat">TextFormat</a> | <a href="#TextInsert">TextInsert</a> | <a href="#TextIsEqual">TextIsEqual</a>
-<a href="#TextJoin">TextJoin</a> | <a href="#TextLength">TextLength</a> | <a href="#TextReplace">TextReplace</a> | <a href="#TextSplit">TextSplit</a> | <a href="#TextSubtext">TextSubtext</a>
-<a href="#TextToInteger">TextToInteger</a> | <a href="#TextToLower">TextToLower</a> | <a href="#TextToPascal">TextToPascal</a> | <a href="#TextToUpper">TextToUpper</a> | <a href="#ToggleFullscreen">ToggleFullscreen</a>
-<a href="#TraceLog">TraceLog</a> | <a href="#UnloadAudioStream">UnloadAudioStream</a> | <a href="#UnloadCodepoints">UnloadCodepoints</a> | <a href="#UnloadDirectoryFiles">UnloadDirectoryFiles</a> | <a href="#UnloadDroppedFiles">UnloadDroppedFiles</a>
-<a href="#UnloadFileData">UnloadFileData</a> | <a href="#UnloadFileText">UnloadFileText</a> | <a href="#UnloadFont">UnloadFont</a> | <a href="#UnloadFontData">UnloadFontData</a> | <a href="#UnloadImage">UnloadImage</a>
-<a href="#UnloadImageColors">UnloadImageColors</a> | <a href="#UnloadImagePalette">UnloadImagePalette</a> | <a href="#UnloadMaterial">UnloadMaterial</a> | <a href="#UnloadMesh">UnloadMesh</a> | <a href="#UnloadModel">UnloadModel</a>
-<a href="#UnloadModelAnimation">UnloadModelAnimation</a> | <a href="#UnloadModelAnimations">UnloadModelAnimations</a> | <a href="#UnloadMusicStream">UnloadMusicStream</a> | <a href="#UnloadRenderTexture">UnloadRenderTexture</a> | <a href="#UnloadShader">UnloadShader</a>
-<a href="#UnloadSound">UnloadSound</a> | <a href="#UnloadTexture">UnloadTexture</a> | <a href="#UnloadUTF8">UnloadUTF8</a> | <a href="#UnloadVrStereoConfig">UnloadVrStereoConfig</a> | <a href="#UnloadWave">UnloadWave</a>
+<a href="#LoadImagePalette">LoadImagePalette</a> | <a href="#LoadImageRaw">LoadImageRaw</a> | <a href="#LoadImageSvg">LoadImageSvg</a> | <a href="#LoadMaterialDefault">LoadMaterialDefault</a> | <a href="#LoadMaterials">LoadMaterials</a>
+<a href="#LoadModel">LoadModel</a> | <a href="#LoadModelAnimations">LoadModelAnimations</a> | <a href="#LoadModelFromMesh">LoadModelFromMesh</a> | <a href="#LoadMusicStream">LoadMusicStream</a> | <a href="#LoadMusicStreamFromMemory">LoadMusicStreamFromMemory</a>
+<a href="#LoadRandomSequence">LoadRandomSequence</a> | <a href="#LoadRenderTexture">LoadRenderTexture</a> | <a href="#LoadShader">LoadShader</a> | <a href="#LoadShaderFromMemory">LoadShaderFromMemory</a> | <a href="#LoadSound">LoadSound</a>
+<a href="#LoadSoundAlias">LoadSoundAlias</a> | <a href="#LoadSoundFromWave">LoadSoundFromWave</a> | <a href="#LoadTexture">LoadTexture</a> | <a href="#LoadTextureCubemap">LoadTextureCubemap</a> | <a href="#LoadTextureFromImage">LoadTextureFromImage</a>
+<a href="#LoadUTF8">LoadUTF8</a> | <a href="#LoadVrStereoConfig">LoadVrStereoConfig</a> | <a href="#LoadWave">LoadWave</a> | <a href="#LoadWaveFromMemory">LoadWaveFromMemory</a> | <a href="#LoadWaveSamples">LoadWaveSamples</a>
+<a href="#MatrixAdd">MatrixAdd</a> | <a href="#MatrixDeterminant">MatrixDeterminant</a> | <a href="#MatrixFrustum">MatrixFrustum</a> | <a href="#MatrixIdentity">MatrixIdentity</a> | <a href="#MatrixInvert">MatrixInvert</a>
+<a href="#MatrixLookAt">MatrixLookAt</a> | <a href="#MatrixMultiply">MatrixMultiply</a> | <a href="#MatrixOrtho">MatrixOrtho</a> | <a href="#MatrixPerspective">MatrixPerspective</a> | <a href="#MatrixRotate">MatrixRotate</a>
+<a href="#MatrixRotateX">MatrixRotateX</a> | <a href="#MatrixRotateXYZ">MatrixRotateXYZ</a> | <a href="#MatrixRotateY">MatrixRotateY</a> | <a href="#MatrixRotateZ">MatrixRotateZ</a> | <a href="#MatrixRotateZYX">MatrixRotateZYX</a>
+<a href="#MatrixScale">MatrixScale</a> | <a href="#MatrixSubtract">MatrixSubtract</a> | <a href="#MatrixToFloatV">MatrixToFloatV</a> | <a href="#MatrixTrace">MatrixTrace</a> | <a href="#MatrixTranslate">MatrixTranslate</a>
+<a href="#MatrixTranspose">MatrixTranspose</a> | <a href="#MaximizeWindow">MaximizeWindow</a> | <a href="#MeasureText">MeasureText</a> | <a href="#MeasureTextEx">MeasureTextEx</a> | <a href="#MemAlloc">MemAlloc</a>
+<a href="#MemFree">MemFree</a> | <a href="#MemRealloc">MemRealloc</a> | <a href="#MinimizeWindow">MinimizeWindow</a> | <a href="#Normalize">Normalize</a> | <a href="#OpenURL">OpenURL</a>
+<a href="#PauseAudioStream">PauseAudioStream</a> | <a href="#PauseMusicStream">PauseMusicStream</a> | <a href="#PauseSound">PauseSound</a> | <a href="#PlayAudioStream">PlayAudioStream</a> | <a href="#PlayAutomationEvent">PlayAutomationEvent</a>
+<a href="#PlayMusicStream">PlayMusicStream</a> | <a href="#PlaySound">PlaySound</a> | <a href="#PollInputEvents">PollInputEvents</a> | <a href="#QuaternionAdd">QuaternionAdd</a> | <a href="#QuaternionAddValue">QuaternionAddValue</a>
+<a href="#QuaternionDivide">QuaternionDivide</a> | <a href="#QuaternionEquals">QuaternionEquals</a> | <a href="#QuaternionFromAxisAngle">QuaternionFromAxisAngle</a> | <a href="#QuaternionFromEuler">QuaternionFromEuler</a> | <a href="#QuaternionFromMatrix">QuaternionFromMatrix</a>
+<a href="#QuaternionFromVector3ToVector3">QuaternionFromVector3ToVector3</a> | <a href="#QuaternionIdentity">QuaternionIdentity</a> | <a href="#QuaternionInvert">QuaternionInvert</a> | <a href="#QuaternionLength">QuaternionLength</a> | <a href="#QuaternionLerp">QuaternionLerp</a>
+<a href="#QuaternionMultiply">QuaternionMultiply</a> | <a href="#QuaternionNlerp">QuaternionNlerp</a> | <a href="#QuaternionNormalize">QuaternionNormalize</a> | <a href="#QuaternionScale">QuaternionScale</a> | <a href="#QuaternionSlerp">QuaternionSlerp</a>
+<a href="#QuaternionSubtract">QuaternionSubtract</a> | <a href="#QuaternionSubtractValue">QuaternionSubtractValue</a> | <a href="#QuaternionToAxisAngle">QuaternionToAxisAngle</a> | <a href="#QuaternionToEuler">QuaternionToEuler</a> | <a href="#QuaternionToMatrix">QuaternionToMatrix</a>
+<a href="#QuaternionTransform">QuaternionTransform</a> | <a href="#Remap">Remap</a> | <a href="#RestoreWindow">RestoreWindow</a> | <a href="#ResumeAudioStream">ResumeAudioStream</a> | <a href="#ResumeMusicStream">ResumeMusicStream</a>
+<a href="#ResumeSound">ResumeSound</a> | <a href="#SaveFileData">SaveFileData</a> | <a href="#SaveFileText">SaveFileText</a> | <a href="#SeekMusicStream">SeekMusicStream</a> | <a href="#SetAudioStreamBufferSizeDefault">SetAudioStreamBufferSizeDefault</a>
+<a href="#SetAudioStreamCallback">SetAudioStreamCallback</a> | <a href="#SetAudioStreamPan">SetAudioStreamPan</a> | <a href="#SetAudioStreamPitch">SetAudioStreamPitch</a> | <a href="#SetAudioStreamVolume">SetAudioStreamVolume</a> | <a href="#SetAutomationEventBaseFrame">SetAutomationEventBaseFrame</a>
+<a href="#SetAutomationEventList">SetAutomationEventList</a> | <a href="#SetClipboardText">SetClipboardText</a> | <a href="#SetConfigFlags">SetConfigFlags</a> | <a href="#SetExitKey">SetExitKey</a> | <a href="#SetGamepadMappings">SetGamepadMappings</a>
+<a href="#SetGesturesEnabled">SetGesturesEnabled</a> | <a href="#SetLoadFileDataCallback">SetLoadFileDataCallback</a> | <a href="#SetLoadFileTextCallback">SetLoadFileTextCallback</a> | <a href="#SetMasterVolume">SetMasterVolume</a> | <a href="#SetMaterialTexture">SetMaterialTexture</a>
+<a href="#SetModelMeshMaterial">SetModelMeshMaterial</a> | <a href="#SetMouseCursor">SetMouseCursor</a> | <a href="#SetMouseOffset">SetMouseOffset</a> | <a href="#SetMousePosition">SetMousePosition</a> | <a href="#SetMouseScale">SetMouseScale</a>
+<a href="#SetMusicPan">SetMusicPan</a> | <a href="#SetMusicPitch">SetMusicPitch</a> | <a href="#SetMusicVolume">SetMusicVolume</a> | <a href="#SetPixelColor">SetPixelColor</a> | <a href="#SetRandomSeed">SetRandomSeed</a>
+<a href="#SetSaveFileDataCallback">SetSaveFileDataCallback</a> | <a href="#SetSaveFileTextCallback">SetSaveFileTextCallback</a> | <a href="#SetShaderValue">SetShaderValue</a> | <a href="#SetShaderValueMatrix">SetShaderValueMatrix</a> | <a href="#SetShaderValueTexture">SetShaderValueTexture</a>
+<a href="#SetShaderValueV">SetShaderValueV</a> | <a href="#SetShapesTexture">SetShapesTexture</a> | <a href="#SetSoundPan">SetSoundPan</a> | <a href="#SetSoundPitch">SetSoundPitch</a> | <a href="#SetSoundVolume">SetSoundVolume</a>
+<a href="#SetTargetFPS">SetTargetFPS</a> | <a href="#SetTextLineSpacing">SetTextLineSpacing</a> | <a href="#SetTextureFilter">SetTextureFilter</a> | <a href="#SetTextureWrap">SetTextureWrap</a> | <a href="#SetTraceLogCallback">SetTraceLogCallback</a>
+<a href="#SetTraceLogLevel">SetTraceLogLevel</a> | <a href="#SetWindowFocused">SetWindowFocused</a> | <a href="#SetWindowIcon">SetWindowIcon</a> | <a href="#SetWindowIcons">SetWindowIcons</a> | <a href="#SetWindowMaxSize">SetWindowMaxSize</a>
+<a href="#SetWindowMinSize">SetWindowMinSize</a> | <a href="#SetWindowMonitor">SetWindowMonitor</a> | <a href="#SetWindowOpacity">SetWindowOpacity</a> | <a href="#SetWindowPosition">SetWindowPosition</a> | <a href="#SetWindowSize">SetWindowSize</a>
+<a href="#SetWindowState">SetWindowState</a> | <a href="#SetWindowTitle">SetWindowTitle</a> | <a href="#ShowCursor">ShowCursor</a> | <a href="#StartAutomationEventRecording">StartAutomationEventRecording</a> | <a href="#StopAudioStream">StopAudioStream</a>
+<a href="#StopAutomationEventRecording">StopAutomationEventRecording</a> | <a href="#StopMusicStream">StopMusicStream</a> | <a href="#StopSound">StopSound</a> | <a href="#SwapScreenBuffer">SwapScreenBuffer</a> | <a href="#TakeScreenshot">TakeScreenshot</a>
+<a href="#TextAppend">TextAppend</a> | <a href="#TextCopy">TextCopy</a> | <a href="#TextFindIndex">TextFindIndex</a> | <a href="#TextFormat">TextFormat</a> | <a href="#TextInsert">TextInsert</a>
+<a href="#TextIsEqual">TextIsEqual</a> | <a href="#TextJoin">TextJoin</a> | <a href="#TextLength">TextLength</a> | <a href="#TextReplace">TextReplace</a> | <a href="#TextSplit">TextSplit</a>
+<a href="#TextSubtext">TextSubtext</a> | <a href="#TextToInteger">TextToInteger</a> | <a href="#TextToLower">TextToLower</a> | <a href="#TextToPascal">TextToPascal</a> | <a href="#TextToUpper">TextToUpper</a>
+<a href="#ToggleBorderlessWindowed">ToggleBorderlessWindowed</a> | <a href="#ToggleFullscreen">ToggleFullscreen</a> | <a href="#TraceLog">TraceLog</a> | <a href="#UnloadAudioStream">UnloadAudioStream</a> | <a href="#UnloadAutomationEventList">UnloadAutomationEventList</a>
+<a href="#UnloadCodepoints">UnloadCodepoints</a> | <a href="#UnloadDirectoryFiles">UnloadDirectoryFiles</a> | <a href="#UnloadDroppedFiles">UnloadDroppedFiles</a> | <a href="#UnloadFileData">UnloadFileData</a> | <a href="#UnloadFileText">UnloadFileText</a>
+<a href="#UnloadFont">UnloadFont</a> | <a href="#UnloadFontData">UnloadFontData</a> | <a href="#UnloadImage">UnloadImage</a> | <a href="#UnloadImageColors">UnloadImageColors</a> | <a href="#UnloadImagePalette">UnloadImagePalette</a>
+<a href="#UnloadMaterial">UnloadMaterial</a> | <a href="#UnloadMesh">UnloadMesh</a> | <a href="#UnloadModel">UnloadModel</a> | <a href="#UnloadModelAnimation">UnloadModelAnimation</a> | <a href="#UnloadModelAnimations">UnloadModelAnimations</a>
+<a href="#UnloadMusicStream">UnloadMusicStream</a> | <a href="#UnloadRandomSequence">UnloadRandomSequence</a> | <a href="#UnloadRenderTexture">UnloadRenderTexture</a> | <a href="#UnloadShader">UnloadShader</a> | <a href="#UnloadSound">UnloadSound</a>
+<a href="#UnloadSoundAlias">UnloadSoundAlias</a> | <a href="#UnloadTexture">UnloadTexture</a> | <a href="#UnloadUTF8">UnloadUTF8</a> | <a href="#UnloadVrStereoConfig">UnloadVrStereoConfig</a> | <a href="#UnloadWave">UnloadWave</a>
 <a href="#UnloadWaveSamples">UnloadWaveSamples</a> | <a href="#UpdateAudioStream">UpdateAudioStream</a> | <a href="#UpdateCamera">UpdateCamera</a> | <a href="#UpdateCameraPro">UpdateCameraPro</a> | <a href="#UpdateMeshBuffer">UpdateMeshBuffer</a>
 <a href="#UpdateModelAnimation">UpdateModelAnimation</a> | <a href="#UpdateMusicStream">UpdateMusicStream</a> | <a href="#UpdateSound">UpdateSound</a> | <a href="#UpdateTexture">UpdateTexture</a> | <a href="#UpdateTextureRec">UpdateTextureRec</a>
 <a href="#UploadMesh">UploadMesh</a> | <a href="#Vector2Add">Vector2Add</a> | <a href="#Vector2AddValue">Vector2AddValue</a> | <a href="#Vector2Angle">Vector2Angle</a> | <a href="#Vector2Clamp">Vector2Clamp</a>
@@ -2533,39 +2605,40 @@ Item|Item|Item|Item|Item
 <a href="#Vector3Distance">Vector3Distance</a> | <a href="#Vector3DistanceSqr">Vector3DistanceSqr</a> | <a href="#Vector3Divide">Vector3Divide</a> | <a href="#Vector3DotProduct">Vector3DotProduct</a> | <a href="#Vector3Equals">Vector3Equals</a>
 <a href="#Vector3Invert">Vector3Invert</a> | <a href="#Vector3Length">Vector3Length</a> | <a href="#Vector3LengthSqr">Vector3LengthSqr</a> | <a href="#Vector3Lerp">Vector3Lerp</a> | <a href="#Vector3Max">Vector3Max</a>
 <a href="#Vector3Min">Vector3Min</a> | <a href="#Vector3Multiply">Vector3Multiply</a> | <a href="#Vector3Negate">Vector3Negate</a> | <a href="#Vector3Normalize">Vector3Normalize</a> | <a href="#Vector3One">Vector3One</a>
-<a href="#Vector3OrthoNormalize">Vector3OrthoNormalize</a> | <a href="#Vector3Perpendicular">Vector3Perpendicular</a> | <a href="#Vector3Reflect">Vector3Reflect</a> | <a href="#Vector3Refract">Vector3Refract</a> | <a href="#Vector3RotateByAxisAngle">Vector3RotateByAxisAngle</a>
-<a href="#Vector3RotateByQuaternion">Vector3RotateByQuaternion</a> | <a href="#Vector3Scale">Vector3Scale</a> | <a href="#Vector3Subtract">Vector3Subtract</a> | <a href="#Vector3SubtractValue">Vector3SubtractValue</a> | <a href="#Vector3ToFloatV">Vector3ToFloatV</a>
-<a href="#Vector3Transform">Vector3Transform</a> | <a href="#Vector3Unproject">Vector3Unproject</a> | <a href="#Vector3Zero">Vector3Zero</a> | <a href="#WaitTime">WaitTime</a> | <a href="#WaveCopy">WaveCopy</a>
-<a href="#WaveCrop">WaveCrop</a> | <a href="#WaveFormat">WaveFormat</a> | <a href="#WindowShouldClose">WindowShouldClose</a> | <a href="#Wrap">Wrap</a> | <a href="#rlActiveDrawBuffers">rlActiveDrawBuffers</a>
-<a href="#rlActiveTextureSlot">rlActiveTextureSlot</a> | <a href="#rlBegin">rlBegin</a> | <a href="#rlBindImageTexture">rlBindImageTexture</a> | <a href="#rlBindShaderBuffer">rlBindShaderBuffer</a> | <a href="#rlCheckErrors">rlCheckErrors</a>
-<a href="#rlCheckRenderBatchLimit">rlCheckRenderBatchLimit</a> | <a href="#rlClearColor">rlClearColor</a> | <a href="#rlClearScreenBuffers">rlClearScreenBuffers</a> | <a href="#rlColor3f">rlColor3f</a> | <a href="#rlColor4f">rlColor4f</a>
-<a href="#rlColor4ub">rlColor4ub</a> | <a href="#rlCompileShader">rlCompileShader</a> | <a href="#rlComputeShaderDispatch">rlComputeShaderDispatch</a> | <a href="#rlCopyShaderBuffer">rlCopyShaderBuffer</a> | <a href="#rlCubemapParameters">rlCubemapParameters</a>
-<a href="#rlDisableBackfaceCulling">rlDisableBackfaceCulling</a> | <a href="#rlDisableColorBlend">rlDisableColorBlend</a> | <a href="#rlDisableDepthMask">rlDisableDepthMask</a> | <a href="#rlDisableDepthTest">rlDisableDepthTest</a> | <a href="#rlDisableFramebuffer">rlDisableFramebuffer</a>
-<a href="#rlDisableScissorTest">rlDisableScissorTest</a> | <a href="#rlDisableShader">rlDisableShader</a> | <a href="#rlDisableSmoothLines">rlDisableSmoothLines</a> | <a href="#rlDisableStereoRender">rlDisableStereoRender</a> | <a href="#rlDisableTexture">rlDisableTexture</a>
-<a href="#rlDisableTextureCubemap">rlDisableTextureCubemap</a> | <a href="#rlDisableVertexArray">rlDisableVertexArray</a> | <a href="#rlDisableVertexAttribute">rlDisableVertexAttribute</a> | <a href="#rlDisableVertexBuffer">rlDisableVertexBuffer</a> | <a href="#rlDisableVertexBufferElement">rlDisableVertexBufferElement</a>
-<a href="#rlDisableWireMode">rlDisableWireMode</a> | <a href="#rlDrawRenderBatch">rlDrawRenderBatch</a> | <a href="#rlDrawRenderBatchActive">rlDrawRenderBatchActive</a> | <a href="#rlDrawVertexArray">rlDrawVertexArray</a> | <a href="#rlDrawVertexArrayElements">rlDrawVertexArrayElements</a>
-<a href="#rlDrawVertexArrayElementsInstanced">rlDrawVertexArrayElementsInstanced</a> | <a href="#rlDrawVertexArrayInstanced">rlDrawVertexArrayInstanced</a> | <a href="#rlEnableBackfaceCulling">rlEnableBackfaceCulling</a> | <a href="#rlEnableColorBlend">rlEnableColorBlend</a> | <a href="#rlEnableDepthMask">rlEnableDepthMask</a>
-<a href="#rlEnableDepthTest">rlEnableDepthTest</a> | <a href="#rlEnableFramebuffer">rlEnableFramebuffer</a> | <a href="#rlEnableScissorTest">rlEnableScissorTest</a> | <a href="#rlEnableShader">rlEnableShader</a> | <a href="#rlEnableSmoothLines">rlEnableSmoothLines</a>
-<a href="#rlEnableStereoRender">rlEnableStereoRender</a> | <a href="#rlEnableTexture">rlEnableTexture</a> | <a href="#rlEnableTextureCubemap">rlEnableTextureCubemap</a> | <a href="#rlEnableVertexArray">rlEnableVertexArray</a> | <a href="#rlEnableVertexAttribute">rlEnableVertexAttribute</a>
-<a href="#rlEnableVertexBuffer">rlEnableVertexBuffer</a> | <a href="#rlEnableVertexBufferElement">rlEnableVertexBufferElement</a> | <a href="#rlEnableWireMode">rlEnableWireMode</a> | <a href="#rlEnd">rlEnd</a> | <a href="#rlFramebufferAttach">rlFramebufferAttach</a>
-<a href="#rlFramebufferComplete">rlFramebufferComplete</a> | <a href="#rlFrustum">rlFrustum</a> | <a href="#rlGenTextureMipmaps">rlGenTextureMipmaps</a> | <a href="#rlGetFramebufferHeight">rlGetFramebufferHeight</a> | <a href="#rlGetFramebufferWidth">rlGetFramebufferWidth</a>
-<a href="#rlGetGlTextureFormats">rlGetGlTextureFormats</a> | <a href="#rlGetLineWidth">rlGetLineWidth</a> | <a href="#rlGetLocationAttrib">rlGetLocationAttrib</a> | <a href="#rlGetLocationUniform">rlGetLocationUniform</a> | <a href="#rlGetMatrixModelview">rlGetMatrixModelview</a>
-<a href="#rlGetMatrixProjection">rlGetMatrixProjection</a> | <a href="#rlGetMatrixProjectionStereo">rlGetMatrixProjectionStereo</a> | <a href="#rlGetMatrixTransform">rlGetMatrixTransform</a> | <a href="#rlGetMatrixViewOffsetStereo">rlGetMatrixViewOffsetStereo</a> | <a href="#rlGetPixelFormatName">rlGetPixelFormatName</a>
-<a href="#rlGetShaderBufferSize">rlGetShaderBufferSize</a> | <a href="#rlGetShaderIdDefault">rlGetShaderIdDefault</a> | <a href="#rlGetShaderLocsDefault">rlGetShaderLocsDefault</a> | <a href="#rlGetTextureIdDefault">rlGetTextureIdDefault</a> | <a href="#rlGetVersion">rlGetVersion</a>
-<a href="#rlIsStereoRenderEnabled">rlIsStereoRenderEnabled</a> | <a href="#rlLoadComputeShaderProgram">rlLoadComputeShaderProgram</a> | <a href="#rlLoadDrawCube">rlLoadDrawCube</a> | <a href="#rlLoadDrawQuad">rlLoadDrawQuad</a> | <a href="#rlLoadExtensions">rlLoadExtensions</a>
-<a href="#rlLoadFramebuffer">rlLoadFramebuffer</a> | <a href="#rlLoadIdentity">rlLoadIdentity</a> | <a href="#rlLoadRenderBatch">rlLoadRenderBatch</a> | <a href="#rlLoadShaderBuffer">rlLoadShaderBuffer</a> | <a href="#rlLoadShaderCode">rlLoadShaderCode</a>
-<a href="#rlLoadShaderProgram">rlLoadShaderProgram</a> | <a href="#rlLoadTexture">rlLoadTexture</a> | <a href="#rlLoadTextureCubemap">rlLoadTextureCubemap</a> | <a href="#rlLoadTextureDepth">rlLoadTextureDepth</a> | <a href="#rlLoadVertexArray">rlLoadVertexArray</a>
-<a href="#rlLoadVertexBuffer">rlLoadVertexBuffer</a> | <a href="#rlLoadVertexBufferElement">rlLoadVertexBufferElement</a> | <a href="#rlMatrixMode">rlMatrixMode</a> | <a href="#rlMultMatrixf">rlMultMatrixf</a> | <a href="#rlNormal3f">rlNormal3f</a>
-<a href="#rlOrtho">rlOrtho</a> | <a href="#rlPopMatrix">rlPopMatrix</a> | <a href="#rlPushMatrix">rlPushMatrix</a> | <a href="#rlReadScreenPixels">rlReadScreenPixels</a> | <a href="#rlReadShaderBuffer">rlReadShaderBuffer</a>
-<a href="#rlReadTexturePixels">rlReadTexturePixels</a> | <a href="#rlRotatef">rlRotatef</a> | <a href="#rlScalef">rlScalef</a> | <a href="#rlScissor">rlScissor</a> | <a href="#rlSetBlendFactors">rlSetBlendFactors</a>
-<a href="#rlSetBlendFactorsSeparate">rlSetBlendFactorsSeparate</a> | <a href="#rlSetBlendMode">rlSetBlendMode</a> | <a href="#rlSetCullFace">rlSetCullFace</a> | <a href="#rlSetFramebufferHeight">rlSetFramebufferHeight</a> | <a href="#rlSetFramebufferWidth">rlSetFramebufferWidth</a>
-<a href="#rlSetLineWidth">rlSetLineWidth</a> | <a href="#rlSetMatrixModelview">rlSetMatrixModelview</a> | <a href="#rlSetMatrixProjection">rlSetMatrixProjection</a> | <a href="#rlSetMatrixProjectionStereo">rlSetMatrixProjectionStereo</a> | <a href="#rlSetMatrixViewOffsetStereo">rlSetMatrixViewOffsetStereo</a>
-<a href="#rlSetRenderBatchActive">rlSetRenderBatchActive</a> | <a href="#rlSetShader">rlSetShader</a> | <a href="#rlSetTexture">rlSetTexture</a> | <a href="#rlSetUniform">rlSetUniform</a> | <a href="#rlSetUniformMatrix">rlSetUniformMatrix</a>
-<a href="#rlSetUniformSampler">rlSetUniformSampler</a> | <a href="#rlSetVertexAttribute">rlSetVertexAttribute</a> | <a href="#rlSetVertexAttributeDefault">rlSetVertexAttributeDefault</a> | <a href="#rlSetVertexAttributeDivisor">rlSetVertexAttributeDivisor</a> | <a href="#rlTexCoord2f">rlTexCoord2f</a>
-<a href="#rlTextureParameters">rlTextureParameters</a> | <a href="#rlTranslatef">rlTranslatef</a> | <a href="#rlUnloadFramebuffer">rlUnloadFramebuffer</a> | <a href="#rlUnloadRenderBatch">rlUnloadRenderBatch</a> | <a href="#rlUnloadShaderBuffer">rlUnloadShaderBuffer</a>
-<a href="#rlUnloadShaderProgram">rlUnloadShaderProgram</a> | <a href="#rlUnloadTexture">rlUnloadTexture</a> | <a href="#rlUnloadVertexArray">rlUnloadVertexArray</a> | <a href="#rlUnloadVertexBuffer">rlUnloadVertexBuffer</a> | <a href="#rlUpdateShaderBuffer">rlUpdateShaderBuffer</a>
-<a href="#rlUpdateTexture">rlUpdateTexture</a> | <a href="#rlUpdateVertexBuffer">rlUpdateVertexBuffer</a> | <a href="#rlUpdateVertexBufferElements">rlUpdateVertexBufferElements</a> | <a href="#rlVertex2f">rlVertex2f</a> | <a href="#rlVertex2i">rlVertex2i</a>
-<a href="#rlVertex3f">rlVertex3f</a> | <a href="#rlViewport">rlViewport</a> | <a href="#rlglClose">rlglClose</a> | <a href="#rlglInit">rlglInit</a>
+<a href="#Vector3OrthoNormalize">Vector3OrthoNormalize</a> | <a href="#Vector3Perpendicular">Vector3Perpendicular</a> | <a href="#Vector3Project">Vector3Project</a> | <a href="#Vector3Reflect">Vector3Reflect</a> | <a href="#Vector3Refract">Vector3Refract</a>
+<a href="#Vector3Reject">Vector3Reject</a> | <a href="#Vector3RotateByAxisAngle">Vector3RotateByAxisAngle</a> | <a href="#Vector3RotateByQuaternion">Vector3RotateByQuaternion</a> | <a href="#Vector3Scale">Vector3Scale</a> | <a href="#Vector3Subtract">Vector3Subtract</a>
+<a href="#Vector3SubtractValue">Vector3SubtractValue</a> | <a href="#Vector3ToFloatV">Vector3ToFloatV</a> | <a href="#Vector3Transform">Vector3Transform</a> | <a href="#Vector3Unproject">Vector3Unproject</a> | <a href="#Vector3Zero">Vector3Zero</a>
+<a href="#WaitTime">WaitTime</a> | <a href="#WaveCopy">WaveCopy</a> | <a href="#WaveCrop">WaveCrop</a> | <a href="#WaveFormat">WaveFormat</a> | <a href="#WindowShouldClose">WindowShouldClose</a>
+<a href="#Wrap">Wrap</a> | <a href="#rlActiveDrawBuffers">rlActiveDrawBuffers</a> | <a href="#rlActiveTextureSlot">rlActiveTextureSlot</a> | <a href="#rlBegin">rlBegin</a> | <a href="#rlBindImageTexture">rlBindImageTexture</a>
+<a href="#rlBindShaderBuffer">rlBindShaderBuffer</a> | <a href="#rlBlitFramebuffer">rlBlitFramebuffer</a> | <a href="#rlCheckErrors">rlCheckErrors</a> | <a href="#rlCheckRenderBatchLimit">rlCheckRenderBatchLimit</a> | <a href="#rlClearColor">rlClearColor</a>
+<a href="#rlClearScreenBuffers">rlClearScreenBuffers</a> | <a href="#rlColor3f">rlColor3f</a> | <a href="#rlColor4f">rlColor4f</a> | <a href="#rlColor4ub">rlColor4ub</a> | <a href="#rlCompileShader">rlCompileShader</a>
+<a href="#rlComputeShaderDispatch">rlComputeShaderDispatch</a> | <a href="#rlCopyShaderBuffer">rlCopyShaderBuffer</a> | <a href="#rlCubemapParameters">rlCubemapParameters</a> | <a href="#rlDisableBackfaceCulling">rlDisableBackfaceCulling</a> | <a href="#rlDisableColorBlend">rlDisableColorBlend</a>
+<a href="#rlDisableDepthMask">rlDisableDepthMask</a> | <a href="#rlDisableDepthTest">rlDisableDepthTest</a> | <a href="#rlDisableFramebuffer">rlDisableFramebuffer</a> | <a href="#rlDisableScissorTest">rlDisableScissorTest</a> | <a href="#rlDisableShader">rlDisableShader</a>
+<a href="#rlDisableSmoothLines">rlDisableSmoothLines</a> | <a href="#rlDisableStereoRender">rlDisableStereoRender</a> | <a href="#rlDisableTexture">rlDisableTexture</a> | <a href="#rlDisableTextureCubemap">rlDisableTextureCubemap</a> | <a href="#rlDisableVertexArray">rlDisableVertexArray</a>
+<a href="#rlDisableVertexAttribute">rlDisableVertexAttribute</a> | <a href="#rlDisableVertexBuffer">rlDisableVertexBuffer</a> | <a href="#rlDisableVertexBufferElement">rlDisableVertexBufferElement</a> | <a href="#rlDisableWireMode">rlDisableWireMode</a> | <a href="#rlDrawRenderBatch">rlDrawRenderBatch</a>
+<a href="#rlDrawRenderBatchActive">rlDrawRenderBatchActive</a> | <a href="#rlDrawVertexArray">rlDrawVertexArray</a> | <a href="#rlDrawVertexArrayElements">rlDrawVertexArrayElements</a> | <a href="#rlDrawVertexArrayElementsInstanced">rlDrawVertexArrayElementsInstanced</a> | <a href="#rlDrawVertexArrayInstanced">rlDrawVertexArrayInstanced</a>
+<a href="#rlEnableBackfaceCulling">rlEnableBackfaceCulling</a> | <a href="#rlEnableColorBlend">rlEnableColorBlend</a> | <a href="#rlEnableDepthMask">rlEnableDepthMask</a> | <a href="#rlEnableDepthTest">rlEnableDepthTest</a> | <a href="#rlEnableFramebuffer">rlEnableFramebuffer</a>
+<a href="#rlEnablePointMode">rlEnablePointMode</a> | <a href="#rlEnableScissorTest">rlEnableScissorTest</a> | <a href="#rlEnableShader">rlEnableShader</a> | <a href="#rlEnableSmoothLines">rlEnableSmoothLines</a> | <a href="#rlEnableStereoRender">rlEnableStereoRender</a>
+<a href="#rlEnableTexture">rlEnableTexture</a> | <a href="#rlEnableTextureCubemap">rlEnableTextureCubemap</a> | <a href="#rlEnableVertexArray">rlEnableVertexArray</a> | <a href="#rlEnableVertexAttribute">rlEnableVertexAttribute</a> | <a href="#rlEnableVertexBuffer">rlEnableVertexBuffer</a>
+<a href="#rlEnableVertexBufferElement">rlEnableVertexBufferElement</a> | <a href="#rlEnableWireMode">rlEnableWireMode</a> | <a href="#rlEnd">rlEnd</a> | <a href="#rlFramebufferAttach">rlFramebufferAttach</a> | <a href="#rlFramebufferComplete">rlFramebufferComplete</a>
+<a href="#rlFrustum">rlFrustum</a> | <a href="#rlGenTextureMipmaps">rlGenTextureMipmaps</a> | <a href="#rlGetFramebufferHeight">rlGetFramebufferHeight</a> | <a href="#rlGetFramebufferWidth">rlGetFramebufferWidth</a> | <a href="#rlGetGlTextureFormats">rlGetGlTextureFormats</a>
+<a href="#rlGetLineWidth">rlGetLineWidth</a> | <a href="#rlGetLocationAttrib">rlGetLocationAttrib</a> | <a href="#rlGetLocationUniform">rlGetLocationUniform</a> | <a href="#rlGetMatrixModelview">rlGetMatrixModelview</a> | <a href="#rlGetMatrixProjection">rlGetMatrixProjection</a>
+<a href="#rlGetMatrixProjectionStereo">rlGetMatrixProjectionStereo</a> | <a href="#rlGetMatrixTransform">rlGetMatrixTransform</a> | <a href="#rlGetMatrixViewOffsetStereo">rlGetMatrixViewOffsetStereo</a> | <a href="#rlGetPixelFormatName">rlGetPixelFormatName</a> | <a href="#rlGetShaderBufferSize">rlGetShaderBufferSize</a>
+<a href="#rlGetShaderIdDefault">rlGetShaderIdDefault</a> | <a href="#rlGetShaderLocsDefault">rlGetShaderLocsDefault</a> | <a href="#rlGetTextureIdDefault">rlGetTextureIdDefault</a> | <a href="#rlGetVersion">rlGetVersion</a> | <a href="#rlIsStereoRenderEnabled">rlIsStereoRenderEnabled</a>
+<a href="#rlLoadComputeShaderProgram">rlLoadComputeShaderProgram</a> | <a href="#rlLoadDrawCube">rlLoadDrawCube</a> | <a href="#rlLoadDrawQuad">rlLoadDrawQuad</a> | <a href="#rlLoadExtensions">rlLoadExtensions</a> | <a href="#rlLoadFramebuffer">rlLoadFramebuffer</a>
+<a href="#rlLoadIdentity">rlLoadIdentity</a> | <a href="#rlLoadRenderBatch">rlLoadRenderBatch</a> | <a href="#rlLoadShaderBuffer">rlLoadShaderBuffer</a> | <a href="#rlLoadShaderCode">rlLoadShaderCode</a> | <a href="#rlLoadShaderProgram">rlLoadShaderProgram</a>
+<a href="#rlLoadTexture">rlLoadTexture</a> | <a href="#rlLoadTextureCubemap">rlLoadTextureCubemap</a> | <a href="#rlLoadTextureDepth">rlLoadTextureDepth</a> | <a href="#rlLoadVertexArray">rlLoadVertexArray</a> | <a href="#rlLoadVertexBuffer">rlLoadVertexBuffer</a>
+<a href="#rlLoadVertexBufferElement">rlLoadVertexBufferElement</a> | <a href="#rlMatrixMode">rlMatrixMode</a> | <a href="#rlMultMatrixf">rlMultMatrixf</a> | <a href="#rlNormal3f">rlNormal3f</a> | <a href="#rlOrtho">rlOrtho</a>
+<a href="#rlPopMatrix">rlPopMatrix</a> | <a href="#rlPushMatrix">rlPushMatrix</a> | <a href="#rlReadScreenPixels">rlReadScreenPixels</a> | <a href="#rlReadShaderBuffer">rlReadShaderBuffer</a> | <a href="#rlReadTexturePixels">rlReadTexturePixels</a>
+<a href="#rlRotatef">rlRotatef</a> | <a href="#rlScalef">rlScalef</a> | <a href="#rlScissor">rlScissor</a> | <a href="#rlSetBlendFactors">rlSetBlendFactors</a> | <a href="#rlSetBlendFactorsSeparate">rlSetBlendFactorsSeparate</a>
+<a href="#rlSetBlendMode">rlSetBlendMode</a> | <a href="#rlSetCullFace">rlSetCullFace</a> | <a href="#rlSetFramebufferHeight">rlSetFramebufferHeight</a> | <a href="#rlSetFramebufferWidth">rlSetFramebufferWidth</a> | <a href="#rlSetLineWidth">rlSetLineWidth</a>
+<a href="#rlSetMatrixModelview">rlSetMatrixModelview</a> | <a href="#rlSetMatrixProjection">rlSetMatrixProjection</a> | <a href="#rlSetMatrixProjectionStereo">rlSetMatrixProjectionStereo</a> | <a href="#rlSetMatrixViewOffsetStereo">rlSetMatrixViewOffsetStereo</a> | <a href="#rlSetRenderBatchActive">rlSetRenderBatchActive</a>
+<a href="#rlSetShader">rlSetShader</a> | <a href="#rlSetTexture">rlSetTexture</a> | <a href="#rlSetUniform">rlSetUniform</a> | <a href="#rlSetUniformMatrix">rlSetUniformMatrix</a> | <a href="#rlSetUniformSampler">rlSetUniformSampler</a>
+<a href="#rlSetVertexAttribute">rlSetVertexAttribute</a> | <a href="#rlSetVertexAttributeDefault">rlSetVertexAttributeDefault</a> | <a href="#rlSetVertexAttributeDivisor">rlSetVertexAttributeDivisor</a> | <a href="#rlTexCoord2f">rlTexCoord2f</a> | <a href="#rlTextureParameters">rlTextureParameters</a>
+<a href="#rlTranslatef">rlTranslatef</a> | <a href="#rlUnloadFramebuffer">rlUnloadFramebuffer</a> | <a href="#rlUnloadRenderBatch">rlUnloadRenderBatch</a> | <a href="#rlUnloadShaderBuffer">rlUnloadShaderBuffer</a> | <a href="#rlUnloadShaderProgram">rlUnloadShaderProgram</a>
+<a href="#rlUnloadTexture">rlUnloadTexture</a> | <a href="#rlUnloadVertexArray">rlUnloadVertexArray</a> | <a href="#rlUnloadVertexBuffer">rlUnloadVertexBuffer</a> | <a href="#rlUpdateShaderBuffer">rlUpdateShaderBuffer</a> | <a href="#rlUpdateTexture">rlUpdateTexture</a>
+<a href="#rlUpdateVertexBuffer">rlUpdateVertexBuffer</a> | <a href="#rlUpdateVertexBufferElements">rlUpdateVertexBufferElements</a> | <a href="#rlVertex2f">rlVertex2f</a> | <a href="#rlVertex2i">rlVertex2i</a> | <a href="#rlVertex3f">rlVertex3f</a>
+<a href="#rlViewport">rlViewport</a> | <a href="#rlglClose">rlglClose</a> | <a href="#rlglInit">rlglInit</a>
 
 [ <a href="#toc">ToC</a> ]
 
@@ -2573,7 +2646,7 @@ Item|Item|Item|Item|Item
 
 > Initialize window and OpenGL context
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void InitWindow(int width, int height, char * title) 
@@ -2588,30 +2661,11 @@ def init_window(width: int, height: int, title: Union[str, CharPtr]) -> None
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
-<h2 id="WindowShouldClose"><code>window_should_close</code> function</h2>
-
-> Check if KEY_ESCAPE pressed or Close icon pressed
-
-Defined in raylib.h:
-
-```c
-bool WindowShouldClose() 
-```
-
-Python wrapper:
-
-```python
-def window_should_close() -> bool
-```
-
-[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
-
----
 <h2 id="CloseWindow"><code>close_window</code> function</h2>
 
 > Close window and unload OpenGL context
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void CloseWindow() 
@@ -2626,11 +2680,30 @@ def close_window() -> None
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
+<h2 id="WindowShouldClose"><code>window_should_close</code> function</h2>
+
+> Check if application should close (KEY_ESCAPE pressed or windows close icon clicked)
+
+Defined in raylib_api.json:
+
+```c
+bool WindowShouldClose() 
+```
+
+Python wrapper:
+
+```python
+def window_should_close() -> bool
+```
+
+[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
+
+---
 <h2 id="IsWindowReady"><code>is_window_ready</code> function</h2>
 
 > Check if window has been initialized successfully
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 bool IsWindowReady() 
@@ -2649,7 +2722,7 @@ def is_window_ready() -> bool
 
 > Check if window is currently fullscreen
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 bool IsWindowFullscreen() 
@@ -2668,7 +2741,7 @@ def is_window_fullscreen() -> bool
 
 > Check if window is currently hidden (only PLATFORM_DESKTOP)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 bool IsWindowHidden() 
@@ -2687,7 +2760,7 @@ def is_window_hidden() -> bool
 
 > Check if window is currently minimized (only PLATFORM_DESKTOP)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 bool IsWindowMinimized() 
@@ -2706,7 +2779,7 @@ def is_window_minimized() -> bool
 
 > Check if window is currently maximized (only PLATFORM_DESKTOP)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 bool IsWindowMaximized() 
@@ -2725,7 +2798,7 @@ def is_window_maximized() -> bool
 
 > Check if window is currently focused (only PLATFORM_DESKTOP)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 bool IsWindowFocused() 
@@ -2744,7 +2817,7 @@ def is_window_focused() -> bool
 
 > Check if window has been resized last frame
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 bool IsWindowResized() 
@@ -2763,7 +2836,7 @@ def is_window_resized() -> bool
 
 > Check if one specific window flag is enabled
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 bool IsWindowState(unsigned int flag) 
@@ -2782,7 +2855,7 @@ def is_window_state(flag: int) -> bool
 
 > Set window configuration state using flags (only PLATFORM_DESKTOP)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void SetWindowState(unsigned int flags) 
@@ -2801,7 +2874,7 @@ def set_window_state(flags: int) -> None
 
 > Clear window configuration state flags
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void ClearWindowState(unsigned int flags) 
@@ -2820,7 +2893,7 @@ def clear_window_state(flags: int) -> None
 
 > Toggle window state: fullscreen/windowed (only PLATFORM_DESKTOP)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void ToggleFullscreen() 
@@ -2835,11 +2908,30 @@ def toggle_fullscreen() -> None
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
+<h2 id="ToggleBorderlessWindowed"><code>toggle_borderless_windowed</code> function</h2>
+
+> Toggle window state: borderless windowed (only PLATFORM_DESKTOP)
+
+Defined in raylib_api.json:
+
+```c
+void ToggleBorderlessWindowed() 
+```
+
+Python wrapper:
+
+```python
+def toggle_borderless_windowed() -> None
+```
+
+[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
+
+---
 <h2 id="MaximizeWindow"><code>maximize_window</code> function</h2>
 
 > Set window state: maximized, if resizable (only PLATFORM_DESKTOP)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void MaximizeWindow() 
@@ -2858,7 +2950,7 @@ def maximize_window() -> None
 
 > Set window state: minimized, if resizable (only PLATFORM_DESKTOP)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void MinimizeWindow() 
@@ -2877,7 +2969,7 @@ def minimize_window() -> None
 
 > Set window state: not minimized/maximized (only PLATFORM_DESKTOP)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void RestoreWindow() 
@@ -2896,7 +2988,7 @@ def restore_window() -> None
 
 > Set icon for window (single image, RGBA 32bit, only PLATFORM_DESKTOP)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void SetWindowIcon(Image image) 
@@ -2918,7 +3010,7 @@ See also:
 
 > Set icon for window (multiple images, RGBA 32bit, only PLATFORM_DESKTOP)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void SetWindowIcons(Image * images, int count) 
@@ -2938,9 +3030,9 @@ See also:
 ---
 <h2 id="SetWindowTitle"><code>set_window_title</code> function</h2>
 
-> Set title for window (only PLATFORM_DESKTOP)
+> Set title for window (only PLATFORM_DESKTOP and PLATFORM_WEB)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void SetWindowTitle(char * title) 
@@ -2959,7 +3051,7 @@ def set_window_title(title: Union[str, CharPtr]) -> None
 
 > Set window position on screen (only PLATFORM_DESKTOP)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void SetWindowPosition(int x, int y) 
@@ -2976,9 +3068,9 @@ def set_window_position(x: int, y: int) -> None
 ---
 <h2 id="SetWindowMonitor"><code>set_window_monitor</code> function</h2>
 
-> Set monitor for the current window (fullscreen mode)
+> Set monitor for the current window
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void SetWindowMonitor(int monitor) 
@@ -2997,7 +3089,7 @@ def set_window_monitor(monitor: int) -> None
 
 > Set window minimum dimensions (for FLAG_WINDOW_RESIZABLE)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void SetWindowMinSize(int width, int height) 
@@ -3012,11 +3104,30 @@ def set_window_min_size(width: int, height: int) -> None
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
+<h2 id="SetWindowMaxSize"><code>set_window_max_size</code> function</h2>
+
+> Set window maximum dimensions (for FLAG_WINDOW_RESIZABLE)
+
+Defined in raylib_api.json:
+
+```c
+void SetWindowMaxSize(int width, int height) 
+```
+
+Python wrapper:
+
+```python
+def set_window_max_size(width: int, height: int) -> None
+```
+
+[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
+
+---
 <h2 id="SetWindowSize"><code>set_window_size</code> function</h2>
 
 > Set window dimensions
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void SetWindowSize(int width, int height) 
@@ -3035,7 +3146,7 @@ def set_window_size(width: int, height: int) -> None
 
 > Set window opacity [0.0f..1.0f] (only PLATFORM_DESKTOP)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void SetWindowOpacity(float opacity) 
@@ -3050,11 +3161,30 @@ def set_window_opacity(opacity: float) -> None
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
+<h2 id="SetWindowFocused"><code>set_window_focused</code> function</h2>
+
+> Set window focused (only PLATFORM_DESKTOP)
+
+Defined in raylib_api.json:
+
+```c
+void SetWindowFocused() 
+```
+
+Python wrapper:
+
+```python
+def set_window_focused() -> None
+```
+
+[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
+
+---
 <h2 id="GetWindowHandle"><code>get_window_handle</code> function</h2>
 
 > Get native window handle
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void GetWindowHandle() 
@@ -3073,7 +3203,7 @@ def get_window_handle() -> bytes
 
 > Get current screen width
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 int GetScreenWidth() 
@@ -3092,7 +3222,7 @@ def get_screen_width() -> int
 
 > Get current screen height
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 int GetScreenHeight() 
@@ -3111,7 +3241,7 @@ def get_screen_height() -> int
 
 > Get current render width (it considers HiDPI)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 int GetRenderWidth() 
@@ -3130,7 +3260,7 @@ def get_render_width() -> int
 
 > Get current render height (it considers HiDPI)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 int GetRenderHeight() 
@@ -3149,7 +3279,7 @@ def get_render_height() -> int
 
 > Get number of connected monitors
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 int GetMonitorCount() 
@@ -3168,7 +3298,7 @@ def get_monitor_count() -> int
 
 > Get current connected monitor
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 int GetCurrentMonitor() 
@@ -3187,7 +3317,7 @@ def get_current_monitor() -> int
 
 > Get specified monitor position
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 Vector2 GetMonitorPosition(int monitor) 
@@ -3209,7 +3339,7 @@ See also:
 
 > Get specified monitor width (current video mode used by monitor)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 int GetMonitorWidth(int monitor) 
@@ -3228,7 +3358,7 @@ def get_monitor_width(monitor: int) -> int
 
 > Get specified monitor height (current video mode used by monitor)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 int GetMonitorHeight(int monitor) 
@@ -3247,7 +3377,7 @@ def get_monitor_height(monitor: int) -> int
 
 > Get specified monitor physical width in millimetres
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 int GetMonitorPhysicalWidth(int monitor) 
@@ -3266,7 +3396,7 @@ def get_monitor_physical_width(monitor: int) -> int
 
 > Get specified monitor physical height in millimetres
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 int GetMonitorPhysicalHeight(int monitor) 
@@ -3285,7 +3415,7 @@ def get_monitor_physical_height(monitor: int) -> int
 
 > Get specified monitor refresh rate
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 int GetMonitorRefreshRate(int monitor) 
@@ -3304,7 +3434,7 @@ def get_monitor_refresh_rate(monitor: int) -> int
 
 > Get window position XY on monitor
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 Vector2 GetWindowPosition() 
@@ -3326,7 +3456,7 @@ See also:
 
 > Get window scale DPI factor
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 Vector2 GetWindowScaleDPI() 
@@ -3346,9 +3476,9 @@ See also:
 ---
 <h2 id="GetMonitorName"><code>get_monitor_name</code> function</h2>
 
-> Get the human-readable, UTF-8 encoded name of the primary monitor
+> Get the human-readable, UTF-8 encoded name of the specified monitor
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 char * GetMonitorName(int monitor) 
@@ -3367,7 +3497,7 @@ def get_monitor_name(monitor: int) -> Union[str, CharPtr]
 
 > Set clipboard text content
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void SetClipboardText(char * text) 
@@ -3386,7 +3516,7 @@ def set_clipboard_text(text: Union[str, CharPtr]) -> None
 
 > Get clipboard text content
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 char * GetClipboardText() 
@@ -3405,7 +3535,7 @@ def get_clipboard_text() -> Union[str, CharPtr]
 
 > Enable waiting for events on EndDrawing(), no automatic event polling
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void EnableEventWaiting() 
@@ -3424,7 +3554,7 @@ def enable_event_waiting() -> None
 
 > Disable waiting for events on EndDrawing(), automatic events polling
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void DisableEventWaiting() 
@@ -3439,68 +3569,11 @@ def disable_event_waiting() -> None
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
-<h2 id="SwapScreenBuffer"><code>swap_screen_buffer</code> function</h2>
-
-> Swap back buffer with front buffer (screen drawing)
-
-Defined in raylib.h:
-
-```c
-void SwapScreenBuffer() 
-```
-
-Python wrapper:
-
-```python
-def swap_screen_buffer() -> None
-```
-
-[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
-
----
-<h2 id="PollInputEvents"><code>poll_input_events</code> function</h2>
-
-> Register all input events
-
-Defined in raylib.h:
-
-```c
-void PollInputEvents() 
-```
-
-Python wrapper:
-
-```python
-def poll_input_events() -> None
-```
-
-[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
-
----
-<h2 id="WaitTime"><code>wait_time</code> function</h2>
-
-> Wait for some time (halt program execution)
-
-Defined in raylib.h:
-
-```c
-void WaitTime(double seconds) 
-```
-
-Python wrapper:
-
-```python
-def wait_time(seconds: float) -> None
-```
-
-[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
-
----
 <h2 id="ShowCursor"><code>show_cursor</code> function</h2>
 
 > Shows cursor
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void ShowCursor() 
@@ -3519,7 +3592,7 @@ def show_cursor() -> None
 
 > Hides cursor
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void HideCursor() 
@@ -3538,7 +3611,7 @@ def hide_cursor() -> None
 
 > Check if cursor is not visible
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 bool IsCursorHidden() 
@@ -3557,7 +3630,7 @@ def is_cursor_hidden() -> bool
 
 > Enables cursor (unlock cursor)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void EnableCursor() 
@@ -3576,7 +3649,7 @@ def enable_cursor() -> None
 
 > Disables cursor (lock cursor)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void DisableCursor() 
@@ -3595,7 +3668,7 @@ def disable_cursor() -> None
 
 > Check if cursor is on the screen
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 bool IsCursorOnScreen() 
@@ -3614,7 +3687,7 @@ def is_cursor_on_screen() -> bool
 
 > Set background color (framebuffer clear color)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void ClearBackground(Color color) 
@@ -3636,7 +3709,7 @@ See also:
 
 > Setup canvas (framebuffer) to start drawing
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void BeginDrawing() 
@@ -3655,7 +3728,7 @@ def begin_drawing() -> None
 
 > End canvas drawing and swap buffers (double buffering)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void EndDrawing() 
@@ -3674,7 +3747,7 @@ def end_drawing() -> None
 
 > Begin 2D mode with custom camera (2D)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void BeginMode2D(Camera2D camera) 
@@ -3696,7 +3769,7 @@ See also:
 
 > Ends 2D mode with custom camera
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void EndMode2D() 
@@ -3715,7 +3788,7 @@ def end_mode2d() -> None
 
 > Begin 3D mode with custom camera (3D)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void BeginMode3D(Camera3D camera) 
@@ -3737,7 +3810,7 @@ See also:
 
 > Ends 3D mode and returns to default 2D orthographic mode
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void EndMode3D() 
@@ -3756,7 +3829,7 @@ def end_mode3d() -> None
 
 > Begin drawing to render texture
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void BeginTextureMode(RenderTexture2D target) 
@@ -3775,7 +3848,7 @@ def begin_texture_mode(target: RenderTexture2D) -> None
 
 > Ends drawing to render texture
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void EndTextureMode() 
@@ -3794,7 +3867,7 @@ def end_texture_mode() -> None
 
 > Begin custom shader drawing
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void BeginShaderMode(Shader shader) 
@@ -3816,7 +3889,7 @@ See also:
 
 > End custom shader drawing (use default shader)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void EndShaderMode() 
@@ -3835,7 +3908,7 @@ def end_shader_mode() -> None
 
 > Begin blending mode (alpha, additive, multiplied, subtract, custom)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void BeginBlendMode(int mode) 
@@ -3854,7 +3927,7 @@ def begin_blend_mode(mode: int) -> None
 
 > End blending mode (reset to default: alpha blending)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void EndBlendMode() 
@@ -3873,7 +3946,7 @@ def end_blend_mode() -> None
 
 > Begin scissor mode (define screen area for following drawing)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void BeginScissorMode(int x, int y, int width, int height) 
@@ -3892,7 +3965,7 @@ def begin_scissor_mode(x: int, y: int, width: int, height: int) -> None
 
 > End scissor mode
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void EndScissorMode() 
@@ -3911,7 +3984,7 @@ def end_scissor_mode() -> None
 
 > Begin stereo rendering (requires VR simulator)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void BeginVrStereoMode(VrStereoConfig config) 
@@ -3933,7 +4006,7 @@ See also:
 
 > End stereo rendering (requires VR simulator)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void EndVrStereoMode() 
@@ -3952,7 +4025,7 @@ def end_vr_stereo_mode() -> None
 
 > Load VR stereo config for VR simulator device parameters
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 VrStereoConfig LoadVrStereoConfig(VrDeviceInfo device) 
@@ -3974,7 +4047,7 @@ See also:
 
 > Unload VR stereo config
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void UnloadVrStereoConfig(VrStereoConfig config) 
@@ -3996,7 +4069,7 @@ See also:
 
 > Load shader from files and bind default locations
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 Shader LoadShader(char * vs_file_name, char * fs_file_name) 
@@ -4018,7 +4091,7 @@ See also:
 
 > Load shader from code strings and bind default locations
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 Shader LoadShaderFromMemory(char * vs_code, char * fs_code) 
@@ -4040,7 +4113,7 @@ See also:
 
 > Check if a shader is ready
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 bool IsShaderReady(Shader shader) 
@@ -4062,7 +4135,7 @@ See also:
 
 > Get shader uniform location
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 int GetShaderLocation(Shader shader, char * uniform_name) 
@@ -4084,7 +4157,7 @@ See also:
 
 > Get shader attribute location
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 int GetShaderLocationAttrib(Shader shader, char * attrib_name) 
@@ -4106,7 +4179,7 @@ See also:
 
 > Set shader uniform value
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void SetShaderValue(Shader shader, int loc_index, void value, int uniform_type) 
@@ -4128,7 +4201,7 @@ See also:
 
 > Set shader uniform value vector
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void SetShaderValueV(Shader shader, int loc_index, void value, int uniform_type, int count) 
@@ -4150,7 +4223,7 @@ See also:
 
 > Set shader uniform value (matrix 4x4)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void SetShaderValueMatrix(Shader shader, int loc_index, Matrix mat) 
@@ -4172,7 +4245,7 @@ See also:
 
 > Set shader uniform value for texture (sampler2d)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void SetShaderValueTexture(Shader shader, int loc_index, Texture2D texture) 
@@ -4194,7 +4267,7 @@ See also:
 
 > Unload shader from GPU memory (VRAM)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void UnloadShader(Shader shader) 
@@ -4216,7 +4289,7 @@ See also:
 
 > Get a ray trace from mouse position
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 Ray GetMouseRay(Vector2 mouse_position, Camera camera) 
@@ -4238,7 +4311,7 @@ See also:
 
 > Get camera transform matrix (view matrix)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 Matrix GetCameraMatrix(Camera camera) 
@@ -4260,7 +4333,7 @@ See also:
 
 > Get camera 2d transform matrix
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 Matrix GetCameraMatrix2D(Camera2D camera) 
@@ -4282,7 +4355,7 @@ See also:
 
 > Get the screen space position for a 3d world space position
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 Vector2 GetWorldToScreen(Vector3 position, Camera camera) 
@@ -4304,7 +4377,7 @@ See also:
 
 > Get the world space position for a 2d camera screen space position
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 Vector2 GetScreenToWorld2D(Vector2 position, Camera2D camera) 
@@ -4326,7 +4399,7 @@ See also:
 
 > Get size position for a 3d world space position
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 Vector2 GetWorldToScreenEx(Vector3 position, Camera camera, int width, int height) 
@@ -4348,7 +4421,7 @@ See also:
 
 > Get the screen space position for a 2d camera world space position
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 Vector2 GetWorldToScreen2D(Vector2 position, Camera2D camera) 
@@ -4370,7 +4443,7 @@ See also:
 
 > Set target FPS (maximum)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void SetTargetFPS(int fps) 
@@ -4385,30 +4458,11 @@ def set_target_fps(fps: int) -> None
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
-<h2 id="GetFPS"><code>get_fps</code> function</h2>
-
-> Get current FPS
-
-Defined in raylib.h:
-
-```c
-int GetFPS() 
-```
-
-Python wrapper:
-
-```python
-def get_fps() -> int
-```
-
-[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
-
----
 <h2 id="GetFrameTime"><code>get_frame_time</code> function</h2>
 
 > Get time in seconds for last frame drawn (delta time)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 float GetFrameTime() 
@@ -4427,7 +4481,7 @@ def get_frame_time() -> float
 
 > Get elapsed time in seconds since InitWindow()
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 double GetTime() 
@@ -4442,20 +4496,77 @@ def get_time() -> float
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
-<h2 id="GetRandomValue"><code>get_random_value</code> function</h2>
+<h2 id="GetFPS"><code>get_fps</code> function</h2>
 
-> Get a random value between min and max (both included)
+> Get current FPS
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
-int GetRandomValue(int min, int max) 
+int GetFPS() 
 ```
 
 Python wrapper:
 
 ```python
-def get_random_value(min: int, max: int) -> int
+def get_fps() -> int
+```
+
+[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="SwapScreenBuffer"><code>swap_screen_buffer</code> function</h2>
+
+> Swap back buffer with front buffer (screen drawing)
+
+Defined in raylib_api.json:
+
+```c
+void SwapScreenBuffer() 
+```
+
+Python wrapper:
+
+```python
+def swap_screen_buffer() -> None
+```
+
+[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="PollInputEvents"><code>poll_input_events</code> function</h2>
+
+> Register all input events
+
+Defined in raylib_api.json:
+
+```c
+void PollInputEvents() 
+```
+
+Python wrapper:
+
+```python
+def poll_input_events() -> None
+```
+
+[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="WaitTime"><code>wait_time</code> function</h2>
+
+> Wait for some time (halt program execution)
+
+Defined in raylib_api.json:
+
+```c
+void WaitTime(double seconds) 
+```
+
+Python wrapper:
+
+```python
+def wait_time(seconds: float) -> None
 ```
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
@@ -4465,7 +4576,7 @@ def get_random_value(min: int, max: int) -> int
 
 > Set the seed for the random number generator
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void SetRandomSeed(unsigned int seed) 
@@ -4480,11 +4591,68 @@ def set_random_seed(seed: int) -> None
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
+<h2 id="GetRandomValue"><code>get_random_value</code> function</h2>
+
+> Get a random value between min and max (both included)
+
+Defined in raylib_api.json:
+
+```c
+int GetRandomValue(int min, int max) 
+```
+
+Python wrapper:
+
+```python
+def get_random_value(min: int, max: int) -> int
+```
+
+[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="LoadRandomSequence"><code>load_random_sequence</code> function</h2>
+
+> Load random values sequence, no values repeated
+
+Defined in raylib_api.json:
+
+```c
+int LoadRandomSequence(unsigned int count, int min, int max) 
+```
+
+Python wrapper:
+
+```python
+def load_random_sequence(count: int, min: int, max: int) -> Union[Seq[int], IntPtr]
+```
+
+[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="UnloadRandomSequence"><code>unload_random_sequence</code> function</h2>
+
+> Unload random values sequence
+
+Defined in raylib_api.json:
+
+```c
+void UnloadRandomSequence(int sequence) 
+```
+
+Python wrapper:
+
+```python
+def unload_random_sequence(sequence: Union[Seq[int], IntPtr]) -> None
+```
+
+[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
+
+---
 <h2 id="TakeScreenshot"><code>take_screenshot</code> function</h2>
 
 > Takes a screenshot of current screen (filename extension defines format)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void TakeScreenshot(char * file_name) 
@@ -4503,7 +4671,7 @@ def take_screenshot(file_name: Union[str, CharPtr]) -> None
 
 > Setup init configuration flags (view FLAGS)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void SetConfigFlags(unsigned int flags) 
@@ -4518,11 +4686,30 @@ def set_config_flags(flags: int) -> None
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
+<h2 id="OpenURL"><code>open_url</code> function</h2>
+
+> Open URL with default system browser (if available)
+
+Defined in raylib_api.json:
+
+```c
+void OpenURL(char * url) 
+```
+
+Python wrapper:
+
+```python
+def open_url(url: Union[str, CharPtr]) -> None
+```
+
+[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
+
+---
 <h2 id="TraceLog"><code>trace_log</code> function</h2>
 
 > Show trace log messages (LOG_DEBUG, LOG_INFO, LOG_WARNING, LOG_ERROR...)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void TraceLog(int log_level, char * text, va_list args) 
@@ -4541,7 +4728,7 @@ def trace_log(log_level: int, text: Union[str, CharPtr], args: bytes) -> None
 
 > Set the current threshold (minimum) log level
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void SetTraceLogLevel(int log_level) 
@@ -4560,7 +4747,7 @@ def set_trace_log_level(log_level: int) -> None
 
 > Internal memory allocator
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void MemAlloc(unsigned int size) 
@@ -4579,7 +4766,7 @@ def mem_alloc(size: int) -> bytes
 
 > Internal memory reallocator
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void MemRealloc(void ptr, unsigned int size) 
@@ -4598,7 +4785,7 @@ def mem_realloc(ptr: bytes, size: int) -> bytes
 
 > Internal memory free
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void MemFree(void ptr) 
@@ -4613,30 +4800,11 @@ def mem_free(ptr: bytes) -> None
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
-<h2 id="OpenURL"><code>open_url</code> function</h2>
-
-> Open URL with default system browser (if available)
-
-Defined in raylib.h:
-
-```c
-void OpenURL(char * url) 
-```
-
-Python wrapper:
-
-```python
-def open_url(url: Union[str, CharPtr]) -> None
-```
-
-[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
-
----
 <h2 id="SetTraceLogCallback"><code>set_trace_log_callback</code> function</h2>
 
 > Set custom trace log
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void SetTraceLogCallback(TraceLogCallback callback) 
@@ -4655,7 +4823,7 @@ def set_trace_log_callback(callback: TraceLogCallback) -> None
 
 > Set custom file binary data loader
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void SetLoadFileDataCallback(LoadFileDataCallback callback) 
@@ -4674,7 +4842,7 @@ def set_load_file_data_callback(callback: LoadFileDataCallback) -> None
 
 > Set custom file binary data saver
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void SetSaveFileDataCallback(SaveFileDataCallback callback) 
@@ -4693,7 +4861,7 @@ def set_save_file_data_callback(callback: SaveFileDataCallback) -> None
 
 > Set custom file text data loader
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void SetLoadFileTextCallback(LoadFileTextCallback callback) 
@@ -4712,7 +4880,7 @@ def set_load_file_text_callback(callback: LoadFileTextCallback) -> None
 
 > Set custom file text data saver
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void SetSaveFileTextCallback(SaveFileTextCallback callback) 
@@ -4731,16 +4899,16 @@ def set_save_file_text_callback(callback: SaveFileTextCallback) -> None
 
 > Load file data as byte array (read)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
-unsigned char * LoadFileData(char * file_name, unsigned int bytes_read) 
+unsigned char * LoadFileData(char * file_name, int data_size) 
 ```
 
 Python wrapper:
 
 ```python
-def load_file_data(file_name: Union[str, CharPtr], bytes_read: Union[Seq[int], UIntPtr]) -> Union[Seq[int], UCharPtr]
+def load_file_data(file_name: Union[str, CharPtr], data_size: Union[Seq[int], IntPtr]) -> Union[Seq[int], UCharPtr]
 ```
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
@@ -4750,7 +4918,7 @@ def load_file_data(file_name: Union[str, CharPtr], bytes_read: Union[Seq[int], U
 
 > Unload file data allocated by LoadFileData()
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void UnloadFileData(unsigned char * data) 
@@ -4769,16 +4937,16 @@ def unload_file_data(data: Union[Seq[int], UCharPtr]) -> None
 
 > Save data to file from byte array (write), returns true on success
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
-bool SaveFileData(char * file_name, void data, unsigned int bytes_to_write) 
+bool SaveFileData(char * file_name, void data, int data_size) 
 ```
 
 Python wrapper:
 
 ```python
-def save_file_data(file_name: Union[str, CharPtr], data: bytes, bytes_to_write: int) -> bool
+def save_file_data(file_name: Union[str, CharPtr], data: bytes, data_size: int) -> bool
 ```
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
@@ -4788,16 +4956,16 @@ def save_file_data(file_name: Union[str, CharPtr], data: bytes, bytes_to_write: 
 
 > Export data to code (.h), returns true on success
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
-bool ExportDataAsCode(unsigned char * data, unsigned int size, char * file_name) 
+bool ExportDataAsCode(unsigned char * data, int data_size, char * file_name) 
 ```
 
 Python wrapper:
 
 ```python
-def export_data_as_code(data: Union[Seq[int], UCharPtr], size: int, file_name: Union[str, CharPtr]) -> bool
+def export_data_as_code(data: Union[Seq[int], UCharPtr], data_size: int, file_name: Union[str, CharPtr]) -> bool
 ```
 
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
@@ -4807,7 +4975,7 @@ def export_data_as_code(data: Union[Seq[int], UCharPtr], size: int, file_name: U
 
 > Load text data from file (read), returns a '\0' terminated string
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 char * LoadFileText(char * file_name) 
@@ -4826,7 +4994,7 @@ def load_file_text(file_name: Union[str, CharPtr]) -> Union[str, CharPtr]
 
 > Unload file text data allocated by LoadFileText()
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void UnloadFileText(char * text) 
@@ -4845,7 +5013,7 @@ def unload_file_text(text: Union[str, CharPtr]) -> None
 
 > Save text data to file (write), string must be '\0' terminated, returns true on success
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 bool SaveFileText(char * file_name, char * text) 
@@ -4864,7 +5032,7 @@ def save_file_text(file_name: Union[str, CharPtr], text: Union[str, CharPtr]) ->
 
 > Check if file exists
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 bool FileExists(char * file_name) 
@@ -4883,7 +5051,7 @@ def file_exists(file_name: Union[str, CharPtr]) -> bool
 
 > Check if a directory path exists
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 bool DirectoryExists(char * dir_path) 
@@ -4902,7 +5070,7 @@ def directory_exists(dir_path: Union[str, CharPtr]) -> bool
 
 > Check file extension (including point: .png, .wav)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 bool IsFileExtension(char * file_name, char * ext) 
@@ -4921,7 +5089,7 @@ def is_file_extension(file_name: Union[str, CharPtr], ext: Union[str, CharPtr]) 
 
 > Get file length in bytes (NOTE: GetFileSize() conflicts with windows.h)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 int GetFileLength(char * file_name) 
@@ -4940,7 +5108,7 @@ def get_file_length(file_name: Union[str, CharPtr]) -> int
 
 > Get pointer to extension for a filename string (includes dot: '.png')
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 char * GetFileExtension(char * file_name) 
@@ -4959,7 +5127,7 @@ def get_file_extension(file_name: Union[str, CharPtr]) -> Union[str, CharPtr]
 
 > Get pointer to filename for a path string
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 char * GetFileName(char * file_path) 
@@ -4978,7 +5146,7 @@ def get_file_name(file_path: Union[str, CharPtr]) -> Union[str, CharPtr]
 
 > Get filename string without extension (uses static string)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 char * GetFileNameWithoutExt(char * file_path) 
@@ -4997,7 +5165,7 @@ def get_file_name_without_ext(file_path: Union[str, CharPtr]) -> Union[str, Char
 
 > Get full path for a given fileName with path (uses static string)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 char * GetDirectoryPath(char * file_path) 
@@ -5016,7 +5184,7 @@ def get_directory_path(file_path: Union[str, CharPtr]) -> Union[str, CharPtr]
 
 > Get previous directory path for a given path (uses static string)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 char * GetPrevDirectoryPath(char * dir_path) 
@@ -5035,7 +5203,7 @@ def get_prev_directory_path(dir_path: Union[str, CharPtr]) -> Union[str, CharPtr
 
 > Get current working directory (uses static string)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 char * GetWorkingDirectory() 
@@ -5052,9 +5220,9 @@ def get_working_directory() -> Union[str, CharPtr]
 ---
 <h2 id="GetApplicationDirectory"><code>get_application_directory</code> function</h2>
 
-> Get the directory if the running application (uses static string)
+> Get the directory of the running application (uses static string)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 char * GetApplicationDirectory() 
@@ -5073,7 +5241,7 @@ def get_application_directory() -> Union[str, CharPtr]
 
 > Change working directory, return true on success
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 bool ChangeDirectory(char * dir) 
@@ -5092,7 +5260,7 @@ def change_directory(dir: Union[str, CharPtr]) -> bool
 
 > Check if a given path is a file or a directory
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 bool IsPathFile(char * path) 
@@ -5111,7 +5279,7 @@ def is_path_file(path: Union[str, CharPtr]) -> bool
 
 > Load directory filepaths
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 FilePathList LoadDirectoryFiles(char * dir_path) 
@@ -5133,7 +5301,7 @@ See also:
 
 > Load directory filepaths with extension filtering and recursive directory scan
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 FilePathList LoadDirectoryFilesEx(char * base_path, char * filter, bool scan_subdirs) 
@@ -5155,7 +5323,7 @@ See also:
 
 > Unload filepaths
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void UnloadDirectoryFiles(FilePathList files) 
@@ -5177,7 +5345,7 @@ See also:
 
 > Check if a file has been dropped into window
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 bool IsFileDropped() 
@@ -5196,7 +5364,7 @@ def is_file_dropped() -> bool
 
 > Load dropped filepaths
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 FilePathList LoadDroppedFiles() 
@@ -5218,7 +5386,7 @@ See also:
 
 > Unload dropped filepaths
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void UnloadDroppedFiles(FilePathList files) 
@@ -5240,7 +5408,7 @@ See also:
 
 > Get file modification time (last write time)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 long GetFileModTime(char * file_name) 
@@ -5259,7 +5427,7 @@ def get_file_mod_time(file_name: Union[str, CharPtr]) -> int
 
 > Compress data (DEFLATE algorithm), memory must be MemFree()
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 unsigned char * CompressData(unsigned char * data, int data_size, int comp_data_size) 
@@ -5278,7 +5446,7 @@ def compress_data(data: Union[Seq[int], UCharPtr], data_size: int, comp_data_siz
 
 > Decompress data (DEFLATE algorithm), memory must be MemFree()
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 unsigned char * DecompressData(unsigned char * comp_data, int comp_data_size, int data_size) 
@@ -5297,7 +5465,7 @@ def decompress_data(comp_data: Union[Seq[int], UCharPtr], comp_data_size: int, d
 
 > Encode data to Base64 string, memory must be MemFree()
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 char * EncodeDataBase64(unsigned char * data, int data_size, int output_size) 
@@ -5316,7 +5484,7 @@ def encode_data_base64(data: Union[Seq[int], UCharPtr], data_size: int, output_s
 
 > Decode Base64 string data, memory must be MemFree()
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 unsigned char * DecodeDataBase64(unsigned char * data, int output_size) 
@@ -5331,11 +5499,178 @@ def decode_data_base64(data: Union[Seq[int], UCharPtr], output_size: Union[Seq[i
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
+<h2 id="LoadAutomationEventList"><code>load_automation_event_list</code> function</h2>
+
+> Load automation events list from file, NULL for empty list, capacity = MAX_AUTOMATION_EVENTS
+
+Defined in raylib_api.json:
+
+```c
+AutomationEventList LoadAutomationEventList(char * file_name) 
+```
+
+Python wrapper:
+
+```python
+def load_automation_event_list(file_name: Union[str, CharPtr]) -> AutomationEventList
+```
+
+See also:
+<a href="#AutomationEventList">AutomationEventList</a>
+
+[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="UnloadAutomationEventList"><code>unload_automation_event_list</code> function</h2>
+
+> Unload automation events list from file
+
+Defined in raylib_api.json:
+
+```c
+void UnloadAutomationEventList(AutomationEventList * list) 
+```
+
+Python wrapper:
+
+```python
+def unload_automation_event_list(list: AutomationEventListPtr) -> None
+```
+
+See also:
+<a href="#AutomationEventList">AutomationEventList</a>
+
+[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="ExportAutomationEventList"><code>export_automation_event_list</code> function</h2>
+
+> Export automation events list as text file
+
+Defined in raylib_api.json:
+
+```c
+bool ExportAutomationEventList(AutomationEventList list, char * file_name) 
+```
+
+Python wrapper:
+
+```python
+def export_automation_event_list(list: AutomationEventList, file_name: Union[str, CharPtr]) -> bool
+```
+
+See also:
+<a href="#AutomationEventList">AutomationEventList</a>
+
+[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="SetAutomationEventList"><code>set_automation_event_list</code> function</h2>
+
+> Set automation event list to record to
+
+Defined in raylib_api.json:
+
+```c
+void SetAutomationEventList(AutomationEventList * list) 
+```
+
+Python wrapper:
+
+```python
+def set_automation_event_list(list: AutomationEventListPtr) -> None
+```
+
+See also:
+<a href="#AutomationEventList">AutomationEventList</a>
+
+[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="SetAutomationEventBaseFrame"><code>set_automation_event_base_frame</code> function</h2>
+
+> Set automation event internal base frame to start recording
+
+Defined in raylib_api.json:
+
+```c
+void SetAutomationEventBaseFrame(int frame) 
+```
+
+Python wrapper:
+
+```python
+def set_automation_event_base_frame(frame: int) -> None
+```
+
+[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="StartAutomationEventRecording"><code>start_automation_event_recording</code> function</h2>
+
+> Start recording automation events (AutomationEventList must be set)
+
+Defined in raylib_api.json:
+
+```c
+void StartAutomationEventRecording() 
+```
+
+Python wrapper:
+
+```python
+def start_automation_event_recording() -> None
+```
+
+[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="StopAutomationEventRecording"><code>stop_automation_event_recording</code> function</h2>
+
+> Stop recording automation events
+
+Defined in raylib_api.json:
+
+```c
+void StopAutomationEventRecording() 
+```
+
+Python wrapper:
+
+```python
+def stop_automation_event_recording() -> None
+```
+
+[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="PlayAutomationEvent"><code>play_automation_event</code> function</h2>
+
+> Play a recorded automation event
+
+Defined in raylib_api.json:
+
+```c
+void PlayAutomationEvent(AutomationEvent event) 
+```
+
+Python wrapper:
+
+```python
+def play_automation_event(event: AutomationEvent) -> None
+```
+
+See also:
+<a href="#AutomationEvent">AutomationEvent</a>
+
+[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
+
+---
 <h2 id="IsKeyPressed"><code>is_key_pressed</code> function</h2>
 
 > Check if a key has been pressed once
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 bool IsKeyPressed(int key) 
@@ -5350,11 +5685,30 @@ def is_key_pressed(key: int) -> bool
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
+<h2 id="IsKeyPressedRepeat"><code>is_key_pressed_repeat</code> function</h2>
+
+> Check if a key has been pressed again (Only PLATFORM_DESKTOP)
+
+Defined in raylib_api.json:
+
+```c
+bool IsKeyPressedRepeat(int key) 
+```
+
+Python wrapper:
+
+```python
+def is_key_pressed_repeat(key: int) -> bool
+```
+
+[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
+
+---
 <h2 id="IsKeyDown"><code>is_key_down</code> function</h2>
 
 > Check if a key is being pressed
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 bool IsKeyDown(int key) 
@@ -5373,7 +5727,7 @@ def is_key_down(key: int) -> bool
 
 > Check if a key has been released once
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 bool IsKeyReleased(int key) 
@@ -5392,7 +5746,7 @@ def is_key_released(key: int) -> bool
 
 > Check if a key is NOT being pressed
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 bool IsKeyUp(int key) 
@@ -5407,30 +5761,11 @@ def is_key_up(key: int) -> bool
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
-<h2 id="SetExitKey"><code>set_exit_key</code> function</h2>
-
-> Set a custom key to exit program (default is ESC)
-
-Defined in raylib.h:
-
-```c
-void SetExitKey(int key) 
-```
-
-Python wrapper:
-
-```python
-def set_exit_key(key: int) -> None
-```
-
-[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
-
----
 <h2 id="GetKeyPressed"><code>get_key_pressed</code> function</h2>
 
 > Get key pressed (keycode), call it multiple times for keys queued, returns 0 when the queue is empty
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 int GetKeyPressed() 
@@ -5449,7 +5784,7 @@ def get_key_pressed() -> int
 
 > Get char pressed (unicode), call it multiple times for chars queued, returns 0 when the queue is empty
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 int GetCharPressed() 
@@ -5464,11 +5799,30 @@ def get_char_pressed() -> int
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
+<h2 id="SetExitKey"><code>set_exit_key</code> function</h2>
+
+> Set a custom key to exit program (default is ESC)
+
+Defined in raylib_api.json:
+
+```c
+void SetExitKey(int key) 
+```
+
+Python wrapper:
+
+```python
+def set_exit_key(key: int) -> None
+```
+
+[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
+
+---
 <h2 id="IsGamepadAvailable"><code>is_gamepad_available</code> function</h2>
 
 > Check if a gamepad is available
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 bool IsGamepadAvailable(int gamepad) 
@@ -5487,7 +5841,7 @@ def is_gamepad_available(gamepad: int) -> bool
 
 > Get gamepad internal name id
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 char * GetGamepadName(int gamepad) 
@@ -5506,7 +5860,7 @@ def get_gamepad_name(gamepad: int) -> Union[str, CharPtr]
 
 > Check if a gamepad button has been pressed once
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 bool IsGamepadButtonPressed(int gamepad, int button) 
@@ -5525,7 +5879,7 @@ def is_gamepad_button_pressed(gamepad: int, button: int) -> bool
 
 > Check if a gamepad button is being pressed
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 bool IsGamepadButtonDown(int gamepad, int button) 
@@ -5544,7 +5898,7 @@ def is_gamepad_button_down(gamepad: int, button: int) -> bool
 
 > Check if a gamepad button has been released once
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 bool IsGamepadButtonReleased(int gamepad, int button) 
@@ -5563,7 +5917,7 @@ def is_gamepad_button_released(gamepad: int, button: int) -> bool
 
 > Check if a gamepad button is NOT being pressed
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 bool IsGamepadButtonUp(int gamepad, int button) 
@@ -5582,7 +5936,7 @@ def is_gamepad_button_up(gamepad: int, button: int) -> bool
 
 > Get the last gamepad button pressed
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 int GetGamepadButtonPressed() 
@@ -5601,7 +5955,7 @@ def get_gamepad_button_pressed() -> int
 
 > Get gamepad axis count for a gamepad
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 int GetGamepadAxisCount(int gamepad) 
@@ -5620,7 +5974,7 @@ def get_gamepad_axis_count(gamepad: int) -> int
 
 > Get axis movement value for a gamepad axis
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 float GetGamepadAxisMovement(int gamepad, int axis) 
@@ -5639,7 +5993,7 @@ def get_gamepad_axis_movement(gamepad: int, axis: int) -> float
 
 > Set internal gamepad mappings (SDL_GameControllerDB)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 int SetGamepadMappings(char * mappings) 
@@ -5658,7 +6012,7 @@ def set_gamepad_mappings(mappings: Union[str, CharPtr]) -> int
 
 > Check if a mouse button has been pressed once
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 bool IsMouseButtonPressed(int button) 
@@ -5677,7 +6031,7 @@ def is_mouse_button_pressed(button: int) -> bool
 
 > Check if a mouse button is being pressed
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 bool IsMouseButtonDown(int button) 
@@ -5696,7 +6050,7 @@ def is_mouse_button_down(button: int) -> bool
 
 > Check if a mouse button has been released once
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 bool IsMouseButtonReleased(int button) 
@@ -5715,7 +6069,7 @@ def is_mouse_button_released(button: int) -> bool
 
 > Check if a mouse button is NOT being pressed
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 bool IsMouseButtonUp(int button) 
@@ -5734,7 +6088,7 @@ def is_mouse_button_up(button: int) -> bool
 
 > Get mouse position X
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 int GetMouseX() 
@@ -5753,7 +6107,7 @@ def get_mouse_x() -> int
 
 > Get mouse position Y
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 int GetMouseY() 
@@ -5772,7 +6126,7 @@ def get_mouse_y() -> int
 
 > Get mouse position XY
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 Vector2 GetMousePosition() 
@@ -5794,7 +6148,7 @@ See also:
 
 > Get mouse delta between frames
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 Vector2 GetMouseDelta() 
@@ -5816,7 +6170,7 @@ See also:
 
 > Set mouse position XY
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void SetMousePosition(int x, int y) 
@@ -5835,7 +6189,7 @@ def set_mouse_position(x: int, y: int) -> None
 
 > Set mouse offset
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void SetMouseOffset(int offset_x, int offset_y) 
@@ -5854,7 +6208,7 @@ def set_mouse_offset(offset_x: int, offset_y: int) -> None
 
 > Set mouse scaling
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void SetMouseScale(float scale_x, float scale_y) 
@@ -5873,7 +6227,7 @@ def set_mouse_scale(scale_x: float, scale_y: float) -> None
 
 > Get mouse wheel movement for X or Y, whichever is larger
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 float GetMouseWheelMove() 
@@ -5892,7 +6246,7 @@ def get_mouse_wheel_move() -> float
 
 > Get mouse wheel movement for both X and Y
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 Vector2 GetMouseWheelMoveV() 
@@ -5914,7 +6268,7 @@ See also:
 
 > Set mouse cursor
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void SetMouseCursor(int cursor) 
@@ -5933,7 +6287,7 @@ def set_mouse_cursor(cursor: int) -> None
 
 > Get touch position X for touch point 0 (relative to screen size)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 int GetTouchX() 
@@ -5952,7 +6306,7 @@ def get_touch_x() -> int
 
 > Get touch position Y for touch point 0 (relative to screen size)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 int GetTouchY() 
@@ -5971,7 +6325,7 @@ def get_touch_y() -> int
 
 > Get touch position XY for a touch point index (relative to screen size)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 Vector2 GetTouchPosition(int index) 
@@ -5993,7 +6347,7 @@ See also:
 
 > Get touch point identifier for given index
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 int GetTouchPointId(int index) 
@@ -6012,7 +6366,7 @@ def get_touch_point_id(index: int) -> int
 
 > Get number of touch points
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 int GetTouchPointCount() 
@@ -6031,7 +6385,7 @@ def get_touch_point_count() -> int
 
 > Enable a set of gestures using flags
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void SetGesturesEnabled(unsigned int flags) 
@@ -6050,10 +6404,10 @@ def set_gestures_enabled(flags: int) -> None
 
 > Check if a gesture have been detected
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
-bool IsGestureDetected(int gesture) 
+bool IsGestureDetected(unsigned int gesture) 
 ```
 
 Python wrapper:
@@ -6069,7 +6423,7 @@ def is_gesture_detected(gesture: int) -> bool
 
 > Get latest detected gesture
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 int GetGestureDetected() 
@@ -6088,7 +6442,7 @@ def get_gesture_detected() -> int
 
 > Get gesture hold time in milliseconds
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 float GetGestureHoldDuration() 
@@ -6107,7 +6461,7 @@ def get_gesture_hold_duration() -> float
 
 > Get gesture drag vector
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 Vector2 GetGestureDragVector() 
@@ -6129,7 +6483,7 @@ See also:
 
 > Get gesture drag angle
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 float GetGestureDragAngle() 
@@ -6148,7 +6502,7 @@ def get_gesture_drag_angle() -> float
 
 > Get gesture pinch delta
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 Vector2 GetGesturePinchVector() 
@@ -6170,7 +6524,7 @@ See also:
 
 > Get gesture pinch angle
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 float GetGesturePinchAngle() 
@@ -6189,7 +6543,7 @@ def get_gesture_pinch_angle() -> float
 
 > Update camera position for selected mode
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void UpdateCamera(Camera * camera, int mode) 
@@ -6208,7 +6562,7 @@ def update_camera(camera: CameraPtr, mode: int) -> None
 
 > Update camera movement/rotation
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void UpdateCameraPro(Camera * camera, Vector3 movement, Vector3 rotation, float zoom) 
@@ -6230,7 +6584,7 @@ See also:
 
 > Set texture and rectangle to be used on shapes drawing
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void SetShapesTexture(Texture2D texture, Rectangle source) 
@@ -6252,7 +6606,7 @@ See also:
 
 > Draw a pixel
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void DrawPixel(int pos_x, int pos_y, Color color) 
@@ -6274,7 +6628,7 @@ See also:
 
 > Draw a pixel (Vector version)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void DrawPixelV(Vector2 position, Color color) 
@@ -6296,7 +6650,7 @@ See also:
 
 > Draw a line
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void DrawLine(int start_pos_x, int start_pos_y, int end_pos_x, int end_pos_y, Color color) 
@@ -6316,9 +6670,9 @@ See also:
 ---
 <h2 id="DrawLineV"><code>draw_line_v</code> function</h2>
 
-> Draw a line (Vector version)
+> Draw a line (using gl lines)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void DrawLineV(Vector2 start_pos, Vector2 end_pos, Color color) 
@@ -6338,9 +6692,9 @@ See also:
 ---
 <h2 id="DrawLineEx"><code>draw_line_ex</code> function</h2>
 
-> Draw a line defining thickness
+> Draw a line (using triangles/quads)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void DrawLineEx(Vector2 start_pos, Vector2 end_pos, float thick, Color color) 
@@ -6358,77 +6712,11 @@ See also:
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
-<h2 id="DrawLineBezier"><code>draw_line_bezier</code> function</h2>
-
-> Draw a line using cubic-bezier curves in-out
-
-Defined in raylib.h:
-
-```c
-void DrawLineBezier(Vector2 start_pos, Vector2 end_pos, float thick, Color color) 
-```
-
-Python wrapper:
-
-```python
-def draw_line_bezier(start_pos: Vector2, end_pos: Vector2, thick: float, color: Color) -> None
-```
-
-See also:
-<a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
-
-[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
-
----
-<h2 id="DrawLineBezierQuad"><code>draw_line_bezier_quad</code> function</h2>
-
-> Draw line using quadratic bezier curves with a control point
-
-Defined in raylib.h:
-
-```c
-void DrawLineBezierQuad(Vector2 start_pos, Vector2 end_pos, Vector2 control_pos, float thick, Color color) 
-```
-
-Python wrapper:
-
-```python
-def draw_line_bezier_quad(start_pos: Vector2, end_pos: Vector2, control_pos: Vector2, thick: float, color: Color) -> None
-```
-
-See also:
-<a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
-
-[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
-
----
-<h2 id="DrawLineBezierCubic"><code>draw_line_bezier_cubic</code> function</h2>
-
-> Draw line using cubic bezier curves with 2 control points
-
-Defined in raylib.h:
-
-```c
-void DrawLineBezierCubic(Vector2 start_pos, Vector2 end_pos, Vector2 start_control_pos, Vector2 end_control_pos, float thick, Color color) 
-```
-
-Python wrapper:
-
-```python
-def draw_line_bezier_cubic(start_pos: Vector2, end_pos: Vector2, start_control_pos: Vector2, end_control_pos: Vector2, thick: float, color: Color) -> None
-```
-
-See also:
-<a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
-
-[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
-
----
 <h2 id="DrawLineStrip"><code>draw_line_strip</code> function</h2>
 
-> Draw lines sequence
+> Draw lines sequence (using gl lines)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void DrawLineStrip(Vector2 * points, int point_count, Color color) 
@@ -6446,11 +6734,33 @@ See also:
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
+<h2 id="DrawLineBezier"><code>draw_line_bezier</code> function</h2>
+
+> Draw line segment cubic-bezier in-out interpolation
+
+Defined in raylib_api.json:
+
+```c
+void DrawLineBezier(Vector2 start_pos, Vector2 end_pos, float thick, Color color) 
+```
+
+Python wrapper:
+
+```python
+def draw_line_bezier(start_pos: Vector2, end_pos: Vector2, thick: float, color: Color) -> None
+```
+
+See also:
+<a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
+
+[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
+
+---
 <h2 id="DrawCircle"><code>draw_circle</code> function</h2>
 
 > Draw a color-filled circle
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void DrawCircle(int center_x, int center_y, float radius, Color color) 
@@ -6472,7 +6782,7 @@ See also:
 
 > Draw a piece of a circle
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void DrawCircleSector(Vector2 center, float radius, float start_angle, float end_angle, int segments, Color color) 
@@ -6494,7 +6804,7 @@ See also:
 
 > Draw circle sector outline
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void DrawCircleSectorLines(Vector2 center, float radius, float start_angle, float end_angle, int segments, Color color) 
@@ -6516,7 +6826,7 @@ See also:
 
 > Draw a gradient-filled circle
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void DrawCircleGradient(int center_x, int center_y, float radius, Color color1, Color color2) 
@@ -6538,7 +6848,7 @@ See also:
 
 > Draw a color-filled circle (Vector version)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void DrawCircleV(Vector2 center, float radius, Color color) 
@@ -6560,7 +6870,7 @@ See also:
 
 > Draw circle outline
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void DrawCircleLines(int center_x, int center_y, float radius, Color color) 
@@ -6578,11 +6888,33 @@ See also:
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
+<h2 id="DrawCircleLinesV"><code>draw_circle_lines_v</code> function</h2>
+
+> Draw circle outline (Vector version)
+
+Defined in raylib_api.json:
+
+```c
+void DrawCircleLinesV(Vector2 center, float radius, Color color) 
+```
+
+Python wrapper:
+
+```python
+def draw_circle_lines_v(center: Vector2, radius: float, color: Color) -> None
+```
+
+See also:
+<a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
+
+[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
+
+---
 <h2 id="DrawEllipse"><code>draw_ellipse</code> function</h2>
 
 > Draw ellipse
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void DrawEllipse(int center_x, int center_y, float radius_h, float radius_v, Color color) 
@@ -6604,7 +6936,7 @@ See also:
 
 > Draw ellipse outline
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void DrawEllipseLines(int center_x, int center_y, float radius_h, float radius_v, Color color) 
@@ -6626,7 +6958,7 @@ See also:
 
 > Draw ring
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void DrawRing(Vector2 center, float inner_radius, float outer_radius, float start_angle, float end_angle, int segments, Color color) 
@@ -6648,7 +6980,7 @@ See also:
 
 > Draw ring outline
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void DrawRingLines(Vector2 center, float inner_radius, float outer_radius, float start_angle, float end_angle, int segments, Color color) 
@@ -6670,7 +7002,7 @@ See also:
 
 > Draw a color-filled rectangle
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void DrawRectangle(int pos_x, int pos_y, int width, int height, Color color) 
@@ -6692,7 +7024,7 @@ See also:
 
 > Draw a color-filled rectangle (Vector version)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void DrawRectangleV(Vector2 position, Vector2 size, Color color) 
@@ -6714,7 +7046,7 @@ See also:
 
 > Draw a color-filled rectangle
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void DrawRectangleRec(Rectangle rec, Color color) 
@@ -6736,7 +7068,7 @@ See also:
 
 > Draw a color-filled rectangle with pro parameters
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void DrawRectanglePro(Rectangle rec, Vector2 origin, float rotation, Color color) 
@@ -6758,7 +7090,7 @@ See also:
 
 > Draw a vertical-gradient-filled rectangle
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void DrawRectangleGradientV(int pos_x, int pos_y, int width, int height, Color color1, Color color2) 
@@ -6780,7 +7112,7 @@ See also:
 
 > Draw a horizontal-gradient-filled rectangle
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void DrawRectangleGradientH(int pos_x, int pos_y, int width, int height, Color color1, Color color2) 
@@ -6802,7 +7134,7 @@ See also:
 
 > Draw a gradient-filled rectangle with custom vertex colors
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void DrawRectangleGradientEx(Rectangle rec, Color col1, Color col2, Color col3, Color col4) 
@@ -6824,7 +7156,7 @@ See also:
 
 > Draw rectangle outline
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void DrawRectangleLines(int pos_x, int pos_y, int width, int height, Color color) 
@@ -6846,7 +7178,7 @@ See also:
 
 > Draw rectangle outline with extended parameters
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void DrawRectangleLinesEx(Rectangle rec, float line_thick, Color color) 
@@ -6868,7 +7200,7 @@ See also:
 
 > Draw rectangle with rounded edges
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void DrawRectangleRounded(Rectangle rec, float roundness, int segments, Color color) 
@@ -6890,7 +7222,7 @@ See also:
 
 > Draw rectangle with rounded edges outline
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void DrawRectangleRoundedLines(Rectangle rec, float roundness, int segments, float line_thick, Color color) 
@@ -6912,7 +7244,7 @@ See also:
 
 > Draw a color-filled triangle (vertex in counter-clockwise order!)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void DrawTriangle(Vector2 v1, Vector2 v2, Vector2 v3, Color color) 
@@ -6934,7 +7266,7 @@ See also:
 
 > Draw triangle outline (vertex in counter-clockwise order!)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void DrawTriangleLines(Vector2 v1, Vector2 v2, Vector2 v3, Color color) 
@@ -6956,7 +7288,7 @@ See also:
 
 > Draw a triangle fan defined by points (first vertex is the center)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void DrawTriangleFan(Vector2 * points, int point_count, Color color) 
@@ -6978,7 +7310,7 @@ See also:
 
 > Draw a triangle strip defined by points
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void DrawTriangleStrip(Vector2 * points, int point_count, Color color) 
@@ -7000,7 +7332,7 @@ See also:
 
 > Draw a regular polygon (Vector version)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void DrawPoly(Vector2 center, int sides, float radius, float rotation, Color color) 
@@ -7022,7 +7354,7 @@ See also:
 
 > Draw a polygon outline of n sides
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void DrawPolyLines(Vector2 center, int sides, float radius, float rotation, Color color) 
@@ -7044,7 +7376,7 @@ See also:
 
 > Draw a polygon outline of n sides with extended parameters
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void DrawPolyLinesEx(Vector2 center, int sides, float radius, float rotation, float line_thick, Color color) 
@@ -7062,11 +7394,341 @@ See also:
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
+<h2 id="DrawSplineLinear"><code>draw_spline_linear</code> function</h2>
+
+> Draw spline: Linear, minimum 2 points
+
+Defined in raylib_api.json:
+
+```c
+void DrawSplineLinear(Vector2 * points, int point_count, float thick, Color color) 
+```
+
+Python wrapper:
+
+```python
+def draw_spline_linear(points: Vector2Ptr, point_count: int, thick: float, color: Color) -> None
+```
+
+See also:
+<a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
+
+[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="DrawSplineBasis"><code>draw_spline_basis</code> function</h2>
+
+> Draw spline: B-Spline, minimum 4 points
+
+Defined in raylib_api.json:
+
+```c
+void DrawSplineBasis(Vector2 * points, int point_count, float thick, Color color) 
+```
+
+Python wrapper:
+
+```python
+def draw_spline_basis(points: Vector2Ptr, point_count: int, thick: float, color: Color) -> None
+```
+
+See also:
+<a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
+
+[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="DrawSplineCatmullRom"><code>draw_spline_catmull_rom</code> function</h2>
+
+> Draw spline: Catmull-Rom, minimum 4 points
+
+Defined in raylib_api.json:
+
+```c
+void DrawSplineCatmullRom(Vector2 * points, int point_count, float thick, Color color) 
+```
+
+Python wrapper:
+
+```python
+def draw_spline_catmull_rom(points: Vector2Ptr, point_count: int, thick: float, color: Color) -> None
+```
+
+See also:
+<a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
+
+[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="DrawSplineBezierQuadratic"><code>draw_spline_bezier_quadratic</code> function</h2>
+
+> Draw spline: Quadratic Bezier, minimum 3 points (1 control point): [p1, c2, p3, c4...]
+
+Defined in raylib_api.json:
+
+```c
+void DrawSplineBezierQuadratic(Vector2 * points, int point_count, float thick, Color color) 
+```
+
+Python wrapper:
+
+```python
+def draw_spline_bezier_quadratic(points: Vector2Ptr, point_count: int, thick: float, color: Color) -> None
+```
+
+See also:
+<a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
+
+[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="DrawSplineBezierCubic"><code>draw_spline_bezier_cubic</code> function</h2>
+
+> Draw spline: Cubic Bezier, minimum 4 points (2 control points): [p1, c2, c3, p4, c5, c6...]
+
+Defined in raylib_api.json:
+
+```c
+void DrawSplineBezierCubic(Vector2 * points, int point_count, float thick, Color color) 
+```
+
+Python wrapper:
+
+```python
+def draw_spline_bezier_cubic(points: Vector2Ptr, point_count: int, thick: float, color: Color) -> None
+```
+
+See also:
+<a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
+
+[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="DrawSplineSegmentLinear"><code>draw_spline_segment_linear</code> function</h2>
+
+> Draw spline segment: Linear, 2 points
+
+Defined in raylib_api.json:
+
+```c
+void DrawSplineSegmentLinear(Vector2 p1, Vector2 p2, float thick, Color color) 
+```
+
+Python wrapper:
+
+```python
+def draw_spline_segment_linear(p1: Vector2, p2: Vector2, thick: float, color: Color) -> None
+```
+
+See also:
+<a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
+
+[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="DrawSplineSegmentBasis"><code>draw_spline_segment_basis</code> function</h2>
+
+> Draw spline segment: B-Spline, 4 points
+
+Defined in raylib_api.json:
+
+```c
+void DrawSplineSegmentBasis(Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, float thick, Color color) 
+```
+
+Python wrapper:
+
+```python
+def draw_spline_segment_basis(p1: Vector2, p2: Vector2, p3: Vector2, p4: Vector2, thick: float, color: Color) -> None
+```
+
+See also:
+<a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
+
+[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="DrawSplineSegmentCatmullRom"><code>draw_spline_segment_catmull_rom</code> function</h2>
+
+> Draw spline segment: Catmull-Rom, 4 points
+
+Defined in raylib_api.json:
+
+```c
+void DrawSplineSegmentCatmullRom(Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, float thick, Color color) 
+```
+
+Python wrapper:
+
+```python
+def draw_spline_segment_catmull_rom(p1: Vector2, p2: Vector2, p3: Vector2, p4: Vector2, thick: float, color: Color) -> None
+```
+
+See also:
+<a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
+
+[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="DrawSplineSegmentBezierQuadratic"><code>draw_spline_segment_bezier_quadratic</code> function</h2>
+
+> Draw spline segment: Quadratic Bezier, 2 points, 1 control point
+
+Defined in raylib_api.json:
+
+```c
+void DrawSplineSegmentBezierQuadratic(Vector2 p1, Vector2 c2, Vector2 p3, float thick, Color color) 
+```
+
+Python wrapper:
+
+```python
+def draw_spline_segment_bezier_quadratic(p1: Vector2, c2: Vector2, p3: Vector2, thick: float, color: Color) -> None
+```
+
+See also:
+<a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
+
+[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="DrawSplineSegmentBezierCubic"><code>draw_spline_segment_bezier_cubic</code> function</h2>
+
+> Draw spline segment: Cubic Bezier, 2 points, 2 control points
+
+Defined in raylib_api.json:
+
+```c
+void DrawSplineSegmentBezierCubic(Vector2 p1, Vector2 c2, Vector2 c3, Vector2 p4, float thick, Color color) 
+```
+
+Python wrapper:
+
+```python
+def draw_spline_segment_bezier_cubic(p1: Vector2, c2: Vector2, c3: Vector2, p4: Vector2, thick: float, color: Color) -> None
+```
+
+See also:
+<a href="#Vector2">Vector2</a>, <a href="#Color">Color</a>
+
+[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="GetSplinePointLinear"><code>get_spline_point_linear</code> function</h2>
+
+> Get (evaluate) spline point: Linear
+
+Defined in raylib_api.json:
+
+```c
+Vector2 GetSplinePointLinear(Vector2 start_pos, Vector2 end_pos, float t) 
+```
+
+Python wrapper:
+
+```python
+def get_spline_point_linear(start_pos: Vector2, end_pos: Vector2, t: float) -> Vector2
+```
+
+See also:
+<a href="#Vector2">Vector2</a>
+
+[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="GetSplinePointBasis"><code>get_spline_point_basis</code> function</h2>
+
+> Get (evaluate) spline point: B-Spline
+
+Defined in raylib_api.json:
+
+```c
+Vector2 GetSplinePointBasis(Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, float t) 
+```
+
+Python wrapper:
+
+```python
+def get_spline_point_basis(p1: Vector2, p2: Vector2, p3: Vector2, p4: Vector2, t: float) -> Vector2
+```
+
+See also:
+<a href="#Vector2">Vector2</a>
+
+[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="GetSplinePointCatmullRom"><code>get_spline_point_catmull_rom</code> function</h2>
+
+> Get (evaluate) spline point: Catmull-Rom
+
+Defined in raylib_api.json:
+
+```c
+Vector2 GetSplinePointCatmullRom(Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, float t) 
+```
+
+Python wrapper:
+
+```python
+def get_spline_point_catmull_rom(p1: Vector2, p2: Vector2, p3: Vector2, p4: Vector2, t: float) -> Vector2
+```
+
+See also:
+<a href="#Vector2">Vector2</a>
+
+[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="GetSplinePointBezierQuad"><code>get_spline_point_bezier_quad</code> function</h2>
+
+> Get (evaluate) spline point: Quadratic Bezier
+
+Defined in raylib_api.json:
+
+```c
+Vector2 GetSplinePointBezierQuad(Vector2 p1, Vector2 c2, Vector2 p3, float t) 
+```
+
+Python wrapper:
+
+```python
+def get_spline_point_bezier_quad(p1: Vector2, c2: Vector2, p3: Vector2, t: float) -> Vector2
+```
+
+See also:
+<a href="#Vector2">Vector2</a>
+
+[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="GetSplinePointBezierCubic"><code>get_spline_point_bezier_cubic</code> function</h2>
+
+> Get (evaluate) spline point: Cubic Bezier
+
+Defined in raylib_api.json:
+
+```c
+Vector2 GetSplinePointBezierCubic(Vector2 p1, Vector2 c2, Vector2 c3, Vector2 p4, float t) 
+```
+
+Python wrapper:
+
+```python
+def get_spline_point_bezier_cubic(p1: Vector2, c2: Vector2, c3: Vector2, p4: Vector2, t: float) -> Vector2
+```
+
+See also:
+<a href="#Vector2">Vector2</a>
+
+[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
+
+---
 <h2 id="CheckCollisionRecs"><code>check_collision_recs</code> function</h2>
 
 > Check collision between two rectangles
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 bool CheckCollisionRecs(Rectangle rec1, Rectangle rec2) 
@@ -7088,7 +7750,7 @@ See also:
 
 > Check collision between two circles
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 bool CheckCollisionCircles(Vector2 center1, float radius1, Vector2 center2, float radius2) 
@@ -7110,7 +7772,7 @@ See also:
 
 > Check collision between circle and rectangle
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 bool CheckCollisionCircleRec(Vector2 center, float radius, Rectangle rec) 
@@ -7132,7 +7794,7 @@ See also:
 
 > Check if point is inside rectangle
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 bool CheckCollisionPointRec(Vector2 point, Rectangle rec) 
@@ -7154,7 +7816,7 @@ See also:
 
 > Check if point is inside circle
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 bool CheckCollisionPointCircle(Vector2 point, Vector2 center, float radius) 
@@ -7176,7 +7838,7 @@ See also:
 
 > Check if point is inside a triangle
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 bool CheckCollisionPointTriangle(Vector2 point, Vector2 p1, Vector2 p2, Vector2 p3) 
@@ -7198,7 +7860,7 @@ See also:
 
 > Check if point is within a polygon described by array of vertices
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 bool CheckCollisionPointPoly(Vector2 point, Vector2 * points, int point_count) 
@@ -7220,7 +7882,7 @@ See also:
 
 > Check the collision between two lines defined by two points each, returns collision point by reference
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 bool CheckCollisionLines(Vector2 start_pos1, Vector2 end_pos1, Vector2 start_pos2, Vector2 end_pos2, Vector2 * collision_point) 
@@ -7242,7 +7904,7 @@ See also:
 
 > Check if point belongs to line created between two points [p1] and [p2] with defined margin in pixels [threshold]
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 bool CheckCollisionPointLine(Vector2 point, Vector2 p1, Vector2 p2, int threshold) 
@@ -7264,7 +7926,7 @@ See also:
 
 > Get collision rectangle for two rectangles collision
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 Rectangle GetCollisionRec(Rectangle rec1, Rectangle rec2) 
@@ -7286,7 +7948,7 @@ See also:
 
 > Load image from file into CPU memory (RAM)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 Image LoadImage(char * file_name) 
@@ -7308,7 +7970,7 @@ See also:
 
 > Load image from RAW file data
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 Image LoadImageRaw(char * file_name, int width, int height, int format, int header_size) 
@@ -7326,11 +7988,33 @@ See also:
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
+<h2 id="LoadImageSvg"><code>load_image_svg</code> function</h2>
+
+> Load image from SVG file data or string with specified size
+
+Defined in raylib_api.json:
+
+```c
+Image LoadImageSvg(char * file_name_or_string, int width, int height) 
+```
+
+Python wrapper:
+
+```python
+def load_image_svg(file_name_or_string: Union[str, CharPtr], width: int, height: int) -> Image
+```
+
+See also:
+<a href="#Image">Image</a>
+
+[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
+
+---
 <h2 id="LoadImageAnim"><code>load_image_anim</code> function</h2>
 
 > Load image sequence from file (frames appended to image.data)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 Image LoadImageAnim(char * file_name, int frames) 
@@ -7352,7 +8036,7 @@ See also:
 
 > Load image from memory buffer, fileType refers to extension: i.e. '.png'
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 Image LoadImageFromMemory(char * file_type, unsigned char * file_data, int data_size) 
@@ -7374,7 +8058,7 @@ See also:
 
 > Load image from GPU texture data
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 Image LoadImageFromTexture(Texture2D texture) 
@@ -7396,7 +8080,7 @@ See also:
 
 > Load image from screen buffer and (screenshot)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 Image LoadImageFromScreen() 
@@ -7418,7 +8102,7 @@ See also:
 
 > Check if an image is ready
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 bool IsImageReady(Image image) 
@@ -7440,7 +8124,7 @@ See also:
 
 > Unload image from CPU memory (RAM)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void UnloadImage(Image image) 
@@ -7462,7 +8146,7 @@ See also:
 
 > Export image data to file, returns true on success
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 bool ExportImage(Image image, char * file_name) 
@@ -7480,11 +8164,33 @@ See also:
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
+<h2 id="ExportImageToMemory"><code>export_image_to_memory</code> function</h2>
+
+> Export image to memory buffer
+
+Defined in raylib_api.json:
+
+```c
+unsigned char * ExportImageToMemory(Image image, char * file_type, int file_size) 
+```
+
+Python wrapper:
+
+```python
+def export_image_to_memory(image: Image, file_type: Union[str, CharPtr], file_size: Union[Seq[int], IntPtr]) -> Union[Seq[int], UCharPtr]
+```
+
+See also:
+<a href="#Image">Image</a>
+
+[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
+
+---
 <h2 id="ExportImageAsCode"><code>export_image_as_code</code> function</h2>
 
 > Export image as code file defining an array of bytes, returns true on success
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 bool ExportImageAsCode(Image image, char * file_name) 
@@ -7506,7 +8212,7 @@ See also:
 
 > Generate image: plain color
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 Image GenImageColor(int width, int height, Color color) 
@@ -7524,42 +8230,20 @@ See also:
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
-<h2 id="GenImageGradientV"><code>gen_image_gradient_v</code> function</h2>
+<h2 id="GenImageGradientLinear"><code>gen_image_gradient_linear</code> function</h2>
 
-> Generate image: vertical gradient
+> Generate image: linear gradient, direction in degrees [0..360], 0=Vertical gradient
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
-Image GenImageGradientV(int width, int height, Color top, Color bottom) 
+Image GenImageGradientLinear(int width, int height, int direction, Color start, Color end) 
 ```
 
 Python wrapper:
 
 ```python
-def gen_image_gradient_v(width: int, height: int, top: Color, bottom: Color) -> Image
-```
-
-See also:
-<a href="#Color">Color</a>, <a href="#Image">Image</a>
-
-[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
-
----
-<h2 id="GenImageGradientH"><code>gen_image_gradient_h</code> function</h2>
-
-> Generate image: horizontal gradient
-
-Defined in raylib.h:
-
-```c
-Image GenImageGradientH(int width, int height, Color left, Color right) 
-```
-
-Python wrapper:
-
-```python
-def gen_image_gradient_h(width: int, height: int, left: Color, right: Color) -> Image
+def gen_image_gradient_linear(width: int, height: int, direction: int, start: Color, end: Color) -> Image
 ```
 
 See also:
@@ -7572,7 +8256,7 @@ See also:
 
 > Generate image: radial gradient
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 Image GenImageGradientRadial(int width, int height, float density, Color inner, Color outer) 
@@ -7590,11 +8274,33 @@ See also:
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
+<h2 id="GenImageGradientSquare"><code>gen_image_gradient_square</code> function</h2>
+
+> Generate image: square gradient
+
+Defined in raylib_api.json:
+
+```c
+Image GenImageGradientSquare(int width, int height, float density, Color inner, Color outer) 
+```
+
+Python wrapper:
+
+```python
+def gen_image_gradient_square(width: int, height: int, density: float, inner: Color, outer: Color) -> Image
+```
+
+See also:
+<a href="#Color">Color</a>, <a href="#Image">Image</a>
+
+[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
+
+---
 <h2 id="GenImageChecked"><code>gen_image_checked</code> function</h2>
 
 > Generate image: checked
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 Image GenImageChecked(int width, int height, int checks_x, int checks_y, Color col1, Color col2) 
@@ -7616,7 +8322,7 @@ See also:
 
 > Generate image: white noise
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 Image GenImageWhiteNoise(int width, int height, float factor) 
@@ -7638,7 +8344,7 @@ See also:
 
 > Generate image: perlin noise
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 Image GenImagePerlinNoise(int width, int height, int offset_x, int offset_y, float scale) 
@@ -7660,7 +8366,7 @@ See also:
 
 > Generate image: cellular algorithm, bigger tileSize means bigger cells
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 Image GenImageCellular(int width, int height, int tile_size) 
@@ -7682,7 +8388,7 @@ See also:
 
 > Generate image: grayscale image from text data
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 Image GenImageText(int width, int height, char * text) 
@@ -7704,7 +8410,7 @@ See also:
 
 > Create an image duplicate (useful for transformations)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 Image ImageCopy(Image image) 
@@ -7726,7 +8432,7 @@ See also:
 
 > Create an image from another image piece
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 Image ImageFromImage(Image image, Rectangle rec) 
@@ -7748,7 +8454,7 @@ See also:
 
 > Create an image from text (default font)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 Image ImageText(char * text, int font_size, Color color) 
@@ -7770,7 +8476,7 @@ See also:
 
 > Create an image from text (custom sprite font)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 Image ImageTextEx(Font font, char * text, float font_size, float spacing, Color tint) 
@@ -7792,7 +8498,7 @@ See also:
 
 > Convert image data to desired format
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void ImageFormat(Image * image, int new_format) 
@@ -7814,7 +8520,7 @@ See also:
 
 > Convert image to POT (power-of-two)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void ImageToPOT(Image * image, Color fill) 
@@ -7836,7 +8542,7 @@ See also:
 
 > Crop an image to a defined rectangle
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void ImageCrop(Image * image, Rectangle crop) 
@@ -7858,7 +8564,7 @@ See also:
 
 > Crop image depending on alpha value
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void ImageAlphaCrop(Image * image, float threshold) 
@@ -7880,7 +8586,7 @@ See also:
 
 > Clear alpha channel to desired color
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void ImageAlphaClear(Image * image, Color color, float threshold) 
@@ -7902,7 +8608,7 @@ See also:
 
 > Apply alpha mask to image
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void ImageAlphaMask(Image * image, Image alpha_mask) 
@@ -7924,7 +8630,7 @@ See also:
 
 > Premultiply alpha channel
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void ImageAlphaPremultiply(Image * image) 
@@ -7946,7 +8652,7 @@ See also:
 
 > Apply Gaussian blur using a box blur approximation
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void ImageBlurGaussian(Image * image, int blur_size) 
@@ -7968,7 +8674,7 @@ See also:
 
 > Resize image (Bicubic scaling algorithm)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void ImageResize(Image * image, int new_width, int new_height) 
@@ -7990,7 +8696,7 @@ See also:
 
 > Resize image (Nearest-Neighbor scaling algorithm)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void ImageResizeNN(Image * image, int new_width, int new_height) 
@@ -8012,7 +8718,7 @@ See also:
 
 > Resize canvas and fill with color
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void ImageResizeCanvas(Image * image, int new_width, int new_height, int offset_x, int offset_y, Color fill) 
@@ -8034,7 +8740,7 @@ See also:
 
 > Compute all mipmap levels for a provided image
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void ImageMipmaps(Image * image) 
@@ -8056,7 +8762,7 @@ See also:
 
 > Dither image data to 16bpp or lower (Floyd-Steinberg dithering)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void ImageDither(Image * image, int r_bpp, int g_bpp, int b_bpp, int a_bpp) 
@@ -8078,7 +8784,7 @@ See also:
 
 > Flip image vertically
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void ImageFlipVertical(Image * image) 
@@ -8100,7 +8806,7 @@ See also:
 
 > Flip image horizontally
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void ImageFlipHorizontal(Image * image) 
@@ -8118,11 +8824,33 @@ See also:
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
+<h2 id="ImageRotate"><code>image_rotate</code> function</h2>
+
+> Rotate image by input angle in degrees (-359 to 359)
+
+Defined in raylib_api.json:
+
+```c
+void ImageRotate(Image * image, int degrees) 
+```
+
+Python wrapper:
+
+```python
+def image_rotate(image: ImagePtr, degrees: int) -> None
+```
+
+See also:
+<a href="#Image">Image</a>
+
+[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
+
+---
 <h2 id="ImageRotateCW"><code>image_rotate_cw</code> function</h2>
 
 > Rotate image clockwise 90deg
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void ImageRotateCW(Image * image) 
@@ -8144,7 +8872,7 @@ See also:
 
 > Rotate image counter-clockwise 90deg
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void ImageRotateCCW(Image * image) 
@@ -8166,7 +8894,7 @@ See also:
 
 > Modify image color: tint
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void ImageColorTint(Image * image, Color color) 
@@ -8188,7 +8916,7 @@ See also:
 
 > Modify image color: invert
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void ImageColorInvert(Image * image) 
@@ -8210,7 +8938,7 @@ See also:
 
 > Modify image color: grayscale
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void ImageColorGrayscale(Image * image) 
@@ -8232,7 +8960,7 @@ See also:
 
 > Modify image color: contrast (-100 to 100)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void ImageColorContrast(Image * image, float contrast) 
@@ -8254,7 +8982,7 @@ See also:
 
 > Modify image color: brightness (-255 to 255)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void ImageColorBrightness(Image * image, int brightness) 
@@ -8276,7 +9004,7 @@ See also:
 
 > Modify image color: replace color
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void ImageColorReplace(Image * image, Color color, Color replace) 
@@ -8298,7 +9026,7 @@ See also:
 
 > Load color data from image as a Color array (RGBA - 32bit)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 Color * LoadImageColors(Image image) 
@@ -8320,7 +9048,7 @@ See also:
 
 > Load colors palette from image as a Color array (RGBA - 32bit)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 Color * LoadImagePalette(Image image, int max_palette_size, int color_count) 
@@ -8342,7 +9070,7 @@ See also:
 
 > Unload color data loaded with LoadImageColors()
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void UnloadImageColors(Color * colors) 
@@ -8364,7 +9092,7 @@ See also:
 
 > Unload colors palette loaded with LoadImagePalette()
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void UnloadImagePalette(Color * colors) 
@@ -8386,7 +9114,7 @@ See also:
 
 > Get image alpha border rectangle
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 Rectangle GetImageAlphaBorder(Image image, float threshold) 
@@ -8408,7 +9136,7 @@ See also:
 
 > Get image pixel color at (x, y) position
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 Color GetImageColor(Image image, int x, int y) 
@@ -8430,7 +9158,7 @@ See also:
 
 > Clear image background with given color
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void ImageClearBackground(Image * dst, Color color) 
@@ -8452,7 +9180,7 @@ See also:
 
 > Draw pixel within an image
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void ImageDrawPixel(Image * dst, int pos_x, int pos_y, Color color) 
@@ -8474,7 +9202,7 @@ See also:
 
 > Draw pixel within an image (Vector version)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void ImageDrawPixelV(Image * dst, Vector2 position, Color color) 
@@ -8496,7 +9224,7 @@ See also:
 
 > Draw line within an image
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void ImageDrawLine(Image * dst, int start_pos_x, int start_pos_y, int end_pos_x, int end_pos_y, Color color) 
@@ -8518,7 +9246,7 @@ See also:
 
 > Draw line within an image (Vector version)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void ImageDrawLineV(Image * dst, Vector2 start, Vector2 end, Color color) 
@@ -8540,7 +9268,7 @@ See also:
 
 > Draw a filled circle within an image
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void ImageDrawCircle(Image * dst, int center_x, int center_y, int radius, Color color) 
@@ -8562,7 +9290,7 @@ See also:
 
 > Draw a filled circle within an image (Vector version)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void ImageDrawCircleV(Image * dst, Vector2 center, int radius, Color color) 
@@ -8584,7 +9312,7 @@ See also:
 
 > Draw circle outline within an image
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void ImageDrawCircleLines(Image * dst, int center_x, int center_y, int radius, Color color) 
@@ -8606,7 +9334,7 @@ See also:
 
 > Draw circle outline within an image (Vector version)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void ImageDrawCircleLinesV(Image * dst, Vector2 center, int radius, Color color) 
@@ -8628,7 +9356,7 @@ See also:
 
 > Draw rectangle within an image
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void ImageDrawRectangle(Image * dst, int pos_x, int pos_y, int width, int height, Color color) 
@@ -8650,7 +9378,7 @@ See also:
 
 > Draw rectangle within an image (Vector version)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void ImageDrawRectangleV(Image * dst, Vector2 position, Vector2 size, Color color) 
@@ -8672,7 +9400,7 @@ See also:
 
 > Draw rectangle within an image
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void ImageDrawRectangleRec(Image * dst, Rectangle rec, Color color) 
@@ -8694,7 +9422,7 @@ See also:
 
 > Draw rectangle lines within an image
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void ImageDrawRectangleLines(Image * dst, Rectangle rec, int thick, Color color) 
@@ -8716,7 +9444,7 @@ See also:
 
 > Draw a source image within a destination image (tint applied to source)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void ImageDraw(Image * dst, Image src, Rectangle src_rec, Rectangle dst_rec, Color tint) 
@@ -8738,7 +9466,7 @@ See also:
 
 > Draw text (using default font) within an image (destination)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void ImageDrawText(Image * dst, char * text, int pos_x, int pos_y, int font_size, Color color) 
@@ -8760,7 +9488,7 @@ See also:
 
 > Draw text (custom sprite font) within an image (destination)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void ImageDrawTextEx(Image * dst, Font font, char * text, Vector2 position, float font_size, float spacing, Color tint) 
@@ -8782,7 +9510,7 @@ See also:
 
 > Load texture from file into GPU memory (VRAM)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 Texture2D LoadTexture(char * file_name) 
@@ -8801,7 +9529,7 @@ def load_texture(file_name: Union[str, CharPtr]) -> Texture2D
 
 > Load texture from image data
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 Texture2D LoadTextureFromImage(Image image) 
@@ -8823,7 +9551,7 @@ See also:
 
 > Load cubemap from image, multiple image cubemap layouts supported
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 TextureCubemap LoadTextureCubemap(Image image, int layout) 
@@ -8845,7 +9573,7 @@ See also:
 
 > Load texture for rendering (framebuffer)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 RenderTexture2D LoadRenderTexture(int width, int height) 
@@ -8864,7 +9592,7 @@ def load_render_texture(width: int, height: int) -> RenderTexture2D
 
 > Check if a texture is ready
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 bool IsTextureReady(Texture2D texture) 
@@ -8883,7 +9611,7 @@ def is_texture_ready(texture: Texture2D) -> bool
 
 > Unload texture from GPU memory (VRAM)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void UnloadTexture(Texture2D texture) 
@@ -8902,7 +9630,7 @@ def unload_texture(texture: Texture2D) -> None
 
 > Check if a render texture is ready
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 bool IsRenderTextureReady(RenderTexture2D target) 
@@ -8921,7 +9649,7 @@ def is_render_texture_ready(target: RenderTexture2D) -> bool
 
 > Unload render texture from GPU memory (VRAM)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void UnloadRenderTexture(RenderTexture2D target) 
@@ -8940,7 +9668,7 @@ def unload_render_texture(target: RenderTexture2D) -> None
 
 > Update GPU texture with new data
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void UpdateTexture(Texture2D texture, void pixels) 
@@ -8959,7 +9687,7 @@ def update_texture(texture: Texture2D, pixels: bytes) -> None
 
 > Update GPU texture rectangle with new data
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void UpdateTextureRec(Texture2D texture, Rectangle rec, void pixels) 
@@ -8981,7 +9709,7 @@ See also:
 
 > Generate GPU mipmaps for a texture
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void GenTextureMipmaps(Texture2D * texture) 
@@ -9000,7 +9728,7 @@ def gen_texture_mipmaps(texture: Texture2DPtr) -> None
 
 > Set texture scaling filter mode
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void SetTextureFilter(Texture2D texture, int filter) 
@@ -9019,7 +9747,7 @@ def set_texture_filter(texture: Texture2D, filter: int) -> None
 
 > Set texture wrapping mode
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void SetTextureWrap(Texture2D texture, int wrap) 
@@ -9038,7 +9766,7 @@ def set_texture_wrap(texture: Texture2D, wrap: int) -> None
 
 > Draw a Texture2D
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void DrawTexture(Texture2D texture, int pos_x, int pos_y, Color tint) 
@@ -9060,7 +9788,7 @@ See also:
 
 > Draw a Texture2D with position defined as Vector2
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void DrawTextureV(Texture2D texture, Vector2 position, Color tint) 
@@ -9082,7 +9810,7 @@ See also:
 
 > Draw a Texture2D with extended parameters
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void DrawTextureEx(Texture2D texture, Vector2 position, float rotation, float scale, Color tint) 
@@ -9104,7 +9832,7 @@ See also:
 
 > Draw a part of a texture defined by a rectangle
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void DrawTextureRec(Texture2D texture, Rectangle source, Vector2 position, Color tint) 
@@ -9126,7 +9854,7 @@ See also:
 
 > Draw a part of a texture defined by a rectangle with 'pro' parameters
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void DrawTexturePro(Texture2D texture, Rectangle source, Rectangle dest, Vector2 origin, float rotation, Color tint) 
@@ -9148,7 +9876,7 @@ See also:
 
 > Draws a texture (or part of it) that stretches or shrinks nicely
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void DrawTextureNPatch(Texture2D texture, NPatchInfo n_patch_info, Rectangle dest, Vector2 origin, float rotation, Color tint) 
@@ -9170,7 +9898,7 @@ See also:
 
 > Get color with alpha applied, alpha goes from 0.0f to 1.0f
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 Color Fade(Color color, float alpha) 
@@ -9192,7 +9920,7 @@ See also:
 
 > Get hexadecimal value for a Color
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 int ColorToInt(Color color) 
@@ -9214,7 +9942,7 @@ See also:
 
 > Get Color normalized as float [0..1]
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 Vector4 ColorNormalize(Color color) 
@@ -9236,7 +9964,7 @@ See also:
 
 > Get Color from normalized values [0..1]
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 Color ColorFromNormalized(Vector4 normalized) 
@@ -9258,7 +9986,7 @@ See also:
 
 > Get HSV values for a Color, hue [0..360], saturation/value [0..1]
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 Vector3 ColorToHSV(Color color) 
@@ -9280,7 +10008,7 @@ See also:
 
 > Get a Color from HSV values, hue [0..360], saturation/value [0..1]
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 Color ColorFromHSV(float hue, float saturation, float value) 
@@ -9302,7 +10030,7 @@ See also:
 
 > Get color multiplied with another color
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 Color ColorTint(Color color, Color tint) 
@@ -9324,7 +10052,7 @@ See also:
 
 > Get color with brightness correction, brightness factor goes from -1.0f to 1.0f
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 Color ColorBrightness(Color color, float factor) 
@@ -9346,7 +10074,7 @@ See also:
 
 > Get color with contrast correction, contrast values between -1.0f and 1.0f
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 Color ColorContrast(Color color, float contrast) 
@@ -9368,7 +10096,7 @@ See also:
 
 > Get color with alpha applied, alpha goes from 0.0f to 1.0f
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 Color ColorAlpha(Color color, float alpha) 
@@ -9390,7 +10118,7 @@ See also:
 
 > Get src alpha-blended into dst color with tint
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 Color ColorAlphaBlend(Color dst, Color src, Color tint) 
@@ -9412,7 +10140,7 @@ See also:
 
 > Get Color structure from hexadecimal value
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 Color GetColor(unsigned int hex_value) 
@@ -9434,7 +10162,7 @@ See also:
 
 > Get Color from a source pixel pointer of certain format
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 Color GetPixelColor(void src_ptr, int format) 
@@ -9456,7 +10184,7 @@ See also:
 
 > Set color formatted into destination pixel pointer
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void SetPixelColor(void dst_ptr, Color color, int format) 
@@ -9478,7 +10206,7 @@ See also:
 
 > Get pixel data size in bytes for certain format
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 int GetPixelDataSize(int width, int height, int format) 
@@ -9497,7 +10225,7 @@ def get_pixel_data_size(width: int, height: int, format: int) -> int
 
 > Get the default Font
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 Font GetFontDefault() 
@@ -9519,7 +10247,7 @@ See also:
 
 > Load font from file into GPU memory (VRAM)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 Font LoadFont(char * file_name) 
@@ -9539,18 +10267,18 @@ See also:
 ---
 <h2 id="LoadFontEx"><code>load_font_ex</code> function</h2>
 
-> Load font from file with extended parameters, use NULL for fontChars and 0 for glyphCount to load the default character set
+> Load font from file with extended parameters, use NULL for codepoints and 0 for codepointCount to load the default character setFont
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
-Font LoadFontEx(char * file_name, int font_size, int font_chars, int glyph_count) 
+Font LoadFontEx(char * file_name, int font_size, int codepoints, int codepoint_count) 
 ```
 
 Python wrapper:
 
 ```python
-def load_font_ex(file_name: Union[str, CharPtr], font_size: int, font_chars: Union[Seq[int], IntPtr], glyph_count: int) -> Font
+def load_font_ex(file_name: Union[str, CharPtr], font_size: int, codepoints: Union[Seq[int], IntPtr], codepoint_count: int) -> Font
 ```
 
 See also:
@@ -9563,7 +10291,7 @@ See also:
 
 > Load font from Image (XNA style)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 Font LoadFontFromImage(Image image, Color key, int first_char) 
@@ -9585,16 +10313,16 @@ See also:
 
 > Load font from memory buffer, fileType refers to extension: i.e. '.ttf'
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
-Font LoadFontFromMemory(char * file_type, unsigned char * file_data, int data_size, int font_size, int font_chars, int glyph_count) 
+Font LoadFontFromMemory(char * file_type, unsigned char * file_data, int data_size, int font_size, int codepoints, int codepoint_count) 
 ```
 
 Python wrapper:
 
 ```python
-def load_font_from_memory(file_type: Union[str, CharPtr], file_data: Union[Seq[int], UCharPtr], data_size: int, font_size: int, font_chars: Union[Seq[int], IntPtr], glyph_count: int) -> Font
+def load_font_from_memory(file_type: Union[str, CharPtr], file_data: Union[Seq[int], UCharPtr], data_size: int, font_size: int, codepoints: Union[Seq[int], IntPtr], codepoint_count: int) -> Font
 ```
 
 See also:
@@ -9607,7 +10335,7 @@ See also:
 
 > Check if a font is ready
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 bool IsFontReady(Font font) 
@@ -9629,16 +10357,16 @@ See also:
 
 > Load font data for further use
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
-GlyphInfo * LoadFontData(unsigned char * file_data, int data_size, int font_size, int font_chars, int glyph_count, int type) 
+GlyphInfo * LoadFontData(unsigned char * file_data, int data_size, int font_size, int codepoints, int codepoint_count, int type) 
 ```
 
 Python wrapper:
 
 ```python
-def load_font_data(file_data: Union[Seq[int], UCharPtr], data_size: int, font_size: int, font_chars: Union[Seq[int], IntPtr], glyph_count: int, type: int) -> GlyphInfoPtr
+def load_font_data(file_data: Union[Seq[int], UCharPtr], data_size: int, font_size: int, codepoints: Union[Seq[int], IntPtr], codepoint_count: int, type: int) -> GlyphInfoPtr
 ```
 
 See also:
@@ -9651,16 +10379,16 @@ See also:
 
 > Generate image font atlas using chars info
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
-Image GenImageFontAtlas(GlyphInfo * chars, Rectangle ** recs, int glyph_count, int font_size, int padding, int pack_method) 
+Image GenImageFontAtlas(GlyphInfo * glyphs, Rectangle ** glyph_recs, int glyph_count, int font_size, int padding, int pack_method) 
 ```
 
 Python wrapper:
 
 ```python
-def gen_image_font_atlas(chars: GlyphInfoPtr, recs: RectanglePtr, glyph_count: int, font_size: int, padding: int, pack_method: int) -> Image
+def gen_image_font_atlas(glyphs: GlyphInfoPtr, glyph_recs: RectanglePtr, glyph_count: int, font_size: int, padding: int, pack_method: int) -> Image
 ```
 
 See also:
@@ -9673,16 +10401,16 @@ See also:
 
 > Unload font chars info data (RAM)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
-void UnloadFontData(GlyphInfo * chars, int glyph_count) 
+void UnloadFontData(GlyphInfo * glyphs, int glyph_count) 
 ```
 
 Python wrapper:
 
 ```python
-def unload_font_data(chars: GlyphInfoPtr, glyph_count: int) -> None
+def unload_font_data(glyphs: GlyphInfoPtr, glyph_count: int) -> None
 ```
 
 See also:
@@ -9695,7 +10423,7 @@ See also:
 
 > Unload font from GPU memory (VRAM)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void UnloadFont(Font font) 
@@ -9717,7 +10445,7 @@ See also:
 
 > Export font as code file, returns true on success
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 bool ExportFontAsCode(Font font, char * file_name) 
@@ -9739,7 +10467,7 @@ See also:
 
 > Draw current FPS
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void DrawFPS(int pos_x, int pos_y) 
@@ -9758,7 +10486,7 @@ def draw_fps(pos_x: int, pos_y: int) -> None
 
 > Draw text (using default font)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void DrawText(char * text, int pos_x, int pos_y, int font_size, Color color) 
@@ -9780,7 +10508,7 @@ See also:
 
 > Draw text using font and additional parameters
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void DrawTextEx(Font font, char * text, Vector2 position, float font_size, float spacing, Color tint) 
@@ -9802,7 +10530,7 @@ See also:
 
 > Draw text using Font and pro parameters (rotation)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void DrawTextPro(Font font, char * text, Vector2 position, Vector2 origin, float rotation, float font_size, float spacing, Color tint) 
@@ -9824,7 +10552,7 @@ See also:
 
 > Draw one character (codepoint)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void DrawTextCodepoint(Font font, int codepoint, Vector2 position, float font_size, Color tint) 
@@ -9846,16 +10574,16 @@ See also:
 
 > Draw multiple character (codepoint)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
-void DrawTextCodepoints(Font font, int codepoints, int count, Vector2 position, float font_size, float spacing, Color tint) 
+void DrawTextCodepoints(Font font, int codepoints, int codepoint_count, Vector2 position, float font_size, float spacing, Color tint) 
 ```
 
 Python wrapper:
 
 ```python
-def draw_text_codepoints(font: Font, codepoints: Union[Seq[int], IntPtr], count: int, position: Vector2, font_size: float, spacing: float, tint: Color) -> None
+def draw_text_codepoints(font: Font, codepoints: Union[Seq[int], IntPtr], codepoint_count: int, position: Vector2, font_size: float, spacing: float, tint: Color) -> None
 ```
 
 See also:
@@ -9864,11 +10592,30 @@ See also:
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
+<h2 id="SetTextLineSpacing"><code>set_text_line_spacing</code> function</h2>
+
+> Set vertical line spacing when drawing with line-breaks
+
+Defined in raylib_api.json:
+
+```c
+void SetTextLineSpacing(int spacing) 
+```
+
+Python wrapper:
+
+```python
+def set_text_line_spacing(spacing: int) -> None
+```
+
+[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
+
+---
 <h2 id="MeasureText"><code>measure_text</code> function</h2>
 
 > Measure string width for default font
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 int MeasureText(char * text, int font_size) 
@@ -9887,7 +10634,7 @@ def measure_text(text: Union[str, CharPtr], font_size: int) -> int
 
 > Measure string size for Font
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 Vector2 MeasureTextEx(Font font, char * text, float font_size, float spacing) 
@@ -9909,7 +10656,7 @@ See also:
 
 > Get glyph index position in font for a codepoint (unicode character), fallback to '?' if not found
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 int GetGlyphIndex(Font font, int codepoint) 
@@ -9931,7 +10678,7 @@ See also:
 
 > Get glyph font info data for a codepoint (unicode character), fallback to '?' if not found
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 GlyphInfo GetGlyphInfo(Font font, int codepoint) 
@@ -9953,7 +10700,7 @@ See also:
 
 > Get glyph rectangle in font atlas for a codepoint (unicode character), fallback to '?' if not found
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 Rectangle GetGlyphAtlasRec(Font font, int codepoint) 
@@ -9975,7 +10722,7 @@ See also:
 
 > Load UTF-8 text encoded from codepoints array
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 char * LoadUTF8(int codepoints, int length) 
@@ -9994,7 +10741,7 @@ def load_utf8(codepoints: Union[Seq[int], IntPtr], length: int) -> Union[str, Ch
 
 > Unload UTF-8 text encoded from codepoints array
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void UnloadUTF8(char * text) 
@@ -10013,7 +10760,7 @@ def unload_utf8(text: Union[str, CharPtr]) -> None
 
 > Load all codepoints from a UTF-8 text string, codepoints count returned by parameter
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 int LoadCodepoints(char * text, int count) 
@@ -10032,7 +10779,7 @@ def load_codepoints(text: Union[str, CharPtr], count: Union[Seq[int], IntPtr]) -
 
 > Unload codepoints data from memory
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void UnloadCodepoints(int codepoints) 
@@ -10051,7 +10798,7 @@ def unload_codepoints(codepoints: Union[Seq[int], IntPtr]) -> None
 
 > Get total number of codepoints in a UTF-8 encoded string
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 int GetCodepointCount(char * text) 
@@ -10070,7 +10817,7 @@ def get_codepoint_count(text: Union[str, CharPtr]) -> int
 
 > Get next codepoint in a UTF-8 encoded string, 0x3f('?') is returned on failure
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 int GetCodepoint(char * text, int codepoint_size) 
@@ -10089,7 +10836,7 @@ def get_codepoint(text: Union[str, CharPtr], codepoint_size: Union[Seq[int], Int
 
 > Get next codepoint in a UTF-8 encoded string, 0x3f('?') is returned on failure
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 int GetCodepointNext(char * text, int codepoint_size) 
@@ -10108,7 +10855,7 @@ def get_codepoint_next(text: Union[str, CharPtr], codepoint_size: Union[Seq[int]
 
 > Get previous codepoint in a UTF-8 encoded string, 0x3f('?') is returned on failure
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 int GetCodepointPrevious(char * text, int codepoint_size) 
@@ -10127,7 +10874,7 @@ def get_codepoint_previous(text: Union[str, CharPtr], codepoint_size: Union[Seq[
 
 > Encode one codepoint into UTF-8 byte array (array length returned as parameter)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 char * CodepointToUTF8(int codepoint, int utf8size) 
@@ -10146,7 +10893,7 @@ def codepoint_to_utf8(codepoint: int, utf8size: Union[Seq[int], IntPtr]) -> Unio
 
 > Copy one string to another, returns bytes copied
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 int TextCopy(char * dst, char * src) 
@@ -10165,7 +10912,7 @@ def text_copy(dst: Union[str, CharPtr], src: Union[str, CharPtr]) -> int
 
 > Check if two text string are equal
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 bool TextIsEqual(char * text1, char * text2) 
@@ -10184,7 +10931,7 @@ def text_is_equal(text1: Union[str, CharPtr], text2: Union[str, CharPtr]) -> boo
 
 > Get text length, checks for '\0' ending
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 unsigned int TextLength(char * text) 
@@ -10203,7 +10950,7 @@ def text_length(text: Union[str, CharPtr]) -> int
 
 > Text formatting with variables (sprintf() style)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 char * TextFormat(char * text, va_list args) 
@@ -10222,7 +10969,7 @@ def text_format(text: Union[str, CharPtr], args: bytes) -> Union[str, CharPtr]
 
 > Get a piece of a text string
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 char * TextSubtext(char * text, int position, int length) 
@@ -10241,7 +10988,7 @@ def text_subtext(text: Union[str, CharPtr], position: int, length: int) -> Union
 
 > Replace text string (WARNING: memory must be freed!)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 char * TextReplace(char * text, char * replace, char * by) 
@@ -10260,7 +11007,7 @@ def text_replace(text: Union[str, CharPtr], replace: Union[str, CharPtr], by: Un
 
 > Insert text in a position (WARNING: memory must be freed!)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 char * TextInsert(char * text, char * insert, int position) 
@@ -10279,7 +11026,7 @@ def text_insert(text: Union[str, CharPtr], insert: Union[str, CharPtr], position
 
 > Join text strings with delimiter
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 char * TextJoin(char ** text_list, int count, char * delimiter) 
@@ -10298,7 +11045,7 @@ def text_join(text_list: Seq[Union[str, CharPtr]], count: int, delimiter: Union[
 
 > Split text into multiple strings
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 char ** TextSplit(char * text, char delimiter, int count) 
@@ -10317,7 +11064,7 @@ def text_split(text: Union[str, CharPtr], delimiter: int, count: Union[Seq[int],
 
 > Append text at specific position and move cursor!
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void TextAppend(char * text, char * append, int position) 
@@ -10336,7 +11083,7 @@ def text_append(text: Union[str, CharPtr], append: Union[str, CharPtr], position
 
 > Find first text occurrence within a string
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 int TextFindIndex(char * text, char * find) 
@@ -10355,7 +11102,7 @@ def text_find_index(text: Union[str, CharPtr], find: Union[str, CharPtr]) -> int
 
 > Get upper case version of provided string
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 char * TextToUpper(char * text) 
@@ -10374,7 +11121,7 @@ def text_to_upper(text: Union[str, CharPtr]) -> Union[str, CharPtr]
 
 > Get lower case version of provided string
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 char * TextToLower(char * text) 
@@ -10393,7 +11140,7 @@ def text_to_lower(text: Union[str, CharPtr]) -> Union[str, CharPtr]
 
 > Get Pascal case notation version of provided string
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 char * TextToPascal(char * text) 
@@ -10412,7 +11159,7 @@ def text_to_pascal(text: Union[str, CharPtr]) -> Union[str, CharPtr]
 
 > Get integer value from text (negative values not supported)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 int TextToInteger(char * text) 
@@ -10431,7 +11178,7 @@ def text_to_integer(text: Union[str, CharPtr]) -> int
 
 > Draw a line in 3D world space
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void DrawLine3D(Vector3 start_pos, Vector3 end_pos, Color color) 
@@ -10453,7 +11200,7 @@ See also:
 
 > Draw a point in 3D space, actually a small line
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void DrawPoint3D(Vector3 position, Color color) 
@@ -10475,7 +11222,7 @@ See also:
 
 > Draw a circle in 3D world space
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void DrawCircle3D(Vector3 center, float radius, Vector3 rotation_axis, float rotation_angle, Color color) 
@@ -10497,7 +11244,7 @@ See also:
 
 > Draw a color-filled triangle (vertex in counter-clockwise order!)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void DrawTriangle3D(Vector3 v1, Vector3 v2, Vector3 v3, Color color) 
@@ -10519,7 +11266,7 @@ See also:
 
 > Draw a triangle strip defined by points
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void DrawTriangleStrip3D(Vector3 * points, int point_count, Color color) 
@@ -10541,7 +11288,7 @@ See also:
 
 > Draw cube
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void DrawCube(Vector3 position, float width, float height, float length, Color color) 
@@ -10563,7 +11310,7 @@ See also:
 
 > Draw cube (Vector version)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void DrawCubeV(Vector3 position, Vector3 size, Color color) 
@@ -10585,7 +11332,7 @@ See also:
 
 > Draw cube wires
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void DrawCubeWires(Vector3 position, float width, float height, float length, Color color) 
@@ -10607,7 +11354,7 @@ See also:
 
 > Draw cube wires (Vector version)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void DrawCubeWiresV(Vector3 position, Vector3 size, Color color) 
@@ -10629,7 +11376,7 @@ See also:
 
 > Draw sphere
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void DrawSphere(Vector3 center_pos, float radius, Color color) 
@@ -10651,7 +11398,7 @@ See also:
 
 > Draw sphere with extended parameters
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void DrawSphereEx(Vector3 center_pos, float radius, int rings, int slices, Color color) 
@@ -10673,7 +11420,7 @@ See also:
 
 > Draw sphere wires
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void DrawSphereWires(Vector3 center_pos, float radius, int rings, int slices, Color color) 
@@ -10695,7 +11442,7 @@ See also:
 
 > Draw a cylinder/cone
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void DrawCylinder(Vector3 position, float radius_top, float radius_bottom, float height, int slices, Color color) 
@@ -10717,7 +11464,7 @@ See also:
 
 > Draw a cylinder with base at startPos and top at endPos
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void DrawCylinderEx(Vector3 start_pos, Vector3 end_pos, float start_radius, float end_radius, int sides, Color color) 
@@ -10739,7 +11486,7 @@ See also:
 
 > Draw a cylinder/cone wires
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void DrawCylinderWires(Vector3 position, float radius_top, float radius_bottom, float height, int slices, Color color) 
@@ -10761,7 +11508,7 @@ See also:
 
 > Draw a cylinder wires with base at startPos and top at endPos
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void DrawCylinderWiresEx(Vector3 start_pos, Vector3 end_pos, float start_radius, float end_radius, int sides, Color color) 
@@ -10783,7 +11530,7 @@ See also:
 
 > Draw a capsule with the center of its sphere caps at startPos and endPos
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void DrawCapsule(Vector3 start_pos, Vector3 end_pos, float radius, int slices, int rings, Color color) 
@@ -10805,7 +11552,7 @@ See also:
 
 > Draw capsule wireframe with the center of its sphere caps at startPos and endPos
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void DrawCapsuleWires(Vector3 start_pos, Vector3 end_pos, float radius, int slices, int rings, Color color) 
@@ -10827,7 +11574,7 @@ See also:
 
 > Draw a plane XZ
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void DrawPlane(Vector3 center_pos, Vector2 size, Color color) 
@@ -10849,7 +11596,7 @@ See also:
 
 > Draw a ray line
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void DrawRay(Ray ray, Color color) 
@@ -10871,7 +11618,7 @@ See also:
 
 > Draw a grid (centered at (0, 0, 0))
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void DrawGrid(int slices, float spacing) 
@@ -10890,7 +11637,7 @@ def draw_grid(slices: int, spacing: float) -> None
 
 > Load model from files (meshes and materials)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 Model LoadModel(char * file_name) 
@@ -10912,7 +11659,7 @@ See also:
 
 > Load model from generated mesh (default material)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 Model LoadModelFromMesh(Mesh mesh) 
@@ -10934,7 +11681,7 @@ See also:
 
 > Check if a model is ready
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 bool IsModelReady(Model model) 
@@ -10956,7 +11703,7 @@ See also:
 
 > Unload model (including meshes) from memory (RAM and/or VRAM)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void UnloadModel(Model model) 
@@ -10978,7 +11725,7 @@ See also:
 
 > Compute model bounding box limits (considers all meshes)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 BoundingBox GetModelBoundingBox(Model model) 
@@ -11000,7 +11747,7 @@ See also:
 
 > Draw a model (with texture if set)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void DrawModel(Model model, Vector3 position, float scale, Color tint) 
@@ -11022,7 +11769,7 @@ See also:
 
 > Draw a model with extended parameters
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void DrawModelEx(Model model, Vector3 position, Vector3 rotation_axis, float rotation_angle, Vector3 scale, Color tint) 
@@ -11044,7 +11791,7 @@ See also:
 
 > Draw a model wires (with texture if set)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void DrawModelWires(Model model, Vector3 position, float scale, Color tint) 
@@ -11066,7 +11813,7 @@ See also:
 
 > Draw a model wires (with texture if set) with extended parameters
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void DrawModelWiresEx(Model model, Vector3 position, Vector3 rotation_axis, float rotation_angle, Vector3 scale, Color tint) 
@@ -11088,7 +11835,7 @@ See also:
 
 > Draw bounding box (wires)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void DrawBoundingBox(BoundingBox box, Color color) 
@@ -11110,7 +11857,7 @@ See also:
 
 > Draw a billboard texture
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void DrawBillboard(Camera camera, Texture2D texture, Vector3 position, float size, Color tint) 
@@ -11132,7 +11879,7 @@ See also:
 
 > Draw a billboard texture defined by source
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void DrawBillboardRec(Camera camera, Texture2D texture, Rectangle source, Vector3 position, Vector2 size, Color tint) 
@@ -11154,7 +11901,7 @@ See also:
 
 > Draw a billboard texture defined by source and rotation
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void DrawBillboardPro(Camera camera, Texture2D texture, Rectangle source, Vector3 position, Vector3 up, Vector2 size, Vector2 origin, float rotation, Color tint) 
@@ -11176,7 +11923,7 @@ See also:
 
 > Upload mesh vertex data in GPU and provide VAO/VBO ids
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void UploadMesh(Mesh * mesh, bool dynamic) 
@@ -11198,7 +11945,7 @@ See also:
 
 > Update mesh vertex data in GPU for a specific buffer index
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void UpdateMeshBuffer(Mesh mesh, int index, void data, int data_size, int offset) 
@@ -11220,7 +11967,7 @@ See also:
 
 > Unload mesh data from CPU and GPU
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void UnloadMesh(Mesh mesh) 
@@ -11242,7 +11989,7 @@ See also:
 
 > Draw a 3d mesh with material and transform
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void DrawMesh(Mesh mesh, Material material, Matrix transform) 
@@ -11264,7 +12011,7 @@ See also:
 
 > Draw multiple mesh instances with material and different transforms
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void DrawMeshInstanced(Mesh mesh, Material material, Matrix * transforms, int instances) 
@@ -11286,7 +12033,7 @@ See also:
 
 > Export mesh data to file, returns true on success
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 bool ExportMesh(Mesh mesh, char * file_name) 
@@ -11308,7 +12055,7 @@ See also:
 
 > Compute mesh bounding box limits
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 BoundingBox GetMeshBoundingBox(Mesh mesh) 
@@ -11330,7 +12077,7 @@ See also:
 
 > Compute mesh tangents
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void GenMeshTangents(Mesh * mesh) 
@@ -11352,7 +12099,7 @@ See also:
 
 > Generate polygonal mesh
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 Mesh GenMeshPoly(int sides, float radius) 
@@ -11374,7 +12121,7 @@ See also:
 
 > Generate plane mesh (with subdivisions)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 Mesh GenMeshPlane(float width, float length, int res_x, int res_z) 
@@ -11396,7 +12143,7 @@ See also:
 
 > Generate cuboid mesh
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 Mesh GenMeshCube(float width, float height, float length) 
@@ -11418,7 +12165,7 @@ See also:
 
 > Generate sphere mesh (standard sphere)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 Mesh GenMeshSphere(float radius, int rings, int slices) 
@@ -11440,7 +12187,7 @@ See also:
 
 > Generate half-sphere mesh (no bottom cap)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 Mesh GenMeshHemiSphere(float radius, int rings, int slices) 
@@ -11462,7 +12209,7 @@ See also:
 
 > Generate cylinder mesh
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 Mesh GenMeshCylinder(float radius, float height, int slices) 
@@ -11484,7 +12231,7 @@ See also:
 
 > Generate cone/pyramid mesh
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 Mesh GenMeshCone(float radius, float height, int slices) 
@@ -11506,7 +12253,7 @@ See also:
 
 > Generate torus mesh
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 Mesh GenMeshTorus(float radius, float size, int rad_seg, int sides) 
@@ -11528,7 +12275,7 @@ See also:
 
 > Generate trefoil knot mesh
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 Mesh GenMeshKnot(float radius, float size, int rad_seg, int sides) 
@@ -11550,7 +12297,7 @@ See also:
 
 > Generate heightmap mesh from image data
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 Mesh GenMeshHeightmap(Image heightmap, Vector3 size) 
@@ -11572,7 +12319,7 @@ See also:
 
 > Generate cubes-based map mesh from image data
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 Mesh GenMeshCubicmap(Image cubicmap, Vector3 cube_size) 
@@ -11594,7 +12341,7 @@ See also:
 
 > Load materials from model file
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 Material * LoadMaterials(char * file_name, int material_count) 
@@ -11616,7 +12363,7 @@ See also:
 
 > Load default material (Supports: DIFFUSE, SPECULAR, NORMAL maps)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 Material LoadMaterialDefault() 
@@ -11638,7 +12385,7 @@ See also:
 
 > Check if a material is ready
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 bool IsMaterialReady(Material material) 
@@ -11660,7 +12407,7 @@ See also:
 
 > Unload material from GPU memory (VRAM)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void UnloadMaterial(Material material) 
@@ -11682,7 +12429,7 @@ See also:
 
 > Set texture for a material map type (MATERIAL_MAP_DIFFUSE, MATERIAL_MAP_SPECULAR...)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void SetMaterialTexture(Material * material, int map_type, Texture2D texture) 
@@ -11704,7 +12451,7 @@ See also:
 
 > Set material for a mesh
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void SetModelMeshMaterial(Model * model, int mesh_id, int material_id) 
@@ -11726,16 +12473,16 @@ See also:
 
 > Load model animations from file
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
-ModelAnimation * LoadModelAnimations(char * file_name, unsigned int anim_count) 
+ModelAnimation * LoadModelAnimations(char * file_name, int anim_count) 
 ```
 
 Python wrapper:
 
 ```python
-def load_model_animations(file_name: Union[str, CharPtr], anim_count: Union[Seq[int], UIntPtr]) -> ModelAnimationPtr
+def load_model_animations(file_name: Union[str, CharPtr], anim_count: Union[Seq[int], IntPtr]) -> ModelAnimationPtr
 ```
 
 See also:
@@ -11748,7 +12495,7 @@ See also:
 
 > Update model animation pose
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void UpdateModelAnimation(Model model, ModelAnimation anim, int frame) 
@@ -11770,7 +12517,7 @@ See also:
 
 > Unload animation data
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void UnloadModelAnimation(ModelAnimation anim) 
@@ -11792,16 +12539,16 @@ See also:
 
 > Unload animation array data
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
-void UnloadModelAnimations(ModelAnimation * animations, unsigned int count) 
+void UnloadModelAnimations(ModelAnimation * animations, int anim_count) 
 ```
 
 Python wrapper:
 
 ```python
-def unload_model_animations(animations: ModelAnimationPtr, count: int) -> None
+def unload_model_animations(animations: ModelAnimationPtr, anim_count: int) -> None
 ```
 
 See also:
@@ -11814,7 +12561,7 @@ See also:
 
 > Check model animation skeleton match
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 bool IsModelAnimationValid(Model model, ModelAnimation anim) 
@@ -11836,7 +12583,7 @@ See also:
 
 > Check collision between two spheres
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 bool CheckCollisionSpheres(Vector3 center1, float radius1, Vector3 center2, float radius2) 
@@ -11858,7 +12605,7 @@ See also:
 
 > Check collision between two bounding boxes
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 bool CheckCollisionBoxes(BoundingBox box1, BoundingBox box2) 
@@ -11880,7 +12627,7 @@ See also:
 
 > Check collision between box and sphere
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 bool CheckCollisionBoxSphere(BoundingBox box, Vector3 center, float radius) 
@@ -11902,7 +12649,7 @@ See also:
 
 > Get collision info between ray and sphere
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 RayCollision GetRayCollisionSphere(Ray ray, Vector3 center, float radius) 
@@ -11924,7 +12671,7 @@ See also:
 
 > Get collision info between ray and box
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 RayCollision GetRayCollisionBox(Ray ray, BoundingBox box) 
@@ -11946,7 +12693,7 @@ See also:
 
 > Get collision info between ray and mesh
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 RayCollision GetRayCollisionMesh(Ray ray, Mesh mesh, Matrix transform) 
@@ -11968,7 +12715,7 @@ See also:
 
 > Get collision info between ray and triangle
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 RayCollision GetRayCollisionTriangle(Ray ray, Vector3 p1, Vector3 p2, Vector3 p3) 
@@ -11990,7 +12737,7 @@ See also:
 
 > Get collision info between ray and quad
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 RayCollision GetRayCollisionQuad(Ray ray, Vector3 p1, Vector3 p2, Vector3 p3, Vector3 p4) 
@@ -12012,7 +12759,7 @@ See also:
 
 > Initialize audio device and context
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void InitAudioDevice() 
@@ -12031,7 +12778,7 @@ def init_audio_device() -> None
 
 > Close the audio device and context
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void CloseAudioDevice() 
@@ -12050,7 +12797,7 @@ def close_audio_device() -> None
 
 > Check if audio device has been initialized successfully
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 bool IsAudioDeviceReady() 
@@ -12069,7 +12816,7 @@ def is_audio_device_ready() -> bool
 
 > Set master volume (listener)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void SetMasterVolume(float volume) 
@@ -12084,11 +12831,30 @@ def set_master_volume(volume: float) -> None
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
+<h2 id="GetMasterVolume"><code>get_master_volume</code> function</h2>
+
+> Get master volume (listener)
+
+Defined in raylib_api.json:
+
+```c
+float GetMasterVolume() 
+```
+
+Python wrapper:
+
+```python
+def get_master_volume() -> float
+```
+
+[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
+
+---
 <h2 id="LoadWave"><code>load_wave</code> function</h2>
 
 > Load wave data from file
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 Wave LoadWave(char * file_name) 
@@ -12110,7 +12876,7 @@ See also:
 
 > Load wave from memory buffer, fileType refers to extension: i.e. '.wav'
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 Wave LoadWaveFromMemory(char * file_type, unsigned char * file_data, int data_size) 
@@ -12132,7 +12898,7 @@ See also:
 
 > Checks if wave data is ready
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 bool IsWaveReady(Wave wave) 
@@ -12154,7 +12920,7 @@ See also:
 
 > Load sound from file
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 Sound LoadSound(char * file_name) 
@@ -12176,7 +12942,7 @@ See also:
 
 > Load sound from wave data
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 Sound LoadSoundFromWave(Wave wave) 
@@ -12194,11 +12960,33 @@ See also:
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
+<h2 id="LoadSoundAlias"><code>load_sound_alias</code> function</h2>
+
+> Create a new sound that shares the same sample data as the source sound, does not own the sound data
+
+Defined in raylib_api.json:
+
+```c
+Sound LoadSoundAlias(Sound source) 
+```
+
+Python wrapper:
+
+```python
+def load_sound_alias(source: Sound) -> Sound
+```
+
+See also:
+<a href="#Sound">Sound</a>
+
+[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
+
+---
 <h2 id="IsSoundReady"><code>is_sound_ready</code> function</h2>
 
 > Checks if a sound is ready
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 bool IsSoundReady(Sound sound) 
@@ -12220,7 +13008,7 @@ See also:
 
 > Update sound buffer with new data
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void UpdateSound(Sound sound, void data, int sample_count) 
@@ -12242,7 +13030,7 @@ See also:
 
 > Unload wave data
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void UnloadWave(Wave wave) 
@@ -12264,7 +13052,7 @@ See also:
 
 > Unload sound
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void UnloadSound(Sound sound) 
@@ -12282,11 +13070,33 @@ See also:
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
+<h2 id="UnloadSoundAlias"><code>unload_sound_alias</code> function</h2>
+
+> Unload a sound alias (does not deallocate sample data)
+
+Defined in raylib_api.json:
+
+```c
+void UnloadSoundAlias(Sound alias) 
+```
+
+Python wrapper:
+
+```python
+def unload_sound_alias(alias: Sound) -> None
+```
+
+See also:
+<a href="#Sound">Sound</a>
+
+[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
+
+---
 <h2 id="ExportWave"><code>export_wave</code> function</h2>
 
 > Export wave data to file, returns true on success
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 bool ExportWave(Wave wave, char * file_name) 
@@ -12308,7 +13118,7 @@ See also:
 
 > Export wave sample data to code (.h), returns true on success
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 bool ExportWaveAsCode(Wave wave, char * file_name) 
@@ -12330,7 +13140,7 @@ See also:
 
 > Play a sound
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void PlaySound(Sound sound) 
@@ -12352,7 +13162,7 @@ See also:
 
 > Stop playing a sound
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void StopSound(Sound sound) 
@@ -12374,7 +13184,7 @@ See also:
 
 > Pause a sound
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void PauseSound(Sound sound) 
@@ -12396,7 +13206,7 @@ See also:
 
 > Resume a paused sound
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void ResumeSound(Sound sound) 
@@ -12418,7 +13228,7 @@ See also:
 
 > Check if a sound is currently playing
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 bool IsSoundPlaying(Sound sound) 
@@ -12440,7 +13250,7 @@ See also:
 
 > Set volume for a sound (1.0 is max level)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void SetSoundVolume(Sound sound, float volume) 
@@ -12462,7 +13272,7 @@ See also:
 
 > Set pitch for a sound (1.0 is base level)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void SetSoundPitch(Sound sound, float pitch) 
@@ -12484,7 +13294,7 @@ See also:
 
 > Set pan for a sound (0.5 is center)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void SetSoundPan(Sound sound, float pan) 
@@ -12506,7 +13316,7 @@ See also:
 
 > Copy a wave to a new wave
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 Wave WaveCopy(Wave wave) 
@@ -12528,7 +13338,7 @@ See also:
 
 > Crop a wave to defined samples range
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void WaveCrop(Wave * wave, int init_sample, int final_sample) 
@@ -12550,7 +13360,7 @@ See also:
 
 > Convert wave data to desired format
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void WaveFormat(Wave * wave, int sample_rate, int sample_size, int channels) 
@@ -12572,7 +13382,7 @@ See also:
 
 > Load samples data from wave as a 32bit float data array
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 float LoadWaveSamples(Wave wave) 
@@ -12594,7 +13404,7 @@ See also:
 
 > Unload samples data loaded with LoadWaveSamples()
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void UnloadWaveSamples(float samples) 
@@ -12613,7 +13423,7 @@ def unload_wave_samples(samples: Union[Seq[float], FloatPtr]) -> None
 
 > Load music stream from file
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 Music LoadMusicStream(char * file_name) 
@@ -12635,7 +13445,7 @@ See also:
 
 > Load music stream from data
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 Music LoadMusicStreamFromMemory(char * file_type, unsigned char * data, int data_size) 
@@ -12657,7 +13467,7 @@ See also:
 
 > Checks if a music stream is ready
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 bool IsMusicReady(Music music) 
@@ -12679,7 +13489,7 @@ See also:
 
 > Unload music stream
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void UnloadMusicStream(Music music) 
@@ -12701,7 +13511,7 @@ See also:
 
 > Start music playing
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void PlayMusicStream(Music music) 
@@ -12723,7 +13533,7 @@ See also:
 
 > Check if music is playing
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 bool IsMusicStreamPlaying(Music music) 
@@ -12745,7 +13555,7 @@ See also:
 
 > Updates buffers for music streaming
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void UpdateMusicStream(Music music) 
@@ -12767,7 +13577,7 @@ See also:
 
 > Stop music playing
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void StopMusicStream(Music music) 
@@ -12789,7 +13599,7 @@ See also:
 
 > Pause music playing
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void PauseMusicStream(Music music) 
@@ -12811,7 +13621,7 @@ See also:
 
 > Resume playing paused music
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void ResumeMusicStream(Music music) 
@@ -12833,7 +13643,7 @@ See also:
 
 > Seek music to a position (in seconds)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void SeekMusicStream(Music music, float position) 
@@ -12855,7 +13665,7 @@ See also:
 
 > Set volume for music (1.0 is max level)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void SetMusicVolume(Music music, float volume) 
@@ -12877,7 +13687,7 @@ See also:
 
 > Set pitch for a music (1.0 is base level)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void SetMusicPitch(Music music, float pitch) 
@@ -12899,7 +13709,7 @@ See also:
 
 > Set pan for a music (0.5 is center)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void SetMusicPan(Music music, float pan) 
@@ -12921,7 +13731,7 @@ See also:
 
 > Get music time length (in seconds)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 float GetMusicTimeLength(Music music) 
@@ -12943,7 +13753,7 @@ See also:
 
 > Get current music time played (in seconds)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 float GetMusicTimePlayed(Music music) 
@@ -12965,7 +13775,7 @@ See also:
 
 > Load audio stream (to stream raw audio pcm data)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 AudioStream LoadAudioStream(unsigned int sample_rate, unsigned int sample_size, unsigned int channels) 
@@ -12987,7 +13797,7 @@ See also:
 
 > Checks if an audio stream is ready
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 bool IsAudioStreamReady(AudioStream stream) 
@@ -13009,7 +13819,7 @@ See also:
 
 > Unload audio stream and free memory
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void UnloadAudioStream(AudioStream stream) 
@@ -13031,7 +13841,7 @@ See also:
 
 > Update audio stream buffers with data
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void UpdateAudioStream(AudioStream stream, void data, int frame_count) 
@@ -13053,7 +13863,7 @@ See also:
 
 > Check if any audio stream buffers requires refill
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 bool IsAudioStreamProcessed(AudioStream stream) 
@@ -13075,7 +13885,7 @@ See also:
 
 > Play audio stream
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void PlayAudioStream(AudioStream stream) 
@@ -13097,7 +13907,7 @@ See also:
 
 > Pause audio stream
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void PauseAudioStream(AudioStream stream) 
@@ -13119,7 +13929,7 @@ See also:
 
 > Resume audio stream
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void ResumeAudioStream(AudioStream stream) 
@@ -13141,7 +13951,7 @@ See also:
 
 > Check if audio stream is playing
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 bool IsAudioStreamPlaying(AudioStream stream) 
@@ -13163,7 +13973,7 @@ See also:
 
 > Stop audio stream
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void StopAudioStream(AudioStream stream) 
@@ -13185,7 +13995,7 @@ See also:
 
 > Set volume for audio stream (1.0 is max level)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void SetAudioStreamVolume(AudioStream stream, float volume) 
@@ -13207,7 +14017,7 @@ See also:
 
 > Set pitch for audio stream (1.0 is base level)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void SetAudioStreamPitch(AudioStream stream, float pitch) 
@@ -13229,7 +14039,7 @@ See also:
 
 > Set pan for audio stream (0.5 is centered)
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void SetAudioStreamPan(AudioStream stream, float pan) 
@@ -13251,7 +14061,7 @@ See also:
 
 > Default size for new audio streams
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void SetAudioStreamBufferSizeDefault(int size) 
@@ -13270,7 +14080,7 @@ def set_audio_stream_buffer_size_default(size: int) -> None
 
 > Audio thread callback to request new data
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void SetAudioStreamCallback(AudioStream stream, AudioCallback callback) 
@@ -13290,9 +14100,9 @@ See also:
 ---
 <h2 id="AttachAudioStreamProcessor"><code>attach_audio_stream_processor</code> function</h2>
 
-> Attach audio stream processor to stream
+> Attach audio stream processor to stream, receives the samples as <float>s
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void AttachAudioStreamProcessor(AudioStream stream, AudioCallback processor) 
@@ -13314,7 +14124,7 @@ See also:
 
 > Detach audio stream processor from stream
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void DetachAudioStreamProcessor(AudioStream stream, AudioCallback processor) 
@@ -13334,9 +14144,9 @@ See also:
 ---
 <h2 id="AttachAudioMixedProcessor"><code>attach_audio_mixed_processor</code> function</h2>
 
-> Attach audio stream processor to the entire audio pipeline
+> Attach audio stream processor to the entire audio pipeline, receives the samples as <float>s
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void AttachAudioMixedProcessor(AudioCallback processor) 
@@ -13355,7 +14165,7 @@ def attach_audio_mixed_processor(processor: AudioCallback) -> None
 
 > Detach audio stream processor from the entire audio pipeline
 
-Defined in raylib.h:
+Defined in raylib_api.json:
 
 ```c
 void DetachAudioMixedProcessor(AudioCallback processor) 
@@ -13374,7 +14184,7 @@ def detach_audio_mixed_processor(processor: AudioCallback) -> None
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 float Clamp(float value, float min, float max) 
@@ -13393,7 +14203,7 @@ def clamp(value: float, min: float, max: float) -> float
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 float Lerp(float start, float end, float amount) 
@@ -13412,7 +14222,7 @@ def lerp(start: float, end: float, amount: float) -> float
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 float Normalize(float value, float start, float end) 
@@ -13431,7 +14241,7 @@ def normalize(value: float, start: float, end: float) -> float
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 float Remap(float value, float input_start, float input_end, float output_start, float output_end) 
@@ -13450,7 +14260,7 @@ def remap(value: float, input_start: float, input_end: float, output_start: floa
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 float Wrap(float value, float min, float max) 
@@ -13469,7 +14279,7 @@ def wrap(value: float, min: float, max: float) -> float
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 int FloatEquals(float x, float y) 
@@ -13488,7 +14298,7 @@ def float_equals(x: float, y: float) -> int
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 Vector2 Vector2Zero() 
@@ -13510,7 +14320,7 @@ See also:
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 Vector2 Vector2One() 
@@ -13532,7 +14342,7 @@ See also:
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 Vector2 Vector2Add(Vector2 v1, Vector2 v2) 
@@ -13554,7 +14364,7 @@ See also:
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 Vector2 Vector2AddValue(Vector2 v, float add) 
@@ -13576,7 +14386,7 @@ See also:
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 Vector2 Vector2Subtract(Vector2 v1, Vector2 v2) 
@@ -13598,7 +14408,7 @@ See also:
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 Vector2 Vector2SubtractValue(Vector2 v, float sub) 
@@ -13620,7 +14430,7 @@ See also:
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 float Vector2Length(Vector2 v) 
@@ -13642,7 +14452,7 @@ See also:
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 float Vector2LengthSqr(Vector2 v) 
@@ -13664,7 +14474,7 @@ See also:
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 float Vector2DotProduct(Vector2 v1, Vector2 v2) 
@@ -13686,7 +14496,7 @@ See also:
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 float Vector2Distance(Vector2 v1, Vector2 v2) 
@@ -13708,7 +14518,7 @@ See also:
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 float Vector2DistanceSqr(Vector2 v1, Vector2 v2) 
@@ -13730,7 +14540,7 @@ See also:
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 float Vector2Angle(Vector2 v1, Vector2 v2) 
@@ -13752,7 +14562,7 @@ See also:
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 float Vector2LineAngle(Vector2 start, Vector2 end) 
@@ -13774,7 +14584,7 @@ See also:
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 Vector2 Vector2Scale(Vector2 v, float scale) 
@@ -13796,7 +14606,7 @@ See also:
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 Vector2 Vector2Multiply(Vector2 v1, Vector2 v2) 
@@ -13818,7 +14628,7 @@ See also:
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 Vector2 Vector2Negate(Vector2 v) 
@@ -13840,7 +14650,7 @@ See also:
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 Vector2 Vector2Divide(Vector2 v1, Vector2 v2) 
@@ -13862,7 +14672,7 @@ See also:
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 Vector2 Vector2Normalize(Vector2 v) 
@@ -13884,7 +14694,7 @@ See also:
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 Vector2 Vector2Transform(Vector2 v, Matrix mat) 
@@ -13906,7 +14716,7 @@ See also:
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 Vector2 Vector2Lerp(Vector2 v1, Vector2 v2, float amount) 
@@ -13928,7 +14738,7 @@ See also:
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 Vector2 Vector2Reflect(Vector2 v, Vector2 normal) 
@@ -13950,7 +14760,7 @@ See also:
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 Vector2 Vector2Rotate(Vector2 v, float angle) 
@@ -13972,7 +14782,7 @@ See also:
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 Vector2 Vector2MoveTowards(Vector2 v, Vector2 target, float max_distance) 
@@ -13994,7 +14804,7 @@ See also:
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 Vector2 Vector2Invert(Vector2 v) 
@@ -14016,7 +14826,7 @@ See also:
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 Vector2 Vector2Clamp(Vector2 v, Vector2 min, Vector2 max) 
@@ -14038,7 +14848,7 @@ See also:
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 Vector2 Vector2ClampValue(Vector2 v, float min, float max) 
@@ -14060,7 +14870,7 @@ See also:
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 int Vector2Equals(Vector2 p, Vector2 q) 
@@ -14082,7 +14892,7 @@ See also:
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 Vector3 Vector3Zero() 
@@ -14104,7 +14914,7 @@ See also:
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 Vector3 Vector3One() 
@@ -14126,7 +14936,7 @@ See also:
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 Vector3 Vector3Add(Vector3 v1, Vector3 v2) 
@@ -14148,7 +14958,7 @@ See also:
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 Vector3 Vector3AddValue(Vector3 v, float add) 
@@ -14170,7 +14980,7 @@ See also:
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 Vector3 Vector3Subtract(Vector3 v1, Vector3 v2) 
@@ -14192,7 +15002,7 @@ See also:
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 Vector3 Vector3SubtractValue(Vector3 v, float sub) 
@@ -14214,7 +15024,7 @@ See also:
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 Vector3 Vector3Scale(Vector3 v, float scalar) 
@@ -14236,7 +15046,7 @@ See also:
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 Vector3 Vector3Multiply(Vector3 v1, Vector3 v2) 
@@ -14258,7 +15068,7 @@ See also:
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 Vector3 Vector3CrossProduct(Vector3 v1, Vector3 v2) 
@@ -14280,7 +15090,7 @@ See also:
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 Vector3 Vector3Perpendicular(Vector3 v) 
@@ -14302,7 +15112,7 @@ See also:
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 float Vector3Length(Vector3 v) 
@@ -14324,7 +15134,7 @@ See also:
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 float Vector3LengthSqr(Vector3 v) 
@@ -14346,7 +15156,7 @@ See also:
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 float Vector3DotProduct(Vector3 v1, Vector3 v2) 
@@ -14368,7 +15178,7 @@ See also:
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 float Vector3Distance(Vector3 v1, Vector3 v2) 
@@ -14390,7 +15200,7 @@ See also:
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 float Vector3DistanceSqr(Vector3 v1, Vector3 v2) 
@@ -14412,7 +15222,7 @@ See also:
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 float Vector3Angle(Vector3 v1, Vector3 v2) 
@@ -14434,7 +15244,7 @@ See also:
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 Vector3 Vector3Negate(Vector3 v) 
@@ -14456,7 +15266,7 @@ See also:
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 Vector3 Vector3Divide(Vector3 v1, Vector3 v2) 
@@ -14478,7 +15288,7 @@ See also:
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 Vector3 Vector3Normalize(Vector3 v) 
@@ -14496,11 +15306,55 @@ See also:
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
+<h2 id="Vector3Project"><code>vector3project</code> function</h2>
+
+> 
+
+Defined in rmath_api.json:
+
+```c
+Vector3 Vector3Project(Vector3 v1, Vector3 v2) 
+```
+
+Python wrapper:
+
+```python
+def vector3project(v1: Vector3, v2: Vector3) -> Vector3
+```
+
+See also:
+<a href="#Vector3">Vector3</a>
+
+[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
+
+---
+<h2 id="Vector3Reject"><code>vector3reject</code> function</h2>
+
+> 
+
+Defined in rmath_api.json:
+
+```c
+Vector3 Vector3Reject(Vector3 v1, Vector3 v2) 
+```
+
+Python wrapper:
+
+```python
+def vector3reject(v1: Vector3, v2: Vector3) -> Vector3
+```
+
+See also:
+<a href="#Vector3">Vector3</a>
+
+[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
+
+---
 <h2 id="Vector3OrthoNormalize"><code>vector3ortho_normalize</code> function</h2>
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 void Vector3OrthoNormalize(Vector3 * v1, Vector3 * v2) 
@@ -14522,7 +15376,7 @@ See also:
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 Vector3 Vector3Transform(Vector3 v, Matrix mat) 
@@ -14544,7 +15398,7 @@ See also:
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 Vector3 Vector3RotateByQuaternion(Vector3 v, Quaternion q) 
@@ -14566,7 +15420,7 @@ See also:
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 Vector3 Vector3RotateByAxisAngle(Vector3 v, Vector3 axis, float angle) 
@@ -14588,7 +15442,7 @@ See also:
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 Vector3 Vector3Lerp(Vector3 v1, Vector3 v2, float amount) 
@@ -14610,7 +15464,7 @@ See also:
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 Vector3 Vector3Reflect(Vector3 v, Vector3 normal) 
@@ -14632,7 +15486,7 @@ See also:
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 Vector3 Vector3Min(Vector3 v1, Vector3 v2) 
@@ -14654,7 +15508,7 @@ See also:
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 Vector3 Vector3Max(Vector3 v1, Vector3 v2) 
@@ -14676,7 +15530,7 @@ See also:
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 Vector3 Vector3Barycenter(Vector3 p, Vector3 a, Vector3 b, Vector3 c) 
@@ -14698,7 +15552,7 @@ See also:
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 Vector3 Vector3Unproject(Vector3 source, Matrix projection, Matrix view) 
@@ -14720,7 +15574,7 @@ See also:
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 float3 Vector3ToFloatV(Vector3 v) 
@@ -14742,7 +15596,7 @@ See also:
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 Vector3 Vector3Invert(Vector3 v) 
@@ -14764,7 +15618,7 @@ See also:
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 Vector3 Vector3Clamp(Vector3 v, Vector3 min, Vector3 max) 
@@ -14786,7 +15640,7 @@ See also:
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 Vector3 Vector3ClampValue(Vector3 v, float min, float max) 
@@ -14808,7 +15662,7 @@ See also:
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 int Vector3Equals(Vector3 p, Vector3 q) 
@@ -14830,7 +15684,7 @@ See also:
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 Vector3 Vector3Refract(Vector3 v, Vector3 n, float r) 
@@ -14852,7 +15706,7 @@ See also:
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 float MatrixDeterminant(Matrix mat) 
@@ -14874,7 +15728,7 @@ See also:
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 float MatrixTrace(Matrix mat) 
@@ -14896,7 +15750,7 @@ See also:
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 Matrix MatrixTranspose(Matrix mat) 
@@ -14918,7 +15772,7 @@ See also:
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 Matrix MatrixInvert(Matrix mat) 
@@ -14940,7 +15794,7 @@ See also:
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 Matrix MatrixIdentity() 
@@ -14962,7 +15816,7 @@ See also:
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 Matrix MatrixAdd(Matrix left, Matrix right) 
@@ -14984,7 +15838,7 @@ See also:
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 Matrix MatrixSubtract(Matrix left, Matrix right) 
@@ -15006,7 +15860,7 @@ See also:
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 Matrix MatrixMultiply(Matrix left, Matrix right) 
@@ -15028,7 +15882,7 @@ See also:
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 Matrix MatrixTranslate(float x, float y, float z) 
@@ -15050,7 +15904,7 @@ See also:
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 Matrix MatrixRotate(Vector3 axis, float angle) 
@@ -15072,7 +15926,7 @@ See also:
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 Matrix MatrixRotateX(float angle) 
@@ -15094,7 +15948,7 @@ See also:
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 Matrix MatrixRotateY(float angle) 
@@ -15116,7 +15970,7 @@ See also:
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 Matrix MatrixRotateZ(float angle) 
@@ -15138,7 +15992,7 @@ See also:
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 Matrix MatrixRotateXYZ(Vector3 angle) 
@@ -15160,7 +16014,7 @@ See also:
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 Matrix MatrixRotateZYX(Vector3 angle) 
@@ -15182,7 +16036,7 @@ See also:
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 Matrix MatrixScale(float x, float y, float z) 
@@ -15204,7 +16058,7 @@ See also:
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 Matrix MatrixFrustum(double left, double right, double bottom, double top, double near, double far) 
@@ -15226,16 +16080,16 @@ See also:
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
-Matrix MatrixPerspective(double fovy, double aspect, double near, double far) 
+Matrix MatrixPerspective(double fov_y, double aspect, double near_plane, double far_plane) 
 ```
 
 Python wrapper:
 
 ```python
-def matrix_perspective(fovy: float, aspect: float, near: float, far: float) -> Matrix
+def matrix_perspective(fov_y: float, aspect: float, near_plane: float, far_plane: float) -> Matrix
 ```
 
 See also:
@@ -15248,16 +16102,16 @@ See also:
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
-Matrix MatrixOrtho(double left, double right, double bottom, double top, double near, double far) 
+Matrix MatrixOrtho(double left, double right, double bottom, double top, double near_plane, double far_plane) 
 ```
 
 Python wrapper:
 
 ```python
-def matrix_ortho(left: float, right: float, bottom: float, top: float, near: float, far: float) -> Matrix
+def matrix_ortho(left: float, right: float, bottom: float, top: float, near_plane: float, far_plane: float) -> Matrix
 ```
 
 See also:
@@ -15270,7 +16124,7 @@ See also:
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 Matrix MatrixLookAt(Vector3 eye, Vector3 target, Vector3 up) 
@@ -15292,7 +16146,7 @@ See also:
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 float16 MatrixToFloatV(Matrix mat) 
@@ -15314,7 +16168,7 @@ See also:
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 Quaternion QuaternionAdd(Quaternion q1, Quaternion q2) 
@@ -15333,7 +16187,7 @@ def quaternion_add(q1: Quaternion, q2: Quaternion) -> Quaternion
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 Quaternion QuaternionAddValue(Quaternion q, float add) 
@@ -15352,7 +16206,7 @@ def quaternion_add_value(q: Quaternion, add: float) -> Quaternion
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 Quaternion QuaternionSubtract(Quaternion q1, Quaternion q2) 
@@ -15371,7 +16225,7 @@ def quaternion_subtract(q1: Quaternion, q2: Quaternion) -> Quaternion
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 Quaternion QuaternionSubtractValue(Quaternion q, float sub) 
@@ -15390,7 +16244,7 @@ def quaternion_subtract_value(q: Quaternion, sub: float) -> Quaternion
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 Quaternion QuaternionIdentity() 
@@ -15409,7 +16263,7 @@ def quaternion_identity() -> Quaternion
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 float QuaternionLength(Quaternion q) 
@@ -15428,7 +16282,7 @@ def quaternion_length(q: Quaternion) -> float
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 Quaternion QuaternionNormalize(Quaternion q) 
@@ -15447,7 +16301,7 @@ def quaternion_normalize(q: Quaternion) -> Quaternion
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 Quaternion QuaternionInvert(Quaternion q) 
@@ -15466,7 +16320,7 @@ def quaternion_invert(q: Quaternion) -> Quaternion
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 Quaternion QuaternionMultiply(Quaternion q1, Quaternion q2) 
@@ -15485,7 +16339,7 @@ def quaternion_multiply(q1: Quaternion, q2: Quaternion) -> Quaternion
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 Quaternion QuaternionScale(Quaternion q, float mul) 
@@ -15504,7 +16358,7 @@ def quaternion_scale(q: Quaternion, mul: float) -> Quaternion
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 Quaternion QuaternionDivide(Quaternion q1, Quaternion q2) 
@@ -15523,7 +16377,7 @@ def quaternion_divide(q1: Quaternion, q2: Quaternion) -> Quaternion
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 Quaternion QuaternionLerp(Quaternion q1, Quaternion q2, float amount) 
@@ -15542,7 +16396,7 @@ def quaternion_lerp(q1: Quaternion, q2: Quaternion, amount: float) -> Quaternion
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 Quaternion QuaternionNlerp(Quaternion q1, Quaternion q2, float amount) 
@@ -15561,7 +16415,7 @@ def quaternion_nlerp(q1: Quaternion, q2: Quaternion, amount: float) -> Quaternio
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 Quaternion QuaternionSlerp(Quaternion q1, Quaternion q2, float amount) 
@@ -15580,7 +16434,7 @@ def quaternion_slerp(q1: Quaternion, q2: Quaternion, amount: float) -> Quaternio
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 Quaternion QuaternionFromVector3ToVector3(Vector3 from_, Vector3 to) 
@@ -15602,7 +16456,7 @@ See also:
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 Quaternion QuaternionFromMatrix(Matrix mat) 
@@ -15624,7 +16478,7 @@ See also:
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 Matrix QuaternionToMatrix(Quaternion q) 
@@ -15646,7 +16500,7 @@ See also:
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 Quaternion QuaternionFromAxisAngle(Vector3 axis, float angle) 
@@ -15668,7 +16522,7 @@ See also:
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 void QuaternionToAxisAngle(Quaternion q, Vector3 * out_axis, float out_angle) 
@@ -15690,7 +16544,7 @@ See also:
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 Quaternion QuaternionFromEuler(float pitch, float yaw, float roll) 
@@ -15709,7 +16563,7 @@ def quaternion_from_euler(pitch: float, yaw: float, roll: float) -> Quaternion
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 Vector3 QuaternionToEuler(Quaternion q) 
@@ -15731,7 +16585,7 @@ See also:
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 Quaternion QuaternionTransform(Quaternion q, Matrix mat) 
@@ -15753,7 +16607,7 @@ See also:
 
 > 
 
-Defined in raylib.h:
+Defined in rmath_api.json:
 
 ```c
 int QuaternionEquals(Quaternion p, Quaternion q) 
@@ -15772,7 +16626,7 @@ def quaternion_equals(p: Quaternion, q: Quaternion) -> int
 
 > Choose the current matrix to be transformed
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlMatrixMode(int mode) 
@@ -15791,7 +16645,7 @@ def rl_matrix_mode(mode: int) -> None
 
 > Push the current matrix to stack
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlPushMatrix() 
@@ -15810,7 +16664,7 @@ def rl_push_matrix() -> None
 
 > Pop latest inserted matrix from stack
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlPopMatrix() 
@@ -15829,7 +16683,7 @@ def rl_pop_matrix() -> None
 
 > Reset current matrix to identity matrix
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlLoadIdentity() 
@@ -15848,7 +16702,7 @@ def rl_load_identity() -> None
 
 > Multiply the current matrix by a translation matrix
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlTranslatef(float x, float y, float z) 
@@ -15867,7 +16721,7 @@ def rl_translatef(x: float, y: float, z: float) -> None
 
 > Multiply the current matrix by a rotation matrix
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlRotatef(float angle, float x, float y, float z) 
@@ -15886,7 +16740,7 @@ def rl_rotatef(angle: float, x: float, y: float, z: float) -> None
 
 > Multiply the current matrix by a scaling matrix
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlScalef(float x, float y, float z) 
@@ -15905,7 +16759,7 @@ def rl_scalef(x: float, y: float, z: float) -> None
 
 > Multiply the current matrix by another matrix
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlMultMatrixf(float matf) 
@@ -15924,7 +16778,7 @@ def rl_mult_matrixf(matf: Union[Seq[float], FloatPtr]) -> None
 
 > 
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlFrustum(double left, double right, double bottom, double top, double znear, double zfar) 
@@ -15943,7 +16797,7 @@ def rl_frustum(left: float, right: float, bottom: float, top: float, znear: floa
 
 > 
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlOrtho(double left, double right, double bottom, double top, double znear, double zfar) 
@@ -15962,7 +16816,7 @@ def rl_ortho(left: float, right: float, bottom: float, top: float, znear: float,
 
 > Set the viewport area
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlViewport(int x, int y, int width, int height) 
@@ -15981,7 +16835,7 @@ def rl_viewport(x: int, y: int, width: int, height: int) -> None
 
 > Initialize drawing mode (how to organize vertex)
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlBegin(int mode) 
@@ -16000,7 +16854,7 @@ def rl_begin(mode: int) -> None
 
 > Finish vertex providing
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlEnd() 
@@ -16019,7 +16873,7 @@ def rl_end() -> None
 
 > Define one vertex (position) - 2 int
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlVertex2i(int x, int y) 
@@ -16038,7 +16892,7 @@ def rl_vertex2i(x: int, y: int) -> None
 
 > Define one vertex (position) - 2 float
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlVertex2f(float x, float y) 
@@ -16057,7 +16911,7 @@ def rl_vertex2f(x: float, y: float) -> None
 
 > Define one vertex (position) - 3 float
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlVertex3f(float x, float y, float z) 
@@ -16076,7 +16930,7 @@ def rl_vertex3f(x: float, y: float, z: float) -> None
 
 > Define one vertex (texture coordinate) - 2 float
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlTexCoord2f(float x, float y) 
@@ -16095,7 +16949,7 @@ def rl_tex_coord2f(x: float, y: float) -> None
 
 > Define one vertex (normal) - 3 float
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlNormal3f(float x, float y, float z) 
@@ -16114,7 +16968,7 @@ def rl_normal3f(x: float, y: float, z: float) -> None
 
 > Define one vertex (color) - 4 byte
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlColor4ub(unsigned char r, unsigned char g, unsigned char b, unsigned char a) 
@@ -16133,7 +16987,7 @@ def rl_color4ub(r: int, g: int, b: int, a: int) -> None
 
 > Define one vertex (color) - 3 float
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlColor3f(float x, float y, float z) 
@@ -16152,7 +17006,7 @@ def rl_color3f(x: float, y: float, z: float) -> None
 
 > Define one vertex (color) - 4 float
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlColor4f(float x, float y, float z, float w) 
@@ -16171,7 +17025,7 @@ def rl_color4f(x: float, y: float, z: float, w: float) -> None
 
 > Enable vertex array (VAO, if supported)
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 bool rlEnableVertexArray(unsigned int vao_id) 
@@ -16190,7 +17044,7 @@ def rl_enable_vertex_array(vao_id: int) -> bool
 
 > Disable vertex array (VAO, if supported)
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlDisableVertexArray() 
@@ -16209,7 +17063,7 @@ def rl_disable_vertex_array() -> None
 
 > Enable vertex buffer (VBO)
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlEnableVertexBuffer(unsigned int id) 
@@ -16228,7 +17082,7 @@ def rl_enable_vertex_buffer(id: int) -> None
 
 > Disable vertex buffer (VBO)
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlDisableVertexBuffer() 
@@ -16247,7 +17101,7 @@ def rl_disable_vertex_buffer() -> None
 
 > Enable vertex buffer element (VBO element)
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlEnableVertexBufferElement(unsigned int id) 
@@ -16266,7 +17120,7 @@ def rl_enable_vertex_buffer_element(id: int) -> None
 
 > Disable vertex buffer element (VBO element)
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlDisableVertexBufferElement() 
@@ -16285,7 +17139,7 @@ def rl_disable_vertex_buffer_element() -> None
 
 > Enable vertex attribute index
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlEnableVertexAttribute(unsigned int index) 
@@ -16304,7 +17158,7 @@ def rl_enable_vertex_attribute(index: int) -> None
 
 > Disable vertex attribute index
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlDisableVertexAttribute(unsigned int index) 
@@ -16323,7 +17177,7 @@ def rl_disable_vertex_attribute(index: int) -> None
 
 > Select and active a texture slot
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlActiveTextureSlot(int slot) 
@@ -16342,7 +17196,7 @@ def rl_active_texture_slot(slot: int) -> None
 
 > Enable texture
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlEnableTexture(unsigned int id) 
@@ -16361,7 +17215,7 @@ def rl_enable_texture(id: int) -> None
 
 > Disable texture
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlDisableTexture() 
@@ -16380,7 +17234,7 @@ def rl_disable_texture() -> None
 
 > Enable texture cubemap
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlEnableTextureCubemap(unsigned int id) 
@@ -16399,7 +17253,7 @@ def rl_enable_texture_cubemap(id: int) -> None
 
 > Disable texture cubemap
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlDisableTextureCubemap() 
@@ -16418,7 +17272,7 @@ def rl_disable_texture_cubemap() -> None
 
 > Set texture parameters (filter, wrap)
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlTextureParameters(unsigned int id, int param, int value) 
@@ -16437,7 +17291,7 @@ def rl_texture_parameters(id: int, param: int, value: int) -> None
 
 > Set cubemap parameters (filter, wrap)
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlCubemapParameters(unsigned int id, int param, int value) 
@@ -16456,7 +17310,7 @@ def rl_cubemap_parameters(id: int, param: int, value: int) -> None
 
 > Enable shader program
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlEnableShader(unsigned int id) 
@@ -16475,7 +17329,7 @@ def rl_enable_shader(id: int) -> None
 
 > Disable shader program
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlDisableShader() 
@@ -16494,7 +17348,7 @@ def rl_disable_shader() -> None
 
 > Enable render texture (fbo)
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlEnableFramebuffer(unsigned int id) 
@@ -16513,7 +17367,7 @@ def rl_enable_framebuffer(id: int) -> None
 
 > Disable render texture (fbo), return to default framebuffer
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlDisableFramebuffer() 
@@ -16532,7 +17386,7 @@ def rl_disable_framebuffer() -> None
 
 > Activate multiple draw color buffers
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlActiveDrawBuffers(int count) 
@@ -16547,11 +17401,30 @@ def rl_active_draw_buffers(count: int) -> None
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
+<h2 id="rlBlitFramebuffer"><code>rl_blit_framebuffer</code> function</h2>
+
+> Blit active framebuffer to main framebuffer
+
+Defined in rlgl.json:
+
+```c
+void rlBlitFramebuffer(int src_x, int src_y, int src_width, int src_height, int dst_x, int dst_y, int dst_width, int dst_height, int buffer_mask) 
+```
+
+Python wrapper:
+
+```python
+def rl_blit_framebuffer(src_x: int, src_y: int, src_width: int, src_height: int, dst_x: int, dst_y: int, dst_width: int, dst_height: int, buffer_mask: int) -> None
+```
+
+[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
+
+---
 <h2 id="rlEnableColorBlend"><code>rl_enable_color_blend</code> function</h2>
 
 > Enable color blending
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlEnableColorBlend() 
@@ -16570,7 +17443,7 @@ def rl_enable_color_blend() -> None
 
 > Disable color blending
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlDisableColorBlend() 
@@ -16589,7 +17462,7 @@ def rl_disable_color_blend() -> None
 
 > Enable depth test
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlEnableDepthTest() 
@@ -16608,7 +17481,7 @@ def rl_enable_depth_test() -> None
 
 > Disable depth test
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlDisableDepthTest() 
@@ -16627,7 +17500,7 @@ def rl_disable_depth_test() -> None
 
 > Enable depth write
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlEnableDepthMask() 
@@ -16646,7 +17519,7 @@ def rl_enable_depth_mask() -> None
 
 > Disable depth write
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlDisableDepthMask() 
@@ -16665,7 +17538,7 @@ def rl_disable_depth_mask() -> None
 
 > Enable backface culling
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlEnableBackfaceCulling() 
@@ -16684,7 +17557,7 @@ def rl_enable_backface_culling() -> None
 
 > Disable backface culling
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlDisableBackfaceCulling() 
@@ -16703,7 +17576,7 @@ def rl_disable_backface_culling() -> None
 
 > Set face culling mode
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlSetCullFace(int mode) 
@@ -16722,7 +17595,7 @@ def rl_set_cull_face(mode: int) -> None
 
 > Enable scissor test
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlEnableScissorTest() 
@@ -16741,7 +17614,7 @@ def rl_enable_scissor_test() -> None
 
 > Disable scissor test
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlDisableScissorTest() 
@@ -16760,7 +17633,7 @@ def rl_disable_scissor_test() -> None
 
 > Scissor test
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlScissor(int x, int y, int width, int height) 
@@ -16779,7 +17652,7 @@ def rl_scissor(x: int, y: int, width: int, height: int) -> None
 
 > Enable wire mode
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlEnableWireMode() 
@@ -16794,11 +17667,30 @@ def rl_enable_wire_mode() -> None
 [ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
 
 ---
+<h2 id="rlEnablePointMode"><code>rl_enable_point_mode</code> function</h2>
+
+> Enable point mode
+
+Defined in rlgl.json:
+
+```c
+void rlEnablePointMode() 
+```
+
+Python wrapper:
+
+```python
+def rl_enable_point_mode() -> None
+```
+
+[ <a href="#funcs">Funcs</a> | <a href="#toc">ToC</a> ]
+
+---
 <h2 id="rlDisableWireMode"><code>rl_disable_wire_mode</code> function</h2>
 
-> Disable wire mode
+> Disable wire mode ( and point ) maybe rename
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlDisableWireMode() 
@@ -16817,7 +17709,7 @@ def rl_disable_wire_mode() -> None
 
 > Set the line drawing width
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlSetLineWidth(float width) 
@@ -16836,7 +17728,7 @@ def rl_set_line_width(width: float) -> None
 
 > Get the line drawing width
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 float rlGetLineWidth() 
@@ -16855,7 +17747,7 @@ def rl_get_line_width() -> float
 
 > Enable line aliasing
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlEnableSmoothLines() 
@@ -16874,7 +17766,7 @@ def rl_enable_smooth_lines() -> None
 
 > Disable line aliasing
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlDisableSmoothLines() 
@@ -16893,7 +17785,7 @@ def rl_disable_smooth_lines() -> None
 
 > Enable stereo rendering
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlEnableStereoRender() 
@@ -16912,7 +17804,7 @@ def rl_enable_stereo_render() -> None
 
 > Disable stereo rendering
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlDisableStereoRender() 
@@ -16931,7 +17823,7 @@ def rl_disable_stereo_render() -> None
 
 > Check if stereo render is enabled
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 bool rlIsStereoRenderEnabled() 
@@ -16950,7 +17842,7 @@ def rl_is_stereo_render_enabled() -> bool
 
 > Clear color buffer with color
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlClearColor(unsigned char r, unsigned char g, unsigned char b, unsigned char a) 
@@ -16969,7 +17861,7 @@ def rl_clear_color(r: int, g: int, b: int, a: int) -> None
 
 > Clear used screen buffers (color and depth)
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlClearScreenBuffers() 
@@ -16988,7 +17880,7 @@ def rl_clear_screen_buffers() -> None
 
 > Check and log OpenGL error codes
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlCheckErrors() 
@@ -17007,7 +17899,7 @@ def rl_check_errors() -> None
 
 > Set blending mode
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlSetBlendMode(int mode) 
@@ -17026,7 +17918,7 @@ def rl_set_blend_mode(mode: int) -> None
 
 > Set blending mode factor and equation (using OpenGL factors)
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlSetBlendFactors(int gl_src_factor, int gl_dst_factor, int gl_equation) 
@@ -17045,7 +17937,7 @@ def rl_set_blend_factors(gl_src_factor: int, gl_dst_factor: int, gl_equation: in
 
 > Set blending mode factors and equations separately (using OpenGL factors)
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlSetBlendFactorsSeparate(int gl_src_rgb, int gl_dst_rgb, int gl_src_alpha, int gl_dst_alpha, int gl_eq_rgb, int gl_eq_alpha) 
@@ -17064,7 +17956,7 @@ def rl_set_blend_factors_separate(gl_src_rgb: int, gl_dst_rgb: int, gl_src_alpha
 
 > Initialize rlgl (buffers, shaders, textures, states)
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlglInit(int width, int height) 
@@ -17083,7 +17975,7 @@ def rlgl_init(width: int, height: int) -> None
 
 > De-initialize rlgl (buffers, shaders, textures)
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlglClose() 
@@ -17102,7 +17994,7 @@ def rlgl_close() -> None
 
 > Load OpenGL extensions (loader function required)
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlLoadExtensions(void loader) 
@@ -17121,7 +18013,7 @@ def rl_load_extensions(loader: bytes) -> None
 
 > Get current OpenGL version
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 int rlGetVersion() 
@@ -17140,7 +18032,7 @@ def rl_get_version() -> int
 
 > Set current framebuffer width
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlSetFramebufferWidth(int width) 
@@ -17159,7 +18051,7 @@ def rl_set_framebuffer_width(width: int) -> None
 
 > Get default framebuffer width
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 int rlGetFramebufferWidth() 
@@ -17178,7 +18070,7 @@ def rl_get_framebuffer_width() -> int
 
 > Set current framebuffer height
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlSetFramebufferHeight(int height) 
@@ -17197,7 +18089,7 @@ def rl_set_framebuffer_height(height: int) -> None
 
 > Get default framebuffer height
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 int rlGetFramebufferHeight() 
@@ -17216,7 +18108,7 @@ def rl_get_framebuffer_height() -> int
 
 > Get default texture id
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 unsigned int rlGetTextureIdDefault() 
@@ -17235,7 +18127,7 @@ def rl_get_texture_id_default() -> int
 
 > Get default shader id
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 unsigned int rlGetShaderIdDefault() 
@@ -17254,7 +18146,7 @@ def rl_get_shader_id_default() -> int
 
 > Get default shader locations
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 int rlGetShaderLocsDefault() 
@@ -17273,7 +18165,7 @@ def rl_get_shader_locs_default() -> Union[Seq[int], IntPtr]
 
 > Load a render batch system
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 rlRenderBatch rlLoadRenderBatch(int num_buffers, int buffer_elements) 
@@ -17295,7 +18187,7 @@ See also:
 
 > Unload render batch system
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlUnloadRenderBatch(rlRenderBatch batch) 
@@ -17317,7 +18209,7 @@ See also:
 
 > Draw render batch data (Update->Draw->Reset)
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlDrawRenderBatch(rlRenderBatch * batch) 
@@ -17339,7 +18231,7 @@ See also:
 
 > Set the active render batch for rlgl (NULL for default internal)
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlSetRenderBatchActive(rlRenderBatch * batch) 
@@ -17361,7 +18253,7 @@ See also:
 
 > Update and draw internal render batch
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlDrawRenderBatchActive() 
@@ -17380,7 +18272,7 @@ def rl_draw_render_batch_active() -> None
 
 > Check internal buffer overflow for a given number of vertex
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 bool rlCheckRenderBatchLimit(int v_count) 
@@ -17399,7 +18291,7 @@ def rl_check_render_batch_limit(v_count: int) -> bool
 
 > Set current texture for render batch and check buffers limits
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlSetTexture(unsigned int id) 
@@ -17418,7 +18310,7 @@ def rl_set_texture(id: int) -> None
 
 > Load vertex array (vao) if supported
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 unsigned int rlLoadVertexArray() 
@@ -17437,7 +18329,7 @@ def rl_load_vertex_array() -> int
 
 > Load a vertex buffer attribute
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 unsigned int rlLoadVertexBuffer(void buffer, int size, bool dynamic) 
@@ -17456,7 +18348,7 @@ def rl_load_vertex_buffer(buffer: bytes, size: int, dynamic: bool) -> int
 
 > Load a new attributes element buffer
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 unsigned int rlLoadVertexBufferElement(void buffer, int size, bool dynamic) 
@@ -17475,7 +18367,7 @@ def rl_load_vertex_buffer_element(buffer: bytes, size: int, dynamic: bool) -> in
 
 > Update GPU buffer with new data
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlUpdateVertexBuffer(unsigned int buffer_id, void data, int data_size, int offset) 
@@ -17494,7 +18386,7 @@ def rl_update_vertex_buffer(buffer_id: int, data: bytes, data_size: int, offset:
 
 > Update vertex buffer elements with new data
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlUpdateVertexBufferElements(unsigned int id, void data, int data_size, int offset) 
@@ -17513,7 +18405,7 @@ def rl_update_vertex_buffer_elements(id: int, data: bytes, data_size: int, offse
 
 > 
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlUnloadVertexArray(unsigned int vao_id) 
@@ -17532,7 +18424,7 @@ def rl_unload_vertex_array(vao_id: int) -> None
 
 > 
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlUnloadVertexBuffer(unsigned int vbo_id) 
@@ -17551,7 +18443,7 @@ def rl_unload_vertex_buffer(vbo_id: int) -> None
 
 > 
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlSetVertexAttribute(unsigned int index, int comp_size, int type, bool normalized, int stride, void pointer) 
@@ -17570,7 +18462,7 @@ def rl_set_vertex_attribute(index: int, comp_size: int, type: int, normalized: b
 
 > 
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlSetVertexAttributeDivisor(unsigned int index, int divisor) 
@@ -17589,7 +18481,7 @@ def rl_set_vertex_attribute_divisor(index: int, divisor: int) -> None
 
 > Set vertex attribute default value
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlSetVertexAttributeDefault(int loc_index, void value, int attrib_type, int count) 
@@ -17608,7 +18500,7 @@ def rl_set_vertex_attribute_default(loc_index: int, value: bytes, attrib_type: i
 
 > 
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlDrawVertexArray(int offset, int count) 
@@ -17627,7 +18519,7 @@ def rl_draw_vertex_array(offset: int, count: int) -> None
 
 > 
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlDrawVertexArrayElements(int offset, int count, void buffer) 
@@ -17646,7 +18538,7 @@ def rl_draw_vertex_array_elements(offset: int, count: int, buffer: bytes) -> Non
 
 > 
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlDrawVertexArrayInstanced(int offset, int count, int instances) 
@@ -17665,7 +18557,7 @@ def rl_draw_vertex_array_instanced(offset: int, count: int, instances: int) -> N
 
 > 
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlDrawVertexArrayElementsInstanced(int offset, int count, void buffer, int instances) 
@@ -17684,7 +18576,7 @@ def rl_draw_vertex_array_elements_instanced(offset: int, count: int, buffer: byt
 
 > Load texture in GPU
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 unsigned int rlLoadTexture(void data, int width, int height, int format, int mipmap_count) 
@@ -17703,7 +18595,7 @@ def rl_load_texture(data: bytes, width: int, height: int, format: int, mipmap_co
 
 > Load depth texture/renderbuffer (to be attached to fbo)
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 unsigned int rlLoadTextureDepth(int width, int height, bool use_render_buffer) 
@@ -17722,7 +18614,7 @@ def rl_load_texture_depth(width: int, height: int, use_render_buffer: bool) -> i
 
 > Load texture cubemap
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 unsigned int rlLoadTextureCubemap(void data, int size, int format) 
@@ -17741,7 +18633,7 @@ def rl_load_texture_cubemap(data: bytes, size: int, format: int) -> int
 
 > Update GPU texture with new data
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlUpdateTexture(unsigned int id, int offset_x, int offset_y, int width, int height, int format, void data) 
@@ -17760,7 +18652,7 @@ def rl_update_texture(id: int, offset_x: int, offset_y: int, width: int, height:
 
 > Get OpenGL internal formats
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlGetGlTextureFormats(int format, unsigned int gl_internal_format, unsigned int gl_format, unsigned int gl_type) 
@@ -17779,7 +18671,7 @@ def rl_get_gl_texture_formats(format: int, gl_internal_format: Union[Seq[int], U
 
 > Get name string for pixel format
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 char * rlGetPixelFormatName(unsigned int format) 
@@ -17798,7 +18690,7 @@ def rl_get_pixel_format_name(format: int) -> Union[str, CharPtr]
 
 > Unload texture from GPU memory
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlUnloadTexture(unsigned int id) 
@@ -17817,7 +18709,7 @@ def rl_unload_texture(id: int) -> None
 
 > Generate mipmap data for selected texture
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlGenTextureMipmaps(unsigned int id, int width, int height, int format, int mipmaps) 
@@ -17836,7 +18728,7 @@ def rl_gen_texture_mipmaps(id: int, width: int, height: int, format: int, mipmap
 
 > Read texture pixel data
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlReadTexturePixels(unsigned int id, int width, int height, int format) 
@@ -17855,7 +18747,7 @@ def rl_read_texture_pixels(id: int, width: int, height: int, format: int) -> byt
 
 > Read screen pixel data (color buffer)
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 unsigned char * rlReadScreenPixels(int width, int height) 
@@ -17874,7 +18766,7 @@ def rl_read_screen_pixels(width: int, height: int) -> Union[Seq[int], UCharPtr]
 
 > Load an empty framebuffer
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 unsigned int rlLoadFramebuffer(int width, int height) 
@@ -17893,7 +18785,7 @@ def rl_load_framebuffer(width: int, height: int) -> int
 
 > Attach texture/renderbuffer to a framebuffer
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlFramebufferAttach(unsigned int fbo_id, unsigned int tex_id, int attach_type, int tex_type, int mip_level) 
@@ -17912,7 +18804,7 @@ def rl_framebuffer_attach(fbo_id: int, tex_id: int, attach_type: int, tex_type: 
 
 > Verify framebuffer is complete
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 bool rlFramebufferComplete(unsigned int id) 
@@ -17931,7 +18823,7 @@ def rl_framebuffer_complete(id: int) -> bool
 
 > Delete framebuffer from GPU
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlUnloadFramebuffer(unsigned int id) 
@@ -17950,7 +18842,7 @@ def rl_unload_framebuffer(id: int) -> None
 
 > Load shader from code strings
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 unsigned int rlLoadShaderCode(char * vs_code, char * fs_code) 
@@ -17969,7 +18861,7 @@ def rl_load_shader_code(vs_code: Union[str, CharPtr], fs_code: Union[str, CharPt
 
 > Compile custom shader and return shader id (type: RL_VERTEX_SHADER, RL_FRAGMENT_SHADER, RL_COMPUTE_SHADER)
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 unsigned int rlCompileShader(char * shader_code, int type) 
@@ -17988,7 +18880,7 @@ def rl_compile_shader(shader_code: Union[str, CharPtr], type: int) -> int
 
 > Load custom shader program
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 unsigned int rlLoadShaderProgram(unsigned int v_shader_id, unsigned int f_shader_id) 
@@ -18007,7 +18899,7 @@ def rl_load_shader_program(v_shader_id: int, f_shader_id: int) -> int
 
 > Unload shader program
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlUnloadShaderProgram(unsigned int id) 
@@ -18026,7 +18918,7 @@ def rl_unload_shader_program(id: int) -> None
 
 > Get shader location uniform
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 int rlGetLocationUniform(unsigned int shader_id, char * uniform_name) 
@@ -18045,7 +18937,7 @@ def rl_get_location_uniform(shader_id: int, uniform_name: Union[str, CharPtr]) -
 
 > Get shader location attribute
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 int rlGetLocationAttrib(unsigned int shader_id, char * attrib_name) 
@@ -18064,7 +18956,7 @@ def rl_get_location_attrib(shader_id: int, attrib_name: Union[str, CharPtr]) -> 
 
 > Set shader value uniform
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlSetUniform(int loc_index, void value, int uniform_type, int count) 
@@ -18083,7 +18975,7 @@ def rl_set_uniform(loc_index: int, value: bytes, uniform_type: int, count: int) 
 
 > Set shader value matrix
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlSetUniformMatrix(int loc_index, Matrix mat) 
@@ -18105,7 +18997,7 @@ See also:
 
 > Set shader value sampler
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlSetUniformSampler(int loc_index, unsigned int texture_id) 
@@ -18124,7 +19016,7 @@ def rl_set_uniform_sampler(loc_index: int, texture_id: int) -> None
 
 > Set shader currently active (id and locations)
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlSetShader(unsigned int id, int locs) 
@@ -18143,7 +19035,7 @@ def rl_set_shader(id: int, locs: Union[Seq[int], IntPtr]) -> None
 
 > Load compute shader program
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 unsigned int rlLoadComputeShaderProgram(unsigned int shader_id) 
@@ -18162,7 +19054,7 @@ def rl_load_compute_shader_program(shader_id: int) -> int
 
 > Dispatch compute shader (equivalent to *draw* for graphics pipeline)
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlComputeShaderDispatch(unsigned int group_x, unsigned int group_y, unsigned int group_z) 
@@ -18181,7 +19073,7 @@ def rl_compute_shader_dispatch(group_x: int, group_y: int, group_z: int) -> None
 
 > Load shader storage buffer object (SSBO)
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 unsigned int rlLoadShaderBuffer(unsigned int size, void data, int usage_hint) 
@@ -18200,7 +19092,7 @@ def rl_load_shader_buffer(size: int, data: bytes, usage_hint: int) -> int
 
 > Unload shader storage buffer object (SSBO)
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlUnloadShaderBuffer(unsigned int ssbo_id) 
@@ -18219,7 +19111,7 @@ def rl_unload_shader_buffer(ssbo_id: int) -> None
 
 > Update SSBO buffer data
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlUpdateShaderBuffer(unsigned int id, void data, unsigned int data_size, unsigned int offset) 
@@ -18238,7 +19130,7 @@ def rl_update_shader_buffer(id: int, data: bytes, data_size: int, offset: int) -
 
 > Bind SSBO buffer
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlBindShaderBuffer(unsigned int id, unsigned int index) 
@@ -18257,7 +19149,7 @@ def rl_bind_shader_buffer(id: int, index: int) -> None
 
 > Read SSBO buffer data (GPU->CPU)
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlReadShaderBuffer(unsigned int id, void dest, unsigned int count, unsigned int offset) 
@@ -18276,7 +19168,7 @@ def rl_read_shader_buffer(id: int, dest: bytes, count: int, offset: int) -> None
 
 > Copy SSBO data between buffers
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlCopyShaderBuffer(unsigned int dest_id, unsigned int src_id, unsigned int dest_offset, unsigned int src_offset, unsigned int count) 
@@ -18295,7 +19187,7 @@ def rl_copy_shader_buffer(dest_id: int, src_id: int, dest_offset: int, src_offse
 
 > Get SSBO buffer size
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 unsigned int rlGetShaderBufferSize(unsigned int id) 
@@ -18314,7 +19206,7 @@ def rl_get_shader_buffer_size(id: int) -> int
 
 > Bind image texture
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlBindImageTexture(unsigned int id, unsigned int index, int format, bool readonly) 
@@ -18333,7 +19225,7 @@ def rl_bind_image_texture(id: int, index: int, format: int, readonly: bool) -> N
 
 > Get internal modelview matrix
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 Matrix rlGetMatrixModelview() 
@@ -18355,7 +19247,7 @@ See also:
 
 > Get internal projection matrix
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 Matrix rlGetMatrixProjection() 
@@ -18377,7 +19269,7 @@ See also:
 
 > Get internal accumulated transform matrix
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 Matrix rlGetMatrixTransform() 
@@ -18399,7 +19291,7 @@ See also:
 
 > Get internal projection matrix for stereo render (selected eye)
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 Matrix rlGetMatrixProjectionStereo(int eye) 
@@ -18421,7 +19313,7 @@ See also:
 
 > Get internal view offset matrix for stereo render (selected eye)
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 Matrix rlGetMatrixViewOffsetStereo(int eye) 
@@ -18443,7 +19335,7 @@ See also:
 
 > Set a custom projection matrix (replaces internal projection matrix)
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlSetMatrixProjection(Matrix proj) 
@@ -18465,7 +19357,7 @@ See also:
 
 > Set a custom modelview matrix (replaces internal modelview matrix)
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlSetMatrixModelview(Matrix view) 
@@ -18487,7 +19379,7 @@ See also:
 
 > Set eyes projection matrices for stereo rendering
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlSetMatrixProjectionStereo(Matrix right, Matrix left) 
@@ -18509,7 +19401,7 @@ See also:
 
 > Set eyes view offsets matrices for stereo rendering
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlSetMatrixViewOffsetStereo(Matrix right, Matrix left) 
@@ -18531,7 +19423,7 @@ See also:
 
 > Load and draw a cube
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlLoadDrawCube() 
@@ -18550,7 +19442,7 @@ def rl_load_draw_cube() -> None
 
 > Load and draw a quad
 
-Defined in raylib.h:
+Defined in rlgl.json:
 
 ```c
 void rlLoadDrawQuad() 

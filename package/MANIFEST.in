@@ -1,7 +1,7 @@
-include src\raylibpy\bin\32bit\libraylib.4.5.0.dylib
+include src\raylibpy\bin\32bit\libraylib.5.0.0.dylib
 include src\raylibpy\bin\32bit\raylib.dll
-include src\raylibpy\bin\32bit\libraylib.so.4.5.0
-include src\raylibpy\bin\64bit\libraylib.4.5.0.dylib
+include src\raylibpy\bin\32bit\libraylib.so.5.0.0
+include src\raylibpy\bin\64bit\libraylib.5.0.0.dylib
 include src\raylibpy\bin\64bit\raylib.dll
-include src\raylibpy\bin\64bit\libraylib.so.4.5.0
+include src\raylibpy\bin\64bit\libraylib.so.5.0.0
 include DOCS.md

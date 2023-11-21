@@ -4,6 +4,7 @@ import re
 import os
 import platform
 import ctypes
+import json
 from enum import IntEnum
 from contextlib import contextmanager
 from typing import Optional as Opt, Any, Sequence as Seq, Union
@@ -43,76 +44,6 @@ __all__ = [
     'VoidPtr',
     'VoidPtrPtr',
 
-    'Vector2',
-    'Vector3',
-    'Vector4',
-    'Matrix',
-    'Color',
-    'Rectangle',
-    'Image',
-    'Texture',
-    'RenderTexture',
-    'NPatchInfo',
-    'GlyphInfo',
-    'Font',
-    'Camera3D',
-    'Camera2D',
-    'Mesh',
-    'Shader',
-    'MaterialMap',
-    'Material',
-    'Transform',
-    'BoneInfo',
-    'Model',
-    'ModelAnimation',
-    'Ray',
-    'RayCollision',
-    'BoundingBox',
-    'Wave',
-    'AudioStream',
-    'Sound',
-    'Music',
-    'VrDeviceInfo',
-    'VrStereoConfig',
-    'FilePathList',
-    'RAYLIB_VERSION_MAJOR',
-    'RAYLIB_VERSION_MINOR',
-    'RAYLIB_VERSION_PATCH',
-    'RAYLIB_VERSION',
-    'PI',
-    'DEG2RAD',
-    'RAD2DEG',
-    'LIGHTGRAY',
-    'GRAY',
-    'DARKGRAY',
-    'YELLOW',
-    'GOLD',
-    'ORANGE',
-    'PINK',
-    'RED',
-    'MAROON',
-    'GREEN',
-    'LIME',
-    'DARKGREEN',
-    'SKYBLUE',
-    'BLUE',
-    'DARKBLUE',
-    'PURPLE',
-    'VIOLET',
-    'DARKPURPLE',
-    'BEIGE',
-    'BROWN',
-    'DARKBROWN',
-    'WHITE',
-    'BLACK',
-    'BLANK',
-    'MAGENTA',
-    'RAYWHITE',
-    'Quaternion',
-    'Texture2D',
-    'TextureCubemap',
-    'RenderTexture2D',
-    'Camera',
     'ConfigFlags',
     'FLAG_VSYNC_HINT',
     'FLAG_FULLSCREEN_MODE',
@@ -127,6 +58,7 @@ __all__ = [
     'FLAG_WINDOW_TRANSPARENT',
     'FLAG_WINDOW_HIGHDPI',
     'FLAG_WINDOW_MOUSE_PASSTHROUGH',
+    'FLAG_BORDERLESS_WINDOWED_MODE',
     'FLAG_MSAA_4X_HINT',
     'FLAG_INTERLACED_HINT',
     'TraceLogLevel',
@@ -360,6 +292,9 @@ __all__ = [
     'PIXELFORMAT_UNCOMPRESSED_R32',
     'PIXELFORMAT_UNCOMPRESSED_R32G32B32',
     'PIXELFORMAT_UNCOMPRESSED_R32G32B32A32',
+    'PIXELFORMAT_UNCOMPRESSED_R16',
+    'PIXELFORMAT_UNCOMPRESSED_R16G16B16',
+    'PIXELFORMAT_UNCOMPRESSED_R16G16B16A16',
     'PIXELFORMAT_COMPRESSED_DXT1_RGB',
     'PIXELFORMAT_COMPRESSED_DXT1_RGBA',
     'PIXELFORMAT_COMPRESSED_DXT3_RGBA',
@@ -428,6 +363,78 @@ __all__ = [
     'NPATCH_NINE_PATCH',
     'NPATCH_THREE_PATCH_VERTICAL',
     'NPATCH_THREE_PATCH_HORIZONTAL',
+    'Vector2',
+    'Vector3',
+    'Vector4',
+    'Matrix',
+    'Color',
+    'Rectangle',
+    'Image',
+    'Texture',
+    'RenderTexture',
+    'NPatchInfo',
+    'GlyphInfo',
+    'Font',
+    'Camera3D',
+    'Camera2D',
+    'Mesh',
+    'Shader',
+    'MaterialMap',
+    'Material',
+    'Transform',
+    'BoneInfo',
+    'Model',
+    'ModelAnimation',
+    'Ray',
+    'RayCollision',
+    'BoundingBox',
+    'Wave',
+    'AudioStream',
+    'Sound',
+    'Music',
+    'VrDeviceInfo',
+    'VrStereoConfig',
+    'FilePathList',
+    'AutomationEvent',
+    'AutomationEventList',
+    'RAYLIB_VERSION_MAJOR',
+    'RAYLIB_VERSION_MINOR',
+    'RAYLIB_VERSION_PATCH',
+    'RAYLIB_VERSION',
+    'PI',
+    'DEG2RAD',
+    'RAD2DEG',
+    'LIGHTGRAY',
+    'GRAY',
+    'DARKGRAY',
+    'YELLOW',
+    'GOLD',
+    'ORANGE',
+    'PINK',
+    'RED',
+    'MAROON',
+    'GREEN',
+    'LIME',
+    'DARKGREEN',
+    'SKYBLUE',
+    'BLUE',
+    'DARKBLUE',
+    'PURPLE',
+    'VIOLET',
+    'DARKPURPLE',
+    'BEIGE',
+    'BROWN',
+    'DARKBROWN',
+    'WHITE',
+    'BLACK',
+    'BLANK',
+    'MAGENTA',
+    'RAYWHITE',
+    'Quaternion',
+    'Texture2D',
+    'TextureCubemap',
+    'RenderTexture2D',
+    'Camera',
     'TraceLogCallback',
     'LoadFileDataCallback',
     'SaveFileDataCallback',
@@ -435,8 +442,8 @@ __all__ = [
     'SaveFileTextCallback',
     'AudioCallback',
     'init_window',
-    'window_should_close',
     'close_window',
+    'window_should_close',
     'is_window_ready',
     'is_window_fullscreen',
     'is_window_hidden',
@@ -448,6 +455,7 @@ __all__ = [
     'set_window_state',
     'clear_window_state',
     'toggle_fullscreen',
+    'toggle_borderless_windowed',
     'maximize_window',
     'minimize_window',
     'restore_window',
@@ -457,8 +465,10 @@ __all__ = [
     'set_window_position',
     'set_window_monitor',
     'set_window_min_size',
+    'set_window_max_size',
     'set_window_size',
     'set_window_opacity',
+    'set_window_focused',
     'get_window_handle',
     'get_screen_width',
     'get_screen_height',
@@ -479,9 +489,6 @@ __all__ = [
     'get_clipboard_text',
     'enable_event_waiting',
     'disable_event_waiting',
-    'swap_screen_buffer',
-    'poll_input_events',
-    'wait_time',
     'show_cursor',
     'hide_cursor',
     'is_cursor_hidden',
@@ -525,19 +532,24 @@ __all__ = [
     'get_world_to_screen_ex',
     'get_world_to_screen2d',
     'set_target_fps',
-    'get_fps',
     'get_frame_time',
     'get_time',
-    'get_random_value',
+    'get_fps',
+    'swap_screen_buffer',
+    'poll_input_events',
+    'wait_time',
     'set_random_seed',
+    'get_random_value',
+    'load_random_sequence',
+    'unload_random_sequence',
     'take_screenshot',
     'set_config_flags',
+    'open_url',
     'trace_log',
     'set_trace_log_level',
     'mem_alloc',
     'mem_realloc',
     'mem_free',
-    'open_url',
     'set_trace_log_callback',
     'set_load_file_data_callback',
     'set_save_file_data_callback',
@@ -574,13 +586,22 @@ __all__ = [
     'decompress_data',
     'encode_data_base64',
     'decode_data_base64',
+    'load_automation_event_list',
+    'unload_automation_event_list',
+    'export_automation_event_list',
+    'set_automation_event_list',
+    'set_automation_event_base_frame',
+    'start_automation_event_recording',
+    'stop_automation_event_recording',
+    'play_automation_event',
     'is_key_pressed',
+    'is_key_pressed_repeat',
     'is_key_down',
     'is_key_released',
     'is_key_up',
-    'set_exit_key',
     'get_key_pressed',
     'get_char_pressed',
+    'set_exit_key',
     'is_gamepad_available',
     'get_gamepad_name',
     'is_gamepad_button_pressed',
@@ -626,16 +647,15 @@ __all__ = [
     'draw_line',
     'draw_line_v',
     'draw_line_ex',
-    'draw_line_bezier',
-    'draw_line_bezier_quad',
-    'draw_line_bezier_cubic',
     'draw_line_strip',
+    'draw_line_bezier',
     'draw_circle',
     'draw_circle_sector',
     'draw_circle_sector_lines',
     'draw_circle_gradient',
     'draw_circle_v',
     'draw_circle_lines',
+    'draw_circle_lines_v',
     'draw_ellipse',
     'draw_ellipse_lines',
     'draw_ring',
@@ -658,6 +678,21 @@ __all__ = [
     'draw_poly',
     'draw_poly_lines',
     'draw_poly_lines_ex',
+    'draw_spline_linear',
+    'draw_spline_basis',
+    'draw_spline_catmull_rom',
+    'draw_spline_bezier_quadratic',
+    'draw_spline_bezier_cubic',
+    'draw_spline_segment_linear',
+    'draw_spline_segment_basis',
+    'draw_spline_segment_catmull_rom',
+    'draw_spline_segment_bezier_quadratic',
+    'draw_spline_segment_bezier_cubic',
+    'get_spline_point_linear',
+    'get_spline_point_basis',
+    'get_spline_point_catmull_rom',
+    'get_spline_point_bezier_quad',
+    'get_spline_point_bezier_cubic',
     'check_collision_recs',
     'check_collision_circles',
     'check_collision_circle_rec',
@@ -670,6 +705,7 @@ __all__ = [
     'get_collision_rec',
     'load_image',
     'load_image_raw',
+    'load_image_svg',
     'load_image_anim',
     'load_image_from_memory',
     'load_image_from_texture',
@@ -677,11 +713,12 @@ __all__ = [
     'is_image_ready',
     'unload_image',
     'export_image',
+    'export_image_to_memory',
     'export_image_as_code',
     'gen_image_color',
-    'gen_image_gradient_v',
-    'gen_image_gradient_h',
+    'gen_image_gradient_linear',
     'gen_image_gradient_radial',
+    'gen_image_gradient_square',
     'gen_image_checked',
     'gen_image_white_noise',
     'gen_image_perlin_noise',
@@ -706,6 +743,7 @@ __all__ = [
     'image_dither',
     'image_flip_vertical',
     'image_flip_horizontal',
+    'image_rotate',
     'image_rotate_cw',
     'image_rotate_ccw',
     'image_color_tint',
@@ -787,6 +825,7 @@ __all__ = [
     'draw_text_pro',
     'draw_text_codepoint',
     'draw_text_codepoints',
+    'set_text_line_spacing',
     'measure_text',
     'measure_text_ex',
     'get_glyph_index',
@@ -892,15 +931,18 @@ __all__ = [
     'close_audio_device',
     'is_audio_device_ready',
     'set_master_volume',
+    'get_master_volume',
     'load_wave',
     'load_wave_from_memory',
     'is_wave_ready',
     'load_sound',
     'load_sound_from_wave',
+    'load_sound_alias',
     'is_sound_ready',
     'update_sound',
     'unload_wave',
     'unload_sound',
+    'unload_sound_alias',
     'export_wave',
     'export_wave_as_code',
     'play_sound',
@@ -1018,6 +1060,8 @@ __all__ = [
     'vector3negate',
     'vector3divide',
     'vector3normalize',
+    'vector3project',
+    'vector3reject',
     'vector3ortho_normalize',
     'vector3transform',
     'vector3rotate_by_quaternion',
@@ -1078,88 +1122,13 @@ __all__ = [
     'quaternion_to_euler',
     'quaternion_transform',
     'quaternion_equals',
-    'rlVertexBuffer',
-    'rlDrawCall',
-    'rlRenderBatch',
-    'RLGL_VERSION',
-    'RL_DEFAULT_BATCH_BUFFER_ELEMENTS',
-    'RL_DEFAULT_BATCH_BUFFERS',
-    'RL_DEFAULT_BATCH_DRAWCALLS',
-    'RL_DEFAULT_BATCH_MAX_TEXTURE_UNITS',
-    'RL_MAX_MATRIX_STACK_SIZE',
-    'RL_MAX_SHADER_LOCATIONS',
-    'RL_CULL_DISTANCE_NEAR',
-    'RL_CULL_DISTANCE_FAR',
-    'RL_TEXTURE_WRAP_S',
-    'RL_TEXTURE_WRAP_T',
-    'RL_TEXTURE_MAG_FILTER',
-    'RL_TEXTURE_MIN_FILTER',
-    'RL_TEXTURE_FILTER_NEAREST',
-    'RL_TEXTURE_FILTER_LINEAR',
-    'RL_TEXTURE_FILTER_MIP_NEAREST',
-    'RL_TEXTURE_FILTER_NEAREST_MIP_LINEAR',
-    'RL_TEXTURE_FILTER_LINEAR_MIP_NEAREST',
-    'RL_TEXTURE_FILTER_MIP_LINEAR',
-    'RL_TEXTURE_FILTER_ANISOTROPIC',
-    'RL_TEXTURE_MIPMAP_BIAS_RATIO',
-    'RL_TEXTURE_WRAP_REPEAT',
-    'RL_TEXTURE_WRAP_CLAMP',
-    'RL_TEXTURE_WRAP_MIRROR_REPEAT',
-    'RL_TEXTURE_WRAP_MIRROR_CLAMP',
-    'RL_MODELVIEW',
-    'RL_PROJECTION',
-    'RL_TEXTURE',
-    'RL_LINES',
-    'RL_TRIANGLES',
-    'RL_QUADS',
-    'RL_UNSIGNED_BYTE',
-    'RL_FLOAT',
-    'RL_STREAM_DRAW',
-    'RL_STREAM_READ',
-    'RL_STREAM_COPY',
-    'RL_STATIC_DRAW',
-    'RL_STATIC_READ',
-    'RL_STATIC_COPY',
-    'RL_DYNAMIC_DRAW',
-    'RL_DYNAMIC_READ',
-    'RL_DYNAMIC_COPY',
-    'RL_FRAGMENT_SHADER',
-    'RL_VERTEX_SHADER',
-    'RL_COMPUTE_SHADER',
-    'RL_ZERO',
-    'RL_ONE',
-    'RL_SRC_COLOR',
-    'RL_ONE_MINUS_SRC_COLOR',
-    'RL_SRC_ALPHA',
-    'RL_ONE_MINUS_SRC_ALPHA',
-    'RL_DST_ALPHA',
-    'RL_ONE_MINUS_DST_ALPHA',
-    'RL_DST_COLOR',
-    'RL_ONE_MINUS_DST_COLOR',
-    'RL_SRC_ALPHA_SATURATE',
-    'RL_CONSTANT_COLOR',
-    'RL_ONE_MINUS_CONSTANT_COLOR',
-    'RL_CONSTANT_ALPHA',
-    'RL_ONE_MINUS_CONSTANT_ALPHA',
-    'RL_FUNC_ADD',
-    'RL_MIN',
-    'RL_MAX',
-    'RL_FUNC_SUBTRACT',
-    'RL_FUNC_REVERSE_SUBTRACT',
-    'RL_BLEND_EQUATION',
-    'RL_BLEND_EQUATION_RGB',
-    'RL_BLEND_EQUATION_ALPHA',
-    'RL_BLEND_DST_RGB',
-    'RL_BLEND_SRC_RGB',
-    'RL_BLEND_DST_ALPHA',
-    'RL_BLEND_SRC_ALPHA',
-    'RL_BLEND_COLOR',
     'rlGlVersion',
     'RL_OPENGL_11',
     'RL_OPENGL_21',
     'RL_OPENGL_33',
     'RL_OPENGL_43',
     'RL_OPENGL_ES_20',
+    'RL_OPENGL_ES_30',
     'rlTraceLogLevel',
     'RL_LOG_ALL',
     'RL_LOG_TRACE',
@@ -1180,6 +1149,9 @@ __all__ = [
     'RL_PIXELFORMAT_UNCOMPRESSED_R32',
     'RL_PIXELFORMAT_UNCOMPRESSED_R32G32B32',
     'RL_PIXELFORMAT_UNCOMPRESSED_R32G32B32A32',
+    'RL_PIXELFORMAT_UNCOMPRESSED_R16',
+    'RL_PIXELFORMAT_UNCOMPRESSED_R16G16B16',
+    'RL_PIXELFORMAT_UNCOMPRESSED_R16G16B16A16',
     'RL_PIXELFORMAT_COMPRESSED_DXT1_RGB',
     'RL_PIXELFORMAT_COMPRESSED_DXT1_RGBA',
     'RL_PIXELFORMAT_COMPRESSED_DXT3_RGBA',
@@ -1272,6 +1244,82 @@ __all__ = [
     'rlCullMode',
     'RL_CULL_FACE_FRONT',
     'RL_CULL_FACE_BACK',
+    'rlVertexBuffer',
+    'rlDrawCall',
+    'rlRenderBatch',
+    'RLGL_VERSION',
+    'RL_DEFAULT_BATCH_BUFFER_ELEMENTS',
+    'RL_DEFAULT_BATCH_BUFFERS',
+    'RL_DEFAULT_BATCH_DRAWCALLS',
+    'RL_DEFAULT_BATCH_MAX_TEXTURE_UNITS',
+    'RL_MAX_MATRIX_STACK_SIZE',
+    'RL_MAX_SHADER_LOCATIONS',
+    'RL_CULL_DISTANCE_NEAR',
+    'RL_CULL_DISTANCE_FAR',
+    'RL_TEXTURE_WRAP_S',
+    'RL_TEXTURE_WRAP_T',
+    'RL_TEXTURE_MAG_FILTER',
+    'RL_TEXTURE_MIN_FILTER',
+    'RL_TEXTURE_FILTER_NEAREST',
+    'RL_TEXTURE_FILTER_LINEAR',
+    'RL_TEXTURE_FILTER_MIP_NEAREST',
+    'RL_TEXTURE_FILTER_NEAREST_MIP_LINEAR',
+    'RL_TEXTURE_FILTER_LINEAR_MIP_NEAREST',
+    'RL_TEXTURE_FILTER_MIP_LINEAR',
+    'RL_TEXTURE_FILTER_ANISOTROPIC',
+    'RL_TEXTURE_MIPMAP_BIAS_RATIO',
+    'RL_TEXTURE_WRAP_REPEAT',
+    'RL_TEXTURE_WRAP_CLAMP',
+    'RL_TEXTURE_WRAP_MIRROR_REPEAT',
+    'RL_TEXTURE_WRAP_MIRROR_CLAMP',
+    'RL_MODELVIEW',
+    'RL_PROJECTION',
+    'RL_TEXTURE',
+    'RL_LINES',
+    'RL_TRIANGLES',
+    'RL_QUADS',
+    'RL_UNSIGNED_BYTE',
+    'RL_FLOAT',
+    'RL_STREAM_DRAW',
+    'RL_STREAM_READ',
+    'RL_STREAM_COPY',
+    'RL_STATIC_DRAW',
+    'RL_STATIC_READ',
+    'RL_STATIC_COPY',
+    'RL_DYNAMIC_DRAW',
+    'RL_DYNAMIC_READ',
+    'RL_DYNAMIC_COPY',
+    'RL_FRAGMENT_SHADER',
+    'RL_VERTEX_SHADER',
+    'RL_COMPUTE_SHADER',
+    'RL_ZERO',
+    'RL_ONE',
+    'RL_SRC_COLOR',
+    'RL_ONE_MINUS_SRC_COLOR',
+    'RL_SRC_ALPHA',
+    'RL_ONE_MINUS_SRC_ALPHA',
+    'RL_DST_ALPHA',
+    'RL_ONE_MINUS_DST_ALPHA',
+    'RL_DST_COLOR',
+    'RL_ONE_MINUS_DST_COLOR',
+    'RL_SRC_ALPHA_SATURATE',
+    'RL_CONSTANT_COLOR',
+    'RL_ONE_MINUS_CONSTANT_COLOR',
+    'RL_CONSTANT_ALPHA',
+    'RL_ONE_MINUS_CONSTANT_ALPHA',
+    'RL_FUNC_ADD',
+    'RL_MIN',
+    'RL_MAX',
+    'RL_FUNC_SUBTRACT',
+    'RL_FUNC_REVERSE_SUBTRACT',
+    'RL_BLEND_EQUATION',
+    'RL_BLEND_EQUATION_RGB',
+    'RL_BLEND_EQUATION_ALPHA',
+    'RL_BLEND_DST_RGB',
+    'RL_BLEND_SRC_RGB',
+    'RL_BLEND_DST_ALPHA',
+    'RL_BLEND_SRC_ALPHA',
+    'RL_BLEND_COLOR',
     'rl_matrix_mode',
     'rl_push_matrix',
     'rl_pop_matrix',
@@ -1313,6 +1361,7 @@ __all__ = [
     'rl_enable_framebuffer',
     'rl_disable_framebuffer',
     'rl_active_draw_buffers',
+    'rl_blit_framebuffer',
     'rl_enable_color_blend',
     'rl_disable_color_blend',
     'rl_enable_depth_test',
@@ -1326,6 +1375,7 @@ __all__ = [
     'rl_disable_scissor_test',
     'rl_scissor',
     'rl_enable_wire_mode',
+    'rl_enable_point_mode',
     'rl_disable_wire_mode',
     'rl_set_line_width',
     'rl_get_line_width',
@@ -1480,103 +1530,132 @@ if sys.platform == 'win32':
 #
 # example of .raylib file contents:
 # ```json
-# { 
-#     "win32": {
-#         "32bit": "path/to/raylib/filename.dll",
-#         "64bit": "path/to/raylib/filename.dll",
-#     },
-#     "linux": {
-#         "32bit": "path/to/raylib/filename.so",
-#         "64bit": "path/to/raylib/filename.so",
-#     },
-#     "darwin": {
-#         "64bit": "path/to/raylib/filename.dylib",
-#     },
+# {
+#     "raylib": {
+#         "win32": {
+#             "32bit": "path/to/raylib/filename.dll",
+#             "64bit": "path/to/raylib/filename.dll",
+#         },
+#         "linux": {
+#             "32bit": "path/to/raylib/filename.so",
+#             "64bit": "path/to/raylib/filename.so",
+#         },
+#         "darwin": {
+#             "64bit": "path/to/raylib/filename.dylib",
+#         },
+#     }
 # }
 # ```
 #
 
 _dotraylib_used = False
-_dotraylib_loadinfo = None
-_dotraylib = os.path.join(os.getcwd(), '.raylib')
-_dotraylib_config = {}
-if os.path.exists(_dotraylib) and os.path.isfile(_dotraylib):
-    _dotraylib_used = True
-    import json
-    with open(_dotraylib, 'r', encoding='utf8') as fp:
-        try:
-            _dotraylib_config = json.load(fp)
-        except json.JSONDecodeError:
-            _dotraylib_loadinfo = "Could not decode .raylib file"
-            _dotraylib_used = False
+_dotraylib_loadinfo = []
 
-    del json
+def _check_dotraylib(lib, platform, bitness, default=None):
+    global _dotraylib_loadinfo
+    _dotraylib = os.path.join(os.getcwd(), '.raylib')
 
-_lib_fname = {
-    'win32': 'raylib.dll',
-    'linux': 'libraylib.so.4.5.0',
-    'darwin': 'libraylib.4.5.0.dylib'
-}
+    if os.path.exists(_dotraylib) and os.path.isfile(_dotraylib):
+        _dotraylib_used = True
 
-_lib_platform = sys.platform
+        with open(_dotraylib, 'r', encoding='utf8') as fp:
+            try:
+                _dotraylib_config = json.load(fp)
+                return _dotraylib_config.get(lib, {}).get(platform, {}).get(bitness, default)
 
-if _lib_platform == 'win32':
-    _bitness = platform.architecture()[0]
-elif _lib_platform == 'darwin':
-    _bitness = '64bit'
-else:
-    _bitness = '64bit' if sys.maxsize > 2 ** 32 else '32bit'
+            except json.JSONDecodeError:
+                _dotraylib_loadinfo.append("ERROR: Could not decode .raylib file")
+    else:
+        _dotraylib_loadinfo.append("INFO: .raylib file not available")
+    return default
 
-_lib_default = os.path.join(os.path.dirname(__file__), 'bin', _bitness, _lib_fname[_lib_platform])
 
-if _dotraylib_used:
-    try:
-        _lib_default = os.path.abspath(_dotraylib_config[_lib_platform][_bitness])
+def _load_library(lib_name, is_extension=False):
+    global _dotraylib_loadinfo, _dotraylib_used
 
-    except (KeyError, ValueError):
-        _dotraylib_loadinfo = "Platform ({}) and bitness ({}) not specified in .raylib file".format(_lib_platform, _bitness)
+    _lib_fname = {
+        'win32': 'raylib.dll',
+        'linux': 'libraylib.so.5.0.0',
+        'darwin': 'libraylib.5.0.0.dylib'
+    }
 
-_lib_fname_abspath = os.path.normcase(os.path.normpath(_lib_default))
+    _dotraylib_used = False
+    _lib_platform = sys.platform
 
-_cwd_info = "\n    current working dir: {}".format(os.getcwd()) if _dotraylib_used else ""
-_load_info = "\n    .raylib load info: {}".format(_dotraylib_loadinfo) if _dotraylib_loadinfo else ""
+    if _lib_platform == 'win32':
+        _bitness = platform.architecture()[0]
+    elif _lib_platform == 'darwin':
+        _bitness = '64bit'
+    else:
+        _bitness = '64bit' if sys.maxsize > 2 ** 32 else '32bit'
 
-print(
-    """Library loading info:
-    platform: {}
-    bitness: {}{}{}
-    absolute path: {}
-    using .raylib file: {}
-    exists: {}
-    is file: {}
-    """.format(
-        _lib_platform,
-        _bitness,
-        _cwd_info,
-        _load_info,
-        _lib_fname_abspath,
-        'yes' if _dotraylib_used else 'no',
-        'yes' if os.path.exists(_lib_fname_abspath) else 'no',
-        'yes' if os.path.isfile(_lib_fname_abspath) else 'no'
+    if is_extension:
+        _lib_default = None
+    else:
+        _lib_default = os.path.join(os.path.dirname(__file__), 'bin', _bitness, _lib_fname[_lib_platform])
+
+    _lib_default = _check_dotraylib(lib_name, _lib_platform, _bitness, _lib_default)
+
+    if not _lib_default:
+        if is_extension:
+            _dotraylib_loadinfo.append("ERROR: Platform ({}), bitness ({}) or valid filename not specified in .raylib file for {} extension".format(lib_name, _lib_platform, _bitness))
+        else:
+            _dotraylib_loadinfo.append("ERROR: Platform ({}), bitness ({}) or valid filename not specified in .raylib file for {}".format(lib_name, _lib_platform, _bitness))
+
+        _lib_fname_abspath = ''
+        _ok = False
+    else:
+        _lib_fname_abspath = os.path.normcase(os.path.normpath(_lib_default))
+        _ok = True
+
+    _cwd_info = "\n        current working dir: {}".format(os.getcwd()) if _dotraylib_used else ""
+    _load_info = "\n        .raylib load info: {}".format("\n            ".join(_dotraylib_loadinfo)) if _dotraylib_loadinfo else ""
+
+    print(
+        """Library loading info:
+        platform: {}
+        bitness: {}{}{}
+        absolute path: {}
+        using .raylib file: {}
+        exists: {}
+        is file: {}
+        """.format(
+            _lib_platform,
+            _bitness,
+            _cwd_info,
+            _load_info,
+            _lib_fname_abspath,
+            'yes' if _dotraylib_used else 'no',
+            'yes' if os.path.exists(_lib_fname_abspath) else 'no',
+            'yes' if os.path.isfile(_lib_fname_abspath) else 'no'
+        )
     )
-)
 
-rlapi = None
-if _lib_platform == 'win32':
+    if not _ok:
+        print("Failed to load Shared library", lib_name)
+        sys.exit(1)
 
-    try:
-        rlapi = CDLLEx(_lib_fname_abspath, LOAD_WITH_ALTERED_SEARCH_PATH)
-    except OSError:
-        print("Unable to load {}.".format(_lib_fname[_lib_platform]))
-        rlapi = None
-else:
-    rlapi = CDLL(_lib_fname_abspath)
+    lib_ = None
+    if _lib_platform == 'win32':
 
-if rlapi is None:
-    print("Failed to load shared library.")
-    exit()
-else:
-    print("Shared library loaded succesfully.", rlapi)
+        try:
+            lib_ = CDLLEx(_lib_fname_abspath, LOAD_WITH_ALTERED_SEARCH_PATH)
+        except OSError as e:
+            print("Unable to load {}: {}".format(_lib_fname[_lib_platform], e.args))
+            lib_ = None
+    else:
+        lib_ = CDLL(_lib_fname_abspath)
+
+    if lib_ is None:
+        print("Failed to load Shared library", lib_name)
+        sys.exit(1)
+    else:
+        print("Shared library loaded succesfully", lib_)
+
+    return lib_
+
+rlapi = _load_library('raylib', False)
+
 
 
 
@@ -1747,3691 +1826,6 @@ class rAudioProcessorPtr(Structure):
     pass
 
 
-
-class Vector2(Structure):
-    '''Vector2, 2 components'''
-    _fields_ = [
-        ('x', Float),
-        ('y', Float),
-    ]
-
-
-    @classmethod
-    def array_of(cls, vector2_sequence):
-        '''Creates and returns an array of Vector2s'''
-        arr = cls * len(vector2_sequence)
-        return arr(*vector2_sequence)
-
-    @classmethod
-    def one():
-        # type: () -> Vector2
-        """"""
-        result = _Vector2One()
-        return result
-
-
-    def __init__(self, x=None, y=None):
-        # type: (float, float) -> None
-        '''Initializes this Vector2 struct'''
-        super(Vector2, self).__init__(
-            x or 0.0,
-            y or 0.0
-        )
-
-
-    @property
-    def byref(self):
-        '''Gets a reference to this Vector2 instance'''
-        return byref(self)
-
-
-    def __len__(self):
-        return 2
-
-    def __getitem__(self, key):
-        return (self.x, self.y).__getitem__(key)
-
-    def __getattr__(self, attr):
-        m = _VEC2_GET_SWZL.fullmatch(attr)
-        if not m:
-            raise AttributeError("Vector2 object does not have attribute '{}'.".format(attr))
-        cls = {1: float, 2: Vector2, 3: Vector3, 4: Vector4}.get(len(attr))
-        v = self.todict()
-        return cls(*(v[ch] for ch in attr))
-
-    def __setattr__(self, attr, value):
-        m = _VEC2_SET_SWZL.fullmatch(attr)
-        if not m:
-            raise AttributeError("Vector2 object does not have attribute '{}'.".format(attr))
-        if len(attr) == 1:
-            super(Vector2, self).__setattr__(attr, float(value))
-        else:
-            for i, ch in enumerate(attr):
-                super(Vector2, self).__setattr__(ch, float(value[i]))
-
-    def todict(self):
-        '''Returns a dict mapping this Vector2's components'''
-        return {'x': self.x, 'y': self.y}
-
-    def fromdict(self, d):
-        '''Apply the mapping `d` to this Vector2's components'''
-        self.x = float(d.get('x', self.x))
-        self.y = float(d.get('y', self.y))
-
-
-
-    def __eq__(self, other):
-        return _Vector2Equals(self, other)
-
-    def __ne__(self, other):
-        return not _Vector2Equals(self, other)
-
-    def __pos__(self):
-        return Vector2(+self.x, +self.y)
-
-    def __neg__(self):
-        return Vector2(-self.x, -self.y)
-
-    def __abs__(self):
-        return Vector2(abs(self.x), abs(self.y))
-
-    def __add__(self, other):
-        if isinstance(other, (int, float)):
-            return _Vector2AddValue(self, float(other))
-        return _Vector2Add(self, Vector2(other[0], other[1]))
-
-    def __radd__(self, other):
-        if isinstance(other, (int, float)):
-            return _Vector2AddValue(self, float(other))
-        return _Vector2Add(self, Vector2(other[0], other[1]))
-
-    def __iadd__(self, other):
-        if isinstance(other, (int, float)):
-            self.xy = _Vector2AddValue(self, float(other))
-        else:
-            self.xy = _Vector2Add(self, Vector2(other[0], other[1]))
-        return self
-
-    def __sub__(self, other):
-        if isinstance(other, (int, float)):
-            return _Vector2SubtractValue(self, float(other))
-        return _Vector2Subtract(self, Vector2(other[0], other[1]))
-
-    def __rsub__(self, other):
-        if isinstance(other, (int, float)):
-            return Vector2(other - self.x, other - self.y)
-        return _Vector2Subtract(Vector2(other[0], other[1]), self)
-
-    def __isub__(self, other):
-        if isinstance(other, (int, float)):
-            self.xy = _Vector2SubtractValue(self, float(other))
-        else:
-            self.xy = _Vector2Subtract(self, Vector2(other[0], other[1]))
-        return self
-
-    def __mul__(self, other):
-        if isinstance(other, (int, float)):
-            return _Vector2Scale(self, float(other))
-        elif isinstance(other, Matrix):
-            return _Vector2Transform(self, other)
-        return _Vector2Multiply(self, Vector2(other[0], other[1]))
-
-    def __rmul__(self, other):
-        if isinstance(other, (int, float)):
-            return _Vector2Scale(self, float(other))
-        return _Vector2Multiply(self, Vector2(other[0], other[1]))
-
-    def __imul__(self, other):
-        if isinstance(other, (int, float)):
-            self.xy = _Vector2Scale(self, float(other))
-        elif isinstance(other, Matrix):
-            self.xy = _Vector2Transform(self, other)
-        else:
-            self.xy = _Vector2Multiply(self, Vector2(other[0], other[1]))
-        return self
-
-    def __truediv__(self, other):
-        if isinstance(other, (int, float)):
-            return _Vector2Divide(self, Vector2(other, other))
-        return _Vector2Divide(self, Vector2(other[0], other[1]))
-
-    def __rtruediv__(self, other):
-        if isinstance(other, (int, float)):
-            return Vector2(other / self.x, other / self.y)
-        return _Vector2Divide(Vector2(other[0], other[1]), self)
-
-    def __itruediv__(self, other):
-        if isinstance(other, (int, float)):
-            self.xy = _Vector2Divide(self, Vector2(other, other))
-        else:
-            self.xy = _Vector2Divide(self, Vector2(other[0], other[1]))
-        return self
-
-    def __str__(self):
-        return "({}, {})".format(self.x, self.y)
-
-    def __repr__(self):
-        return "Vector2{}".format(self.__str__())
-
-    @property
-    def length(self):
-        # type: (Vector2) -> float
-        """"""
-        result = _Vector2Length(self)
-        return result
-
-    @property
-    def length_sqr(self):
-        # type: (Vector2) -> float
-        """"""
-        result = _Vector2LengthSqr(self)
-        return result
-
-    def dot_product(self, v2):
-        # type: (Vector2, Vector2) -> float
-        """"""
-        result = _Vector2DotProduct(self, _vec2(v2))
-        return result
-
-    def distance(self, v2):
-        # type: (Vector2, Vector2) -> float
-        """"""
-        result = _Vector2Distance(self, _vec2(v2))
-        return result
-
-    def distance_sqr(self, v2):
-        # type: (Vector2, Vector2) -> float
-        """"""
-        result = _Vector2DistanceSqr(self, _vec2(v2))
-        return result
-
-    def angle(self, v2):
-        # type: (Vector2, Vector2) -> float
-        """"""
-        result = _Vector2Angle(self, _vec2(v2))
-        return result
-
-    def normalize(self):
-        # type: (Vector2) -> Vector2
-        """"""
-        self.xy = _Vector2Normalize(self)
-        return self
-
-    def transform(self, mat):
-        # type: (Vector2, Matrix) -> Vector2
-        """"""
-        self.xy = _Vector2Transform(self, mat)
-        return self
-
-    def lerp(self, v2, amount):
-        # type: (Vector2, Vector2, float) -> Vector2
-        """"""
-        self.xy = _Vector2Lerp(self, _vec2(v2), float(amount))
-        return self
-
-    def reflect(self, normal):
-        # type: (Vector2, Vector2) -> Vector2
-        """"""
-        self.xy = _Vector2Reflect(self, _vec2(normal))
-        return self
-
-    def rotate(self, angle):
-        # type: (Vector2, float) -> Vector2
-        """"""
-        self.xy = _Vector2Rotate(self, float(angle))
-        return self
-
-    def move_towards(self, target, max_distance):
-        # type: (Vector2, Vector2, float) -> Vector2
-        """"""
-        self.xy = _Vector2MoveTowards(self, _vec2(target), float(max_distance))
-        return self
-
-    def clamp(self, min, max):
-        # type: (Vector2, Vector2, Vector2) -> Vector2
-        """"""
-        self.xy = _Vector2Clamp(self, _vec2(min), _vec2(max))
-        return self
-
-    def clamp_value(self, min, max):
-        # type: (Vector2, float, float) -> Vector2
-        """"""
-        self.xy = _Vector2ClampValue(self, float(min), float(max))
-        return self
-
-
-# Pointer type to Vector2s
-Vector2Ptr = POINTER(Vector2)
-
-
-
-class Vector3(Structure):
-    '''Vector3, 3 components'''
-    _fields_ = [
-        ('x', Float),
-        ('y', Float),
-        ('z', Float),
-    ]
-
-
-    @classmethod
-    def array_of(cls, vector3_sequence):
-        '''Creates and returns an array of Vector3s'''
-        arr = cls * len(vector3_sequence)
-        return arr(*vector3_sequence)
-
-    @classmethod
-    def one():
-        # type: () -> Vector3
-        """"""
-        result = _Vector3One()
-        return result
-
-
-    def __init__(self, x=None, y=None, z=None):
-        # type: (float, float, float) -> None
-        '''Initializes this Vector3 struct'''
-        super(Vector3, self).__init__(
-            x or 0.0,
-            y or 0.0,
-            z or 0.0
-        )
-
-
-    @property
-    def byref(self):
-        '''Gets a reference to this Vector3 instance'''
-        return byref(self)
-
-
-    def __len__(self):
-        return 3
-
-    def __getitem__(self, key):
-        return (self.x, self.y, self.z).__getitem__(key)
-
-    def __getattr__(self, attr):
-        m = _VEC3_GET_SWZL.fullmatch(attr)
-        if not m:
-            raise AttributeError("Vector3 object does not have attribute '{}'.".format(attr))
-        cls = {1: float, 2: Vector2, 3: Vector3, 4: Vector4}.get(len(attr))
-        v = self.todict()
-        return cls(*(v[ch] for ch in attr))
-
-    def __setattr__(self, attr, value):
-        m = _VEC3_SET_SWZL.fullmatch(attr)
-        if not m:
-            raise AttributeError("Vector3 object does not have attribute '{}'.".format(attr))
-        if len(attr) == 1:
-            super(Vector3, self).__setattr__(attr, float(value))
-        else:
-            for i, ch in enumerate(attr):
-                super(Vector3, self).__setattr__(ch, float(value[i]))
-
-    def todict(self):
-        '''Returns a dict mapping this Vector3's components'''
-        return {'x': self.x, 'y': self.y, 'z': self.z}
-
-    def fromdict(self, d):
-        '''Apply the mapping `d` to this Vector3's components'''
-        self.x = float(d.get('x', self.x))
-        self.y = float(d.get('y', self.y))
-        self.z = float(d.get('z', self.z))
-
-
-    def __eq__(self, other):
-        return _Vector3Equals(self, other)
-
-    def __ne__(self, other):
-        return not _Vector3Equals(self, other)
-
-    def __pos__(self):
-        return Vector3(+self.x, +self.y, +self.z)
-
-    def __neg__(self):
-        return Vector3(-self.x, -self.y, -self.z)
-
-    def __abs__(self):
-        return Vector3(abs(self.x), abs(self.y), abs(self.z))
-
-    def __add__(self, other):
-        if isinstance(other, (int, float)):
-            return _Vector3AddValue(self, float(other))
-        return _Vector3Add(self, Vector3(other[0], other[1], other[2]))
-
-    def __radd__(self, other):
-        if isinstance(other, (int, float)):
-            return _Vector3AddValue(self, float(other))
-        return _Vector3Add(self, Vector3(other[0], other[1], other[2]))
-
-    def __iadd__(self, other):
-        if isinstance(other, (int, float)):
-            self.xy = _Vector3AddValue(self, float(other))
-        else:
-            self.xy = _Vector3Add(self, Vector3(other[0], other[1], other[2]))
-        return self
-
-    def __sub__(self, other):
-        if isinstance(other, (int, float)):
-            return _Vector3SubtractValue(self, float(other))
-        return _Vector3Subtract(self, Vector3(other[0], other[1], other[2]))
-
-    def __rsub__(self, other):
-        if isinstance(other, (int, float)):
-            return Vector3(other - self.x, other - self.y, other - self.z)
-        return _Vector3Subtract(Vector3(other[0], other[1], other[2]), self)
-
-    def __isub__(self, other):
-        if isinstance(other, (int, float)):
-            self.xy = _Vector3SubtractValue(self, float(other))
-        else:
-            self.xy = _Vector3Subtract(self, Vector3(other[0], other[1], other[2]))
-        return self
-
-    def __mul__(self, other):
-        if isinstance(other, (int, float)):
-            return _Vector3Scale(self, float(other))
-        elif isinstance(other, Matrix):
-            return _Vector3Transform(self, other)
-        return _Vector3Multiply(self, Vector3(other[0], other[1], other[2]))
-
-    def __rmul__(self, other):
-        if isinstance(other, (int, float)):
-            return _Vector3Scale(self, float(other))
-        return _Vector3Multiply(self, Vector3(other[0], other[1], other[2]))
-
-    def __imul__(self, other):
-        if isinstance(other, (int, float)):
-            self.xy = _Vector3Scale(self, float(other))
-        elif isinstance(other, Matrix):
-            self.xy = _Vector3Transform(self, other)
-        else:
-            self.xy = _Vector3Multiply(self, Vector3(other[0], other[1], other[2]))
-        return self
-
-    def __truediv__(self, other):
-        if isinstance(other, (int, float)):
-            return _Vector3Divide(self, Vector3(other, other))
-        return _Vector3Divide(self, Vector3(other[0], other[1]))
-
-    def __rtruediv__(self, other):
-        if isinstance(other, (int, float)):
-            return Vector3(other / self.x, other / self.y, other / self.z)
-        return _Vector3Divide(Vector3(other[0], other[1], other[2]), self)
-
-    def __itruediv__(self, other):
-        if isinstance(other, (int, float)):
-            self.xy = _Vector3Divide(self, Vector3(other, other))
-        else:
-            self.xy = _Vector3Divide(self, Vector3(other[0], other[1], other[2]))
-        return self
-
-    def __str__(self):
-        return "({}, {}, {})".format(self.x, self.y, self.z)
-
-    def __repr__(self):
-        return "Vector3{}".format(self.__str__())
-
-    @property
-    def length(self):
-        # type: (Vector3) -> float
-        """"""
-        result = _Vector3Length(self)
-        return result
-
-    @property
-    def length_sqr(self):
-        # type: (Vector3) -> float
-        """"""
-        result = _Vector3LengthSqr(self)
-        return result
-
-    def cross_product(self, v2):
-        # type: (Vector3, Vector3) -> Vector3
-        """"""
-        result = _Vector3CrossProduct(self, _vec3(v2))
-        return result
-
-    def perpendicular(self):
-        # type: (Vector3) -> Vector3
-        """"""
-        self.xyz = _Vector3Perpendicular(self)
-        return self
-
-    def dot_product(self, v2):
-        # type: (Vector3, Vector3) -> float
-        """"""
-        result = _Vector3DotProduct(self, _vec3(v2))
-        return result
-
-    def distance(self, v2):
-        # type: (Vector3, Vector3) -> float
-        """"""
-        result = _Vector3Distance(self, _vec3(v2))
-        return result
-
-    def distance_sqr(self, v2):
-        # type: (Vector3, Vector3) -> float
-        """"""
-        result = _Vector3DistanceSqr(self, _vec3(v2))
-        return result
-
-    def angle(self, v2):
-        # type: (Vector3, Vector3) -> float
-        """"""
-        result = _Vector3Angle(self, _vec3(v2))
-        return result
-
-    def normalize(self):
-        # type: (Vector3) -> Vector3
-        """"""
-        self.xyz = _Vector3Normalize(self)
-        return self
-
-    def ortho_normalize(self, v2):
-        # type: (Vector3Ptr, Vector3Ptr) -> None
-        """"""
-        _Vector3OrthoNormalize(self, _vec3(v2))
-
-    def transform(self, mat):
-        # type: (Vector3, Matrix) -> Vector3
-        """"""
-        self.xyz = _Vector3Transform(self, mat)
-        return self
-
-    def rotate_by_quaternion(self, q):
-        # type: (Vector3, Quaternion) -> Vector3
-        """"""
-        self.xyz = _Vector3RotateByQuaternion(self, q)
-        return self
-
-    def rotate_by_axis_angle(self, axis, angle):
-        # type: (Vector3, Vector3, float) -> Vector3
-        """"""
-        self.xyz = _Vector3RotateByAxisAngle(self, _vec3(axis), float(angle))
-        return self
-
-    def lerp(self, v2, amount):
-        # type: (Vector3, Vector3, float) -> Vector3
-        """"""
-        self.xyz = _Vector3Lerp(self, _vec3(v2), float(amount))
-        return self
-
-    def reflect(self, normal):
-        # type: (Vector3, Vector3) -> Vector3
-        """"""
-        self.xyz = _Vector3Reflect(self, _vec3(normal))
-        return self
-
-    def min(self, v2):
-        # type: (Vector3, Vector3) -> Vector3
-        """"""
-        self.xyz = _Vector3Min(self, _vec3(v2))
-        return self
-
-    def max(self, v2):
-        # type: (Vector3, Vector3) -> Vector3
-        """"""
-        self.xyz = _Vector3Max(self, _vec3(v2))
-        return self
-
-    def barycenter(self, a, b, c):
-        # type: (Vector3, Vector3, Vector3, Vector3) -> Vector3
-        """"""
-        self.xyz = _Vector3Barycenter(self, _vec3(a), _vec3(b), _vec3(c))
-        return self
-
-    def unproject(self, projection, view):
-        # type: (Vector3, Matrix, Matrix) -> Vector3
-        """"""
-        self.xyz = _Vector3Unproject(self, projection, view)
-        return self
-
-    def to_float_v(self):
-        # type: (Vector3) -> float3
-        """"""
-        result = _Vector3ToFloatV(self)
-        return result
-
-    def clamp(self, min, max):
-        # type: (Vector3, Vector3, Vector3) -> Vector3
-        """"""
-        self.xyz = _Vector3Clamp(self, _vec3(min), _vec3(max))
-        return self
-
-    def clamp_value(self, min, max):
-        # type: (Vector3, float, float) -> Vector3
-        """"""
-        self.xyz = _Vector3ClampValue(self, float(min), float(max))
-        return self
-
-    def refract(self, n, r):
-        # type: (Vector3, Vector3, float) -> Vector3
-        """"""
-        result = _Vector3Refract(self, _vec3(n), float(r))
-        return result
-
-
-# Pointer type to Vector3s
-Vector3Ptr = POINTER(Vector3)
-
-
-
-class Vector4(Structure):
-    '''Vector4, 4 components'''
-    _fields_ = [
-        ('x', Float),
-        ('y', Float),
-        ('z', Float),
-        ('w', Float),
-    ]
-
-
-    @classmethod
-    def array_of(cls, vector4_sequence):
-        '''Creates and returns an array of Vector4s'''
-        arr = cls * len(vector4_sequence)
-        return arr(*vector4_sequence)
-
-
-    def __init__(self, x=None, y=None, z=None, w=None):
-        # type: (float, float, float, float) -> None
-        '''Initializes this Vector4 struct'''
-        super(Vector4, self).__init__(
-            x or 0.0,
-            y or 0.0,
-            z or 0.0,
-            w or 0.0
-        )
-
-
-    @property
-    def byref(self):
-        '''Gets a reference to this Vector4 instance'''
-        return byref(self)
-
-
-    def __len__(self):
-        return 4
-
-    def __getitem__(self, key):
-        return (self.x, self.y. self.z, self.w).__getitem__(key)
-
-    def __getattr__(self, attr):
-        m = _VEC4_GET_SWZL.fullmatch(attr)
-        if not m:
-            raise AttributeError("Vector4 object does not have attribute '{}'.".format(attr))
-        cls = {1: float, 2: Vector2, 3: Vector3, 4: Vector4}.get(len(attr))
-        v = self.todict()
-        return cls(*(v[ch] for ch in attr))
-
-    def __setattr__(self, attr, value):
-        m = _VEC4_SET_SWZL.fullmatch(attr)
-        if not m:
-            raise AttributeError("Vector4 object does not have attribute '{}'.".format(attr))
-        if len(attr) == 1:
-            super(Vector4, self).__setattr__(attr, float(value))
-        else:
-            for i, ch in enumerate(attr):
-                super(Vector4, self).__setattr__(ch, float(value[i]))
-
-    def todict(self):
-        '''Returns a dict mapping this Vector4's components'''
-        return {'x': self.x, 'y': self.y, 'z': self.z, 'w': self.w}
-
-    def fromdict(self, d):
-        '''Apply the mapping `d` to this Vector4's components'''
-        self.x = float(d.get('x', self.x))
-        self.y = float(d.get('y', self.y))
-        self.z = float(d.get('z', self.z))
-        self.w = float(d.get('w', self.w))
-
-
-    def __str__(self):
-        return "({}, {}, {}, {})".format(self.x, self.y, self.z, self.w)
-
-    def __repr__(self):
-        return "Vector4{}".format(self.__str__())
-
-
-# Pointer type to Vector4s
-Vector4Ptr = POINTER(Vector4)
-
-
-# Quaternion, 4 components (Vector4 alias)
-Quaternion = Vector4
-QuaternionPtr = Vector4Ptr
-# Quaternion type
-Quaternion = Vector4
-QuaternionPtr = Vector4Ptr
-
-class Matrix(Structure):
-    '''Matrix, 4x4 components, column major, OpenGL style, right-handed'''
-    _fields_ = [
-        ('m0', Float),
-        ('m4', Float),
-        ('m8', Float),
-        ('m12', Float),
-        ('m1', Float),
-        ('m5', Float),
-        ('m9', Float),
-        ('m13', Float),
-        ('m2', Float),
-        ('m6', Float),
-        ('m10', Float),
-        ('m14', Float),
-        ('m3', Float),
-        ('m7', Float),
-        ('m11', Float),
-        ('m15', Float),
-    ]
-
-
-    @classmethod
-    def array_of(cls, matrix_sequence):
-        '''Creates and returns an array of Matrixs'''
-        arr = cls * len(matrix_sequence)
-        return arr(*matrix_sequence)
-
-    @classmethod
-    def identity():
-        # type: () -> Matrix
-        """"""
-        result = _MatrixIdentity()
-        return result
-
-    @classmethod
-    def translate(cls, x, y, z):
-        # type: (float, float, float) -> Matrix
-        """"""
-        result = _MatrixTranslate(float(x), float(y), float(z))
-        return result
-
-    @classmethod
-    def rotate(cls, axis, angle):
-        # type: (Vector3, float) -> Matrix
-        """"""
-        result = _MatrixRotate(_vec3(axis), float(angle))
-        return result
-
-    @classmethod
-    def rotate_x(cls, angle):
-        # type: (float) -> Matrix
-        """"""
-        result = _MatrixRotateX(float(angle))
-        return result
-
-    @classmethod
-    def rotate_y(cls, angle):
-        # type: (float) -> Matrix
-        """"""
-        result = _MatrixRotateY(float(angle))
-        return result
-
-    @classmethod
-    def rotate_z(cls, angle):
-        # type: (float) -> Matrix
-        """"""
-        result = _MatrixRotateZ(float(angle))
-        return result
-
-    @classmethod
-    def rotate_xyz(cls, angle):
-        # type: (Vector3) -> Matrix
-        """"""
-        result = _MatrixRotateXYZ(_vec3(angle))
-        return result
-
-    @classmethod
-    def rotate_zyx(cls, angle):
-        # type: (Vector3) -> Matrix
-        """"""
-        result = _MatrixRotateZYX(_vec3(angle))
-        return result
-
-    @classmethod
-    def scale(cls, x, y, z):
-        # type: (float, float, float) -> Matrix
-        """"""
-        result = _MatrixScale(float(x), float(y), float(z))
-        return result
-
-    @classmethod
-    def frustum(cls, left, right, bottom, top, near, far):
-        # type: (float, float, float, float, float, float) -> Matrix
-        """"""
-        result = _MatrixFrustum(float(left), float(right), float(bottom), float(top), float(near), float(far))
-        return result
-
-    @classmethod
-    def perspective(cls, fovy, aspect, near, far):
-        # type: (float, float, float, float) -> Matrix
-        """"""
-        result = _MatrixPerspective(float(fovy), float(aspect), float(near), float(far))
-        return result
-
-    @classmethod
-    def ortho(cls, left, right, bottom, top, near, far):
-        # type: (float, float, float, float, float, float) -> Matrix
-        """"""
-        result = _MatrixOrtho(float(left), float(right), float(bottom), float(top), float(near), float(far))
-        return result
-
-    @classmethod
-    def look_at(cls, eye, target, up):
-        # type: (Vector3, Vector3, Vector3) -> Matrix
-        """"""
-        result = _MatrixLookAt(_vec3(eye), _vec3(target), _vec3(up))
-        return result
-
-
-    def __init__(self, m0=None,
-                 m4=None,
-                 m8=None,
-                 m12=None,
-                 m1=None,
-                 m5=None,
-                 m9=None,
-                 m13=None,
-                 m2=None,
-                 m6=None,
-                 m10=None,
-                 m14=None,
-                 m3=None,
-                 m7=None,
-                 m11=None,
-                 m15=None):
-        # type: (float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float) -> None
-        '''Initializes this Matrix struct'''
-        super(Matrix, self).__init__(
-            m0 or 0.0,
-            m4 or 0.0,
-            m8 or 0.0,
-            m12 or 0.0,
-            m1 or 0.0,
-            m5 or 0.0,
-            m9 or 0.0,
-            m13 or 0.0,
-            m2 or 0.0,
-            m6 or 0.0,
-            m10 or 0.0,
-            m14 or 0.0,
-            m3 or 0.0,
-            m7 or 0.0,
-            m11 or 0.0,
-            m15 or 0.0
-        )
-
-
-    @property
-    def byref(self):
-        '''Gets a reference to this Matrix instance'''
-        return byref(self)
-
-
-    def __str__(self):
-        return "[{} at {}]".format(self.__class__.__name__, id(self))
-
-    def __repr__(self):
-        return self.__str__()
-
-    def determinant(self):
-        # type: (Matrix) -> float
-        """"""
-        result = _MatrixDeterminant(self)
-        return result
-
-    def trace(self):
-        # type: (Matrix) -> float
-        """"""
-        result = _MatrixTrace(self)
-        return result
-
-    def transpose(self):
-        # type: (Matrix) -> Matrix
-        """"""
-        result = _MatrixTranspose(self)
-        return result
-
-    def invert(self):
-        # type: (Matrix) -> Matrix
-        """"""
-        result = _MatrixInvert(self)
-        return result
-
-
-# Pointer type to Matrixs
-MatrixPtr = POINTER(Matrix)
-
-
-
-class Color(Structure):
-    '''Color, 4 components, R8G8B8A8 (32bit)'''
-    _fields_ = [
-        ('r', UChar),
-        ('g', UChar),
-        ('b', UChar),
-        ('a', UChar),
-    ]
-
-
-    @classmethod
-    def array_of(cls, color_sequence):
-        '''Creates and returns an array of Colors'''
-        arr = cls * len(color_sequence)
-        return arr(*color_sequence)
-
-
-    def __init__(self, r=None, g=None, b=None, a=None):
-        # type: (int, int, int, int) -> None
-        '''Initializes this Color struct'''
-        super(Color, self).__init__(
-            r or 0,
-            g or 0,
-            b or 0,
-            a or 0
-        )
-
-
-    @property
-    def byref(self):
-        '''Gets a reference to this Color instance'''
-        return byref(self)
-
-
-    def __len__(self):
-        return 4
-
-    def __getitem__(self, key):
-        return (self.r, self.g, self.b, self.a).__getitem__(key)
-
-    def __getattr__(self, attr):
-        m = _RGBA_GET_SWZL.fullmatch(attr)
-        if not m:
-            raise AttributeError("Color object does not have attribute '{}'.".format(attr))
-        cls = {1: int, 4: Color}.get(len(attr))
-        v = self.todict()
-        return cls(*(v[ch] for ch in attr))
-
-    def __setattr__(self, attr, value):
-        m = _RGBA_SET_SWZL.fullmatch(attr)
-        if not m:
-            raise AttributeError("Color object does not have attribute '{}'.".format(attr))
-        if len(attr) == 1:
-            super(Color, self).__setattr__(attr, int(value))
-        else:
-            for i, ch in enumerate(attr):
-                super(Color, self).__setattr__(ch, int(value[i]))
-
-    def todict(self):
-        '''Returns a dict mapping this Color's components'''
-        return {'r': self.r, 'g': self.g, 'b': self.b, 'a': self.a}
-
-    def fromdict(self, d):
-        '''Apply the mapping `d` to this Color's components'''
-        self.r = int(d.get('r', self.r))
-        self.g = int(d.get('g', self.g))
-        self.b = int(d.get('b', self.b))
-        self.a = int(d.get('a', self.a))
-
-
-    def __str__(self):
-        return "({: 3}, {: 3}, {: 3}, {: 3})".format(self.r, self.g, self.b, self.a)
-
-    def __repr__(self):
-        return "Color{}".format(self.__str__())
-
-    def fade(self, alpha):
-        # type: (Color, float) -> Color
-        """Get color with alpha applied, alpha goes from 0.0f to 1.0f"""
-        result = _Fade(self, float(alpha))
-        return result
-
-    def to_int(self):
-        # type: (Color) -> int
-        """Get hexadecimal value for a Color"""
-        result = _ColorToInt(self)
-        return result
-
-    def to_hsv(self):
-        # type: (Color) -> Vector3
-        """Get HSV values for a Color, hue [0..360], saturation/value [0..1]"""
-        result = _ColorToHSV(self)
-        return result
-
-    def from_hsv(self, saturation, value):
-        # type: (float, float, float) -> Color
-        """Get a Color from HSV values, hue [0..360], saturation/value [0..1]"""
-        result = _ColorFromHSV(self, float(saturation), float(value))
-        return result
-
-    def tint(self, tint):
-        # type: (Color, Color) -> Color
-        """Get color multiplied with another color"""
-        result = _ColorTint(self, _color(tint))
-        return result
-
-    def brightness(self, factor):
-        # type: (Color, float) -> Color
-        """Get color with brightness correction, brightness factor goes from -1.0f to 1.0f"""
-        result = _ColorBrightness(self, float(factor))
-        return result
-
-    def contrast(self, contrast):
-        # type: (Color, float) -> Color
-        """Get color with contrast correction, contrast values between -1.0f and 1.0f"""
-        result = _ColorContrast(self, float(contrast))
-        return result
-
-    def alpha(self, alpha):
-        # type: (Color, float) -> Color
-        """Get color with alpha applied, alpha goes from 0.0f to 1.0f"""
-        result = _ColorAlpha(self, float(alpha))
-        return result
-
-    def alpha_blend(self, src, tint):
-        # type: (Color, Color, Color) -> Color
-        """Get src alpha-blended into dst color with tint"""
-        result = _ColorAlphaBlend(self, _color(src), _color(tint))
-        return result
-
-
-# Pointer type to Colors
-ColorPtr = POINTER(Color)
-
-
-
-class Rectangle(Structure):
-    '''Rectangle, 4 components'''
-    _fields_ = [
-        ('x', Float),
-        ('y', Float),
-        ('width', Float),
-        ('height', Float),
-    ]
-
-
-    @classmethod
-    def array_of(cls, rectangle_sequence):
-        '''Creates and returns an array of Rectangles'''
-        arr = cls * len(rectangle_sequence)
-        return arr(*rectangle_sequence)
-
-
-    def __init__(self, x=None, y=None, width=None, height=None):
-        # type: (float, float, float, float) -> None
-        '''Initializes this Rectangle struct'''
-        super(Rectangle, self).__init__(
-            x or 0.0,
-            y or 0.0,
-            width or 0.0,
-            height or 0.0
-        )
-
-
-    @property
-    def byref(self):
-        '''Gets a reference to this Rectangle instance'''
-        return byref(self)
-
-
-    def __len__(self):
-        return 4
-
-    def __getitem__(self, key):
-        return (self.x, self.y. self.width, self.height).__getitem__(key)
-
-    def __getattr__(self, attr):
-        m = _RECT_GET_SWZL.fullmatch(attr)
-        if not m:
-            raise AttributeError("Rectangle object does not have attribute '{}'.".format(attr))
-        cls = {1: float, 2: Vector2, 3: Vector3, 4: Rectangle}.get(len(attr))
-        v = self.todict()
-        return cls(*(v[ch] for ch in attr))
-
-    def __setattr__(self, attr, value):
-        m = _RECT_SET_SWZL.fullmatch(attr)
-        if not m:
-            raise AttributeError("Rectangle object does not have attribute '{}'.".format(attr))
-        w = self.width
-        h = self.height
-        if attr in ('width', 'height') or len(attr) == 1:
-            if attr == 'c':
-                super(Rectangle, self).__setattr__('x', float(value - w * 0.5))
-            elif attr == 'r':
-                super(Rectangle, self).__setattr__('x', float(value - w))
-            elif attr == 'm':
-                super(Rectangle, self).__setattr__('y', float(value - h * 0.5))
-            elif attr == 'b':
-                super(Rectangle, self).__setattr__('y', float(value - h))
-            else:
-                super(Rectangle, self).__setattr__(attr, float(value))
-        else:
-            for i, ch in enumerate(attr):
-                if ch in 'xywh':
-                    super(Rectangle, self).__setattr__(ch, float(value[i]))
-                elif ch == 'c':
-                    super(Rectangle, self).__setattr__('x', float(value[i] - w * 0.5))
-                elif ch == 'r':
-                    super(Rectangle, self).__setattr__('x', float(value[i] - w))
-                elif ch == 'm':
-                    super(Rectangle, self).__setattr__('y', float(value[i] - h * 0.5))
-                elif ch == 'b':
-                    super(Rectangle, self).__setattr__('y', float(value[i] - h))
-
-    def todict(self):
-        '''Returns a dict mapping this Rectangle's components'''
-        return {'x': self.x, 'y': self.y, 'w': self.width, 'h': self.height,
-                'c': self.x + self.width * 0.5, 'm': self.y + self.height * 0.5,
-                'r': self.x + self.width, 'b': self.y + self.height}
-
-    def fromdict(self, d):
-        '''Apply the mapping `d` to this Rectangle's components'''
-        self.x = float(d.get('x', self.x))
-        self.y = float(d.get('y', self.y))
-        self.width = float(d.get('w', self.width))
-        self.height = float(d.get('h', self.height))
-
-
-    def __str__(self):
-        return "({}, {}, {}, {})".format(self.x, self.y, self.width, self.height)
-
-    def __repr__(self):
-        return "Rectangle{}".format(self.__str__())
-
-
-# Pointer type to Rectangles
-RectanglePtr = POINTER(Rectangle)
-
-
-
-class Image(Structure):
-    '''Image, pixel data stored in CPU memory (RAM)'''
-    _fields_ = [
-        ('data', VoidPtr),
-        ('width', Int),
-        ('height', Int),
-        ('mipmaps', Int),
-        ('format', Int),
-    ]
-
-
-    @classmethod
-    def array_of(cls, image_sequence):
-        '''Creates and returns an array of Images'''
-        arr = cls * len(image_sequence)
-        return arr(*image_sequence)
-
-    @classmethod
-    def load(cls, file_name):
-        # type: (Union[str, CharPtr]) -> Image
-        """Load image from file into CPU memory (RAM)"""
-        result = _LoadImage(_str_in(file_name))
-        return result
-
-    @classmethod
-    def load_raw(cls, file_name, width, height, format, header_size):
-        # type: (Union[str, CharPtr], int, int, int, int) -> Image
-        """Load image from RAW file data"""
-        result = _LoadImageRaw(_str_in(file_name), int(width), int(height), int(format), int(header_size))
-        return result
-
-    @classmethod
-    def load_anim(cls, file_name, frames):
-        # type: (Union[str, CharPtr], Union[Seq[int], IntPtr]) -> Image
-        """Load image sequence from file (frames appended to image.data)"""
-        result = _LoadImageAnim(_str_in(file_name), frames)
-        return result
-
-    @classmethod
-    def load_from_memory(cls, file_type, file_data, data_size):
-        # type: (Union[str, CharPtr], Union[Seq[int], UCharPtr], int) -> Image
-        """Load image from memory buffer, fileType refers to extension: i.e. '.png'"""
-        result = _LoadImageFromMemory(_str_in(file_type), _str_in(file_data), int(data_size))
-        return result
-
-    @classmethod
-    def load_from_texture(cls, texture):
-        # type: (Texture2D) -> Image
-        """Load image from GPU texture data"""
-        result = _LoadImageFromTexture(texture)
-        return result
-
-    @classmethod
-    def load_from_screen():
-        # type: () -> Image
-        """Load image from screen buffer and (screenshot)"""
-        result = _LoadImageFromScreen()
-        return result
-
-    @classmethod
-    def gen_color(cls, width, height, color):
-        # type: (int, int, Color) -> Image
-        """Generate image: plain color"""
-        result = _GenImageColor(int(width), int(height), _color(color))
-        return result
-
-    @classmethod
-    def gen_gradient_h(cls, width, height, left, right):
-        # type: (int, int, Color, Color) -> Image
-        """Generate image: horizontal gradient"""
-        result = _GenImageGradientH(int(width), int(height), _color(left), _color(right))
-        return result
-
-    @classmethod
-    def gen_gradient_v(cls, width, height, top, bottom):
-        # type: (int, int, Color, Color) -> Image
-        """Generate image: vertical gradient"""
-        result = _GenImageGradientV(int(width), int(height), _color(top), _color(bottom))
-        return result
-
-    @classmethod
-    def gen_gradient_radial(cls, width, height, density, inner, outer):
-        # type: (int, int, float, Color, Color) -> Image
-        """Generate image: radial gradient"""
-        result = _GenImageGradientRadial(int(width), int(height), float(density), _color(inner), _color(outer))
-        return result
-
-    @classmethod
-    def gen_checked(cls, width, height, checks_x, checks_y, col1, col2):
-        # type: (int, int, int, int, Color, Color) -> Image
-        """Generate image: checked"""
-        result = _GenImageChecked(int(width), int(height), int(checks_x), int(checks_y), _color(col1), _color(col2))
-        return result
-
-    @classmethod
-    def gen_white_noise(cls, width, height, factor):
-        # type: (int, int, float) -> Image
-        """Generate image: white noise"""
-        result = _GenImageWhiteNoise(int(width), int(height), float(factor))
-        return result
-
-    @classmethod
-    def gen_perlin_noise(cls, width, height, offset_x, offset_y, scale):
-        # type: (int, int, int, int, float) -> Image
-        """Generate image: perlin noise"""
-        result = _GenImagePerlinNoise(int(width), int(height), int(offset_x), int(offset_y), float(scale))
-        return result
-
-    @classmethod
-    def gen_cellular(cls, width, height, tile_size):
-        # type: (int, int, int) -> Image
-        """Generate image: cellular algorithm, bigger tileSize means bigger cells"""
-        result = _GenImageCellular(int(width), int(height), int(tile_size))
-        return result
-
-    @classmethod
-    def gen_text(cls, width, height, text):
-        # type: (int, int, Union[str, CharPtr]) -> Image
-        """Generate image: grayscale image from text data"""
-        result = _GenImageText(int(width), int(height), _str_in(text))
-        return result
-
-    @classmethod
-    def from_image(cls, image, rec):
-        # type: (Image, Rectangle) -> Image
-        """Create an image from another image piece"""
-        result = _ImageFromImage(image, _rect(rec))
-        return result
-
-    @classmethod
-    def text(cls, text, font_size, color):
-        # type: (Union[str, CharPtr], int, Color) -> Image
-        """Create an image from text (default font)"""
-        result = _ImageText(_str_in(text), int(font_size), _color(color))
-        return result
-
-    @classmethod
-    def text_ex(cls, font, text, font_size, spacing, tint):
-        # type: (Font, Union[str, CharPtr], float, float, Color) -> Image
-        """Create an image from text (custom sprite font)"""
-        result = _ImageTextEx(font, _str_in(text), float(font_size), float(spacing), _color(tint))
-        return result
-
-
-    def __init__(self, data=None,
-                 width=None,
-                 height=None,
-                 mipmaps=None,
-                 format=None):
-        # type: (bytes, int, int, int, int) -> None
-        '''Initializes this Image struct'''
-        super(Image, self).__init__(
-            data,
-            width or 0,
-            height or 0,
-            mipmaps or 0,
-            format or 0
-        )
-
-
-    @property
-    def byref(self):
-        '''Gets a reference to this Image instance'''
-        return byref(self)
-
-
-    @property
-    def is_ready(self):
-        # type: (Image) -> bool
-        """Check if an image is ready"""
-        result = _IsImageReady(self)
-        return result
-
-    def unload(self):
-        # type: (Image) -> None
-        """Unload image from CPU memory (RAM)"""
-        _UnloadImage(self)
-
-    def export(self, file_name):
-        # type: (Image, Union[str, CharPtr]) -> bool
-        """Export image data to file, returns true on success"""
-        result = _ExportImage(self, _str_in(file_name))
-        return result
-
-    def export_as_code(self, file_name):
-        # type: (Image, Union[str, CharPtr]) -> bool
-        """Export image as code file defining an array of bytes, returns true on success"""
-        result = _ExportImageAsCode(self, _str_in(file_name))
-        return result
-
-    def copy(self):
-        # type: (Image) -> Image
-        """Create an image duplicate (useful for transformations)"""
-        result = _ImageCopy(self)
-        return result
-
-    def format(self, new_format):
-        # type: (ImagePtr, int) -> None
-        """Convert image data to desired format"""
-        _ImageFormat(self.byref, int(new_format))
-
-    def to_pot(self, fill):
-        # type: (ImagePtr, Color) -> None
-        """Convert image to POT (power-of-two)"""
-        _ImageToPOT(self.byref, _color(fill))
-
-    def crop(self, crop):
-        # type: (ImagePtr, Rectangle) -> None
-        """Crop an image to a defined rectangle"""
-        _ImageCrop(self.byref, _rect(crop))
-
-    def alpha_crop(self, threshold):
-        # type: (ImagePtr, float) -> None
-        """Crop image depending on alpha value"""
-        _ImageAlphaCrop(self.byref, float(threshold))
-
-    def alpha_clear(self, color, threshold):
-        # type: (ImagePtr, Color, float) -> None
-        """Clear alpha channel to desired color"""
-        _ImageAlphaClear(self.byref, _color(color), float(threshold))
-
-    def alpha_mask(self, alpha_mask):
-        # type: (ImagePtr, Image) -> None
-        """Apply alpha mask to image"""
-        _ImageAlphaMask(self.byref, alpha_mask)
-
-    def alpha_premultiply(self):
-        # type: (ImagePtr) -> None
-        """Premultiply alpha channel"""
-        _ImageAlphaPremultiply(self.byref)
-
-    def resize(self, new_width, new_height):
-        # type: (ImagePtr, int, int) -> None
-        """Resize image (Bicubic scaling algorithm)"""
-        _ImageResize(self.byref, int(new_width), int(new_height))
-
-    def resize_nn(self, new_width, new_height):
-        # type: (ImagePtr, int, int) -> None
-        """Resize image (Nearest-Neighbor scaling algorithm)"""
-        _ImageResizeNN(self.byref, int(new_width), int(new_height))
-
-    def resize_canvas(self, new_width, new_height, offset_x, offset_y, fill):
-        # type: (ImagePtr, int, int, int, int, Color) -> None
-        """Resize canvas and fill with color"""
-        _ImageResizeCanvas(self.byref, int(new_width), int(new_height), int(offset_x), int(offset_y), _color(fill))
-
-    def mipmaps(self):
-        # type: (ImagePtr) -> None
-        """Compute all mipmap levels for a provided image"""
-        _ImageMipmaps(self.byref)
-
-    def dither(self, r_bpp, g_bpp, b_bpp, a_bpp):
-        # type: (ImagePtr, int, int, int, int) -> None
-        """Dither image data to 16bpp or lower (Floyd-Steinberg dithering)"""
-        _ImageDither(self.byref, int(r_bpp), int(g_bpp), int(b_bpp), int(a_bpp))
-
-    def flip_vertical(self):
-        # type: (ImagePtr) -> None
-        """Flip image vertically"""
-        _ImageFlipVertical(self.byref)
-
-    def flip_horizontal(self):
-        # type: (ImagePtr) -> None
-        """Flip image horizontally"""
-        _ImageFlipHorizontal(self.byref)
-
-    def rotate_cw(self):
-        # type: (ImagePtr) -> None
-        """Rotate image clockwise 90deg"""
-        _ImageRotateCW(self.byref)
-
-    def rotate_ccw(self):
-        # type: (ImagePtr) -> None
-        """Rotate image counter-clockwise 90deg"""
-        _ImageRotateCCW(self.byref)
-
-    def color_tint(self, color):
-        # type: (ImagePtr, Color) -> None
-        """Modify image color: tint"""
-        _ImageColorTint(self.byref, _color(color))
-
-    def color_invert(self):
-        # type: (ImagePtr) -> None
-        """Modify image color: invert"""
-        _ImageColorInvert(self.byref)
-
-    def color_grayscale(self):
-        # type: (ImagePtr) -> None
-        """Modify image color: grayscale"""
-        _ImageColorGrayscale(self.byref)
-
-    def color_contrast(self, contrast):
-        # type: (ImagePtr, float) -> None
-        """Modify image color: contrast (-100 to 100)"""
-        _ImageColorContrast(self.byref, float(contrast))
-
-    def color_brightness(self, brightness):
-        # type: (ImagePtr, int) -> None
-        """Modify image color: brightness (-255 to 255)"""
-        _ImageColorBrightness(self.byref, int(brightness))
-
-    def color_replace(self, color, replace):
-        # type: (ImagePtr, Color, Color) -> None
-        """Modify image color: replace color"""
-        _ImageColorReplace(self.byref, _color(color), _color(replace))
-
-    def clear_background(self, color):
-        # type: (ImagePtr, Color) -> None
-        """Clear image background with given color"""
-        _ImageClearBackground(self.byref, _color(color))
-
-    def draw_pixel(self, pos_x, pos_y, color):
-        # type: (ImagePtr, int, int, Color) -> None
-        """Draw pixel within an image"""
-        _ImageDrawPixel(self.byref, int(pos_x), int(pos_y), _color(color))
-
-    def draw_pixel_v(self, position, color):
-        # type: (ImagePtr, Vector2, Color) -> None
-        """Draw pixel within an image (Vector version)"""
-        _ImageDrawPixelV(self.byref, _vec2(position), _color(color))
-
-    def draw_line(self, start_pos_x, start_pos_y, end_pos_x, end_pos_y, color):
-        # type: (ImagePtr, int, int, int, int, Color) -> None
-        """Draw line within an image"""
-        _ImageDrawLine(self.byref, int(start_pos_x), int(start_pos_y), int(end_pos_x), int(end_pos_y), _color(color))
-
-    def draw_line_v(self, start, end, color):
-        # type: (ImagePtr, Vector2, Vector2, Color) -> None
-        """Draw line within an image (Vector version)"""
-        _ImageDrawLineV(self.byref, _vec2(start), _vec2(end), _color(color))
-
-    def draw_circle(self, center_x, center_y, radius, color):
-        # type: (ImagePtr, int, int, int, Color) -> None
-        """Draw a filled circle within an image"""
-        _ImageDrawCircle(self.byref, int(center_x), int(center_y), int(radius), _color(color))
-
-    def draw_circle_v(self, center, radius, color):
-        # type: (ImagePtr, Vector2, int, Color) -> None
-        """Draw a filled circle within an image (Vector version)"""
-        _ImageDrawCircleV(self.byref, _vec2(center), int(radius), _color(color))
-
-    def draw_rectangle(self, pos_x, pos_y, width, height, color):
-        # type: (ImagePtr, int, int, int, int, Color) -> None
-        """Draw rectangle within an image"""
-        _ImageDrawRectangle(self.byref, int(pos_x), int(pos_y), int(width), int(height), _color(color))
-
-    def draw_rectangle_v(self, position, size, color):
-        # type: (ImagePtr, Vector2, Vector2, Color) -> None
-        """Draw rectangle within an image (Vector version)"""
-        _ImageDrawRectangleV(self.byref, _vec2(position), _vec2(size), _color(color))
-
-    def draw_rectangle_rec(self, rec, color):
-        # type: (ImagePtr, Rectangle, Color) -> None
-        """Draw rectangle within an image"""
-        _ImageDrawRectangleRec(self.byref, _rect(rec), _color(color))
-
-    def draw_rectangle_lines(self, rec, thick, color):
-        # type: (ImagePtr, Rectangle, int, Color) -> None
-        """Draw rectangle lines within an image"""
-        _ImageDrawRectangleLines(self.byref, _rect(rec), int(thick), _color(color))
-
-    def draw(self, src, src_rec, dst_rec, tint):
-        # type: (ImagePtr, Image, Rectangle, Rectangle, Color) -> None
-        """Draw a source image within a destination image (tint applied to source)"""
-        _ImageDraw(self.byref, src, _rect(src_rec), _rect(dst_rec), _color(tint))
-
-    def draw_text(self, text, pos_x, pos_y, font_size, color):
-        # type: (ImagePtr, Union[str, CharPtr], int, int, int, Color) -> None
-        """Draw text (using default font) within an image (destination)"""
-        _ImageDrawText(self.byref, _str_in(text), int(pos_x), int(pos_y), int(font_size), _color(color))
-
-    def draw_text_ex(self, font, text, position, font_size, spacing, tint):
-        # type: (ImagePtr, Font, Union[str, CharPtr], Vector2, float, float, Color) -> None
-        """Draw text (custom sprite font) within an image (destination)"""
-        _ImageDrawTextEx(self.byref, font, _str_in(text), _vec2(position), float(font_size), float(spacing), _color(tint))
-
-    def load_colors(self):
-        # type: (Image) -> ColorPtr
-        """Load color data from image as a Color array (RGBA - 32bit)"""
-        result = _ptr_out(_LoadImageColors(self))
-        return result
-
-    def load_palette(self, max_palette_size):
-        # type: (Image, int) -> ColorPtr
-        """Load colors palette from image as a Color array (RGBA - 32bit)"""
-        color_count = Int(0)
-        result = _ptr_out(_LoadImagePalette(self, int(max_palette_size), byref(color_count)), color_count.value)
-        return result
-
-    def get_alpha_border(self, threshold):
-        # type: (Image, float) -> Rectangle
-        """Get image alpha border rectangle"""
-        result = _GetImageAlphaBorder(self, float(threshold))
-        return result
-
-    def get_color(self, x, y):
-        # type: (Image, int, int) -> Color
-        """Get image pixel color at (x, y) position"""
-        result = _GetImageColor(self, int(x), int(y))
-        return result
-
-    @staticmethod
-    def unload_colors(colors):
-        # type: (ColorPtr) -> None
-        """Unload color data loaded with LoadImageColors()"""
-        _UnloadImageColors(_color(colors))
-
-    @staticmethod
-    def unload_palette(colors):
-        # type: (ColorPtr) -> None
-        """Unload colors palette loaded with LoadImagePalette()"""
-        _UnloadImagePalette(_color(colors))
-
-
-# Pointer type to Images
-ImagePtr = POINTER(Image)
-
-
-
-class Texture(Structure):
-    '''Texture, tex data stored in GPU memory (VRAM)'''
-    _fields_ = [
-        ('id', UInt),
-        ('width', Int),
-        ('height', Int),
-        ('mipmaps', Int),
-        ('format', Int),
-    ]
-
-
-    @classmethod
-    def array_of(cls, texture_sequence):
-        '''Creates and returns an array of Textures'''
-        arr = cls * len(texture_sequence)
-        return arr(*texture_sequence)
-
-    @classmethod
-    def load(cls, file_name):
-        # type: (Union[str, CharPtr]) -> Texture2D
-        """Load texture from file into GPU memory (VRAM)"""
-        result = _LoadTexture(_str_in(file_name))
-        return result
-
-    @classmethod
-    def load_from_image(cls, image):
-        # type: (Image) -> Texture2D
-        """Load texture from image data"""
-        result = _LoadTextureFromImage(image)
-        return result
-
-
-    def __init__(self, id=None,
-                 width=None,
-                 height=None,
-                 mipmaps=None,
-                 format=None):
-        # type: (int, int, int, int, int) -> None
-        '''Initializes this Texture struct'''
-        super(Texture, self).__init__(
-            id or 0,
-            width or 0,
-            height or 0,
-            mipmaps or 0,
-            format or 0
-        )
-
-
-    @property
-    def byref(self):
-        '''Gets a reference to this Texture instance'''
-        return byref(self)
-
-
-    def __str__(self):
-        return "[{} at {}]".format(self.__class__.__name__, id(self))
-
-    def __repr__(self):
-        return self.__str__()
-
-    @property
-    def is_ready(self):
-        # type: (Texture2D) -> bool
-        """Check if a texture is ready"""
-        result = _IsTextureReady(self)
-        return result
-
-    def unload(self):
-        # type: (Texture2D) -> None
-        """Unload texture from GPU memory (VRAM)"""
-        _UnloadTexture(self)
-
-    def gen_mip_maps(self):
-        # type: (Texture2DPtr) -> None
-        """Generate GPU mipmaps for a texture"""
-        _GenTextureMipmaps(self.byref)
-
-    def set_filter(self, filter):
-        # type: (Texture2D, int) -> None
-        """Set texture scaling filter mode"""
-        _SetTextureFilter(self, int(filter))
-
-    def set_wrap(self, wrap):
-        # type: (Texture2D, int) -> None
-        """Set texture wrapping mode"""
-        _SetTextureWrap(self, int(wrap))
-
-    def draw(self, pos_x, pos_y, tint):
-        # type: (Texture2D, int, int, Color) -> None
-        """Draw a Texture2D"""
-        _DrawTexture(self, int(pos_x), int(pos_y), _color(tint))
-
-    def draw_v(self, position, tint):
-        # type: (Texture2D, Vector2, Color) -> None
-        """Draw a Texture2D with position defined as Vector2"""
-        _DrawTextureV(self, _vec2(position), _color(tint))
-
-    def draw_ex(self, position, rotation, scale, tint):
-        # type: (Texture2D, Vector2, float, float, Color) -> None
-        """Draw a Texture2D with extended parameters"""
-        _DrawTextureEx(self, _vec2(position), float(rotation), float(scale), _color(tint))
-
-    def draw_rec(self, source, position, tint):
-        # type: (Texture2D, Rectangle, Vector2, Color) -> None
-        """Draw a part of a texture defined by a rectangle"""
-        _DrawTextureRec(self, _rect(source), _vec2(position), _color(tint))
-
-    def draw_pro(self, source, dest, origin, rotation, tint):
-        # type: (Texture2D, Rectangle, Rectangle, Vector2, float, Color) -> None
-        """Draw a part of a texture defined by a rectangle with 'pro' parameters"""
-        _DrawTexturePro(self, _rect(source), _rect(dest), _vec2(origin), float(rotation), _color(tint))
-
-    def draw_npatch(self, n_patch_info, dest, origin, rotation, tint):
-        # type: (Texture2D, NPatchInfo, Rectangle, Vector2, float, Color) -> None
-        """Draws a texture (or part of it) that stretches or shrinks nicely"""
-        _DrawTextureNPatch(self, n_patch_info, _rect(dest), _vec2(origin), float(rotation), _color(tint))
-
-
-# Pointer type to Textures
-TexturePtr = POINTER(Texture)
-
-
-# Texture2D, same as Texture
-Texture2D = Texture
-Texture2DPtr = TexturePtr
-# TextureCubemap, same as Texture
-TextureCubemap = Texture
-TextureCubemapPtr = TexturePtr
-
-class RenderTexture(Structure):
-    '''RenderTexture, fbo for texture rendering'''
-    _fields_ = [
-        ('id', UInt),
-        ('texture', Texture),
-        ('depth', Texture),
-    ]
-
-
-    @classmethod
-    def array_of(cls, render_texture_sequence):
-        '''Creates and returns an array of RenderTextures'''
-        arr = cls * len(render_texture_sequence)
-        return arr(*render_texture_sequence)
-
-
-    def __init__(self, id=None, texture=None, depth=None):
-        # type: (int, Texture, Texture) -> None
-        '''Initializes this RenderTexture struct'''
-        super(RenderTexture, self).__init__(
-            id or 0,
-            texture or Texture(),
-            depth or Texture()
-        )
-
-
-    @property
-    def byref(self):
-        '''Gets a reference to this RenderTexture instance'''
-        return byref(self)
-
-
-
-# Pointer type to RenderTextures
-RenderTexturePtr = POINTER(RenderTexture)
-
-
-# RenderTexture2D, same as RenderTexture
-RenderTexture2D = RenderTexture
-RenderTexture2DPtr = RenderTexturePtr
-
-class NPatchInfo(Structure):
-    '''NPatchInfo, n-patch layout info'''
-    _fields_ = [
-        ('source', Rectangle),
-        ('left', Int),
-        ('top', Int),
-        ('right', Int),
-        ('bottom', Int),
-        ('layout', Int),
-    ]
-
-
-    @classmethod
-    def array_of(cls, npatch_info_sequence):
-        '''Creates and returns an array of NPatchInfos'''
-        arr = cls * len(npatch_info_sequence)
-        return arr(*npatch_info_sequence)
-
-
-    def __init__(self, source=None,
-                 left=None,
-                 top=None,
-                 right=None,
-                 bottom=None,
-                 layout=None):
-        # type: (Rectangle, int, int, int, int, int) -> None
-        '''Initializes this NPatchInfo struct'''
-        super(NPatchInfo, self).__init__(
-            source or Rectangle(),
-            left or 0,
-            top or 0,
-            right or 0,
-            bottom or 0,
-            layout or 0
-        )
-
-
-    @property
-    def byref(self):
-        '''Gets a reference to this NPatchInfo instance'''
-        return byref(self)
-
-
-
-# Pointer type to NPatchInfos
-NPatchInfoPtr = POINTER(NPatchInfo)
-
-
-
-class GlyphInfo(Structure):
-    '''GlyphInfo, font characters glyphs info'''
-    _fields_ = [
-        ('value', Int),
-        ('offset_x', Int),
-        ('offset_y', Int),
-        ('advance_x', Int),
-        ('image', Image),
-    ]
-
-
-    @classmethod
-    def array_of(cls, glyph_info_sequence):
-        '''Creates and returns an array of GlyphInfos'''
-        arr = cls * len(glyph_info_sequence)
-        return arr(*glyph_info_sequence)
-
-
-    def __init__(self, value=None,
-                 offset_x=None,
-                 offset_y=None,
-                 advance_x=None,
-                 image=None):
-        # type: (int, int, int, int, Image) -> None
-        '''Initializes this GlyphInfo struct'''
-        super(GlyphInfo, self).__init__(
-            value or 0,
-            offset_x or 0,
-            offset_y or 0,
-            advance_x or 0,
-            image or Image()
-        )
-
-
-    @property
-    def byref(self):
-        '''Gets a reference to this GlyphInfo instance'''
-        return byref(self)
-
-
-
-# Pointer type to GlyphInfos
-GlyphInfoPtr = POINTER(GlyphInfo)
-
-
-
-class Font(Structure):
-    '''Font, font texture and GlyphInfo array data'''
-    _fields_ = [
-        ('base_size', Int),
-        ('glyph_count', Int),
-        ('glyph_padding', Int),
-        ('texture', Texture2D),
-        ('recs', RectanglePtr),
-        ('glyphs', GlyphInfoPtr),
-    ]
-
-
-    @classmethod
-    def array_of(cls, font_sequence):
-        '''Creates and returns an array of Fonts'''
-        arr = cls * len(font_sequence)
-        return arr(*font_sequence)
-
-    @classmethod
-    def load(cls, file_name):
-        # type: (Union[str, CharPtr]) -> Font
-        """Load font from file into GPU memory (VRAM)"""
-        result = _LoadFont(_str_in(file_name))
-        return result
-
-    @classmethod
-    def load_ex(cls, file_name, font_size, font_chars, glyph_count):
-        # type: (Union[str, CharPtr], int, Union[Seq[int], IntPtr], int) -> Font
-        """Load font from file with extended parameters, use NULL for fontChars and 0 for glyphCount to load the default character set"""
-        result = _LoadFontEx(_str_in(file_name), int(font_size), font_chars, int(glyph_count))
-        return result
-
-    @classmethod
-    def load_from_image(cls, image, key, first_char):
-        # type: (Image, Color, int) -> Font
-        """Load font from Image (XNA style)"""
-        result = _LoadFontFromImage(image, _color(key), int(first_char))
-        return result
-
-    @classmethod
-    def load_from_memory(cls, file_type, file_data, data_size, font_size, font_chars, glyph_count):
-        # type: (Union[str, CharPtr], Union[Seq[int], UCharPtr], int, int, Union[Seq[int], IntPtr], int) -> Font
-        """Load font from memory buffer, fileType refers to extension: i.e. '.ttf'"""
-        result = _LoadFontFromMemory(_str_in(file_type), _str_in(file_data), int(data_size), int(font_size), font_chars, int(glyph_count))
-        return result
-
-
-    def __init__(self, base_size=None,
-                 glyph_count=None,
-                 glyph_padding=None,
-                 texture=None,
-                 recs=None,
-                 glyphs=None):
-        # type: (int, int, int, Texture2D, RectanglePtr, GlyphInfoPtr) -> None
-        '''Initializes this Font struct'''
-        super(Font, self).__init__(
-            base_size or 0,
-            glyph_count or 0,
-            glyph_padding or 0,
-            texture or Texture2D(),
-            recs,
-            glyphs
-        )
-
-
-    @property
-    def byref(self):
-        '''Gets a reference to this Font instance'''
-        return byref(self)
-
-
-    def __str__(self):
-        return "[{} at {}]".format(self.__class__.__name__, id(self))
-
-    def __repr__(self):
-        return self.__str__()
-
-    @property
-    def is_ready(self):
-        # type: (Font) -> bool
-        """Check if a font is ready"""
-        result = _IsFontReady(self)
-        return result
-
-    def unload(self):
-        # type: (Font) -> None
-        """Unload font from GPU memory (VRAM)"""
-        _UnloadFont(self)
-
-    def draw_text_ex(self, text, position, font_size, spacing, tint):
-        # type: (Font, Union[str, CharPtr], Vector2, float, float, Color) -> None
-        """Draw text using font and additional parameters"""
-        _DrawTextEx(self, _str_in(text), _vec2(position), float(font_size), float(spacing), _color(tint))
-
-    def draw_text_pro(self, text, position, origin, rotation, font_size, spacing, tint):
-        # type: (Font, Union[str, CharPtr], Vector2, Vector2, float, float, float, Color) -> None
-        """Draw text using Font and pro parameters (rotation)"""
-        _DrawTextPro(self, _str_in(text), _vec2(position), _vec2(origin), float(rotation), float(font_size), float(spacing), _color(tint))
-
-    def draw_text_codepoint(self, codepoint, position, font_size, tint):
-        # type: (Font, int, Vector2, float, Color) -> None
-        """Draw one character (codepoint)"""
-        _DrawTextCodepoint(self, int(codepoint), _vec2(position), float(font_size), _color(tint))
-
-    def draw_text_codepoints(self, codepoints, position, font_size, spacing, tint):
-        # type: (Font, Union[Seq[int], IntPtr], Vector2, float, float, Color) -> None
-        """Draw multiple character (codepoint)"""
-        _DrawTextCodepoints(self, _str_in(codepoints), len(codepoints), _vec2(position), float(font_size), float(spacing), _color(tint))
-
-    def measure_text_ex(self, text, font_size, spacing):
-        # type: (Font, Union[str, CharPtr], float, float) -> Vector2
-        """Measure string size for Font"""
-        result = _MeasureTextEx(self, _str_in(text), float(font_size), float(spacing))
-        return result
-
-    def get_glyph_index(self, codepoint):
-        # type: (Font, int) -> int
-        """Get glyph index position in font for a codepoint (unicode character), fallback to '?' if not found"""
-        result = _GetGlyphIndex(self, int(codepoint))
-        return result
-
-    def get_glyph_info(self, codepoint):
-        # type: (Font, int) -> GlyphInfo
-        """Get glyph font info data for a codepoint (unicode character), fallback to '?' if not found"""
-        result = _GetGlyphInfo(self, int(codepoint))
-        return result
-
-    def get_glyph_atlas_rec(self, codepoint):
-        # type: (Font, int) -> Rectangle
-        """Get glyph rectangle in font atlas for a codepoint (unicode character), fallback to '?' if not found"""
-        result = _GetGlyphAtlasRec(self, int(codepoint))
-        return result
-
-    @staticmethod
-    def load_data(file_data, data_size, font_size, font_chars, glyph_count, type):
-        # type: (Union[Seq[int], UCharPtr], int, int, Union[Seq[int], IntPtr], int, int) -> GlyphInfoPtr
-        """Load font data for further use"""
-        result = _ptr_out(_LoadFontData(_str_in(file_data), int(data_size), int(font_size), font_chars, int(glyph_count), int(type)))
-        return result
-
-    @staticmethod
-    def unload_data(chars, glyph_count):
-        # type: (GlyphInfoPtr, int) -> None
-        """Unload font chars info data (RAM)"""
-        _UnloadFontData(chars, int(glyph_count))
-
-
-# Pointer type to Fonts
-FontPtr = POINTER(Font)
-
-
-
-class Camera3D(Structure):
-    '''Camera, defines position/orientation in 3d space'''
-    _fields_ = [
-        ('position', Vector3),
-        ('target', Vector3),
-        ('up', Vector3),
-        ('fovy', Float),
-        ('projection', Int),
-    ]
-
-
-    @classmethod
-    def array_of(cls, camera3d_sequence):
-        '''Creates and returns an array of Camera3Ds'''
-        arr = cls * len(camera3d_sequence)
-        return arr(*camera3d_sequence)
-
-
-    def __init__(self, position=None,
-                 target=None,
-                 up=None,
-                 fovy=None,
-                 projection=None):
-        # type: (Vector3, Vector3, Vector3, float, int) -> None
-        '''Initializes this Camera3D struct'''
-        super(Camera3D, self).__init__(
-            position or Vector3(),
-            target or Vector3(),
-            up or Vector3(),
-            fovy or 0.0,
-            projection or 0
-        )
-
-
-    @property
-    def byref(self):
-        '''Gets a reference to this Camera3D instance'''
-        return byref(self)
-
-
-    def __enter__(self):
-        _BeginMode3D(self)
-
-    def __leave__(self, exc_type, exc_value, traceback):
-        _EndMode3D()
-
-
-# Pointer type to Camera3Ds
-Camera3DPtr = POINTER(Camera3D)
-
-
-# Camera type fallback, defaults to Camera3D
-Camera = Camera3D
-CameraPtr = Camera3DPtr
-
-class Camera2D(Structure):
-    '''Camera2D, defines position/orientation in 2d space'''
-    _fields_ = [
-        ('offset', Vector2),
-        ('target', Vector2),
-        ('rotation', Float),
-        ('zoom', Float),
-    ]
-
-
-    @classmethod
-    def array_of(cls, camera2d_sequence):
-        '''Creates and returns an array of Camera2Ds'''
-        arr = cls * len(camera2d_sequence)
-        return arr(*camera2d_sequence)
-
-
-    def __init__(self, offset=None, target=None, rotation=None, zoom=None):
-        # type: (Vector2, Vector2, float, float) -> None
-        '''Initializes this Camera2D struct'''
-        super(Camera2D, self).__init__(
-            offset or Vector2(),
-            target or Vector2(),
-            rotation or 0.0,
-            zoom or 0.0
-        )
-
-
-    @property
-    def byref(self):
-        '''Gets a reference to this Camera2D instance'''
-        return byref(self)
-
-
-    def __enter__(self):
-        _BeginMode2D(self)
-
-    def __leave__(self, exc_type, exc_value, traceback):
-        _EndMode2D()
-
-
-# Pointer type to Camera2Ds
-Camera2DPtr = POINTER(Camera2D)
-
-
-
-class Mesh(Structure):
-    '''Mesh, vertex data and vao/vbo'''
-    _fields_ = [
-        ('vertex_count', Int),
-        ('triangle_count', Int),
-        ('vertices', FloatPtr),
-        ('texcoords', FloatPtr),
-        ('texcoords2', FloatPtr),
-        ('normals', FloatPtr),
-        ('tangents', FloatPtr),
-        ('colors', UCharPtr),
-        ('indices', UShortPtr),
-        ('anim_vertices', FloatPtr),
-        ('anim_normals', FloatPtr),
-        ('bone_ids', UCharPtr),
-        ('bone_weights', FloatPtr),
-        ('vao_id', UInt),
-        ('vbo_id', UIntPtr),
-    ]
-
-
-    @classmethod
-    def array_of(cls, mesh_sequence):
-        '''Creates and returns an array of Meshs'''
-        arr = cls * len(mesh_sequence)
-        return arr(*mesh_sequence)
-
-    @classmethod
-    def gen_poly(cls, sides, radius):
-        # type: (int, float) -> Mesh
-        """Generate polygonal mesh"""
-        result = _GenMeshPoly(int(sides), float(radius))
-        return result
-
-    @classmethod
-    def gen_plane(cls, width, length, res_x, res_z):
-        # type: (float, float, int, int) -> Mesh
-        """Generate plane mesh (with subdivisions)"""
-        result = _GenMeshPlane(float(width), float(length), int(res_x), int(res_z))
-        return result
-
-    @classmethod
-    def gen_cube(cls, width, height, length):
-        # type: (float, float, float) -> Mesh
-        """Generate cuboid mesh"""
-        result = _GenMeshCube(float(width), float(height), float(length))
-        return result
-
-    @classmethod
-    def gen_sphere(cls, radius, rings, slices):
-        # type: (float, int, int) -> Mesh
-        """Generate sphere mesh (standard sphere)"""
-        result = _GenMeshSphere(float(radius), int(rings), int(slices))
-        return result
-
-    @classmethod
-    def gen_hemi_sphere(cls, radius, rings, slices):
-        # type: (float, int, int) -> Mesh
-        """Generate half-sphere mesh (no bottom cap)"""
-        result = _GenMeshHemiSphere(float(radius), int(rings), int(slices))
-        return result
-
-    @classmethod
-    def gen_cylinder(cls, radius, height, slices):
-        # type: (float, float, int) -> Mesh
-        """Generate cylinder mesh"""
-        result = _GenMeshCylinder(float(radius), float(height), int(slices))
-        return result
-
-    @classmethod
-    def gen_cone(cls, radius, height, slices):
-        # type: (float, float, int) -> Mesh
-        """Generate cone/pyramid mesh"""
-        result = _GenMeshCone(float(radius), float(height), int(slices))
-        return result
-
-    @classmethod
-    def gen_torus(cls, radius, size, rad_seg, sides):
-        # type: (float, float, int, int) -> Mesh
-        """Generate torus mesh"""
-        result = _GenMeshTorus(float(radius), float(size), int(rad_seg), int(sides))
-        return result
-
-    @classmethod
-    def gen_knot(cls, radius, size, rad_seg, sides):
-        # type: (float, float, int, int) -> Mesh
-        """Generate trefoil knot mesh"""
-        result = _GenMeshKnot(float(radius), float(size), int(rad_seg), int(sides))
-        return result
-
-    @classmethod
-    def gen_heightmap(cls, heightmap, size):
-        # type: (Image, Vector3) -> Mesh
-        """Generate heightmap mesh from image data"""
-        result = _GenMeshHeightmap(heightmap, _vec3(size))
-        return result
-
-    @classmethod
-    def gen_cubicmap(cls, cubicmap, cube_size):
-        # type: (Image, Vector3) -> Mesh
-        """Generate cubes-based map mesh from image data"""
-        result = _GenMeshCubicmap(cubicmap, _vec3(cube_size))
-        return result
-
-
-    def __init__(self, vertex_count=None,
-                 triangle_count=None,
-                 vertices=None,
-                 texcoords=None,
-                 texcoords2=None,
-                 normals=None,
-                 tangents=None,
-                 colors=None,
-                 indices=None,
-                 anim_vertices=None,
-                 anim_normals=None,
-                 bone_ids=None,
-                 bone_weights=None,
-                 vao_id=None,
-                 vbo_id=None):
-        # type: (int, int, Union[Seq[float], FloatPtr], Union[Seq[float], FloatPtr], Union[Seq[float], FloatPtr], Union[Seq[float], FloatPtr], Union[Seq[float], FloatPtr], Union[Seq[int], UCharPtr], Union[Seq[int], UShortPtr], Union[Seq[float], FloatPtr], Union[Seq[float], FloatPtr], Union[Seq[int], UCharPtr], Union[Seq[float], FloatPtr], int, Union[Seq[int], UIntPtr]) -> None
-        '''Initializes this Mesh struct'''
-        super(Mesh, self).__init__(
-            vertex_count or 0,
-            triangle_count or 0,
-            vertices,
-            texcoords,
-            texcoords2,
-            normals,
-            tangents,
-            colors,
-            indices,
-            anim_vertices,
-            anim_normals,
-            bone_ids,
-            bone_weights,
-            vao_id or 0,
-            vbo_id
-        )
-
-
-    @property
-    def byref(self):
-        '''Gets a reference to this Mesh instance'''
-        return byref(self)
-
-
-    def __str__(self):
-        return "[{} at {}]".format(self.__class__.__name__, id(self))
-
-    def __repr__(self):
-        return self.__str__()
-
-    def upload(self, dynamic):
-        # type: (MeshPtr, bool) -> None
-        """Upload mesh vertex data in GPU and provide VAO/VBO ids"""
-        _UploadMesh(self.byref, bool(dynamic))
-
-    def update_buffer(self, index, data, data_size, offset):
-        # type: (Mesh, int, bytes, int, int) -> None
-        """Update mesh vertex data in GPU for a specific buffer index"""
-        _UpdateMeshBuffer(self, int(index), data, int(data_size), int(offset))
-
-    def unload(self):
-        # type: (Mesh) -> None
-        """Unload mesh data from CPU and GPU"""
-        _UnloadMesh(self)
-
-    def draw(self, material, transform):
-        # type: (Mesh, Material, Matrix) -> None
-        """Draw a 3d mesh with material and transform"""
-        _DrawMesh(self, material, transform)
-
-    def draw_instanced(self, material, transforms, instances):
-        # type: (Mesh, Material, MatrixPtr, int) -> None
-        """Draw multiple mesh instances with material and different transforms"""
-        _DrawMeshInstanced(self, material, transforms, int(instances))
-
-    def export(self, file_name):
-        # type: (Mesh, Union[str, CharPtr]) -> bool
-        """Export mesh data to file, returns true on success"""
-        result = _ExportMesh(self, _str_in(file_name))
-        return result
-
-    def get_bounding_box(self):
-        # type: (Mesh) -> BoundingBox
-        """Compute mesh bounding box limits"""
-        result = _GetMeshBoundingBox(self)
-        return result
-
-    def gen_tangents(self):
-        # type: (MeshPtr) -> None
-        """Compute mesh tangents"""
-        _GenMeshTangents(self.byref)
-
-
-# Pointer type to Meshs
-MeshPtr = POINTER(Mesh)
-
-
-
-class Shader(Structure):
-    '''Shader'''
-    _fields_ = [
-        ('id', UInt),
-        ('locs', IntPtr),
-    ]
-
-
-    @classmethod
-    def array_of(cls, shader_sequence):
-        '''Creates and returns an array of Shaders'''
-        arr = cls * len(shader_sequence)
-        return arr(*shader_sequence)
-
-    @classmethod
-    def load(cls, vs_file_name, fs_file_name):
-        # type: (Union[str, CharPtr], Union[str, CharPtr]) -> Shader
-        """Load shader from files and bind default locations"""
-        result = _LoadShader(_str_in(vs_file_name), _str_in(fs_file_name))
-        return result
-
-    @classmethod
-    def load_from_memory(cls, vs_code, fs_code):
-        # type: (Union[str, CharPtr], Union[str, CharPtr]) -> Shader
-        """Load shader from code strings and bind default locations"""
-        result = _LoadShaderFromMemory(_str_in(vs_code), _str_in(fs_code))
-        return result
-
-
-    def __init__(self, id=None, locs=None):
-        # type: (int, Union[Seq[int], IntPtr]) -> None
-        '''Initializes this Shader struct'''
-        super(Shader, self).__init__(
-            id or 0,
-            locs
-        )
-
-
-    @property
-    def byref(self):
-        '''Gets a reference to this Shader instance'''
-        return byref(self)
-
-
-    def __str__(self):
-        return "[{} at {}]".format(self.__class__.__name__, id(self))
-
-    def __repr__(self):
-        return self.__str__()
-
-    def __enter__(self):
-        _BeginShaderMode(self)
-
-    def __leave__(self, exc_type, exc_value, traceback):
-        _EndShaderMode()
-
-    @property
-    def is_ready(self):
-        # type: (Shader) -> bool
-        """Check if a shader is ready"""
-        result = _IsShaderReady(self)
-        return result
-
-    def get_location(self, uniform_name):
-        # type: (Shader, Union[str, CharPtr]) -> int
-        """Get shader uniform location"""
-        result = _GetShaderLocation(self, _str_in(uniform_name))
-        return result
-
-    def get_location_attrib(self, attrib_name):
-        # type: (Shader, Union[str, CharPtr]) -> int
-        """Get shader attribute location"""
-        result = _GetShaderLocationAttrib(self, _str_in(attrib_name))
-        return result
-
-    def set_value(self, loc_index, value, uniform_type):
-        # type: (Shader, int, bytes, int) -> None
-        """Set shader uniform value"""
-        _SetShaderValue(self, int(loc_index), value, int(uniform_type))
-
-    def set_value_v(self, loc_index, value, uniform_type, count):
-        # type: (Shader, int, bytes, int, int) -> None
-        """Set shader uniform value vector"""
-        _SetShaderValueV(self, int(loc_index), value, int(uniform_type), int(count))
-
-    def set_value_matrix(self, loc_index, mat):
-        # type: (Shader, int, Matrix) -> None
-        """Set shader uniform value (matrix 4x4)"""
-        _SetShaderValueMatrix(self, int(loc_index), mat)
-
-    def set_value_texture(self, loc_index, texture):
-        # type: (Shader, int, Texture2D) -> None
-        """Set shader uniform value for texture (sampler2d)"""
-        _SetShaderValueTexture(self, int(loc_index), texture)
-
-    def unload(self):
-        # type: (Shader) -> None
-        """Unload shader from GPU memory (VRAM)"""
-        _UnloadShader(self)
-
-
-# Pointer type to Shaders
-ShaderPtr = POINTER(Shader)
-
-
-
-class MaterialMap(Structure):
-    '''MaterialMap'''
-    _fields_ = [
-        ('texture', Texture2D),
-        ('color', Color),
-        ('value', Float),
-    ]
-
-
-    @classmethod
-    def array_of(cls, material_map_sequence):
-        '''Creates and returns an array of MaterialMaps'''
-        arr = cls * len(material_map_sequence)
-        return arr(*material_map_sequence)
-
-
-    def __init__(self, texture=None, color=None, value=None):
-        # type: (Texture2D, Color, float) -> None
-        '''Initializes this MaterialMap struct'''
-        super(MaterialMap, self).__init__(
-            texture or Texture2D(),
-            color or Color(),
-            value or 0.0
-        )
-
-
-    @property
-    def byref(self):
-        '''Gets a reference to this MaterialMap instance'''
-        return byref(self)
-
-
-
-# Pointer type to MaterialMaps
-MaterialMapPtr = POINTER(MaterialMap)
-
-
-
-class Material(Structure):
-    '''Material, includes shader and maps'''
-    _fields_ = [
-        ('shader', Shader),
-        ('maps', MaterialMapPtr),
-        ('params', Float * 4),
-    ]
-
-
-    @classmethod
-    def array_of(cls, material_sequence):
-        '''Creates and returns an array of Materials'''
-        arr = cls * len(material_sequence)
-        return arr(*material_sequence)
-
-    @classmethod
-    def load_materials(cls, file_name):
-        # type: (Union[str, CharPtr]) -> MaterialPtr
-        """Load materials from model file"""
-        material_count = Int(0)
-        result = _ptr_out(_LoadMaterials(_str_in(file_name), byref(material_count)), material_count.value)
-        return result
-
-    @classmethod
-    def load_default():
-        # type: () -> Material
-        """Load default material (Supports: DIFFUSE, SPECULAR, NORMAL maps)"""
-        result = _LoadMaterialDefault()
-        return result
-
-
-    def __init__(self, shader=None, maps=None, params=None):
-        # type: (Shader, MaterialMapPtr, Seq[float]) -> None
-        '''Initializes this Material struct'''
-        super(Material, self).__init__(
-            shader or Shader(),
-            maps,
-            params
-        )
-
-
-    @property
-    def byref(self):
-        '''Gets a reference to this Material instance'''
-        return byref(self)
-
-
-    def __str__(self):
-        return "[{} at {}]".format(self.__class__.__name__, id(self))
-
-    def __repr__(self):
-        return self.__str__()
-
-    @property
-    def is_ready(self):
-        # type: (Material) -> bool
-        """Check if a material is ready"""
-        result = _IsMaterialReady(self)
-        return result
-
-    def unload(self):
-        # type: (Material) -> None
-        """Unload material from GPU memory (VRAM)"""
-        _UnloadMaterial(self)
-
-    def set_texture(self, map_type, texture):
-        # type: (MaterialPtr, int, Texture2D) -> None
-        """Set texture for a material map type (MATERIAL_MAP_DIFFUSE, MATERIAL_MAP_SPECULAR...)"""
-        _SetMaterialTexture(self, int(map_type), texture)
-
-
-# Pointer type to Materials
-MaterialPtr = POINTER(Material)
-
-
-
-class Transform(Structure):
-    '''Transform, vertex transformation data'''
-    _fields_ = [
-        ('translation', Vector3),
-        ('rotation', Quaternion),
-        ('scale', Vector3),
-    ]
-
-
-    @classmethod
-    def array_of(cls, transform_sequence):
-        '''Creates and returns an array of Transforms'''
-        arr = cls * len(transform_sequence)
-        return arr(*transform_sequence)
-
-
-    def __init__(self, translation=None, rotation=None, scale=None):
-        # type: (Vector3, Quaternion, Vector3) -> None
-        '''Initializes this Transform struct'''
-        super(Transform, self).__init__(
-            translation or Vector3(),
-            rotation or Quaternion(),
-            scale or Vector3()
-        )
-
-
-    @property
-    def byref(self):
-        '''Gets a reference to this Transform instance'''
-        return byref(self)
-
-
-
-# Pointer type to Transforms
-TransformPtr = POINTER(Transform)
-
-
-
-class BoneInfo(Structure):
-    '''Bone, skeletal animation bone'''
-    _fields_ = [
-        ('name', CharPtr),
-        ('parent', Int),
-    ]
-
-
-    @classmethod
-    def array_of(cls, bone_info_sequence):
-        '''Creates and returns an array of BoneInfos'''
-        arr = cls * len(bone_info_sequence)
-        return arr(*bone_info_sequence)
-
-
-    def __init__(self, name=None, parent=None):
-        # type: (str, int) -> None
-        '''Initializes this BoneInfo struct'''
-        super(BoneInfo, self).__init__(
-            name,
-            parent or 0
-        )
-
-
-    @property
-    def byref(self):
-        '''Gets a reference to this BoneInfo instance'''
-        return byref(self)
-
-
-
-# Pointer type to BoneInfos
-BoneInfoPtr = POINTER(BoneInfo)
-
-
-
-class Model(Structure):
-    '''Model, meshes, materials and animation data'''
-    _fields_ = [
-        ('transform', Matrix),
-        ('mesh_count', Int),
-        ('material_count', Int),
-        ('meshes', MeshPtr),
-        ('materials', MaterialPtr),
-        ('mesh_material', IntPtr),
-        ('bone_count', Int),
-        ('bones', BoneInfoPtr),
-        ('bind_pose', TransformPtr),
-    ]
-
-
-    @classmethod
-    def array_of(cls, model_sequence):
-        '''Creates and returns an array of Models'''
-        arr = cls * len(model_sequence)
-        return arr(*model_sequence)
-
-    @classmethod
-    def load(cls, file_name):
-        # type: (Union[str, CharPtr]) -> Model
-        """Load model from files (meshes and materials)"""
-        result = _LoadModel(_str_in(file_name))
-        return result
-
-    @classmethod
-    def load_from_mesh(cls, mesh):
-        # type: (Mesh) -> Model
-        """Load model from generated mesh (default material)"""
-        result = _LoadModelFromMesh(mesh)
-        return result
-
-
-    def __init__(self, transform=None,
-                 mesh_count=None,
-                 material_count=None,
-                 meshes=None,
-                 materials=None,
-                 mesh_material=None,
-                 bone_count=None,
-                 bones=None,
-                 bind_pose=None):
-        # type: (Matrix, int, int, MeshPtr, MaterialPtr, Union[Seq[int], IntPtr], int, BoneInfoPtr, TransformPtr) -> None
-        '''Initializes this Model struct'''
-        super(Model, self).__init__(
-            transform or Matrix(),
-            mesh_count or 0,
-            material_count or 0,
-            meshes,
-            materials,
-            mesh_material,
-            bone_count or 0,
-            bones,
-            bind_pose
-        )
-
-
-    @property
-    def byref(self):
-        '''Gets a reference to this Model instance'''
-        return byref(self)
-
-
-    def __str__(self):
-        return "[{} at {}]".format(self.__class__.__name__, id(self))
-
-    def __repr__(self):
-        return self.__str__()
-
-    def is_animation_valid(self, anim):
-        # type: (Model, ModelAnimation) -> bool
-        """Check model animation skeleton match"""
-        result = _IsModelAnimationValid(self, anim)
-        return result
-
-    def update_animation(self, anim, frame):
-        # type: (Model, ModelAnimation, int) -> None
-        """Update model animation pose"""
-        _UpdateModelAnimation(self, anim, int(frame))
-
-    def set_mesh_material(self, mesh_id, material_id):
-        # type: (ModelPtr, int, int) -> None
-        """Set material for a mesh"""
-        _SetModelMeshMaterial(self.byref, int(mesh_id), int(material_id))
-
-    def unload(self):
-        # type: (Model) -> None
-        """Unload model (including meshes) from memory (RAM and/or VRAM)"""
-        _UnloadModel(self)
-
-    def get_bounding_box(self):
-        # type: (Model) -> BoundingBox
-        """Compute model bounding box limits (considers all meshes)"""
-        result = _GetModelBoundingBox(self)
-        return result
-
-    def draw(self, position, scale, tint):
-        # type: (Model, Vector3, float, Color) -> None
-        """Draw a model (with texture if set)"""
-        _DrawModel(self, _vec3(position), float(scale), _color(tint))
-
-    def draw_ex(self, position, rotation_axis, rotation_angle, scale, tint):
-        # type: (Model, Vector3, Vector3, float, Vector3, Color) -> None
-        """Draw a model with extended parameters"""
-        _DrawModelEx(self, _vec3(position), _vec3(rotation_axis), float(rotation_angle), _vec3(scale), _color(tint))
-
-    def draw_wires(self, position, scale, tint):
-        # type: (Model, Vector3, float, Color) -> None
-        """Draw a model wires (with texture if set)"""
-        _DrawModelWires(self, _vec3(position), float(scale), _color(tint))
-
-    def draw_wires_ex(self, position, rotation_axis, rotation_angle, scale, tint):
-        # type: (Model, Vector3, Vector3, float, Vector3, Color) -> None
-        """Draw a model wires (with texture if set) with extended parameters"""
-        _DrawModelWiresEx(self, _vec3(position), _vec3(rotation_axis), float(rotation_angle), _vec3(scale), _color(tint))
-
-
-# Pointer type to Models
-ModelPtr = POINTER(Model)
-
-
-
-class ModelAnimation(Structure):
-    '''ModelAnimation'''
-    _fields_ = [
-        ('bone_count', Int),
-        ('frame_count', Int),
-        ('bones', BoneInfoPtr),
-        ('frame_poses', TransformPtr),
-    ]
-
-
-    @classmethod
-    def array_of(cls, model_animation_sequence):
-        '''Creates and returns an array of ModelAnimations'''
-        arr = cls * len(model_animation_sequence)
-        return arr(*model_animation_sequence)
-
-
-    def __init__(self, bone_count=None, frame_count=None, bones=None, frame_poses=None):
-        # type: (int, int, BoneInfoPtr, TransformPtr) -> None
-        '''Initializes this ModelAnimation struct'''
-        super(ModelAnimation, self).__init__(
-            bone_count or 0,
-            frame_count or 0,
-            bones,
-            frame_poses
-        )
-
-
-    @property
-    def byref(self):
-        '''Gets a reference to this ModelAnimation instance'''
-        return byref(self)
-
-
-
-# Pointer type to ModelAnimations
-ModelAnimationPtr = POINTER(ModelAnimation)
-
-
-
-class Ray(Structure):
-    '''Ray, ray for raycasting'''
-    _fields_ = [
-        ('position', Vector3),
-        ('direction', Vector3),
-    ]
-
-
-    @classmethod
-    def array_of(cls, ray_sequence):
-        '''Creates and returns an array of Rays'''
-        arr = cls * len(ray_sequence)
-        return arr(*ray_sequence)
-
-
-    def __init__(self, position=None, direction=None):
-        # type: (Vector3, Vector3) -> None
-        '''Initializes this Ray struct'''
-        super(Ray, self).__init__(
-            position or Vector3(),
-            direction or Vector3()
-        )
-
-
-    @property
-    def byref(self):
-        '''Gets a reference to this Ray instance'''
-        return byref(self)
-
-
-
-# Pointer type to Rays
-RayPtr = POINTER(Ray)
-
-
-
-class RayCollision(Structure):
-    '''RayCollision, ray hit information'''
-    _fields_ = [
-        ('hit', Bool),
-        ('distance', Float),
-        ('point', Vector3),
-        ('normal', Vector3),
-    ]
-
-
-    @classmethod
-    def array_of(cls, ray_collision_sequence):
-        '''Creates and returns an array of RayCollisions'''
-        arr = cls * len(ray_collision_sequence)
-        return arr(*ray_collision_sequence)
-
-
-    def __init__(self, hit=None, distance=None, point=None, normal=None):
-        # type: (bool, float, Vector3, Vector3) -> None
-        '''Initializes this RayCollision struct'''
-        super(RayCollision, self).__init__(
-            hit or False,
-            distance or 0.0,
-            point or Vector3(),
-            normal or Vector3()
-        )
-
-
-    @property
-    def byref(self):
-        '''Gets a reference to this RayCollision instance'''
-        return byref(self)
-
-
-
-# Pointer type to RayCollisions
-RayCollisionPtr = POINTER(RayCollision)
-
-
-
-class BoundingBox(Structure):
-    '''BoundingBox'''
-    _fields_ = [
-        ('min', Vector3),
-        ('max', Vector3),
-    ]
-
-
-    @classmethod
-    def array_of(cls, bounding_box_sequence):
-        '''Creates and returns an array of BoundingBoxs'''
-        arr = cls * len(bounding_box_sequence)
-        return arr(*bounding_box_sequence)
-
-
-    def __init__(self, min=None, max=None):
-        # type: (Vector3, Vector3) -> None
-        '''Initializes this BoundingBox struct'''
-        super(BoundingBox, self).__init__(
-            min or Vector3(),
-            max or Vector3()
-        )
-
-
-    @property
-    def byref(self):
-        '''Gets a reference to this BoundingBox instance'''
-        return byref(self)
-
-
-
-# Pointer type to BoundingBoxs
-BoundingBoxPtr = POINTER(BoundingBox)
-
-
-
-class Wave(Structure):
-    '''Wave, audio wave data'''
-    _fields_ = [
-        ('frame_count', UInt),
-        ('sample_rate', UInt),
-        ('sample_size', UInt),
-        ('channels', UInt),
-        ('data', VoidPtr),
-    ]
-
-
-    @classmethod
-    def array_of(cls, wave_sequence):
-        '''Creates and returns an array of Waves'''
-        arr = cls * len(wave_sequence)
-        return arr(*wave_sequence)
-
-    @classmethod
-    def load(cls, file_name):
-        # type: (Union[str, CharPtr]) -> Wave
-        """Load wave data from file"""
-        result = _LoadWave(_str_in(file_name))
-        return result
-
-    @classmethod
-    def load_from_memory(cls, file_type, file_data, data_size):
-        # type: (Union[str, CharPtr], Union[Seq[int], UCharPtr], int) -> Wave
-        """Load wave from memory buffer, fileType refers to extension: i.e. '.wav'"""
-        result = _LoadWaveFromMemory(_str_in(file_type), _str_in(file_data), int(data_size))
-        return result
-
-
-    def __init__(self, frame_count=None,
-                 sample_rate=None,
-                 sample_size=None,
-                 channels=None,
-                 data=None):
-        # type: (int, int, int, int, bytes) -> None
-        '''Initializes this Wave struct'''
-        super(Wave, self).__init__(
-            frame_count or 0,
-            sample_rate or 0,
-            sample_size or 0,
-            channels or 0,
-            data
-        )
-
-
-    @property
-    def byref(self):
-        '''Gets a reference to this Wave instance'''
-        return byref(self)
-
-
-    def __str__(self):
-        return "[{} at {}]".format(self.__class__.__name__, id(self))
-
-    def __repr__(self):
-        return self.__str__()
-
-    @property
-    def is_ready(self):
-        # type: (Wave) -> bool
-        """Checks if wave data is ready"""
-        result = _IsWaveReady(self)
-        return result
-
-    def copy(self):
-        # type: (Wave) -> Wave
-        """Copy a wave to a new wave"""
-        result = _WaveCopy(self)
-        return result
-
-    def crop(self, init_sample, final_sample):
-        # type: (WavePtr, int, int) -> None
-        """Crop a wave to defined samples range"""
-        _WaveCrop(self.byref, int(init_sample), int(final_sample))
-
-    def format(self, sample_rate, sample_size, channels):
-        # type: (WavePtr, int, int, int) -> None
-        """Convert wave data to desired format"""
-        _WaveFormat(self.byref, int(sample_rate), int(sample_size), int(channels))
-
-    def format(self):
-        # type: (Wave) -> Union[Seq[float], FloatPtr]
-        """Load samples data from wave as a 32bit float data array"""
-        result = _ptr_out(_LoadWaveSamples(self.byref))
-        return result
-
-    def export(self, file_name):
-        # type: (Wave, Union[str, CharPtr]) -> bool
-        """Export wave data to file, returns true on success"""
-        result = _ExportWave(self, _str_in(file_name))
-        return result
-
-    def export_as_code(self, file_name):
-        # type: (Wave, Union[str, CharPtr]) -> bool
-        """Export wave sample data to code (.h), returns true on success"""
-        result = _ExportWaveAsCode(self, _str_in(file_name))
-        return result
-
-    def unload(self):
-        # type: (Wave) -> None
-        """Unload wave data"""
-        _UnloadWave(self)
-
-    def unload_samples(self):
-        # type: (Union[Seq[float], FloatPtr]) -> None
-        """Unload samples data loaded with LoadWaveSamples()"""
-        _UnloadWaveSamples(self)
-
-
-# Pointer type to Waves
-WavePtr = POINTER(Wave)
-
-
-
-class AudioStream(Structure):
-    '''AudioStream, custom audio stream'''
-    _fields_ = [
-        ('buffer', rAudioBufferPtr),
-        ('processor', rAudioProcessorPtr),
-        ('sample_rate', UInt),
-        ('sample_size', UInt),
-        ('channels', UInt),
-    ]
-
-
-    @classmethod
-    def array_of(cls, audio_stream_sequence):
-        '''Creates and returns an array of AudioStreams'''
-        arr = cls * len(audio_stream_sequence)
-        return arr(*audio_stream_sequence)
-
-    @classmethod
-    def load(cls, sample_rate, sample_size, channels):
-        # type: (int, int, int) -> AudioStream
-        """Load audio stream (to stream raw audio pcm data)"""
-        result = _LoadAudioStream(sample_rate, sample_size, channels)
-        return result
-
-
-    def __init__(self, buffer=None,
-                 processor=None,
-                 sample_rate=None,
-                 sample_size=None,
-                 channels=None):
-        # type: (rAudioBufferPtr, rAudioProcessorPtr, int, int, int) -> None
-        '''Initializes this AudioStream struct'''
-        super(AudioStream, self).__init__(
-            buffer,
-            processor,
-            sample_rate or 0,
-            sample_size or 0,
-            channels or 0
-        )
-
-
-    @property
-    def byref(self):
-        '''Gets a reference to this AudioStream instance'''
-        return byref(self)
-
-
-    def __str__(self):
-        return "[{} Playing: {}]".format(self.__class__.__name__, _IsAudioStreamPlaying(self))
-
-    def __repr__(self):
-        return self.__str__()
-
-    @property
-    def is_ready(self):
-        # type: (AudioStream) -> bool
-        """Checks if an audio stream is ready"""
-        result = _IsAudioStreamReady(self)
-        return result
-
-    def unload(self):
-        # type: (AudioStream) -> None
-        """Unload audio stream and free memory"""
-        _UnloadAudioStream(self)
-
-    def update(self, data, frame_count):
-        # type: (AudioStream, bytes, int) -> None
-        """Update audio stream buffers with data"""
-        _UpdateAudioStream(self, data, int(frame_count))
-
-    def is_processed(self):
-        # type: (AudioStream) -> bool
-        """Check if any audio stream buffers requires refill"""
-        result = _IsAudioStreamProcessed(self)
-        return result
-
-    def play(self):
-        # type: (AudioStream) -> None
-        """Play audio stream"""
-        _PlayAudioStream(self)
-
-    def pause(self):
-        # type: (AudioStream) -> None
-        """Pause audio stream"""
-        _PauseAudioStream(self)
-
-    def resume(self):
-        # type: (AudioStream) -> None
-        """Resume audio stream"""
-        _ResumeAudioStream(self)
-
-    def is_playing(self):
-        # type: (AudioStream) -> bool
-        """Check if audio stream is playing"""
-        result = _IsAudioStreamPlaying(self)
-        return result
-
-    def stop(self):
-        # type: (AudioStream) -> None
-        """Stop audio stream"""
-        _StopAudioStream(self)
-
-    def set_volume(self, volume):
-        # type: (AudioStream, float) -> None
-        """Set volume for audio stream (1.0 is max level)"""
-        _SetAudioStreamVolume(self, float(volume))
-
-    def set_pitch(self, pitch):
-        # type: (AudioStream, float) -> None
-        """Set pitch for audio stream (1.0 is base level)"""
-        _SetAudioStreamPitch(self, float(pitch))
-
-    def set_pan(self, pan):
-        # type: (AudioStream, float) -> None
-        """Set pan for audio stream (0.5 is centered)"""
-        _SetAudioStreamPan(self, float(pan))
-
-    def set_buffer_size_default(self):
-        # type: (int) -> None
-        """Default size for new audio streams"""
-        _SetAudioStreamBufferSizeDefault(self)
-
-    def set_callback(self, callback):
-        # type: (AudioStream, AudioCallback) -> None
-        """Audio thread callback to request new data"""
-        _SetAudioStreamCallback(self, callback)
-
-    def attach_processor(self, processor):
-        # type: (AudioStream, AudioCallback) -> None
-        """Attach audio stream processor to stream"""
-        _AttachAudioStreamProcessor(self, processor)
-
-    def detach_processor(self, processor):
-        # type: (AudioStream, AudioCallback) -> None
-        """Detach audio stream processor from stream"""
-        _DetachAudioStreamProcessor(self, processor)
-
-
-# Pointer type to AudioStreams
-AudioStreamPtr = POINTER(AudioStream)
-
-
-
-class Sound(Structure):
-    '''Sound'''
-    _fields_ = [
-        ('stream', AudioStream),
-        ('frame_count', UInt),
-    ]
-
-
-    @classmethod
-    def array_of(cls, sound_sequence):
-        '''Creates and returns an array of Sounds'''
-        arr = cls * len(sound_sequence)
-        return arr(*sound_sequence)
-
-    @classmethod
-    def load(cls, file_name):
-        # type: (Union[str, CharPtr]) -> Sound
-        """Load sound from file"""
-        result = _LoadSound(_str_in(file_name))
-        return result
-
-    @classmethod
-    def load_from_wave(cls, wave):
-        # type: (Wave) -> Sound
-        """Load sound from wave data"""
-        result = _LoadSoundFromWave(wave)
-        return result
-
-
-    def __init__(self, stream=None, frame_count=None):
-        # type: (AudioStream, int) -> None
-        '''Initializes this Sound struct'''
-        super(Sound, self).__init__(
-            stream or AudioStream(),
-            frame_count or 0
-        )
-
-
-    @property
-    def byref(self):
-        '''Gets a reference to this Sound instance'''
-        return byref(self)
-
-
-    def __str__(self):
-        return "[{} Playing: {}]".format(self.__class__.__name__, _IsSoundPlaying(self))
-
-    def __repr__(self):
-        return self.__str__()
-
-    @property
-    def is_ready(self):
-        # type: (Sound) -> bool
-        """Checks if a sound is ready"""
-        result = _IsSoundReady(self)
-        return result
-
-    def play(self):
-        # type: (Sound) -> None
-        """Play a sound"""
-        _PlaySound(self)
-
-    def stop(self):
-        # type: (Sound) -> None
-        """Stop playing a sound"""
-        _StopSound(self)
-
-    def pause(self):
-        # type: (Sound) -> None
-        """Pause a sound"""
-        _PauseSound(self)
-
-    def resume(self):
-        # type: (Sound) -> None
-        """Resume a paused sound"""
-        _ResumeSound(self)
-
-    def is_playing(self):
-        # type: (Sound) -> bool
-        """Check if a sound is currently playing"""
-        result = _IsSoundPlaying(self)
-        return result
-
-    def set_volume(self, volume):
-        # type: (Sound, float) -> None
-        """Set volume for a sound (1.0 is max level)"""
-        _SetSoundVolume(self, float(volume))
-
-    def set_pitch(self, pitch):
-        # type: (Sound, float) -> None
-        """Set pitch for a sound (1.0 is base level)"""
-        _SetSoundPitch(self, float(pitch))
-
-    def set_pan(self, pan):
-        # type: (Sound, float) -> None
-        """Set pan for a sound (0.5 is center)"""
-        _SetSoundPan(self, float(pan))
-
-    def unload(self):
-        # type: (Sound) -> None
-        """Unload sound"""
-        _UnloadSound(self)
-
-    def update(self, data, sample_count):
-        # type: (Sound, bytes, int) -> None
-        """Update sound buffer with new data"""
-        _UpdateSound(self, data, int(sample_count))
-
-
-# Pointer type to Sounds
-SoundPtr = POINTER(Sound)
-
-
-
-class Music(Structure):
-    '''Music, audio stream, anything longer than ~10 seconds should be streamed'''
-    _fields_ = [
-        ('stream', AudioStream),
-        ('frame_count', UInt),
-        ('looping', Bool),
-        ('ctx_type', Int),
-        ('ctx_data', VoidPtr),
-    ]
-
-
-    @classmethod
-    def array_of(cls, music_sequence):
-        '''Creates and returns an array of Musics'''
-        arr = cls * len(music_sequence)
-        return arr(*music_sequence)
-
-
-    def __init__(self, stream=None,
-                 frame_count=None,
-                 looping=None,
-                 ctx_type=None,
-                 ctx_data=None):
-        # type: (AudioStream, int, bool, int, bytes) -> None
-        '''Initializes this Music struct'''
-        super(Music, self).__init__(
-            stream or AudioStream(),
-            frame_count or 0,
-            looping or False,
-            ctx_type or 0,
-            ctx_data
-        )
-
-
-    @property
-    def byref(self):
-        '''Gets a reference to this Music instance'''
-        return byref(self)
-
-
-    def __str__(self):
-        return "[{} at {}]".format(self.__class__.__name__, id(self))
-
-    def __repr__(self):
-        return self.__str__()
-
-    @property
-    def is_ready(self):
-        # type: (Music) -> bool
-        """Checks if a music stream is ready"""
-        result = _IsMusicReady(self)
-        return result
-
-    def play(self):
-        # type: (Music) -> None
-        """Start music playing"""
-        _PlayMusicStream(self)
-
-    def is_playing(self):
-        # type: (Music) -> bool
-        """Check if music is playing"""
-        result = _IsMusicStreamPlaying(self)
-        return result
-
-    def update(self):
-        # type: (Music) -> None
-        """Updates buffers for music streaming"""
-        _UpdateMusicStream(self)
-
-    def stop(self):
-        # type: (Music) -> None
-        """Stop music playing"""
-        _StopMusicStream(self)
-
-    def pause(self):
-        # type: (Music) -> None
-        """Pause music playing"""
-        _PauseMusicStream(self)
-
-    def resume(self):
-        # type: (Music) -> None
-        """Resume playing paused music"""
-        _ResumeMusicStream(self)
-
-    def seek(self, position):
-        # type: (Music, float) -> None
-        """Seek music to a position (in seconds)"""
-        _SeekMusicStream(self, float(position))
-
-    def set_volume(self, volume):
-        # type: (Music, float) -> None
-        """Set volume for music (1.0 is max level)"""
-        _SetMusicVolume(self, float(volume))
-
-    def set_pitch(self, pitch):
-        # type: (Music, float) -> None
-        """Set pitch for a music (1.0 is base level)"""
-        _SetMusicPitch(self, float(pitch))
-
-    def set_pan(self, pan):
-        # type: (Music, float) -> None
-        """Set pan for a music (0.5 is center)"""
-        _SetMusicPan(self, float(pan))
-
-    def get_time_length(self):
-        # type: (Music) -> float
-        """Get music time length (in seconds)"""
-        result = _GetMusicTimeLength(self)
-        return result
-
-    def get_time_played(self):
-        # type: (Music) -> float
-        """Get current music time played (in seconds)"""
-        result = _GetMusicTimePlayed(self)
-        return result
-
-    @staticmethod
-    def load(file_name):
-        # type: (Union[str, CharPtr]) -> Music
-        """Load music stream from file"""
-        result = _LoadMusicStream(_str_in(file_name))
-        return result
-
-    @staticmethod
-    def load_from_memory(file_type, data, data_size):
-        # type: (Union[str, CharPtr], Union[Seq[int], UCharPtr], int) -> Music
-        """Load music stream from data"""
-        result = _LoadMusicStreamFromMemory(_str_in(file_type), _str_in(data), int(data_size))
-        return result
-
-
-# Pointer type to Musics
-MusicPtr = POINTER(Music)
-
-
-
-class VrDeviceInfo(Structure):
-    '''VrDeviceInfo, Head-Mounted-Display device parameters'''
-    _fields_ = [
-        ('h_resolution', Int),
-        ('v_resolution', Int),
-        ('h_screen_size', Float),
-        ('v_screen_size', Float),
-        ('v_screen_center', Float),
-        ('eye_to_screen_distance', Float),
-        ('lens_separation_distance', Float),
-        ('interpupillary_distance', Float),
-        ('lens_distortion_values', Float * 4),
-        ('chroma_ab_correction', Float * 4),
-    ]
-
-
-    @classmethod
-    def array_of(cls, vr_device_info_sequence):
-        '''Creates and returns an array of VrDeviceInfos'''
-        arr = cls * len(vr_device_info_sequence)
-        return arr(*vr_device_info_sequence)
-
-
-    def __init__(self, h_resolution=None,
-                 v_resolution=None,
-                 h_screen_size=None,
-                 v_screen_size=None,
-                 v_screen_center=None,
-                 eye_to_screen_distance=None,
-                 lens_separation_distance=None,
-                 interpupillary_distance=None,
-                 lens_distortion_values=None,
-                 chroma_ab_correction=None):
-        # type: (int, int, float, float, float, float, float, float, Seq[float], Seq[float]) -> None
-        '''Initializes this VrDeviceInfo struct'''
-        super(VrDeviceInfo, self).__init__(
-            h_resolution or 0,
-            v_resolution or 0,
-            h_screen_size or 0.0,
-            v_screen_size or 0.0,
-            v_screen_center or 0.0,
-            eye_to_screen_distance or 0.0,
-            lens_separation_distance or 0.0,
-            interpupillary_distance or 0.0,
-            lens_distortion_values,
-            chroma_ab_correction
-        )
-
-
-    @property
-    def byref(self):
-        '''Gets a reference to this VrDeviceInfo instance'''
-        return byref(self)
-
-
-
-# Pointer type to VrDeviceInfos
-VrDeviceInfoPtr = POINTER(VrDeviceInfo)
-
-
-
-class VrStereoConfig(Structure):
-    '''VrStereoConfig, VR stereo rendering configuration for simulator'''
-    _fields_ = [
-        ('projection', Matrix * 2),
-        ('view_offset', Matrix * 2),
-        ('left_lens_center', Float * 2),
-        ('right_lens_center', Float * 2),
-        ('left_screen_center', Float * 2),
-        ('right_screen_center', Float * 2),
-        ('scale', Float * 2),
-        ('scale_in', Float * 2),
-    ]
-
-
-    @classmethod
-    def array_of(cls, vr_stereo_config_sequence):
-        '''Creates and returns an array of VrStereoConfigs'''
-        arr = cls * len(vr_stereo_config_sequence)
-        return arr(*vr_stereo_config_sequence)
-
-
-    def __init__(self, projection=None,
-                 view_offset=None,
-                 left_lens_center=None,
-                 right_lens_center=None,
-                 left_screen_center=None,
-                 right_screen_center=None,
-                 scale=None,
-                 scale_in=None):
-        # type: (Seq[Matrix], Seq[Matrix], Seq[float], Seq[float], Seq[float], Seq[float], Seq[float], Seq[float]) -> None
-        '''Initializes this VrStereoConfig struct'''
-        super(VrStereoConfig, self).__init__(
-            projection,
-            view_offset,
-            left_lens_center,
-            right_lens_center,
-            left_screen_center,
-            right_screen_center,
-            scale,
-            scale_in
-        )
-
-
-    @property
-    def byref(self):
-        '''Gets a reference to this VrStereoConfig instance'''
-        return byref(self)
-
-
-    def __enter__(self):
-        _BeginVrStereoMode(self)
-
-    def __leave__(self, exc_type, exc_value, traceback):
-        _EndVrStereoMode()
-
-
-# Pointer type to VrStereoConfigs
-VrStereoConfigPtr = POINTER(VrStereoConfig)
-
-
-
-class FilePathList(Structure):
-    '''File path list'''
-    _fields_ = [
-        ('capacity', UInt),
-        ('count', UInt),
-        ('paths', CharPtrPtr),
-    ]
-
-
-    @classmethod
-    def array_of(cls, file_path_list_sequence):
-        '''Creates and returns an array of FilePathLists'''
-        arr = cls * len(file_path_list_sequence)
-        return arr(*file_path_list_sequence)
-
-
-    def __init__(self, capacity=None, count=None, paths=None):
-        # type: (int, int, Seq[Union[str, CharPtr]]) -> None
-        '''Initializes this FilePathList struct'''
-        super(FilePathList, self).__init__(
-            capacity or 0,
-            count or 0,
-            paths
-        )
-
-
-    @property
-    def byref(self):
-        '''Gets a reference to this FilePathList instance'''
-        return byref(self)
-
-
-
-# Pointer type to FilePathLists
-FilePathListPtr = POINTER(FilePathList)
-
-
-
-class float3(Structure):
-    '''NOTE: Helper types to be used instead of array return types for *ToFloat functions'''
-    _fields_ = [
-        ('v', Float * 3),
-    ]
-
-
-    @classmethod
-    def array_of(cls, float3_sequence):
-        '''Creates and returns an array of float3s'''
-        arr = cls * len(float3_sequence)
-        return arr(*float3_sequence)
-
-
-    def __init__(self, v=None):
-        # type: (Seq[float]) -> None
-        '''Initializes this float3 struct'''
-        super(float3, self).__init__(
-            v
-        )
-
-
-    @property
-    def byref(self):
-        '''Gets a reference to this float3 instance'''
-        return byref(self)
-
-
-
-# Pointer type to float3s
-float3Ptr = POINTER(float3)
-
-
-
-class float16(Structure):
-    ''''''
-    _fields_ = [
-        ('v', Float * 16),
-    ]
-
-
-    @classmethod
-    def array_of(cls, float16_sequence):
-        '''Creates and returns an array of float16s'''
-        arr = cls * len(float16_sequence)
-        return arr(*float16_sequence)
-
-
-    def __init__(self, v=None):
-        # type: (Seq[float]) -> None
-        '''Initializes this float16 struct'''
-        super(float16, self).__init__(
-            v
-        )
-
-
-    @property
-    def byref(self):
-        '''Gets a reference to this float16 instance'''
-        return byref(self)
-
-
-
-# Pointer type to float16s
-float16Ptr = POINTER(float16)
-
-
-
-class rlVertexBuffer(Structure):
-    '''Dynamic vertex buffers (position + texcoords + colors + indices arrays)'''
-    _fields_ = [
-        ('element_count', Int),
-        ('vertices', FloatPtr),
-        ('texcoords', FloatPtr),
-        ('colors', UCharPtr),
-        ('indices', UIntPtr),
-        ('vao_id', UInt),
-        ('vbo_id', Int * 4),
-    ]
-
-
-    @classmethod
-    def array_of(cls, rl_vertex_buffer_sequence):
-        '''Creates and returns an array of rlVertexBuffers'''
-        arr = cls * len(rl_vertex_buffer_sequence)
-        return arr(*rl_vertex_buffer_sequence)
-
-
-    def __init__(self, element_count=None,
-                 vertices=None,
-                 texcoords=None,
-                 colors=None,
-                 indices=None,
-                 vao_id=None,
-                 vbo_id=None):
-        # type: (int, Union[Seq[float], FloatPtr], Union[Seq[float], FloatPtr], Union[Seq[int], UCharPtr], Union[Seq[int], UIntPtr], int, Seq[int]) -> None
-        '''Initializes this rlVertexBuffer struct'''
-        super(rlVertexBuffer, self).__init__(
-            element_count or 0,
-            vertices,
-            texcoords,
-            colors,
-            indices,
-            vao_id or 0,
-            vbo_id
-        )
-
-
-    @property
-    def byref(self):
-        '''Gets a reference to this rlVertexBuffer instance'''
-        return byref(self)
-
-
-
-# Pointer type to rlVertexBuffers
-rlVertexBufferPtr = POINTER(rlVertexBuffer)
-
-
-
-class rlDrawCall(Structure):
-    '''of those state-change happens (this is done in core module)'''
-    _fields_ = [
-        ('mode', Int),
-        ('vertex_count', Int),
-        ('vertex_alignment', Int),
-        ('texture_id', UInt),
-    ]
-
-
-    @classmethod
-    def array_of(cls, rl_draw_call_sequence):
-        '''Creates and returns an array of rlDrawCalls'''
-        arr = cls * len(rl_draw_call_sequence)
-        return arr(*rl_draw_call_sequence)
-
-
-    def __init__(self, mode=None, vertex_count=None, vertex_alignment=None, texture_id=None):
-        # type: (int, int, int, int) -> None
-        '''Initializes this rlDrawCall struct'''
-        super(rlDrawCall, self).__init__(
-            mode or 0,
-            vertex_count or 0,
-            vertex_alignment or 0,
-            texture_id or 0
-        )
-
-
-    @property
-    def byref(self):
-        '''Gets a reference to this rlDrawCall instance'''
-        return byref(self)
-
-
-
-# Pointer type to rlDrawCalls
-rlDrawCallPtr = POINTER(rlDrawCall)
-
-
-
-class rlRenderBatch(Structure):
-    '''rlRenderBatch type'''
-    _fields_ = [
-        ('buffer_count', Int),
-        ('current_buffer', Int),
-        ('vertex_buffer', rlVertexBufferPtr),
-        ('draws', rlDrawCallPtr),
-        ('draw_counter', Int),
-        ('current_depth', Float),
-    ]
-
-
-    @classmethod
-    def array_of(cls, rl_render_batch_sequence):
-        '''Creates and returns an array of rlRenderBatchs'''
-        arr = cls * len(rl_render_batch_sequence)
-        return arr(*rl_render_batch_sequence)
-
-
-    def __init__(self, buffer_count=None,
-                 current_buffer=None,
-                 vertex_buffer=None,
-                 draws=None,
-                 draw_counter=None,
-                 current_depth=None):
-        # type: (int, int, rlVertexBufferPtr, rlDrawCallPtr, int, float) -> None
-        '''Initializes this rlRenderBatch struct'''
-        super(rlRenderBatch, self).__init__(
-            buffer_count or 0,
-            current_buffer or 0,
-            vertex_buffer,
-            draws,
-            draw_counter or 0,
-            current_depth or 0.0
-        )
-
-
-    @property
-    def byref(self):
-        '''Gets a reference to this rlRenderBatch instance'''
-        return byref(self)
-
-
-
-# Pointer type to rlRenderBatchs
-rlRenderBatchPtr = POINTER(rlRenderBatch)
-
-
 class ConfigFlags(IntEnum):
     """System/Window config flags"""
 
@@ -5474,6 +1868,9 @@ class ConfigFlags(IntEnum):
     FLAG_WINDOW_MOUSE_PASSTHROUGH = 16384
     """Set to support mouse passthrough, only supported when FLAG_WINDOW_UNDECORATED"""
 
+    FLAG_BORDERLESS_WINDOWED_MODE = 32768
+    """Set to run program in borderless windowed mode"""
+
     FLAG_MSAA_4X_HINT = 32
     """Set to try enabling MSAA 4X"""
 
@@ -5495,6 +1892,7 @@ FLAG_WINDOW_ALWAYS_RUN = ConfigFlags.FLAG_WINDOW_ALWAYS_RUN
 FLAG_WINDOW_TRANSPARENT = ConfigFlags.FLAG_WINDOW_TRANSPARENT
 FLAG_WINDOW_HIGHDPI = ConfigFlags.FLAG_WINDOW_HIGHDPI
 FLAG_WINDOW_MOUSE_PASSTHROUGH = ConfigFlags.FLAG_WINDOW_MOUSE_PASSTHROUGH
+FLAG_BORDERLESS_WINDOWED_MODE = ConfigFlags.FLAG_BORDERLESS_WINDOWED_MODE
 FLAG_MSAA_4X_HINT = ConfigFlags.FLAG_MSAA_4X_HINT
 FLAG_INTERLACED_HINT = ConfigFlags.FLAG_INTERLACED_HINT
 
@@ -6442,37 +2840,46 @@ class PixelFormat(IntEnum):
     PIXELFORMAT_UNCOMPRESSED_R32G32B32A32 = 10
     """32*4 bpp (4 channels - float)"""
 
-    PIXELFORMAT_COMPRESSED_DXT1_RGB = 11
+    PIXELFORMAT_UNCOMPRESSED_R16 = 11
+    """16 bpp (1 channel - half float)"""
+
+    PIXELFORMAT_UNCOMPRESSED_R16G16B16 = 12
+    """16*3 bpp (3 channels - half float)"""
+
+    PIXELFORMAT_UNCOMPRESSED_R16G16B16A16 = 13
+    """16*4 bpp (4 channels - half float)"""
+
+    PIXELFORMAT_COMPRESSED_DXT1_RGB = 14
     """4 bpp (no alpha)"""
 
-    PIXELFORMAT_COMPRESSED_DXT1_RGBA = 12
+    PIXELFORMAT_COMPRESSED_DXT1_RGBA = 15
     """4 bpp (1 bit alpha)"""
 
-    PIXELFORMAT_COMPRESSED_DXT3_RGBA = 13
+    PIXELFORMAT_COMPRESSED_DXT3_RGBA = 16
     """8 bpp"""
 
-    PIXELFORMAT_COMPRESSED_DXT5_RGBA = 14
+    PIXELFORMAT_COMPRESSED_DXT5_RGBA = 17
     """8 bpp"""
 
-    PIXELFORMAT_COMPRESSED_ETC1_RGB = 15
+    PIXELFORMAT_COMPRESSED_ETC1_RGB = 18
     """4 bpp"""
 
-    PIXELFORMAT_COMPRESSED_ETC2_RGB = 16
+    PIXELFORMAT_COMPRESSED_ETC2_RGB = 19
     """4 bpp"""
 
-    PIXELFORMAT_COMPRESSED_ETC2_EAC_RGBA = 17
+    PIXELFORMAT_COMPRESSED_ETC2_EAC_RGBA = 20
     """8 bpp"""
 
-    PIXELFORMAT_COMPRESSED_PVRT_RGB = 18
+    PIXELFORMAT_COMPRESSED_PVRT_RGB = 21
     """4 bpp"""
 
-    PIXELFORMAT_COMPRESSED_PVRT_RGBA = 19
+    PIXELFORMAT_COMPRESSED_PVRT_RGBA = 22
     """4 bpp"""
 
-    PIXELFORMAT_COMPRESSED_ASTC_4x4_RGBA = 20
+    PIXELFORMAT_COMPRESSED_ASTC_4x4_RGBA = 23
     """8 bpp"""
 
-    PIXELFORMAT_COMPRESSED_ASTC_8x8_RGBA = 21
+    PIXELFORMAT_COMPRESSED_ASTC_8x8_RGBA = 24
     """2 bpp"""
 
 
@@ -6487,6 +2894,9 @@ PIXELFORMAT_UNCOMPRESSED_R8G8B8A8 = PixelFormat.PIXELFORMAT_UNCOMPRESSED_R8G8B8A
 PIXELFORMAT_UNCOMPRESSED_R32 = PixelFormat.PIXELFORMAT_UNCOMPRESSED_R32
 PIXELFORMAT_UNCOMPRESSED_R32G32B32 = PixelFormat.PIXELFORMAT_UNCOMPRESSED_R32G32B32
 PIXELFORMAT_UNCOMPRESSED_R32G32B32A32 = PixelFormat.PIXELFORMAT_UNCOMPRESSED_R32G32B32A32
+PIXELFORMAT_UNCOMPRESSED_R16 = PixelFormat.PIXELFORMAT_UNCOMPRESSED_R16
+PIXELFORMAT_UNCOMPRESSED_R16G16B16 = PixelFormat.PIXELFORMAT_UNCOMPRESSED_R16G16B16
+PIXELFORMAT_UNCOMPRESSED_R16G16B16A16 = PixelFormat.PIXELFORMAT_UNCOMPRESSED_R16G16B16A16
 PIXELFORMAT_COMPRESSED_DXT1_RGB = PixelFormat.PIXELFORMAT_COMPRESSED_DXT1_RGB
 PIXELFORMAT_COMPRESSED_DXT1_RGBA = PixelFormat.PIXELFORMAT_COMPRESSED_DXT1_RGBA
 PIXELFORMAT_COMPRESSED_DXT3_RGBA = PixelFormat.PIXELFORMAT_COMPRESSED_DXT3_RGBA
@@ -6773,6 +3183,9 @@ class rlGlVersion(IntEnum):
     RL_OPENGL_ES_20 = 5
     """OpenGL ES 2.0 (GLSL 100)"""
 
+    RL_OPENGL_ES_30 = 6
+    """OpenGL ES 3.0 (GLSL 300 es)"""
+
 
 
 RL_OPENGL_11 = rlGlVersion.RL_OPENGL_11
@@ -6780,6 +3193,7 @@ RL_OPENGL_21 = rlGlVersion.RL_OPENGL_21
 RL_OPENGL_33 = rlGlVersion.RL_OPENGL_33
 RL_OPENGL_43 = rlGlVersion.RL_OPENGL_43
 RL_OPENGL_ES_20 = rlGlVersion.RL_OPENGL_ES_20
+RL_OPENGL_ES_30 = rlGlVersion.RL_OPENGL_ES_30
 
 
 class rlTraceLogLevel(IntEnum):
@@ -6854,37 +3268,46 @@ class rlPixelFormat(IntEnum):
     RL_PIXELFORMAT_UNCOMPRESSED_R32G32B32A32 = 10
     """32*4 bpp (4 channels - float)"""
 
-    RL_PIXELFORMAT_COMPRESSED_DXT1_RGB = 11
+    RL_PIXELFORMAT_UNCOMPRESSED_R16 = 11
+    """16 bpp (1 channel - half float)"""
+
+    RL_PIXELFORMAT_UNCOMPRESSED_R16G16B16 = 12
+    """16*3 bpp (3 channels - half float)"""
+
+    RL_PIXELFORMAT_UNCOMPRESSED_R16G16B16A16 = 13
+    """16*4 bpp (4 channels - half float)"""
+
+    RL_PIXELFORMAT_COMPRESSED_DXT1_RGB = 14
     """4 bpp (no alpha)"""
 
-    RL_PIXELFORMAT_COMPRESSED_DXT1_RGBA = 12
+    RL_PIXELFORMAT_COMPRESSED_DXT1_RGBA = 15
     """4 bpp (1 bit alpha)"""
 
-    RL_PIXELFORMAT_COMPRESSED_DXT3_RGBA = 13
+    RL_PIXELFORMAT_COMPRESSED_DXT3_RGBA = 16
     """8 bpp"""
 
-    RL_PIXELFORMAT_COMPRESSED_DXT5_RGBA = 14
+    RL_PIXELFORMAT_COMPRESSED_DXT5_RGBA = 17
     """8 bpp"""
 
-    RL_PIXELFORMAT_COMPRESSED_ETC1_RGB = 15
+    RL_PIXELFORMAT_COMPRESSED_ETC1_RGB = 18
     """4 bpp"""
 
-    RL_PIXELFORMAT_COMPRESSED_ETC2_RGB = 16
+    RL_PIXELFORMAT_COMPRESSED_ETC2_RGB = 19
     """4 bpp"""
 
-    RL_PIXELFORMAT_COMPRESSED_ETC2_EAC_RGBA = 17
+    RL_PIXELFORMAT_COMPRESSED_ETC2_EAC_RGBA = 20
     """8 bpp"""
 
-    RL_PIXELFORMAT_COMPRESSED_PVRT_RGB = 18
+    RL_PIXELFORMAT_COMPRESSED_PVRT_RGB = 21
     """4 bpp"""
 
-    RL_PIXELFORMAT_COMPRESSED_PVRT_RGBA = 19
+    RL_PIXELFORMAT_COMPRESSED_PVRT_RGBA = 22
     """4 bpp"""
 
-    RL_PIXELFORMAT_COMPRESSED_ASTC_4x4_RGBA = 20
+    RL_PIXELFORMAT_COMPRESSED_ASTC_4x4_RGBA = 23
     """8 bpp"""
 
-    RL_PIXELFORMAT_COMPRESSED_ASTC_8x8_RGBA = 21
+    RL_PIXELFORMAT_COMPRESSED_ASTC_8x8_RGBA = 24
     """2 bpp"""
 
 
@@ -6899,6 +3322,9 @@ RL_PIXELFORMAT_UNCOMPRESSED_R8G8B8A8 = rlPixelFormat.RL_PIXELFORMAT_UNCOMPRESSED
 RL_PIXELFORMAT_UNCOMPRESSED_R32 = rlPixelFormat.RL_PIXELFORMAT_UNCOMPRESSED_R32
 RL_PIXELFORMAT_UNCOMPRESSED_R32G32B32 = rlPixelFormat.RL_PIXELFORMAT_UNCOMPRESSED_R32G32B32
 RL_PIXELFORMAT_UNCOMPRESSED_R32G32B32A32 = rlPixelFormat.RL_PIXELFORMAT_UNCOMPRESSED_R32G32B32A32
+RL_PIXELFORMAT_UNCOMPRESSED_R16 = rlPixelFormat.RL_PIXELFORMAT_UNCOMPRESSED_R16
+RL_PIXELFORMAT_UNCOMPRESSED_R16G16B16 = rlPixelFormat.RL_PIXELFORMAT_UNCOMPRESSED_R16G16B16
+RL_PIXELFORMAT_UNCOMPRESSED_R16G16B16A16 = rlPixelFormat.RL_PIXELFORMAT_UNCOMPRESSED_R16G16B16A16
 RL_PIXELFORMAT_COMPRESSED_DXT1_RGB = rlPixelFormat.RL_PIXELFORMAT_COMPRESSED_DXT1_RGB
 RL_PIXELFORMAT_COMPRESSED_DXT1_RGBA = rlPixelFormat.RL_PIXELFORMAT_COMPRESSED_DXT1_RGBA
 RL_PIXELFORMAT_COMPRESSED_DXT3_RGBA = rlPixelFormat.RL_PIXELFORMAT_COMPRESSED_DXT3_RGBA
@@ -7261,13 +3687,3774 @@ RL_CULL_FACE_BACK = rlCullMode.RL_CULL_FACE_BACK
 
 
 
-RAYLIB_VERSION_MAJOR = 4
+class Vector2(Structure):
+    '''Vector2, 2 components'''
+    _fields_ = [
+        ('x', Float),
+        ('y', Float),
+    ]
 
-RAYLIB_VERSION_MINOR = 5
+
+    @classmethod
+    def array_of(cls, vector2_sequence):
+        '''Creates and returns an array of Vector2s'''
+        arr = cls * len(vector2_sequence)
+        return arr(*vector2_sequence)
+
+    @classmethod
+    def one():
+        # type: () -> Vector2
+        """"""
+        result = _Vector2One()
+        return result
+
+
+    def __init__(self, x=None, y=None):
+        # type: (float, float) -> None
+        '''Initializes this Vector2 struct'''
+        super(Vector2, self).__init__(
+            x or 0.0,
+            y or 0.0
+        )
+
+
+    @property
+    def byref(self):
+        '''Gets a reference to this Vector2 instance'''
+        return byref(self)
+
+
+    def __len__(self):
+        return 2
+
+    def __getitem__(self, key):
+        return (self.x, self.y).__getitem__(key)
+
+    def __getattr__(self, attr):
+        m = _VEC2_GET_SWZL.fullmatch(attr)
+        if not m:
+            raise AttributeError("Vector2 object does not have attribute '{}'.".format(attr))
+        cls = {1: float, 2: Vector2, 3: Vector3, 4: Vector4}.get(len(attr))
+        v = self.todict()
+        return cls(*(v[ch] for ch in attr))
+
+    def __setattr__(self, attr, value):
+        m = _VEC2_SET_SWZL.fullmatch(attr)
+        if not m:
+            raise AttributeError("Vector2 object does not have attribute '{}'.".format(attr))
+        if len(attr) == 1:
+            super(Vector2, self).__setattr__(attr, float(value))
+        else:
+            for i, ch in enumerate(attr):
+                super(Vector2, self).__setattr__(ch, float(value[i]))
+
+    def todict(self):
+        '''Returns a dict mapping this Vector2's components'''
+        return {'x': self.x, 'y': self.y}
+
+    def fromdict(self, d):
+        '''Apply the mapping `d` to this Vector2's components'''
+        self.x = float(d.get('x', self.x))
+        self.y = float(d.get('y', self.y))
+
+
+
+    def __eq__(self, other):
+        return _Vector2Equals(self, other)
+
+    def __ne__(self, other):
+        return not _Vector2Equals(self, other)
+
+    def __pos__(self):
+        return Vector2(+self.x, +self.y)
+
+    def __neg__(self):
+        return Vector2(-self.x, -self.y)
+
+    def __abs__(self):
+        return Vector2(abs(self.x), abs(self.y))
+
+    def __add__(self, other):
+        if isinstance(other, (int, float)):
+            return _Vector2AddValue(self, float(other))
+        return _Vector2Add(self, Vector2(other[0], other[1]))
+
+    def __radd__(self, other):
+        if isinstance(other, (int, float)):
+            return _Vector2AddValue(self, float(other))
+        return _Vector2Add(self, Vector2(other[0], other[1]))
+
+    def __iadd__(self, other):
+        if isinstance(other, (int, float)):
+            self.xy = _Vector2AddValue(self, float(other))
+        else:
+            self.xy = _Vector2Add(self, Vector2(other[0], other[1]))
+        return self
+
+    def __sub__(self, other):
+        if isinstance(other, (int, float)):
+            return _Vector2SubtractValue(self, float(other))
+        return _Vector2Subtract(self, Vector2(other[0], other[1]))
+
+    def __rsub__(self, other):
+        if isinstance(other, (int, float)):
+            return Vector2(other - self.x, other - self.y)
+        return _Vector2Subtract(Vector2(other[0], other[1]), self)
+
+    def __isub__(self, other):
+        if isinstance(other, (int, float)):
+            self.xy = _Vector2SubtractValue(self, float(other))
+        else:
+            self.xy = _Vector2Subtract(self, Vector2(other[0], other[1]))
+        return self
+
+    def __mul__(self, other):
+        if isinstance(other, (int, float)):
+            return _Vector2Scale(self, float(other))
+        elif isinstance(other, Matrix):
+            return _Vector2Transform(self, other)
+        return _Vector2Multiply(self, Vector2(other[0], other[1]))
+
+    def __rmul__(self, other):
+        if isinstance(other, (int, float)):
+            return _Vector2Scale(self, float(other))
+        return _Vector2Multiply(self, Vector2(other[0], other[1]))
+
+    def __imul__(self, other):
+        if isinstance(other, (int, float)):
+            self.xy = _Vector2Scale(self, float(other))
+        elif isinstance(other, Matrix):
+            self.xy = _Vector2Transform(self, other)
+        else:
+            self.xy = _Vector2Multiply(self, Vector2(other[0], other[1]))
+        return self
+
+    def __truediv__(self, other):
+        if isinstance(other, (int, float)):
+            return _Vector2Divide(self, Vector2(other, other))
+        return _Vector2Divide(self, Vector2(other[0], other[1]))
+
+    def __rtruediv__(self, other):
+        if isinstance(other, (int, float)):
+            return Vector2(other / self.x, other / self.y)
+        return _Vector2Divide(Vector2(other[0], other[1]), self)
+
+    def __itruediv__(self, other):
+        if isinstance(other, (int, float)):
+            self.xy = _Vector2Divide(self, Vector2(other, other))
+        else:
+            self.xy = _Vector2Divide(self, Vector2(other[0], other[1]))
+        return self
+
+    def __str__(self):
+        return "({}, {})".format(self.x, self.y)
+
+    def __repr__(self):
+        return "Vector2{}".format(self.__str__())
+
+    @property
+    def length(self):
+        # type: (Vector2) -> float
+        """"""
+        result = _Vector2Length(self)
+        return result
+
+    @property
+    def length_sqr(self):
+        # type: (Vector2) -> float
+        """"""
+        result = _Vector2LengthSqr(self)
+        return result
+
+    def dot_product(self, v2):
+        # type: (Vector2, Vector2) -> float
+        """"""
+        result = _Vector2DotProduct(self, _vec2(v2))
+        return result
+
+    def distance(self, v2):
+        # type: (Vector2, Vector2) -> float
+        """"""
+        result = _Vector2Distance(self, _vec2(v2))
+        return result
+
+    def distance_sqr(self, v2):
+        # type: (Vector2, Vector2) -> float
+        """"""
+        result = _Vector2DistanceSqr(self, _vec2(v2))
+        return result
+
+    def angle(self, v2):
+        # type: (Vector2, Vector2) -> float
+        """"""
+        result = _Vector2Angle(self, _vec2(v2))
+        return result
+
+    def normalize(self):
+        # type: (Vector2) -> Vector2
+        """"""
+        self.xy = _Vector2Normalize(self)
+        return self
+
+    def transform(self, mat):
+        # type: (Vector2, Matrix) -> Vector2
+        """"""
+        self.xy = _Vector2Transform(self, mat)
+        return self
+
+    def lerp(self, v2, amount):
+        # type: (Vector2, Vector2, float) -> Vector2
+        """"""
+        self.xy = _Vector2Lerp(self, _vec2(v2), float(amount))
+        return self
+
+    def reflect(self, normal):
+        # type: (Vector2, Vector2) -> Vector2
+        """"""
+        self.xy = _Vector2Reflect(self, _vec2(normal))
+        return self
+
+    def rotate(self, angle):
+        # type: (Vector2, float) -> Vector2
+        """"""
+        self.xy = _Vector2Rotate(self, float(angle))
+        return self
+
+    def move_towards(self, target, max_distance):
+        # type: (Vector2, Vector2, float) -> Vector2
+        """"""
+        self.xy = _Vector2MoveTowards(self, _vec2(target), float(max_distance))
+        return self
+
+    def clamp(self, min, max):
+        # type: (Vector2, Vector2, Vector2) -> Vector2
+        """"""
+        self.xy = _Vector2Clamp(self, _vec2(min), _vec2(max))
+        return self
+
+    def clamp_value(self, min, max):
+        # type: (Vector2, float, float) -> Vector2
+        """"""
+        self.xy = _Vector2ClampValue(self, float(min), float(max))
+        return self
+
+
+# Pointer type to Vector2s
+Vector2Ptr = POINTER(Vector2)
+
+
+
+class Vector3(Structure):
+    '''Vector3, 3 components'''
+    _fields_ = [
+        ('x', Float),
+        ('y', Float),
+        ('z', Float),
+    ]
+
+
+    @classmethod
+    def array_of(cls, vector3_sequence):
+        '''Creates and returns an array of Vector3s'''
+        arr = cls * len(vector3_sequence)
+        return arr(*vector3_sequence)
+
+    @classmethod
+    def one():
+        # type: () -> Vector3
+        """"""
+        result = _Vector3One()
+        return result
+
+
+    def __init__(self, x=None, y=None, z=None):
+        # type: (float, float, float) -> None
+        '''Initializes this Vector3 struct'''
+        super(Vector3, self).__init__(
+            x or 0.0,
+            y or 0.0,
+            z or 0.0
+        )
+
+
+    @property
+    def byref(self):
+        '''Gets a reference to this Vector3 instance'''
+        return byref(self)
+
+
+    def __len__(self):
+        return 3
+
+    def __getitem__(self, key):
+        return (self.x, self.y, self.z).__getitem__(key)
+
+    def __getattr__(self, attr):
+        m = _VEC3_GET_SWZL.fullmatch(attr)
+        if not m:
+            raise AttributeError("Vector3 object does not have attribute '{}'.".format(attr))
+        cls = {1: float, 2: Vector2, 3: Vector3, 4: Vector4}.get(len(attr))
+        v = self.todict()
+        return cls(*(v[ch] for ch in attr))
+
+    def __setattr__(self, attr, value):
+        m = _VEC3_SET_SWZL.fullmatch(attr)
+        if not m:
+            raise AttributeError("Vector3 object does not have attribute '{}'.".format(attr))
+        if len(attr) == 1:
+            super(Vector3, self).__setattr__(attr, float(value))
+        else:
+            for i, ch in enumerate(attr):
+                super(Vector3, self).__setattr__(ch, float(value[i]))
+
+    def todict(self):
+        '''Returns a dict mapping this Vector3's components'''
+        return {'x': self.x, 'y': self.y, 'z': self.z}
+
+    def fromdict(self, d):
+        '''Apply the mapping `d` to this Vector3's components'''
+        self.x = float(d.get('x', self.x))
+        self.y = float(d.get('y', self.y))
+        self.z = float(d.get('z', self.z))
+
+
+    def __eq__(self, other):
+        return _Vector3Equals(self, other)
+
+    def __ne__(self, other):
+        return not _Vector3Equals(self, other)
+
+    def __pos__(self):
+        return Vector3(+self.x, +self.y, +self.z)
+
+    def __neg__(self):
+        return Vector3(-self.x, -self.y, -self.z)
+
+    def __abs__(self):
+        return Vector3(abs(self.x), abs(self.y), abs(self.z))
+
+    def __add__(self, other):
+        if isinstance(other, (int, float)):
+            return _Vector3AddValue(self, float(other))
+        return _Vector3Add(self, Vector3(other[0], other[1], other[2]))
+
+    def __radd__(self, other):
+        if isinstance(other, (int, float)):
+            return _Vector3AddValue(self, float(other))
+        return _Vector3Add(self, Vector3(other[0], other[1], other[2]))
+
+    def __iadd__(self, other):
+        if isinstance(other, (int, float)):
+            self.xy = _Vector3AddValue(self, float(other))
+        else:
+            self.xy = _Vector3Add(self, Vector3(other[0], other[1], other[2]))
+        return self
+
+    def __sub__(self, other):
+        if isinstance(other, (int, float)):
+            return _Vector3SubtractValue(self, float(other))
+        return _Vector3Subtract(self, Vector3(other[0], other[1], other[2]))
+
+    def __rsub__(self, other):
+        if isinstance(other, (int, float)):
+            return Vector3(other - self.x, other - self.y, other - self.z)
+        return _Vector3Subtract(Vector3(other[0], other[1], other[2]), self)
+
+    def __isub__(self, other):
+        if isinstance(other, (int, float)):
+            self.xy = _Vector3SubtractValue(self, float(other))
+        else:
+            self.xy = _Vector3Subtract(self, Vector3(other[0], other[1], other[2]))
+        return self
+
+    def __mul__(self, other):
+        if isinstance(other, (int, float)):
+            return _Vector3Scale(self, float(other))
+        elif isinstance(other, Matrix):
+            return _Vector3Transform(self, other)
+        return _Vector3Multiply(self, Vector3(other[0], other[1], other[2]))
+
+    def __rmul__(self, other):
+        if isinstance(other, (int, float)):
+            return _Vector3Scale(self, float(other))
+        return _Vector3Multiply(self, Vector3(other[0], other[1], other[2]))
+
+    def __imul__(self, other):
+        if isinstance(other, (int, float)):
+            self.xy = _Vector3Scale(self, float(other))
+        elif isinstance(other, Matrix):
+            self.xy = _Vector3Transform(self, other)
+        else:
+            self.xy = _Vector3Multiply(self, Vector3(other[0], other[1], other[2]))
+        return self
+
+    def __truediv__(self, other):
+        if isinstance(other, (int, float)):
+            return _Vector3Divide(self, Vector3(other, other))
+        return _Vector3Divide(self, Vector3(other[0], other[1]))
+
+    def __rtruediv__(self, other):
+        if isinstance(other, (int, float)):
+            return Vector3(other / self.x, other / self.y, other / self.z)
+        return _Vector3Divide(Vector3(other[0], other[1], other[2]), self)
+
+    def __itruediv__(self, other):
+        if isinstance(other, (int, float)):
+            self.xy = _Vector3Divide(self, Vector3(other, other))
+        else:
+            self.xy = _Vector3Divide(self, Vector3(other[0], other[1], other[2]))
+        return self
+
+    def __str__(self):
+        return "({}, {}, {})".format(self.x, self.y, self.z)
+
+    def __repr__(self):
+        return "Vector3{}".format(self.__str__())
+
+    @property
+    def length(self):
+        # type: (Vector3) -> float
+        """"""
+        result = _Vector3Length(self)
+        return result
+
+    @property
+    def length_sqr(self):
+        # type: (Vector3) -> float
+        """"""
+        result = _Vector3LengthSqr(self)
+        return result
+
+    def cross_product(self, v2):
+        # type: (Vector3, Vector3) -> Vector3
+        """"""
+        result = _Vector3CrossProduct(self, _vec3(v2))
+        return result
+
+    def perpendicular(self):
+        # type: (Vector3) -> Vector3
+        """"""
+        self.xyz = _Vector3Perpendicular(self)
+        return self
+
+    def dot_product(self, v2):
+        # type: (Vector3, Vector3) -> float
+        """"""
+        result = _Vector3DotProduct(self, _vec3(v2))
+        return result
+
+    def distance(self, v2):
+        # type: (Vector3, Vector3) -> float
+        """"""
+        result = _Vector3Distance(self, _vec3(v2))
+        return result
+
+    def distance_sqr(self, v2):
+        # type: (Vector3, Vector3) -> float
+        """"""
+        result = _Vector3DistanceSqr(self, _vec3(v2))
+        return result
+
+    def angle(self, v2):
+        # type: (Vector3, Vector3) -> float
+        """"""
+        result = _Vector3Angle(self, _vec3(v2))
+        return result
+
+    def normalize(self):
+        # type: (Vector3) -> Vector3
+        """"""
+        self.xyz = _Vector3Normalize(self)
+        return self
+
+    def ortho_normalize(self, v2):
+        # type: (Vector3Ptr, Vector3Ptr) -> None
+        """"""
+        _Vector3OrthoNormalize(self, _vec3(v2))
+
+    def transform(self, mat):
+        # type: (Vector3, Matrix) -> Vector3
+        """"""
+        self.xyz = _Vector3Transform(self, mat)
+        return self
+
+    def rotate_by_quaternion(self, q):
+        # type: (Vector3, Quaternion) -> Vector3
+        """"""
+        self.xyz = _Vector3RotateByQuaternion(self, q)
+        return self
+
+    def rotate_by_axis_angle(self, axis, angle):
+        # type: (Vector3, Vector3, float) -> Vector3
+        """"""
+        self.xyz = _Vector3RotateByAxisAngle(self, _vec3(axis), float(angle))
+        return self
+
+    def lerp(self, v2, amount):
+        # type: (Vector3, Vector3, float) -> Vector3
+        """"""
+        self.xyz = _Vector3Lerp(self, _vec3(v2), float(amount))
+        return self
+
+    def reflect(self, normal):
+        # type: (Vector3, Vector3) -> Vector3
+        """"""
+        self.xyz = _Vector3Reflect(self, _vec3(normal))
+        return self
+
+    def min(self, v2):
+        # type: (Vector3, Vector3) -> Vector3
+        """"""
+        self.xyz = _Vector3Min(self, _vec3(v2))
+        return self
+
+    def max(self, v2):
+        # type: (Vector3, Vector3) -> Vector3
+        """"""
+        self.xyz = _Vector3Max(self, _vec3(v2))
+        return self
+
+    def barycenter(self, a, b, c):
+        # type: (Vector3, Vector3, Vector3, Vector3) -> Vector3
+        """"""
+        self.xyz = _Vector3Barycenter(self, _vec3(a), _vec3(b), _vec3(c))
+        return self
+
+    def unproject(self, projection, view):
+        # type: (Vector3, Matrix, Matrix) -> Vector3
+        """"""
+        self.xyz = _Vector3Unproject(self, projection, view)
+        return self
+
+    def to_float_v(self):
+        # type: (Vector3) -> float3
+        """"""
+        result = _Vector3ToFloatV(self)
+        return result
+
+    def clamp(self, min, max):
+        # type: (Vector3, Vector3, Vector3) -> Vector3
+        """"""
+        self.xyz = _Vector3Clamp(self, _vec3(min), _vec3(max))
+        return self
+
+    def clamp_value(self, min, max):
+        # type: (Vector3, float, float) -> Vector3
+        """"""
+        self.xyz = _Vector3ClampValue(self, float(min), float(max))
+        return self
+
+    def refract(self, n, r):
+        # type: (Vector3, Vector3, float) -> Vector3
+        """"""
+        result = _Vector3Refract(self, _vec3(n), float(r))
+        return result
+
+
+# Pointer type to Vector3s
+Vector3Ptr = POINTER(Vector3)
+
+
+
+class Vector4(Structure):
+    '''Vector4, 4 components'''
+    _fields_ = [
+        ('x', Float),
+        ('y', Float),
+        ('z', Float),
+        ('w', Float),
+    ]
+
+
+    @classmethod
+    def array_of(cls, vector4_sequence):
+        '''Creates and returns an array of Vector4s'''
+        arr = cls * len(vector4_sequence)
+        return arr(*vector4_sequence)
+
+
+    def __init__(self, x=None, y=None, z=None, w=None):
+        # type: (float, float, float, float) -> None
+        '''Initializes this Vector4 struct'''
+        super(Vector4, self).__init__(
+            x or 0.0,
+            y or 0.0,
+            z or 0.0,
+            w or 0.0
+        )
+
+
+    @property
+    def byref(self):
+        '''Gets a reference to this Vector4 instance'''
+        return byref(self)
+
+
+    def __len__(self):
+        return 4
+
+    def __getitem__(self, key):
+        return (self.x, self.y, self.z, self.w).__getitem__(key)
+
+    def __getattr__(self, attr):
+        m = _VEC4_GET_SWZL.fullmatch(attr)
+        if not m:
+            raise AttributeError("Vector4 object does not have attribute '{}'.".format(attr))
+        cls = {1: float, 2: Vector2, 3: Vector3, 4: Vector4}.get(len(attr))
+        v = self.todict()
+        return cls(*(v[ch] for ch in attr))
+
+    def __setattr__(self, attr, value):
+        m = _VEC4_SET_SWZL.fullmatch(attr)
+        if not m:
+            raise AttributeError("Vector4 object does not have attribute '{}'.".format(attr))
+        if len(attr) == 1:
+            super(Vector4, self).__setattr__(attr, float(value))
+        else:
+            for i, ch in enumerate(attr):
+                super(Vector4, self).__setattr__(ch, float(value[i]))
+
+    def todict(self):
+        '''Returns a dict mapping this Vector4's components'''
+        return {'x': self.x, 'y': self.y, 'z': self.z, 'w': self.w}
+
+    def fromdict(self, d):
+        '''Apply the mapping `d` to this Vector4's components'''
+        self.x = float(d.get('x', self.x))
+        self.y = float(d.get('y', self.y))
+        self.z = float(d.get('z', self.z))
+        self.w = float(d.get('w', self.w))
+
+
+    def __str__(self):
+        return "({}, {}, {}, {})".format(self.x, self.y, self.z, self.w)
+
+    def __repr__(self):
+        return "Vector4{}".format(self.__str__())
+
+
+# Pointer type to Vector4s
+Vector4Ptr = POINTER(Vector4)
+
+
+# Quaternion, 4 components (Vector4 alias)
+Quaternion = Vector4
+QuaternionPtr = Vector4Ptr
+# Quaternion type
+Quaternion = Vector4
+QuaternionPtr = Vector4Ptr
+
+class Matrix(Structure):
+    '''Matrix, 4x4 components, column major, OpenGL style, right-handed'''
+    _fields_ = [
+        ('m0', Float),
+        ('m4', Float),
+        ('m8', Float),
+        ('m12', Float),
+        ('m1', Float),
+        ('m5', Float),
+        ('m9', Float),
+        ('m13', Float),
+        ('m2', Float),
+        ('m6', Float),
+        ('m10', Float),
+        ('m14', Float),
+        ('m3', Float),
+        ('m7', Float),
+        ('m11', Float),
+        ('m15', Float),
+    ]
+
+
+    @classmethod
+    def array_of(cls, matrix_sequence):
+        '''Creates and returns an array of Matrixs'''
+        arr = cls * len(matrix_sequence)
+        return arr(*matrix_sequence)
+
+    @classmethod
+    def identity():
+        # type: () -> Matrix
+        """"""
+        result = _MatrixIdentity()
+        return result
+
+    @classmethod
+    def translate(cls, x, y, z):
+        # type: (float, float, float) -> Matrix
+        """"""
+        result = _MatrixTranslate(float(x), float(y), float(z))
+        return result
+
+    @classmethod
+    def rotate(cls, axis, angle):
+        # type: (Vector3, float) -> Matrix
+        """"""
+        result = _MatrixRotate(_vec3(axis), float(angle))
+        return result
+
+    @classmethod
+    def rotate_x(cls, angle):
+        # type: (float) -> Matrix
+        """"""
+        result = _MatrixRotateX(float(angle))
+        return result
+
+    @classmethod
+    def rotate_y(cls, angle):
+        # type: (float) -> Matrix
+        """"""
+        result = _MatrixRotateY(float(angle))
+        return result
+
+    @classmethod
+    def rotate_z(cls, angle):
+        # type: (float) -> Matrix
+        """"""
+        result = _MatrixRotateZ(float(angle))
+        return result
+
+    @classmethod
+    def rotate_xyz(cls, angle):
+        # type: (Vector3) -> Matrix
+        """"""
+        result = _MatrixRotateXYZ(_vec3(angle))
+        return result
+
+    @classmethod
+    def rotate_zyx(cls, angle):
+        # type: (Vector3) -> Matrix
+        """"""
+        result = _MatrixRotateZYX(_vec3(angle))
+        return result
+
+    @classmethod
+    def scale(cls, x, y, z):
+        # type: (float, float, float) -> Matrix
+        """"""
+        result = _MatrixScale(float(x), float(y), float(z))
+        return result
+
+    @classmethod
+    def frustum(cls, left, right, bottom, top, near, far):
+        # type: (float, float, float, float, float, float) -> Matrix
+        """"""
+        result = _MatrixFrustum(float(left), float(right), float(bottom), float(top), float(near), float(far))
+        return result
+
+    @classmethod
+    def perspective(cls, fov_y, aspect, near_plane, far_plane):
+        # type: (float, float, float, float) -> Matrix
+        """"""
+        result = _MatrixPerspective(float(fov_y), float(aspect), float(near_plane), float(far_plane))
+        return result
+
+    @classmethod
+    def ortho(cls, left, right, bottom, top, near_plane, far_plane):
+        # type: (float, float, float, float, float, float) -> Matrix
+        """"""
+        result = _MatrixOrtho(float(left), float(right), float(bottom), float(top), float(near_plane), float(far_plane))
+        return result
+
+    @classmethod
+    def look_at(cls, eye, target, up):
+        # type: (Vector3, Vector3, Vector3) -> Matrix
+        """"""
+        result = _MatrixLookAt(_vec3(eye), _vec3(target), _vec3(up))
+        return result
+
+
+    def __init__(self, m0=None,
+                 m4=None,
+                 m8=None,
+                 m12=None,
+                 m1=None,
+                 m5=None,
+                 m9=None,
+                 m13=None,
+                 m2=None,
+                 m6=None,
+                 m10=None,
+                 m14=None,
+                 m3=None,
+                 m7=None,
+                 m11=None,
+                 m15=None):
+        # type: (float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float) -> None
+        '''Initializes this Matrix struct'''
+        super(Matrix, self).__init__(
+            m0 or 0.0,
+            m4 or 0.0,
+            m8 or 0.0,
+            m12 or 0.0,
+            m1 or 0.0,
+            m5 or 0.0,
+            m9 or 0.0,
+            m13 or 0.0,
+            m2 or 0.0,
+            m6 or 0.0,
+            m10 or 0.0,
+            m14 or 0.0,
+            m3 or 0.0,
+            m7 or 0.0,
+            m11 or 0.0,
+            m15 or 0.0
+        )
+
+
+    @property
+    def byref(self):
+        '''Gets a reference to this Matrix instance'''
+        return byref(self)
+
+
+    def __str__(self):
+        return "[{} at {}]".format(self.__class__.__name__, id(self))
+
+    def __repr__(self):
+        return self.__str__()
+
+    def determinant(self):
+        # type: (Matrix) -> float
+        """"""
+        result = _MatrixDeterminant(self)
+        return result
+
+    def trace(self):
+        # type: (Matrix) -> float
+        """"""
+        result = _MatrixTrace(self)
+        return result
+
+    def transpose(self):
+        # type: (Matrix) -> Matrix
+        """"""
+        result = _MatrixTranspose(self)
+        return result
+
+    def invert(self):
+        # type: (Matrix) -> Matrix
+        """"""
+        result = _MatrixInvert(self)
+        return result
+
+
+# Pointer type to Matrixs
+MatrixPtr = POINTER(Matrix)
+
+
+
+class Color(Structure):
+    '''Color, 4 components, R8G8B8A8 (32bit)'''
+    _fields_ = [
+        ('r', UChar),
+        ('g', UChar),
+        ('b', UChar),
+        ('a', UChar),
+    ]
+
+
+    @classmethod
+    def array_of(cls, color_sequence):
+        '''Creates and returns an array of Colors'''
+        arr = cls * len(color_sequence)
+        return arr(*color_sequence)
+
+
+    def __init__(self, r=None, g=None, b=None, a=None):
+        # type: (int, int, int, int) -> None
+        '''Initializes this Color struct'''
+        super(Color, self).__init__(
+            r or 0,
+            g or 0,
+            b or 0,
+            a or 0
+        )
+
+
+    @property
+    def byref(self):
+        '''Gets a reference to this Color instance'''
+        return byref(self)
+
+
+    def __len__(self):
+        return 4
+
+    def __getitem__(self, key):
+        return (self.r, self.g, self.b, self.a).__getitem__(key)
+
+    def __getattr__(self, attr):
+        m = _RGBA_GET_SWZL.fullmatch(attr)
+        if not m:
+            raise AttributeError("Color object does not have attribute '{}'.".format(attr))
+        cls = {1: int, 4: Color}.get(len(attr))
+        v = self.todict()
+        return cls(*(v[ch] for ch in attr))
+
+    def __setattr__(self, attr, value):
+        m = _RGBA_SET_SWZL.fullmatch(attr)
+        if not m:
+            raise AttributeError("Color object does not have attribute '{}'.".format(attr))
+        if len(attr) == 1:
+            super(Color, self).__setattr__(attr, int(value))
+        else:
+            for i, ch in enumerate(attr):
+                super(Color, self).__setattr__(ch, int(value[i]))
+
+    def todict(self):
+        '''Returns a dict mapping this Color's components'''
+        return {'r': self.r, 'g': self.g, 'b': self.b, 'a': self.a}
+
+    def fromdict(self, d):
+        '''Apply the mapping `d` to this Color's components'''
+        self.r = int(d.get('r', self.r))
+        self.g = int(d.get('g', self.g))
+        self.b = int(d.get('b', self.b))
+        self.a = int(d.get('a', self.a))
+
+
+    def __str__(self):
+        return "({: 3}, {: 3}, {: 3}, {: 3})".format(self.r, self.g, self.b, self.a)
+
+    def __repr__(self):
+        return "Color{}".format(self.__str__())
+
+    def fade(self, alpha):
+        # type: (Color, float) -> Color
+        """Get color with alpha applied, alpha goes from 0.0f to 1.0f"""
+        result = _Fade(self, float(alpha))
+        return result
+
+    def to_int(self):
+        # type: (Color) -> int
+        """Get hexadecimal value for a Color"""
+        result = _ColorToInt(self)
+        return result
+
+    def to_hsv(self):
+        # type: (Color) -> Vector3
+        """Get HSV values for a Color, hue [0..360], saturation/value [0..1]"""
+        result = _ColorToHSV(self)
+        return result
+
+    def from_hsv(self, saturation, value):
+        # type: (float, float, float) -> Color
+        """Get a Color from HSV values, hue [0..360], saturation/value [0..1]"""
+        result = _ColorFromHSV(self, float(saturation), float(value))
+        return result
+
+    def tint(self, tint):
+        # type: (Color, Color) -> Color
+        """Get color multiplied with another color"""
+        result = _ColorTint(self, _color(tint))
+        return result
+
+    def brightness(self, factor):
+        # type: (Color, float) -> Color
+        """Get color with brightness correction, brightness factor goes from -1.0f to 1.0f"""
+        result = _ColorBrightness(self, float(factor))
+        return result
+
+    def contrast(self, contrast):
+        # type: (Color, float) -> Color
+        """Get color with contrast correction, contrast values between -1.0f and 1.0f"""
+        result = _ColorContrast(self, float(contrast))
+        return result
+
+    def alpha(self, alpha):
+        # type: (Color, float) -> Color
+        """Get color with alpha applied, alpha goes from 0.0f to 1.0f"""
+        result = _ColorAlpha(self, float(alpha))
+        return result
+
+    def alpha_blend(self, src, tint):
+        # type: (Color, Color, Color) -> Color
+        """Get src alpha-blended into dst color with tint"""
+        result = _ColorAlphaBlend(self, _color(src), _color(tint))
+        return result
+
+
+# Pointer type to Colors
+ColorPtr = POINTER(Color)
+
+
+
+class Rectangle(Structure):
+    '''Rectangle, 4 components'''
+    _fields_ = [
+        ('x', Float),
+        ('y', Float),
+        ('width', Float),
+        ('height', Float),
+    ]
+
+
+    @classmethod
+    def array_of(cls, rectangle_sequence):
+        '''Creates and returns an array of Rectangles'''
+        arr = cls * len(rectangle_sequence)
+        return arr(*rectangle_sequence)
+
+
+    def __init__(self, x=None, y=None, width=None, height=None):
+        # type: (float, float, float, float) -> None
+        '''Initializes this Rectangle struct'''
+        super(Rectangle, self).__init__(
+            x or 0.0,
+            y or 0.0,
+            width or 0.0,
+            height or 0.0
+        )
+
+
+    @property
+    def byref(self):
+        '''Gets a reference to this Rectangle instance'''
+        return byref(self)
+
+
+    def __len__(self):
+        return 4
+
+    def __getitem__(self, key):
+        return (self.x, self.y, self.width, self.height).__getitem__(key)
+
+    def __getattr__(self, attr):
+        m = _RECT_GET_SWZL.fullmatch(attr)
+        if not m:
+            raise AttributeError("Rectangle object does not have attribute '{}'.".format(attr))
+        cls = {1: float, 2: Vector2, 3: Vector3, 4: Rectangle}.get(len(attr))
+        v = self.todict()
+        return cls(*(v[ch] for ch in attr))
+
+    def __setattr__(self, attr, value):
+        m = _RECT_SET_SWZL.fullmatch(attr)
+        if not m:
+            raise AttributeError("Rectangle object does not have attribute '{}'.".format(attr))
+        w = self.width
+        h = self.height
+        if attr in ('width', 'height') or len(attr) == 1:
+            if attr == 'c':
+                super(Rectangle, self).__setattr__('x', float(value - w * 0.5))
+            elif attr == 'r':
+                super(Rectangle, self).__setattr__('x', float(value - w))
+            elif attr == 'm':
+                super(Rectangle, self).__setattr__('y', float(value - h * 0.5))
+            elif attr == 'b':
+                super(Rectangle, self).__setattr__('y', float(value - h))
+            elif attr == 'w':
+                super(Rectangle, self).__setattr__('width', value)
+            elif attr == 'h':
+                super(Rectangle, self).__setattr__('height', value)
+            else:
+                super(Rectangle, self).__setattr__(attr, float(value))
+        else:
+            for i, ch in enumerate(attr):
+                if ch in ('x', 'y'):
+                    super(Rectangle, self).__setattr__(ch, float(value[i]))
+                elif ch == 'c':
+                    super(Rectangle, self).__setattr__('x', float(value[i] - w * 0.5))
+                elif ch == 'r':
+                    super(Rectangle, self).__setattr__('x', float(value[i] - w))
+                elif ch == 'm':
+                    super(Rectangle, self).__setattr__('y', float(value[i] - h * 0.5))
+                elif ch == 'b':
+                    super(Rectangle, self).__setattr__('y', float(value[i] - h))
+                elif ch == 'w':
+                    super(Rectangle, self).__setattr__('width', value[i])
+                elif ch == 'h':
+                    super(Rectangle, self).__setattr__('height', value[i])
+
+    def todict(self):
+        '''Returns a dict mapping this Rectangle's components'''
+        return {'x': self.x, 'y': self.y, 'w': self.width, 'h': self.height,
+                'c': self.x + self.width * 0.5, 'm': self.y + self.height * 0.5,
+                'r': self.x + self.width, 'b': self.y + self.height}
+
+    def fromdict(self, d):
+        '''Apply the mapping `d` to this Rectangle's components'''
+        self.x = float(d.get('x', self.x))
+        self.y = float(d.get('y', self.y))
+        self.width = float(d.get('w', self.width))
+        self.height = float(d.get('h', self.height))
+
+
+    def __str__(self):
+        return "({}, {}, {}, {})".format(self.x, self.y, self.width, self.height)
+
+    def __repr__(self):
+        return "Rectangle{}".format(self.__str__())
+
+
+# Pointer type to Rectangles
+RectanglePtr = POINTER(Rectangle)
+
+
+
+class Image(Structure):
+    '''Image, pixel data stored in CPU memory (RAM)'''
+    _fields_ = [
+        ('data', VoidPtr),
+        ('width', Int),
+        ('height', Int),
+        ('mipmaps', Int),
+        ('format', Int),
+    ]
+
+
+    @classmethod
+    def array_of(cls, image_sequence):
+        '''Creates and returns an array of Images'''
+        arr = cls * len(image_sequence)
+        return arr(*image_sequence)
+
+    @classmethod
+    def load(cls, file_name):
+        # type: (Union[str, CharPtr]) -> Image
+        """Load image from file into CPU memory (RAM)"""
+        result = _LoadImage(_str_in(file_name))
+        return result
+
+    @classmethod
+    def load_raw(cls, file_name, width, height, format, header_size):
+        # type: (Union[str, CharPtr], int, int, int, int) -> Image
+        """Load image from RAW file data"""
+        result = _LoadImageRaw(_str_in(file_name), int(width), int(height), int(format), int(header_size))
+        return result
+
+    @classmethod
+    def load_anim(cls, file_name, frames):
+        # type: (Union[str, CharPtr], Union[Seq[int], IntPtr]) -> Image
+        """Load image sequence from file (frames appended to image.data)"""
+        result = _LoadImageAnim(_str_in(file_name), frames)
+        return result
+
+    @classmethod
+    def load_from_memory(cls, file_type, file_data, data_size):
+        # type: (Union[str, CharPtr], Union[Seq[int], UCharPtr], int) -> Image
+        """Load image from memory buffer, fileType refers to extension: i.e. '.png'"""
+        result = _LoadImageFromMemory(_str_in(file_type), _str_in(file_data), int(data_size))
+        return result
+
+    @classmethod
+    def load_from_texture(cls, texture):
+        # type: (Texture2D) -> Image
+        """Load image from GPU texture data"""
+        result = _LoadImageFromTexture(texture)
+        return result
+
+    @classmethod
+    def load_from_screen():
+        # type: () -> Image
+        """Load image from screen buffer and (screenshot)"""
+        result = _LoadImageFromScreen()
+        return result
+
+    @classmethod
+    def gen_color(cls, width, height, color):
+        # type: (int, int, Color) -> Image
+        """Generate image: plain color"""
+        result = _GenImageColor(int(width), int(height), _color(color))
+        return result
+
+    @classmethod
+    def gen_gradient_radial(cls, width, height, density, inner, outer):
+        # type: (int, int, float, Color, Color) -> Image
+        """Generate image: radial gradient"""
+        result = _GenImageGradientRadial(int(width), int(height), float(density), _color(inner), _color(outer))
+        return result
+
+    @classmethod
+    def gen_checked(cls, width, height, checks_x, checks_y, col1, col2):
+        # type: (int, int, int, int, Color, Color) -> Image
+        """Generate image: checked"""
+        result = _GenImageChecked(int(width), int(height), int(checks_x), int(checks_y), _color(col1), _color(col2))
+        return result
+
+    @classmethod
+    def gen_white_noise(cls, width, height, factor):
+        # type: (int, int, float) -> Image
+        """Generate image: white noise"""
+        result = _GenImageWhiteNoise(int(width), int(height), float(factor))
+        return result
+
+    @classmethod
+    def gen_perlin_noise(cls, width, height, offset_x, offset_y, scale):
+        # type: (int, int, int, int, float) -> Image
+        """Generate image: perlin noise"""
+        result = _GenImagePerlinNoise(int(width), int(height), int(offset_x), int(offset_y), float(scale))
+        return result
+
+    @classmethod
+    def gen_cellular(cls, width, height, tile_size):
+        # type: (int, int, int) -> Image
+        """Generate image: cellular algorithm, bigger tileSize means bigger cells"""
+        result = _GenImageCellular(int(width), int(height), int(tile_size))
+        return result
+
+    @classmethod
+    def gen_text(cls, width, height, text):
+        # type: (int, int, Union[str, CharPtr]) -> Image
+        """Generate image: grayscale image from text data"""
+        result = _GenImageText(int(width), int(height), _str_in(text))
+        return result
+
+    @classmethod
+    def from_image(cls, image, rec):
+        # type: (Image, Rectangle) -> Image
+        """Create an image from another image piece"""
+        result = _ImageFromImage(image, _rect(rec))
+        return result
+
+    @classmethod
+    def text(cls, text, font_size, color):
+        # type: (Union[str, CharPtr], int, Color) -> Image
+        """Create an image from text (default font)"""
+        result = _ImageText(_str_in(text), int(font_size), _color(color))
+        return result
+
+    @classmethod
+    def text_ex(cls, font, text, font_size, spacing, tint):
+        # type: (Font, Union[str, CharPtr], float, float, Color) -> Image
+        """Create an image from text (custom sprite font)"""
+        result = _ImageTextEx(font, _str_in(text), float(font_size), float(spacing), _color(tint))
+        return result
+
+
+    def __init__(self, data=None,
+                 width=None,
+                 height=None,
+                 mipmaps=None,
+                 format=None):
+        # type: (bytes, int, int, int, int) -> None
+        '''Initializes this Image struct'''
+        super(Image, self).__init__(
+            data,
+            width or 0,
+            height or 0,
+            mipmaps or 0,
+            format or 0
+        )
+
+
+    @property
+    def byref(self):
+        '''Gets a reference to this Image instance'''
+        return byref(self)
+
+
+    @property
+    def is_ready(self):
+        # type: (Image) -> bool
+        """Check if an image is ready"""
+        result = _IsImageReady(self)
+        return result
+
+    def unload(self):
+        # type: (Image) -> None
+        """Unload image from CPU memory (RAM)"""
+        _UnloadImage(self)
+
+    def export(self, file_name):
+        # type: (Image, Union[str, CharPtr]) -> bool
+        """Export image data to file, returns true on success"""
+        result = _ExportImage(self, _str_in(file_name))
+        return result
+
+    def export_as_code(self, file_name):
+        # type: (Image, Union[str, CharPtr]) -> bool
+        """Export image as code file defining an array of bytes, returns true on success"""
+        result = _ExportImageAsCode(self, _str_in(file_name))
+        return result
+
+    def copy(self):
+        # type: (Image) -> Image
+        """Create an image duplicate (useful for transformations)"""
+        result = _ImageCopy(self)
+        return result
+
+    def format(self, new_format):
+        # type: (ImagePtr, int) -> None
+        """Convert image data to desired format"""
+        _ImageFormat(self.byref, int(new_format))
+
+    def to_pot(self, fill):
+        # type: (ImagePtr, Color) -> None
+        """Convert image to POT (power-of-two)"""
+        _ImageToPOT(self.byref, _color(fill))
+
+    def crop(self, crop):
+        # type: (ImagePtr, Rectangle) -> None
+        """Crop an image to a defined rectangle"""
+        _ImageCrop(self.byref, _rect(crop))
+
+    def alpha_crop(self, threshold):
+        # type: (ImagePtr, float) -> None
+        """Crop image depending on alpha value"""
+        _ImageAlphaCrop(self.byref, float(threshold))
+
+    def alpha_clear(self, color, threshold):
+        # type: (ImagePtr, Color, float) -> None
+        """Clear alpha channel to desired color"""
+        _ImageAlphaClear(self.byref, _color(color), float(threshold))
+
+    def alpha_mask(self, alpha_mask):
+        # type: (ImagePtr, Image) -> None
+        """Apply alpha mask to image"""
+        _ImageAlphaMask(self.byref, alpha_mask)
+
+    def alpha_premultiply(self):
+        # type: (ImagePtr) -> None
+        """Premultiply alpha channel"""
+        _ImageAlphaPremultiply(self.byref)
+
+    def resize(self, new_width, new_height):
+        # type: (ImagePtr, int, int) -> None
+        """Resize image (Bicubic scaling algorithm)"""
+        _ImageResize(self.byref, int(new_width), int(new_height))
+
+    def resize_nn(self, new_width, new_height):
+        # type: (ImagePtr, int, int) -> None
+        """Resize image (Nearest-Neighbor scaling algorithm)"""
+        _ImageResizeNN(self.byref, int(new_width), int(new_height))
+
+    def resize_canvas(self, new_width, new_height, offset_x, offset_y, fill):
+        # type: (ImagePtr, int, int, int, int, Color) -> None
+        """Resize canvas and fill with color"""
+        _ImageResizeCanvas(self.byref, int(new_width), int(new_height), int(offset_x), int(offset_y), _color(fill))
+
+    def mipmaps(self):
+        # type: (ImagePtr) -> None
+        """Compute all mipmap levels for a provided image"""
+        _ImageMipmaps(self.byref)
+
+    def dither(self, r_bpp, g_bpp, b_bpp, a_bpp):
+        # type: (ImagePtr, int, int, int, int) -> None
+        """Dither image data to 16bpp or lower (Floyd-Steinberg dithering)"""
+        _ImageDither(self.byref, int(r_bpp), int(g_bpp), int(b_bpp), int(a_bpp))
+
+    def flip_vertical(self):
+        # type: (ImagePtr) -> None
+        """Flip image vertically"""
+        _ImageFlipVertical(self.byref)
+
+    def flip_horizontal(self):
+        # type: (ImagePtr) -> None
+        """Flip image horizontally"""
+        _ImageFlipHorizontal(self.byref)
+
+    def rotate_cw(self):
+        # type: (ImagePtr) -> None
+        """Rotate image clockwise 90deg"""
+        _ImageRotateCW(self.byref)
+
+    def rotate_ccw(self):
+        # type: (ImagePtr) -> None
+        """Rotate image counter-clockwise 90deg"""
+        _ImageRotateCCW(self.byref)
+
+    def color_tint(self, color):
+        # type: (ImagePtr, Color) -> None
+        """Modify image color: tint"""
+        _ImageColorTint(self.byref, _color(color))
+
+    def color_invert(self):
+        # type: (ImagePtr) -> None
+        """Modify image color: invert"""
+        _ImageColorInvert(self.byref)
+
+    def color_grayscale(self):
+        # type: (ImagePtr) -> None
+        """Modify image color: grayscale"""
+        _ImageColorGrayscale(self.byref)
+
+    def color_contrast(self, contrast):
+        # type: (ImagePtr, float) -> None
+        """Modify image color: contrast (-100 to 100)"""
+        _ImageColorContrast(self.byref, float(contrast))
+
+    def color_brightness(self, brightness):
+        # type: (ImagePtr, int) -> None
+        """Modify image color: brightness (-255 to 255)"""
+        _ImageColorBrightness(self.byref, int(brightness))
+
+    def color_replace(self, color, replace):
+        # type: (ImagePtr, Color, Color) -> None
+        """Modify image color: replace color"""
+        _ImageColorReplace(self.byref, _color(color), _color(replace))
+
+    def clear_background(self, color):
+        # type: (ImagePtr, Color) -> None
+        """Clear image background with given color"""
+        _ImageClearBackground(self.byref, _color(color))
+
+    def draw_pixel(self, pos_x, pos_y, color):
+        # type: (ImagePtr, int, int, Color) -> None
+        """Draw pixel within an image"""
+        _ImageDrawPixel(self.byref, int(pos_x), int(pos_y), _color(color))
+
+    def draw_pixel_v(self, position, color):
+        # type: (ImagePtr, Vector2, Color) -> None
+        """Draw pixel within an image (Vector version)"""
+        _ImageDrawPixelV(self.byref, _vec2(position), _color(color))
+
+    def draw_line(self, start_pos_x, start_pos_y, end_pos_x, end_pos_y, color):
+        # type: (ImagePtr, int, int, int, int, Color) -> None
+        """Draw line within an image"""
+        _ImageDrawLine(self.byref, int(start_pos_x), int(start_pos_y), int(end_pos_x), int(end_pos_y), _color(color))
+
+    def draw_line_v(self, start, end, color):
+        # type: (ImagePtr, Vector2, Vector2, Color) -> None
+        """Draw line within an image (Vector version)"""
+        _ImageDrawLineV(self.byref, _vec2(start), _vec2(end), _color(color))
+
+    def draw_circle(self, center_x, center_y, radius, color):
+        # type: (ImagePtr, int, int, int, Color) -> None
+        """Draw a filled circle within an image"""
+        _ImageDrawCircle(self.byref, int(center_x), int(center_y), int(radius), _color(color))
+
+    def draw_circle_v(self, center, radius, color):
+        # type: (ImagePtr, Vector2, int, Color) -> None
+        """Draw a filled circle within an image (Vector version)"""
+        _ImageDrawCircleV(self.byref, _vec2(center), int(radius), _color(color))
+
+    def draw_rectangle(self, pos_x, pos_y, width, height, color):
+        # type: (ImagePtr, int, int, int, int, Color) -> None
+        """Draw rectangle within an image"""
+        _ImageDrawRectangle(self.byref, int(pos_x), int(pos_y), int(width), int(height), _color(color))
+
+    def draw_rectangle_v(self, position, size, color):
+        # type: (ImagePtr, Vector2, Vector2, Color) -> None
+        """Draw rectangle within an image (Vector version)"""
+        _ImageDrawRectangleV(self.byref, _vec2(position), _vec2(size), _color(color))
+
+    def draw_rectangle_rec(self, rec, color):
+        # type: (ImagePtr, Rectangle, Color) -> None
+        """Draw rectangle within an image"""
+        _ImageDrawRectangleRec(self.byref, _rect(rec), _color(color))
+
+    def draw_rectangle_lines(self, rec, thick, color):
+        # type: (ImagePtr, Rectangle, int, Color) -> None
+        """Draw rectangle lines within an image"""
+        _ImageDrawRectangleLines(self.byref, _rect(rec), int(thick), _color(color))
+
+    def draw(self, src, src_rec, dst_rec, tint):
+        # type: (ImagePtr, Image, Rectangle, Rectangle, Color) -> None
+        """Draw a source image within a destination image (tint applied to source)"""
+        _ImageDraw(self.byref, src, _rect(src_rec), _rect(dst_rec), _color(tint))
+
+    def draw_text(self, text, pos_x, pos_y, font_size, color):
+        # type: (ImagePtr, Union[str, CharPtr], int, int, int, Color) -> None
+        """Draw text (using default font) within an image (destination)"""
+        _ImageDrawText(self.byref, _str_in(text), int(pos_x), int(pos_y), int(font_size), _color(color))
+
+    def draw_text_ex(self, font, text, position, font_size, spacing, tint):
+        # type: (ImagePtr, Font, Union[str, CharPtr], Vector2, float, float, Color) -> None
+        """Draw text (custom sprite font) within an image (destination)"""
+        _ImageDrawTextEx(self.byref, font, _str_in(text), _vec2(position), float(font_size), float(spacing), _color(tint))
+
+    def load_colors(self):
+        # type: (Image) -> ColorPtr
+        """Load color data from image as a Color array (RGBA - 32bit)"""
+        result = _ptr_out(_LoadImageColors(self))
+        return result
+
+    def load_palette(self, max_palette_size):
+        # type: (Image, int) -> ColorPtr
+        """Load colors palette from image as a Color array (RGBA - 32bit)"""
+        color_count = Int(0)
+        result = _ptr_out(_LoadImagePalette(self, int(max_palette_size), byref(color_count)), color_count.value)
+        return result
+
+    def get_alpha_border(self, threshold):
+        # type: (Image, float) -> Rectangle
+        """Get image alpha border rectangle"""
+        result = _GetImageAlphaBorder(self, float(threshold))
+        return result
+
+    def get_color(self, x, y):
+        # type: (Image, int, int) -> Color
+        """Get image pixel color at (x, y) position"""
+        result = _GetImageColor(self, int(x), int(y))
+        return result
+
+    @staticmethod
+    def unload_colors(colors):
+        # type: (ColorPtr) -> None
+        """Unload color data loaded with LoadImageColors()"""
+        _UnloadImageColors(_color(colors))
+
+    @staticmethod
+    def unload_palette(colors):
+        # type: (ColorPtr) -> None
+        """Unload colors palette loaded with LoadImagePalette()"""
+        _UnloadImagePalette(_color(colors))
+
+
+# Pointer type to Images
+ImagePtr = POINTER(Image)
+
+
+
+class Texture(Structure):
+    '''Texture, tex data stored in GPU memory (VRAM)'''
+    _fields_ = [
+        ('id', UInt),
+        ('width', Int),
+        ('height', Int),
+        ('mipmaps', Int),
+        ('format', Int),
+    ]
+
+
+    @classmethod
+    def array_of(cls, texture_sequence):
+        '''Creates and returns an array of Textures'''
+        arr = cls * len(texture_sequence)
+        return arr(*texture_sequence)
+
+    @classmethod
+    def load(cls, file_name):
+        # type: (Union[str, CharPtr]) -> Texture2D
+        """Load texture from file into GPU memory (VRAM)"""
+        result = _LoadTexture(_str_in(file_name))
+        return result
+
+    @classmethod
+    def load_from_image(cls, image):
+        # type: (Image) -> Texture2D
+        """Load texture from image data"""
+        result = _LoadTextureFromImage(image)
+        return result
+
+
+    def __init__(self, id=None,
+                 width=None,
+                 height=None,
+                 mipmaps=None,
+                 format=None):
+        # type: (int, int, int, int, int) -> None
+        '''Initializes this Texture struct'''
+        super(Texture, self).__init__(
+            id or 0,
+            width or 0,
+            height or 0,
+            mipmaps or 0,
+            format or 0
+        )
+
+
+    @property
+    def byref(self):
+        '''Gets a reference to this Texture instance'''
+        return byref(self)
+
+
+    def __str__(self):
+        return "[{} at {}]".format(self.__class__.__name__, id(self))
+
+    def __repr__(self):
+        return self.__str__()
+
+    @property
+    def is_ready(self):
+        # type: (Texture2D) -> bool
+        """Check if a texture is ready"""
+        result = _IsTextureReady(self)
+        return result
+
+    def unload(self):
+        # type: (Texture2D) -> None
+        """Unload texture from GPU memory (VRAM)"""
+        _UnloadTexture(self)
+
+    def gen_mip_maps(self):
+        # type: (Texture2DPtr) -> None
+        """Generate GPU mipmaps for a texture"""
+        _GenTextureMipmaps(self.byref)
+
+    def set_filter(self, filter):
+        # type: (Texture2D, int) -> None
+        """Set texture scaling filter mode"""
+        _SetTextureFilter(self, int(filter))
+
+    def set_wrap(self, wrap):
+        # type: (Texture2D, int) -> None
+        """Set texture wrapping mode"""
+        _SetTextureWrap(self, int(wrap))
+
+    def draw(self, pos_x, pos_y, tint):
+        # type: (Texture2D, int, int, Color) -> None
+        """Draw a Texture2D"""
+        _DrawTexture(self, int(pos_x), int(pos_y), _color(tint))
+
+    def draw_v(self, position, tint):
+        # type: (Texture2D, Vector2, Color) -> None
+        """Draw a Texture2D with position defined as Vector2"""
+        _DrawTextureV(self, _vec2(position), _color(tint))
+
+    def draw_ex(self, position, rotation, scale, tint):
+        # type: (Texture2D, Vector2, float, float, Color) -> None
+        """Draw a Texture2D with extended parameters"""
+        _DrawTextureEx(self, _vec2(position), float(rotation), float(scale), _color(tint))
+
+    def draw_rec(self, source, position, tint):
+        # type: (Texture2D, Rectangle, Vector2, Color) -> None
+        """Draw a part of a texture defined by a rectangle"""
+        _DrawTextureRec(self, _rect(source), _vec2(position), _color(tint))
+
+    def draw_pro(self, source, dest, origin, rotation, tint):
+        # type: (Texture2D, Rectangle, Rectangle, Vector2, float, Color) -> None
+        """Draw a part of a texture defined by a rectangle with 'pro' parameters"""
+        _DrawTexturePro(self, _rect(source), _rect(dest), _vec2(origin), float(rotation), _color(tint))
+
+    def draw_npatch(self, n_patch_info, dest, origin, rotation, tint):
+        # type: (Texture2D, NPatchInfo, Rectangle, Vector2, float, Color) -> None
+        """Draws a texture (or part of it) that stretches or shrinks nicely"""
+        _DrawTextureNPatch(self, n_patch_info, _rect(dest), _vec2(origin), float(rotation), _color(tint))
+
+
+# Pointer type to Textures
+TexturePtr = POINTER(Texture)
+
+
+# Texture2D, same as Texture
+Texture2D = Texture
+Texture2DPtr = TexturePtr
+# TextureCubemap, same as Texture
+TextureCubemap = Texture
+TextureCubemapPtr = TexturePtr
+
+class RenderTexture(Structure):
+    '''RenderTexture, fbo for texture rendering'''
+    _fields_ = [
+        ('id', UInt),
+        ('texture', Texture),
+        ('depth', Texture),
+    ]
+
+
+    @classmethod
+    def array_of(cls, render_texture_sequence):
+        '''Creates and returns an array of RenderTextures'''
+        arr = cls * len(render_texture_sequence)
+        return arr(*render_texture_sequence)
+
+
+    def __init__(self, id=None, texture=None, depth=None):
+        # type: (int, Texture, Texture) -> None
+        '''Initializes this RenderTexture struct'''
+        super(RenderTexture, self).__init__(
+            id or 0,
+            texture or Texture(),
+            depth or Texture()
+        )
+
+
+    @property
+    def byref(self):
+        '''Gets a reference to this RenderTexture instance'''
+        return byref(self)
+
+
+
+# Pointer type to RenderTextures
+RenderTexturePtr = POINTER(RenderTexture)
+
+
+# RenderTexture2D, same as RenderTexture
+RenderTexture2D = RenderTexture
+RenderTexture2DPtr = RenderTexturePtr
+
+class NPatchInfo(Structure):
+    '''NPatchInfo, n-patch layout info'''
+    _fields_ = [
+        ('source', Rectangle),
+        ('left', Int),
+        ('top', Int),
+        ('right', Int),
+        ('bottom', Int),
+        ('layout', Int),
+    ]
+
+
+    @classmethod
+    def array_of(cls, npatch_info_sequence):
+        '''Creates and returns an array of NPatchInfos'''
+        arr = cls * len(npatch_info_sequence)
+        return arr(*npatch_info_sequence)
+
+
+    def __init__(self, source=None,
+                 left=None,
+                 top=None,
+                 right=None,
+                 bottom=None,
+                 layout=None):
+        # type: (Rectangle, int, int, int, int, int) -> None
+        '''Initializes this NPatchInfo struct'''
+        super(NPatchInfo, self).__init__(
+            source or Rectangle(),
+            left or 0,
+            top or 0,
+            right or 0,
+            bottom or 0,
+            layout or 0
+        )
+
+
+    @property
+    def byref(self):
+        '''Gets a reference to this NPatchInfo instance'''
+        return byref(self)
+
+
+
+# Pointer type to NPatchInfos
+NPatchInfoPtr = POINTER(NPatchInfo)
+
+
+
+class GlyphInfo(Structure):
+    '''GlyphInfo, font characters glyphs info'''
+    _fields_ = [
+        ('value', Int),
+        ('offset_x', Int),
+        ('offset_y', Int),
+        ('advance_x', Int),
+        ('image', Image),
+    ]
+
+
+    @classmethod
+    def array_of(cls, glyph_info_sequence):
+        '''Creates and returns an array of GlyphInfos'''
+        arr = cls * len(glyph_info_sequence)
+        return arr(*glyph_info_sequence)
+
+
+    def __init__(self, value=None,
+                 offset_x=None,
+                 offset_y=None,
+                 advance_x=None,
+                 image=None):
+        # type: (int, int, int, int, Image) -> None
+        '''Initializes this GlyphInfo struct'''
+        super(GlyphInfo, self).__init__(
+            value or 0,
+            offset_x or 0,
+            offset_y or 0,
+            advance_x or 0,
+            image or Image()
+        )
+
+
+    @property
+    def byref(self):
+        '''Gets a reference to this GlyphInfo instance'''
+        return byref(self)
+
+
+
+# Pointer type to GlyphInfos
+GlyphInfoPtr = POINTER(GlyphInfo)
+
+
+
+class Font(Structure):
+    '''Font, font texture and GlyphInfo array data'''
+    _fields_ = [
+        ('base_size', Int),
+        ('glyph_count', Int),
+        ('glyph_padding', Int),
+        ('texture', Texture2D),
+        ('recs', RectanglePtr),
+        ('glyphs', GlyphInfoPtr),
+    ]
+
+
+    @classmethod
+    def array_of(cls, font_sequence):
+        '''Creates and returns an array of Fonts'''
+        arr = cls * len(font_sequence)
+        return arr(*font_sequence)
+
+    @classmethod
+    def load(cls, file_name):
+        # type: (Union[str, CharPtr]) -> Font
+        """Load font from file into GPU memory (VRAM)"""
+        result = _LoadFont(_str_in(file_name))
+        return result
+
+    @classmethod
+    def load_ex(cls, file_name, font_size, codepoints, codepoint_count):
+        # type: (Union[str, CharPtr], int, Union[Seq[int], IntPtr], int) -> Font
+        """Load font from file with extended parameters, use NULL for codepoints and 0 for codepointCount to load the default character setFont"""
+        result = _LoadFontEx(_str_in(file_name), int(font_size), codepoints, int(codepoint_count))
+        return result
+
+    @classmethod
+    def load_from_image(cls, image, key, first_char):
+        # type: (Image, Color, int) -> Font
+        """Load font from Image (XNA style)"""
+        result = _LoadFontFromImage(image, _color(key), int(first_char))
+        return result
+
+    @classmethod
+    def load_from_memory(cls, file_type, file_data, data_size, font_size, codepoints, codepoint_count):
+        # type: (Union[str, CharPtr], Union[Seq[int], UCharPtr], int, int, Union[Seq[int], IntPtr], int) -> Font
+        """Load font from memory buffer, fileType refers to extension: i.e. '.ttf'"""
+        result = _LoadFontFromMemory(_str_in(file_type), _str_in(file_data), int(data_size), int(font_size), codepoints, int(codepoint_count))
+        return result
+
+
+    def __init__(self, base_size=None,
+                 glyph_count=None,
+                 glyph_padding=None,
+                 texture=None,
+                 recs=None,
+                 glyphs=None):
+        # type: (int, int, int, Texture2D, RectanglePtr, GlyphInfoPtr) -> None
+        '''Initializes this Font struct'''
+        super(Font, self).__init__(
+            base_size or 0,
+            glyph_count or 0,
+            glyph_padding or 0,
+            texture or Texture2D(),
+            recs,
+            glyphs
+        )
+
+
+    @property
+    def byref(self):
+        '''Gets a reference to this Font instance'''
+        return byref(self)
+
+
+    def __str__(self):
+        return "[{} at {}]".format(self.__class__.__name__, id(self))
+
+    def __repr__(self):
+        return self.__str__()
+
+    @property
+    def is_ready(self):
+        # type: (Font) -> bool
+        """Check if a font is ready"""
+        result = _IsFontReady(self)
+        return result
+
+    def unload(self):
+        # type: (Font) -> None
+        """Unload font from GPU memory (VRAM)"""
+        _UnloadFont(self)
+
+    def draw_text_ex(self, text, position, font_size, spacing, tint):
+        # type: (Font, Union[str, CharPtr], Vector2, float, float, Color) -> None
+        """Draw text using font and additional parameters"""
+        _DrawTextEx(self, _str_in(text), _vec2(position), float(font_size), float(spacing), _color(tint))
+
+    def draw_text_pro(self, text, position, origin, rotation, font_size, spacing, tint):
+        # type: (Font, Union[str, CharPtr], Vector2, Vector2, float, float, float, Color) -> None
+        """Draw text using Font and pro parameters (rotation)"""
+        _DrawTextPro(self, _str_in(text), _vec2(position), _vec2(origin), float(rotation), float(font_size), float(spacing), _color(tint))
+
+    def draw_text_codepoint(self, codepoint, position, font_size, tint):
+        # type: (Font, int, Vector2, float, Color) -> None
+        """Draw one character (codepoint)"""
+        _DrawTextCodepoint(self, int(codepoint), _vec2(position), float(font_size), _color(tint))
+
+    def draw_text_codepoints(self, codepoints, codepoint_count, position, font_size, spacing, tint):
+        # type: (Font, Union[Seq[int], IntPtr], int, Vector2, float, float, Color) -> None
+        """Draw multiple character (codepoint)"""
+        _DrawTextCodepoints(self, _str_in(codepoints), int(codepoint_count), _vec2(position), float(font_size), float(spacing), _color(tint))
+
+    def measure_text_ex(self, text, font_size, spacing):
+        # type: (Font, Union[str, CharPtr], float, float) -> Vector2
+        """Measure string size for Font"""
+        result = _MeasureTextEx(self, _str_in(text), float(font_size), float(spacing))
+        return result
+
+    def get_glyph_index(self, codepoint):
+        # type: (Font, int) -> int
+        """Get glyph index position in font for a codepoint (unicode character), fallback to '?' if not found"""
+        result = _GetGlyphIndex(self, int(codepoint))
+        return result
+
+    def get_glyph_info(self, codepoint):
+        # type: (Font, int) -> GlyphInfo
+        """Get glyph font info data for a codepoint (unicode character), fallback to '?' if not found"""
+        result = _GetGlyphInfo(self, int(codepoint))
+        return result
+
+    def get_glyph_atlas_rec(self, codepoint):
+        # type: (Font, int) -> Rectangle
+        """Get glyph rectangle in font atlas for a codepoint (unicode character), fallback to '?' if not found"""
+        result = _GetGlyphAtlasRec(self, int(codepoint))
+        return result
+
+    @staticmethod
+    def load_data(file_data, data_size, font_size, codepoints, codepoint_count, type):
+        # type: (Union[Seq[int], UCharPtr], int, int, Union[Seq[int], IntPtr], int, int) -> GlyphInfoPtr
+        """Load font data for further use"""
+        result = _ptr_out(_LoadFontData(_str_in(file_data), int(data_size), int(font_size), codepoints, int(codepoint_count), int(type)))
+        return result
+
+    @staticmethod
+    def unload_data(glyphs, glyph_count):
+        # type: (GlyphInfoPtr, int) -> None
+        """Unload font chars info data (RAM)"""
+        _UnloadFontData(glyphs, int(glyph_count))
+
+
+# Pointer type to Fonts
+FontPtr = POINTER(Font)
+
+
+
+class Camera3D(Structure):
+    '''Camera, defines position/orientation in 3d space'''
+    _fields_ = [
+        ('position', Vector3),
+        ('target', Vector3),
+        ('up', Vector3),
+        ('fovy', Float),
+        ('projection', Int),
+    ]
+
+
+    @classmethod
+    def array_of(cls, camera3d_sequence):
+        '''Creates and returns an array of Camera3Ds'''
+        arr = cls * len(camera3d_sequence)
+        return arr(*camera3d_sequence)
+
+
+    def __init__(self, position=None,
+                 target=None,
+                 up=None,
+                 fovy=None,
+                 projection=None):
+        # type: (Vector3, Vector3, Vector3, float, int) -> None
+        '''Initializes this Camera3D struct'''
+        super(Camera3D, self).__init__(
+            position or Vector3(),
+            target or Vector3(),
+            up or Vector3(),
+            fovy or 0.0,
+            projection or 0
+        )
+
+
+    @property
+    def byref(self):
+        '''Gets a reference to this Camera3D instance'''
+        return byref(self)
+
+
+    def __enter__(self):
+        _BeginMode3D(self)
+
+    def __leave__(self, exc_type, exc_value, traceback):
+        _EndMode3D()
+
+
+# Pointer type to Camera3Ds
+Camera3DPtr = POINTER(Camera3D)
+
+
+# Camera type fallback, defaults to Camera3D
+Camera = Camera3D
+CameraPtr = Camera3DPtr
+
+class Camera2D(Structure):
+    '''Camera2D, defines position/orientation in 2d space'''
+    _fields_ = [
+        ('offset', Vector2),
+        ('target', Vector2),
+        ('rotation', Float),
+        ('zoom', Float),
+    ]
+
+
+    @classmethod
+    def array_of(cls, camera2d_sequence):
+        '''Creates and returns an array of Camera2Ds'''
+        arr = cls * len(camera2d_sequence)
+        return arr(*camera2d_sequence)
+
+
+    def __init__(self, offset=None, target=None, rotation=None, zoom=None):
+        # type: (Vector2, Vector2, float, float) -> None
+        '''Initializes this Camera2D struct'''
+        super(Camera2D, self).__init__(
+            offset or Vector2(),
+            target or Vector2(),
+            rotation or 0.0,
+            zoom or 0.0
+        )
+
+
+    @property
+    def byref(self):
+        '''Gets a reference to this Camera2D instance'''
+        return byref(self)
+
+
+    def __enter__(self):
+        _BeginMode2D(self)
+
+    def __leave__(self, exc_type, exc_value, traceback):
+        _EndMode2D()
+
+
+# Pointer type to Camera2Ds
+Camera2DPtr = POINTER(Camera2D)
+
+
+
+class Mesh(Structure):
+    '''Mesh, vertex data and vao/vbo'''
+    _fields_ = [
+        ('vertex_count', Int),
+        ('triangle_count', Int),
+        ('vertices', FloatPtr),
+        ('texcoords', FloatPtr),
+        ('texcoords2', FloatPtr),
+        ('normals', FloatPtr),
+        ('tangents', FloatPtr),
+        ('colors', UCharPtr),
+        ('indices', UShortPtr),
+        ('anim_vertices', FloatPtr),
+        ('anim_normals', FloatPtr),
+        ('bone_ids', UCharPtr),
+        ('bone_weights', FloatPtr),
+        ('vao_id', UInt),
+        ('vbo_id', UIntPtr),
+    ]
+
+
+    @classmethod
+    def array_of(cls, mesh_sequence):
+        '''Creates and returns an array of Meshs'''
+        arr = cls * len(mesh_sequence)
+        return arr(*mesh_sequence)
+
+    @classmethod
+    def gen_poly(cls, sides, radius):
+        # type: (int, float) -> Mesh
+        """Generate polygonal mesh"""
+        result = _GenMeshPoly(int(sides), float(radius))
+        return result
+
+    @classmethod
+    def gen_plane(cls, width, length, res_x, res_z):
+        # type: (float, float, int, int) -> Mesh
+        """Generate plane mesh (with subdivisions)"""
+        result = _GenMeshPlane(float(width), float(length), int(res_x), int(res_z))
+        return result
+
+    @classmethod
+    def gen_cube(cls, width, height, length):
+        # type: (float, float, float) -> Mesh
+        """Generate cuboid mesh"""
+        result = _GenMeshCube(float(width), float(height), float(length))
+        return result
+
+    @classmethod
+    def gen_sphere(cls, radius, rings, slices):
+        # type: (float, int, int) -> Mesh
+        """Generate sphere mesh (standard sphere)"""
+        result = _GenMeshSphere(float(radius), int(rings), int(slices))
+        return result
+
+    @classmethod
+    def gen_hemi_sphere(cls, radius, rings, slices):
+        # type: (float, int, int) -> Mesh
+        """Generate half-sphere mesh (no bottom cap)"""
+        result = _GenMeshHemiSphere(float(radius), int(rings), int(slices))
+        return result
+
+    @classmethod
+    def gen_cylinder(cls, radius, height, slices):
+        # type: (float, float, int) -> Mesh
+        """Generate cylinder mesh"""
+        result = _GenMeshCylinder(float(radius), float(height), int(slices))
+        return result
+
+    @classmethod
+    def gen_cone(cls, radius, height, slices):
+        # type: (float, float, int) -> Mesh
+        """Generate cone/pyramid mesh"""
+        result = _GenMeshCone(float(radius), float(height), int(slices))
+        return result
+
+    @classmethod
+    def gen_torus(cls, radius, size, rad_seg, sides):
+        # type: (float, float, int, int) -> Mesh
+        """Generate torus mesh"""
+        result = _GenMeshTorus(float(radius), float(size), int(rad_seg), int(sides))
+        return result
+
+    @classmethod
+    def gen_knot(cls, radius, size, rad_seg, sides):
+        # type: (float, float, int, int) -> Mesh
+        """Generate trefoil knot mesh"""
+        result = _GenMeshKnot(float(radius), float(size), int(rad_seg), int(sides))
+        return result
+
+    @classmethod
+    def gen_heightmap(cls, heightmap, size):
+        # type: (Image, Vector3) -> Mesh
+        """Generate heightmap mesh from image data"""
+        result = _GenMeshHeightmap(heightmap, _vec3(size))
+        return result
+
+    @classmethod
+    def gen_cubicmap(cls, cubicmap, cube_size):
+        # type: (Image, Vector3) -> Mesh
+        """Generate cubes-based map mesh from image data"""
+        result = _GenMeshCubicmap(cubicmap, _vec3(cube_size))
+        return result
+
+
+    def __init__(self, vertex_count=None,
+                 triangle_count=None,
+                 vertices=None,
+                 texcoords=None,
+                 texcoords2=None,
+                 normals=None,
+                 tangents=None,
+                 colors=None,
+                 indices=None,
+                 anim_vertices=None,
+                 anim_normals=None,
+                 bone_ids=None,
+                 bone_weights=None,
+                 vao_id=None,
+                 vbo_id=None):
+        # type: (int, int, Union[Seq[float], FloatPtr], Union[Seq[float], FloatPtr], Union[Seq[float], FloatPtr], Union[Seq[float], FloatPtr], Union[Seq[float], FloatPtr], Union[Seq[int], UCharPtr], Union[Seq[int], UShortPtr], Union[Seq[float], FloatPtr], Union[Seq[float], FloatPtr], Union[Seq[int], UCharPtr], Union[Seq[float], FloatPtr], int, Union[Seq[int], UIntPtr]) -> None
+        '''Initializes this Mesh struct'''
+        super(Mesh, self).__init__(
+            vertex_count or 0,
+            triangle_count or 0,
+            vertices,
+            texcoords,
+            texcoords2,
+            normals,
+            tangents,
+            colors,
+            indices,
+            anim_vertices,
+            anim_normals,
+            bone_ids,
+            bone_weights,
+            vao_id or 0,
+            vbo_id
+        )
+
+
+    @property
+    def byref(self):
+        '''Gets a reference to this Mesh instance'''
+        return byref(self)
+
+
+    def __str__(self):
+        return "[{} at {}]".format(self.__class__.__name__, id(self))
+
+    def __repr__(self):
+        return self.__str__()
+
+    def upload(self, dynamic):
+        # type: (MeshPtr, bool) -> None
+        """Upload mesh vertex data in GPU and provide VAO/VBO ids"""
+        _UploadMesh(self.byref, bool(dynamic))
+
+    def update_buffer(self, index, data, data_size, offset):
+        # type: (Mesh, int, bytes, int, int) -> None
+        """Update mesh vertex data in GPU for a specific buffer index"""
+        _UpdateMeshBuffer(self, int(index), data, int(data_size), int(offset))
+
+    def unload(self):
+        # type: (Mesh) -> None
+        """Unload mesh data from CPU and GPU"""
+        _UnloadMesh(self)
+
+    def draw(self, material, transform):
+        # type: (Mesh, Material, Matrix) -> None
+        """Draw a 3d mesh with material and transform"""
+        _DrawMesh(self, material, transform)
+
+    def draw_instanced(self, material, transforms, instances):
+        # type: (Mesh, Material, MatrixPtr, int) -> None
+        """Draw multiple mesh instances with material and different transforms"""
+        _DrawMeshInstanced(self, material, transforms, int(instances))
+
+    def export(self, file_name):
+        # type: (Mesh, Union[str, CharPtr]) -> bool
+        """Export mesh data to file, returns true on success"""
+        result = _ExportMesh(self, _str_in(file_name))
+        return result
+
+    def get_bounding_box(self):
+        # type: (Mesh) -> BoundingBox
+        """Compute mesh bounding box limits"""
+        result = _GetMeshBoundingBox(self)
+        return result
+
+    def gen_tangents(self):
+        # type: (MeshPtr) -> None
+        """Compute mesh tangents"""
+        _GenMeshTangents(self.byref)
+
+
+# Pointer type to Meshs
+MeshPtr = POINTER(Mesh)
+
+
+
+class Shader(Structure):
+    '''Shader'''
+    _fields_ = [
+        ('id', UInt),
+        ('locs', IntPtr),
+    ]
+
+
+    @classmethod
+    def array_of(cls, shader_sequence):
+        '''Creates and returns an array of Shaders'''
+        arr = cls * len(shader_sequence)
+        return arr(*shader_sequence)
+
+    @classmethod
+    def load(cls, vs_file_name, fs_file_name):
+        # type: (Union[str, CharPtr], Union[str, CharPtr]) -> Shader
+        """Load shader from files and bind default locations"""
+        result = _LoadShader(_str_in(vs_file_name), _str_in(fs_file_name))
+        return result
+
+    @classmethod
+    def load_from_memory(cls, vs_code, fs_code):
+        # type: (Union[str, CharPtr], Union[str, CharPtr]) -> Shader
+        """Load shader from code strings and bind default locations"""
+        result = _LoadShaderFromMemory(_str_in(vs_code), _str_in(fs_code))
+        return result
+
+
+    def __init__(self, id=None, locs=None):
+        # type: (int, Union[Seq[int], IntPtr]) -> None
+        '''Initializes this Shader struct'''
+        super(Shader, self).__init__(
+            id or 0,
+            locs
+        )
+
+
+    @property
+    def byref(self):
+        '''Gets a reference to this Shader instance'''
+        return byref(self)
+
+
+    def __str__(self):
+        return "[{} at {}]".format(self.__class__.__name__, id(self))
+
+    def __repr__(self):
+        return self.__str__()
+
+    def __enter__(self):
+        _BeginShaderMode(self)
+
+    def __leave__(self, exc_type, exc_value, traceback):
+        _EndShaderMode()
+
+    @property
+    def is_ready(self):
+        # type: (Shader) -> bool
+        """Check if a shader is ready"""
+        result = _IsShaderReady(self)
+        return result
+
+    def get_location(self, uniform_name):
+        # type: (Shader, Union[str, CharPtr]) -> int
+        """Get shader uniform location"""
+        result = _GetShaderLocation(self, _str_in(uniform_name))
+        return result
+
+    def get_location_attrib(self, attrib_name):
+        # type: (Shader, Union[str, CharPtr]) -> int
+        """Get shader attribute location"""
+        result = _GetShaderLocationAttrib(self, _str_in(attrib_name))
+        return result
+
+    def set_value(self, loc_index, value, uniform_type):
+        # type: (Shader, int, bytes, int) -> None
+        """Set shader uniform value"""
+        _SetShaderValue(self, int(loc_index), value, int(uniform_type))
+
+    def set_value_v(self, loc_index, value, uniform_type, count):
+        # type: (Shader, int, bytes, int, int) -> None
+        """Set shader uniform value vector"""
+        _SetShaderValueV(self, int(loc_index), value, int(uniform_type), int(count))
+
+    def set_value_matrix(self, loc_index, mat):
+        # type: (Shader, int, Matrix) -> None
+        """Set shader uniform value (matrix 4x4)"""
+        _SetShaderValueMatrix(self, int(loc_index), mat)
+
+    def set_value_texture(self, loc_index, texture):
+        # type: (Shader, int, Texture2D) -> None
+        """Set shader uniform value for texture (sampler2d)"""
+        _SetShaderValueTexture(self, int(loc_index), texture)
+
+    def unload(self):
+        # type: (Shader) -> None
+        """Unload shader from GPU memory (VRAM)"""
+        _UnloadShader(self)
+
+
+# Pointer type to Shaders
+ShaderPtr = POINTER(Shader)
+
+
+
+class MaterialMap(Structure):
+    '''MaterialMap'''
+    _fields_ = [
+        ('texture', Texture2D),
+        ('color', Color),
+        ('value', Float),
+    ]
+
+
+    @classmethod
+    def array_of(cls, material_map_sequence):
+        '''Creates and returns an array of MaterialMaps'''
+        arr = cls * len(material_map_sequence)
+        return arr(*material_map_sequence)
+
+
+    def __init__(self, texture=None, color=None, value=None):
+        # type: (Texture2D, Color, float) -> None
+        '''Initializes this MaterialMap struct'''
+        super(MaterialMap, self).__init__(
+            texture or Texture2D(),
+            color or Color(),
+            value or 0.0
+        )
+
+
+    @property
+    def byref(self):
+        '''Gets a reference to this MaterialMap instance'''
+        return byref(self)
+
+
+
+# Pointer type to MaterialMaps
+MaterialMapPtr = POINTER(MaterialMap)
+
+
+
+class Material(Structure):
+    '''Material, includes shader and maps'''
+    _fields_ = [
+        ('shader', Shader),
+        ('maps', MaterialMapPtr),
+        ('params', Float * 4),
+    ]
+
+
+    @classmethod
+    def array_of(cls, material_sequence):
+        '''Creates and returns an array of Materials'''
+        arr = cls * len(material_sequence)
+        return arr(*material_sequence)
+
+    @classmethod
+    def load_materials(cls, file_name):
+        # type: (Union[str, CharPtr]) -> MaterialPtr
+        """Load materials from model file"""
+        material_count = Int(0)
+        result = _ptr_out(_LoadMaterials(_str_in(file_name), byref(material_count)), material_count.value)
+        return result
+
+    @classmethod
+    def load_default():
+        # type: () -> Material
+        """Load default material (Supports: DIFFUSE, SPECULAR, NORMAL maps)"""
+        result = _LoadMaterialDefault()
+        return result
+
+
+    def __init__(self, shader=None, maps=None, params=None):
+        # type: (Shader, MaterialMapPtr, Seq[float]) -> None
+        '''Initializes this Material struct'''
+        super(Material, self).__init__(
+            shader or Shader(),
+            maps,
+            params
+        )
+
+
+    @property
+    def byref(self):
+        '''Gets a reference to this Material instance'''
+        return byref(self)
+
+
+    def __str__(self):
+        return "[{} at {}]".format(self.__class__.__name__, id(self))
+
+    def __repr__(self):
+        return self.__str__()
+
+    @property
+    def is_ready(self):
+        # type: (Material) -> bool
+        """Check if a material is ready"""
+        result = _IsMaterialReady(self)
+        return result
+
+    def unload(self):
+        # type: (Material) -> None
+        """Unload material from GPU memory (VRAM)"""
+        _UnloadMaterial(self)
+
+    def set_texture(self, map_type, texture):
+        # type: (MaterialPtr, int, Texture2D) -> None
+        """Set texture for a material map type (MATERIAL_MAP_DIFFUSE, MATERIAL_MAP_SPECULAR...)"""
+        _SetMaterialTexture(self, int(map_type), texture)
+
+
+# Pointer type to Materials
+MaterialPtr = POINTER(Material)
+
+
+
+class Transform(Structure):
+    '''Transform, vertex transformation data'''
+    _fields_ = [
+        ('translation', Vector3),
+        ('rotation', Quaternion),
+        ('scale', Vector3),
+    ]
+
+
+    @classmethod
+    def array_of(cls, transform_sequence):
+        '''Creates and returns an array of Transforms'''
+        arr = cls * len(transform_sequence)
+        return arr(*transform_sequence)
+
+
+    def __init__(self, translation=None, rotation=None, scale=None):
+        # type: (Vector3, Quaternion, Vector3) -> None
+        '''Initializes this Transform struct'''
+        super(Transform, self).__init__(
+            translation or Vector3(),
+            rotation or Quaternion(),
+            scale or Vector3()
+        )
+
+
+    @property
+    def byref(self):
+        '''Gets a reference to this Transform instance'''
+        return byref(self)
+
+
+
+# Pointer type to Transforms
+TransformPtr = POINTER(Transform)
+
+
+
+class BoneInfo(Structure):
+    '''Bone, skeletal animation bone'''
+    _fields_ = [
+        ('name', CharPtr),
+        ('parent', Int),
+    ]
+
+
+    @classmethod
+    def array_of(cls, bone_info_sequence):
+        '''Creates and returns an array of BoneInfos'''
+        arr = cls * len(bone_info_sequence)
+        return arr(*bone_info_sequence)
+
+
+    def __init__(self, name=None, parent=None):
+        # type: (str, int) -> None
+        '''Initializes this BoneInfo struct'''
+        super(BoneInfo, self).__init__(
+            name,
+            parent or 0
+        )
+
+
+    @property
+    def byref(self):
+        '''Gets a reference to this BoneInfo instance'''
+        return byref(self)
+
+
+
+# Pointer type to BoneInfos
+BoneInfoPtr = POINTER(BoneInfo)
+
+
+
+class Model(Structure):
+    '''Model, meshes, materials and animation data'''
+    _fields_ = [
+        ('transform', Matrix),
+        ('mesh_count', Int),
+        ('material_count', Int),
+        ('meshes', MeshPtr),
+        ('materials', MaterialPtr),
+        ('mesh_material', IntPtr),
+        ('bone_count', Int),
+        ('bones', BoneInfoPtr),
+        ('bind_pose', TransformPtr),
+    ]
+
+
+    @classmethod
+    def array_of(cls, model_sequence):
+        '''Creates and returns an array of Models'''
+        arr = cls * len(model_sequence)
+        return arr(*model_sequence)
+
+    @classmethod
+    def load(cls, file_name):
+        # type: (Union[str, CharPtr]) -> Model
+        """Load model from files (meshes and materials)"""
+        result = _LoadModel(_str_in(file_name))
+        return result
+
+    @classmethod
+    def load_from_mesh(cls, mesh):
+        # type: (Mesh) -> Model
+        """Load model from generated mesh (default material)"""
+        result = _LoadModelFromMesh(mesh)
+        return result
+
+
+    def __init__(self, transform=None,
+                 mesh_count=None,
+                 material_count=None,
+                 meshes=None,
+                 materials=None,
+                 mesh_material=None,
+                 bone_count=None,
+                 bones=None,
+                 bind_pose=None):
+        # type: (Matrix, int, int, MeshPtr, MaterialPtr, Union[Seq[int], IntPtr], int, BoneInfoPtr, TransformPtr) -> None
+        '''Initializes this Model struct'''
+        super(Model, self).__init__(
+            transform or Matrix(),
+            mesh_count or 0,
+            material_count or 0,
+            meshes,
+            materials,
+            mesh_material,
+            bone_count or 0,
+            bones,
+            bind_pose
+        )
+
+
+    @property
+    def byref(self):
+        '''Gets a reference to this Model instance'''
+        return byref(self)
+
+
+    def __str__(self):
+        return "[{} at {}]".format(self.__class__.__name__, id(self))
+
+    def __repr__(self):
+        return self.__str__()
+
+    def is_animation_valid(self, anim):
+        # type: (Model, ModelAnimation) -> bool
+        """Check model animation skeleton match"""
+        result = _IsModelAnimationValid(self, anim)
+        return result
+
+    def update_animation(self, anim, frame):
+        # type: (Model, ModelAnimation, int) -> None
+        """Update model animation pose"""
+        _UpdateModelAnimation(self, anim, int(frame))
+
+    def set_mesh_material(self, mesh_id, material_id):
+        # type: (ModelPtr, int, int) -> None
+        """Set material for a mesh"""
+        _SetModelMeshMaterial(self.byref, int(mesh_id), int(material_id))
+
+    def unload(self):
+        # type: (Model) -> None
+        """Unload model (including meshes) from memory (RAM and/or VRAM)"""
+        _UnloadModel(self)
+
+    def get_bounding_box(self):
+        # type: (Model) -> BoundingBox
+        """Compute model bounding box limits (considers all meshes)"""
+        result = _GetModelBoundingBox(self)
+        return result
+
+    def draw(self, position, scale, tint):
+        # type: (Model, Vector3, float, Color) -> None
+        """Draw a model (with texture if set)"""
+        _DrawModel(self, _vec3(position), float(scale), _color(tint))
+
+    def draw_ex(self, position, rotation_axis, rotation_angle, scale, tint):
+        # type: (Model, Vector3, Vector3, float, Vector3, Color) -> None
+        """Draw a model with extended parameters"""
+        _DrawModelEx(self, _vec3(position), _vec3(rotation_axis), float(rotation_angle), _vec3(scale), _color(tint))
+
+    def draw_wires(self, position, scale, tint):
+        # type: (Model, Vector3, float, Color) -> None
+        """Draw a model wires (with texture if set)"""
+        _DrawModelWires(self, _vec3(position), float(scale), _color(tint))
+
+    def draw_wires_ex(self, position, rotation_axis, rotation_angle, scale, tint):
+        # type: (Model, Vector3, Vector3, float, Vector3, Color) -> None
+        """Draw a model wires (with texture if set) with extended parameters"""
+        _DrawModelWiresEx(self, _vec3(position), _vec3(rotation_axis), float(rotation_angle), _vec3(scale), _color(tint))
+
+
+# Pointer type to Models
+ModelPtr = POINTER(Model)
+
+
+
+class ModelAnimation(Structure):
+    '''ModelAnimation'''
+    _fields_ = [
+        ('bone_count', Int),
+        ('frame_count', Int),
+        ('bones', BoneInfoPtr),
+        ('frame_poses', TransformPtr),
+        ('name', CharPtr),
+    ]
+
+
+    @classmethod
+    def array_of(cls, model_animation_sequence):
+        '''Creates and returns an array of ModelAnimations'''
+        arr = cls * len(model_animation_sequence)
+        return arr(*model_animation_sequence)
+
+
+    def __init__(self, bone_count=None,
+                 frame_count=None,
+                 bones=None,
+                 frame_poses=None,
+                 name=None):
+        # type: (int, int, BoneInfoPtr, TransformPtr, str) -> None
+        '''Initializes this ModelAnimation struct'''
+        super(ModelAnimation, self).__init__(
+            bone_count or 0,
+            frame_count or 0,
+            bones,
+            frame_poses,
+            name
+        )
+
+
+    @property
+    def byref(self):
+        '''Gets a reference to this ModelAnimation instance'''
+        return byref(self)
+
+
+
+# Pointer type to ModelAnimations
+ModelAnimationPtr = POINTER(ModelAnimation)
+
+
+
+class Ray(Structure):
+    '''Ray, ray for raycasting'''
+    _fields_ = [
+        ('position', Vector3),
+        ('direction', Vector3),
+    ]
+
+
+    @classmethod
+    def array_of(cls, ray_sequence):
+        '''Creates and returns an array of Rays'''
+        arr = cls * len(ray_sequence)
+        return arr(*ray_sequence)
+
+
+    def __init__(self, position=None, direction=None):
+        # type: (Vector3, Vector3) -> None
+        '''Initializes this Ray struct'''
+        super(Ray, self).__init__(
+            position or Vector3(),
+            direction or Vector3()
+        )
+
+
+    @property
+    def byref(self):
+        '''Gets a reference to this Ray instance'''
+        return byref(self)
+
+
+
+# Pointer type to Rays
+RayPtr = POINTER(Ray)
+
+
+
+class RayCollision(Structure):
+    '''RayCollision, ray hit information'''
+    _fields_ = [
+        ('hit', Bool),
+        ('distance', Float),
+        ('point', Vector3),
+        ('normal', Vector3),
+    ]
+
+
+    @classmethod
+    def array_of(cls, ray_collision_sequence):
+        '''Creates and returns an array of RayCollisions'''
+        arr = cls * len(ray_collision_sequence)
+        return arr(*ray_collision_sequence)
+
+
+    def __init__(self, hit=None, distance=None, point=None, normal=None):
+        # type: (bool, float, Vector3, Vector3) -> None
+        '''Initializes this RayCollision struct'''
+        super(RayCollision, self).__init__(
+            hit or False,
+            distance or 0.0,
+            point or Vector3(),
+            normal or Vector3()
+        )
+
+
+    @property
+    def byref(self):
+        '''Gets a reference to this RayCollision instance'''
+        return byref(self)
+
+
+
+# Pointer type to RayCollisions
+RayCollisionPtr = POINTER(RayCollision)
+
+
+
+class BoundingBox(Structure):
+    '''BoundingBox'''
+    _fields_ = [
+        ('min', Vector3),
+        ('max', Vector3),
+    ]
+
+
+    @classmethod
+    def array_of(cls, bounding_box_sequence):
+        '''Creates and returns an array of BoundingBoxs'''
+        arr = cls * len(bounding_box_sequence)
+        return arr(*bounding_box_sequence)
+
+
+    def __init__(self, min=None, max=None):
+        # type: (Vector3, Vector3) -> None
+        '''Initializes this BoundingBox struct'''
+        super(BoundingBox, self).__init__(
+            min or Vector3(),
+            max or Vector3()
+        )
+
+
+    @property
+    def byref(self):
+        '''Gets a reference to this BoundingBox instance'''
+        return byref(self)
+
+
+
+# Pointer type to BoundingBoxs
+BoundingBoxPtr = POINTER(BoundingBox)
+
+
+
+class Wave(Structure):
+    '''Wave, audio wave data'''
+    _fields_ = [
+        ('frame_count', UInt),
+        ('sample_rate', UInt),
+        ('sample_size', UInt),
+        ('channels', UInt),
+        ('data', VoidPtr),
+    ]
+
+
+    @classmethod
+    def array_of(cls, wave_sequence):
+        '''Creates and returns an array of Waves'''
+        arr = cls * len(wave_sequence)
+        return arr(*wave_sequence)
+
+    @classmethod
+    def load(cls, file_name):
+        # type: (Union[str, CharPtr]) -> Wave
+        """Load wave data from file"""
+        result = _LoadWave(_str_in(file_name))
+        return result
+
+    @classmethod
+    def load_from_memory(cls, file_type, file_data, data_size):
+        # type: (Union[str, CharPtr], Union[Seq[int], UCharPtr], int) -> Wave
+        """Load wave from memory buffer, fileType refers to extension: i.e. '.wav'"""
+        result = _LoadWaveFromMemory(_str_in(file_type), _str_in(file_data), int(data_size))
+        return result
+
+
+    def __init__(self, frame_count=None,
+                 sample_rate=None,
+                 sample_size=None,
+                 channels=None,
+                 data=None):
+        # type: (int, int, int, int, bytes) -> None
+        '''Initializes this Wave struct'''
+        super(Wave, self).__init__(
+            frame_count or 0,
+            sample_rate or 0,
+            sample_size or 0,
+            channels or 0,
+            data
+        )
+
+
+    @property
+    def byref(self):
+        '''Gets a reference to this Wave instance'''
+        return byref(self)
+
+
+    def __str__(self):
+        return "[{} at {}]".format(self.__class__.__name__, id(self))
+
+    def __repr__(self):
+        return self.__str__()
+
+    @property
+    def is_ready(self):
+        # type: (Wave) -> bool
+        """Checks if wave data is ready"""
+        result = _IsWaveReady(self)
+        return result
+
+    def copy(self):
+        # type: (Wave) -> Wave
+        """Copy a wave to a new wave"""
+        result = _WaveCopy(self)
+        return result
+
+    def crop(self, init_sample, final_sample):
+        # type: (WavePtr, int, int) -> None
+        """Crop a wave to defined samples range"""
+        _WaveCrop(self.byref, int(init_sample), int(final_sample))
+
+    def format(self, sample_rate, sample_size, channels):
+        # type: (WavePtr, int, int, int) -> None
+        """Convert wave data to desired format"""
+        _WaveFormat(self.byref, int(sample_rate), int(sample_size), int(channels))
+
+    def format(self):
+        # type: (Wave) -> Union[Seq[float], FloatPtr]
+        """Load samples data from wave as a 32bit float data array"""
+        result = _ptr_out(_LoadWaveSamples(self.byref))
+        return result
+
+    def export(self, file_name):
+        # type: (Wave, Union[str, CharPtr]) -> bool
+        """Export wave data to file, returns true on success"""
+        result = _ExportWave(self, _str_in(file_name))
+        return result
+
+    def export_as_code(self, file_name):
+        # type: (Wave, Union[str, CharPtr]) -> bool
+        """Export wave sample data to code (.h), returns true on success"""
+        result = _ExportWaveAsCode(self, _str_in(file_name))
+        return result
+
+    def unload(self):
+        # type: (Wave) -> None
+        """Unload wave data"""
+        _UnloadWave(self)
+
+    def unload_samples(self):
+        # type: (Union[Seq[float], FloatPtr]) -> None
+        """Unload samples data loaded with LoadWaveSamples()"""
+        _UnloadWaveSamples(self)
+
+
+# Pointer type to Waves
+WavePtr = POINTER(Wave)
+
+
+
+class AudioStream(Structure):
+    '''AudioStream, custom audio stream'''
+    _fields_ = [
+        ('buffer', rAudioBufferPtr),
+        ('processor', rAudioProcessorPtr),
+        ('sample_rate', UInt),
+        ('sample_size', UInt),
+        ('channels', UInt),
+    ]
+
+
+    @classmethod
+    def array_of(cls, audio_stream_sequence):
+        '''Creates and returns an array of AudioStreams'''
+        arr = cls * len(audio_stream_sequence)
+        return arr(*audio_stream_sequence)
+
+    @classmethod
+    def load(cls, sample_rate, sample_size, channels):
+        # type: (int, int, int) -> AudioStream
+        """Load audio stream (to stream raw audio pcm data)"""
+        result = _LoadAudioStream(sample_rate, sample_size, channels)
+        return result
+
+
+    def __init__(self, buffer=None,
+                 processor=None,
+                 sample_rate=None,
+                 sample_size=None,
+                 channels=None):
+        # type: (rAudioBufferPtr, rAudioProcessorPtr, int, int, int) -> None
+        '''Initializes this AudioStream struct'''
+        super(AudioStream, self).__init__(
+            buffer,
+            processor,
+            sample_rate or 0,
+            sample_size or 0,
+            channels or 0
+        )
+
+
+    @property
+    def byref(self):
+        '''Gets a reference to this AudioStream instance'''
+        return byref(self)
+
+
+    def __str__(self):
+        return "[{} Playing: {}]".format(self.__class__.__name__, _IsAudioStreamPlaying(self))
+
+    def __repr__(self):
+        return self.__str__()
+
+    @property
+    def is_ready(self):
+        # type: (AudioStream) -> bool
+        """Checks if an audio stream is ready"""
+        result = _IsAudioStreamReady(self)
+        return result
+
+    def unload(self):
+        # type: (AudioStream) -> None
+        """Unload audio stream and free memory"""
+        _UnloadAudioStream(self)
+
+    def update(self, data, frame_count):
+        # type: (AudioStream, bytes, int) -> None
+        """Update audio stream buffers with data"""
+        _UpdateAudioStream(self, data, int(frame_count))
+
+    def is_processed(self):
+        # type: (AudioStream) -> bool
+        """Check if any audio stream buffers requires refill"""
+        result = _IsAudioStreamProcessed(self)
+        return result
+
+    def play(self):
+        # type: (AudioStream) -> None
+        """Play audio stream"""
+        _PlayAudioStream(self)
+
+    def pause(self):
+        # type: (AudioStream) -> None
+        """Pause audio stream"""
+        _PauseAudioStream(self)
+
+    def resume(self):
+        # type: (AudioStream) -> None
+        """Resume audio stream"""
+        _ResumeAudioStream(self)
+
+    def is_playing(self):
+        # type: (AudioStream) -> bool
+        """Check if audio stream is playing"""
+        result = _IsAudioStreamPlaying(self)
+        return result
+
+    def stop(self):
+        # type: (AudioStream) -> None
+        """Stop audio stream"""
+        _StopAudioStream(self)
+
+    def set_volume(self, volume):
+        # type: (AudioStream, float) -> None
+        """Set volume for audio stream (1.0 is max level)"""
+        _SetAudioStreamVolume(self, float(volume))
+
+    def set_pitch(self, pitch):
+        # type: (AudioStream, float) -> None
+        """Set pitch for audio stream (1.0 is base level)"""
+        _SetAudioStreamPitch(self, float(pitch))
+
+    def set_pan(self, pan):
+        # type: (AudioStream, float) -> None
+        """Set pan for audio stream (0.5 is centered)"""
+        _SetAudioStreamPan(self, float(pan))
+
+    def set_buffer_size_default(self):
+        # type: (int) -> None
+        """Default size for new audio streams"""
+        _SetAudioStreamBufferSizeDefault(self)
+
+    def set_callback(self, callback):
+        # type: (AudioStream, AudioCallback) -> None
+        """Audio thread callback to request new data"""
+        _SetAudioStreamCallback(self, callback)
+
+    def attach_processor(self, processor):
+        # type: (AudioStream, AudioCallback) -> None
+        """Attach audio stream processor to stream, receives the samples as <float>s"""
+        _AttachAudioStreamProcessor(self, processor)
+
+    def detach_processor(self, processor):
+        # type: (AudioStream, AudioCallback) -> None
+        """Detach audio stream processor from stream"""
+        _DetachAudioStreamProcessor(self, processor)
+
+
+# Pointer type to AudioStreams
+AudioStreamPtr = POINTER(AudioStream)
+
+
+
+class Sound(Structure):
+    '''Sound'''
+    _fields_ = [
+        ('stream', AudioStream),
+        ('frame_count', UInt),
+    ]
+
+
+    @classmethod
+    def array_of(cls, sound_sequence):
+        '''Creates and returns an array of Sounds'''
+        arr = cls * len(sound_sequence)
+        return arr(*sound_sequence)
+
+    @classmethod
+    def load(cls, file_name):
+        # type: (Union[str, CharPtr]) -> Sound
+        """Load sound from file"""
+        result = _LoadSound(_str_in(file_name))
+        return result
+
+    @classmethod
+    def load_from_wave(cls, wave):
+        # type: (Wave) -> Sound
+        """Load sound from wave data"""
+        result = _LoadSoundFromWave(wave)
+        return result
+
+
+    def __init__(self, stream=None, frame_count=None):
+        # type: (AudioStream, int) -> None
+        '''Initializes this Sound struct'''
+        super(Sound, self).__init__(
+            stream or AudioStream(),
+            frame_count or 0
+        )
+
+
+    @property
+    def byref(self):
+        '''Gets a reference to this Sound instance'''
+        return byref(self)
+
+
+    def __str__(self):
+        return "[{} Playing: {}]".format(self.__class__.__name__, _IsSoundPlaying(self))
+
+    def __repr__(self):
+        return self.__str__()
+
+    @property
+    def is_ready(self):
+        # type: (Sound) -> bool
+        """Checks if a sound is ready"""
+        result = _IsSoundReady(self)
+        return result
+
+    def play(self):
+        # type: (Sound) -> None
+        """Play a sound"""
+        _PlaySound(self)
+
+    def stop(self):
+        # type: (Sound) -> None
+        """Stop playing a sound"""
+        _StopSound(self)
+
+    def pause(self):
+        # type: (Sound) -> None
+        """Pause a sound"""
+        _PauseSound(self)
+
+    def resume(self):
+        # type: (Sound) -> None
+        """Resume a paused sound"""
+        _ResumeSound(self)
+
+    def is_playing(self):
+        # type: (Sound) -> bool
+        """Check if a sound is currently playing"""
+        result = _IsSoundPlaying(self)
+        return result
+
+    def set_volume(self, volume):
+        # type: (Sound, float) -> None
+        """Set volume for a sound (1.0 is max level)"""
+        _SetSoundVolume(self, float(volume))
+
+    def set_pitch(self, pitch):
+        # type: (Sound, float) -> None
+        """Set pitch for a sound (1.0 is base level)"""
+        _SetSoundPitch(self, float(pitch))
+
+    def set_pan(self, pan):
+        # type: (Sound, float) -> None
+        """Set pan for a sound (0.5 is center)"""
+        _SetSoundPan(self, float(pan))
+
+    def unload(self):
+        # type: (Sound) -> None
+        """Unload sound"""
+        _UnloadSound(self)
+
+    def update(self, data, sample_count):
+        # type: (Sound, bytes, int) -> None
+        """Update sound buffer with new data"""
+        _UpdateSound(self, data, int(sample_count))
+
+
+# Pointer type to Sounds
+SoundPtr = POINTER(Sound)
+
+
+
+class Music(Structure):
+    '''Music, audio stream, anything longer than ~10 seconds should be streamed'''
+    _fields_ = [
+        ('stream', AudioStream),
+        ('frame_count', UInt),
+        ('looping', Bool),
+        ('ctx_type', Int),
+        ('ctx_data', VoidPtr),
+    ]
+
+
+    @classmethod
+    def array_of(cls, music_sequence):
+        '''Creates and returns an array of Musics'''
+        arr = cls * len(music_sequence)
+        return arr(*music_sequence)
+
+
+    def __init__(self, stream=None,
+                 frame_count=None,
+                 looping=None,
+                 ctx_type=None,
+                 ctx_data=None):
+        # type: (AudioStream, int, bool, int, bytes) -> None
+        '''Initializes this Music struct'''
+        super(Music, self).__init__(
+            stream or AudioStream(),
+            frame_count or 0,
+            looping or False,
+            ctx_type or 0,
+            ctx_data
+        )
+
+
+    @property
+    def byref(self):
+        '''Gets a reference to this Music instance'''
+        return byref(self)
+
+
+    def __str__(self):
+        return "[{} at {}]".format(self.__class__.__name__, id(self))
+
+    def __repr__(self):
+        return self.__str__()
+
+    @property
+    def is_ready(self):
+        # type: (Music) -> bool
+        """Checks if a music stream is ready"""
+        result = _IsMusicReady(self)
+        return result
+
+    def play(self):
+        # type: (Music) -> None
+        """Start music playing"""
+        _PlayMusicStream(self)
+
+    def is_playing(self):
+        # type: (Music) -> bool
+        """Check if music is playing"""
+        result = _IsMusicStreamPlaying(self)
+        return result
+
+    def update(self):
+        # type: (Music) -> None
+        """Updates buffers for music streaming"""
+        _UpdateMusicStream(self)
+
+    def stop(self):
+        # type: (Music) -> None
+        """Stop music playing"""
+        _StopMusicStream(self)
+
+    def pause(self):
+        # type: (Music) -> None
+        """Pause music playing"""
+        _PauseMusicStream(self)
+
+    def resume(self):
+        # type: (Music) -> None
+        """Resume playing paused music"""
+        _ResumeMusicStream(self)
+
+    def seek(self, position):
+        # type: (Music, float) -> None
+        """Seek music to a position (in seconds)"""
+        _SeekMusicStream(self, float(position))
+
+    def set_volume(self, volume):
+        # type: (Music, float) -> None
+        """Set volume for music (1.0 is max level)"""
+        _SetMusicVolume(self, float(volume))
+
+    def set_pitch(self, pitch):
+        # type: (Music, float) -> None
+        """Set pitch for a music (1.0 is base level)"""
+        _SetMusicPitch(self, float(pitch))
+
+    def set_pan(self, pan):
+        # type: (Music, float) -> None
+        """Set pan for a music (0.5 is center)"""
+        _SetMusicPan(self, float(pan))
+
+    def get_time_length(self):
+        # type: (Music) -> float
+        """Get music time length (in seconds)"""
+        result = _GetMusicTimeLength(self)
+        return result
+
+    def get_time_played(self):
+        # type: (Music) -> float
+        """Get current music time played (in seconds)"""
+        result = _GetMusicTimePlayed(self)
+        return result
+
+    @staticmethod
+    def load(file_name):
+        # type: (Union[str, CharPtr]) -> Music
+        """Load music stream from file"""
+        result = _LoadMusicStream(_str_in(file_name))
+        return result
+
+    @staticmethod
+    def load_from_memory(file_type, data, data_size):
+        # type: (Union[str, CharPtr], Union[Seq[int], UCharPtr], int) -> Music
+        """Load music stream from data"""
+        result = _LoadMusicStreamFromMemory(_str_in(file_type), _str_in(data), int(data_size))
+        return result
+
+
+# Pointer type to Musics
+MusicPtr = POINTER(Music)
+
+
+
+class VrDeviceInfo(Structure):
+    '''VrDeviceInfo, Head-Mounted-Display device parameters'''
+    _fields_ = [
+        ('h_resolution', Int),
+        ('v_resolution', Int),
+        ('h_screen_size', Float),
+        ('v_screen_size', Float),
+        ('v_screen_center', Float),
+        ('eye_to_screen_distance', Float),
+        ('lens_separation_distance', Float),
+        ('interpupillary_distance', Float),
+        ('lens_distortion_values', Float * 4),
+        ('chroma_ab_correction', Float * 4),
+    ]
+
+
+    @classmethod
+    def array_of(cls, vr_device_info_sequence):
+        '''Creates and returns an array of VrDeviceInfos'''
+        arr = cls * len(vr_device_info_sequence)
+        return arr(*vr_device_info_sequence)
+
+
+    def __init__(self, h_resolution=None,
+                 v_resolution=None,
+                 h_screen_size=None,
+                 v_screen_size=None,
+                 v_screen_center=None,
+                 eye_to_screen_distance=None,
+                 lens_separation_distance=None,
+                 interpupillary_distance=None,
+                 lens_distortion_values=None,
+                 chroma_ab_correction=None):
+        # type: (int, int, float, float, float, float, float, float, Seq[float], Seq[float]) -> None
+        '''Initializes this VrDeviceInfo struct'''
+        super(VrDeviceInfo, self).__init__(
+            h_resolution or 0,
+            v_resolution or 0,
+            h_screen_size or 0.0,
+            v_screen_size or 0.0,
+            v_screen_center or 0.0,
+            eye_to_screen_distance or 0.0,
+            lens_separation_distance or 0.0,
+            interpupillary_distance or 0.0,
+            lens_distortion_values,
+            chroma_ab_correction
+        )
+
+
+    @property
+    def byref(self):
+        '''Gets a reference to this VrDeviceInfo instance'''
+        return byref(self)
+
+
+
+# Pointer type to VrDeviceInfos
+VrDeviceInfoPtr = POINTER(VrDeviceInfo)
+
+
+
+class VrStereoConfig(Structure):
+    '''VrStereoConfig, VR stereo rendering configuration for simulator'''
+    _fields_ = [
+        ('projection', Matrix * 2),
+        ('view_offset', Matrix * 2),
+        ('left_lens_center', Float * 2),
+        ('right_lens_center', Float * 2),
+        ('left_screen_center', Float * 2),
+        ('right_screen_center', Float * 2),
+        ('scale', Float * 2),
+        ('scale_in', Float * 2),
+    ]
+
+
+    @classmethod
+    def array_of(cls, vr_stereo_config_sequence):
+        '''Creates and returns an array of VrStereoConfigs'''
+        arr = cls * len(vr_stereo_config_sequence)
+        return arr(*vr_stereo_config_sequence)
+
+
+    def __init__(self, projection=None,
+                 view_offset=None,
+                 left_lens_center=None,
+                 right_lens_center=None,
+                 left_screen_center=None,
+                 right_screen_center=None,
+                 scale=None,
+                 scale_in=None):
+        # type: (Seq[Matrix], Seq[Matrix], Seq[float], Seq[float], Seq[float], Seq[float], Seq[float], Seq[float]) -> None
+        '''Initializes this VrStereoConfig struct'''
+        super(VrStereoConfig, self).__init__(
+            projection,
+            view_offset,
+            left_lens_center,
+            right_lens_center,
+            left_screen_center,
+            right_screen_center,
+            scale,
+            scale_in
+        )
+
+
+    @property
+    def byref(self):
+        '''Gets a reference to this VrStereoConfig instance'''
+        return byref(self)
+
+
+    def __enter__(self):
+        _BeginVrStereoMode(self)
+
+    def __leave__(self, exc_type, exc_value, traceback):
+        _EndVrStereoMode()
+
+
+# Pointer type to VrStereoConfigs
+VrStereoConfigPtr = POINTER(VrStereoConfig)
+
+
+
+class FilePathList(Structure):
+    '''File path list'''
+    _fields_ = [
+        ('capacity', UInt),
+        ('count', UInt),
+        ('paths', CharPtrPtr),
+    ]
+
+
+    @classmethod
+    def array_of(cls, file_path_list_sequence):
+        '''Creates and returns an array of FilePathLists'''
+        arr = cls * len(file_path_list_sequence)
+        return arr(*file_path_list_sequence)
+
+
+    def __init__(self, capacity=None, count=None, paths=None):
+        # type: (int, int, Seq[Union[str, CharPtr]]) -> None
+        '''Initializes this FilePathList struct'''
+        super(FilePathList, self).__init__(
+            capacity or 0,
+            count or 0,
+            paths
+        )
+
+
+    @property
+    def byref(self):
+        '''Gets a reference to this FilePathList instance'''
+        return byref(self)
+
+
+
+# Pointer type to FilePathLists
+FilePathListPtr = POINTER(FilePathList)
+
+
+
+class AutomationEvent(Structure):
+    '''Automation event'''
+    _fields_ = [
+        ('frame', UInt),
+        ('type', UInt),
+        ('params', Int * 4),
+    ]
+
+
+    @classmethod
+    def array_of(cls, automation_event_sequence):
+        '''Creates and returns an array of AutomationEvents'''
+        arr = cls * len(automation_event_sequence)
+        return arr(*automation_event_sequence)
+
+
+    def __init__(self, frame=None, type=None, params=None):
+        # type: (int, int, Seq[int]) -> None
+        '''Initializes this AutomationEvent struct'''
+        super(AutomationEvent, self).__init__(
+            frame or 0,
+            type or 0,
+            params
+        )
+
+
+    @property
+    def byref(self):
+        '''Gets a reference to this AutomationEvent instance'''
+        return byref(self)
+
+
+
+# Pointer type to AutomationEvents
+AutomationEventPtr = POINTER(AutomationEvent)
+
+
+
+class AutomationEventList(Structure):
+    '''Automation event list'''
+    _fields_ = [
+        ('capacity', UInt),
+        ('count', UInt),
+        ('events', AutomationEventPtr),
+    ]
+
+
+    @classmethod
+    def array_of(cls, automation_event_list_sequence):
+        '''Creates and returns an array of AutomationEventLists'''
+        arr = cls * len(automation_event_list_sequence)
+        return arr(*automation_event_list_sequence)
+
+
+    def __init__(self, capacity=None, count=None, events=None):
+        # type: (int, int, AutomationEventPtr) -> None
+        '''Initializes this AutomationEventList struct'''
+        super(AutomationEventList, self).__init__(
+            capacity or 0,
+            count or 0,
+            events
+        )
+
+
+    @property
+    def byref(self):
+        '''Gets a reference to this AutomationEventList instance'''
+        return byref(self)
+
+
+
+# Pointer type to AutomationEventLists
+AutomationEventListPtr = POINTER(AutomationEventList)
+
+
+
+class float3(Structure):
+    '''NOTE: Helper types to be used instead of array return types for *ToFloat functions'''
+    _fields_ = [
+        ('v', Float * 3),
+    ]
+
+
+    @classmethod
+    def array_of(cls, float3_sequence):
+        '''Creates and returns an array of float3s'''
+        arr = cls * len(float3_sequence)
+        return arr(*float3_sequence)
+
+
+    def __init__(self, v=None):
+        # type: (Seq[float]) -> None
+        '''Initializes this float3 struct'''
+        super(float3, self).__init__(
+            v
+        )
+
+
+    @property
+    def byref(self):
+        '''Gets a reference to this float3 instance'''
+        return byref(self)
+
+
+
+# Pointer type to float3s
+float3Ptr = POINTER(float3)
+
+
+
+class float16(Structure):
+    ''''''
+    _fields_ = [
+        ('v', Float * 16),
+    ]
+
+
+    @classmethod
+    def array_of(cls, float16_sequence):
+        '''Creates and returns an array of float16s'''
+        arr = cls * len(float16_sequence)
+        return arr(*float16_sequence)
+
+
+    def __init__(self, v=None):
+        # type: (Seq[float]) -> None
+        '''Initializes this float16 struct'''
+        super(float16, self).__init__(
+            v
+        )
+
+
+    @property
+    def byref(self):
+        '''Gets a reference to this float16 instance'''
+        return byref(self)
+
+
+
+# Pointer type to float16s
+float16Ptr = POINTER(float16)
+
+
+
+class rlVertexBuffer(Structure):
+    '''Dynamic vertex buffers (position + texcoords + colors + indices arrays)'''
+    _fields_ = [
+        ('element_count', Int),
+        ('vertices', FloatPtr),
+        ('texcoords', FloatPtr),
+        ('colors', UCharPtr),
+        ('indices', UIntPtr),
+        ('vao_id', UInt),
+        ('vbo_id', Int * 4),
+    ]
+
+
+    @classmethod
+    def array_of(cls, rl_vertex_buffer_sequence):
+        '''Creates and returns an array of rlVertexBuffers'''
+        arr = cls * len(rl_vertex_buffer_sequence)
+        return arr(*rl_vertex_buffer_sequence)
+
+
+    def __init__(self, element_count=None,
+                 vertices=None,
+                 texcoords=None,
+                 colors=None,
+                 indices=None,
+                 vao_id=None,
+                 vbo_id=None):
+        # type: (int, Union[Seq[float], FloatPtr], Union[Seq[float], FloatPtr], Union[Seq[int], UCharPtr], Union[Seq[int], UIntPtr], int, Seq[int]) -> None
+        '''Initializes this rlVertexBuffer struct'''
+        super(rlVertexBuffer, self).__init__(
+            element_count or 0,
+            vertices,
+            texcoords,
+            colors,
+            indices,
+            vao_id or 0,
+            vbo_id
+        )
+
+
+    @property
+    def byref(self):
+        '''Gets a reference to this rlVertexBuffer instance'''
+        return byref(self)
+
+
+
+# Pointer type to rlVertexBuffers
+rlVertexBufferPtr = POINTER(rlVertexBuffer)
+
+
+
+class rlDrawCall(Structure):
+    '''of those state-change happens (this is done in core module)'''
+    _fields_ = [
+        ('mode', Int),
+        ('vertex_count', Int),
+        ('vertex_alignment', Int),
+        ('texture_id', UInt),
+    ]
+
+
+    @classmethod
+    def array_of(cls, rl_draw_call_sequence):
+        '''Creates and returns an array of rlDrawCalls'''
+        arr = cls * len(rl_draw_call_sequence)
+        return arr(*rl_draw_call_sequence)
+
+
+    def __init__(self, mode=None, vertex_count=None, vertex_alignment=None, texture_id=None):
+        # type: (int, int, int, int) -> None
+        '''Initializes this rlDrawCall struct'''
+        super(rlDrawCall, self).__init__(
+            mode or 0,
+            vertex_count or 0,
+            vertex_alignment or 0,
+            texture_id or 0
+        )
+
+
+    @property
+    def byref(self):
+        '''Gets a reference to this rlDrawCall instance'''
+        return byref(self)
+
+
+
+# Pointer type to rlDrawCalls
+rlDrawCallPtr = POINTER(rlDrawCall)
+
+
+
+class rlRenderBatch(Structure):
+    '''rlRenderBatch type'''
+    _fields_ = [
+        ('buffer_count', Int),
+        ('current_buffer', Int),
+        ('vertex_buffer', rlVertexBufferPtr),
+        ('draws', rlDrawCallPtr),
+        ('draw_counter', Int),
+        ('current_depth', Float),
+    ]
+
+
+    @classmethod
+    def array_of(cls, rl_render_batch_sequence):
+        '''Creates and returns an array of rlRenderBatchs'''
+        arr = cls * len(rl_render_batch_sequence)
+        return arr(*rl_render_batch_sequence)
+
+
+    def __init__(self, buffer_count=None,
+                 current_buffer=None,
+                 vertex_buffer=None,
+                 draws=None,
+                 draw_counter=None,
+                 current_depth=None):
+        # type: (int, int, rlVertexBufferPtr, rlDrawCallPtr, int, float) -> None
+        '''Initializes this rlRenderBatch struct'''
+        super(rlRenderBatch, self).__init__(
+            buffer_count or 0,
+            current_buffer or 0,
+            vertex_buffer,
+            draws,
+            draw_counter or 0,
+            current_depth or 0.0
+        )
+
+
+    @property
+    def byref(self):
+        '''Gets a reference to this rlRenderBatch instance'''
+        return byref(self)
+
+
+
+# Pointer type to rlRenderBatchs
+rlRenderBatchPtr = POINTER(rlRenderBatch)
+
+
+
+RAYLIB_VERSION_MAJOR = 5
+
+RAYLIB_VERSION_MINOR = 0
 
 RAYLIB_VERSION_PATCH = 0
 
-RAYLIB_VERSION = '4.5'
+RAYLIB_VERSION = '5.0'
 
 PI = 3.141592653589793
 
@@ -7485,10 +7672,10 @@ RL_BLEND_COLOR = 32773
 TraceLogCallback = CFUNCTYPE(None, Int, CharPtr, VoidPtr)
 
 # FileIO: Load binary data
-LoadFileDataCallback = CFUNCTYPE(UCharPtr, CharPtr, UIntPtr)
+LoadFileDataCallback = CFUNCTYPE(UCharPtr, CharPtr, IntPtr)
 
 # FileIO: Save binary data
-SaveFileDataCallback = CFUNCTYPE(Bool, CharPtr, VoidPtr, UInt)
+SaveFileDataCallback = CFUNCTYPE(Bool, CharPtr, VoidPtr, Int)
 
 # FileIO: Load text data
 LoadFileTextCallback = CFUNCTYPE(CharPtr, CharPtr)
@@ -7499,8 +7686,8 @@ SaveFileTextCallback = CFUNCTYPE(Bool, CharPtr, CharPtr)
 # 
 AudioCallback = CFUNCTYPE(None, VoidPtr, UInt)
 _InitWindow = _wrap(rlapi.InitWindow, [Int, Int, CharPtr], None)
-_WindowShouldClose = _wrap(rlapi.WindowShouldClose, [], Bool)
 _CloseWindow = _wrap(rlapi.CloseWindow, [], None)
+_WindowShouldClose = _wrap(rlapi.WindowShouldClose, [], Bool)
 _IsWindowReady = _wrap(rlapi.IsWindowReady, [], Bool)
 _IsWindowFullscreen = _wrap(rlapi.IsWindowFullscreen, [], Bool)
 _IsWindowHidden = _wrap(rlapi.IsWindowHidden, [], Bool)
@@ -7512,6 +7699,7 @@ _IsWindowState = _wrap(rlapi.IsWindowState, [UInt], Bool)
 _SetWindowState = _wrap(rlapi.SetWindowState, [UInt], None)
 _ClearWindowState = _wrap(rlapi.ClearWindowState, [UInt], None)
 _ToggleFullscreen = _wrap(rlapi.ToggleFullscreen, [], None)
+_ToggleBorderlessWindowed = _wrap(rlapi.ToggleBorderlessWindowed, [], None)
 _MaximizeWindow = _wrap(rlapi.MaximizeWindow, [], None)
 _MinimizeWindow = _wrap(rlapi.MinimizeWindow, [], None)
 _RestoreWindow = _wrap(rlapi.RestoreWindow, [], None)
@@ -7521,8 +7709,10 @@ _SetWindowTitle = _wrap(rlapi.SetWindowTitle, [CharPtr], None)
 _SetWindowPosition = _wrap(rlapi.SetWindowPosition, [Int, Int], None)
 _SetWindowMonitor = _wrap(rlapi.SetWindowMonitor, [Int], None)
 _SetWindowMinSize = _wrap(rlapi.SetWindowMinSize, [Int, Int], None)
+_SetWindowMaxSize = _wrap(rlapi.SetWindowMaxSize, [Int, Int], None)
 _SetWindowSize = _wrap(rlapi.SetWindowSize, [Int, Int], None)
 _SetWindowOpacity = _wrap(rlapi.SetWindowOpacity, [Float], None)
+_SetWindowFocused = _wrap(rlapi.SetWindowFocused, [], None)
 _GetWindowHandle = _wrap(rlapi.GetWindowHandle, [], VoidPtr)
 _GetScreenWidth = _wrap(rlapi.GetScreenWidth, [], Int)
 _GetScreenHeight = _wrap(rlapi.GetScreenHeight, [], Int)
@@ -7543,9 +7733,6 @@ _SetClipboardText = _wrap(rlapi.SetClipboardText, [CharPtr], None)
 _GetClipboardText = _wrap(rlapi.GetClipboardText, [], CharPtr)
 _EnableEventWaiting = _wrap(rlapi.EnableEventWaiting, [], None)
 _DisableEventWaiting = _wrap(rlapi.DisableEventWaiting, [], None)
-_SwapScreenBuffer = _wrap(rlapi.SwapScreenBuffer, [], None)
-_PollInputEvents = _wrap(rlapi.PollInputEvents, [], None)
-_WaitTime = _wrap(rlapi.WaitTime, [Double], None)
 _ShowCursor = _wrap(rlapi.ShowCursor, [], None)
 _HideCursor = _wrap(rlapi.HideCursor, [], None)
 _IsCursorHidden = _wrap(rlapi.IsCursorHidden, [], Bool)
@@ -7589,28 +7776,33 @@ _GetScreenToWorld2D = _wrap(rlapi.GetScreenToWorld2D, [Vector2, Camera2D], Vecto
 _GetWorldToScreenEx = _wrap(rlapi.GetWorldToScreenEx, [Vector3, Camera, Int, Int], Vector2)
 _GetWorldToScreen2D = _wrap(rlapi.GetWorldToScreen2D, [Vector2, Camera2D], Vector2)
 _SetTargetFPS = _wrap(rlapi.SetTargetFPS, [Int], None)
-_GetFPS = _wrap(rlapi.GetFPS, [], Int)
 _GetFrameTime = _wrap(rlapi.GetFrameTime, [], Float)
 _GetTime = _wrap(rlapi.GetTime, [], Double)
-_GetRandomValue = _wrap(rlapi.GetRandomValue, [Int, Int], Int)
+_GetFPS = _wrap(rlapi.GetFPS, [], Int)
+_SwapScreenBuffer = _wrap(rlapi.SwapScreenBuffer, [], None)
+_PollInputEvents = _wrap(rlapi.PollInputEvents, [], None)
+_WaitTime = _wrap(rlapi.WaitTime, [Double], None)
 _SetRandomSeed = _wrap(rlapi.SetRandomSeed, [UInt], None)
+_GetRandomValue = _wrap(rlapi.GetRandomValue, [Int, Int], Int)
+_LoadRandomSequence = _wrap(rlapi.LoadRandomSequence, [UInt, Int, Int], IntPtr)
+_UnloadRandomSequence = _wrap(rlapi.UnloadRandomSequence, [IntPtr], None)
 _TakeScreenshot = _wrap(rlapi.TakeScreenshot, [CharPtr], None)
 _SetConfigFlags = _wrap(rlapi.SetConfigFlags, [UInt], None)
+_OpenURL = _wrap(rlapi.OpenURL, [CharPtr], None)
 _TraceLog = _wrap(rlapi.TraceLog, [Int, CharPtr, VoidPtr], None)
 _SetTraceLogLevel = _wrap(rlapi.SetTraceLogLevel, [Int], None)
 _MemAlloc = _wrap(rlapi.MemAlloc, [UInt], VoidPtr)
 _MemRealloc = _wrap(rlapi.MemRealloc, [VoidPtr, UInt], VoidPtr)
 _MemFree = _wrap(rlapi.MemFree, [VoidPtr], None)
-_OpenURL = _wrap(rlapi.OpenURL, [CharPtr], None)
 _SetTraceLogCallback = _wrap(rlapi.SetTraceLogCallback, [TraceLogCallback], None)
 _SetLoadFileDataCallback = _wrap(rlapi.SetLoadFileDataCallback, [LoadFileDataCallback], None)
 _SetSaveFileDataCallback = _wrap(rlapi.SetSaveFileDataCallback, [SaveFileDataCallback], None)
 _SetLoadFileTextCallback = _wrap(rlapi.SetLoadFileTextCallback, [LoadFileTextCallback], None)
 _SetSaveFileTextCallback = _wrap(rlapi.SetSaveFileTextCallback, [SaveFileTextCallback], None)
-_LoadFileData = _wrap(rlapi.LoadFileData, [CharPtr, UIntPtr], UCharPtr)
+_LoadFileData = _wrap(rlapi.LoadFileData, [CharPtr, IntPtr], UCharPtr)
 _UnloadFileData = _wrap(rlapi.UnloadFileData, [UCharPtr], None)
-_SaveFileData = _wrap(rlapi.SaveFileData, [CharPtr, VoidPtr, UInt], Bool)
-_ExportDataAsCode = _wrap(rlapi.ExportDataAsCode, [UCharPtr, UInt, CharPtr], Bool)
+_SaveFileData = _wrap(rlapi.SaveFileData, [CharPtr, VoidPtr, Int], Bool)
+_ExportDataAsCode = _wrap(rlapi.ExportDataAsCode, [UCharPtr, Int, CharPtr], Bool)
 _LoadFileText = _wrap(rlapi.LoadFileText, [CharPtr], CharPtr)
 _UnloadFileText = _wrap(rlapi.UnloadFileText, [CharPtr], None)
 _SaveFileText = _wrap(rlapi.SaveFileText, [CharPtr, CharPtr], Bool)
@@ -7638,13 +7830,22 @@ _CompressData = _wrap(rlapi.CompressData, [UCharPtr, Int, IntPtr], UCharPtr)
 _DecompressData = _wrap(rlapi.DecompressData, [UCharPtr, Int, IntPtr], UCharPtr)
 _EncodeDataBase64 = _wrap(rlapi.EncodeDataBase64, [UCharPtr, Int, IntPtr], CharPtr)
 _DecodeDataBase64 = _wrap(rlapi.DecodeDataBase64, [UCharPtr, IntPtr], UCharPtr)
+_LoadAutomationEventList = _wrap(rlapi.LoadAutomationEventList, [CharPtr], AutomationEventList)
+_UnloadAutomationEventList = _wrap(rlapi.UnloadAutomationEventList, [AutomationEventListPtr], None)
+_ExportAutomationEventList = _wrap(rlapi.ExportAutomationEventList, [AutomationEventList, CharPtr], Bool)
+_SetAutomationEventList = _wrap(rlapi.SetAutomationEventList, [AutomationEventListPtr], None)
+_SetAutomationEventBaseFrame = _wrap(rlapi.SetAutomationEventBaseFrame, [Int], None)
+_StartAutomationEventRecording = _wrap(rlapi.StartAutomationEventRecording, [], None)
+_StopAutomationEventRecording = _wrap(rlapi.StopAutomationEventRecording, [], None)
+_PlayAutomationEvent = _wrap(rlapi.PlayAutomationEvent, [AutomationEvent], None)
 _IsKeyPressed = _wrap(rlapi.IsKeyPressed, [Int], Bool)
+_IsKeyPressedRepeat = _wrap(rlapi.IsKeyPressedRepeat, [Int], Bool)
 _IsKeyDown = _wrap(rlapi.IsKeyDown, [Int], Bool)
 _IsKeyReleased = _wrap(rlapi.IsKeyReleased, [Int], Bool)
 _IsKeyUp = _wrap(rlapi.IsKeyUp, [Int], Bool)
-_SetExitKey = _wrap(rlapi.SetExitKey, [Int], None)
 _GetKeyPressed = _wrap(rlapi.GetKeyPressed, [], Int)
 _GetCharPressed = _wrap(rlapi.GetCharPressed, [], Int)
+_SetExitKey = _wrap(rlapi.SetExitKey, [Int], None)
 _IsGamepadAvailable = _wrap(rlapi.IsGamepadAvailable, [Int], Bool)
 _GetGamepadName = _wrap(rlapi.GetGamepadName, [Int], CharPtr)
 _IsGamepadButtonPressed = _wrap(rlapi.IsGamepadButtonPressed, [Int, Int], Bool)
@@ -7675,7 +7876,7 @@ _GetTouchPosition = _wrap(rlapi.GetTouchPosition, [Int], Vector2)
 _GetTouchPointId = _wrap(rlapi.GetTouchPointId, [Int], Int)
 _GetTouchPointCount = _wrap(rlapi.GetTouchPointCount, [], Int)
 _SetGesturesEnabled = _wrap(rlapi.SetGesturesEnabled, [UInt], None)
-_IsGestureDetected = _wrap(rlapi.IsGestureDetected, [Int], Bool)
+_IsGestureDetected = _wrap(rlapi.IsGestureDetected, [UInt], Bool)
 _GetGestureDetected = _wrap(rlapi.GetGestureDetected, [], Int)
 _GetGestureHoldDuration = _wrap(rlapi.GetGestureHoldDuration, [], Float)
 _GetGestureDragVector = _wrap(rlapi.GetGestureDragVector, [], Vector2)
@@ -7690,16 +7891,15 @@ _DrawPixelV = _wrap(rlapi.DrawPixelV, [Vector2, Color], None)
 _DrawLine = _wrap(rlapi.DrawLine, [Int, Int, Int, Int, Color], None)
 _DrawLineV = _wrap(rlapi.DrawLineV, [Vector2, Vector2, Color], None)
 _DrawLineEx = _wrap(rlapi.DrawLineEx, [Vector2, Vector2, Float, Color], None)
-_DrawLineBezier = _wrap(rlapi.DrawLineBezier, [Vector2, Vector2, Float, Color], None)
-_DrawLineBezierQuad = _wrap(rlapi.DrawLineBezierQuad, [Vector2, Vector2, Vector2, Float, Color], None)
-_DrawLineBezierCubic = _wrap(rlapi.DrawLineBezierCubic, [Vector2, Vector2, Vector2, Vector2, Float, Color], None)
 _DrawLineStrip = _wrap(rlapi.DrawLineStrip, [Vector2Ptr, Int, Color], None)
+_DrawLineBezier = _wrap(rlapi.DrawLineBezier, [Vector2, Vector2, Float, Color], None)
 _DrawCircle = _wrap(rlapi.DrawCircle, [Int, Int, Float, Color], None)
 _DrawCircleSector = _wrap(rlapi.DrawCircleSector, [Vector2, Float, Float, Float, Int, Color], None)
 _DrawCircleSectorLines = _wrap(rlapi.DrawCircleSectorLines, [Vector2, Float, Float, Float, Int, Color], None)
 _DrawCircleGradient = _wrap(rlapi.DrawCircleGradient, [Int, Int, Float, Color, Color], None)
 _DrawCircleV = _wrap(rlapi.DrawCircleV, [Vector2, Float, Color], None)
 _DrawCircleLines = _wrap(rlapi.DrawCircleLines, [Int, Int, Float, Color], None)
+_DrawCircleLinesV = _wrap(rlapi.DrawCircleLinesV, [Vector2, Float, Color], None)
 _DrawEllipse = _wrap(rlapi.DrawEllipse, [Int, Int, Float, Float, Color], None)
 _DrawEllipseLines = _wrap(rlapi.DrawEllipseLines, [Int, Int, Float, Float, Color], None)
 _DrawRing = _wrap(rlapi.DrawRing, [Vector2, Float, Float, Float, Float, Int, Color], None)
@@ -7722,6 +7922,21 @@ _DrawTriangleStrip = _wrap(rlapi.DrawTriangleStrip, [Vector2Ptr, Int, Color], No
 _DrawPoly = _wrap(rlapi.DrawPoly, [Vector2, Int, Float, Float, Color], None)
 _DrawPolyLines = _wrap(rlapi.DrawPolyLines, [Vector2, Int, Float, Float, Color], None)
 _DrawPolyLinesEx = _wrap(rlapi.DrawPolyLinesEx, [Vector2, Int, Float, Float, Float, Color], None)
+_DrawSplineLinear = _wrap(rlapi.DrawSplineLinear, [Vector2Ptr, Int, Float, Color], None)
+_DrawSplineBasis = _wrap(rlapi.DrawSplineBasis, [Vector2Ptr, Int, Float, Color], None)
+_DrawSplineCatmullRom = _wrap(rlapi.DrawSplineCatmullRom, [Vector2Ptr, Int, Float, Color], None)
+_DrawSplineBezierQuadratic = _wrap(rlapi.DrawSplineBezierQuadratic, [Vector2Ptr, Int, Float, Color], None)
+_DrawSplineBezierCubic = _wrap(rlapi.DrawSplineBezierCubic, [Vector2Ptr, Int, Float, Color], None)
+_DrawSplineSegmentLinear = _wrap(rlapi.DrawSplineSegmentLinear, [Vector2, Vector2, Float, Color], None)
+_DrawSplineSegmentBasis = _wrap(rlapi.DrawSplineSegmentBasis, [Vector2, Vector2, Vector2, Vector2, Float, Color], None)
+_DrawSplineSegmentCatmullRom = _wrap(rlapi.DrawSplineSegmentCatmullRom, [Vector2, Vector2, Vector2, Vector2, Float, Color], None)
+_DrawSplineSegmentBezierQuadratic = _wrap(rlapi.DrawSplineSegmentBezierQuadratic, [Vector2, Vector2, Vector2, Float, Color], None)
+_DrawSplineSegmentBezierCubic = _wrap(rlapi.DrawSplineSegmentBezierCubic, [Vector2, Vector2, Vector2, Vector2, Float, Color], None)
+_GetSplinePointLinear = _wrap(rlapi.GetSplinePointLinear, [Vector2, Vector2, Float], Vector2)
+_GetSplinePointBasis = _wrap(rlapi.GetSplinePointBasis, [Vector2, Vector2, Vector2, Vector2, Float], Vector2)
+_GetSplinePointCatmullRom = _wrap(rlapi.GetSplinePointCatmullRom, [Vector2, Vector2, Vector2, Vector2, Float], Vector2)
+_GetSplinePointBezierQuad = _wrap(rlapi.GetSplinePointBezierQuad, [Vector2, Vector2, Vector2, Float], Vector2)
+_GetSplinePointBezierCubic = _wrap(rlapi.GetSplinePointBezierCubic, [Vector2, Vector2, Vector2, Vector2, Float], Vector2)
 _CheckCollisionRecs = _wrap(rlapi.CheckCollisionRecs, [Rectangle, Rectangle], Bool)
 _CheckCollisionCircles = _wrap(rlapi.CheckCollisionCircles, [Vector2, Float, Vector2, Float], Bool)
 _CheckCollisionCircleRec = _wrap(rlapi.CheckCollisionCircleRec, [Vector2, Float, Rectangle], Bool)
@@ -7734,6 +7949,7 @@ _CheckCollisionPointLine = _wrap(rlapi.CheckCollisionPointLine, [Vector2, Vector
 _GetCollisionRec = _wrap(rlapi.GetCollisionRec, [Rectangle, Rectangle], Rectangle)
 _LoadImage = _wrap(rlapi.LoadImage, [CharPtr], Image)
 _LoadImageRaw = _wrap(rlapi.LoadImageRaw, [CharPtr, Int, Int, Int, Int], Image)
+_LoadImageSvg = _wrap(rlapi.LoadImageSvg, [CharPtr, Int, Int], Image)
 _LoadImageAnim = _wrap(rlapi.LoadImageAnim, [CharPtr, IntPtr], Image)
 _LoadImageFromMemory = _wrap(rlapi.LoadImageFromMemory, [CharPtr, UCharPtr, Int], Image)
 _LoadImageFromTexture = _wrap(rlapi.LoadImageFromTexture, [Texture2D], Image)
@@ -7741,11 +7957,12 @@ _LoadImageFromScreen = _wrap(rlapi.LoadImageFromScreen, [], Image)
 _IsImageReady = _wrap(rlapi.IsImageReady, [Image], Bool)
 _UnloadImage = _wrap(rlapi.UnloadImage, [Image], None)
 _ExportImage = _wrap(rlapi.ExportImage, [Image, CharPtr], Bool)
+_ExportImageToMemory = _wrap(rlapi.ExportImageToMemory, [Image, CharPtr, IntPtr], UCharPtr)
 _ExportImageAsCode = _wrap(rlapi.ExportImageAsCode, [Image, CharPtr], Bool)
 _GenImageColor = _wrap(rlapi.GenImageColor, [Int, Int, Color], Image)
-_GenImageGradientV = _wrap(rlapi.GenImageGradientV, [Int, Int, Color, Color], Image)
-_GenImageGradientH = _wrap(rlapi.GenImageGradientH, [Int, Int, Color, Color], Image)
+_GenImageGradientLinear = _wrap(rlapi.GenImageGradientLinear, [Int, Int, Int, Color, Color], Image)
 _GenImageGradientRadial = _wrap(rlapi.GenImageGradientRadial, [Int, Int, Float, Color, Color], Image)
+_GenImageGradientSquare = _wrap(rlapi.GenImageGradientSquare, [Int, Int, Float, Color, Color], Image)
 _GenImageChecked = _wrap(rlapi.GenImageChecked, [Int, Int, Int, Int, Color, Color], Image)
 _GenImageWhiteNoise = _wrap(rlapi.GenImageWhiteNoise, [Int, Int, Float], Image)
 _GenImagePerlinNoise = _wrap(rlapi.GenImagePerlinNoise, [Int, Int, Int, Int, Float], Image)
@@ -7770,6 +7987,7 @@ _ImageMipmaps = _wrap(rlapi.ImageMipmaps, [ImagePtr], None)
 _ImageDither = _wrap(rlapi.ImageDither, [ImagePtr, Int, Int, Int, Int], None)
 _ImageFlipVertical = _wrap(rlapi.ImageFlipVertical, [ImagePtr], None)
 _ImageFlipHorizontal = _wrap(rlapi.ImageFlipHorizontal, [ImagePtr], None)
+_ImageRotate = _wrap(rlapi.ImageRotate, [ImagePtr, Int], None)
 _ImageRotateCW = _wrap(rlapi.ImageRotateCW, [ImagePtr], None)
 _ImageRotateCCW = _wrap(rlapi.ImageRotateCCW, [ImagePtr], None)
 _ImageColorTint = _wrap(rlapi.ImageColorTint, [ImagePtr, Color], None)
@@ -7851,6 +8069,7 @@ _DrawTextEx = _wrap(rlapi.DrawTextEx, [Font, CharPtr, Vector2, Float, Float, Col
 _DrawTextPro = _wrap(rlapi.DrawTextPro, [Font, CharPtr, Vector2, Vector2, Float, Float, Float, Color], None)
 _DrawTextCodepoint = _wrap(rlapi.DrawTextCodepoint, [Font, Int, Vector2, Float, Color], None)
 _DrawTextCodepoints = _wrap(rlapi.DrawTextCodepoints, [Font, IntPtr, Int, Vector2, Float, Float, Color], None)
+_SetTextLineSpacing = _wrap(rlapi.SetTextLineSpacing, [Int], None)
 _MeasureText = _wrap(rlapi.MeasureText, [CharPtr, Int], Int)
 _MeasureTextEx = _wrap(rlapi.MeasureTextEx, [Font, CharPtr, Float, Float], Vector2)
 _GetGlyphIndex = _wrap(rlapi.GetGlyphIndex, [Font, Int], Int)
@@ -7939,10 +8158,10 @@ _IsMaterialReady = _wrap(rlapi.IsMaterialReady, [Material], Bool)
 _UnloadMaterial = _wrap(rlapi.UnloadMaterial, [Material], None)
 _SetMaterialTexture = _wrap(rlapi.SetMaterialTexture, [MaterialPtr, Int, Texture2D], None)
 _SetModelMeshMaterial = _wrap(rlapi.SetModelMeshMaterial, [ModelPtr, Int, Int], None)
-_LoadModelAnimations = _wrap(rlapi.LoadModelAnimations, [CharPtr, UIntPtr], ModelAnimationPtr)
+_LoadModelAnimations = _wrap(rlapi.LoadModelAnimations, [CharPtr, IntPtr], ModelAnimationPtr)
 _UpdateModelAnimation = _wrap(rlapi.UpdateModelAnimation, [Model, ModelAnimation, Int], None)
 _UnloadModelAnimation = _wrap(rlapi.UnloadModelAnimation, [ModelAnimation], None)
-_UnloadModelAnimations = _wrap(rlapi.UnloadModelAnimations, [ModelAnimationPtr, UInt], None)
+_UnloadModelAnimations = _wrap(rlapi.UnloadModelAnimations, [ModelAnimationPtr, Int], None)
 _IsModelAnimationValid = _wrap(rlapi.IsModelAnimationValid, [Model, ModelAnimation], Bool)
 _CheckCollisionSpheres = _wrap(rlapi.CheckCollisionSpheres, [Vector3, Float, Vector3, Float], Bool)
 _CheckCollisionBoxes = _wrap(rlapi.CheckCollisionBoxes, [BoundingBox, BoundingBox], Bool)
@@ -7956,15 +8175,18 @@ _InitAudioDevice = _wrap(rlapi.InitAudioDevice, [], None)
 _CloseAudioDevice = _wrap(rlapi.CloseAudioDevice, [], None)
 _IsAudioDeviceReady = _wrap(rlapi.IsAudioDeviceReady, [], Bool)
 _SetMasterVolume = _wrap(rlapi.SetMasterVolume, [Float], None)
+_GetMasterVolume = _wrap(rlapi.GetMasterVolume, [], Float)
 _LoadWave = _wrap(rlapi.LoadWave, [CharPtr], Wave)
 _LoadWaveFromMemory = _wrap(rlapi.LoadWaveFromMemory, [CharPtr, UCharPtr, Int], Wave)
 _IsWaveReady = _wrap(rlapi.IsWaveReady, [Wave], Bool)
 _LoadSound = _wrap(rlapi.LoadSound, [CharPtr], Sound)
 _LoadSoundFromWave = _wrap(rlapi.LoadSoundFromWave, [Wave], Sound)
+_LoadSoundAlias = _wrap(rlapi.LoadSoundAlias, [Sound], Sound)
 _IsSoundReady = _wrap(rlapi.IsSoundReady, [Sound], Bool)
 _UpdateSound = _wrap(rlapi.UpdateSound, [Sound, VoidPtr, Int], None)
 _UnloadWave = _wrap(rlapi.UnloadWave, [Wave], None)
 _UnloadSound = _wrap(rlapi.UnloadSound, [Sound], None)
+_UnloadSoundAlias = _wrap(rlapi.UnloadSoundAlias, [Sound], None)
 _ExportWave = _wrap(rlapi.ExportWave, [Wave, CharPtr], Bool)
 _ExportWaveAsCode = _wrap(rlapi.ExportWaveAsCode, [Wave, CharPtr], Bool)
 _PlaySound = _wrap(rlapi.PlaySound, [Sound], None)
@@ -8067,6 +8289,8 @@ _Vector3Angle = _wrap(rlapi.Vector3Angle, [Vector3, Vector3], Float)
 _Vector3Negate = _wrap(rlapi.Vector3Negate, [Vector3], Vector3)
 _Vector3Divide = _wrap(rlapi.Vector3Divide, [Vector3, Vector3], Vector3)
 _Vector3Normalize = _wrap(rlapi.Vector3Normalize, [Vector3], Vector3)
+_Vector3Project = _wrap(rlapi.Vector3Project, [Vector3, Vector3], Vector3)
+_Vector3Reject = _wrap(rlapi.Vector3Reject, [Vector3, Vector3], Vector3)
 _Vector3OrthoNormalize = _wrap(rlapi.Vector3OrthoNormalize, [Vector3Ptr, Vector3Ptr], None)
 _Vector3Transform = _wrap(rlapi.Vector3Transform, [Vector3, Matrix], Vector3)
 _Vector3RotateByQuaternion = _wrap(rlapi.Vector3RotateByQuaternion, [Vector3, Quaternion], Vector3)
@@ -8168,6 +8392,7 @@ _rlDisableShader = _wrap(rlapi.rlDisableShader, [], None)
 _rlEnableFramebuffer = _wrap(rlapi.rlEnableFramebuffer, [UInt], None)
 _rlDisableFramebuffer = _wrap(rlapi.rlDisableFramebuffer, [], None)
 _rlActiveDrawBuffers = _wrap(rlapi.rlActiveDrawBuffers, [Int], None)
+_rlBlitFramebuffer = _wrap(rlapi.rlBlitFramebuffer, [Int, Int, Int, Int, Int, Int, Int, Int, Int], None)
 _rlEnableColorBlend = _wrap(rlapi.rlEnableColorBlend, [], None)
 _rlDisableColorBlend = _wrap(rlapi.rlDisableColorBlend, [], None)
 _rlEnableDepthTest = _wrap(rlapi.rlEnableDepthTest, [], None)
@@ -8181,6 +8406,7 @@ _rlEnableScissorTest = _wrap(rlapi.rlEnableScissorTest, [], None)
 _rlDisableScissorTest = _wrap(rlapi.rlDisableScissorTest, [], None)
 _rlScissor = _wrap(rlapi.rlScissor, [Int, Int, Int, Int], None)
 _rlEnableWireMode = _wrap(rlapi.rlEnableWireMode, [], None)
+_rlEnablePointMode = _wrap(rlapi.rlEnablePointMode, [], None)
 _rlDisableWireMode = _wrap(rlapi.rlDisableWireMode, [], None)
 _rlSetLineWidth = _wrap(rlapi.rlSetLineWidth, [Float], None)
 _rlGetLineWidth = _wrap(rlapi.rlGetLineWidth, [], Float)
@@ -8280,17 +8506,17 @@ def init_window(width, height, title):
     _InitWindow(int(width), int(height), _str_in(title))
 
 
-def window_should_close():
-    # type: () -> bool
-    """Check if KEY_ESCAPE pressed or Close icon pressed"""
-    result = _WindowShouldClose()
-    return result
-
-
 def close_window():
     # type: () -> None
     """Close window and unload OpenGL context"""
     _CloseWindow()
+
+
+def window_should_close():
+    # type: () -> bool
+    """Check if application should close (KEY_ESCAPE pressed or windows close icon clicked)"""
+    result = _WindowShouldClose()
+    return result
 
 
 def is_window_ready():
@@ -8367,6 +8593,12 @@ def toggle_fullscreen():
     _ToggleFullscreen()
 
 
+def toggle_borderless_windowed():
+    # type: () -> None
+    """Toggle window state: borderless windowed (only PLATFORM_DESKTOP)"""
+    _ToggleBorderlessWindowed()
+
+
 def maximize_window():
     # type: () -> None
     """Set window state: maximized, if resizable (only PLATFORM_DESKTOP)"""
@@ -8399,7 +8631,7 @@ def set_window_icons(images, count):
 
 def set_window_title(title):
     # type: (Union[str, CharPtr]) -> None
-    """Set title for window (only PLATFORM_DESKTOP)"""
+    """Set title for window (only PLATFORM_DESKTOP and PLATFORM_WEB)"""
     _SetWindowTitle(_str_in(title))
 
 
@@ -8411,7 +8643,7 @@ def set_window_position(x, y):
 
 def set_window_monitor(monitor):
     # type: (int) -> None
-    """Set monitor for the current window (fullscreen mode)"""
+    """Set monitor for the current window"""
     _SetWindowMonitor(int(monitor))
 
 
@@ -8419,6 +8651,12 @@ def set_window_min_size(width, height):
     # type: (int, int) -> None
     """Set window minimum dimensions (for FLAG_WINDOW_RESIZABLE)"""
     _SetWindowMinSize(int(width), int(height))
+
+
+def set_window_max_size(width, height):
+    # type: (int, int) -> None
+    """Set window maximum dimensions (for FLAG_WINDOW_RESIZABLE)"""
+    _SetWindowMaxSize(int(width), int(height))
 
 
 def set_window_size(width, height):
@@ -8431,6 +8669,12 @@ def set_window_opacity(opacity):
     # type: (float) -> None
     """Set window opacity [0.0f..1.0f] (only PLATFORM_DESKTOP)"""
     _SetWindowOpacity(float(opacity))
+
+
+def set_window_focused():
+    # type: () -> None
+    """Set window focused (only PLATFORM_DESKTOP)"""
+    _SetWindowFocused()
 
 
 def get_window_handle():
@@ -8539,7 +8783,7 @@ def get_window_scale_dpi():
 
 def get_monitor_name(monitor):
     # type: (int) -> Union[str, CharPtr]
-    """Get the human-readable, UTF-8 encoded name of the primary monitor"""
+    """Get the human-readable, UTF-8 encoded name of the specified monitor"""
     result = _ptr_out(_GetMonitorName(int(monitor)))
     return result
 
@@ -8567,24 +8811,6 @@ def disable_event_waiting():
     # type: () -> None
     """Disable waiting for events on EndDrawing(), automatic events polling"""
     _DisableEventWaiting()
-
-
-def swap_screen_buffer():
-    # type: () -> None
-    """Swap back buffer with front buffer (screen drawing)"""
-    _SwapScreenBuffer()
-
-
-def poll_input_events():
-    # type: () -> None
-    """Register all input events"""
-    _PollInputEvents()
-
-
-def wait_time(seconds):
-    # type: (float) -> None
-    """Wait for some time (halt program execution)"""
-    _WaitTime(float(seconds))
 
 
 def show_cursor():
@@ -8860,13 +9086,6 @@ def set_target_fps(fps):
     _SetTargetFPS(int(fps))
 
 
-def get_fps():
-    # type: () -> int
-    """Get current FPS"""
-    result = _GetFPS()
-    return result
-
-
 def get_frame_time():
     # type: () -> float
     """Get time in seconds for last frame drawn (delta time)"""
@@ -8881,6 +9100,37 @@ def get_time():
     return result
 
 
+def get_fps():
+    # type: () -> int
+    """Get current FPS"""
+    result = _GetFPS()
+    return result
+
+
+def swap_screen_buffer():
+    # type: () -> None
+    """Swap back buffer with front buffer (screen drawing)"""
+    _SwapScreenBuffer()
+
+
+def poll_input_events():
+    # type: () -> None
+    """Register all input events"""
+    _PollInputEvents()
+
+
+def wait_time(seconds):
+    # type: (float) -> None
+    """Wait for some time (halt program execution)"""
+    _WaitTime(float(seconds))
+
+
+def set_random_seed(seed):
+    # type: (int) -> None
+    """Set the seed for the random number generator"""
+    _SetRandomSeed(seed)
+
+
 def get_random_value(min, max):
     # type: (int, int) -> int
     """Get a random value between min and max (both included)"""
@@ -8888,10 +9138,17 @@ def get_random_value(min, max):
     return result
 
 
-def set_random_seed(seed):
-    # type: (int) -> None
-    """Set the seed for the random number generator"""
-    _SetRandomSeed(seed)
+def load_random_sequence(count, min, max):
+    # type: (int, int, int) -> Union[Seq[int], IntPtr]
+    """Load random values sequence, no values repeated"""
+    result = _ptr_out(_LoadRandomSequence(count, int(min), int(max)))
+    return result
+
+
+def unload_random_sequence(sequence):
+    # type: (Union[Seq[int], IntPtr]) -> None
+    """Unload random values sequence"""
+    _UnloadRandomSequence(sequence)
 
 
 def take_screenshot(file_name):
@@ -8904,6 +9161,12 @@ def set_config_flags(flags):
     # type: (int) -> None
     """Setup init configuration flags (view FLAGS)"""
     _SetConfigFlags(flags)
+
+
+def open_url(url):
+    # type: (Union[str, CharPtr]) -> None
+    """Open URL with default system browser (if available)"""
+    _OpenURL(_str_in(url))
 
 
 def trace_log(log_level, text, args):
@@ -8936,12 +9199,6 @@ def mem_free(ptr):
     _MemFree(ptr)
 
 
-def open_url(url):
-    # type: (Union[str, CharPtr]) -> None
-    """Open URL with default system browser (if available)"""
-    _OpenURL(_str_in(url))
-
-
 def set_trace_log_callback(callback):
     # type: (TraceLogCallback) -> None
     """Set custom trace log"""
@@ -8972,10 +9229,10 @@ def set_save_file_text_callback(callback):
     _SetSaveFileTextCallback(callback)
 
 
-def load_file_data(file_name, bytes_read):
-    # type: (Union[str, CharPtr], Union[Seq[int], UIntPtr]) -> Union[Seq[int], UCharPtr]
+def load_file_data(file_name, data_size):
+    # type: (Union[str, CharPtr], Union[Seq[int], IntPtr]) -> Union[Seq[int], UCharPtr]
     """Load file data as byte array (read)"""
-    result = _ptr_out(_LoadFileData(_str_in(file_name), bytes_read))
+    result = _ptr_out(_LoadFileData(_str_in(file_name), data_size))
     return result
 
 
@@ -8985,17 +9242,17 @@ def unload_file_data(data):
     _UnloadFileData(_str_in(data))
 
 
-def save_file_data(file_name, data, bytes_to_write):
+def save_file_data(file_name, data, data_size):
     # type: (Union[str, CharPtr], bytes, int) -> bool
     """Save data to file from byte array (write), returns true on success"""
-    result = _SaveFileData(_str_in(file_name), data, bytes_to_write)
+    result = _SaveFileData(_str_in(file_name), data, int(data_size))
     return result
 
 
-def export_data_as_code(data, size, file_name):
+def export_data_as_code(data, data_size, file_name):
     # type: (Union[Seq[int], UCharPtr], int, Union[str, CharPtr]) -> bool
     """Export data to code (.h), returns true on success"""
-    result = _ExportDataAsCode(_str_in(data), size, _str_in(file_name))
+    result = _ExportDataAsCode(_str_in(data), int(data_size), _str_in(file_name))
     return result
 
 
@@ -9091,7 +9348,7 @@ def get_working_directory():
 
 def get_application_directory():
     # type: () -> Union[str, CharPtr]
-    """Get the directory if the running application (uses static string)"""
+    """Get the directory of the running application (uses static string)"""
     result = _ptr_out(_GetApplicationDirectory())
     return result
 
@@ -9185,10 +9442,67 @@ def decode_data_base64(data, output_size):
     return result
 
 
+def load_automation_event_list(file_name):
+    # type: (Union[str, CharPtr]) -> AutomationEventList
+    """Load automation events list from file, NULL for empty list, capacity = MAX_AUTOMATION_EVENTS"""
+    result = _LoadAutomationEventList(_str_in(file_name))
+    return result
+
+
+def unload_automation_event_list(list):
+    # type: (AutomationEventListPtr) -> None
+    """Unload automation events list from file"""
+    _UnloadAutomationEventList(list)
+
+
+def export_automation_event_list(list, file_name):
+    # type: (AutomationEventList, Union[str, CharPtr]) -> bool
+    """Export automation events list as text file"""
+    result = _ExportAutomationEventList(list, _str_in(file_name))
+    return result
+
+
+def set_automation_event_list(list):
+    # type: (AutomationEventListPtr) -> None
+    """Set automation event list to record to"""
+    _SetAutomationEventList(list)
+
+
+def set_automation_event_base_frame(frame):
+    # type: (int) -> None
+    """Set automation event internal base frame to start recording"""
+    _SetAutomationEventBaseFrame(int(frame))
+
+
+def start_automation_event_recording():
+    # type: () -> None
+    """Start recording automation events (AutomationEventList must be set)"""
+    _StartAutomationEventRecording()
+
+
+def stop_automation_event_recording():
+    # type: () -> None
+    """Stop recording automation events"""
+    _StopAutomationEventRecording()
+
+
+def play_automation_event(event):
+    # type: (AutomationEvent) -> None
+    """Play a recorded automation event"""
+    _PlayAutomationEvent(event)
+
+
 def is_key_pressed(key):
     # type: (int) -> bool
     """Check if a key has been pressed once"""
     result = _IsKeyPressed(int(key))
+    return result
+
+
+def is_key_pressed_repeat(key):
+    # type: (int) -> bool
+    """Check if a key has been pressed again (Only PLATFORM_DESKTOP)"""
+    result = _IsKeyPressedRepeat(int(key))
     return result
 
 
@@ -9213,12 +9527,6 @@ def is_key_up(key):
     return result
 
 
-def set_exit_key(key):
-    # type: (int) -> None
-    """Set a custom key to exit program (default is ESC)"""
-    _SetExitKey(int(key))
-
-
 def get_key_pressed():
     # type: () -> int
     """Get key pressed (keycode), call it multiple times for keys queued, returns 0 when the queue is empty"""
@@ -9231,6 +9539,12 @@ def get_char_pressed():
     """Get char pressed (unicode), call it multiple times for chars queued, returns 0 when the queue is empty"""
     result = _GetCharPressed()
     return result
+
+
+def set_exit_key(key):
+    # type: (int) -> None
+    """Set a custom key to exit program (default is ESC)"""
+    _SetExitKey(int(key))
 
 
 def is_gamepad_available(gamepad):
@@ -9441,7 +9755,7 @@ def set_gestures_enabled(flags):
 def is_gesture_detected(gesture):
     # type: (int) -> bool
     """Check if a gesture have been detected"""
-    result = _IsGestureDetected(int(gesture))
+    result = _IsGestureDetected(gesture)
     return result
 
 
@@ -9525,38 +9839,26 @@ def draw_line(start_pos_x, start_pos_y, end_pos_x, end_pos_y, color):
 
 def draw_line_v(start_pos, end_pos, color):
     # type: (Vector2, Vector2, Color) -> None
-    """Draw a line (Vector version)"""
+    """Draw a line (using gl lines)"""
     _DrawLineV(_vec2(start_pos), _vec2(end_pos), _color(color))
 
 
 def draw_line_ex(start_pos, end_pos, thick, color):
     # type: (Vector2, Vector2, float, Color) -> None
-    """Draw a line defining thickness"""
+    """Draw a line (using triangles/quads)"""
     _DrawLineEx(_vec2(start_pos), _vec2(end_pos), float(thick), _color(color))
-
-
-def draw_line_bezier(start_pos, end_pos, thick, color):
-    # type: (Vector2, Vector2, float, Color) -> None
-    """Draw a line using cubic-bezier curves in-out"""
-    _DrawLineBezier(_vec2(start_pos), _vec2(end_pos), float(thick), _color(color))
-
-
-def draw_line_bezier_quad(start_pos, end_pos, control_pos, thick, color):
-    # type: (Vector2, Vector2, Vector2, float, Color) -> None
-    """Draw line using quadratic bezier curves with a control point"""
-    _DrawLineBezierQuad(_vec2(start_pos), _vec2(end_pos), _vec2(control_pos), float(thick), _color(color))
-
-
-def draw_line_bezier_cubic(start_pos, end_pos, start_control_pos, end_control_pos, thick, color):
-    # type: (Vector2, Vector2, Vector2, Vector2, float, Color) -> None
-    """Draw line using cubic bezier curves with 2 control points"""
-    _DrawLineBezierCubic(_vec2(start_pos), _vec2(end_pos), _vec2(start_control_pos), _vec2(end_control_pos), float(thick), _color(color))
 
 
 def draw_line_strip(points, color):
     # type: (Vector2Ptr, Color) -> None
-    """Draw lines sequence"""
+    """Draw lines sequence (using gl lines)"""
     _DrawLineStrip(_arr_in(Vector2, points), len(points), _color(color))
+
+
+def draw_line_bezier(start_pos, end_pos, thick, color):
+    # type: (Vector2, Vector2, float, Color) -> None
+    """Draw line segment cubic-bezier in-out interpolation"""
+    _DrawLineBezier(_vec2(start_pos), _vec2(end_pos), float(thick), _color(color))
 
 
 def draw_circle(center_x, center_y, radius, color):
@@ -9593,6 +9895,12 @@ def draw_circle_lines(center_x, center_y, radius, color):
     # type: (int, int, float, Color) -> None
     """Draw circle outline"""
     _DrawCircleLines(int(center_x), int(center_y), float(radius), _color(color))
+
+
+def draw_circle_lines_v(center, radius, color):
+    # type: (Vector2, float, Color) -> None
+    """Draw circle outline (Vector version)"""
+    _DrawCircleLinesV(_vec2(center), float(radius), _color(color))
 
 
 def draw_ellipse(center_x, center_y, radius_h, radius_v, color):
@@ -9727,6 +10035,101 @@ def draw_poly_lines_ex(center, sides, radius, rotation, line_thick, color):
     _DrawPolyLinesEx(_vec2(center), int(sides), float(radius), float(rotation), float(line_thick), _color(color))
 
 
+def draw_spline_linear(points, point_count, thick, color):
+    # type: (Vector2Ptr, int, float, Color) -> None
+    """Draw spline: Linear, minimum 2 points"""
+    _DrawSplineLinear(_vec2(points), int(point_count), float(thick), _color(color))
+
+
+def draw_spline_basis(points, point_count, thick, color):
+    # type: (Vector2Ptr, int, float, Color) -> None
+    """Draw spline: B-Spline, minimum 4 points"""
+    _DrawSplineBasis(_vec2(points), int(point_count), float(thick), _color(color))
+
+
+def draw_spline_catmull_rom(points, point_count, thick, color):
+    # type: (Vector2Ptr, int, float, Color) -> None
+    """Draw spline: Catmull-Rom, minimum 4 points"""
+    _DrawSplineCatmullRom(_vec2(points), int(point_count), float(thick), _color(color))
+
+
+def draw_spline_bezier_quadratic(points, point_count, thick, color):
+    # type: (Vector2Ptr, int, float, Color) -> None
+    """Draw spline: Quadratic Bezier, minimum 3 points (1 control point): [p1, c2, p3, c4...]"""
+    _DrawSplineBezierQuadratic(_vec2(points), int(point_count), float(thick), _color(color))
+
+
+def draw_spline_bezier_cubic(points, point_count, thick, color):
+    # type: (Vector2Ptr, int, float, Color) -> None
+    """Draw spline: Cubic Bezier, minimum 4 points (2 control points): [p1, c2, c3, p4, c5, c6...]"""
+    _DrawSplineBezierCubic(_vec2(points), int(point_count), float(thick), _color(color))
+
+
+def draw_spline_segment_linear(p1, p2, thick, color):
+    # type: (Vector2, Vector2, float, Color) -> None
+    """Draw spline segment: Linear, 2 points"""
+    _DrawSplineSegmentLinear(_vec2(p1), _vec2(p2), float(thick), _color(color))
+
+
+def draw_spline_segment_basis(p1, p2, p3, p4, thick, color):
+    # type: (Vector2, Vector2, Vector2, Vector2, float, Color) -> None
+    """Draw spline segment: B-Spline, 4 points"""
+    _DrawSplineSegmentBasis(_vec2(p1), _vec2(p2), _vec2(p3), _vec2(p4), float(thick), _color(color))
+
+
+def draw_spline_segment_catmull_rom(p1, p2, p3, p4, thick, color):
+    # type: (Vector2, Vector2, Vector2, Vector2, float, Color) -> None
+    """Draw spline segment: Catmull-Rom, 4 points"""
+    _DrawSplineSegmentCatmullRom(_vec2(p1), _vec2(p2), _vec2(p3), _vec2(p4), float(thick), _color(color))
+
+
+def draw_spline_segment_bezier_quadratic(p1, c2, p3, thick, color):
+    # type: (Vector2, Vector2, Vector2, float, Color) -> None
+    """Draw spline segment: Quadratic Bezier, 2 points, 1 control point"""
+    _DrawSplineSegmentBezierQuadratic(_vec2(p1), _vec2(c2), _vec2(p3), float(thick), _color(color))
+
+
+def draw_spline_segment_bezier_cubic(p1, c2, c3, p4, thick, color):
+    # type: (Vector2, Vector2, Vector2, Vector2, float, Color) -> None
+    """Draw spline segment: Cubic Bezier, 2 points, 2 control points"""
+    _DrawSplineSegmentBezierCubic(_vec2(p1), _vec2(c2), _vec2(c3), _vec2(p4), float(thick), _color(color))
+
+
+def get_spline_point_linear(start_pos, end_pos, t):
+    # type: (Vector2, Vector2, float) -> Vector2
+    """Get (evaluate) spline point: Linear"""
+    result = _GetSplinePointLinear(_vec2(start_pos), _vec2(end_pos), float(t))
+    return result
+
+
+def get_spline_point_basis(p1, p2, p3, p4, t):
+    # type: (Vector2, Vector2, Vector2, Vector2, float) -> Vector2
+    """Get (evaluate) spline point: B-Spline"""
+    result = _GetSplinePointBasis(_vec2(p1), _vec2(p2), _vec2(p3), _vec2(p4), float(t))
+    return result
+
+
+def get_spline_point_catmull_rom(p1, p2, p3, p4, t):
+    # type: (Vector2, Vector2, Vector2, Vector2, float) -> Vector2
+    """Get (evaluate) spline point: Catmull-Rom"""
+    result = _GetSplinePointCatmullRom(_vec2(p1), _vec2(p2), _vec2(p3), _vec2(p4), float(t))
+    return result
+
+
+def get_spline_point_bezier_quad(p1, c2, p3, t):
+    # type: (Vector2, Vector2, Vector2, float) -> Vector2
+    """Get (evaluate) spline point: Quadratic Bezier"""
+    result = _GetSplinePointBezierQuad(_vec2(p1), _vec2(c2), _vec2(p3), float(t))
+    return result
+
+
+def get_spline_point_bezier_cubic(p1, c2, c3, p4, t):
+    # type: (Vector2, Vector2, Vector2, Vector2, float) -> Vector2
+    """Get (evaluate) spline point: Cubic Bezier"""
+    result = _GetSplinePointBezierCubic(_vec2(p1), _vec2(c2), _vec2(c3), _vec2(p4), float(t))
+    return result
+
+
 def check_collision_recs(rec1, rec2):
     # type: (Rectangle, Rectangle) -> bool
     """Check collision between two rectangles"""
@@ -9811,6 +10214,13 @@ def load_image_raw(file_name, width, height, format, header_size):
     return result
 
 
+def load_image_svg(file_name_or_string, width, height):
+    # type: (Union[str, CharPtr], int, int) -> Image
+    """Load image from SVG file data or string with specified size"""
+    result = _LoadImageSvg(_str_in(file_name_or_string), int(width), int(height))
+    return result
+
+
 def load_image_anim(file_name, frames):
     # type: (Union[str, CharPtr], Union[Seq[int], IntPtr]) -> Image
     """Load image sequence from file (frames appended to image.data)"""
@@ -9859,6 +10269,13 @@ def export_image(image, file_name):
     return result
 
 
+def export_image_to_memory(image, file_type, file_size):
+    # type: (Image, Union[str, CharPtr], Union[Seq[int], IntPtr]) -> Union[Seq[int], UCharPtr]
+    """Export image to memory buffer"""
+    result = _ptr_out(_ExportImageToMemory(image, _str_in(file_type), file_size))
+    return result
+
+
 def export_image_as_code(image, file_name):
     # type: (Image, Union[str, CharPtr]) -> bool
     """Export image as code file defining an array of bytes, returns true on success"""
@@ -9873,17 +10290,10 @@ def gen_image_color(width, height, color):
     return result
 
 
-def gen_image_gradient_v(width, height, top, bottom):
-    # type: (int, int, Color, Color) -> Image
-    """Generate image: vertical gradient"""
-    result = _GenImageGradientV(int(width), int(height), _color(top), _color(bottom))
-    return result
-
-
-def gen_image_gradient_h(width, height, left, right):
-    # type: (int, int, Color, Color) -> Image
-    """Generate image: horizontal gradient"""
-    result = _GenImageGradientH(int(width), int(height), _color(left), _color(right))
+def gen_image_gradient_linear(width, height, direction, start, end):
+    # type: (int, int, int, Color, Color) -> Image
+    """Generate image: linear gradient, direction in degrees [0..360], 0=Vertical gradient"""
+    result = _GenImageGradientLinear(int(width), int(height), int(direction), _color(start), _color(end))
     return result
 
 
@@ -9891,6 +10301,13 @@ def gen_image_gradient_radial(width, height, density, inner, outer):
     # type: (int, int, float, Color, Color) -> Image
     """Generate image: radial gradient"""
     result = _GenImageGradientRadial(int(width), int(height), float(density), _color(inner), _color(outer))
+    return result
+
+
+def gen_image_gradient_square(width, height, density, inner, outer):
+    # type: (int, int, float, Color, Color) -> Image
+    """Generate image: square gradient"""
+    result = _GenImageGradientSquare(int(width), int(height), float(density), _color(inner), _color(outer))
     return result
 
 
@@ -10045,6 +10462,12 @@ def image_flip_horizontal(image):
     # type: (ImagePtr) -> None
     """Flip image horizontally"""
     _ImageFlipHorizontal(image)
+
+
+def image_rotate(image, degrees):
+    # type: (ImagePtr, int) -> None
+    """Rotate image by input angle in degrees (-359 to 359)"""
+    _ImageRotate(image, int(degrees))
 
 
 def image_rotate_cw(image):
@@ -10470,10 +10893,10 @@ def load_font(file_name):
     return result
 
 
-def load_font_ex(file_name, font_size, font_chars, glyph_count):
+def load_font_ex(file_name, font_size, codepoints, codepoint_count):
     # type: (Union[str, CharPtr], int, Union[Seq[int], IntPtr], int) -> Font
-    """Load font from file with extended parameters, use NULL for fontChars and 0 for glyphCount to load the default character set"""
-    result = _LoadFontEx(_str_in(file_name), int(font_size), font_chars, int(glyph_count))
+    """Load font from file with extended parameters, use NULL for codepoints and 0 for codepointCount to load the default character setFont"""
+    result = _LoadFontEx(_str_in(file_name), int(font_size), codepoints, int(codepoint_count))
     return result
 
 
@@ -10484,10 +10907,10 @@ def load_font_from_image(image, key, first_char):
     return result
 
 
-def load_font_from_memory(file_type, file_data, data_size, font_size, font_chars, glyph_count):
+def load_font_from_memory(file_type, file_data, data_size, font_size, codepoints, codepoint_count):
     # type: (Union[str, CharPtr], Union[Seq[int], UCharPtr], int, int, Union[Seq[int], IntPtr], int) -> Font
     """Load font from memory buffer, fileType refers to extension: i.e. '.ttf'"""
-    result = _LoadFontFromMemory(_str_in(file_type), _str_in(file_data), int(data_size), int(font_size), font_chars, int(glyph_count))
+    result = _LoadFontFromMemory(_str_in(file_type), _str_in(file_data), int(data_size), int(font_size), codepoints, int(codepoint_count))
     return result
 
 
@@ -10498,24 +10921,24 @@ def is_font_ready(font):
     return result
 
 
-def load_font_data(file_data, data_size, font_size, font_chars, glyph_count, type):
+def load_font_data(file_data, data_size, font_size, codepoints, codepoint_count, type):
     # type: (Union[Seq[int], UCharPtr], int, int, Union[Seq[int], IntPtr], int, int) -> GlyphInfoPtr
     """Load font data for further use"""
-    result = _ptr_out(_LoadFontData(_str_in(file_data), int(data_size), int(font_size), font_chars, int(glyph_count), int(type)))
+    result = _ptr_out(_LoadFontData(_str_in(file_data), int(data_size), int(font_size), codepoints, int(codepoint_count), int(type)))
     return result
 
 
-def gen_image_font_atlas(chars, recs, glyph_count, font_size, padding, pack_method):
+def gen_image_font_atlas(glyphs, glyph_recs, glyph_count, font_size, padding, pack_method):
     # type: (GlyphInfoPtr, RectanglePtr, int, int, int, int) -> Image
     """Generate image font atlas using chars info"""
-    result = _GenImageFontAtlas(chars, recs, int(glyph_count), int(font_size), int(padding), int(pack_method))
+    result = _GenImageFontAtlas(glyphs, glyph_recs, int(glyph_count), int(font_size), int(padding), int(pack_method))
     return result
 
 
-def unload_font_data(chars, glyph_count):
+def unload_font_data(glyphs, glyph_count):
     # type: (GlyphInfoPtr, int) -> None
     """Unload font chars info data (RAM)"""
-    _UnloadFontData(chars, int(glyph_count))
+    _UnloadFontData(glyphs, int(glyph_count))
 
 
 def unload_font(font):
@@ -10561,10 +10984,16 @@ def draw_text_codepoint(font, codepoint, position, font_size, tint):
     _DrawTextCodepoint(font, int(codepoint), _vec2(position), float(font_size), _color(tint))
 
 
-def draw_text_codepoints(font, codepoints, position, font_size, spacing, tint):
-    # type: (Font, Union[Seq[int], IntPtr], Vector2, float, float, Color) -> None
+def draw_text_codepoints(font, codepoints, codepoint_count, position, font_size, spacing, tint):
+    # type: (Font, Union[Seq[int], IntPtr], int, Vector2, float, float, Color) -> None
     """Draw multiple character (codepoint)"""
-    _DrawTextCodepoints(font, _str_in(codepoints), len(codepoints), _vec2(position), float(font_size), float(spacing), _color(tint))
+    _DrawTextCodepoints(font, _str_in(codepoints), int(codepoint_count), _vec2(position), float(font_size), float(spacing), _color(tint))
+
+
+def set_text_line_spacing(spacing):
+    # type: (int) -> None
+    """Set vertical line spacing when drawing with line-breaks"""
+    _SetTextLineSpacing(int(spacing))
 
 
 def measure_text(text, font_size):
@@ -11145,7 +11574,7 @@ def set_model_mesh_material(model, mesh_id, material_id):
 def load_model_animations(file_name):
     # type: (Union[str, CharPtr]) -> ModelAnimationPtr
     """Load model animations from file"""
-    anim_count = UInt(0)
+    anim_count = Int(0)
     result = _ptr_out(_LoadModelAnimations(_str_in(file_name), byref(anim_count)), anim_count.value)
     return result
 
@@ -11162,10 +11591,10 @@ def unload_model_animation(anim):
     _UnloadModelAnimation(anim)
 
 
-def unload_model_animations(animations, count):
+def unload_model_animations(animations, anim_count):
     # type: (ModelAnimationPtr, int) -> None
     """Unload animation array data"""
-    _UnloadModelAnimations(animations, count)
+    _UnloadModelAnimations(animations, int(anim_count))
 
 
 def is_model_animation_valid(model, anim):
@@ -11256,6 +11685,13 @@ def set_master_volume(volume):
     _SetMasterVolume(float(volume))
 
 
+def get_master_volume():
+    # type: () -> float
+    """Get master volume (listener)"""
+    result = _GetMasterVolume()
+    return result
+
+
 def load_wave(file_name):
     # type: (Union[str, CharPtr]) -> Wave
     """Load wave data from file"""
@@ -11291,6 +11727,13 @@ def load_sound_from_wave(wave):
     return result
 
 
+def load_sound_alias(source):
+    # type: (Sound) -> Sound
+    """Create a new sound that shares the same sample data as the source sound, does not own the sound data"""
+    result = _LoadSoundAlias(source)
+    return result
+
+
 def is_sound_ready(sound):
     # type: (Sound) -> bool
     """Checks if a sound is ready"""
@@ -11314,6 +11757,12 @@ def unload_sound(sound):
     # type: (Sound) -> None
     """Unload sound"""
     _UnloadSound(sound)
+
+
+def unload_sound_alias(alias):
+    # type: (Sound) -> None
+    """Unload a sound alias (does not deallocate sample data)"""
+    _UnloadSoundAlias(alias)
 
 
 def export_wave(wave, file_name):
@@ -11609,7 +12058,7 @@ def set_audio_stream_callback(stream, callback):
 
 def attach_audio_stream_processor(stream, processor):
     # type: (AudioStream, AudioCallback) -> None
-    """Attach audio stream processor to stream"""
+    """Attach audio stream processor to stream, receives the samples as <float>s"""
     _AttachAudioStreamProcessor(stream, processor)
 
 
@@ -11621,7 +12070,7 @@ def detach_audio_stream_processor(stream, processor):
 
 def attach_audio_mixed_processor(processor):
     # type: (AudioCallback) -> None
-    """Attach audio stream processor to the entire audio pipeline"""
+    """Attach audio stream processor to the entire audio pipeline, receives the samples as <float>s"""
     _AttachAudioMixedProcessor(processor)
 
 
@@ -11995,6 +12444,20 @@ def vector3normalize(v):
     return result
 
 
+def vector3project(v1, v2):
+    # type: (Vector3, Vector3) -> Vector3
+    """"""
+    result = _Vector3Project(_vec3(v1), _vec3(v2))
+    return result
+
+
+def vector3reject(v1, v2):
+    # type: (Vector3, Vector3) -> Vector3
+    """"""
+    result = _Vector3Reject(_vec3(v1), _vec3(v2))
+    return result
+
+
 def vector3ortho_normalize(v1, v2):
     # type: (Vector3Ptr, Vector3Ptr) -> None
     """"""
@@ -12225,17 +12688,17 @@ def matrix_frustum(left, right, bottom, top, near, far):
     return result
 
 
-def matrix_perspective(fovy, aspect, near, far):
+def matrix_perspective(fov_y, aspect, near_plane, far_plane):
     # type: (float, float, float, float) -> Matrix
     """"""
-    result = _MatrixPerspective(float(fovy), float(aspect), float(near), float(far))
+    result = _MatrixPerspective(float(fov_y), float(aspect), float(near_plane), float(far_plane))
     return result
 
 
-def matrix_ortho(left, right, bottom, top, near, far):
+def matrix_ortho(left, right, bottom, top, near_plane, far_plane):
     # type: (float, float, float, float, float, float) -> Matrix
     """"""
-    result = _MatrixOrtho(float(left), float(right), float(bottom), float(top), float(near), float(far))
+    result = _MatrixOrtho(float(left), float(right), float(bottom), float(top), float(near_plane), float(far_plane))
     return result
 
 
@@ -12660,6 +13123,12 @@ def rl_active_draw_buffers(count):
     _rlActiveDrawBuffers(int(count))
 
 
+def rl_blit_framebuffer(src_x, src_y, src_width, src_height, dst_x, dst_y, dst_width, dst_height, buffer_mask):
+    # type: (int, int, int, int, int, int, int, int, int) -> None
+    """Blit active framebuffer to main framebuffer"""
+    _rlBlitFramebuffer(int(src_x), int(src_y), int(src_width), int(src_height), int(dst_x), int(dst_y), int(dst_width), int(dst_height), int(buffer_mask))
+
+
 def rl_enable_color_blend():
     # type: () -> None
     """Enable color blending"""
@@ -12738,9 +13207,15 @@ def rl_enable_wire_mode():
     _rlEnableWireMode()
 
 
+def rl_enable_point_mode():
+    # type: () -> None
+    """Enable point mode"""
+    _rlEnablePointMode()
+
+
 def rl_disable_wire_mode():
     # type: () -> None
-    """Disable wire mode"""
+    """Disable wire mode ( and point ) maybe rename"""
     _rlDisableWireMode()
 
 
