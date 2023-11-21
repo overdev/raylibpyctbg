@@ -91,6 +91,7 @@ Usage:
                                             filepath to any other parsed header exposed in raylib (JSON)
         --extension <value>             similar to --include but intended for standalone libs:
                                             <value> must be the lib name to be looked up in binding config json file
+        --in <value>                    dirpath to load the json files from (defaults to 'input/'; must precede --include)
         --out <value>                   filepath to write the binding into
         --markdown <value>              filepath to write the api reference (Markdown format) into
 
