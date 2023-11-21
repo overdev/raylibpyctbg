@@ -102,7 +102,8 @@ class InfoBase:
     Base class for all wrapper info objects
     """
 
-    def __init__(self, header_name, info, meta_info, config, bind_generator):
+    def __init__(self, lib_name, header_name, info, meta_info, config, bind_generator):
+        self.lib_name = lib_name
         self.header_name = header_name
         self.info = info
         self.meta_info = meta_info
@@ -134,8 +135,8 @@ class InfoBase:
 
 class TypeInfo(InfoBase):
 
-    def __init__(self, header_name, spec, meta_info, config, bind_generator, is_struct=False):
-        super().__init__(header_name, {}, meta_info, config, bind_generator)
+    def __init__(self, lib_name, header_name, spec, meta_info, config, bind_generator, is_struct=False):
+        super().__init__(lib_name, header_name, {}, meta_info, config, bind_generator)
         self.info['mapped'] = None
         self.info['is_struct'] = is_struct
         if not self._parse(spec):
@@ -345,11 +346,11 @@ class DefineInfo(InfoBase):
 
 class AliasInfo(InfoBase):
 
-    def __init__(self, header_name, info, meta_info, config, bind_generator):
-        super().__init__(header_name, {}, meta_info, config, bind_generator)
+    def __init__(self, lib_name, header_name, info, meta_info, config, bind_generator):
+        super().__init__(lib_name, header_name, {}, meta_info, config, bind_generator)
         self.info['name'] = info.get('name')
         self.info['description'] = info.get('description')
-        self.info['type'] = TypeInfo(header_name, info.get('type'), bind_generator.type_meta, config, bind_generator)
+        self.info['type'] = TypeInfo(lib_name, header_name, info.get('type'), bind_generator.type_meta, config, bind_generator)
 
 
     @property
@@ -379,10 +380,10 @@ class AliasInfo(InfoBase):
 
 class ParameterInfo(InfoBase):
 
-    def __init__(self, header_name, info, meta_info, config, bind_generator):
-        super().__init__(header_name, {}, meta_info, config, bind_generator)
+    def __init__(self, lib_name, header_name, info, meta_info, config, bind_generator):
+        super().__init__(lib_name, header_name, {}, meta_info, config, bind_generator)
         self.info['name'] = info.get('name')
-        self.info['type'] = TypeInfo(header_name, info.get('type'), bind_generator.type_meta, config, bind_generator)
+        self.info['type'] = TypeInfo(lib_name, header_name, info.get('type'), bind_generator.type_meta, config, bind_generator)
 
     @property
     def name(self):
@@ -463,10 +464,10 @@ class ParameterInfo(InfoBase):
 
 class FunctionInfo(InfoBase):
 
-    def __init__(self, header_name, info, meta_info, config, bind_generator):
-        super().__init__(header_name, info, {}, config, bind_generator)
-        self.params = [ParameterInfo(header_name, p, meta_info.get('params', {}).get(p.get('name'), {}), config, bind_generator) for p in info.get('params', [])]
-        self.info['returnType'] = TypeInfo(header_name, info.get('returnType'), bind_generator.type_meta, config, bind_generator)
+    def __init__(self, lib_name, header_name, info, meta_info, config, bind_generator):
+        super().__init__(lib_name, header_name, info, {}, config, bind_generator)
+        self.params = [ParameterInfo(lib_name, header_name, p, meta_info.get('params', {}).get(p.get('name'), {}), config, bind_generator) for p in info.get('params', [])]
+        self.info['returnType'] = TypeInfo(lib_name, header_name, info.get('returnType'), bind_generator.type_meta, config, bind_generator)
 
     @property
     def name(self):
@@ -502,7 +503,7 @@ class FunctionInfo(InfoBase):
         res_type = self.type.ctypes_type if (self.type and self.type.ctypes_type != 'Void') else "None"
 
         return TPL_FUNCTION_WRAPCALL.format(
-            lib_name=lib_name,
+            lib_name=self.lib_name,
             api_name=self.name,
             arg_types=arg_types,
             res_type=res_type
@@ -646,19 +647,19 @@ class FunctionInfo(InfoBase):
             func_description=self.description,
             c_decl=c_decl,
             py_decl=py_decl,
-            defn_header="raylib.h",
+            defn_header=self.header_name,
             see_also=see_also
         )
 
 
 class CallbackInfo(InfoBase):
 
-    def __init__(self, header_name, info, meta_info, config, bind_generator):
-        super().__init__(header_name, {}, meta_info, config, bind_generator)
-        self.params = [ParameterInfo(header_name, p, meta_info, config, bind_generator) for p in info.get('params', [])]
+    def __init__(self, lib_name, header_name, info, meta_info, config, bind_generator):
+        super().__init__(lib_name, header_name, {}, meta_info, config, bind_generator)
+        self.params = [ParameterInfo(lib_name, header_name, p, meta_info, config, bind_generator) for p in info.get('params', [])]
         self.info['name'] = info.get('name')
         self.info['description'] = info.get('description')
-        self.info['returnType'] = TypeInfo(header_name, info.get('returnType'), bind_generator.type_meta, config, bind_generator)
+        self.info['returnType'] = TypeInfo(lib_name, header_name, info.get('returnType'), bind_generator.type_meta, config, bind_generator)
 
     @property
     def name(self):
@@ -721,12 +722,12 @@ class CallbackInfo(InfoBase):
 
 class EnumerationInfo(InfoBase):
 
-    def __init__(self, header_name, info, meta_info, config, bind_generator):
-        super().__init__(header_name, {}, meta_info, config, bind_generator)
+    def __init__(self, lib_name, header_name, info, meta_info, config, bind_generator):
+        super().__init__(lib_name, header_name, {}, meta_info, config, bind_generator)
         self.info['name'] = info.get('name')
         self.info['description'] = info.get('description')
         self.info['values'] = [
-            EnumerandInfo(header_name, e, meta_info, config, bind_generator)
+            EnumerandInfo(lib_name, header_name, e, meta_info, config, bind_generator)
             for e in info.get('values', [])
         ]
 
@@ -804,11 +805,11 @@ class EnumerandInfo(InfoBase):
 
 class FieldInfo(InfoBase):
 
-    def __init__(self, header_name, info, meta_info, config, bind_generator):
-        super().__init__(header_name, {}, meta_info, config, bind_generator)   
+    def __init__(self, lib_name, header_name, info, meta_info, config, bind_generator):
+        super().__init__(lib_name, header_name, {}, meta_info, config, bind_generator)   
         self.info['name'] = info.get('name')
         self.info['description'] = info.get('description')
-        self.info['type'] = TypeInfo(header_name, info.get('type'), bind_generator.type_meta, config, bind_generator)
+        self.info['type'] = TypeInfo(lib_name, header_name, info.get('type'), bind_generator.type_meta, config, bind_generator)
 
     @property
     def name(self):
@@ -869,9 +870,9 @@ class FieldInfo(InfoBase):
 
 class StructureInfo(InfoBase):
 
-    def __init__(self, header_name, info, meta_info, config, bind_generator):
-        super().__init__(header_name, info, meta_info, config, bind_generator)
-        self.fields = [FieldInfo(header_name, f, meta_info, config, bind_generator) for f in info.get('fields', []) if TypeInfo.can_parse(f.get('type'))]
+    def __init__(self, lib_name, header_name, info, meta_info, config, bind_generator):
+        super().__init__(lib_name, header_name, info, meta_info, config, bind_generator)
+        self.fields = [FieldInfo(lib_name, header_name, f, meta_info, config, bind_generator) for f in info.get('fields', []) if TypeInfo.can_parse(f.get('type'))]
 
         print("::", self.name, len(self.fields))
         i = 0
@@ -1100,6 +1101,9 @@ class StructureInfo(InfoBase):
                 api = bind_data.get('api')
                 rename = bind_data.get('renameAs', api)
                 info = self.bind_generator.functions_by_name.get(api)
+                if not info:
+                    print("NO INFO:", api)
+                    continue
                 if self.config.snakefy_functions:
                     rename = snakefy(rename)
                 link = '<a href="#{}"><code>{}</code></a>'.format(info.name, info.py_name)
@@ -1165,7 +1169,7 @@ class BindGenerator:
 
         #load primitive type mappings
         for key, (py_type, ctypes_type, c_type, default, func) in PRIMITIVE_TYPE_MAPPING.items():
-            info = TypeInfo('raylib', key, {'func': func}, None, self)
+            info = TypeInfo('raylib', 'raylib', key, {'func': func}, None, self)
             self.type_map[key] = TypeMap(py_type, ctypes_type, c_type, default, info)
 
     def map_type(self, c_type, type_map):
@@ -1179,9 +1183,19 @@ class BindGenerator:
     def find(self, name, default=None):
         return self.name_table.get(name, default)
 
-    def load_info(self, header_name, loaded_structs, info, meta_info, config):
+    def load_info(self, lib_name, header_name, loaded_structs, info, meta_info, config, is_extension, is_standalone):
         # loaded_structs = []
         self.type_meta = meta_info.get('types', {})
+
+        for enum_info in info.get('enums', []):
+            enum_meta = meta_info.get('enums', {})
+            self.export_names.append(enum_info.get('name'))
+            e_info = EnumerationInfo(lib_name, header_name, enum_info, enum_meta, config, self)
+            for m in e_info.values:
+                self.export_names.append(m.name)
+            self.enums.append(e_info)
+            self.name_table[e_info.name] = e_info
+
 
         for struct_info in info.get('structs', []):
             name = struct_info.get('name')
@@ -1190,7 +1204,7 @@ class BindGenerator:
                 continue
             loaded_structs.append(name)
             struct_meta = meta_info.get('structs', {}).get(name, {})
-            t_info = TypeInfo(header_name, name, struct_meta, config, self, True)
+            t_info = TypeInfo(lib_name, header_name, name, struct_meta, config, self, True)
             self.export_names.append(name)
             self.map_type(t_info.name, TypeMap(
                 t_info.get_ctype_type(),
@@ -1199,7 +1213,7 @@ class BindGenerator:
                 '{}()'.format(name),
                 t_info
             ))
-            t_info_ptr = TypeInfo(header_name, name + ' *', struct_meta, config, self)
+            t_info_ptr = TypeInfo(lib_name, header_name, name + ' *', struct_meta, config, self)
             self.map_type(t_info_ptr.name, TypeMap(
                 t_info_ptr.get_ctype_type(),
                 t_info_ptr.get_c_type(),
@@ -1207,7 +1221,7 @@ class BindGenerator:
                 'None',
                 t_info_ptr
             ))
-            s_info = StructureInfo(header_name, struct_info, struct_meta, config, self)
+            s_info = StructureInfo(lib_name, header_name, struct_info, struct_meta, config, self)
             self.structs.append(s_info)
             self.name_table[name] = s_info
 
@@ -1216,30 +1230,22 @@ class BindGenerator:
                 continue
             self.export_names.append(define_info.get('name'))
             define_meta = meta_info.get('defines', {})
-            d_info = DefineInfo(header_name, define_info, define_meta, config, self)
+            d_info = DefineInfo(lib_name, header_name, define_info, define_meta, config, self)
             self.defines.append(d_info)
             self.name_table[d_info.name] = d_info
 
         for alias_info in info.get('aliases', []):
             alias_meta = meta_info.get('aliases', {})
             self.export_names.append(alias_info.get('name'))
-            a_info = AliasInfo(header_name, alias_info, alias_meta, config, self)
+            a_info = AliasInfo(lib_name, header_name, alias_info, alias_meta, config, self)
             self.aliases.append(a_info)
             self.name_table[a_info.name] = a_info
-
-        for enum_info in info.get('enums', []):
-            enum_meta = meta_info.get('enums', {})
-            self.export_names.append(enum_info.get('name'))
-            e_info = EnumerationInfo(header_name, enum_info, enum_meta, config, self)
-            for m in e_info.values:
-                self.export_names.append(m.name)
-            self.enums.append(e_info)
-            self.name_table[e_info.name] = e_info
+            # print("~~~>", header_name, alias_info)
 
         for callback_info in info.get('callbacks', []):
             callback_meta = meta_info.get('callbacks', {})
             self.export_names.append(callback_info.get('name'))
-            c_info = CallbackInfo(header_name, callback_info, callback_meta, config, self)
+            c_info = CallbackInfo(lib_name, header_name, callback_info, callback_meta, config, self)
             self.callbacks.append(c_info)
             self.name_table[c_info.name] = c_info
 
@@ -1249,7 +1255,7 @@ class BindGenerator:
             ignored = name in meta_info.get('functions', {}).get('*', {}).get('ignore', [])
             if ignored:
                 continue
-            f_info = FunctionInfo(header_name, function_info, function_meta, config, self)
+            f_info = FunctionInfo(lib_name, header_name, function_info, function_meta, config, self)
             self.export_names.append(f_info.py_name)
             self.functions.append(f_info)
             self.functions_by_name[name] = f_info
@@ -1261,7 +1267,9 @@ class BindGenerator:
                 self.export_names.append(name)
                 self.context_managers.append(ctxmgr)
 
-    def gen_wrapper(self, out_fname, config, doc_out_fname=None):
+    def gen_wrapper(self, out_fname, config, doc_out_fname=None, extensions=()):
+        ext = '\n'.join("{} = _load_library('{}', True)".format(lib_name, lib_name) for lib_name in extensions)
+
         fullcode = TPL_HEADER_IMPORTS.format(
             lib_name=config.lib_name,
             exports="".join("\n    '{}',".format(n) for n in self.export_names),
@@ -1269,6 +1277,7 @@ class BindGenerator:
             win32_lib_filename=config.win32_lib_fname,
             linux_lib_filename=config.linux_lib_fname,
             darwin_lib_filename=config.darwin_lib_fname,
+            extensions=ext
         )
 
         gen_docs = isinstance(doc_out_fname, str)
@@ -1280,6 +1289,14 @@ class BindGenerator:
         fullcode += TPL_HEADER_UTILS
 
         if gen_docs:
+            fulldocs += TPL_DOC_ENUMS.format(enum_list=self.gen_docs(self.enums))
+        for enum in self.enums:
+            fullcode += enum.gen_wrapper()
+
+            if gen_docs:
+                fulldocs += enum.gen_docs()
+
+        if gen_docs:
             fulldocs += TPL_DOC_STRUCTS.format(struct_list=self.gen_docs(self.structs))
         for struct in self.structs:
 
@@ -1288,6 +1305,9 @@ class BindGenerator:
 
             for alias in self.aliases:
                 if alias.type.py_type == struct.name:
+                    fullcode += alias.gen_wrapper()
+                elif alias.type.py_type == "{}Ptr".format(struct.name):
+                    print(f"::::: - {struct.name} - ::::::")
                     fullcode += alias.gen_wrapper()
 
             if gen_docs:
@@ -1298,14 +1318,6 @@ class BindGenerator:
             for alias in self.aliases:
                 items.append(alias.gen_docs())
             fulldocs += TPL_DOC_ALIASES.format(aliases_list='\n'.join(items))
-
-        if gen_docs:
-            fulldocs += TPL_DOC_ENUMS.format(enum_list=self.gen_docs(self.enums))
-        for enum in self.enums:
-            fullcode += enum.gen_wrapper()
-
-            if gen_docs:
-                fulldocs += enum.gen_docs()
 
         defn_list = []
         for define in self.defines:
@@ -1329,7 +1341,7 @@ class BindGenerator:
         if gen_docs:
             fulldocs += TPL_DOC_FUNCS.format(func_list=self.gen_docs(self.functions))
         for function in self.functions:
-            fullcode += function.gen_wrapper_proto(config.lib_name)
+            fullcode += function.gen_wrapper_proto(function.header_name)
             if gen_docs:
                 fulldocs += function.gen_docs()
 
@@ -1395,7 +1407,7 @@ class BindGenerator:
             ctx_description_leave=fn_leave.description,
             py_decl=py_decl
         )
-    
+
     def gen_contextmanager_wrapper(self, config, ctx_info, fn_enter, fn_leave):
         name = snakefy(ctx_info.get('api')) if config.snakefy_functions else ctx_info.get('api')
         params = fn_enter.gen_param_list()
@@ -1539,7 +1551,7 @@ def snakefy(name):
     return result
 
 
-def main(in_fnames, out_fname, in_meta=None, doc_out_fname=None, **config):
+def main(in_fnames, extensions, out_fname, in_meta=None, doc_out_fname=None, **config):
     generator = BindGenerator()
     default_config = {
         "libBasedir": "os.path.dirname(__file__)",
@@ -1570,10 +1582,35 @@ def main(in_fnames, out_fname, in_meta=None, doc_out_fname=None, **config):
 
     loaded_struct_names = []
     for fname in in_fnames:
+        fname = os.path.normpath(fname)
+        print("INFO: loading lib '{}' in {}".format(config.lib_name, fname))
         with open(fname, 'r', encoding='utf8') as info:
-            generator.load_info(os.path.basename, loaded_struct_names, json.load(info), meta_info, config)
+            generator.load_info(config.lib_name, os.path.basename(fname), loaded_struct_names, json.load(info), meta_info, config, False, False)
 
-    generator.gen_wrapper(out_fname, config, doc_out_fname)
+    ext_load = []
+    for ext in extensions:
+        ext_config = config.get('extensions', {}).get(ext, None)
+        fname = ext_config.get('jsonApi')
+        print("INFO: loading extension '{}' as '{}' in {}".format(ext, ext_config.get('libName'), fname))
+        if ext_config is None:
+            print("WARNING: Extension settings for '{}' not defined in binding configuration".format(ext))
+            continue
+
+        try:
+            with open(fname, 'r', encoding='utf8') as info:
+                json_info = json.load(info)
+
+        except OSError as e:
+            print("WARNING: Extension's json (file: {}) could not be opened: {}".format(fname, e.args))
+            continue
+
+        is_standalone = ext_config.get('isStandalone', False)
+        libname = ext_config.get('libName')
+        if is_standalone and libname not in ext_load:
+            ext_load.append(libname)
+        generator.load_info(ext_config.get('libName') if is_standalone else config.lib_name, ext_config.get('jsonApi'), loaded_struct_names, json_info, meta_info, config, True, is_standalone)
+
+    generator.gen_wrapper(out_fname, config, doc_out_fname, ext_load)
 
 
 if __name__ == '__main__':
