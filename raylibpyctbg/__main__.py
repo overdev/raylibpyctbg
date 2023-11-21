@@ -106,6 +106,9 @@ Usage:
                                             use 'rmath' to include rmath.h functions from 'input/rmath_api.json'
                                             use 'rlgl' to include rlgl.h functions and types from 'input/rlgl.json'
                                             filepath to any other parsed header exposed in raylib (JSON)
+        --extension <value>             similar to --include but intended for standalone libs:
+                                            <value> must be the lib name to be looked up in binding config json file
+        --in <value>                    dirpath to load the json files from (defaults to 'input/')
         --out <value>                   filepath to write the binding into
         --markdown <value>              filepath to write the api reference (Markdown format) into
         
@@ -130,15 +133,17 @@ def main(*args) -> int:
         return 1
 
     base = os.path.dirname(os.path.dirname(__file__))
+    input_dir = 'input'
 
-    raylib = os.path.join(base, 'input/raylib_api.json')
-    rmath = os.path.join(base, 'input/rmath_api.json')
-    rlgl = os.path.join(base, 'input/rlgl.json')
-    in_bind_info = os.path.join(base, 'input/raylib_api.bind.json')
+    raylib = os.path.join(base, input_dir, 'raylib_api.json')
+    rmath = os.path.join(base, input_dir, 'rmath_api.json')
+    rlgl = os.path.join(base, input_dir, 'rlgl.json')
+    in_bind_info = os.path.join(base, input_dir, 'raylib_api.bind.json')
     out_file = os.path.join(os.getcwd(), 'rl.py')
     doc_out_fname = None
 
     include = [raylib]
+    extend = []
 
     config = {}
 
@@ -163,6 +168,19 @@ def main(*args) -> int:
 
                 if val not in include:
                     include.append(val)
+
+            if key == 'extension':
+                if val not in extend:
+                    extend.append(val)
+
+            elif key == 'in':
+                input_dir = val
+                raylib = os.path.join(base, input_dir, 'raylib_api.json')
+                rmath = os.path.join(base, input_dir, 'rmath_api.json')
+                rlgl = os.path.join(base, input_dir, 'rlgl.json')
+                in_bind_info = os.path.join(base, input_dir, 'raylib_api.bind.json')
+                include = [raylib]
+
 
             elif key == 'out':
                 out_file = val
@@ -198,7 +216,7 @@ def main(*args) -> int:
 
         elif arg.startswith('-'):
             key = arg[1:]
-            if key ==  'help':
+            if key.lower() in  ('help', 'h'):
                 print(USAGE)
                 exit()
             elif key == 'typeHint':
@@ -257,7 +275,7 @@ def main(*args) -> int:
                 config[key] = True
 
     try:
-        gen_wrapper(include, out_file, in_bind_info, doc_out_fname, **config)
+        gen_wrapper(include, extend, out_file, in_bind_info, doc_out_fname, **config)
     except Exception as e:
         print("Unable to generate the python binding due to an error:\n {}{}".format(e.__class__.__name__, e.args))
         traceback.print_exception(e)
