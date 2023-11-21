@@ -19,6 +19,9 @@ $ python raylibpyctbg -help
 
 to get a list of options you can pass to customize the bind generation
 
+## Documentation
+
+You can take a look on the [last generated documentation file](https://github.com/overdev/raylibpyctbg/blob/development/package/DOCS.md).
 
 ## Customization
 
