@@ -7,6 +7,7 @@ import re
 import os
 import platform
 import ctypes
+import json
 from enum import IntEnum
 from contextlib import contextmanager
 from typing import Optional as Opt, Any, Sequence as Seq, Union
@@ -109,103 +110,132 @@ if sys.platform == 'win32':
 #
 # example of .raylib file contents:
 # ```json
-# {{ 
-#     "win32": {{
-#         "32bit": "path/to/raylib/filename.dll",
-#         "64bit": "path/to/raylib/filename.dll",
-#     }},
-#     "linux": {{
-#         "32bit": "path/to/raylib/filename.so",
-#         "64bit": "path/to/raylib/filename.so",
-#     }},
-#     "darwin": {{
-#         "64bit": "path/to/raylib/filename.dylib",
-#     }},
+# {{
+#     "raylib": {{
+#         "win32": {{
+#             "32bit": "path/to/raylib/filename.dll",
+#             "64bit": "path/to/raylib/filename.dll",
+#         }},
+#         "linux": {{
+#             "32bit": "path/to/raylib/filename.so",
+#             "64bit": "path/to/raylib/filename.so",
+#         }},
+#         "darwin": {{
+#             "64bit": "path/to/raylib/filename.dylib",
+#         }},
+#     }}
 # }}
 # ```
 #
 
 _dotraylib_used = False
-_dotraylib_loadinfo = None
-_dotraylib = os.path.join(os.getcwd(), '.raylib')
-_dotraylib_config = {{}}
-if os.path.exists(_dotraylib) and os.path.isfile(_dotraylib):
-    _dotraylib_used = True
-    import json
-    with open(_dotraylib, 'r', encoding='utf8') as fp:
-        try:
-            _dotraylib_config = json.load(fp)
-        except json.JSONDecodeError:
-            _dotraylib_loadinfo = "Could not decode .raylib file"
-            _dotraylib_used = False
+_dotraylib_loadinfo = []
 
-    del json
+def _check_dotraylib(lib, platform, bitness, default=None):
+    global _dotraylib_loadinfo
+    _dotraylib = os.path.join(os.getcwd(), '.raylib')
 
-_lib_fname = {{
-    'win32': '{win32_lib_filename}',
-    'linux': '{linux_lib_filename}',
-    'darwin': '{darwin_lib_filename}'
-}}
+    if os.path.exists(_dotraylib) and os.path.isfile(_dotraylib):
+        _dotraylib_used = True
 
-_lib_platform = sys.platform
+        with open(_dotraylib, 'r', encoding='utf8') as fp:
+            try:
+                _dotraylib_config = json.load(fp)
+                return _dotraylib_config.get(lib, {{}}).get(platform, {{}}).get(bitness, default)
 
-if _lib_platform == 'win32':
-    _bitness = platform.architecture()[0]
-elif _lib_platform == 'darwin':
-    _bitness = '64bit'
-else:
-    _bitness = '64bit' if sys.maxsize > 2 ** 32 else '32bit'
+            except json.JSONDecodeError:
+                _dotraylib_loadinfo.append("ERROR: Could not decode .raylib file")
+    else:
+        _dotraylib_loadinfo.append("INFO: .raylib file not available")
+    return default
 
-_lib_default = os.path.join({lib_basedir}, _bitness, _lib_fname[_lib_platform])
 
-if _dotraylib_used:
-    try:
-        _lib_default = os.path.abspath(_dotraylib_config[_lib_platform][_bitness])
+def _load_library(lib_name, is_extension=False):
+    global _dotraylib_loadinfo, _dotraylib_used
 
-    except (KeyError, ValueError):
-        _dotraylib_loadinfo = "Platform ({{}}) and bitness ({{}}) not specified in .raylib file".format(_lib_platform, _bitness)
+    _lib_fname = {{
+        'win32': '{win32_lib_filename}',
+        'linux': '{linux_lib_filename}',
+        'darwin': '{darwin_lib_filename}'
+    }}
 
-_lib_fname_abspath = os.path.normcase(os.path.normpath(_lib_default))
+    _dotraylib_used = False
+    _lib_platform = sys.platform
 
-_cwd_info = "\\n    current working dir: {{}}".format(os.getcwd()) if _dotraylib_used else ""
-_load_info = "\\n    .raylib load info: {{}}".format(_dotraylib_loadinfo) if _dotraylib_loadinfo else ""
+    if _lib_platform == 'win32':
+        _bitness = platform.architecture()[0]
+    elif _lib_platform == 'darwin':
+        _bitness = '64bit'
+    else:
+        _bitness = '64bit' if sys.maxsize > 2 ** 32 else '32bit'
 
-print(
-    """Library loading info:
-    platform: {{}}
-    bitness: {{}}{{}}{{}}
-    absolute path: {{}}
-    using .raylib file: {{}}
-    exists: {{}}
-    is file: {{}}
-    """.format(
-        _lib_platform,
-        _bitness,
-        _cwd_info,
-        _load_info,
-        _lib_fname_abspath,
-        'yes' if _dotraylib_used else 'no',
-        'yes' if os.path.exists(_lib_fname_abspath) else 'no',
-        'yes' if os.path.isfile(_lib_fname_abspath) else 'no'
+    if is_extension:
+        _lib_default = None
+    else:
+        _lib_default = os.path.join({lib_basedir}, _bitness, _lib_fname[_lib_platform])
+
+    _lib_default = _check_dotraylib(lib_name, _lib_platform, _bitness, _lib_default)
+
+    if not _lib_default:
+        if is_extension:
+            _dotraylib_loadinfo.append("ERROR: Platform ({{}}), bitness ({{}}) or valid filename not specified in .raylib file for {{}} extension".format(lib_name, _lib_platform, _bitness))
+        else:
+            _dotraylib_loadinfo.append("ERROR: Platform ({{}}), bitness ({{}}) or valid filename not specified in .raylib file for {{}}".format(lib_name, _lib_platform, _bitness))
+
+        _lib_fname_abspath = ''
+        _ok = False
+    else:
+        _lib_fname_abspath = os.path.normcase(os.path.normpath(_lib_default))
+        _ok = True
+
+    _cwd_info = "\\n        current working dir: {{}}".format(os.getcwd()) if _dotraylib_used else ""
+    _load_info = "\\n        .raylib load info: {{}}".format("\\n            ".join(_dotraylib_loadinfo)) if _dotraylib_loadinfo else ""
+
+    print(
+        """Library loading info:
+        platform: {{}}
+        bitness: {{}}{{}}{{}}
+        absolute path: {{}}
+        using .raylib file: {{}}
+        exists: {{}}
+        is file: {{}}
+        """.format(
+            _lib_platform,
+            _bitness,
+            _cwd_info,
+            _load_info,
+            _lib_fname_abspath,
+            'yes' if _dotraylib_used else 'no',
+            'yes' if os.path.exists(_lib_fname_abspath) else 'no',
+            'yes' if os.path.isfile(_lib_fname_abspath) else 'no'
+        )
     )
-)
 
-{lib_name} = None
-if _lib_platform == 'win32':
+    if not _ok:
+        print("Failed to load Shared library", lib_name)
+        sys.exit(1)
 
-    try:
-        {lib_name} = CDLLEx(_lib_fname_abspath, LOAD_WITH_ALTERED_SEARCH_PATH)
-    except OSError:
-        print("Unable to load {{}}.".format(_lib_fname[_lib_platform]))
-        {lib_name} = None
-else:
-    {lib_name} = CDLL(_lib_fname_abspath)
+    lib_ = None
+    if _lib_platform == 'win32':
 
-if {lib_name} is None:
-    print("Failed to load shared library.")
-    exit()
-else:
-    print("Shared library loaded succesfully.", {lib_name})
+        try:
+            lib_ = CDLLEx(_lib_fname_abspath, LOAD_WITH_ALTERED_SEARCH_PATH)
+        except OSError as e:
+            print("Unable to load {{}}: {{}}".format(_lib_fname[_lib_platform], e.args))
+            lib_ = None
+    else:
+        lib_ = CDLL(_lib_fname_abspath)
+
+    if lib_ is None:
+        print("Failed to load Shared library", lib_name)
+        sys.exit(1)
+    else:
+        print("Shared library loaded succesfully", lib_)
+
+    return lib_
+
+{lib_name} = _load_library('raylib', False)
+{extensions}
 '''
 
 TPL_HEADER_UTILS = """
@@ -720,7 +750,7 @@ TPL_VECTOR4_SWIZZLING = """
         return 4
 
     def __getitem__(self, key):
-        return (self.x, self.y. self.z, self.w).__getitem__(key)
+        return (self.x, self.y, self.z, self.w).__getitem__(key)
 
     def __getattr__(self, attr):
         m = _VEC4_GET_SWZL.fullmatch(attr)
@@ -758,7 +788,7 @@ TPL_RECTANGLE_SWIZZLING = """
         return 4
 
     def __getitem__(self, key):
-        return (self.x, self.y. self.width, self.height).__getitem__(key)
+        return (self.x, self.y, self.width, self.height).__getitem__(key)
 
     def __getattr__(self, attr):
         m = _RECT_GET_SWZL.fullmatch(attr)
@@ -783,11 +813,15 @@ TPL_RECTANGLE_SWIZZLING = """
                 super(Rectangle, self).__setattr__('y', float(value - h * 0.5))
             elif attr == 'b':
                 super(Rectangle, self).__setattr__('y', float(value - h))
+            elif attr == 'w':
+                super(Rectangle, self).__setattr__('width', value)
+            elif attr == 'h':
+                super(Rectangle, self).__setattr__('height', value)
             else:
                 super(Rectangle, self).__setattr__(attr, float(value))
         else:
             for i, ch in enumerate(attr):
-                if ch in 'xywh':
+                if ch in ('x', 'y'):
                     super(Rectangle, self).__setattr__(ch, float(value[i]))
                 elif ch == 'c':
                     super(Rectangle, self).__setattr__('x', float(value[i] - w * 0.5))
@@ -797,6 +831,10 @@ TPL_RECTANGLE_SWIZZLING = """
                     super(Rectangle, self).__setattr__('y', float(value[i] - h * 0.5))
                 elif ch == 'b':
                     super(Rectangle, self).__setattr__('y', float(value[i] - h))
+                elif ch == 'w':
+                    super(Rectangle, self).__setattr__('width', value[i])
+                elif ch == 'h':
+                    super(Rectangle, self).__setattr__('height', value[i])
 
     def todict(self):
         '''Returns a dict mapping this Rectangle's components'''
