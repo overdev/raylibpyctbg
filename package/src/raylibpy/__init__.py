@@ -1755,7 +1755,7 @@ def _arr_out(data):
 
 
 def _ptr_out(ptr, length=0):
-    [ptr.contents] if length == 1 else ([] if not length else ptr[:length])
+    return [ptr.contents] if length == 1 else ([] if not length else ptr[:length])
 
 # region TYPE CAST FUNCS
 
@@ -5164,7 +5164,7 @@ class Image(Structure):
         # type: (Image, int) -> ColorPtr
         """Load colors palette from image as a Color array (RGBA - 32bit)"""
         color_count = Int(0)
-        result = _ptr_out(_LoadImagePalette(self, int(max_palette_size), byref(color_count)), color_count.value)
+        result = _ptr_out(_LoadImagePalette(self, int(max_palette_size), byref(color_count))), color_count.value
         return result
 
     def get_alpha_border(self, threshold):
@@ -6080,7 +6080,7 @@ class Material(Structure):
         # type: (Union[str, CharPtr]) -> MaterialPtr
         """Load materials from model file"""
         material_count = Int(0)
-        result = _ptr_out(_LoadMaterials(_str_in(file_name), byref(material_count)), material_count.value)
+        result = _ptr_out(_LoadMaterials(_str_in(file_name), byref(material_count))), material_count.value
         return result
 
     @classmethod
@@ -10529,7 +10529,7 @@ def load_image_palette(image, max_palette_size):
     # type: (Image, int) -> ColorPtr
     """Load colors palette from image as a Color array (RGBA - 32bit)"""
     color_count = Int(0)
-    result = _ptr_out(_LoadImagePalette(image, int(max_palette_size), byref(color_count)), color_count.value)
+    result = _ptr_out(_LoadImagePalette(image, int(max_palette_size), byref(color_count))), color_count.value
     return result
 
 
@@ -11535,7 +11535,7 @@ def load_materials(file_name):
     # type: (Union[str, CharPtr]) -> MaterialPtr
     """Load materials from model file"""
     material_count = Int(0)
-    result = _ptr_out(_LoadMaterials(_str_in(file_name), byref(material_count)), material_count.value)
+    result = _ptr_out(_LoadMaterials(_str_in(file_name), byref(material_count))), material_count.value
     return result
 
 
@@ -11575,7 +11575,7 @@ def load_model_animations(file_name):
     # type: (Union[str, CharPtr]) -> ModelAnimationPtr
     """Load model animations from file"""
     anim_count = Int(0)
-    result = _ptr_out(_LoadModelAnimations(_str_in(file_name), byref(anim_count)), anim_count.value)
+    result = _ptr_out(_LoadModelAnimations(_str_in(file_name), byref(anim_count))), anim_count.value
     return result
 
 

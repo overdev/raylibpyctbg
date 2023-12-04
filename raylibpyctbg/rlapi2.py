@@ -561,7 +561,7 @@ class FunctionInfo(InfoBase):
             if p.out_param:
                 before += '\n{}{} = {}(0)'.format(indent, p.py_name, p.type.ctypes_type.replace('Ptr', ''))
             if p.use_as_length:
-                b = ', {}.value)'.format(p.py_name)
+                b = '), {}.value'.format(p.py_name)
 
         if self.type.c_type != "void":
             if inplace:

@@ -337,7 +337,7 @@ def _arr_out(data):
 
 
 def _ptr_out(ptr, length=0):
-    [ptr.contents] if length == 1 else ([] if not length else ptr[:length])
+    return [ptr.contents] if length == 1 else ([] if not length else ptr[:length])
 
 # region TYPE CAST FUNCS
 
