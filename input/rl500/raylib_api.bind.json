@@ -1,154 +1,145 @@
 {
-  "CONFIG": {
-    "libBasedir": "'../lib', 'bin'",
-    "libName": "rlapi",
-    "snakecaseFunctions": false,
-    "snakecaseParameters": false,
-    "snakecaseFields": false,
-    "bindApiAsClassmethod": false,
-    "bindApiAsStaticmethod": false,
-    "bindApiAsMethod": false,
-    "bindApiAsProperty": false,
-    "bindApiAsContextManager": false,
-    "addContextManager": false,
-    "typeHint": false,
-    "typeAnnotate": false,
-    "addVectorAttribSwizzling": true,
-    "addVectorMath": true,
-    "addColorAttribSwizzling": true,
-    "addRectangleAttribSwizzling": true,
-    "rmathIncluded": false,
-    "rlglIncluded": false,
-    "win32LibFilename": "raylib.dll",
-    "linuxLibFilename": "libraylib.so.5.0.0",
-    "darwinLibFilename": "libraylib.5.0.0.dylib",
-    "extensions": {
-      "raygui": {
-        "libName": "rayguiphys",
-        "jsonApi": "input/raygui_api.json",
-        "isStandalone": true
-      },
-      "physac": {
-        "libName": "rayguiphys",
-        "jsonApi": "input/physac_api.json",
-        "isStandalone": true
-      }
-    }
-  },
   "structs": {
     "*": {
-      "bindApiAsMethod": [],
-      "bindApiAsStaticmethod": [],
-      "bindApiAsClassmethod": [],
-      "bindApiAsProperty": [],
-      "dunderStrExpression": "return \"[{} at {}]\".format(self.__class__.__name__, id(self))",
-      "dunderReprExpression": "return self.__str__()"
+      "opaque": [
+        "rAudioBuffer",
+        "rAudioProcessor"
+      ]
     },
     "Vector2": {
       "func": "_vec2({})",
+      "init": ["0.0", "0.0"],
+      "fields": {},
       "bindApiAsMethod": [
-        {"api": "Vector2DotProduct", "renameAs": "DotProduct"},
-        {"api": "Vector2Distance", "renameAs": "Distance"},
-        {"api": "Vector2DistanceSqr", "renameAs": "DistanceSqr"},
-        {"api": "Vector2Angle", "renameAs": "Angle"},
-        {"api": "Vector2Normalize", "renameAs": "Normalize", "inplace": true, "attr": "xy"},
-        {"api": "Vector2Transform", "renameAs": "Transform", "inplace": true, "attr": "xy"},
-        {"api": "Vector2Lerp", "renameAs": "Lerp", "inplace": true, "attr": "xy"},
-        {"api": "Vector2Reflect", "renameAs": "Reflect", "inplace": true, "attr": "xy"},
-        {"api": "Vector2Rotate", "renameAs": "Rotate", "inplace": true, "attr": "xy"},
-        {"api": "Vector2MoveTowards", "renameAs": "MoveTowards", "inplace": true, "attr": "xy"},
-        {"api": "Vector2Clamp", "renameAs": "Clamp", "inplace": true, "attr": "xy"},
-        {"api": "Vector2ClampValue", "renameAs": "ClampValue", "inplace": true, "attr": "xy"}
+        {"module": "raymath", "api": "Vector2DotProduct", "renameAs": "DotProduct"},
+        {"module": "raymath", "api": "Vector2Distance", "renameAs": "Distance"},
+        {"module": "raymath", "api": "Vector2DistanceSqr", "renameAs": "DistanceSqr"},
+        {"module": "raymath", "api": "Vector2Angle", "renameAs": "Angle"},
+        {"module": "raymath", "api": "Vector2Normalize", "renameAs": "Normalize", "inplace": true, "attr": "xy"},
+        {"module": "raymath", "api": "Vector2Transform", "renameAs": "Transform", "inplace": true, "attr": "xy"},
+        {"module": "raymath", "api": "Vector2Lerp", "renameAs": "Lerp", "inplace": true, "attr": "xy"},
+        {"module": "raymath", "api": "Vector2Reflect", "renameAs": "Reflect", "inplace": true, "attr": "xy"},
+        {"module": "raymath", "api": "Vector2Rotate", "renameAs": "Rotate", "inplace": true, "attr": "xy"},
+        {"module": "raymath", "api": "Vector2MoveTowards", "renameAs": "MoveTowards", "inplace": true, "attr": "xy"},
+        {"module": "raymath", "api": "Vector2Clamp", "renameAs": "Clamp", "inplace": true, "attr": "xy"},
+        {"module": "raymath", "api": "Vector2ClampValue", "renameAs": "ClampValue", "inplace": true, "attr": "xy"}
       ],
       "bindApiAsStaticmethod": [],
       "bindApiAsClassmethod": [
-        {"api": "Vector2One", "renameAs": "One"}
+        {"module": "raymath", "api": "Vector2One", "renameAs": "One"}
       ],
       "bindApiAsProperty": [
-        {"api": "Vector2Length", "renameAs": "Length"},
-        {"api": "Vector2LengthSqr", "renameAs": "LengthSqr"}
+        { "module": "raymath", "api": "Vector2Length", "renameAs": "Length"},
+        { "module": "raymath", "api": "Vector2LengthSqr", "renameAs": "LengthSqr"}
       ],
       "dunderStrExpression": "return \"({}, {})\".format(self.x, self.y)",
-      "dunderReprExpression": "return \"Vector2{}\".format(self.__str__())"
+      "dunderReprExpression": "return \"Vector2{}\".format(self.__str__())",
+      "binaryData": { "format": "!2f", "args": "self.x, self.y" }
     },
     "Vector3": {
       "func": "_vec3({})",
+      "fields": {},
+      "init": ["0.0", "0.0", "0.0"],
       "bindApiAsMethod": [
-        {"api": "Vector3CrossProduct", "renameAs": "CrossProduct"},
-        {"api": "Vector3Perpendicular", "renameAs": "Perpendicular", "inplace": true, "attr": "xyz"},
-        {"api": "Vector3DotProduct", "renameAs": "DotProduct"},
-        {"api": "Vector3Distance", "renameAs": "Distance"},
-        {"api": "Vector3DistanceSqr", "renameAs": "DistanceSqr"},
-        {"api": "Vector3Angle", "renameAs": "Angle"},
-        {"api": "Vector3Normalize", "renameAs": "Normalize", "inplace": true, "attr": "xyz"},
-        {"api": "Vector3OrthoNormalize", "renameAs": "OrthoNormalize", "inplace": true, "attr": "xyz"},
-        {"api": "Vector3Transform", "renameAs": "Transform", "inplace": true, "attr": "xyz"},
-        {"api": "Vector3RotateByQuaternion", "renameAs": "RotateByQuaternion", "inplace": true, "attr": "xyz"},
-        {"api": "Vector3RotateByAxisAngle", "renameAs": "RotateByAxisAngle", "inplace": true, "attr": "xyz"},
-        {"api": "Vector3Lerp", "renameAs": "Lerp", "inplace": true, "attr": "xyz"},
-        {"api": "Vector3Reflect", "renameAs": "Reflect", "inplace": true, "attr": "xyz"},
-        {"api": "Vector3Min", "renameAs": "Min", "inplace": true, "attr": "xyz"},
-        {"api": "Vector3Max", "renameAs": "Max", "inplace": true, "attr": "xyz"},
-        {"api": "Vector3Barycenter", "renameAs": "Barycenter", "inplace": true, "attr": "xyz"},
-        {"api": "Vector3Unproject", "renameAs": "Unproject", "inplace": true, "attr": "xyz"},
-        {"api": "Vector3ToFloatV", "renameAs": "ToFloatV"},
-        {"api": "Vector3Clamp", "renameAs": "Clamp", "inplace": true, "attr": "xyz"},
-        {"api": "Vector3ClampValue", "renameAs": "ClampValue", "inplace": true, "attr": "xyz"},
-        {"api": "Vector3Refract", "renameAs": "Refract"}
+        {"module": "raymath", "api": "Vector3CrossProduct", "renameAs": "CrossProduct"},
+        {"module": "raymath", "api": "Vector3Perpendicular", "renameAs": "Perpendicular", "inplace": true, "attr": "xyz"},
+        {"module": "raymath", "api": "Vector3DotProduct", "renameAs": "DotProduct"},
+        {"module": "raymath", "api": "Vector3Distance", "renameAs": "Distance"},
+        {"module": "raymath", "api": "Vector3DistanceSqr", "renameAs": "DistanceSqr"},
+        {"module": "raymath", "api": "Vector3Angle", "renameAs": "Angle"},
+        {"module": "raymath", "api": "Vector3Normalize", "renameAs": "Normalize", "inplace": true, "attr": "xyz"},
+        {"module": "raymath", "api": "Vector3OrthoNormalize", "renameAs": "OrthoNormalize", "inplace": true, "attr": "xyz"},
+        {"module": "raymath", "api": "Vector3Transform", "renameAs": "Transform", "inplace": true, "attr": "xyz"},
+        {"module": "raymath", "api": "Vector3RotateByQuaternion", "renameAs": "RotateByQuaternion", "inplace": true, "attr": "xyz"},
+        {"module": "raymath", "api": "Vector3RotateByAxisAngle", "renameAs": "RotateByAxisAngle", "inplace": true, "attr": "xyz"},
+        {"module": "raymath", "api": "Vector3Lerp", "renameAs": "Lerp", "inplace": true, "attr": "xyz"},
+        {"module": "raymath", "api": "Vector3Reflect", "renameAs": "Reflect", "inplace": true, "attr": "xyz"},
+        {"module": "raymath", "api": "Vector3Min", "renameAs": "Min", "inplace": true, "attr": "xyz"},
+        {"module": "raymath", "api": "Vector3Max", "renameAs": "Max", "inplace": true, "attr": "xyz"},
+        {"module": "raymath", "api": "Vector3Barycenter", "renameAs": "Barycenter", "inplace": true, "attr": "xyz"},
+        {"module": "raymath", "api": "Vector3Unproject", "renameAs": "Unproject", "inplace": true, "attr": "xyz"},
+        {"module": "raymath", "api": "Vector3ToFloatV", "renameAs": "ToFloatV"},
+        {"module": "raymath", "api": "Vector3Clamp", "renameAs": "Clamp", "inplace": true, "attr": "xyz"},
+        {"module": "raymath", "api": "Vector3ClampValue", "renameAs": "ClampValue", "inplace": true, "attr": "xyz"},
+        {"module": "raymath", "api": "Vector3Refract", "renameAs": "Refract"}
       ],
       "bindApiAsStaticmethod": [],
       "bindApiAsClassmethod": [
-        {"api": "Vector3One", "renameAs": "One"}
+        {"module": "raymath", "api": "Vector3One", "renameAs": "One"}
       ],
       "bindApiAsProperty": [
-        {"api": "Vector3Length", "renameAs": "Length"},
-        {"api": "Vector3LengthSqr", "renameAs": "LengthSqr"}
+        {"module": "raymath", "api": "Vector3Length", "renameAs": "Length"},
+        {"module": "raymath", "api": "Vector3LengthSqr", "renameAs": "LengthSqr"}
       ],
       "dunderStrExpression": "return \"({}, {}, {})\".format(self.x, self.y, self.z)",
-      "dunderReprExpression": "return \"Vector3{}\".format(self.__str__())"
+      "dunderReprExpression": "return \"Vector3{}\".format(self.__str__())",
+      "binaryData": { "format": "!3f", "args": "self.x, self.y, self.z" }
     },
     "Vector4": {
       "func": "_vec4({})",
+      "fields": {},
+      "init": ["0.0", "0.0", "0.0", "0.0"],
       "bindApiAsMethod": [],
       "bindApiAsStaticmethod": [],
       "bindApiAsClassmethod": [],
       "bindApiAsProperty": [],
       "dunderStrExpression": "return \"({}, {}, {}, {})\".format(self.x, self.y, self.z, self.w)",
-      "dunderReprExpression": "return \"Vector4{}\".format(self.__str__())"
+      "dunderReprExpression": "return \"Vector4{}\".format(self.__str__())",
+      "binaryData": { "format": "!4f", "args": "self.x, self.y, self.z, self.w" }
     },
     "Rectangle": {
       "func": "_rect({})",
+      "fields": {},
+      "init": ["0.0", "0.0", "0.0", "0.0"],
       "dunderStrExpression": "return \"({}, {}, {}, {})\".format(self.x, self.y, self.width, self.height)",
-      "dunderReprExpression": "return \"Rectangle{}\".format(self.__str__())"
+      "dunderReprExpression": "return \"Rectangle{}\".format(self.__str__())",
+      "binaryData": { "format": "!4f", "args": "self.x, self.y, self.width, self.height" }
     },
     "Matrix": {
+      "fields": {},
+      "init": ["0.0", "0.0", "0.0", "0.0", "0.0", "0.0", "0.0", "0.0", "0.0", "0.0", "0.0", "0.0", "0.0", "0.0", "0.0", "0.0"],
       "bindApiAsMethod": [
-        {"api": "MatrixDeterminant", "renameAs": "Determinant"},
-        {"api": "MatrixTrace", "renameAs": "Trace"},
-        {"api": "MatrixTranspose", "renameAs": "Transpose"},
-        {"api": "MatrixInvert", "renameAs": "Invert"}
+        {"module": "raymath", "api": "MatrixDeterminant", "renameAs": "Determinant"},
+        {"module": "raymath", "api": "MatrixTrace", "renameAs": "Trace"},
+        {"module": "raymath", "api": "MatrixTranspose", "renameAs": "Transpose"},
+        {"module": "raymath", "api": "MatrixInvert", "renameAs": "Invert"}
       ],
       "bindApiAsStaticmethod": [],
       "bindApiAsClassmethod": [
-        {"api": "MatrixIdentity", "renameAs": "Identity"},
-        {"api": "MatrixTranslate", "renameAs": "Translate"},
-        {"api": "MatrixRotate", "renameAs": "Rotate"},
-        {"api": "MatrixRotateX", "renameAs": "RotateX"},
-        {"api": "MatrixRotateY", "renameAs": "RotateY"},
-        {"api": "MatrixRotateZ", "renameAs": "RotateZ"},
-        {"api": "MatrixRotateXYZ", "renameAs": "RotateXYZ"},
-        {"api": "MatrixRotateZYX", "renameAs": "RotateZYX"},
-        {"api": "MatrixScale", "renameAs": "Scale"},
-        {"api": "MatrixFrustum", "renameAs": "Frustum"},
-        {"api": "MatrixPerspective", "renameAs": "Perspective"},
-        {"api": "MatrixOrtho", "renameAs": "Ortho"},
-        {"api": "MatrixLookAt", "renameAs": "LookAt"}
+        {"module": "raymath", "api": "MatrixIdentity", "renameAs": "Identity"},
+        {"module": "raymath", "api": "MatrixTranslate", "renameAs": "Translate"},
+        {"module": "raymath", "api": "MatrixRotate", "renameAs": "Rotate"},
+        {"module": "raymath", "api": "MatrixRotateX", "renameAs": "RotateX"},
+        {"module": "raymath", "api": "MatrixRotateY", "renameAs": "RotateY"},
+        {"module": "raymath", "api": "MatrixRotateZ", "renameAs": "RotateZ"},
+        {"module": "raymath", "api": "MatrixRotateXYZ", "renameAs": "RotateXYZ"},
+        {"module": "raymath", "api": "MatrixRotateZYX", "renameAs": "RotateZYX"},
+        {"module": "raymath", "api": "MatrixScale", "renameAs": "Scale"},
+        {"module": "raymath", "api": "MatrixFrustum", "renameAs": "Frustum"},
+        {"module": "raymath", "api": "MatrixPerspective", "renameAs": "Perspective"},
+        {"module": "raymath", "api": "MatrixOrtho", "renameAs": "Ortho"},
+        {"module": "raymath", "api": "MatrixLookAt", "renameAs": "LookAt"}
       ],
       "bindApiAsProperty": [],
       "dunderStrExpression": "return \"[{} at {}]\".format(self.__class__.__name__, id(self))",
-      "dunderReprExpression": "return self.__str__()"
+      "dunderReprExpression": "return self.__str__()",
+      "binaryData": { "format": "!16f", "args": "self.x, self.y, self.z, self.w" }
+    },
+    "BoundingBox": {
+      "binaryData": { "format": "!6f", "args": "self.min.x, self.min.y, self.min.z, self.max.x, self.max.y, self.max.z" },
+      "init": ["Vector3()", "Vector3()"]
+    },
+    "Ray": {
+      "binaryData": { "format": "!6f", "args": "self.position.x, self.position.y, self.position.z, self.direction.x, self.direction.y, self.direction.z" },
+      "init": ["Vector3()", "Vector3()"]
+    },
+    "RayCollision": {
+      "binaryData": { "format": "!?7f", "args": "self.hit, self.distance, self.point.x, self.point.y, self.point.z, self.normal.x, self.normal.y, self.normal.z" },
+      "init": ["False", "0.0", "Vector3()", "Vector3()"]
     },
     "Shader": {
+      "fields": {},
+      "init": ["0", "None"],
       "bindApiAsMethod": [
         {"api": "GetShaderLocation",       "renameAs": "GetLocation"},
         {"api": "GetShaderLocationAttrib", "renameAs": "GetLocationAttrib"},
@@ -166,6 +157,9 @@
       "bindApiAsProperty": [
         { "api": "IsShaderReady", "renameAs": "IsReady" }
       ],
+      "bindApiAsDestructor": [
+        { "api": "UnloadShader" }
+      ],
       "bindApiAsContextManager": {
           "enter": "BeginShaderMode",
           "leave": "EndShaderMode"
@@ -174,6 +168,16 @@
       "dunderReprExpression": "return self.__str__()"
     },
     "RenderTexture2D": {
+      "init": ["0", "Texture()", "Texture()"],
+      "bindApiAsClassmethod": [
+        {"api": "LoadRenderTexture", "renameAs": "Load"}
+      ],
+      "bindApiAsMethod": [
+        {"api": "UnloadRenderTexture", "renameAs": "Unload"}
+      ],
+      "bindApiAsDestructor": [
+        { "api": "UnloadRenderTexture" }
+      ],
       "bindApiAsProperty": [
         {"api": "IsRenderTextureReady", "renameAs": "IsReady"}
       ],
@@ -183,20 +187,44 @@
       }
     },
     "VrStereoConfig": {
+      "init": ["None", "None", "None", "None", "None", "None", "None", "None"],
+      "bindApiAsClassmethod": [
+        {"api": "LoadVrStereoConfig", "renameAs": "Load"}
+      ],
+      "bindApiAsMethod": [
+        {"api": "UnloadVrStereoConfig", "renameAs": "Unload"}
+      ],
+      "bindApiAsDestructor": [
+        { "api": "UnloadVrStereoConfig" }
+      ],
       "bindApiAsContextManager": {
         "enter": "BeginVrStereoMode",
         "leave": "EndVrStereoMode"
       }
     },
+    "VrDeviceInfo": {
+      "init": ["0", "0", "0.0", "0.0", "0.0", "0.0", "0.0", "0.0", "None", "None"]
+    },
     "Camera2D": {
+      "init": ["Vector2()", "Vector2()", "0.0", "1.0"],
       "bindApiAsContextManager": {
         "enter": "BeginMode2D",
         "leave": "EndMode2D"
-      }
+      },
+      "bindApiAsMethod": [
+        { "api": "GetCameraMatrix2D", "renameAs": "GetMatrix2D" }
+      ]
     },
     "Camera3D": {
+      "init": ["Vector3()", "Vector3()", "Vector3(0.0, 1.0, 0.0)", "45.0", "CAMERA_PERSPECTIVE"],
+      "fields": {
+        "projection": {
+          "typePy": "int | CameraProjection"
+        }
+      },
       "bindApiAsMethod": [
-        {"api": "SetCameraMode", "renameAs": "SetMode"}
+        {"api": "SetCameraMode", "renameAs": "SetMode"},
+        { "api": "GetCameraMatrix", "renameAs": "GetMatrix" }
       ],
       "bindApiAsContextManager": {
         "enter": "BeginMode3D",
@@ -204,8 +232,17 @@
       }
     },
     "Image": {
+      "init": ["None", "0", "0", "1", "PIXELFORMAT_UNCOMPRESSED_GRAYSCALE"],
+      "fields": {
+        "format": {
+          "typePy": "int | PixelFormat"
+        }
+      },
       "bindApiAsProperty": [
         { "api": "IsImageReady", "renameAs": "IsReady" }
+      ],
+      "bindApiAsDestructor": [
+        { "api": "UnloadImage" }
       ],
       "bindApiAsMethod": [
         {"api": "UnloadImage", "renameAs": "Unload"},
@@ -219,6 +256,7 @@
         {"api": "ImageAlphaClear", "renameAs": "AlphaClear", "byref": true},
         {"api": "ImageAlphaMask", "renameAs": "AlphaMask", "byref": true},
         {"api": "ImageAlphaPremultiply", "renameAs": "AlphaPremultiply", "byref": true},
+        {"api": "ImageBlurGaussian", "renameAs": "BlurGaussian", "byref": true},
         {"api": "ImageResize", "renameAs": "Resize", "byref": true},
         {"api": "ImageResizeNN", "renameAs": "ResizeNN", "byref": true},
         {"api": "ImageResizeCanvas", "renameAs": "ResizeCanvas", "byref": true},
@@ -226,6 +264,7 @@
         {"api": "ImageDither", "renameAs": "Dither", "byref": true},
         {"api": "ImageFlipVertical", "renameAs": "FlipVertical", "byref": true},
         {"api": "ImageFlipHorizontal", "renameAs": "FlipHorizontal", "byref": true},
+        {"api": "ImageRotate", "renameAs": "Rotate", "byref": true},
         {"api": "ImageRotateCW", "renameAs": "RotateCW", "byref": true},
         {"api": "ImageRotateCCW", "renameAs": "RotateCCW", "byref": true},
         {"api": "ImageColorTint", "renameAs": "ColorTint", "byref": true},
@@ -241,6 +280,8 @@
         {"api": "ImageDrawLineV", "renameAs": "DrawLineV", "byref": true},
         {"api": "ImageDrawCircle", "renameAs": "DrawCircle", "byref": true},
         {"api": "ImageDrawCircleV", "renameAs": "DrawCircleV", "byref": true},
+        {"api": "ImageDrawCircleLines", "renameAs": "DrawCircleLines", "byref": true},
+        {"api": "ImageDrawCircleLinesV", "renameAs": "DrawCircleLinesV", "byref": true},
         {"api": "ImageDrawRectangle", "renameAs": "DrawRectangle", "byref": true},
         {"api": "ImageDrawRectangleV", "renameAs": "DrawRectangleV", "byref": true},
         {"api": "ImageDrawRectangleRec", "renameAs": "DrawRectangleRec", "byref": true},
@@ -256,14 +297,15 @@
       "bindApiAsClassmethod": [
         {"api": "LoadImage", "renameAs": "Load"},
         {"api": "LoadImageRaw", "renameAs": "LoadRaw"},
+        {"api": "LoadImageSvg", "renameAs": "LoadSvg"},
         {"api": "LoadImageAnim", "renameAs": "LoadAnim"},
         {"api": "LoadImageFromMemory", "renameAs": "LoadFromMemory"},
         {"api": "LoadImageFromTexture", "renameAs": "LoadFromTexture"},
         {"api": "LoadImageFromScreen", "renameAs": "LoadFromScreen"},
         {"api": "GenImageColor", "renameAs": "GenColor"},
-        {"api": "GenImageGradientH", "renameAs": "GenGradientH"},
-        {"api": "GenImageGradientV", "renameAs": "GenGradientV"},
+        {"api": "GenImageGradientLinear", "renameAs": "GenGradientLinear"},
         {"api": "GenImageGradientRadial", "renameAs": "GenGradientRadial"},
+        {"api": "GenImageGradientSquare", "renameAs": "GenGradientSquare"},
         {"api": "GenImageChecked", "renameAs": "GenChecked"},
         {"api": "GenImageWhiteNoise", "renameAs": "GenWhiteNoise"},
         {"api": "GenImagePerlinNoise", "renameAs": "GenPerlinNoise"},
@@ -279,8 +321,17 @@
       ]
     },
     "Texture": {
+      "init": ["0", "0", "0", "0", "PIXELFORMAT_UNCOMPRESSED_GRAYSCALE"],
+      "fields": {
+        "format": {
+          "typePy": "int | PixelFormat"
+        }
+      },
       "bindApiAsProperty": [
         {"api": "IsTextureReady", "renameAs": "IsReady"}
+      ],
+      "bindApiAsDestructor": [
+        { "api": "UnloadTexture" }
       ],
       "bindApiAsMethod": [
         {"api": "UnloadTexture", "renameAs": "Unload"},
@@ -295,22 +346,31 @@
         {"api": "DrawTextureTiled", "renameAs": "DrawTiled"},
         {"api": "DrawTexturePro", "renameAs": "DrawPro"},
         {"api": "DrawTextureNPatch", "renameAs": "DrawNPatch"},
-        {"api": "DrawTexturePoly", "renameAs": "DrawPoly"}
+        {"api": "DrawTexturePoly", "renameAs": "DrawPoly"},
+        {"api": "UpdateTexture", "renameAs": "Update"},
+        {"api": "UpdateTextureRec", "renameAs": "UpdateRec"}
       ],
       "bindApiAsClassmethod": [
         {"api": "LoadTexture", "renameAs": "Load"},
-        {"api": "LoadTextureFromImage", "renameAs": "LoadFromImage"}
+        {"api": "LoadTextureFromImage", "renameAs": "LoadFromImage"},
+        {"api": "LoadTextureCubemap", "renameAs": "LoadCubemap"}
       ],
       "dunderStrExpression": "return \"[{} at {}]\".format(self.__class__.__name__, id(self))",
       "dunderReprExpression": "return self.__str__()"
     },
     "Color": {
       "func": "_color({})",
+      "init": ["0", "0", "0", "0"],
+      "bindApiAsClassmethod": [
+        {"api": "ColorFromNormalized", "renameAs": "FromNormalized"},
+        {"api": "ColorFromHSV", "renameAs": "FromHSV"},
+        {"api": "GetColor", "renameAs": "Get"}
+      ],
       "bindApiAsMethod": [
         {"api": "Fade", "renameAs": "Fade"},
+        {"api": "ColorNormalize", "renameAs": "Normalize"},
         {"api": "ColorToInt", "renameAs": "ToInt"},
         {"api": "ColorToHSV", "renameAs": "ToHSV"},
-        {"api": "ColorFromHSV", "renameAs": "FromHSV"},
         {"api": "ColorTint", "renameAs": "Tint"},
         {"api": "ColorBrightness", "renameAs": "Brightness"},
         {"api": "ColorContrast", "renameAs": "Contrast"},
@@ -318,9 +378,11 @@
         {"api": "ColorAlphaBlend", "renameAs": "AlphaBlend"}
       ],
       "dunderStrExpression": "return \"({: 3}, {: 3}, {: 3}, {: 3})\".format(self.r, self.g, self.b, self.a)",
-      "dunderReprExpression": "return \"Color{}\".format(self.__str__())"
+      "dunderReprExpression": "return \"Color{}\".format(self.__str__())",
+      "binaryData": { "format": "!4B", "args": "self.r, self.g, self.b, self.a" }
     },
     "Font": {
+      "init": ["1", "0", "1", "Texture2D()", "None", "None"],
       "bindApiAsMethod": [
         {"api": "UnloadFont", "renameAs": "Unload"},
         {"api": "DrawTextEx", "renameAs": "DrawTextEx"},
@@ -332,6 +394,9 @@
         {"api": "GetGlyphInfo", "renameAs": "GetGlyphInfo"},
         {"api": "GetGlyphAtlasRec", "renameAs": "GetGlyphAtlasRec"}
       ],
+      "bindApiAsDestructor": [
+        { "api": "UnloadFont" }
+      ],
       "bindApiAsStaticmethod": [
         {"api": "LoadFontData", "renameAs": "LoadData"},
         {"api": "UnloadFontData", "renameAs": "UnloadData"}
@@ -340,7 +405,8 @@
         {"api": "LoadFont", "renameAs": "Load"},
         {"api": "LoadFontEx", "renameAs": "LoadEx"},
         {"api": "LoadFontFromImage", "renameAs": "LoadFromImage"},
-        {"api": "LoadFontFromMemory", "renameAs": "LoadFromMemory"}
+        {"api": "LoadFontFromMemory", "renameAs": "LoadFromMemory"},
+        {"api": "GetFontDefault", "renameAs": "GetDefault"}
       ],
       "bindApiAsProperty": [
         {"api": "IsFontReady", "renameAs": "IsReady"}
@@ -348,7 +414,11 @@
       "dunderStrExpression": "return \"[{} at {}]\".format(self.__class__.__name__, id(self))",
       "dunderReprExpression": "return self.__str__()"
     },
+    "GlyphInfo": {
+      "init": ["0", "0", "0", "0", "Image()"]
+    },
     "Model": {
+      "init": ["None", "0", "0", "None", "None", "None", "0", "None", "None"],
       "bindApiAsMethod": [
         {"api": "IsModelAnimationValid", "renameAs": "IsAnimationValid"},
         {"api": "UpdateModelAnimation", "renameAs": "UpdateAnimation"},
@@ -361,6 +431,9 @@
         {"api": "DrawModelWires", "renameAs": "DrawWires"},
         {"api": "DrawModelWiresEx", "renameAs": "DrawWiresEx"}
       ],
+      "bindApiAsDestructor": [
+        { "api": "UnloadModel" }
+      ],
       "bindApiAsClassmethod": [
         {"api": "LoadModel", "renameAs": "Load"},
         {"api": "LoadModelFromMesh", "renameAs": "LoadFromMesh"}
@@ -368,7 +441,11 @@
       "dunderStrExpression": "return \"[{} at {}]\".format(self.__class__.__name__, id(self))",
       "dunderReprExpression": "return self.__str__()"
     },
+    "ModelAnimation": {
+      "init": ["0", "0", "None", "None", "None"]
+    },
     "Mesh": {
+      "init": ["0", "0", "None", "None", "None", "None", "None", "None", "None", "None", "None", "None", "None", "0", "None"],
       "bindApiAsMethod": [
         {"api": "UploadMesh", "renameAs": "Upload", "byref": true},
         {"api": "UpdateMeshBuffer", "renameAs": "UpdateBuffer"},
@@ -378,6 +455,9 @@
         {"api": "ExportMesh", "renameAs": "Export"},
         {"api": "GetMeshBoundingBox", "renameAs": "GetBoundingBox"},
         {"api": "GenMeshTangents", "renameAs": "GenTangents", "byref": true}
+      ],
+      "bindApiAsDestructor": [
+        { "api": "UnloadMesh" }
       ],
       "bindApiAsClassmethod": [
         {"api": "GenMeshPoly", "renameAs": "GenPoly"},
@@ -396,8 +476,12 @@
       "dunderReprExpression": "return self.__str__()"
     },
     "Material": {
+      "init": ["Shader()", "None", "None"],
       "bindApiAsProperty": [
         {"api": "IsMaterialReady", "renameAs": "IsReady"}
+      ],
+      "bindApiAsDestructor": [
+        { "api": "UnloadMaterial" }
       ],
       "bindApiAsMethod": [
         {"api": "UnloadMaterial", "renameAs": "Unload"},
@@ -410,9 +494,22 @@
       "dunderStrExpression": "return \"[{} at {}]\".format(self.__class__.__name__, id(self))",
       "dunderReprExpression": "return self.__str__()"
     },
+    "MaterialMap": {
+      "init": ["Texture2D()", "Color()", "0.0"]
+    },
+    "Transform": {
+      "init": ["Vector3()", "Quaternion()", "Vector3(1.0, 1.0, 1.0)"]
+    },
+    "BoneInfo": {
+      "init": ["None", "0"]
+    },
     "Wave": {
+      "init": ["0", "0", "0", "0", "None"],
       "bindApiAsProperty": [
         {"api": "IsWaveReady", "renameAs": "IsReady"}
+      ],
+      "bindApiAsDestructor": [
+        { "api": "UnloadWave" }
       ],
       "bindApiAsMethod": [
         {"api": "WaveCopy", "renameAs": "Copy"},
@@ -432,36 +529,43 @@
       "dunderReprExpression": "return self.__str__()"
     },
     "Sound": {
+      "init": ["AudioStream()", "0"],
       "bindApiAsProperty": [
         {"api": "IsSoundReady", "renameAs": "IsReady"}
+      ],
+      "bindApiAsDestructor": [
+        { "api": "UnloadSound" }
       ],
       "bindApiAsMethod": [
         {"api": "PlaySound", "renameAs": "Play"},
         {"api": "StopSound", "renameAs": "Stop"},
         {"api": "PauseSound", "renameAs": "Pause"},
         {"api": "ResumeSound", "renameAs": "Resume"},
-        {"api": "PlaySoundMulti", "renameAs": "PlayMulti"},
         {"api": "IsSoundPlaying", "renameAs": "IsPlaying"},
         {"api": "SetSoundVolume", "renameAs": "SetVolume"},
         {"api": "SetSoundPitch", "renameAs": "SetPitch"},
         {"api": "SetSoundPan", "renameAs": "SetPan"},
         {"api": "UnloadSound", "renameAs": "Unload"},
+        {"api": "UnloadSoundAlias", "renameAs": "UnloadAlias"},
         {"api": "UpdateSound", "renameAs": "Update"}
-      ],
-      "bindApiAsStaticmethod": [
-        {"api": "GetSoundsPlaying", "renameAs": "GetSoundsPlaying"},
-        {"api": "StopSoundMulti", "renameAs": "StopMulti"}
       ],
       "bindApiAsClassmethod": [
         {"api": "LoadSound", "renameAs": "Load"},
-        {"api": "LoadSoundFromWave", "renameAs": "LoadFromWave"}
+        {"api": "LoadSoundFromWave", "renameAs": "LoadFromWave"},
+        {"api": "LoadSoundAlias", "renameAs": "LoadAlias"}
       ],
       "dunderStrExpression": "return \"[{} Playing: {}]\".format(self.__class__.__name__, _IsSoundPlaying(self))",
       "dunderReprExpression": "return self.__str__()"
     },
     "Music": {
+      "init": ["AudioStream()", "0", "False", "0", "None"],
       "bindApiAsProperty": [
-        {"api": "IsMusicReady", "renameAs": "IsReady"}
+        {"api": "IsMusicReady", "renameAs": "IsReady"},
+        {"api": "GetMusicTimeLength", "renameAs": "TimeLength"},
+        {"api": "GetMusicTimePlayed", "renameAs": "TimePlayed"}
+      ],
+      "bindApiAsDestructor": [
+        { "api": "UnloadMusicStream" }
       ],
       "bindApiAsMethod": [
         {"api": "PlayMusicStream", "renameAs": "Play"},
@@ -474,20 +578,23 @@
         {"api": "SetMusicVolume", "renameAs": "SetVolume"},
         {"api": "SetMusicPitch", "renameAs": "SetPitch"},
         {"api": "SetMusicPan", "renameAs": "SetPan"},
-        {"api": "GetMusicTimeLength", "renameAs": "GetTimeLength"},
-        {"api": "GetMusicTimePlayed", "renameAs": "GetTimePlayed"}
+        {"api": "UnloadMusicStream", "renameAs": "Unload"}
       ],
-      "bindApiAsStaticmethod": [
+      "bindApiAsClassmethod": [
         {"api": "LoadMusicStream", "renameAs": "Load"},
         {"api": "LoadMusicStreamFromMemory", "renameAs": "LoadFromMemory"}
       ],
-      "bindApiAsClassmethod": [],
+      "bindApiAsStaticmethod": [],
       "dunderStrExpression": "return \"[{} at {}]\".format(self.__class__.__name__, id(self))",
       "dunderReprExpression": "return self.__str__()"
     },
     "AudioStream": {
+      "init": ["None", "None", "0", "0", "0"],
       "bindApiAsProperty": [
         {"api": "IsAudioStreamReady", "renameAs": "IsReady"}
+      ],
+      "bindApiAsDestructor": [
+        { "api": "UnloadAudioStream" }
       ],
       "bindApiAsMethod": [
         {"api": "UnloadAudioStream", "renameAs": "Unload"},
@@ -511,6 +618,24 @@
       ],
       "dunderStrExpression": "return \"[{} Playing: {}]\".format(self.__class__.__name__, _IsAudioStreamPlaying(self))",
       "dunderReprExpression": "return self.__str__()"
+    },
+    "NPatchInfo": {
+      "init": ["Rectangle()", "1", "1", "1", "1", "NPATCH_NINE_PATCH"],
+      "fields": {
+        "layout": {
+          "typePy": "int | NPatchLayout"
+        }
+      },
+      "binaryData": { "format": "!4f5i", "args": "self.source.x, self.source.y, self.source.width, self.source.height, self.left, self.top, self.right, self.bottom, self.layout" }
+    },
+    "FilePathList": {
+      "init": ["0", "0", "None"]
+    },
+    "AutomationEvent": {
+      "init": ["0", "0", "None"]
+    },
+    "AutomationEventList": {
+      "init": ["0", "0", "None"]
     }
   },
   "functions": {
@@ -520,48 +645,383 @@
         "rlDisableStatePointer"
       ],
       "contextManager": [
-        { "api": "Drawing", "enter": "BeginDrawing", "leave": "EndDrawing"},
-        { "api": "ScissorMode", "enter": "BeginScissorMode", "leave": "EndScissorMode"},
-        { "api": "BlendMode", "enter": "BeginBlendMode", "leave": "EndBlendMode"},
-        { "api": "Mode2D", "enter": "BeginMode2D", "leave": "EndMode2D"},
-        { "api": "Mode3D", "enter": "BeginMode3D", "leave": "EndMode3D"},
-        { "api": "ShaderMode", "enter": "BeginShaderMode", "leave": "EndShaderMode"},
-        { "api": "TextureMode", "enter": "BeginTextureMode", "leave": "EndTextureMode"},
-        { "api": "VrStereoMode", "enter": "BeginVrStereoMode", "leave": "EndVrStereoMode"}
+        { "library": "rlapi", "module": "raylib", "api": "Drawing", "enter": "BeginDrawing", "leave": "EndDrawing"},
+        { "library": "rlapi", "module": "raylib", "api": "ScissorMode", "enter": "BeginScissorMode", "leave": "EndScissorMode"},
+        { "library": "rlapi", "module": "raylib", "api": "BlendMode", "enter": "BeginBlendMode", "leave": "EndBlendMode"},
+        { "library": "rlapi", "module": "raylib", "api": "Mode2D", "enter": "BeginMode2D", "leave": "EndMode2D"},
+        { "library": "rlapi", "module": "raylib", "api": "Mode3D", "enter": "BeginMode3D", "leave": "EndMode3D"},
+        { "library": "rlapi", "module": "raylib", "api": "ShaderMode", "enter": "BeginShaderMode", "leave": "EndShaderMode"},
+        { "library": "rlapi", "module": "raylib", "api": "TextureMode", "enter": "BeginTextureMode", "leave": "EndTextureMode"},
+        { "library": "rlapi", "module": "raylib", "api": "VrStereoMode", "enter": "BeginVrStereoMode", "leave": "EndVrStereoMode"}
       ]
+    },
+    "IsWindowState": {
+      "params": {
+        "flag": {
+          "typePy": "int | ConfigFlags"
+        }
+      }
+    },
+    "SetWindowState": {
+      "params": {
+        "flags": {
+          "typePy": "int | ConfigFlags"
+        }
+      }
+    },
+    "ClearWindowState": {
+      "params": {
+        "flags": {
+          "typePy": "int | ConfigFlags"
+        }
+      }
+    },
+    "BeginBlendMode": {
+      "params": {
+        "mode": {
+          "typePy": "int | BlendMode"
+        }
+      }
+    },
+    "SetShaderValue": {
+      "params": {
+        "uniformType": {
+          "typePy": "int | ShaderUniformDataType"
+        }
+      }
+    },
+    "SetShaderValueV": {
+      "params": {
+        "uniformType": {
+          "typePy": "int | ShaderUniformDataType"
+        }
+      }
+    },
+    "GetMonitorName": { "returnAction": "_str_out({})" },
+    "GetClipboardText": { "returnAction": "_str_out({})" },
+    "LoadFileText": { "returnAction": "_str_out({})" },
+    "GetFileExtension": { "returnAction": "_str_out({})" },
+    "GetFileName": { "returnAction": "_str_out({})" },
+    "GetFileNameWithoutExt": { "returnAction": "_str_out({})" },
+    "GetDirectoryPath": { "returnAction": "_str_out({})" },
+    "GetPrevDirectoryPath": { "returnAction": "_str_out({})" },
+    "GetWorkingDirectory": { "returnAction": "_str_out({})" },
+    "GetApplicationDirectory": { "returnAction": "_str_out({})" },
+    "GetCodepointToUTF8": { "returnAction": "_str_out({})" },
+    "TextFormat": { "returnAction": "_str_out({})" },
+    "TextSubtext": { "returnAction": "_str_out({})" },
+    "TextReplace": { "returnAction": "_str_out({})" },
+    "TextInsert": { "returnAction": "_str_out({})" },
+    "TextJoin": { "returnAction": "_str_out({})" },
+    "TextSplit": { "returnAction": "{}" },
+    "TextToUpper": { "returnAction": "_str_out({})" },
+    "TextToLower": { "returnAction": "_str_out({})" },
+    "TextToPascal": { "returnAction": "_str_out({})" },
+    "GetGamepadName": { "returnAction": "_str_out({})" },
+    "SetConfigFlags": {
+      "params": {
+        "flags": {
+          "typePy": "int | ConfigFlags"
+        }
+      }
+    },
+    "SetMaterialTexture": {
+      "params": {
+        "mapType": {
+          "typePy": "int | MaterialMapIndex"
+        }
+      }
+    },
+    "SetTraceLogLevel": {
+      "params": {
+        "logLevel": {
+          "typePy": "int | TraceLogLevel"
+        }
+      }
+    },
+    "TraceLog": {
+      "params": {
+        "logLevel": {
+          "typePy": "int | TraceLogLevel"
+        }
+      }
+    },
+    "IsKeyPressed": {
+      "params": {
+        "key": {
+          "typePy": "int | KeyboardKey"
+        }
+      }
+    },
+    "IsKeyPressedRepeat": {
+      "params": {
+        "key": {
+          "typePy": "int | KeyboardKey"
+        }
+      }
+    },
+    "IsKeyDown": {
+      "params": {
+        "key": {
+          "typePy": "int | KeyboardKey"
+        }
+      }
+    },
+    "IsKeyReleased": {
+      "params": {
+        "key": {
+          "typePy": "int | KeyboardKey"
+        }
+      }
+    },
+    "IsKeyUp": {
+      "params": {
+        "key": {
+          "typePy": "int | KeyboardKey"
+        }
+      }
+    },
+    "SetExitKey": {
+      "params": {
+        "key": {
+          "typePy": "int | KeyboardKey"
+        }
+      }
+    },
+    "IsGamepadButtonPressed": {
+      "params": {
+        "button": {
+          "typePy": "int | GamepadButton"
+        }
+      }
+    },
+    "IsGamepadButtonDown": {
+      "params": {
+        "button": {
+          "typePy": "int | GamepadButton"
+        }
+      }
+    },
+    "IsGamepadButtonReleased": {
+      "params": {
+        "button": {
+          "typePy": "int | GamepadButton"
+        }
+      }
+    },
+    "IsGamepadButtonUp": {
+      "params": {
+        "button": {
+          "typePy": "int | GamepadButton"
+        }
+      }
+    },
+    "GetGamepadAxisMovement": {
+      "params": {
+        "axis": {
+          "typePy": "int | GamepadAxis"
+        }
+      }
+    },
+    "IsMouseButtonPressed": {
+      "params": {
+        "button": {
+          "typePy": "int | MouseButton"
+        }
+      }
+    },
+    "IsMouseButtonDown": {
+      "params": {
+        "button": {
+          "typePy": "int | MouseButton"
+        }
+      }
+    },
+    "IsMouseButtonReleased": {
+      "params": {
+        "button": {
+          "typePy": "int | MouseButton"
+        }
+      }
+    },
+    "IsMouseButtonUp": {
+      "params": {
+        "button": {
+          "typePy": "int | MouseButton"
+        }
+      }
+    },
+    "SetMouseCursor": {
+      "params": {
+        "cursor": {
+          "typePy": "int | MouseCursor"
+        }
+      }
+    },
+    "IsGestureDetected": {
+      "params": {
+        "gesture": {
+          "typePy": "int | Gesture"
+        }
+      }
+    },
+    "UpdateCamera": {
+      "params": {
+        "mode": {
+          "typePy": "int | CameraMode"
+        }
+      }
+    },
+    "LoadImageRaw": {
+      "params": {
+        "format": {
+          "typePy": "int | PixelFormat"
+        }
+      }
+    },
+    "ImageFormat": {
+      "params": {
+        "newFormat": {
+          "typePy": "int | PixelFormat"
+        }
+      }
+    },
+    "SetTextureFilter": {
+      "params": {
+        "filter": {
+          "typePy": "int | TextureFilter"
+        }
+      }
+    },
+    "SetTextureWrap": {
+      "params": {
+        "wrap": {
+          "typePy": "int | TextureWrap"
+        }
+      }
+    },
+    "SetPixelColor": {
+      "params": {
+        "format": {
+          "typePy": "int | PixelFormat"
+        }
+      }
+    },
+    "GetPixelDataSize": {
+      "params": {
+        "format": {
+          "typePy": "int | PixelFormat"
+        }
+      }
+    },
+    "LoadTextureCubemap": {
+      "params": {
+        "layout": {
+          "typePy": "int | CubemapLayout"
+        }
+      }
+    },
+    "LoadFontData": {
+      "type": {
+        "typePy": "Array[GlyphInfo]"
+      },
+      "params": {
+        "type": {
+          "typePy": "int | FontType"
+        },
+        "codepoints": {
+          "outParam": true,
+          "transformAction": "int_array({})",
+          "transformReturnAction": "cast({ret}, POINTER(GlyphInfo * {arg}.value))[0]",
+          "passAction": "byref({})",
+          "pushAction": "{}.value",
+          "type": {
+            "typePy": "list[int] | str"
+          }
+        }
+      }
+    },
+    "LoadFontFromMemory": {
+      "params": {
+        "codepoints": {
+          "outParam": false,
+          "transformAction": "int_array({})",
+          "type":{
+            "typePy": "list[int] | str"
+          }
+        }
+      }
+    },
+    "LoadFontEx": {
+      "callInstead": "",
+      "returnAction": "{}",
+      "params": {
+        "codepoints": {
+          "outParam": false,
+          "transformAction": "int_array({})",
+          "transformReturnAction": "{ret}.contents[:{arg}]",
+          "passAction": "byref({})",
+          "pushAction": "{}.value",
+          "type":{
+            "typePy": "list[int] | str"
+          }
+        }
+      }
     },
     "LoadMaterials": {
       "callInstead": "",
+      "returnAction": "{}",
+      "type": {
+        "typePy": "Array[Material]"
+      },
       "params": {
         "materialCount": {
-          "defaultsTo": "None",
           "outParam": true,
-          "varArgs": false,
-          "ommit": true,
-          "useAsLength": true
+          "transformAction": "Int({})",
+          "transformReturnAction": "cast({ret}, POINTER(Material * {arg}.value))[0]",
+          "passAction": "byref({})",
+          "pushAction": "{}.value",
+          "type":{
+            "typePy": "int"
+          }
         }
       }
     },
     "LoadModelAnimations": {
       "callInstead": "",
+      "returnAction": "{}",
+      "type": {
+        "typePy": "Array[ModelAnimation]"
+      },
       "params": {
         "animCount": {
-          "defaultsTo": "None",
           "outParam": true,
-          "varArgs": false,
-          "ommit": true,
-          "useAsLength": true
+          "transformAction": "Int({})",
+          "transformReturnAction": "cast({ret}, POINTER(ModelAnimation * {arg}.value))[0]",
+          "pushAction": "{}.value",
+          "passAction": "byref({})",
+          "type":{
+            "typePy": "int"
+          }
         }
       }
     },
     "LoadImagePalette": {
       "callInstead": "",
+      "returnAction": "{}",
+      "type":{
+        "typePy": "Array[Color]"
+      },
       "params": {
         "colorCount": {
-          "defaultsTo": "None",
           "outParam": true,
-          "ommit": true,
-          "useAsLength": true
+          "transformAction": "Int({})",
+          "transformReturnAction": "cast({ret}, POINTER(Color * {arg}.value))[0]",
+          "passAction": "byref({})",
+          "pushAction": "{}.value",
+          "type":{
+            "typePy": "int"
+          }
         }
       }
     },
@@ -574,7 +1034,6 @@
         "pointCount": {
           "defaultsTo": "None",
           "outParam": false,
-          "varArgs": false,
           "ommit": true,
           "useAsLength": false,
           "lenOfParam": "points"
@@ -585,11 +1044,66 @@
       "callInstead": "",
       "params": {
         "points": {
-          "func": "_arr_in(Vector2, {})"
+          "type": {
+            "typePy": "Vector2Ptr | Array[Vector2]"
+          }
         },
         "pointCount": {
-          "ommit": true,
-          "lenOfParam": "points"
+        }
+      }
+    },
+    "DrawSplineLinear": {
+      "params": {
+        "points": {
+          "type": {
+            "typePy": "Vector2Ptr | Array[Vector2]"
+          }
+        },
+        "pointCount": {
+        }
+      }
+    },
+    "DrawSplineBasis": {
+      "params": {
+        "points": {
+          "type": {
+            "typePy": "Vector2Ptr | Array[Vector2]"
+          }
+        },
+        "pointCount": {
+        }
+      }
+    },
+    "DrawSplineCatmullRom": {
+      "params": {
+        "points": {
+          "type": {
+            "typePy": "Vector2Ptr | Array[Vector2]"
+          }
+        },
+        "pointCount": {
+        }
+      }
+    },
+    "DrawSplineBezierQuadratic": {
+      "params": {
+        "points": {
+          "type": {
+            "typePy": "Vector2Ptr | Array[Vector2]"
+          }
+        },
+        "pointCount": {
+        }
+      }
+    },
+    "DrawSplineBezierCubic": {
+      "params": {
+        "points": {
+          "type": {
+            "typePy": "Vector2Ptr | Array[Vector2]"
+          }
+        },
+        "pointCount": {
         }
       }
     },
@@ -597,11 +1111,12 @@
       "callInstead": "",
       "params": {
         "points": {
-          "func": "_arr_in(Vector2, {})"
+          "type": {
+            "typePy": "Vector2Ptr | Array[Vector2]"
+          }
         },
         "pointCount": {
-          "ommit": true,
-          "lenOfParam": "points"
+          "transformAction": "len(points) if {0} <= 0 else {0}"
         }
       }
     },
@@ -609,11 +1124,12 @@
       "callInstead": "",
       "params": {
         "points": {
-          "func": "_arr_in(Vector3, {})"
+          "type": {
+            "typePy": "Vector3Ptr | Array[Vector3]"
+          }
         },
         "pointCount": {
-          "ommit": true,
-          "lenOfParam": "points"
+          "passAction": "len(points) if {0} <= 0 else {0}"
         }
       }
     },
@@ -641,6 +1157,5 @@
         }
       }
     }
-  },
-  "extensions": {}
+  }
 }

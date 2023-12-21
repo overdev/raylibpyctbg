@@ -46,8 +46,7 @@ Options related to code style and naming conventions are:
 
 You can also customize library loading file paths/names, inclusion of extension headers and output filepath.
 
-Many of these options can be tweaked via CLI but for deeper customizations you can check out the file
-`raylib_api.bind.json` in the _input_ folder.
+Many of these options can be tweaked via `input/rl500/global_config.json` file, but for deeper customizations you can check out the `input/rl500/raylib_api.bind.json` file.
 
 ### `Vector{2|3|4}` swizzling:
 

@@ -132,7 +132,6 @@ dmypy.json
 raylibpyctbg/rmath.h
 raylibpyctbg/test_out.txt
 examples
-output/
 package/previous
 package/src/raylibpy/bin/32bit/*.dll
 package/src/raylibpy/bin/32bit/libraylib.*

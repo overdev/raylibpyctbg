@@ -1,0 +1,48 @@
+{
+    "snakecaseFunctions": true,
+    "snakecaseParameters": true,
+    "snakecaseFields": true,
+    "snakecaseProperties": true,
+    "bindApiAsClassmethod": true,
+    "bindApiAsDestructor": true,
+    "bindApiAsStaticmethod": true,
+    "bindApiAsMethod": true,
+    "bindApiAsProperty": true,
+    "bindApiAsContextManager": true,
+    "addUtilityMethods": true,
+    "addBinaryPackingMethods": true,
+    "addContextManager": true,
+    "addVectorMath": true,
+    "addAttribSwizzling": true,
+    "typeHint": true,
+    "typeAnnotate": false,
+    "coreLibrary": {
+        "libName": "rlapi",
+        "libKeyName": "raylib",
+        "libBasedir": ["{}/bin"],
+        "includedModules": ["raylib", "raymath", "rlgl"],
+        "binFilename": {
+            "win32": "raylib.dll",
+            "linux": "libraylib.so.5.0.0",
+            "darwin": "libraylib.5.0.0.dylib"
+        },
+        "libModules": [
+            {
+                "modName": "raylib",
+                "jsonApiFilename": "input/rl500/raylib_api.json",
+                "jsonMetadataFilename": "input/rl500/raylib_api.bind.json"
+            },
+            {
+                "modName": "raymath",
+                "jsonApiFilename": "input/rl500/rmath_api.json",
+                "jsonMetadataFilename": null
+            },
+            {
+                "modName": "rlgl",
+                "jsonApiFilename": "input/rl500/rlgl.json",
+                "jsonMetadataFilename": "input/rl500/rlgl_api.bind.json"
+            }
+        ]
+    },
+    "extensionLibraries": []
+}
