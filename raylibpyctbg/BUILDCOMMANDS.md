@@ -19,89 +19,108 @@ With the repo cloned, we can try to generate a package that suits our needs.
 The intended way of issuing the command is to set the current working directory to the root dir of the repo, and then:
 
 ```
-py -3.x raylibpyctbg -help
+py -3.x raylibpyctbg --help
 ```
 
 On Mac and/or Linux the command _probably_ is:
 
 ```
-python3 raylibpyctbg -help
+python3 raylibpyctbg --help
 ```
 
 This command will cause a help message to be shown describing all options available:
 
 ```
-raylibpy ctypes binding generator help
+usage: raylibpyctbg [-h] [-c CONFIG] [-o OUT] [-g] [-d] [-b] [-i] [-v]
 
-Usage:
-    $ python raylibpyctbg [options...]
-
-    OPTIONS:
-        OPT NAME                        DEFAULT?    DESCRIPTION
-        -help                           --          prints this message and exits
-        -typeHint                       no          adds Python2 type hinting
-        -typeAnnotate                   no          adds Python3.3+ type annotation
-        -snakecase                      no          apply Python's naming convention to all names
-        -attribSwizzling                no          adds attribute swizzling to Vector{2,3,4}, Color and Rectangle
-        -bindApi                        no          binds functions as property, context manager, classmethod, staticmethod and instancemethod
-        -snakecaseFunctions             no          apply Python's naming convention to functions (and methods)
-        -snakecaseParameters            no          apply Python's naming convention to parameters
-        -snakecaseFields                no          apply Python's naming convention to fields
-        -bindApiAsClassmethod           no          binds functions as classmethod
-        -bindApiAsStaticmethod          no          binds functions as staticmethod
-        -bindApiAsMethod                no          binds functions as method
-        -bindApiAsProperty              no          binds functions as property
-        -bindApiAsContextManager        no          context management binding for structs (Camera{2,3}D, Shader, VrStereoConfig, RenderTexture)
-        -addContextManager              no          context management for Mode functions (Drawing, Scissor, Blend, 2D, 3D, Shader, Texture, VrStereoMode)
-        -addVectorAttribSwizzling       yes         adds attribute swizzling to Vector{2,3,4}
-        -addVectorMath                  yes         adds vector math to Vector{2,3} (requires swizzling and rmath to be included)
-        -addColorAttribSwizzling        yes         adds attribute swizzling to Color
-        -addRectangleAttribSwizzling    yes         adds attribute swizzling to Rectangle
-        -pythonic                       no          combines -bindApi -typeAnnotate -snakecase -attribSwizzling -addContextManager -addVectorMath
-        -spartan                        no          combines -no-bindApi -typeHint -no-snakecase -no-attribSwizzling -no-addContextManager -no-addVectorMath
-        -onlyDocs                       no          no binding code generation, only documentation
-
-        OPT NAME                        DESCRIPTION
-        -no-type                        no type hinting nor annotations
-        -no-snakecase                   keeps lib naming convention (C99 camelCase/PascalCase) on all names
-        -no-attribSwizzling             no attribute zwizzling at all
-        -no-bindApi                     no functions as property, context manager, classmethod, staticmethod nor instancemethod
-        -no-snakecaseFunctions          keeps lib naming convention to functions (and methods)
-        -no-snakecaseParameters         keeps lib naming convention to parameters
-        -no-snakecaseFields             keeps lib naming convention to fields
-        -no-bindApiAsClassmethod        no classmethod binding of functions
-        -no-bindApiAsStaticmethod       no staticmethod binding of functions
-        -no-bindApiAsMethod             no method binding of functions
-        -no-bindApiAsProperty           no property binding of functions
-        -no-bindApiAsContextManager     no context management binding for structs (Camera{2,3}D, Shader, VrStereoConfig, RenderTexture)
-        -no-addContextManager           no context management for Mode functions (Drawing, Scissor, Blend, 2D, 3D, Shader, Texture, VrStereoMode)
-        -no-addVectorAttribSwizzling    no attribute swizzling to Vector{2,3,4}
-        -no-addVectorMath               no vector math to Vector{2,3}
-        -no-addColorAttribSwizzling     no attribute swizzling to Color
-        -no-addRectangleAttribSwizzling no attribute swizzling to Rectangle
-
-        --libBaseDir <value>            set basepath to load the lib binaries to specified directory
-                                            Note: this value is passed as first argument(s) to os.path.join()
-        --win32LibFilename <value>      custom .dll binary to be loaded on Windows (only file name and extension)
-        --linuxLibFilename <value>      custom .so binary to be loaded on Linux (only file name and extension)
-        --darwinLibFilename <value>     custom .dylib binary to be loaded on MacOS (only file name and extension)
-        --include <value>               include extra parsed headers:
-                                            use 'rmath' to include rmath.h functions from 'input/rmath_api.json'
-                                            use 'rlgl' to include rlgl.h functions and types from 'input/rlgl.json'
-                                            filepath to any other parsed header exposed in raylib (JSON)
-        --extension <value>             similar to --include but intended for standalone libs:
-                                            <value> must be the lib name to be looked up in binding config json file
-        --in <value>                    dirpath to load the json files from (defaults to 'input/'; must precede --include)
-        --out <value>                   filepath to write the binding into
-        --markdown <value>              filepath to write the api reference (Markdown format) into
-
+options:
+  -h, --help            show this help message and exit
+  -c CONFIG, --config CONFIG
+                        Custom binding configuration (JSON) file path
+  -o OUT, --out OUT     The binding code output file path
+  -g, --generate        Generate the binding code
+  -d, --docs            Generate the binding documentation (inactive)
+  -b, --build           Build the package (requires build package)
+  -i, --install         [Re]Install the newly built package
+  -v, --version         Print the version information and exits
 ```
 
 Let's look more closely on each of these options
 
-## Generation Options
 
-### `-typeHint` or `-typAnnotate` Options
+### `-c <filename>` or `--config <filename>`
+
+With this option you can specify a custom global configuration file. It expects `<filename>` to be the path to a JSON file. If you omit this option, the default config in the `input/rl500/global_config.json` will be loaded.
+
+
+### `-o <filename>` or `--out <filename>`
+
+This option allows you the specify where you want the binding code to be stored. By default, `<filename>` is the `__init__.py` in the `package/src/raylibpy` dir.
+
+
+### `-g` or `--generate`
+
+Add this option if you want the binding code to be generated.
+
+
+### `-b` or `--build`
+
+Add this option if you want to build a python wheel (`*.whl`) with the package source. This option requires you to install the _build_ package with pip. Note that _build_ requires an internet connection.
+
+### `-i` or `--install`
+
+Add this option to install the package that was built with `-b` command. This is not a normal installation but a forced one, meaning that it will uninstall the previous one and install this new.
+
+### `-d` or `--docs`
+
+Adds this option if you want to generate the documentation for this binding. **This option is not functional yet.**
+
+
+### `-v` or `--version`
+
+Prints the raylibpyctbg version and exits.
+
+
+### `-h` or `--help`
+
+Prints the raylibpyctbg help information above and exits.
+
+
+### Gen code, build and/or install
+
+The options to generate the binding code, build the package or install it work independent of each other. You can combine them or isolate them.
+
+
+## Global Configuration JSON file
+
+The global configuration JSON file has the following contents:
+
+```json
+{
+    "snakecaseFunctions": true,
+    "snakecaseParameters": true,
+    "snakecaseFields": true,
+    "snakecaseProperties": true,
+    "bindApiAsClassmethod": true,
+    "bindApiAsDestructor": true,
+    "bindApiAsStaticmethod": true,
+    "bindApiAsMethod": true,
+    "bindApiAsProperty": true,
+    "bindApiAsContextManager": true,
+    "addUtilityMethods": true,
+    "addBinaryPackingMethods": false,
+    "addContextManager": true,
+    "addVectorMath": true,
+    "addAttribSwizzling": true,
+    "typeHint": true,
+    "typeAnnotate": false,
+    "coreLibrary": {/* ... */},
+    "extensionLibraries": [/* ... */]
+}
+```
+
+
+### `typeHint` or `typAnnotate` Options
 
 These options define whether the binding will include type information on function parameters and return values. By default the binding includes no type information but it can be included in two flavors:
 
@@ -127,23 +146,25 @@ def is_key_pressed(key: int) -> bool:
 ```
 
 
-### `-snakecase` Option
+### `snakecase*` Options
 
-By default the C naming convention will be kept in the binding code, but this option allows python naming convention to be applied where necessary.
+By default the Python naming convention will be kept in the binding code, but this option allows C naming convention to be applied if and where necessary.
 
-Default:
+With `snakecaseFunctions` disabled:
 ```python
 def IsKeyPressed(key):
     # ...
 ```
 
-_Snakecased_ names:
+With `snakecaseFunctions` enabled:
 ```python
 def is_key_pressed(key):
     # ...
 ```
 
-### `-attribSwizzling` Option
+There are also options for changing the case of function parameters, structure fields and properties. 
+
+### `attribSwizzling` Option
 
 This option causes some raylib types to be added a feature common in OpenGL Shading Language vectors. With this option `Vector2`, `Vector3`, `Vector4`, `Color` and `Rectangle` attributes can be mixed together as a single attribute:
 
@@ -152,7 +173,7 @@ vec = Vector2(5.0, 7.0)
 vec3 = vec.yxy  # make a new Vector3 by combining attributes 'x' and 'y' of 'vec' instance
 ```
 
-### `-bindApi` Option
+### `bindApiAs*` Option
 
 Raylib has many functions that relates to some of its structure types, like:
 
@@ -160,7 +181,7 @@ Raylib has many functions that relates to some of its structure types, like:
 def draw_model(model, position, scale, tint)
 ```
 
-With this option, this function will be bound to the `Model` structure as a instance method:
+With this option, this function will be bound to the `Model` structure as an instance method:
 
 ```python
 my_model = load_model("path/to/resource.ext")
@@ -178,12 +199,22 @@ my_model = load_model("path/to/resource.ext")
 draw_model(my_model, Vector3(10.5, 20.0, 120.0), 1.5, YELLOW)
 ```
 
-Not all function will be bound to a type, only those that have a strong relation to a raylib structure. Besides that, functions that can be bound, will be bound as `@classmethod`, instance method, `@staticmethod` or `@property`.
+Not all function will be bound to a type, only those that have a strong relation to a raylib structure. Besides that, functions that can be bound, will be bound as `@classmethod`, instance method, `@staticmethod`, `@property` or context manager (`__enter__()` and `__exit__()`).
 
 
-### `-addContextManager` Option
+### `addUtilityMethods` Option
 
-This option is related to all pair of functions in raylib named with _begin_  and _end_. The functions
+This basically adds the classmethod `.array_of(sequence)` to all structure types, to create arrays from sequences.
+
+
+### `addBinaryPackingMethods` Option
+
+This is a work in progress aimed at allowing easy conversion of structure type to and from `bytes` or `bytearray`s. Not all classes will have or need this feature, but many will do. This may become the mechanism for storing game saves or states.
+
+
+### `addContextManager` Option
+
+This option is related to all pair of functions in raylib named with _begin_  and _end_, or _enable_ and _disable_ (many examples in rlgl). The functions
 
 ```python
 def begin_drawing():
@@ -220,102 +251,96 @@ end_drawing()
 ```
 
 
-### `-addVectorMath` Option
+### `addVectorMath` Option
 
-This option adds special methods to `Vector2`, `Vector3` and `Vector4` that overloads the operators `+`, `-`, `*`, `/`, `//`, `==`, `!=`, unary `-`, and `abs(x)`. The overloaded operators support operands of same type or scalars (`int`s and `float`s). For multiplication, `Matrix` are also supported between two matrices and a vector and a matrix. This option requires the options `--include rmath` and `-attribSwizzling` to be added.
-
-
-### `-pythonic` or `-spartan` Options
-
-These options exist in order to simplify the generation command. Both of these have the effect of combining some of the options seen above. Also, they are mutually exclusive.
-
-The `-pythonic` option includes all options that apply to the binding code coding conventions and features specific to Python, like naming convetion, object orientation, context manages and so on.
-
-The `-spartan` option on the other hand includes all options that disable any attempt to pythonize the binding code, making it as close as possible to the C api.
+This option adds special methods to `Vector2` and `Vector3` (and a few to `Vector4`) that overloads the operators `+`, `-`, `*`, `/`, `//`, `==`, `!=`, unary `-`, and `abs(x)`. The overloaded operators support operands of same type or scalars (`int`s and `float`s). For multiplication, `Matrix` supports the operation between two matrices, and between vector and a matrix. This option depends on the option `addAttribSwizzling` to be enabled.
 
 
-### `-onlyDocs` Option
+### Library Object Options
 
-This option prevents the binding generator to generate binding code. This causes only the api documentation Markdown to be generated if the `--markdown <filename>` option is specified.
+Inside the global configuration there's also two options dealing with libraries: `coreLibrary` and `extensionLibraries`. The first defines the main library of the binding (raylib, of course) and its related names, paths, modules and extra configs. The second allows you to configure extra libraries in the same fashion as the main one, in case you have the binaries and the necessary JSON files.
 
+Let's take a closer look on the contents of this object.
 
-### `-no*` Options
-
-Most of the generation options have a _negation_ counterpart. These options are prefixed wit `-no` and are intended to be used with `-spartan` or `-pythonic` options when specific option is wanted to be added to `-spartan` or removed from `-pythonic`.
-
-
-### `--include <extension>` Option
-
-This option is for optional api available in raylib but not exposed in `raylib.h`. These are _raymath_ and _rlgl_. `--included rmath` will include api in _raymath_ and `--include rlgl` will include api in _rlgl_.
-
-Any other api to be included must have as a value the path to a _JSON_ file describing its components.
-
-
-### `--out <filename>` Option
-
-This option allow to specify the file where the binding code will be written to.
-
-
-### `--markdown <filename>` Option
-
-This option allow to specify the file where the binding api documentation will be written to.
-
-
-### `--libBasedir <dirpath>` Option
-
-This option allow to compose part of the path that indicates where the binaries to be loaded are located. The resultand path pointing to the apropriate binary will be mostly like the code below:
-
-```python
-# the default value for libBasedir is this
-libBasedir = os.path.dirname(__file__)
-# these values are resolved at runtime
-platform = 'linux'
-byteness = '32bit'
-filename = 'libraylib.so.4.5.0'
-path = os.path.join(libBasedir, platform, byteness, libfilename)
+```json
+{
+    // (options seen above)
+    "coreLibrary": {
+        "libName": "rlapi",
+        "libKeyName": "raylib",
+        "libBasedir": ["{}/bin"],
+        "includedModules": ["raylib", "raymath", "rlgl"],
+        "binFilename": {
+            "win32": "raylib.dll",
+            "linux": "libraylib.so.5.0.0",
+            "darwin": "libraylib.5.0.0.dylib"
+        },
+        "libModules": [
+            {
+                "modName": "raylib",
+                "jsonApiFilename": "input/rl500/raylib_api.json",
+                "jsonMetadataFilename": "input/rl500/raylib_api.bind.json"
+            },
+            {
+                "modName": "raymath",
+                "jsonApiFilename": "input/rl500/rmath_api.json",
+                "jsonMetadataFilename": null
+            },
+            {
+                "modName": "rlgl",
+                "jsonApiFilename": "input/rl500/rlgl.json",
+                "jsonMetadataFilename": "input/rl500/rlgl_api.bind.json"
+            }
+        ]
+    },
+    "extensionLibraries": []
+}
 ```
 
+### `libName` Option
 
-### `--win32LibFilename <name.ext>`, `--linuxLibFilename <name.ext>` and `--darwinLibFilename <name.ext>` Options
+This is the identifier for the object created and returned by the library loading process. This name is not exported, but is used to do all the necessary binding stuff we read in the `ctypes` documentation. When binding more than one dll/so/dylib binary, it is important that the `libName` is unique for each one.
 
-These options allow to override the file name of the binaries. Like `--libBasedir` option, these values will compose part of the path to the binary files. They need to be specified only if the binary file names are different from the default ones provided by C raylib.
+### `libKeyName` Option
 
+This is the identifier for this Library when the _.raylib_ file is being used to load the binaries from another location. The _.raylib_ file is the mechanism used to load another binary instead of the one provided by the package. It contains the paths to the files and will be checked when raylibpy is loading. If the currently working directory at the loading time contains a _.raylib_ file, it will be verified and respective binary will be loaded instead.
 
-### Binging generation: full pythonic
+### `libBasedir` Option
 
-The command issued to generate raylibpy releases is the following:
+This may change in the future, but this option expects a list of file path pieces that, when joined, form the path where the binary to be loaded is located. It can be defined as a format string (not a f-string specifically). In this case, the only formatting argument passed is the directory where raylibpy's `__init__.py` is located.
 
+### `includedModules` Option
+
+This option is a list containing the modules that compose this library. Not all libraries might have more than one module, but this is the case for raylib itself; it has at least 3 modules: the core (raylib), raymath and rlgl. More modules can be added if the binary exposes them, but this option defines whether the module APIs gets added to the binding by being or not being in the list. This option is closely related to the `libModules` below.
+
+### `binFilename` Option
+
+This option is used to specify the filenames for the binaries to be loaded for each platform: `win32` for Windows, `linux` for Linux and `darwin` for MacOS. These names are joined with values in `libBasedir` to form the full path. This does not apply when using _.raylib_ files because they already contain the full (absolute) path.
+
+### `libModules` Option
+
+This option contains a list of module configuration objects, like the one below:
+
+```json
+{
+    "modName": "raylib",
+    "jsonApiFilename": "input/rl500/raylib_api.json",
+    "jsonMetadataFilename": "input/rl500/raylib_api.bind.json"
+}
 ```
-py -3.10 raylibpyctbg --include rmath --include rlgl -pythonic -typeHint --out package/src/raylibpy/__init__.py --libBasedir "os.path.dirname(__file__), 'bin'" --markdown package/DOCS.md
-```
 
-It outputs change the template package in the `/package` directory. Once the binding is generated, a Python package can be built.
+#### `modName` Option
 
+This is the module name. If this identifier is present in the list of `includedModules`, this module API will be added to the binding.
 
-### Build wheel
+#### `jsonApiFilename` Option
 
-The package is generated with the `build` command.
+This option indicates a relative path to the JSON file containing the module's API to be added to the binding.
 
-```
-cd `package`
-```
+#### `jsonMetadataFilename` Option
 
-For a reason that's beyond me, this command requires internet connection.
+Similar to the above, this option indicates a relative path to the JSON file containing extra detailed information on how this module API should be wrapped. These extra information relates, for example, on what functions should be called by context managers, what functions can be decorated with `@property`, `@classmethod` etc. There is more. You can specify some transformations that should occur to arguments before they're passed to the foreign function or to the value they return.
 
-```
-py -3.10 -m build
-```
+## `extensionLibraries` Option
 
-Build will produce two files, a `.whl` and a `.tar.gz`.
-
-
-#### Install
-
-```
-cd package/dist
-```
-then
-
-```
-py -3.10 -m pip install raylib_py-4.5.0-py3-none-any.whl --force-reinstall
-```
+The `coreLibrary` option defines the configuration for the main library to be loaded. But you can also specify more than one library to be wrapped and this is where other libs can be configured. This option receives a list on library configuration objects like the one in `coreLibrary`. Let's suppose you have two binaries, one for _raygui_ and another for _physac_. This is where you can add them.
