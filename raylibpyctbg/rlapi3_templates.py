@@ -418,7 +418,7 @@ def _extract_argtypes(format_string):
         yield slice(*m.span()), m[0], ctypes_type
 
 
-def _transform_fmt(format_string, args):
+def _transform_fmt(format_string, *args):
     n = len(args)
     vals = []
     sentinel = object()
@@ -432,10 +432,11 @@ def _transform_fmt(format_string, args):
             right = format_string[slc.stop:]
             middle = '_' * len(str)
             format_string = left + middle + right
+            val = args[i]
 
         vals.append(val)
 
-    return format_string, vals
+    return [format_string, *vals]
 
 
 def _clsname(obj):

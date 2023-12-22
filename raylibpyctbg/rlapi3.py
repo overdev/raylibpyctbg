@@ -74,7 +74,7 @@ __all__ = [
 # ---------------------------------------------------------
 # region CONSTANTS & ENUMS
 
-GLOBAL_GROUPS = 'types structs enums aliases enumerands defines callbacks functions contexts'.split()
+GLOBAL_GROUPS = 'utilities types structs enums aliases enumerands defines callbacks functions contexts'.split()
 
 RE_COLOR_DEFINE_VALUE = re.compile(r"CLITERAL\(Color\)\{\s*(\d+,\s*\d+,\s*\d+,\s*\d+)\s*\}")
 RE_FLOATMATH_DEFINE_VALUE = re.compile(r"\((PI|\d+\.\d+)[fd]?/(PI|\d+\.\d+)[fd]?\)")
@@ -265,6 +265,20 @@ STRUCT_UTILITY_TEMPLATES = {
     'Rectangle': TPL_RECT_UTILS,
     'Color': TPL_COLOR_UTILS
 }
+
+EXPORTED_UTILITIES = [
+    'clear_format_string_cache',
+    'pop_out_param',
+    'float_array',
+    'double_array',
+    'int_array',
+    'uint_array',
+    'short_array',
+    'ushort_array',
+    'byte_array',
+    'ubyte_array',
+    'string_array'
+]
 
 # endregion (constants)
 # ---------------------------------------------------------
@@ -523,16 +537,6 @@ def wrap_members(composer: PythonSourceComposer, config: GlobalWrapperData, stru
     with composer.function_def('__repr__', this, None, None, None, None):
         impl = meta.get('dunderReprExpression', "return \"{}()\".format(_clsname(self))")
         composer.add_line(impl)
-
-    # destructor
-    # NOTE: can't add this feature due to ctypes lack of OOR (original object return)
-    # if config.config.bindApiAsDestructor:
-    #     if len(meta.get('bindApiAsDestructor', [])):
-    #         api = meta.get('bindApiAsDestructor')[0]
-    #         api_name = api.get('api')
-    #         composer.add_empty()
-    #         with composer.function_def('__del__', this, None, None, None, f"Releases the resources allocated by this {struct}"):
-    #             composer.add_line(f"_{api_name}(self)")
 
     if config.config.bindApiAsContextManager:
         if api := meta.get('bindApiAsContextManager'):
@@ -811,6 +815,7 @@ def wrap_function(composer: PythonSourceComposer, config: GlobalWrapperData, fun
             out_params = []
             transform_return_actions = []
             return_action = map_get(func_data.metadata, 'returnAction', default='{}')
+            transform_args_action = map_get(func_data.metadata, 'transformArgsAction', default=None)
 
             for pname, (pName, ptype) in zipped_params.items():
 
@@ -835,6 +840,8 @@ def wrap_function(composer: PythonSourceComposer, config: GlobalWrapperData, fun
                 ret = f'self.{attr} = ' if inplace else 'return '
 
             arguments = ', '.join(args)
+            if transform_args_action:
+                arguments = transform_args_action.format(arguments)
             call = f"_{func_data.name}({arguments})"
 
             composer.add_line(f"{ret}{return_action.format(call)}")
@@ -997,6 +1004,8 @@ def generate_binding_code(config: GlobalWrapperData, out_filename: str):
         composer.add_line("__all__ = [")
         with composer.indented():
 
+            config.global_names['utilities'] = sorted(EXPORTED_UTILITIES)
+
             for group_name in GLOBAL_GROUPS:
                 if group := config.global_names.get(group_name):
                     composer.add_empty()
@@ -1015,7 +1024,8 @@ def generate_binding_code(config: GlobalWrapperData, out_filename: str):
         for lib in config.libraries.values():
             composer.add_line(f"{lib.name} = _load_library('{lib.key_name}', {lib.is_extension}, {lib.base_dir}, win32='{lib.bin_fnames.win32}', linux='{lib.bin_fnames.linux}', darwin='{lib.bin_fnames.darwin}')")
 
-    composer.add_line("print('\\nInitializing. Please wait.\\n')")
+    composer.add_empty()
+    composer.add_line("print('\\nraylib-py v{RAYLIB_VERSION} is initializing.\\n')")
 
     composer.add_empty()
 

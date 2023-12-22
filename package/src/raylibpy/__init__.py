@@ -92,6 +92,19 @@ from . import easings
 
 __all__ = [
 
+    # utilities
+    'byte_array',
+    'clear_format_string_cache',
+    'double_array',
+    'float_array',
+    'int_array',
+    'pop_out_param',
+    'short_array',
+    'string_array',
+    'ubyte_array',
+    'uint_array',
+    'ushort_array',
+
     # types
     'AutomationEventListPtr',
     'AutomationEventPtr',
@@ -1809,7 +1822,8 @@ def _load_library(lib_name, is_extension, basedir, **bin_fnames):
 rlapi = _load_library('raylib', False, ['{}/bin'], win32='raylib.dll', linux='libraylib.so.5.0.0', darwin='libraylib.5.0.0.dylib')
 
 # endregion (library loading)
-print('\nInitializing. Please wait.\n')
+
+print('\nraylib-py v{RAYLIB_VERSION} is initializing.\n')
 
 # region GLOBALS
 
@@ -1877,7 +1891,7 @@ def _extract_argtypes(format_string):
         yield slice(*m.span()), m[0], ctypes_type
 
 
-def _transform_fmt(format_string, args):
+def _transform_fmt(format_string, *args):
     n = len(args)
     vals = []
     sentinel = object()
@@ -1891,10 +1905,11 @@ def _transform_fmt(format_string, args):
             right = format_string[slc.stop:]
             middle = '_' * len(str)
             format_string = left + middle + right
+            val = args[i]
 
         vals.append(val)
 
-    return format_string, vals
+    return [format_string, *vals]
 
 
 def _clsname(obj):
@@ -4238,14 +4253,6 @@ class Vector2(Structure):
         self.x = float(d.get('x', self.x))
         self.y = float(d.get('y', self.y))
 
-    def pack(self):
-        """Packs this Vector2 as a bytes object"""
-        return struct.pack('!2f', self.x, self.y)
-
-    def pack_into(self, buffer, offset):
-        """Packs this Vector2 as a bytes object"""
-        return struct.pack_into('!2f', buffer, offset, self.x, self.y)
-
 # Pointer types for Vector2
 Vector2Ptr = POINTER(Vector2)
 
@@ -4509,14 +4516,6 @@ class Vector3(Structure):
         self.y = float(d.get('y', self.y))
         self.z = float(d.get('z', self.z))
 
-    def pack(self):
-        """Packs this Vector3 as a bytes object"""
-        return struct.pack('!3f', self.x, self.y, self.z)
-
-    def pack_into(self, buffer, offset):
-        """Packs this Vector3 as a bytes object"""
-        return struct.pack_into('!3f', buffer, offset, self.x, self.y, self.z)
-
 # Pointer types for Vector3
 Vector3Ptr = POINTER(Vector3)
 
@@ -4599,14 +4598,6 @@ class Vector4(Structure):
         self.y = float(d.get('y', self.y))
         self.z = float(d.get('z', self.z))
         self.w = float(d.get('w', self.w))
-
-    def pack(self):
-        """Packs this Vector4 as a bytes object"""
-        return struct.pack('!4f', self.x, self.y, self.z, self.w)
-
-    def pack_into(self, buffer, offset):
-        """Packs this Vector4 as a bytes object"""
-        return struct.pack_into('!4f', buffer, offset, self.x, self.y, self.z, self.w)
 
 
 # Quaternion, 4 components (Vector4 alias)
@@ -4735,14 +4726,6 @@ class Matrix(Structure):
     def invert(self):
         # type: (Matrix) -> Matrix
         return _MatrixInvert(self)
-
-    def pack(self):
-        """Packs this Matrix as a bytes object"""
-        return struct.pack('!16f', self.x, self.y, self.z, self.w)
-
-    def pack_into(self, buffer, offset):
-        """Packs this Matrix as a bytes object"""
-        return struct.pack_into('!16f', buffer, offset, self.x, self.y, self.z, self.w)
 
 # Pointer types for Matrix
 MatrixPtr = POINTER(Matrix)
@@ -4875,14 +4858,6 @@ class Color(Structure):
         self.b = int(d.get('b', self.b))
         self.a = int(d.get('a', self.a))
 
-    def pack(self):
-        """Packs this Color as a bytes object"""
-        return struct.pack('!4B', self.r, self.g, self.b, self.a)
-
-    def pack_into(self, buffer, offset):
-        """Packs this Color as a bytes object"""
-        return struct.pack_into('!4B', buffer, offset, self.r, self.g, self.b, self.a)
-
 # Pointer types for Color
 ColorPtr = POINTER(Color)
 
@@ -4980,14 +4955,6 @@ class Rectangle(Structure):
         self.y = float(d.get('y', self.y))
         self.width = float(d.get('w', self.width))
         self.height = float(d.get('h', self.height))
-
-    def pack(self):
-        """Packs this Rectangle as a bytes object"""
-        return struct.pack('!4f', self.x, self.y, self.width, self.height)
-
-    def pack_into(self, buffer, offset):
-        """Packs this Rectangle as a bytes object"""
-        return struct.pack_into('!4f', buffer, offset, self.x, self.y, self.width, self.height)
 
 # Pointer types for Rectangle
 RectanglePtr = POINTER(Rectangle)
@@ -5593,14 +5560,6 @@ class NPatchInfo(Structure):
     def byref(self):
         """Gets a pointer to this NPatchInfo"""
         return byref(self)
-
-    def pack(self):
-        """Packs this NPatchInfo as a bytes object"""
-        return struct.pack('!4f5i', self.source.x, self.source.y, self.source.width, self.source.height, self.left, self.top, self.right, self.bottom, self.layout)
-
-    def pack_into(self, buffer, offset):
-        """Packs this NPatchInfo as a bytes object"""
-        return struct.pack_into('!4f5i', buffer, offset, self.source.x, self.source.y, self.source.width, self.source.height, self.left, self.top, self.right, self.bottom, self.layout)
 
 
 class GlyphInfo(Structure):
@@ -6424,14 +6383,6 @@ class Ray(Structure):
         """Gets a pointer to this Ray"""
         return byref(self)
 
-    def pack(self):
-        """Packs this Ray as a bytes object"""
-        return struct.pack('!6f', self.position.x, self.position.y, self.position.z, self.direction.x, self.direction.y, self.direction.z)
-
-    def pack_into(self, buffer, offset):
-        """Packs this Ray as a bytes object"""
-        return struct.pack_into('!6f', buffer, offset, self.position.x, self.position.y, self.position.z, self.direction.x, self.direction.y, self.direction.z)
-
 
 class RayCollision(Structure):
     """RayCollision, ray hit information"""
@@ -6462,14 +6413,6 @@ class RayCollision(Structure):
         """Gets a pointer to this RayCollision"""
         return byref(self)
 
-    def pack(self):
-        """Packs this RayCollision as a bytes object"""
-        return struct.pack('!?7f', self.hit, self.distance, self.point.x, self.point.y, self.point.z, self.normal.x, self.normal.y, self.normal.z)
-
-    def pack_into(self, buffer, offset):
-        """Packs this RayCollision as a bytes object"""
-        return struct.pack_into('!?7f', buffer, offset, self.hit, self.distance, self.point.x, self.point.y, self.point.z, self.normal.x, self.normal.y, self.normal.z)
-
 
 class BoundingBox(Structure):
     """BoundingBox"""
@@ -6497,14 +6440,6 @@ class BoundingBox(Structure):
     def byref(self):
         """Gets a pointer to this BoundingBox"""
         return byref(self)
-
-    def pack(self):
-        """Packs this BoundingBox as a bytes object"""
-        return struct.pack('!6f', self.min.x, self.min.y, self.min.z, self.max.x, self.max.y, self.max.z)
-
-    def pack_into(self, buffer, offset):
-        """Packs this BoundingBox as a bytes object"""
-        return struct.pack_into('!6f', buffer, offset, self.min.x, self.min.y, self.min.z, self.max.x, self.max.y, self.max.z)
 
 
 class Wave(Structure):
@@ -11273,7 +11208,7 @@ def text_length(text):
 def text_format(text, *args):
     # type: (bytes | str | None, ...) -> bytes | str | None
     """Text formatting with variables (sprintf() style)"""
-    return _str_out(_TextFormat(_str_in(text), *args))
+    return _str_out(_TextFormat(*_transform_fmt(_str_in(text), *args)))
 
 
 def text_subtext(text, position, length):
