@@ -708,7 +708,6 @@
     "GetWorkingDirectory": { "returnAction": "_str_out({})" },
     "GetApplicationDirectory": { "returnAction": "_str_out({})" },
     "GetCodepointToUTF8": { "returnAction": "_str_out({})" },
-    "TextFormat": { "returnAction": "_str_out({})" },
     "TextSubtext": { "returnAction": "_str_out({})" },
     "TextReplace": { "returnAction": "_str_out({})" },
     "TextInsert": { "returnAction": "_str_out({})" },
@@ -718,6 +717,10 @@
     "TextToLower": { "returnAction": "_str_out({})" },
     "TextToPascal": { "returnAction": "_str_out({})" },
     "GetGamepadName": { "returnAction": "_str_out({})" },
+    "TextFormat": {
+      "returnAction": "_str_out({})",
+      "transformArgsAction": "*_transform_fmt({})"
+    },
     "SetConfigFlags": {
       "params": {
         "flags": {
