@@ -718,8 +718,7 @@
     "TextToPascal": { "returnAction": "_str_out({})" },
     "GetGamepadName": { "returnAction": "_str_out({})" },
     "TextFormat": {
-      "returnAction": "_str_out({})",
-      "transformArgsAction": "*_transform_fmt({})"
+      "returnAction": "_str_out({})"
     },
     "SetConfigFlags": {
       "params": {

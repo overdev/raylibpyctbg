@@ -1895,17 +1895,19 @@ def _transform_fmt(format_string, *args):
     n = len(args)
     vals = []
     sentinel = object()
-    for i, (slc, str, ctype) in enumerate(_extract_argtypes(format_string[:])):
+
+    for i, (slc, str_, ctype) in enumerate(_extract_argtypes(format_string[:])):
         try:
             val = ctype(args[i])
         except Exception:
             val = sentinel
+
         if i >= n or ctype is None or val is sentinel:
             left = format_string[:slc.start]
             right = format_string[slc.stop:]
-            middle = '_' * len(str)
+            middle = '<?fmt?>'
             format_string = left + middle + right
-            val = args[i]
+            continue
 
         vals.append(val)
 
@@ -11208,7 +11210,7 @@ def text_length(text):
 def text_format(text, *args):
     # type: (bytes | str | None, ...) -> bytes | str | None
     """Text formatting with variables (sprintf() style)"""
-    return _str_out(_TextFormat(*_transform_fmt(_str_in(text), *args)))
+    return _str_out(_TextFormat(_str_in(text), *args))
 
 
 def text_subtext(text, position, length):

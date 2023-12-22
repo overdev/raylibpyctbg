@@ -422,17 +422,19 @@ def _transform_fmt(format_string, *args):
     n = len(args)
     vals = []
     sentinel = object()
-    for i, (slc, str, ctype) in enumerate(_extract_argtypes(format_string[:])):
+
+    for i, (slc, str_, ctype) in enumerate(_extract_argtypes(format_string[:])):
         try:
             val = ctype(args[i])
         except Exception:
             val = sentinel
+
         if i >= n or ctype is None or val is sentinel:
             left = format_string[:slc.start]
             right = format_string[slc.stop:]
-            middle = '_' * len(str)
+            middle = '<?fmt?>'
             format_string = left + middle + right
-            val = args[i]
+            continue
 
         vals.append(val)
 
