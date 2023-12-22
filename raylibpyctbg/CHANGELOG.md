@@ -5,11 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+
 ## [3.0.0]
 
 Third version of the binding generator. The generated binding code is far superior to last version, it keeps the organization between libraries and modules, each thing is its proper place.
 
 The new generator misses a few things, like documentation generation. This is intended to be done in a post stable release.
+
+### Added
+
+- A specialized class to write python code and get rid of excessive use of templates and format strings
+- Ability to bind more than one library in a single binding
+- rlgl_api.bind.json (binding extra information)
+- argument/return tranformation customization per function in `*.bind.json`
+- raylibpyctbg can now generate the binding, build the package and install it for you with a single command (make sure you pip installed **build** first)
 
 ### Changed
 
@@ -18,13 +27,6 @@ The new generator misses a few things, like documentation generation. This is in
 - Moved helper classes to a separate source file (`core.py`)
 - Updated the `*.bind.json` files to include better information on how to wrap stuff
 - Better type annotation/hinting
-
-### Added
-
-- A specialized class to write python code and get rid of excessive use of templates and format strings
-- Ability to bind more than one library in a single binding
-- rlgl_api.bind.json (binding extra information)
-- argument/return tranformation customization per function in `*.bind.json`
 
 ### Removed
 
