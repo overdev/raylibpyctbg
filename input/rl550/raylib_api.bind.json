@@ -22,7 +22,10 @@
         {"module": "raymath", "api": "Vector2Rotate", "renameAs": "Rotate", "inplace": true, "attr": "xy"},
         {"module": "raymath", "api": "Vector2MoveTowards", "renameAs": "MoveTowards", "inplace": true, "attr": "xy"},
         {"module": "raymath", "api": "Vector2Clamp", "renameAs": "Clamp", "inplace": true, "attr": "xy"},
-        {"module": "raymath", "api": "Vector2ClampValue", "renameAs": "ClampValue", "inplace": true, "attr": "xy"}
+        {"module": "raymath", "api": "Vector2ClampValue", "renameAs": "ClampValue", "inplace": true, "attr": "xy"},
+        {"module": "raymath", "api": "Vector2Min", "renameAs": "Vector2Min" },
+        {"module": "raymath", "api": "Vector2Max", "renameAs": "Vector2Max" },
+        {"module": "raymath", "api": "Vector2Refract", "renameAs": "Vector2Refract" }
       ],
       "bindApiAsStaticmethod": [],
       "bindApiAsClassmethod": [
@@ -61,11 +64,13 @@
         {"module": "raymath", "api": "Vector3ToFloatV", "renameAs": "ToFloatV"},
         {"module": "raymath", "api": "Vector3Clamp", "renameAs": "Clamp", "inplace": true, "attr": "xyz"},
         {"module": "raymath", "api": "Vector3ClampValue", "renameAs": "ClampValue", "inplace": true, "attr": "xyz"},
-        {"module": "raymath", "api": "Vector3Refract", "renameAs": "Refract"}
+        {"module": "raymath", "api": "Vector3Refract", "renameAs": "Refract"},
+        {"module": "raymath", "api": "Vector3MoveTowards", "renameAs": "MoveTowards"}
       ],
       "bindApiAsStaticmethod": [],
       "bindApiAsClassmethod": [
-        {"module": "raymath", "api": "Vector3One", "renameAs": "One"}
+        {"module": "raymath", "api": "Vector3One", "renameAs": "One"},
+        {"module": "raymath", "api": "Vector3CubicHermite", "renameAs": "CubicHermite"}
       ],
       "bindApiAsProperty": [
         {"module": "raymath", "api": "Vector3Length", "renameAs": "Length"},
@@ -79,9 +84,47 @@
       "func": "_vec4({})",
       "fields": {},
       "init": ["0.0", "0.0", "0.0", "0.0"],
+      "bindApiAsClassmethod": [
+        {"module": "raymath", "api": "Vector4Zero", "renameAs": "Zero"},
+        {"module": "raymath", "api": "Vector4One", "renameAs": "One"}
+      ],
+      "bindApiAsStaticmethod": [],
+      "bindApiAsMethod": [
+        {"module": "raymath", "api": "Vector4Add", "renameAs": "Add"},
+        {"module": "raymath", "api": "Vector4AddValue", "renameAs": "AddValue"},
+        {"module": "raymath", "api": "Vector4Subtract", "renameAs": "Subtract"},
+        {"module": "raymath", "api": "Vector4SubtractValue", "renameAs": "SubtractValue"},
+        {"module": "raymath", "api": "Vector4DotProduct", "renameAs": "DotProduct"},
+        {"module": "raymath", "api": "Vector4Distance", "renameAs": "Distance"},
+        {"module": "raymath", "api": "Vector4DistanceSqr", "renameAs": "DistanceSqr"},
+        {"module": "raymath", "api": "Vector4Scale", "renameAs": "Scale"},
+        {"module": "raymath", "api": "Vector4Multiply", "renameAs": "Multiply"},
+        {"module": "raymath", "api": "Vector4Negate", "renameAs": "Negate"},
+        {"module": "raymath", "api": "Vector4Divide", "renameAs": "Divide"},
+        {"module": "raymath", "api": "Vector4Normalize", "renameAs": "Normalize", "inplace": true, "attr": "xyzw"},
+        {"module": "raymath", "api": "Vector4Min", "renameAs": "Min", "inplace": true, "attr": "xyzw"},
+        {"module": "raymath", "api": "Vector4Max", "renameAs": "Max", "inplace": true, "attr": "xyzw"},
+        {"module": "raymath", "api": "Vector4Lerp", "renameAs": "Lerp", "inplace": true, "attr": "xyzw"},
+        {"module": "raymath", "api": "Vector4MoveTowards", "renameAs": "MoveTowards"},
+        {"module": "raymath", "api": "Vector4Invert", "renameAs": "Invert"},
+        {"module": "raymath", "api": "Vector4Equals", "renameAs": "Equals"}
+      ],
+      "bindApiAsProperty": [
+        {"module": "raymath", "api": "Vector4Length", "renameAs": "Length"},
+        {"module": "raymath", "api": "Vector4LengthSqr", "renameAs": "LengthSqr"}
+      ],
+      "dunderStrExpression": "return \"({}, {}, {}, {})\".format(self.x, self.y, self.z, self.w)",
+      "dunderReprExpression": "return \"Vector4{}\".format(self.__str__())",
+      "binaryData": { "format": "!4f", "args": "self.x, self.y, self.z, self.w" }
+    },
+    "Quaternion": {
+      "fields": {},
+      "init": ["0.0", "0.0", "0.0", "0.0"],
       "bindApiAsMethod": [],
       "bindApiAsStaticmethod": [],
-      "bindApiAsClassmethod": [],
+      "bindApiAsClassmethod": [
+        {"module": "raymath", "api": "QuaternionCubicHermiteSpline", "renameAs": "CubicHermiteSpline"}
+      ],
       "bindApiAsProperty": [],
       "dunderStrExpression": "return \"({}, {}, {}, {})\".format(self.x, self.y, self.z, self.w)",
       "dunderReprExpression": "return \"Vector4{}\".format(self.__str__())",
@@ -102,7 +145,9 @@
         {"module": "raymath", "api": "MatrixDeterminant", "renameAs": "Determinant"},
         {"module": "raymath", "api": "MatrixTrace", "renameAs": "Trace"},
         {"module": "raymath", "api": "MatrixTranspose", "renameAs": "Transpose"},
-        {"module": "raymath", "api": "MatrixInvert", "renameAs": "Invert"}
+        {"module": "raymath", "api": "MatrixInvert", "renameAs": "Invert"},
+        {"module": "raymath", "api": "MatrixInvert,", "renameAs": "Invert"},
+        {"module": "raymath", "api": "MatrixDecompose", "renameAs": "Decompose"}
       ],
       "bindApiAsStaticmethod": [],
       "bindApiAsClassmethod": [
@@ -155,7 +200,7 @@
         {"api": "LoadShaderFromMemory", "renameAs": "LoadFromMemory"}
       ],
       "bindApiAsProperty": [
-        { "api": "IsShaderReady", "renameAs": "IsReady" }
+        { "api": "IsShaderValid", "renameAs": "IsValid" }
       ],
       "bindApiAsDestructor": [
         { "api": "UnloadShader" }
@@ -179,7 +224,7 @@
         { "api": "UnloadRenderTexture" }
       ],
       "bindApiAsProperty": [
-        {"api": "IsRenderTextureReady", "renameAs": "IsReady"}
+        {"api": "IsRenderTextureValid", "renameAs": "IsValid"}
       ],
       "bindApiAsContextManager": {
         "enter": "BeginTextureMode",
@@ -239,7 +284,7 @@
         }
       },
       "bindApiAsProperty": [
-        { "api": "IsImageReady", "renameAs": "IsReady" }
+        { "api": "IsImageValid", "renameAs": "IsValid" }
       ],
       "bindApiAsDestructor": [
         { "api": "UnloadImage" }
@@ -264,6 +309,13 @@
         {"api": "ImageDither", "renameAs": "Dither", "byref": true},
         {"api": "ImageFlipVertical", "renameAs": "FlipVertical", "byref": true},
         {"api": "ImageFlipHorizontal", "renameAs": "FlipHorizontal", "byref": true},
+        {"api": "ImageKernelConvolution", "renameAs": "KernelConvolution", "byref": true},
+        {"api": "ImageDrawLineEx", "renameAs": "DrawLineEx", "byref": true},
+        {"api": "ImageDrawTriangle", "renameAs": "DrawTriangle", "byref": true},
+        {"api": "ImageDrawTriangleEx", "renameAs": "DrawTriangleEx", "byref": true},
+        {"api": "ImageDrawTriangleLines", "renameAs": "DrawTriangleLines", "byref": true},
+        {"api": "ImageDrawTriangleFan", "renameAs": "DrawTriangleFan", "byref": true},
+        {"api": "ImageDrawTriangleStrip", "renameAs": "DrawTriangleStrip", "byref": true},
         {"api": "ImageRotate", "renameAs": "Rotate", "byref": true},
         {"api": "ImageRotateCW", "renameAs": "RotateCW", "byref": true},
         {"api": "ImageRotateCCW", "renameAs": "RotateCCW", "byref": true},
@@ -297,8 +349,8 @@
       "bindApiAsClassmethod": [
         {"api": "LoadImage", "renameAs": "Load"},
         {"api": "LoadImageRaw", "renameAs": "LoadRaw"},
-        {"api": "LoadImageSvg", "renameAs": "LoadSvg"},
         {"api": "LoadImageAnim", "renameAs": "LoadAnim"},
+        {"api": "LoadImageAnimFromMemory", "renameAs": "LoadAnimFromMemory"},
         {"api": "LoadImageFromMemory", "renameAs": "LoadFromMemory"},
         {"api": "LoadImageFromTexture", "renameAs": "LoadFromTexture"},
         {"api": "LoadImageFromScreen", "renameAs": "LoadFromScreen"},
@@ -311,6 +363,7 @@
         {"api": "GenImagePerlinNoise", "renameAs": "GenPerlinNoise"},
         {"api": "GenImageCellular", "renameAs": "GenCellular"},
         {"api": "GenImageText", "renameAs": "GenText"},
+        {"api": "ImageFromChannel", "renameAs": "FromChannel"},
         {"api": "ImageFromImage", "renameAs": "FromImage"},
         {"api": "ImageText", "renameAs": "Text"},
         {"api": "ImageTextEx", "renameAs": "TextEx"}
@@ -328,7 +381,7 @@
         }
       },
       "bindApiAsProperty": [
-        {"api": "IsTextureReady", "renameAs": "IsReady"}
+        {"api": "IsTextureValid", "renameAs": "IsValid"}
       ],
       "bindApiAsDestructor": [
         { "api": "UnloadTexture" }
@@ -375,7 +428,9 @@
         {"api": "ColorBrightness", "renameAs": "Brightness"},
         {"api": "ColorContrast", "renameAs": "Contrast"},
         {"api": "ColorAlpha", "renameAs": "Alpha"},
-        {"api": "ColorAlphaBlend", "renameAs": "AlphaBlend"}
+        {"api": "ColorAlphaBlend", "renameAs": "AlphaBlend"},
+        {"api": "ColorIsEqual", "renameAs": "IsEqual"},
+        {"api": "ColorLerp", "renameAs": "Lerp"}
       ],
       "dunderStrExpression": "return \"({: 3}, {: 3}, {: 3}, {: 3})\".format(self.r, self.g, self.b, self.a)",
       "dunderReprExpression": "return \"Color{}\".format(self.__str__())",
@@ -409,7 +464,7 @@
         {"api": "GetFontDefault", "renameAs": "GetDefault"}
       ],
       "bindApiAsProperty": [
-        {"api": "IsFontReady", "renameAs": "IsReady"}
+        {"api": "IsFontValid", "renameAs": "IsValid"}
       ],
       "dunderStrExpression": "return \"[{} at {}]\".format(self.__class__.__name__, id(self))",
       "dunderReprExpression": "return self.__str__()"
@@ -419,9 +474,13 @@
     },
     "Model": {
       "init": ["None", "0", "0", "None", "None", "None", "0", "None", "None"],
+      "bindApiAsProperty": [
+        {"api": "IsModelValid", "renameAs": "IsValid"}
+      ],
       "bindApiAsMethod": [
         {"api": "IsModelAnimationValid", "renameAs": "IsAnimationValid"},
         {"api": "UpdateModelAnimation", "renameAs": "UpdateAnimation"},
+        {"api": "UpdateModelAnimationBones", "renameAs": "UpdateBones"},
         {"api": "SetModelMeshMaterial", "renameAs": "SetMeshMaterial", "byref": true},
         {"api": "UnloadModel", "renameAs": "Unload"},
         {"api": "UnloadModelKeepMeshes", "renameAs": "UnloadKeepMeshes"},
@@ -429,10 +488,9 @@
         {"api": "DrawModel", "renameAs": "Draw"},
         {"api": "DrawModelEx", "renameAs": "DrawEx"},
         {"api": "DrawModelWires", "renameAs": "DrawWires"},
-        {"api": "DrawModelWiresEx", "renameAs": "DrawWiresEx"}
-      ],
-      "bindApiAsDestructor": [
-        { "api": "UnloadModel" }
+        {"api": "DrawModelWiresEx", "renameAs": "DrawWiresEx"},
+        {"api": "DrawModelPoints", "renameAs": "DrawPoints"},
+        {"api": "DrawModelPointsEx", "renameAs": "DrawPointsEx"}
       ],
       "bindApiAsClassmethod": [
         {"api": "LoadModel", "renameAs": "Load"},
@@ -442,7 +500,14 @@
       "dunderReprExpression": "return self.__str__()"
     },
     "ModelAnimation": {
-      "init": ["0", "0", "None", "None", "None"]
+      "init": ["0", "0", "None", "None", "None"],
+      "bindApiAsProperty": [
+        {"api": "IsModelAnimationValid", "renameAs": "IsValid"}
+      ],
+      "bindApiAsMethod": [
+        {"api": "UpdateModelAnimation", "renameAs": "Update"},
+        {"api": "UnloadModelAnimation", "renameAs": "Unload"}
+      ]
     },
     "Mesh": {
       "init": ["0", "0", "None", "None", "None", "None", "None", "None", "None", "None", "None", "None", "None", "0", "None"],
@@ -453,6 +518,7 @@
         {"api": "DrawMesh", "renameAs": "Draw"},
         {"api": "DrawMeshInstanced", "renameAs": "DrawInstanced"},
         {"api": "ExportMesh", "renameAs": "Export"},
+        {"api": "ExportMeshAsCode", "renameAs": "ExportAsCode"},
         {"api": "GetMeshBoundingBox", "renameAs": "GetBoundingBox"},
         {"api": "GenMeshTangents", "renameAs": "GenTangents", "byref": true}
       ],
@@ -478,7 +544,7 @@
     "Material": {
       "init": ["Shader()", "None", "None"],
       "bindApiAsProperty": [
-        {"api": "IsMaterialReady", "renameAs": "IsReady"}
+        {"api": "IsMaterialValid", "renameAs": "IsValid"}
       ],
       "bindApiAsDestructor": [
         { "api": "UnloadMaterial" }
@@ -506,7 +572,7 @@
     "Wave": {
       "init": ["0", "0", "0", "0", "None"],
       "bindApiAsProperty": [
-        {"api": "IsWaveReady", "renameAs": "IsReady"}
+        {"api": "IsWaveValid", "renameAs": "IsValid"}
       ],
       "bindApiAsDestructor": [
         { "api": "UnloadWave" }
@@ -531,7 +597,7 @@
     "Sound": {
       "init": ["AudioStream()", "0"],
       "bindApiAsProperty": [
-        {"api": "IsSoundReady", "renameAs": "IsReady"}
+        {"api": "IsSoundValid", "renameAs": "IsValid"}
       ],
       "bindApiAsDestructor": [
         { "api": "UnloadSound" }
@@ -560,7 +626,7 @@
     "Music": {
       "init": ["AudioStream()", "0", "False", "0", "None"],
       "bindApiAsProperty": [
-        {"api": "IsMusicReady", "renameAs": "IsReady"},
+        {"api": "IsMusicValid", "renameAs": "IsValid"},
         {"api": "GetMusicTimeLength", "renameAs": "TimeLength"},
         {"api": "GetMusicTimePlayed", "renameAs": "TimePlayed"}
       ],
@@ -591,7 +657,7 @@
     "AudioStream": {
       "init": ["None", "None", "0", "0", "0"],
       "bindApiAsProperty": [
-        {"api": "IsAudioStreamReady", "renameAs": "IsReady"}
+        {"api": "IsAudioStreamValid", "renameAs": "IsValid"}
       ],
       "bindApiAsDestructor": [
         { "api": "UnloadAudioStream" }
@@ -716,6 +782,8 @@
     "TextToUpper": { "returnAction": "_str_out({})" },
     "TextToLower": { "returnAction": "_str_out({})" },
     "TextToPascal": { "returnAction": "_str_out({})" },
+    "TextToSnake": { "returnAction": "_str_out({})" },
+    "TextToCamel": { "returnAction": "_str_out({})" },
     "GetGamepadName": { "returnAction": "_str_out({})" },
     "TextFormat": {
       "returnAction": "_str_out({})"

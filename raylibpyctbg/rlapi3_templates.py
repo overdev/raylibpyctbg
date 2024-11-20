@@ -281,18 +281,11 @@ def _load_library(lib_name, is_extension, basedir, **bin_fnames):
     else:
         _bitness = '64bit' if sys.maxsize > 2 ** 32 else '32bit'
 
-    if is_extension:
-        _lib_default = None
-    else:
-        _lib_default = os.path.join(*(d.format(os.path.dirname(__file__)) for d in basedir), _bitness, _lib_fname[_lib_platform])
-
+    _lib_default = os.path.join(*(d.format(os.path.dirname(__file__)) for d in basedir), _bitness, _lib_fname[_lib_platform])
     _lib_default = _check_dotraylib(lib_name, _lib_platform, _bitness, _lib_default)
 
     if not _lib_default:
-        if is_extension:
-            _dotraylib_loadinfo.append("ERROR: Platform ({}), bitness ({}) or valid filename not specified in .raylib file for {} extension".format(lib_name, _lib_platform, _bitness))
-        else:
-            _dotraylib_loadinfo.append("ERROR: Platform ({}), bitness ({}) or valid filename not specified in .raylib file for {}".format(lib_name, _lib_platform, _bitness))
+        _dotraylib_loadinfo.append("ERROR: Platform ({}), bitness ({}) or valid filename not specified in .raylib file for {}".format(_lib_platform, _bitness, lib_name))
 
         _lib_fname_abspath = ''
         _ok = False
@@ -567,6 +560,7 @@ def pop_out_param(default=None):
 
 def float_array(sequence):
     \"\"\"Factory function to create and return an array of floats\"\"\"
+    # type: (Sequence[float]) -> Array[Float]
     if isinstance(sequence, Array):
         return sequence
 
@@ -575,24 +569,30 @@ def float_array(sequence):
 
 def double_array(sequence):
     \"\"\"Factory function to create and return an array of doubles\"\"\"
+    # type: (Sequence[float]) -> Array[Double]
     if isinstance(sequence, Array):
         return sequence
 
     return (Double * len(sequence))(*sequence)
 
 
-def int_array(sequence):
-    \"\"\"Factory function to create and return an array of signed int numbers\"\"\"
+def int_array(sequence, ptr_decay = False):
+    \"\"\"Factory function to create and return an array of signed int numbers, optionally cast down to a pointer\"\"\"
+    # type: (Sequence[int], bool) -> Array[Int]
     if isinstance(sequence, Array):
         return sequence
     elif isinstance(sequence, str):
         sequence = [ord(ch) for ch in sequence]
 
-    return (Int * len(sequence))(*sequence)
+    arr = (Int * len(sequence))(*sequence)
+    if ptr_decay:
+        arr = cast(arr, IntPtr)
+    return arr
 
 
 def uint_array(sequence):
     \"\"\"Factory function to create and return an array of unsigned int numbers\"\"\"
+    # type: (Sequence[int]) -> Array[UInt]
     if isinstance(sequence, Array):
         return sequence
     elif isinstance(sequence, str):
@@ -603,6 +603,7 @@ def uint_array(sequence):
 
 def short_array(sequence):
     \"\"\"Factory function to create and return an array of signed short numbers\"\"\"
+    # type: (Sequence[int]) -> Array[Short]
     if isinstance(sequence, Array):
         return sequence
     elif isinstance(sequence, str):
@@ -613,6 +614,7 @@ def short_array(sequence):
 
 def ushort_array(sequence):
     \"\"\"Factory function to create and return an array of unsigned short numbers\"\"\"
+    # type: (Sequence[int]) -> Array[UShort]
     if isinstance(sequence, Array):
         return sequence
     elif isinstance(sequence, str):
@@ -623,6 +625,7 @@ def ushort_array(sequence):
 
 def byte_array(sequence):
     \"\"\"Factory function to create and return an array of signed byte numbers\"\"\"
+    # type: (Sequence[int]) -> Array[Byte]
     if isinstance(sequence, Array):
         return sequence
     elif isinstance(sequence, str):
@@ -633,6 +636,7 @@ def byte_array(sequence):
 
 def ubyte_array(sequence):
     \"\"\"Factory function to create and return an array of unsigned byte numbers\"\"\"
+    # type: (Sequence[int]) -> Array[UByte]
     if isinstance(sequence, Array):
         return sequence
     elif isinstance(sequence, str):
@@ -643,6 +647,7 @@ def ubyte_array(sequence):
 
 def string_array(sequence, encoding='utf8', errors='ignore'):
     \"\"\"Factory function to create and return an array of char * (a char **)\"\"\"
+    # type: (Sequence[str]) -> Array[CharPtr]
     if isinstance(sequence, Array):
         return sequence
     elsequence = [s.encode(encoding, ignore) for s in sequence]

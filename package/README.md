@@ -13,11 +13,11 @@
 ![PyPI - Downloads](https://img.shields.io/pypi/dd/raylib-py?label=PyPI%20Downloads&style=plastic)
 
 ![GitHub all releases](https://img.shields.io/github/downloads/overdev/raylib-py/total?style=plastic)
-![GitHub release (by tag)](https://img.shields.io/github/downloads/overdev/raylib-py/v4.5.0.post2/total?style=plastic)
+![GitHub release (by tag)](https://img.shields.io/github/downloads/overdev/raylib-py/v5.5.0.post2/total?style=plastic)
 ![GitHub forks](https://img.shields.io/github/forks/overdev/raylib-py?style=social)
 
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/overdev/raylib-py?style=plastic)
-![GitHub commits since tagged version](https://img.shields.io/github/commits-since/overdev/raylib-py/v4.5.0.post2?style=plastic)
+![GitHub commits since tagged version](https://img.shields.io/github/commits-since/overdev/raylib-py/v5.0.0?style=plastic)
 
 A python binding for the great _C_ library **[raylib](https://github.com/raysan5/raylib)**.
 
@@ -37,7 +37,7 @@ $ pip install raylib-py
 You can also download the wheel from the [releases](https://github.com/overdev/raylib-py/releases) page and install it with pip locally:
 
 ```
-$ pip install path/to/raylib_py-4.5.0-py3-none-any.whl
+$ pip install path/to/raylib_py-5.5.0-py3-none-any.whl
 ```
 
 ## How to use:

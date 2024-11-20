@@ -34,6 +34,7 @@ import os
 import json
 import re
 
+
 from typing import Any, Sequence
 from contextlib import contextmanager
 from dataclasses import dataclass, field
@@ -467,7 +468,8 @@ def wrap_context(composer: PythonSourceComposer, config: GlobalWrapperData, stru
         composer.add_empty()
         wrap_method(composer, config, struct_data, api=enter, renameAs='__enter__')
         composer.add_empty()
-        wrap_method(composer, config, struct_data, api=leave, renameAs='__exit__')
+        enforce_params = ('self', 'exc_type', 'exc_value', 'traceback')
+        wrap_method(composer, config, struct_data, api=leave, renameAs='__exit__', enforce_params=enforce_params)
     else:
         print(f"Couldn't add context management for {struct_data.name}: missing apis")
 
@@ -478,11 +480,14 @@ def wrap_method(composer: PythonSourceComposer, config: GlobalWrapperData, struc
         in_place = metadata.get('inplace', False)
         attr = metadata.get('attr')
         rename = metadata.get('renameAs')
+        this_byref = metadata.get('this_byref', False)
+        enforce_params = metadata.get("enforce_params")
 
         for i, (k, v) in enumerate(zip_parameters(config, api).items()):
             params['self' if i == 0  else k] = v
 
-        wrap_function(composer, config, api, False, True, zipped_params=params, this=struct_data.name, inplace=in_place, attr=attr, renameAs=rename)
+        wrap_function(composer, config, api, False, True, zipped_params=params, this_byref=this_byref,
+                      this=struct_data.name, inplace=in_place, attr=attr, renameAs=rename, enforce_params=enforce_params)
     else:
         print(f"Couldn't wrap method for {struct_data.name}: missing api")
 
@@ -591,10 +596,11 @@ def wrap_members(composer: PythonSourceComposer, config: GlobalWrapperData, stru
             inplace = api.get('inplace', False)
             attr = api.get('attr')
             rename = api.get('renameAs')
+            this_byref = api.get('byref')
 
             if target := config.find(api_lib, api_mod, 'functions', api_name):
                 composer.add_empty()
-                wrap_method(composer, config, struct_data, api=target, inplace=inplace, attr=attr, renameAs=rename)
+                wrap_method(composer, config, struct_data, api=target, this_byref=this_byref, inplace=inplace, attr=attr, renameAs=rename)
 
     if config.config.addAttribSwizzling:
         if template := STRUCT_UTILITY_TEMPLATES.get(struct):
@@ -748,6 +754,7 @@ def wrap_function(composer: PythonSourceComposer, config: GlobalWrapperData, fun
         add_annotation = config.config.typeAnnotate
         inplace = metadata.get('inplace', False)
         attr = metadata.get('attr')
+        this_byref = metadata.get('this_byref', False)
         func_name = func_data.name
         if fn := metadata.get('renameAs'):
             func_name = fn
@@ -759,44 +766,53 @@ def wrap_function(composer: PythonSourceComposer, config: GlobalWrapperData, fun
             if decorator not in decorators:
                 decorators.append(decorator)
 
-        for i, (param_name, (paramName, type_wrapper)) in enumerate(zipped_params.items()):
-            check_meta = param_name not in ('self', 'cls')
-            param_decl = param_name
-            param_type = type_wrapper.type_py if type_wrapper else None
-            param_meta = map_get(func_data.metadata, 'params', paramName, default={})
-            meta_type = map_get(param_meta, 'type', 'typePy', default=param_type) if check_meta else None
+        if enforced := metadata.get('enforce_params'):
+            hint.append('...')
+            params.extend(enforced)
+        else:
+            for i, (param_name, (paramName, type_wrapper)) in enumerate(zipped_params.items()):
+                check_meta = param_name not in ('self', 'cls')
+                param_decl = param_name
+                param_type = type_wrapper.type_py if type_wrapper else None
+                param_meta = map_get(func_data.metadata, 'params', paramName, default={})
+                meta_type = map_get(param_meta, 'type', 'typePy', default=param_type) if check_meta else None
 
-            default_action = '{}'
-            if type_wrapper:
-                struct = config.find(func_data.library, func_data.module, 'structs', type_wrapper.type_ctype2, default=None)
-                if struct and struct.metadata:
-                    default_action = struct.metadata.get('func', '{}')
-                else:
-                    default_action = MAP_CTYPE_ACTION.get(type_wrapper.type_ctype, default_action)
-            pass_action = param_meta.get('passAction', default_action)
+                default_action = '{}'
+                if type_wrapper:
+                    struct = config.find(func_data.library, func_data.module, 'structs', type_wrapper.type_ctype2, default=None)
+                    if struct and struct.metadata:
+                        default_action = struct.metadata.get('func', default_action)
+                    else:
+                        default_action = MAP_CTYPE_ACTION.get(type_wrapper.type_ctype, default_action)
+                pass_action = param_meta.get('passAction', default_action)
 
-            # NOTE: va_list param type is set to None
-            if param_type is None:
-                param_decl = '*args'
-                param_type = 'bool | int | float | str | bytes | None'
+                # NOTE: va_list param type is set to None
+                if param_type is None:
+                    param_decl = '*args'
+                    param_type = 'bool | int | float | str | bytes | None'
 
-            # param_type = type_wrapper.type_py if type_wrapper else 'Any'
+                # param_type = type_wrapper.type_py if type_wrapper else 'Any'
 
-            if meta_type:
-                param_type = meta_type
+                if meta_type:
+                    param_type = meta_type
 
-            if add_annotation and param_decl not in ('self', 'cls'):
-                param_decl = f"{param_decl}: '{param_type}'"
+                if add_annotation and param_decl not in ('self', 'cls'):
+                    param_decl = f"{param_decl}: '{param_type}'"
 
-            # NOTE: this one if for the type hint
-            if param_decl == '*args':
-                param_type = '...'
-                param_name = param_decl
+                # NOTE: this one is for the type hint
+                if param_decl == '*args':
+                    param_type = '...'
+                    param_name = param_decl
 
-            hint.append(param_type)
-            params.append(param_decl)
-            if param_name != 'cls':
-                args.append(pass_action.format(param_name))
+                if param_name != 'cls':
+                    if param_name == 'self' and pass_action == default_action and this_byref:
+                        args.append('byref(self)')
+                    else:
+                        args.append(pass_action.format(param_name))
+
+                if param_name not in ('cls', 'self'):
+                    hint.append(param_type)
+                params.append(param_decl)
 
         if func_data.rtype == 'void':
             rtype = 'None'
@@ -961,7 +977,9 @@ def generate_binding_code(config: GlobalWrapperData, out_filename: str):
     process_type_information(config)
 
     for library in config.libraries.values():
+        print("::", library.name)
         for module in library.modules.values():
+            print("::", module.name)
             modules.append(module)
             load_wrapper_data(config, module)
 
@@ -1025,7 +1043,8 @@ def generate_binding_code(config: GlobalWrapperData, out_filename: str):
             composer.add_line(f"{lib.name} = _load_library('{lib.key_name}', {lib.is_extension}, {lib.base_dir}, win32='{lib.bin_fnames.win32}', linux='{lib.bin_fnames.linux}', darwin='{lib.bin_fnames.darwin}')")
 
     composer.add_empty()
-    composer.add_line("print('\\nraylib-py v{RAYLIB_VERSION} is initializing.\\n')")
+    ver = modules[0].defines.get('RAYLIB_VERSION').value
+    composer.add_line(f"print(\"\\nraylib-py v{ver} is initializing.\\n\")".format())
 
     composer.add_empty()
 
@@ -1110,8 +1129,8 @@ def generate_binding_code(config: GlobalWrapperData, out_filename: str):
     with composer.region('internals'):
         for module in modules:
 
-            if not module.structs:
-                continue
+            # if not module.structs:
+            #     continue
 
             composer.add_empty()
             composer.add_comment(f"{module.library}::{module.name}")

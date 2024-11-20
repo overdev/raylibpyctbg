@@ -1,0 +1,24 @@
+{
+    "defines": [],
+    "structs": [],
+    "aliases": [],
+    "enums": [],
+    "callbacks": [],
+    "functions": [
+        {
+            "name": "TestFunction",
+            "description": "Returns the product",
+            "returnType": "int",
+            "params": [
+                {
+                    "type": "int",
+                    "name": "testIntParam"
+                },
+                {
+                    "type": "int",
+                    "name": "testInt2Param"
+                }
+            ]
+        }
+    ]
+}

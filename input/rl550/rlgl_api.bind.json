@@ -1,0 +1,29 @@
+{
+    "functions": {
+        "*": {
+            "ignore": [
+                "rlEnableStatePointer",
+                "rlDisableStatePointer"
+            ],
+            "contextManager": [
+                { "library": "rlapi", "module": "rlgl", "api": "rlGL", "enter": "rlBegin", "leave": "rlEnd"},
+                { "library": "rlapi", "module": "rlgl", "api": "rlVertexArray", "enter": "rlEnableVertexArray", "leave": "rlDisableVertexArray"},
+                { "library": "rlapi", "module": "rlgl", "api": "rlVertexBuffer", "enter": "rlEnableVertexBuffer", "leave": "rlDisableVertexBuffer"},
+                { "library": "rlapi", "module": "rlgl", "api": "rlVertexBufferElement", "enter": "rlEnableVertexBufferElement", "leave": "rlDisableVertexBufferElement"},
+                { "library": "rlapi", "module": "rlgl", "api": "rlVertexAttribute", "enter": "rlEnableVertexAttribute", "leave": "rlDisableVertexAttribute"},
+                { "library": "rlapi", "module": "rlgl", "api": "rlTexture", "enter": "rlEnableTexture", "leave": "rlDisableTexture"},
+                { "library": "rlapi", "module": "rlgl", "api": "rlTextureCubemap", "enter": "rlEnableTextureCubemap", "leave": "rlDisableTextureCubemap"},
+                { "library": "rlapi", "module": "rlgl", "api": "rlShader", "enter": "rlEnableShader", "leave": "rlDisableShader"},
+                { "library": "rlapi", "module": "rlgl", "api": "rlFramebuffer", "enter": "rlEnableFramebuffer", "leave": "rlDisableFramebuffer"},
+                { "library": "rlapi", "module": "rlgl", "api": "rlColorBlend", "enter": "rlEnableColorBlend", "leave": "rlDisableColorBlend"},
+                { "library": "rlapi", "module": "rlgl", "api": "rlDepthTest", "enter": "rlEnableDepthTest", "leave": "rlDisableDepthTest"},
+                { "library": "rlapi", "module": "rlgl", "api": "rlDepthMask", "enter": "rlEnableDepthMask", "leave": "rlDisableDepthMask"},
+                { "library": "rlapi", "module": "rlgl", "api": "rlBackfaceCulling", "enter": "rlEnableBackfaceCulling", "leave": "rlDisableBackfaceCulling"},
+                { "library": "rlapi", "module": "rlgl", "api": "rlScissorTest", "enter": "rlEnableScissorTest", "leave": "rlDisableScissorTest"},
+                { "library": "rlapi", "module": "rlgl", "api": "rlWireMode", "enter": "rlEnableWireMode", "leave": "rlDisableWireMode"},
+                { "library": "rlapi", "module": "rlgl", "api": "rlSmoothLines", "enter": "rlEnableSmoothLines", "leave": "rlDisableSmoothLines"},
+                { "library": "rlapi", "module": "rlgl", "api": "rlStereoRender", "enter": "rlEnableStereoRender", "leave": "rlDisableStereoRender"}
+            ]
+        }
+    }
+}

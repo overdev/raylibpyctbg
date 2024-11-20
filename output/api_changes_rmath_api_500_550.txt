@@ -1,0 +1,59 @@
+API CHANGES BETWEEN rmath_api v500 (BASE) AND rmath_api v550 (CURRENT)
+
+
+API - defines
+
+
+[BASE: 13 items][CURRENT: 13 items]
+
+API - structs
+
+
+[BASE: 6 items][CURRENT: 6 items]
+
+API - aliases
+
+
+[BASE: 1 items][CURRENT: 1 items]
+
+API - enums
+
+
+[BASE: 0 items][CURRENT: 0 items]
+
+API - functions
+
+
+[BASE: 114 items][CURRENT: 143 items]
+
+ADDED: Vector2Min-
+ADDED: Vector2Max-
+ADDED: Vector2Refract-
+ADDED: Vector3MoveTowards-
+ADDED: Vector3CubicHermite-
+
+ADDED: Vector4Zero
+ADDED: Vector4One
+ADDED: Vector4Add
+ADDED: Vector4AddValue
+ADDED: Vector4Subtract
+ADDED: Vector4SubtractValue
+ADDED: Vector4Length
+ADDED: Vector4LengthSqr
+ADDED: Vector4DotProduct
+ADDED: Vector4Distance
+ADDED: Vector4DistanceSqr
+ADDED: Vector4Scale
+ADDED: Vector4Multiply
+ADDED: Vector4Negate
+ADDED: Vector4Divide
+ADDED: Vector4Normalize
+ADDED: Vector4Min
+ADDED: Vector4Max
+ADDED: Vector4Lerp
+ADDED: Vector4MoveTowards
+ADDED: Vector4Invert
+ADDED: Vector4Equals
+
+ADDED: QuaternionCubicHermiteSpline
+ADDED: MatrixDecompose

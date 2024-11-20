@@ -1,0 +1,84 @@
+API CHANGES BETWEEN raylib_api v500 (BASE) AND raylib_api v550 (CURRENT)
+
+
+API - defines
+
+
+[BASE: 56 items][CURRENT: 57 items]
+
+ADDED: GetMouseRay
+API - structs
+
+
+[BASE: 34 items][CURRENT: 34 items]
+
+API - aliases
+
+
+[BASE: 5 items][CURRENT: 5 items]
+
+API - enums
+
+
+[BASE: 21 items][CURRENT: 21 items]
+
+API - functions
+
+
+[BASE: 552 items][CURRENT: 581 items]
+
+ADDED: GetClipboardImage
+ADDED: IsShaderValid
+ADDED: GetScreenToWorldRay
+ADDED: GetScreenToWorldRayEx
+ADDED: MakeDirectory
+ADDED: IsFileNameValid
+ADDED: ComputeCRC32
+ADDED: ComputeMD5
+ADDED: ComputeSHA1
+ADDED: SetGamepadVibration
+ADDED: GetShapesTexture
+ADDED: GetShapesTextureRectangle
+ADDED: DrawRectangleRoundedLinesEx
+ADDED: CheckCollisionCircleLine
+ADDED: LoadImageAnimFromMemory
+ADDED: IsImageValid
+ADDED: ImageFromChannel
+ADDED: ImageKernelConvolution
+ADDED: ImageDrawLineEx
+ADDED: ImageDrawTriangle
+ADDED: ImageDrawTriangleEx
+ADDED: ImageDrawTriangleLines
+ADDED: ImageDrawTriangleFan
+ADDED: ImageDrawTriangleStrip
+ADDED: IsTextureValid
+ADDED: IsRenderTextureValid
+ADDED: ColorIsEqual
+ADDED: ColorLerp
+ADDED: IsFontValid
+ADDED: TextToSnake
+ADDED: TextToCamel
+ADDED: TextToFloat
+ADDED: IsModelValid
+ADDED: DrawModelPoints
+ADDED: DrawModelPointsEx
+ADDED: ExportMeshAsCode
+ADDED: IsMaterialValid
+ADDED: UpdateModelAnimationBones
+ADDED: IsWaveValid
+ADDED: IsSoundValid
+ADDED: IsMusicValid
+ADDED: IsAudioStreamValid
+REMOVED: IsShaderReady
+REMOVED: GetMouseRay
+REMOVED: LoadImageSvg
+REMOVED: IsImageReady
+REMOVED: IsTextureReady
+REMOVED: IsRenderTextureReady
+REMOVED: IsFontReady
+REMOVED: IsModelReady
+REMOVED: IsMaterialReady
+REMOVED: IsWaveReady
+REMOVED: IsSoundReady
+REMOVED: IsMusicReady
+REMOVED: IsAudioStreamReady
