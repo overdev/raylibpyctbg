@@ -64,6 +64,7 @@ from core import (snakefy,
 
 __all__ = [
     'generate_binding_code',
+    'update_package_manifest',
 ]
 
 
@@ -1434,6 +1435,26 @@ def load_wrapper_data(config: GlobalWrapperData, module: ModuleWrapperData):
 
                 wrap_data = CallbackWrapperData.load(callback_data, None, module.name, module.library)
                 module.callbacks[wrap_data.name] = wrap_data
+
+
+def update_package_manifest(config: GlobalWrapperData, filename: str):
+    archs = ["32bit", "64bit"]
+    xtras = config.config.coreLibrary.extraManifestEntries.copy()
+    files = config.config.coreLibrary.binFilename
+
+    entryfmt = "include src\\raylibpy\\bin\\{}\\{}"
+    entries = []
+
+    for arch in archs:
+        entries.append(entryfmt.format(arch, files.win32))
+        entries.append(entryfmt.format(arch, files.linux))
+        entries.append(entryfmt.format(arch, files.darwin))
+
+    entries.extend(xtras)
+
+    with open(filename, "w", encoding="utf8") as fp:
+        fp.write("\n".join(entries))
+
 
 # region ENTRYPOINT
 

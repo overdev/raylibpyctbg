@@ -40,7 +40,7 @@ import traceback
 
 from argparse import ArgumentParser, Namespace
 from core import GlobalWrapperData
-from rlapi3 import generate_binding_code
+from rlapi3 import generate_binding_code, update_package_manifest
 import rlapi_changes as rlch
 
 # endregion (imports)
@@ -89,11 +89,12 @@ def find_wheel() -> 'tuple[int, str]':
     return -2, f"Wheel file not found in {r}"
 
 
-def gen_binding(cfg_path, out_path) -> 'tuple[int, str]':
+def gen_binding(cfg_path, package_path, out_path) -> 'tuple[int, str]':
     try:
         wrapper = GlobalWrapperData.load(cfg_path)
         generate_binding_code(wrapper, out_path)
-        return 0, f"Binding code generated and stored"
+        update_package_manifest(wrapper, os.path.join(package_path, "MANIFEST.in"))
+        return 0, f"Binding code generated and stored; manifest file updated"
 
     except Exception as e:
         traceback.print_exc()
@@ -183,7 +184,7 @@ def main() -> 'int':
 
     if args.generate:
         commands.append(("Status message", rf"echo(r'   Binding code generation process started')"))
-        commands.append(("Composing the source code", rf"gen_binding(r'{args.config}', r'{args.out}')"))
+        commands.append(("Composing the source code", rf"gen_binding(r'{args.config}', r'{pckg_cwd}', r'{args.out}')"))
         commands.append(("Status message", rf"echo(r'   Binding code generation process finished')"))
 
     if args.build:

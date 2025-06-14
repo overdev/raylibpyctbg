@@ -25,6 +25,10 @@
             "linux": "libraylib.so.5.0.0",
             "darwin": "libraylib.5.0.0.dylib"
         },
+        "extraManifestEntries": [
+            "include src\\raylibpy\\easings.py",
+            "include DOCS.md"
+        ],
         "libModules": [
             {
                 "modName": "raylib",
